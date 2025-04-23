@@ -1,0 +1,12 @@
+---
+# SPDX-FileCopyrightText: (C) 2025 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+name: Publish Documentation
+on:   # yamllint disable-line rule:truthy
+  workflow_dispatch:
+jobs:
+  build:
+    uses: >-
+      open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@main
+    secrets: inherit

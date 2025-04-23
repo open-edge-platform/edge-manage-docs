@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: (C) 2025 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+# editor temp files
+*~
+*.swp
+*.swo
+
+# build directories
+*/_build
+
+# python temp files
+docconf/*.egg-info
+docconf/build
+
+# ci/output dirs
+ci/
+out/
+gitleaks*
+
+# virtualenv
+venv*
+
+#IDEs
+.vscode
+.idea/
+docs/developer_guide/troubleshooting/.DS_Store

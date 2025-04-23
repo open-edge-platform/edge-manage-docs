@@ -1,0 +1,291 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+          "Effect": "Allow",
+          "Action": [
+              "iam:AddRoleToInstanceProfile",
+              "iam:AttachRolePolicy",
+              "iam:AttachUserPolicy",
+              "iam:CreateAccessKey",
+              "iam:CreateInstanceProfile",
+              "iam:CreateOpenIDConnectProvider",
+              "iam:CreatePolicy",
+              "iam:CreateRole",
+              "iam:CreateServiceSpecificCredential",
+              "iam:CreateUser",
+              "iam:DeleteAccessKey",
+              "iam:DeleteInstanceProfile",
+              "iam:DeleteOpenIDConnectProvider",
+              "iam:DeletePolicy",
+              "iam:DeleteRole",
+              "iam:DeleteRolePolicy",
+              "iam:DeleteSSHPublicKey",
+              "iam:DeleteServiceSpecificCredential",
+              "iam:DeleteUser",
+              "iam:DetachRolePolicy",
+              "iam:DetachUserPolicy",
+              "iam:GetInstanceProfile",
+              "iam:GetOpenIDConnectProvider",
+              "iam:GetPolicy",
+              "iam:GetPolicyVersion",
+              "iam:GetRole",
+              "iam:GetRolePolicy",
+              "iam:GetSSHPublicKey",
+              "iam:GetUser",
+              "iam:ListAccessKeys",
+              "iam:ListAttachedRolePolicies",
+              "iam:ListEntitiesForPolicy",
+              "iam:ListGroupsForUser",
+              "iam:ListInstanceProfilesForRole",
+              "iam:ListPolicies",
+              "iam:ListPolicyVersions",
+              "iam:ListRolePolicies",
+              "iam:ListServiceSpecificCredentials",
+              "iam:PutRolePolicy",
+              "iam:RemoveRoleFromInstanceProfile",
+              "iam:UploadSSHPublicKey",
+              "iam:TagPolicy",
+              "iam:TagRole",
+              "iam:TagUser",
+              "iam:TagInstanceProfile",
+              "iam:ListUserTags",
+              "iam:ListRoleTags",
+              "iam:UntagRole",
+              "iam:UntagPolicy",
+              "iam:UntagUser",
+              "iam:UntagServerCertificate",
+              "iam:TagServerCertificate",
+              "iam:TagOpenIDConnectProvider",
+              "iam:ListServerCertificateTags",
+              "iam:ListOpenIDConnectProviderTags",
+              "iam:ListInstanceProfileTags",
+              "iam:ListPolicyTags",
+              "iam:CreatePolicyVersion",
+              "iam:DeletePolicyVersion"
+          ],
+          "Resource": "*"
+      },
+      {
+          "Effect": "Allow",
+          "Action": "iam:PassRole",
+          "Resource": "*",
+          "Condition": {
+              "StringEquals": {
+                  "iam:PassedToService": [
+                      "eks.amazonaws.com",
+                      "lambda.amazonaws.com",
+                      "ec2.amazonaws.com",
+                      "s3.amazonaws.com",
+                      "ecs.amazonaws.com",
+                      "ecs-tasks.amazonaws.com"
+                  ]
+              }
+          }
+      },
+      {
+          "Effect": "Allow",
+          "Action": [
+              "kms:CreateAlias",
+              "kms:CreateGrant",
+              "kms:CreateKey",
+              "kms:Decrypt",
+              "kms:DeleteAlias",
+              "kms:DescribeKey",
+              "kms:DisableKeyRotation",
+              "kms:Encrypt",
+              "kms:GenerateDataKey",
+              "kms:GenerateDataKeyWithoutPlaintext",
+              "kms:GetKeyPolicy",
+              "kms:GetKeyRotationStatus",
+              "kms:ListAliases",
+              "kms:ScheduleKeyDeletion",
+              "kms:ListResourceTags",
+              "kms:TagResource",
+              "kms:UntagResource",
+              "kms:PutKeyPolicy",
+              "kms:ListKeyPolicies",
+              "kms:ListKeys",
+              "kms:DisableKey",
+              "kms:DeleteCustomKeyStore"
+          ],
+          "Resource": "*"
+      },
+      {
+          "Effect": "Allow",
+          "Action": [
+              "lambda:AddPermission",
+              "lambda:CreateFunction",
+              "lambda:DeleteFunction",
+              "lambda:GetFunction",
+              "lambda:GetFunctionCodeSigningConfig",
+              "lambda:GetPolicy",
+              "lambda:ListVersionsByFunction",
+              "lambda:RemovePermission",
+              "lambda:ListTags",
+              "lambda:TagResource",
+              "lambda:UntagResource"
+          ],
+          "Resource": "*"
+      },
+      {
+          "Effect": "Allow",
+          "Action": [
+              "logs:CreateLogGroup",
+              "logs:DeleteLogGroup",
+              "logs:DescribeLogGroups",
+              "logs:PutRetentionPolicy",
+              "logs:ListTagsForResource",
+              "logs:ListTagsLogGroup",
+              "logs:TagLogGroup",
+              "logs:TagResource",
+              "logs:UntagLogGroup",
+              "logs:UntagResource"
+          ],
+          "Resource": "*"
+      },
+      {
+          "Effect": "Allow",
+          "Action": [
+              "rds:CreateDBClusterParameterGroup",
+              "rds:CreateDBSubnetGroup",
+              "rds:DeleteDBClusterParameterGroup",
+              "rds:DeleteDBClusterSnapshot",
+              "rds:DeleteDBSubnetGroup",
+              "rds:DescribeAccountAttributes",
+              "rds:DescribeDBClusterParameterGroups",
+              "rds:DescribeDBClusterParameters",
+              "rds:DescribeDBClusters",
+              "rds:DescribeDBInstances",
+              "rds:DescribeDBSubnetGroups",
+              "rds:DescribeGlobalClusters",
+              "rds:ModifyDBClusterParameterGroup",
+              "rds:ListTagsForResource",
+              "rds:AddTagsToResource",
+              "rds:RemoveTagsFromResource",
+              "rds:CreateDBCluster",
+              "rds:DescribeDBSecurityGroups",
+              "rds:DescribeDBSnapshots",
+              "rds:CreateDBClusterEndpoint",
+              "rds:CreateDBClusterSnapshot",
+              "rds:CreateDBInstance",
+              "rds:CreateDBInstanceReadReplica",
+              "rds:CreateDBSnapshot",
+              "rds:DeleteDBCluster",
+              "rds:DeleteDBClusterAutomatedBackup",
+              "rds:DeleteDBClusterEndpoint",
+              "rds:DeleteDBInstance",
+              "rds:DeleteDBInstanceAutomatedBackup",
+              "rds:DeleteDBSecurityGroup",
+              "rds:DeleteDBSnapshot",
+              "rds:DeleteGlobalCluster",
+              "rds:ModifyDBCluster",
+              "rds:ModifyCustomDBEngineVersion",
+              "rds:ModifyCurrentDBClusterCapacity",
+              "rds:ModifyDBClusterEndpoint",
+              "rds:ModifyDBClusterSnapshotAttribute",
+              "rds:ModifyDBInstance",
+              "rds:RebootDBCluster",
+              "rds:RebootDBInstance",
+              "rds:RebootDBShardGroup",
+              "rds:RegisterDBProxyTargets",
+              "rds:RemoveFromGlobalCluster",
+              "rds:RemoveRoleFromDBCluster",
+              "rds:RemoveRoleFromDBInstance"
+          ],
+          "Resource": "*"
+      },
+      {
+          "Effect": "Allow",
+          "Action": [
+              "route53:AssociateVPCWithHostedZone",
+              "route53:ChangeResourceRecordSets",
+              "route53:CreateHostedZone",
+              "route53:DeleteHostedZone",
+              "route53:DisassociateVPCFromHostedZone",
+              "route53:GetChange",
+              "route53:GetHostedZone",
+              "route53:ListHostedZones",
+              "route53:ListHostedZonesByName",
+              "route53:ListResourceRecordSets",
+              "route53:ListTagsForResource",
+              "route53:ListTagsForResources",
+              "route53:ChangeTagsForResource"
+          ],
+          "Resource": "*"
+      },
+      {
+          "Effect": "Allow",
+          "Action": [
+              "secretsmanager:CreateSecret",
+              "secretsmanager:DeleteSecret",
+              "secretsmanager:DescribeSecret",
+              "secretsmanager:GetResourcePolicy",
+              "secretsmanager:GetSecretValue",
+              "secretsmanager:PutSecretValue",
+              "secretsmanager:ListSecrets",
+              "secretsmanager:BatchGetSecretValue",
+              "secretsmanager:GetRandomPassword",
+              "secretsmanager:ListSecretVersionIds",
+              "secretsmanager:RotateSecret",
+              "secretsmanager:RestoreSecret",
+              "secretsmanager:UpdateSecret",
+              "secretsmanager:DeleteResourcePolicy",
+              "secretsmanager:PutResourcePolicy",
+              "secretsmanager:ValidateResourcePolicy",
+              "secretsmanager:TagResource",
+              "secretsmanager:UntagResource"
+          ],
+          "Resource": "*"
+      },
+      {
+          "Effect": "Allow",
+          "Action": [
+              "servicequotas:GetServiceQuota"
+          ],
+          "Resource": "*"
+      },
+      {
+          "Effect": "Allow",
+          "Action": [
+              "ssm:CreateDocument",
+              "ssm:DeleteDocument",
+              "ssm:DescribeDocument",
+              "ssm:DescribeDocumentPermission",
+              "ssm:GetDocument",
+              "ssm:GetParameter",
+              "ssm:GetParameters",
+              "ssm:ListTagsForResource",
+              "ssm:AddTagsToResource",
+              "ssm:RemoveTagsFromResource",
+              "ssm:UpdateDocument",
+              "ssm:UpdateDocumentDefaultVersion"
+          ],
+          "Resource": "*"
+      },
+      {
+          "Effect": "Allow",
+          "Action": [
+              "sts:GetCallerIdentity"
+          ],
+          "Resource": "*"
+      },
+      {
+          "Effect": "Allow",
+          "Action": [
+              "wafv2:AssociateWebACL",
+              "wafv2:CreateWebACL",
+              "wafv2:DeleteWebACL",
+              "wafv2:DisassociateWebACL",
+              "wafv2:GetWebACLForResource",
+              "wafv2:ListTagsForResource",
+              "wafv2:TagResource",
+              "wafv2:GetWebACL",
+              "wafv2:ListWebACLs",
+              "wafv2:UpdateWebACL",
+              "wafv2:UntagResource"
+          ],
+          "Resource": "*"
+      }
+  ]
+}

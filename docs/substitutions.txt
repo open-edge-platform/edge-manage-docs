@@ -1,0 +1,6 @@
+..
+   [comment] These are substitutions for content in Edge Orchestrator
+   Documentation:
+
+.. |software_prod_name| replace:: Edge Orchestrator
+

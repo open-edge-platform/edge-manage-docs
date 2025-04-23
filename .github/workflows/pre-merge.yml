@@ -1,0 +1,39 @@
+---
+# SPDX-FileCopyrightText: (C) 2025 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+name: Pre-Merge CI Pipeline
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    branches:
+      - main
+      - release-*
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pre-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Verify Branch Name"
+        uses: open-edge-platform/orch-ci/verify-branch-name@main
+  pre-merge-pipeline:
+    needs: pre-checks
+    uses: open-edge-platform/orch-ci/.github/workflows/pre-merge.yml@main
+    with:
+      run_security_scans: false
+      run_version_check: true
+      run_dep_version_check: false
+      run_build: true
+      run_lint: true
+      run_test: false
+      run_validate_clean_folder: false
+      run_docker_build: false
+      run_artifact: false
+      orch_ci_repo_ref: "main"
+    secrets: inherit

@@ -1,0 +1,44 @@
+---
+# SPDX-FileCopyrightText: (C) 2025 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+# Config for https://github.com/actions/labeler
+
+CI:
+  - changed-files:
+      - any-glob-to-any-file: ".github/**"
+
+root:
+  - changed-files:
+      - any-glob-to-any-file: "*"
+      - any-glob-to-any-file: "docconf/**"
+
+base docs:
+  - changed-files:
+      - any-glob-to-any-file: "docs/*"
+      - any-glob-to-any-file: "docs/_static/*"
+
+api:
+  - changed-files:
+      - any-glob-to-any-file: "docs/api/**"
+
+deployment guide:
+  - changed-files:
+      - any-glob-to-any-file: "docs/deployment_guide/**"
+      - any-glob-to-any-file: "docs/shared/**"
+
+developer guide:
+  - changed-files:
+      - any-glob-to-any-file: "docs/developer_guide/**"
+
+release notes:
+  - changed-files:
+      - any-glob-to-any-file: "docs/release_notes/**"
+
+requirements:
+  - changed-files:
+      - any-glob-to-any-file: "docs/system_requirements/**"
+
+user guide:
+  - changed-files:
+      - any-glob-to-any-file: "docs/user_guide/**"

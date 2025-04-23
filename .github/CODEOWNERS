@@ -1,0 +1,21 @@
+# CODEOWNERS for orch-docs
+
+# SPDX-FileCopyrightText: (C) 2025 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+# docs for CODEOWNERS
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# default owners - covers lint/config/build tooling in repo root
+* @achamuah @swpng @adreanneb @alponsirenas @zdw @jouillet
+
+# documentation content
+docs/ @achamuah @swpng
+docs/developer_guide @adreanneb @alponsirenas @achamuah @swpng
+README.md @achamuah @swpng @adreanneb @cjbooth @zdw
+
+# CI files
+.github/ @zdw @jouillet @alponsirenas
+
+# shared doc config
+docconf/ @zdw @jouillet @alponsirenas
