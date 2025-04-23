@@ -1,0 +1,708 @@
+# SPDX-FileCopyrightText: 2025 Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+openapi: 3.0.0
+components:
+  schemas:
+    network.Network.Get:
+      properties:
+        spec:
+          properties:
+            description:
+              type: string
+            type:
+              type: string
+          type: object
+        status:
+          properties:
+            status:
+              properties:
+                currentState:
+                  type: string
+          type: object
+      type: object
+    network.Network.List:
+      items:
+        properties:
+          name:
+            type: string
+          spec:
+            properties:
+              description:
+                type: string
+              type:
+                type: string
+            type: object
+          status:
+            properties:
+              status:
+                properties:
+                  currentState:
+                    type: string
+            type: object
+        type: object
+      type: array
+    network.Network.NamedLink:
+      items:
+        type: object
+      type: array
+    network.Network.Post:
+      properties:
+        description:
+          type: string
+        type:
+          type: string
+      type: object
+    network.Network.SingleLink:
+      type: object
+    network.Network.Status:
+      properties:
+        status:
+          properties:
+            currentState:
+              type: string
+      type: object
+    org.Org.Get:
+      properties:
+        spec:
+          properties:
+            description:
+              type: string
+          type: object
+        status:
+          properties:
+            orgStatus:
+              properties:
+                message:
+                  type: string
+                statusIndicator:
+                  type: string
+                timeStamp:
+                  format: int64
+                  type: integer
+                uID:
+                  type: string
+          type: object
+      type: object
+    org.Org.List:
+      items:
+        properties:
+          name:
+            type: string
+          spec:
+            properties:
+              description:
+                type: string
+            type: object
+          status:
+            properties:
+              orgStatus:
+                properties:
+                  message:
+                    type: string
+                  statusIndicator:
+                    type: string
+                  timeStamp:
+                    format: int64
+                    type: integer
+                  uID:
+                    type: string
+            type: object
+        type: object
+      type: array
+    org.Org.NamedLink:
+      items:
+        type: object
+      type: array
+    org.Org.Post:
+      properties:
+        description:
+          type: string
+      type: object
+    org.Org.SingleLink:
+      type: object
+    org.Org.Status:
+      properties:
+        orgStatus:
+          properties:
+            message:
+              type: string
+            statusIndicator:
+              type: string
+            timeStamp:
+              format: int64
+              type: integer
+            uID:
+              type: string
+      type: object
+    project.Project.Get:
+      properties:
+        spec:
+          properties:
+            description:
+              type: string
+          type: object
+        status:
+          properties:
+            projectStatus:
+              properties:
+                message:
+                  type: string
+                statusIndicator:
+                  type: string
+                timeStamp:
+                  format: int64
+                  type: integer
+                uID:
+                  type: string
+          type: object
+      type: object
+    project.Project.List:
+      items:
+        properties:
+          name:
+            type: string
+          spec:
+            properties:
+              description:
+                type: string
+            type: object
+          status:
+            properties:
+              projectStatus:
+                properties:
+                  message:
+                    type: string
+                  statusIndicator:
+                    type: string
+                  timeStamp:
+                    format: int64
+                    type: integer
+                  uID:
+                    type: string
+            type: object
+        type: object
+      type: array
+    project.Project.NamedLink:
+      items:
+        type: object
+      type: array
+    project.Project.Post:
+      properties:
+        description:
+          type: string
+      type: object
+    project.Project.SingleLink:
+      type: object
+    project.Project.Status:
+      properties:
+        projectStatus:
+          properties:
+            message:
+              type: string
+            statusIndicator:
+              type: string
+            timeStamp:
+              format: int64
+              type: integer
+            uID:
+              type: string
+      type: object
+  requestBodies:
+    Createnetwork.Network:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/network.Network.Post'
+      description: Request used to create network.Network
+      required: true
+    Createnetwork.Network.Status:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/network.Network.Status'
+      description: Request used to create Status subresource of network.Network
+    Createorg.Org:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/org.Org.Post'
+      description: Request used to create org.Org
+      required: true
+    Createorg.Org.Status:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/org.Org.Status'
+      description: Request used to create Status subresource of org.Org
+    Createproject.Project:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/project.Project.Post'
+      description: Request used to create project.Project
+      required: true
+    Createproject.Project.Status:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/project.Project.Status'
+      description: Request used to create Status subresource of project.Project
+  responses:
+    DefaultResponse:
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+      description: Default response
+    Getnetwork.Network:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/network.Network.Get'
+      description: Response returned back after getting network.Network object
+    Getnetwork.Network.NamedLink:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/network.Network.NamedLink'
+      description: Response returned back after getting network.Network objects
+    Getnetwork.Network.SingleLink:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/network.Network.SingleLink'
+      description: Response returned back after getting network.Network objects
+    Getnetwork.Network.Status:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/network.Network.Status'
+      description: Response returned back after getting status subresource of network.Network object
+    Getorg.Org:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/org.Org.Get'
+      description: Response returned back after getting org.Org object
+    Getorg.Org.NamedLink:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/org.Org.NamedLink'
+      description: Response returned back after getting org.Org objects
+    Getorg.Org.SingleLink:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/org.Org.SingleLink'
+      description: Response returned back after getting org.Org objects
+    Getorg.Org.Status:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/org.Org.Status'
+      description: Response returned back after getting status subresource of org.Org object
+    Getproject.Project:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/project.Project.Get'
+      description: Response returned back after getting project.Project object
+    Getproject.Project.NamedLink:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/project.Project.NamedLink'
+      description: Response returned back after getting project.Project objects
+    Getproject.Project.SingleLink:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/project.Project.SingleLink'
+      description: Response returned back after getting project.Project objects
+    Getproject.Project.Status:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/project.Project.Status'
+      description: Response returned back after getting status subresource of project.Project object
+    Listnetwork.Network:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/network.Network.List'
+      description: Response returned back after getting network.Network objects
+    Listorg.Org:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/org.Org.List'
+      description: Response returned back after getting org.Org objects
+    Listproject.Project:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/project.Project.List'
+      description: Response returned back after getting project.Project objects
+    NotFoundResponse:
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+      description: Not Found
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+info:
+  title: Nexus API GW APIs
+  version: 1.0.0
+paths:
+  /v1/orgs:
+    get:
+      operationId: LIST__v1_orgs
+      responses:
+        "200":
+          $ref: '#/components/responses/Listorg.Org'
+      tags:
+        - Org
+  /v1/orgs/{org.Org}:
+    delete:
+      operationId: DELETE__v1_orgs_org_Org
+      parameters:
+        - description: Name of the org.Org node
+          in: path
+          name: org.Org
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: No content
+      tags:
+        - Org
+    get:
+      operationId: GET__v1_orgs_org_Org
+      parameters:
+        - description: Name of the org.Org node
+          in: path
+          name: org.Org
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: '#/components/responses/Getorg.Org'
+      tags:
+        - Org
+    put:
+      operationId: PUT__v1_orgs_org_Org
+      parameters:
+        - description: Name of the org.Org node
+          in: path
+          name: org.Org
+          required: true
+          schema:
+            type: string
+        - description: If set to false, disables update of preexisting object. Default value is true
+          in: query
+          name: update_if_exists
+          schema:
+            type: boolean
+      requestBody:
+        $ref: '#/components/requestBodies/Createorg.Org'
+      responses:
+        "200":
+          $ref: '#/components/responses/DefaultResponse'
+      tags:
+        - Org
+  /v1/orgs/{org.Org}/Folders:
+    get:
+      operationId: GET__v1_orgs_org_Org_Folders
+      parameters:
+        - description: Name of the org.Org node
+          in: path
+          name: org.Org
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: '#/components/responses/Getorg.Org.NamedLink'
+      tags:
+        - Org
+  /v1/orgs/{org.Org}/status:
+    get:
+      operationId: GET__v1_orgs_org_Org_status
+      parameters:
+        - description: Name of the org.Org node
+          in: path
+          name: org.Org
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: '#/components/responses/Getorg.Org.Status'
+      tags:
+        - Org
+    put:
+      operationId: PUT__v1_orgs_org_Org_status
+      parameters:
+        - description: Name of the org.Org node
+          in: path
+          name: org.Org
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/Createorg.Org.Status'
+      responses:
+        "200":
+          $ref: '#/components/responses/DefaultResponse'
+      tags:
+        - Org
+  /v1/projects:
+    get:
+      operationId: LIST__v1_projects
+      responses:
+        "200":
+          $ref: '#/components/responses/Listproject.Project'
+      tags:
+        - Project
+  /v1/projects/{project.Project}:
+    delete:
+      operationId: DELETE__v1_projects_project_Project
+      parameters:
+        - description: Name of the project.Project node
+          in: path
+          name: project.Project
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: No content
+      tags:
+        - Project
+    get:
+      operationId: GET__v1_projects_project_Project
+      parameters:
+        - description: Name of the project.Project node
+          in: path
+          name: project.Project
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: '#/components/responses/Getproject.Project'
+      tags:
+        - Project
+    put:
+      operationId: PUT__v1_projects_project_Project
+      parameters:
+        - description: Name of the project.Project node
+          in: path
+          name: project.Project
+          required: true
+          schema:
+            type: string
+        - description: If set to false, disables update of preexisting object. Default value is true
+          in: query
+          name: update_if_exists
+          schema:
+            type: boolean
+      requestBody:
+        $ref: '#/components/requestBodies/Createproject.Project'
+      responses:
+        "200":
+          $ref: '#/components/responses/DefaultResponse'
+      tags:
+        - Project
+  /v1/projects/{project.Project}/Networks:
+    get:
+      operationId: GET__v1_projects_project_Project_Networks
+      parameters:
+        - description: Name of the project.Project node
+          in: path
+          name: project.Project
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: '#/components/responses/Getproject.Project.NamedLink'
+      tags:
+        - Project
+  /v1/projects/{project.Project}/networks:
+    get:
+      operationId: LIST__v1_projects_project_Project_networks
+      parameters:
+        - description: Name of the project.Project node
+          in: path
+          name: project.Project
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: '#/components/responses/Listnetwork.Network'
+      tags:
+        - Network
+  /v1/projects/{project.Project}/networks/{network.Network}:
+    delete:
+      operationId: DELETE__v1_projects_project_Project_networks_network_Network
+      parameters:
+        - description: Name of the project.Project node
+          in: path
+          name: project.Project
+          required: true
+          schema:
+            type: string
+        - description: Name of the network.Network node
+          in: path
+          name: network.Network
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: No content
+      tags:
+        - Network
+    get:
+      operationId: GET__v1_projects_project_Project_networks_network_Network
+      parameters:
+        - description: Name of the project.Project node
+          in: path
+          name: project.Project
+          required: true
+          schema:
+            type: string
+        - description: Name of the network.Network node
+          in: path
+          name: network.Network
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: '#/components/responses/Getnetwork.Network'
+      tags:
+        - Network
+    put:
+      operationId: PUT__v1_projects_project_Project_networks_network_Network
+      parameters:
+        - description: Name of the project.Project node
+          in: path
+          name: project.Project
+          required: true
+          schema:
+            type: string
+        - description: Name of the network.Network node
+          in: path
+          name: network.Network
+          required: true
+          schema:
+            type: string
+        - description: If set to false, disables update of preexisting object. Default value is true
+          in: query
+          name: update_if_exists
+          schema:
+            type: boolean
+      requestBody:
+        $ref: '#/components/requestBodies/Createnetwork.Network'
+      responses:
+        "200":
+          $ref: '#/components/responses/DefaultResponse'
+      tags:
+        - Network
+  /v1/projects/{project.Project}/networks/{network.Network}/status:
+    get:
+      operationId: GET__v1_projects_project_Project_networks_network_Network_status
+      parameters:
+        - description: Name of the project.Project node
+          in: path
+          name: project.Project
+          required: true
+          schema:
+            type: string
+        - description: Name of the network.Network node
+          in: path
+          name: network.Network
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: '#/components/responses/Getnetwork.Network.Status'
+      tags:
+        - Network
+    put:
+      operationId: PUT__v1_projects_project_Project_networks_network_Network_status
+      parameters:
+        - description: Name of the project.Project node
+          in: path
+          name: project.Project
+          required: true
+          schema:
+            type: string
+        - description: Name of the network.Network node
+          in: path
+          name: network.Network
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/Createnetwork.Network.Status'
+      responses:
+        "200":
+          $ref: '#/components/responses/DefaultResponse'
+      tags:
+        - Network
+  /v1/projects/{project.Project}/status:
+    get:
+      operationId: GET__v1_projects_project_Project_status
+      parameters:
+        - description: Name of the project.Project node
+          in: path
+          name: project.Project
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: '#/components/responses/Getproject.Project.Status'
+      tags:
+        - Project
+    put:
+      operationId: PUT__v1_projects_project_Project_status
+      parameters:
+        - description: Name of the project.Project node
+          in: path
+          name: project.Project
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/Createproject.Project.Status'
+      responses:
+        "200":
+          $ref: '#/components/responses/DefaultResponse'
+      tags:
+        - Project
+servers:
+  - url: '{apiRoot}'
+    variables:
+      apiRoot:
+        default: https://<multitenancy-gateway-host>
+security:
+  - BearerAuth: []

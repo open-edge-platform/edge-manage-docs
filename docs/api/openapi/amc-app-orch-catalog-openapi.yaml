@@ -1,0 +1,1764 @@
+# SPDX-FileCopyrightText: 2025 Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+openapi: 3.0.3
+info:
+  title: Application Catalog API
+  description: An application catalog service providing operations for tenants catalogs
+    and applications.
+  version: 0.0.1alpha2
+servers:
+- url: '{apiRoot}'
+  variables:
+    apiRoot:
+      default: https://<multitenancy-gateway-host>
+tags:
+- name: CatalogService
+security:
+- BearerAuth: []
+paths:
+  /v3/projects/{projectName}/catalog/applications:
+    get:
+      description: Gets a list of applications.
+      operationId: CatalogService_ListApplications
+      parameters:
+      - description: Names the field to be used for ordering the returned results.
+        in: query
+        name: orderBy
+        schema:
+          type: string
+      - description: Expression to use for filtering the results.
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Maximum number of items to return.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: Index of the first item to return.
+        in: query
+        name: offset
+        schema:
+          format: int32
+          type: integer
+      - description: List of application kinds to be returned; empty list means all
+          kinds.
+        in: query
+        name: kinds
+        schema:
+          items:
+            enum:
+            - KIND_NORMAL
+            - KIND_EXTENSION
+            - KIND_ADDON
+            format: enum
+            type: string
+          type: array
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListApplicationsResponse'
+          description: OK
+      summary: ListApplications
+      tags:
+      - CatalogService
+    post:
+      description: Creates a new application.
+      operationId: CatalogService_CreateApplication
+      parameters:
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Application'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateApplicationResponse'
+          description: OK
+      summary: CreateApplication
+      tags:
+      - CatalogService
+  /v3/projects/{projectName}/catalog/applications/{applicationName}/versions:
+    get:
+      description: Gets all versions of a named application.
+      operationId: CatalogService_GetApplicationVersions
+      parameters:
+      - description: Name of the application.
+        in: path
+        name: applicationName
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetApplicationVersionsResponse'
+          description: OK
+      summary: GetApplicationVersions
+      tags:
+      - CatalogService
+  /v3/projects/{projectName}/catalog/applications/{applicationName}/versions/{version}:
+    delete:
+      description: Deletes an application.
+      operationId: CatalogService_DeleteApplication
+      parameters:
+      - description: Name of the application.
+        in: path
+        name: applicationName
+        required: true
+        schema:
+          type: string
+      - description: Version of the application.
+        in: path
+        name: version
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+      summary: DeleteApplication
+      tags:
+      - CatalogService
+    get:
+      description: Gets a specific application.
+      operationId: CatalogService_GetApplication
+      parameters:
+      - description: Name of the application.
+        in: path
+        name: applicationName
+        required: true
+        schema:
+          type: string
+      - description: Version of the application.
+        in: path
+        name: version
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetApplicationResponse'
+          description: OK
+      summary: GetApplication
+      tags:
+      - CatalogService
+    put:
+      description: Updates an application.
+      operationId: CatalogService_UpdateApplication
+      parameters:
+      - description: Name of the application.
+        in: path
+        name: applicationName
+        required: true
+        schema:
+          type: string
+      - description: Version of the application.
+        in: path
+        name: version
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Application'
+        required: true
+      responses:
+        "200":
+          description: OK
+      summary: UpdateApplication
+      tags:
+      - CatalogService
+  /v3/projects/{projectName}/catalog/applications/{applicationName}/versions/{version}/reference_count:
+    get:
+      description: Gets application reference count - the number of deployment packages
+        using this application.
+      operationId: CatalogService_GetApplicationReferenceCount
+      parameters:
+      - description: Name of the application.
+        in: path
+        name: applicationName
+        required: true
+        schema:
+          type: string
+      - description: Version of the application.
+        in: path
+        name: version
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetApplicationReferenceCountResponse'
+          description: OK
+      summary: GetApplicationReferenceCount
+      tags:
+      - CatalogService
+  /v3/projects/{projectName}/catalog/artifacts:
+    get:
+      description: Gets a list of artifacts.
+      operationId: CatalogService_ListArtifacts
+      parameters:
+      - description: Names the field to be used for ordering the returned results.
+        in: query
+        name: orderBy
+        schema:
+          type: string
+      - description: Expression to use for filtering the results.
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Maximum number of items to return.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: Index of the first item to return.
+        in: query
+        name: offset
+        schema:
+          format: int32
+          type: integer
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListArtifactsResponse'
+          description: OK
+      summary: ListArtifacts
+      tags:
+      - CatalogService
+    post:
+      description: Creates a new artifact.
+      operationId: CatalogService_CreateArtifact
+      parameters:
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Artifact'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateArtifactResponse'
+          description: OK
+      summary: CreateArtifact
+      tags:
+      - CatalogService
+  /v3/projects/{projectName}/catalog/artifacts/{artifactName}:
+    delete:
+      description: Deletes an artifact.
+      operationId: CatalogService_DeleteArtifact
+      parameters:
+      - description: Name of the artifact.
+        in: path
+        name: artifactName
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+      summary: DeleteArtifact
+      tags:
+      - CatalogService
+    get:
+      description: Gets a specific artifact.
+      operationId: CatalogService_GetArtifact
+      parameters:
+      - description: Name of the artifact.
+        in: path
+        name: artifactName
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetArtifactResponse'
+          description: OK
+      summary: GetArtifact
+      tags:
+      - CatalogService
+    put:
+      description: Updates an artifact.
+      operationId: CatalogService_UpdateArtifact
+      parameters:
+      - description: Name of the artifact.
+        in: path
+        name: artifactName
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Artifact'
+        required: true
+      responses:
+        "200":
+          description: OK
+      summary: UpdateArtifact
+      tags:
+      - CatalogService
+  /v3/projects/{projectName}/catalog/deployment_packages:
+    get:
+      description: Gets a list of deployment packages.
+      operationId: CatalogService_ListDeploymentPackages
+      parameters:
+      - description: Names the field to be used for ordering the returned results.
+        in: query
+        name: orderBy
+        schema:
+          type: string
+      - description: Expression to use for filtering the results.
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Maximum number of items to return.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: Index of the first item to return.
+        in: query
+        name: offset
+        schema:
+          format: int32
+          type: integer
+      - description: List of deployment package kinds to be returned; empty list means
+          all kinds.
+        in: query
+        name: kinds
+        schema:
+          items:
+            enum:
+            - KIND_NORMAL
+            - KIND_EXTENSION
+            - KIND_ADDON
+            format: enum
+            type: string
+          type: array
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDeploymentPackagesResponse'
+          description: OK
+      summary: ListDeploymentPackages
+      tags:
+      - CatalogService
+    post:
+      description: Creates a new deployment package.
+      operationId: CatalogService_CreateDeploymentPackage
+      parameters:
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeploymentPackage'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateDeploymentPackageResponse'
+          description: OK
+      summary: CreateDeploymentPackage
+      tags:
+      - CatalogService
+  /v3/projects/{projectName}/catalog/deployment_packages/{deploymentPackageName}/versions:
+    get:
+      description: Gets all versions of a named deployment package.
+      operationId: CatalogService_GetDeploymentPackageVersions
+      parameters:
+      - description: Name of the DeploymentPackage.
+        in: path
+        name: deploymentPackageName
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDeploymentPackageVersionsResponse'
+          description: OK
+      summary: GetDeploymentPackageVersions
+      tags:
+      - CatalogService
+  /v3/projects/{projectName}/catalog/deployment_packages/{deploymentPackageName}/versions/{version}:
+    delete:
+      description: Deletes a deployment package.
+      operationId: CatalogService_DeleteDeploymentPackage
+      parameters:
+      - description: Name of the DeploymentPackage.
+        in: path
+        name: deploymentPackageName
+        required: true
+        schema:
+          type: string
+      - description: Version of the DeploymentPackage.
+        in: path
+        name: version
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+      summary: DeleteDeploymentPackage
+      tags:
+      - CatalogService
+    get:
+      description: Gets a specific deployment package.
+      operationId: CatalogService_GetDeploymentPackage
+      parameters:
+      - description: Name of the DeploymentPackage.
+        in: path
+        name: deploymentPackageName
+        required: true
+        schema:
+          type: string
+      - description: Version of the DeploymentPackage.
+        in: path
+        name: version
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDeploymentPackageResponse'
+          description: OK
+      summary: GetDeploymentPackage
+      tags:
+      - CatalogService
+    put:
+      description: Updates a deployment package.
+      operationId: CatalogService_UpdateDeploymentPackage
+      parameters:
+      - description: Name of the DeploymentPackage.
+        in: path
+        name: deploymentPackageName
+        required: true
+        schema:
+          type: string
+      - description: Version of the DeploymentPackage.
+        in: path
+        name: version
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeploymentPackage'
+        required: true
+      responses:
+        "200":
+          description: OK
+      summary: UpdateDeploymentPackage
+      tags:
+      - CatalogService
+  /v3/projects/{projectName}/catalog/registries:
+    get:
+      description: Gets a list of registries.
+      operationId: CatalogService_ListRegistries
+      parameters:
+      - description: Names the field to be used for ordering the returned results.
+        in: query
+        name: orderBy
+        schema:
+          type: string
+      - description: Expression to use for filtering the results.
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Maximum number of items to return.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: Index of the first item to return.
+        in: query
+        name: offset
+        schema:
+          format: int32
+          type: integer
+      - description: Request that sensitive information, such as username, auth_token,
+          and CA certificates are included in the response.
+        in: query
+        name: showSensitiveInfo
+        schema:
+          type: boolean
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRegistriesResponse'
+          description: OK
+      summary: ListRegistries
+      tags:
+      - CatalogService
+    post:
+      description: Creates a new registry.
+      operationId: CatalogService_CreateRegistry
+      parameters:
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Registry'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRegistryResponse'
+          description: OK
+      summary: CreateRegistry
+      tags:
+      - CatalogService
+  /v3/projects/{projectName}/catalog/registries/{registryName}:
+    delete:
+      description: Deletes a registry.
+      operationId: CatalogService_DeleteRegistry
+      parameters:
+      - description: Name of the registry.
+        in: path
+        name: registryName
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+      summary: DeleteRegistry
+      tags:
+      - CatalogService
+    get:
+      description: Gets a specific registry.
+      operationId: CatalogService_GetRegistry
+      parameters:
+      - description: Name of the registry.
+        in: path
+        name: registryName
+        required: true
+        schema:
+          type: string
+      - description: Request that sensitive information, such as username, auth_token,
+          and CA certificates are included in the response.
+        in: query
+        name: showSensitiveInfo
+        schema:
+          type: boolean
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRegistryResponse'
+          description: OK
+      summary: GetRegistry
+      tags:
+      - CatalogService
+    put:
+      description: Updates a registry.
+      operationId: CatalogService_UpdateRegistry
+      parameters:
+      - description: Name of the Registry.
+        in: path
+        name: registryName
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Registry'
+        required: true
+      responses:
+        "200":
+          description: OK
+      summary: UpdateRegistry
+      tags:
+      - CatalogService
+  /v3/projects/{projectName}/catalog/uploads:
+    post:
+      description: |-
+        Allows uploading of a YAML file containing various application catalog entities. Multiple RPC invocations
+         tagged with the same upload session ID can be used to upload multiple files and to create or update several
+         catalog entities as a single transaction.
+      operationId: CatalogService_UploadCatalogEntities
+      parameters:
+      - description: First upload request in the batch must not specify session ID.
+          Subsequent upload requests must copy the session ID from the previously
+          issued response.
+        in: query
+        name: sessionId
+        schema:
+          type: string
+      - description: 'Deprecated: Upload number must increase sequentially, starting
+          with 1.'
+        in: query
+        name: uploadNumber
+        schema:
+          format: uint32
+          type: integer
+      - description: Must be set to 'true' to perform load of all entity files uploaded
+          as part of this session.
+        in: query
+        name: lastUpload
+        schema:
+          type: boolean
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Upload'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadCatalogEntitiesResponse'
+          description: OK
+      summary: UploadCatalogEntities
+      tags:
+      - CatalogService
+components:
+  schemas:
+    APIExtension:
+      description: APIExtensions represents some form of an extension to the external
+        API provided by deployment package.
+      properties:
+        description:
+          description: Description of the API extension. Displayed on user interfaces.
+          maxLength: 1000
+          type: string
+        displayName:
+          description: Display name is an optional human-readable name for the API
+            extension. When specified, it must be unique among all extensions of a
+            given deployment package. It is used for display purposes on user interfaces.
+          maxLength: 40
+          pattern: ^\PC*$
+          type: string
+        endpoints:
+          description: One or more API endpoints provided by the API extension.
+          items:
+            $ref: '#/components/schemas/Endpoint'
+          type: array
+        name:
+          description: Name is a human-readable unique identifier for the API extension
+            and must be unique for all extensions of a given deployment package.
+          maxLength: 40
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-]{0,38}[a-z0-9]{0,1}$
+          type: string
+        uiExtension:
+          $ref: '#/components/schemas/UIExtension'
+        version:
+          description: Version of the API extension.
+          maxLength: 20
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-.]{0,18}[a-z0-9]{0,1}$
+          type: string
+      required:
+      - name
+      - version
+      type: object
+    Application:
+      description: Application represents a Helm chart that can be deployed to one
+        or more Kubernetes pods.
+      properties:
+        chartName:
+          description: Helm chart name.
+          maxLength: 200
+          minLength: 1
+          pattern: ^[0-9a-z-/]*$
+          type: string
+        chartVersion:
+          description: Helm chart version.
+          maxLength: 53
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-.]{0,51}[a-z0-9]{0,1}$
+          type: string
+        createTime:
+          description: The creation time of the application.
+          format: date-time
+          readOnly: true
+          type: string
+        defaultProfileName:
+          description: Name of the profile to be used by default when deploying this
+            application. If at least one profile is available, this field must be
+            set.
+          type: string
+        description:
+          description: Description of the application. Displayed on user interfaces.
+          maxLength: 1000
+          type: string
+        displayName:
+          description: Display name is an optional human-readable name for the application.
+            When specified, it must be unique among all applications within a project.
+            It is used for display purposes on user interfaces.
+          maxLength: 40
+          pattern: ^\PC*$
+          type: string
+        helmRegistryName:
+          description: ID of the project's registry where the Helm chart of the application
+            is available for download.
+          type: string
+        ignoredResources:
+          description: List of Kubernetes resources that must be ignored during the
+            application deployment.
+          items:
+            $ref: '#/components/schemas/ResourceReference'
+          type: array
+        imageRegistryName:
+          description: ID of the project's registry where the Docker image of the
+            application is available for download.
+          type: string
+        kind:
+          description: Field designating whether the application is a system add-on,
+            system extension, or a normal application.
+          enum:
+          - KIND_NORMAL
+          - KIND_EXTENSION
+          - KIND_ADDON
+          format: enum
+          type: string
+        name:
+          description: Name is a human readable unique identifier for the application
+            and must be unique for all applications of a given project. Used in network
+            URIs.
+          maxLength: 26
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-]{0,24}[a-z0-9]{0,1}$
+          type: string
+        profiles:
+          description: Set of profiles that can be used when deploying the application.
+          items:
+            $ref: '#/components/schemas/Profile'
+          type: array
+        updateTime:
+          description: The last update time of the application.
+          format: date-time
+          readOnly: true
+          type: string
+        version:
+          description: Version of the application. Used in combination with the name
+            to identify a unique application within a project.
+          maxLength: 20
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-.]{0,18}[a-z0-9]{0,1}$
+          type: string
+      required:
+      - name
+      - version
+      - chartName
+      - chartVersion
+      - helmRegistryName
+      type: object
+    ApplicationDependency:
+      description: ApplicationDependency represents the dependency of one application
+        on another within the context of a deployment package. This dependency is
+        specified as the name of the application that has the dependency, and the
+        name of the application that is the dependency.
+      properties:
+        name:
+          description: Name of the application that has the dependency on the other.
+          maxLength: 26
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-]{0,24}[a-z0-9]{0,1}$
+          type: string
+        requires:
+          description: Name of the application that is required by the other.
+          maxLength: 26
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-]{0,24}[a-z0-9]{0,1}$
+          type: string
+      required:
+      - name
+      - requires
+      type: object
+    ApplicationReference:
+      description: ApplicationReference represents a reference to an application by
+        its name and its version.
+      properties:
+        name:
+          description: Name of the referenced application.
+          maxLength: 40
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-]{0,38}[a-z0-9]{0,1}$
+          type: string
+        version:
+          description: Version of the referenced application.
+          maxLength: 20
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-.]{0,18}[a-z0-9]{0,1}$
+          type: string
+      required:
+      - name
+      - version
+      type: object
+    Artifact:
+      description: Artifact represents a binary artifact that can be used for various
+        purposes, e.g. icon or thumbnail for UI display, or auxiliary artifacts for
+        integration with various platform services such as Grafana dashboard and similar.
+        An artifact may be used by multiple deployment packages.
+      properties:
+        artifact:
+          description: Raw byte content of the artifact encoded as base64. The limits
+            refer to the number of raw bytes.
+          format: byte
+          type: string
+        createTime:
+          description: The creation time of the artifact.
+          format: date-time
+          readOnly: true
+          type: string
+        description:
+          description: Description of the artifact. Displayed on user interfaces.
+          maxLength: 1000
+          type: string
+        displayName:
+          description: Display name is an optional human-readable name for the artifact.
+            When specified, it must be unique among all artifacts within a project.
+            It is used for display purposes on user interfaces.
+          maxLength: 40
+          pattern: ^\PC*$
+          type: string
+        mimeType:
+          description: Artifact's MIME type. Only text/plain, application/json, application/yaml,
+            image/png, and image/jpeg are allowed at this time. MIME types are defined
+            and standardized in IETF's RFC 6838.
+          maxLength: 40
+          minLength: 1
+          pattern: ^(text/plain)$|^(application/json)$|^(application/yaml)$|^(image/png)$|^(image/jpeg)$
+          type: string
+        name:
+          description: Name is a human-readable unique identifier for the artifact
+            and must be unique for all artifacts within a project.
+          maxLength: 40
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-]{0,38}[a-z0-9]{0,1}$
+          type: string
+        updateTime:
+          description: The last update time of the artifact.
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - name
+      - mimeType
+      - artifact
+      type: object
+    ArtifactReference:
+      description: ArtifactReference serves as a reference to an artifact, together
+        with the artifact's purpose within a deployment package.
+      properties:
+        name:
+          description: Name of the artifact.
+          maxLength: 40
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-]{0,38}[a-z0-9]{0,1}$
+          type: string
+        purpose:
+          description: Purpose of the artifact, e.g. icon, thumbnail, Grafana dashboard,
+            etc.
+          maxLength: 20
+          pattern: ^\PC*$
+          type: string
+      required:
+      - name
+      - purpose
+      type: object
+    CreateApplicationResponse:
+      description: Response message for the CreateApplication method.
+      properties:
+        application:
+          $ref: '#/components/schemas/Application'
+      required:
+      - application
+      type: object
+    CreateArtifactResponse:
+      description: Response message for the CreateArtifact method.
+      properties:
+        artifact:
+          $ref: '#/components/schemas/Artifact'
+      required:
+      - artifact
+      type: object
+    CreateDeploymentPackageResponse:
+      description: Response message for the CreateDeploymentPackage method.
+      properties:
+        deploymentPackage:
+          $ref: '#/components/schemas/DeploymentPackage'
+      required:
+      - deploymentPackage
+      type: object
+    CreateRegistryResponse:
+      description: Response message for the CreateRegistry method.
+      properties:
+        registry:
+          $ref: '#/components/schemas/Registry'
+      required:
+      - registry
+      type: object
+    DeploymentPackage:
+      description: DeploymentPackage represents a collection of applications (referenced
+        by their name and a version) that are deployed together. The package can define
+        one or more deployment profiles that specify the individual application profiles
+        to be used when deploying each application. If applications need to be deployed
+        in a particular order, the package can also define any startup dependencies
+        between its constituent applications as a set of dependency graph edges. The
+        deployment package can also refer to a set of artifacts used for miscellaneous
+        purposes, e.g. a thumbnail, icon, or a Grafana extension.
+      properties:
+        applicationDependencies:
+          description: Optional set of application deployment dependencies, expressed
+            as (name, requires) pairs of edges in the deployment order dependency
+            graph.
+          items:
+            $ref: '#/components/schemas/ApplicationDependency'
+          type: array
+        applicationReferences:
+          description: List of applications comprising this deployment package. Expressed
+            as (name, version) pairs.
+          items:
+            $ref: '#/components/schemas/ApplicationReference'
+          type: array
+        artifacts:
+          description: Optional list of artifacts required for displaying or deploying
+            this package. For example, icon or thumbnail artifacts can be used by
+            the UI; Grafana\* dashboard definitions can be used by the deployment
+            manager.
+          items:
+            $ref: '#/components/schemas/ArtifactReference'
+          maxItems: 100
+          type: array
+        createTime:
+          description: The creation time of the deployment package.
+          format: date-time
+          readOnly: true
+          type: string
+        defaultNamespaces:
+          additionalProperties:
+            type: string
+          description: Optional map of application-to-namespace bindings to be used
+            as a default when deploying the applications that comprise the package.
+            If a namespace is not defined in the set of "namespaces" in this Deployment
+            Package, it will be inferred that it is a simple namespace with no predefined
+            labels or annotations.
+          type: object
+        defaultProfileName:
+          description: Name of the default deployment profile to be used by default
+            when deploying this package.
+          type: string
+        description:
+          description: Description of the deployment package. Displayed on user interfaces.
+          maxLength: 1000
+          type: string
+        displayName:
+          description: Display name is an optional human-readable name for the deployment
+            package. When specified, it must be unique among all packages within a
+            project. It is used for display purposes on user interfaces.
+          maxLength: 40
+          pattern: ^\PC*$
+          type: string
+        extensions:
+          description: Optional list of API and UI extensions.
+          items:
+            $ref: '#/components/schemas/APIExtension'
+          maxItems: 100
+          type: array
+        forbidsMultipleDeployments:
+          description: Optional flag indicating whether multiple deployments of this
+            package are forbidden within the same realm.
+          type: boolean
+        isDeployed:
+          description: Flag indicating whether the deployment package has been deployed.
+            The mutability of the deployment package entity can be limited when this
+            flag is true. For example, one may not be able to update when an application
+            is removed from a package after it has been marked as deployed.
+          type: boolean
+        isVisible:
+          description: Flag indicating whether the deployment package is visible in
+            the UI. Some deployment packages can be classified as auxiliary platform
+            extensions and therefore are to be deployed indirectly only when specified
+            as deployment requirements, rather than directly by the platform operator.
+          type: boolean
+        kind:
+          description: Field designating whether the deployment package is a system
+            add-on, system extension, or a normal package.
+          enum:
+          - KIND_NORMAL
+          - KIND_EXTENSION
+          - KIND_ADDON
+          format: enum
+          type: string
+        name:
+          description: Name is a human-readable unique identifier for the deployment
+            package and must be unique for all packages of a given project.
+          maxLength: 40
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-]{0,38}[a-z0-9]{0,1}$
+          type: string
+        namespaces:
+          description: Namespace definitions to be created before resources are deployed.
+            This allows complex namespaces to be defined with predefined labels and
+            annotations. If not defined, simple namespaces will be created as needed.
+          items:
+            $ref: '#/components/schemas/Namespace'
+          type: array
+        profiles:
+          description: Set of deployment profiles to choose from when deploying this
+            package.
+          items:
+            $ref: '#/components/schemas/DeploymentProfile'
+          type: array
+        updateTime:
+          description: The last update time of the deployment package.
+          format: date-time
+          readOnly: true
+          type: string
+        version:
+          description: Version of the deployment package.
+          maxLength: 20
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-.]{0,18}[a-z0-9]{0,1}$
+          type: string
+      required:
+      - name
+      - version
+      - applicationReferences
+      - extensions
+      - artifacts
+      type: object
+    DeploymentProfile:
+      description: DeploymentProfile specifies which application profiles will be
+        used for deployment of which applications.
+      properties:
+        applicationProfiles:
+          additionalProperties:
+            type: string
+          description: Application profiles map application names to the names of
+            its profile, to be used when deploying the application as part of the
+            deployment package together with the deployment profile.
+          type: object
+        createTime:
+          description: The creation time of the deployment profile.
+          format: date-time
+          readOnly: true
+          type: string
+        description:
+          description: Description of the deployment profile. Displayed on user interfaces.
+          maxLength: 1000
+          type: string
+        displayName:
+          description: Display name is an optional human-readable name for the registry.
+            When specified, it must be unique among all profiles of a given package.
+            It is used for display purposes on user interfaces.
+          maxLength: 40
+          pattern: ^\PC*$
+          type: string
+        name:
+          description: Name is a human-readable unique identifier for the profile
+            and must be unique for all profiles of a given deployment package.
+          maxLength: 40
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-]{0,38}[a-z0-9]{0,1}$
+          type: string
+        updateTime:
+          description: The last update time of the deployment profile.
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - name
+      - applicationProfiles
+      type: object
+    DeploymentRequirement:
+      description: DeploymentRequirement is a reference to the deployment package
+        that must be deployed first, as a requirement for an application to be deployed.
+      properties:
+        deploymentProfileName:
+          description: Optional name of the deployment profile to be used. When not
+            provided, the default deployment profile will be used.
+          type: string
+        name:
+          description: Name of the required deployment package.
+          maxLength: 40
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-]{0,38}[a-z0-9]{0,1}$
+          type: string
+        version:
+          description: Version of the required deployment package.
+          maxLength: 20
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-.]{0,18}[a-z0-9]{0,1}$
+          type: string
+      required:
+      - name
+      - version
+      type: object
+    Endpoint:
+      description: Endpoint represents an application service endpoint.
+      properties:
+        appName:
+          description: The name of the application providing this endpoint.
+          maxLength: 40
+          type: string
+        authType:
+          description: Authentication type expected by the endpoint.
+          maxLength: 16
+          pattern: ^[a-z]{0,16}$
+          type: string
+        externalPath:
+          description: Externally accessible path to the endpoint.
+          maxLength: 128
+          minLength: 1
+          type: string
+        internalPath:
+          description: Internally accessible path to the endpoint.
+          maxLength: 128
+          minLength: 1
+          type: string
+        scheme:
+          description: Protocol scheme provided by the endpoint.
+          maxLength: 32
+          pattern: ^([a-z][a-z0-9-]{0,30}[a-z0-9]){0,1}$
+          type: string
+        serviceName:
+          description: The name of the service hosted by the endpoint.
+          maxLength: 40
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-]{0,38}[a-z0-9]{0,1}$
+          type: string
+      required:
+      - serviceName
+      - externalPath
+      - internalPath
+      - scheme
+      - authType
+      type: object
+    GetApplicationReferenceCountResponse:
+      description: Response message for the GetApplicationReferenceCount method.
+      properties:
+        referenceCount:
+          format: uint32
+          type: integer
+      required:
+      - referenceCount
+      type: object
+    GetApplicationResponse:
+      description: Response message for the GetApplication method.
+      properties:
+        application:
+          $ref: '#/components/schemas/Application'
+      required:
+      - application
+      type: object
+    GetApplicationVersionsResponse:
+      description: Response message for the GetApplication method.
+      properties:
+        application:
+          description: A list of applications with the same project and name.
+          items:
+            $ref: '#/components/schemas/Application'
+          type: array
+      required:
+      - application
+      type: object
+    GetArtifactResponse:
+      description: Response message for the GetArtifact method.
+      properties:
+        artifact:
+          $ref: '#/components/schemas/Artifact'
+      required:
+      - artifact
+      type: object
+    GetDeploymentPackageResponse:
+      description: Response message for the GetDeploymentPackage method.
+      properties:
+        deploymentPackage:
+          $ref: '#/components/schemas/DeploymentPackage'
+      required:
+      - deploymentPackage
+      type: object
+    GetDeploymentPackageVersionsResponse:
+      description: Response message for the GetDeploymentPackageVersions method.
+      properties:
+        deploymentPackages:
+          description: A list of DeploymentPackages with the same project and name.
+          items:
+            $ref: '#/components/schemas/DeploymentPackage'
+          type: array
+      required:
+      - deploymentPackages
+      type: object
+    GetRegistryResponse:
+      description: Response message for the GetRegistry method.
+      properties:
+        registry:
+          $ref: '#/components/schemas/Registry'
+      required:
+      - registry
+      type: object
+    ListApplicationsResponse:
+      description: Response message for the ListApplications method.
+      properties:
+        applications:
+          description: A list of applications.
+          items:
+            $ref: '#/components/schemas/Application'
+          type: array
+        totalElements:
+          description: Count of items in the entire list, regardless of pagination.
+          format: int32
+          type: integer
+      required:
+      - applications
+      - totalElements
+      type: object
+    ListArtifactsResponse:
+      description: Response message for the ListArtifacts method.
+      properties:
+        artifacts:
+          description: A list of artifacts.
+          items:
+            $ref: '#/components/schemas/Artifact'
+          type: array
+        totalElements:
+          description: Count of items in the entire list, regardless of pagination.
+          format: int32
+          type: integer
+      required:
+      - artifacts
+      - totalElements
+      type: object
+    ListDeploymentPackagesResponse:
+      description: Response message for the ListDeploymentPackages method.
+      properties:
+        deploymentPackages:
+          description: A list of DeploymentPackages.
+          items:
+            $ref: '#/components/schemas/DeploymentPackage'
+          type: array
+        totalElements:
+          description: Count of items in the entire list, regardless of pagination.
+          format: int32
+          type: integer
+      required:
+      - deploymentPackages
+      - totalElements
+      type: object
+    ListRegistriesResponse:
+      description: Response message for the ListRegistries method.
+      properties:
+        registries:
+          description: A list of registries.
+          items:
+            $ref: '#/components/schemas/Registry'
+          type: array
+        totalElements:
+          description: Count of items in the entire list, regardless of pagination.
+          format: int32
+          type: integer
+      required:
+      - registries
+      - totalElements
+      type: object
+    Namespace:
+      description: Namespace represents a complex namespace definition with predefined
+        labels and annotations. They are created before any other resources in the
+        deployment.
+      properties:
+        annotations:
+          additionalProperties:
+            type: string
+          type: object
+        labels:
+          additionalProperties:
+            type: string
+          type: object
+        name:
+          description: namespace names must be valid RFC 1123 DNS labels. Avoid creating
+            namespaces with the prefix `kube-`, since it is reserved for Kubernetes\*
+            system namespaces. Avoid `default` - will already exist
+          maxLength: 40
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-]{0,38}[a-z0-9]{0,1}$
+          type: string
+      required:
+      - name
+      type: object
+    ParameterTemplate:
+      description: ParameterTemplate describes override values for Helm chart values
+      properties:
+        default:
+          description: Default value for the parameter.
+          maxLength: 4096
+          type: string
+        displayName:
+          description: Display name is an optional human-readable name for the template.
+            It is used for display purposes on user interfaces.
+          maxLength: 100
+          pattern: ^\PC*$
+          type: string
+        mandatory:
+          description: Optional mandatory flag for the parameter.
+          type: boolean
+        name:
+          description: Human-readable name for the parameter template.
+          maxLength: 4096
+          minLength: 1
+          pattern: ^[A-Za-z0-9-/_\[\]\.\\]*$
+          type: string
+        secret:
+          description: Optional secret flag for the parameter.
+          type: boolean
+        suggestedValues:
+          description: List of suggested values to use, to override the default value.
+          items:
+            maxLength: 4096
+            minLength: 1
+            type: string
+          maxItems: 100
+          type: array
+        type:
+          description: 'Type of parameter: string, number, or boolean.'
+          minLength: 1
+          pattern: ^(string)$|^(number)$|^(boolean)$
+          type: string
+        validator:
+          description: Optional validator for the parameter. Usage TBD.
+          maxLength: 40
+          type: string
+      required:
+      - name
+      - type
+      type: object
+    Profile:
+      description: Profile is a set of configuration values for customizing application
+        deployment.
+      properties:
+        chartValues:
+          description: Raw byte value containing the chart values as raw YAML bytes.
+          maxLength: 4000000
+          type: string
+        createTime:
+          description: The creation time of the profile.
+          format: date-time
+          readOnly: true
+          type: string
+        deploymentRequirement:
+          description: List of deployment requirements for this profile.
+          items:
+            $ref: '#/components/schemas/DeploymentRequirement'
+          type: array
+        description:
+          description: Description of the profile. Displayed on user interfaces.
+          maxLength: 1000
+          type: string
+        displayName:
+          description: Display name is an optional human-readable name for the profile.
+            When specified, it must be unique among all profiles of a given application.
+            It is used for display purposes on user interfaces.
+          maxLength: 40
+          pattern: ^\PC*$
+          type: string
+        name:
+          description: Human-readable name for the profile. Unique among all profiles
+            of the same application.
+          maxLength: 40
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-]{0,38}[a-z0-9]{0,1}$
+          type: string
+        parameterTemplates:
+          description: Parameter templates available for this profile.
+          items:
+            $ref: '#/components/schemas/ParameterTemplate'
+          type: array
+        updateTime:
+          description: The last update time of the profile.
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - name
+      type: object
+    Registry:
+      description: Registry represents a repository from which various artifacts,
+        such as application Docker\* images or Helm\* charts can be retrieved. As
+        such, the registry entity holds information used for finding and accessing
+        the represented repository.
+      properties:
+        apiType:
+          description: Optional type of the API used to obtain inventory of the articles
+            hosted by the registry.
+          maxLength: 16
+          pattern: ^\PC*$
+          type: string
+        authToken:
+          description: Optional authentication token or password for accessing the
+            registry.
+          maxLength: 1000
+          pattern: ^\PC*$
+          type: string
+        cacerts:
+          description: Optional CA certificates for accessing the registry using secure
+            channels, such as HTTPS.
+          maxLength: 16384
+          type: string
+        createTime:
+          description: The creation time of the registry.
+          format: date-time
+          readOnly: true
+          type: string
+        description:
+          description: Description of the registry. Displayed on user interfaces.
+          maxLength: 1000
+          type: string
+        displayName:
+          description: Display name is an optional human-readable name for the registry.
+            When specified, it must be unique among all registries within a project.
+            It is used for display purposes on user interfaces.
+          maxLength: 40
+          pattern: ^\PC*$
+          type: string
+        inventoryUrl:
+          description: Optional URL of the API for accessing inventory of artifacts
+            hosted by the registry.
+          maxLength: 1000
+          type: string
+        name:
+          description: Name is a human-readable unique identifier for the registry
+            and must be unique for all registries of a given project.
+          maxLength: 40
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-]{0,38}[a-z0-9]{0,1}$
+          type: string
+        rootUrl:
+          description: Root URL for retrieving artifacts, e.g. Docker images and Helm
+            charts, from the registry.
+          maxLength: 1000
+          minLength: 1
+          pattern: ^(https?|oci)://[a-z0-9-]+(.[a-z0-9-]+)+([/?][\w_\-@:%.+~#?&/=]*)?$
+          type: string
+        type:
+          description: Type indicates whether the registry holds Docker images or
+            Helm charts; defaults to Helm charts.
+          maxLength: 40
+          minLength: 1
+          pattern: ^(HELM)$|^(IMAGE)$
+          type: string
+        updateTime:
+          description: The last update time of the registry.
+          format: date-time
+          readOnly: true
+          type: string
+        username:
+          description: Optional username for accessing the registry.
+          maxLength: 1000
+          pattern: ^\PC*$
+          type: string
+      required:
+      - name
+      - rootUrl
+      - type
+      type: object
+    ResourceReference:
+      description: ResourceReference represents a Kubernetes resource identifier.
+      properties:
+        kind:
+          description: Kubernetes resource kind, e.g. ConfigMap.
+          maxLength: 40
+          minLength: 1
+          pattern: ^[a-zA-Z0-9][a-zA-Z0-9._-]{0,38}[a-zA-Z0-9]{0,1}$
+          type: string
+        name:
+          description: Kubernetes resource name.
+          maxLength: 40
+          minLength: 1
+          pattern: ^[a-z0-9][a-z0-9-._-]{0,38}[a-z0-9]{0,1}$
+          type: string
+        namespace:
+          description: Kubernetes namespace where the ignored resource resides. When
+            empty, the application namespace will be used.
+          type: string
+      required:
+      - name
+      - kind
+      type: object
+    UIExtension:
+      description: UIExtension is an augmentation of an API extension.
+      properties:
+        appName:
+          description: The name of the application corresponding to this UI extension.
+          maxLength: 40
+          minLength: 1
+          type: string
+        description:
+          description: Description of the API extension, used on the main UI dashboard.
+          maxLength: 1000
+          minLength: 1
+          type: string
+        fileName:
+          description: The name of the main file to load this specific UI extension.
+          maxLength: 40
+          minLength: 1
+          type: string
+        label:
+          description: Label is a human readable text used for display in the main
+            UI dashboard
+          maxLength: 40
+          pattern: ^\PC*$
+          type: string
+        moduleName:
+          description: Name of the application module to be loaded.
+          maxLength: 40
+          minLength: 1
+          type: string
+        serviceName:
+          description: The name of the API extension endpoint.
+          maxLength: 40
+          minLength: 1
+          type: string
+      required:
+      - label
+      - serviceName
+      - description
+      - fileName
+      - appName
+      - moduleName
+      type: object
+    Upload:
+      description: Upload represents a single file-upload record.
+      properties:
+        artifact:
+          description: Raw bytes content of the file being uploaded.
+          format: byte
+          type: string
+        fileName:
+          description: Name of the file being uploaded.
+          type: string
+      required:
+      - fileName
+      - artifact
+      type: object
+    UploadCatalogEntitiesResponse:
+      description: Response message for the UploadCatalogItems method
+      properties:
+        errorMessages:
+          description: Any error messages encountered either during YAML parsing or
+            entity creation or update.
+          items:
+            type: string
+          type: array
+        sessionId:
+          description: Session ID, generated by the server after the first upload
+            request has been processed.
+          type: string
+        uploadNumber:
+          description: 'Deprecated: Next expected upload number or total number of
+            uploads on the last upload request.'
+          format: uint32
+          type: integer
+      required:
+      - sessionId
+      - uploadNumber
+      type: object
+  securitySchemes:
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

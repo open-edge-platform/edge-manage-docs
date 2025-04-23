@@ -1,0 +1,29 @@
+# SPDX-FileCopyrightText: (C) 2025 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+version = 1
+
+[[annotations]]
+path = [
+  ".github/**",
+  ".gitignore",
+
+  "VERSION",
+  "README.md",
+  "SECURITY.md",
+
+  "dict.txt",
+
+  "docs/**.csv",
+  "docs/**.jpeg",
+  "docs/**.json",
+  "docs/**.md",
+  "docs/**.png",
+  "docs/**.rst",
+  "docs/**.svg",
+  "docs/api/openapi/*.yaml",
+  "docs/substitutions.txt",
+]
+
+SPDX-FileCopyrightText = "2025 Intel Corporation"
+SPDX-License-Identifier = "Apache-2.0"

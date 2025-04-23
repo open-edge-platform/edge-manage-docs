@@ -1,0 +1,903 @@
+# SPDX-FileCopyrightText: 2025 Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+openapi: 3.0.3
+info:
+  title: Application Deployment Manager API
+  description: Application Deployment Manager service providing operations for deploying
+    and managing applications.
+  version: 2.0.0
+servers:
+- url: '{apiRoot}'
+  variables:
+    apiRoot:
+      default: https://<multitenancy-gateway-host>
+tags:
+- description: ClusterService provides RPC methods to get clusters information.
+  name: ClusterService
+- description: DeploymentService provides API operations for catalogs and applications.
+  name: DeploymentService
+security:
+- BearerAuth: []
+paths:
+  /v1/projects/{projectName}/appdeployment/clusters:
+    get:
+      description: Gets a list of all cluster objects.
+      operationId: ClusterService_ListClusters
+      parameters:
+      - description: Optional. A string array that filters cluster labels to be displayed
+          ie color=blue,customer=intel. Labels separated by a comma.
+        in: query
+        name: labels
+        schema:
+          items:
+            type: string
+          type: array
+      - description: Optional. Select field and order based on which cluster list
+          will be sorted.
+        in: query
+        name: orderBy
+        schema:
+          type: string
+      - description: Optional. Selection criteria to list clusters.
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Optional. Select count of clusters to be listed per page.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: Optional. Offset is used to select the correct page from which
+          clusters list will be displayed. (E.g If there are 10 clusters, page size
+          is 2 and offset is set as 4, then the response will display clusters 5 and
+          6).
+        in: query
+        name: offset
+        schema:
+          format: int32
+          type: integer
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListClustersResponse'
+          description: OK
+      summary: ListClusters
+      tags:
+      - ClusterService
+  /v1/projects/{projectName}/appdeployment/clusters/{clusterId}:
+    get:
+      description: Gets a cluster object.
+      operationId: ClusterService_GetCluster
+      parameters:
+      - description: Required. The id of the cluster.
+        in: path
+        name: clusterId
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetClusterResponse'
+          description: OK
+      summary: GetCluster
+      tags:
+      - ClusterService
+  /v1/projects/{projectName}/appdeployment/deployments:
+    get:
+      description: Gets a list of all deployment objects.
+      operationId: DeploymentService_ListDeployments
+      parameters:
+      - description: Optional. A string array that filters cluster labels to be displayed
+          ie color=blue,customer=intel-corp. Labels separated by a comma.
+        in: query
+        name: labels
+        schema:
+          items:
+            type: string
+          type: array
+      - description: Optional. Select field and order based on which Deployment list
+          will be sorted.
+        in: query
+        name: orderBy
+        schema:
+          type: string
+      - description: Optional. Selection criteria to list Deployments.
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Optional. Select count of Deployment to be listed per page.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: Optional. Offset is used to select the correct page from which
+          Deployment list will be displayed. (E.g If there are 10 Deployments, page
+          size is 2 and offset is set as 4, then the response will display Deployment
+          5 and 6.)
+        in: query
+        name: offset
+        schema:
+          format: int32
+          type: integer
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDeploymentsResponse'
+          description: OK
+      summary: ListDeployments
+      tags:
+      - DeploymentService
+    post:
+      description: Creates a deployment object.
+      operationId: DeploymentService_CreateDeployment
+      parameters:
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Deployment'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateDeploymentResponse'
+          description: OK
+      summary: CreateDeployment
+      tags:
+      - DeploymentService
+  /v1/projects/{projectName}/appdeployment/deployments/{deplId}:
+    delete:
+      description: Deletes a deployment object.
+      operationId: DeploymentService_DeleteDeployment
+      parameters:
+      - description: Required. The id of the deployment to delete.
+        in: path
+        name: deplId
+        required: true
+        schema:
+          type: string
+      - description: 'Required. Different delete types to handle parent and child
+          lists, for dependency support. Available options: PARENT_ONLY, ALL.'
+        in: query
+        name: deleteType
+        schema:
+          enum:
+          - PARENT_ONLY
+          - ALL
+          format: enum
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+      summary: DeleteDeployment
+      tags:
+      - DeploymentService
+    get:
+      description: Gets a deployment object.
+      operationId: DeploymentService_GetDeployment
+      parameters:
+      - description: Required. The id of the deployment to get.
+        in: path
+        name: deplId
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDeploymentResponse'
+          description: OK
+      summary: GetDeployment
+      tags:
+      - DeploymentService
+    put:
+      description: Updates a deployment object.
+      operationId: DeploymentService_UpdateDeployment
+      parameters:
+      - description: Required. The id of the deployment to update.
+        in: path
+        name: deplId
+        required: true
+        schema:
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Deployment'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateDeploymentResponse'
+          description: OK
+      summary: UpdateDeployment
+      tags:
+      - DeploymentService
+  /v1/projects/{projectName}/appdeployment/deployments/{deplId}/clusters:
+    get:
+      description: Gets a list of all deployment cluster objects.
+      operationId: DeploymentService_ListDeploymentClusters
+      parameters:
+      - description: Required. The id of the deployment to get.
+        in: path
+        name: deplId
+        required: true
+        schema:
+          type: string
+      - description: Optional. Select field and order based on which Deployment cluster
+          list will be sorted.
+        in: query
+        name: orderBy
+        schema:
+          type: string
+      - description: Optional. Selection criteria to list Deployment clusters.
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Optional. Select count of Deployment clusters to be listed per
+          page.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: Optional. Offset is used to select the correct page from which
+          Deployment clusters list will be displayed. (E.g If there are 10 Deployment
+          clusters, page size is 2 and offset is set as 4, then the response will
+          display Deployment clusters 5 and 6.)
+        in: query
+        name: offset
+        schema:
+          format: int32
+          type: integer
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDeploymentClustersResponse'
+          description: OK
+      summary: ListDeploymentClusters
+      tags:
+      - DeploymentService
+  /v1/projects/{projectName}/deployments/clusters/{clusterId}:
+    get:
+      operationId: DeploymentService_ListDeploymentsPerCluster
+      parameters:
+      - in: path
+        name: clusterId
+        required: true
+        schema:
+          type: string
+      - description: Optional. A string array that filters cluster labels to be displayed
+          ie color=blue,customer=intel-corp. Labels separated by a comma.
+        in: query
+        name: labels
+        schema:
+          items:
+            type: string
+          type: array
+      - description: Optional. Select field and order based on which Deployment list
+          will be sorted.
+        in: query
+        name: orderBy
+        schema:
+          type: string
+      - description: Optional. Selection criteria to list Deployments.
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Optional. Select count of Deployment to be listed per page.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: Optional. Offset is used to select the correct page from which
+          Deployment list will be displayed. (E.g If there are 10 Deployments, page
+          size is 2 and offset is set as 4, then the response will display Deployment
+          5 and 6.)
+        in: query
+        name: offset
+        schema:
+          format: int32
+          type: integer
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDeploymentsPerClusterResponse'
+          description: OK
+      summary: ListDeploymentsPerCluster
+      tags:
+      - DeploymentService
+  /v1/projects/{projectName}/summary/deployments_status:
+    get:
+      description: Gets all deployment clusters count status.
+      operationId: DeploymentService_GetDeploymentsStatus
+      parameters:
+      - description: Optional. A string array that filters cluster labels to be displayed
+          ie color=blue,customer=intel-corp. Labels separated by a comma.
+        in: query
+        name: labels
+        schema:
+          items:
+            type: string
+          type: array
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDeploymentsStatusResponse'
+          description: OK
+      summary: GetDeploymentsStatus
+      tags:
+      - DeploymentService
+  /v1/projects/{projectName}/ui_extensions:
+    get:
+      description: Gets a list of all UIExtensions.
+      operationId: DeploymentService_ListUIExtensions
+      parameters:
+      - description: Optional. A string array that filters service names to be displayed.
+          Service names separated by a comma.
+        in: query
+        name: serviceName
+        schema:
+          items:
+            type: string
+          type: array
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListUIExtensionsResponse'
+          description: OK
+      summary: ListUIExtensions
+      tags:
+      - DeploymentService
+components:
+  schemas:
+    APIExtension:
+      description: Details of API extension
+      properties:
+        name:
+          description: Name of the API Extension.
+          readOnly: true
+          type: string
+        token:
+          description: Token for secure websocket connection between api-proxy and
+            api-agent.
+          readOnly: true
+          type: string
+      type: object
+    App:
+      description: Details of application.
+      properties:
+        id:
+          description: Id of the app (same as Fleet bundle name) which is, concatenated
+            from name and deploy_id (uid which comes from k8s).
+          readOnly: true
+          type: string
+        name:
+          description: The deployment package app name.
+          readOnly: true
+          type: string
+        status:
+          $ref: '#/components/schemas/Deployment_Status'
+      type: object
+    Cluster:
+      description: Details of cluster.
+      properties:
+        apps:
+          description: Apps has per-app details.
+          items:
+            $ref: '#/components/schemas/App'
+          readOnly: true
+          type: array
+        id:
+          description: ID is the cluster id which ECM generates and assigns to the
+            Rancher cluster name.
+          readOnly: true
+          type: string
+        name:
+          description: Name is the display name which user provides and ECM creates
+            and assigns clustername label to Fleet cluster object.
+          readOnly: true
+          type: string
+        status:
+          $ref: '#/components/schemas/Deployment_Status'
+      type: object
+    ClusterInfo:
+      description: Cluster defines the message for the Cluster object.
+      properties:
+        createTime:
+          description: The creation time of the cluster retrieved from Fleet cluster
+            object.
+          format: date-time
+          readOnly: true
+          type: string
+        id:
+          description: ID is the cluster id which ECM generates and assigns to the
+            Rancher cluster name.
+          readOnly: true
+          type: string
+        labels:
+          additionalProperties:
+            type: string
+          description: List of cluster labels retrieved from Fleet cluster object.
+          readOnly: true
+          type: object
+        name:
+          description: Name is the display name which user provides and ECM creates
+            and assigns clustername label to Fleet cluster object.
+          readOnly: true
+          type: string
+      type: object
+    CreateDeploymentResponse:
+      description: Response message for the CreateDeployment method.
+      properties:
+        deploymentId:
+          description: Returns the new Deployment Id.
+          type: string
+      required:
+      - deploymentId
+      type: object
+    Deployment:
+      description: Deployment defines the specification to deploy a Deployment Package
+        onto a set of clusters.
+      properties:
+        allAppTargetClusters:
+          $ref: '#/components/schemas/TargetClusters'
+        appName:
+          description: The deployment package name to deploy from the catalog.
+          type: string
+        appVersion:
+          description: The version of the deployment package.
+          type: string
+        apps:
+          description: Application details.
+          items:
+            $ref: '#/components/schemas/App'
+          readOnly: true
+          type: array
+        createTime:
+          description: The creation time of the deployment.
+          format: date-time
+          readOnly: true
+          type: string
+        defaultProfileName:
+          description: DEPRECATED - will remove in v2. Name of the default DeploymentProfile
+            to use when deploying this DeploymentPackage. If no profileName is provided,
+            use defaultProfileName from deployment package.
+          readOnly: true
+          type: string
+        deployId:
+          description: The id of the deployment.
+          readOnly: true
+          type: string
+        deploymentType:
+          description: The deployment type for the target cluster deployment can be
+            either auto-scaling or targeted. In Auto-scaling type, the application
+            will be automatically deployed on all the clusters which match the Target
+            cluster label. In Targeted type, the user has to select among pre created
+            clusters to deploy the application.
+          type: string
+        displayName:
+          description: Deployment display name.
+          type: string
+        name:
+          description: Deployment name (unique string assigned by Orchestrator).
+          readOnly: true
+          type: string
+        networkName:
+          description: network_name is the name of the interconnect network that deployment
+            be part of
+          type: string
+        overrideValues:
+          description: The Override values can be used to override any of the base
+            profile values based on Deployment scenario.
+          items:
+            $ref: '#/components/schemas/OverrideValues'
+          type: array
+        profileName:
+          description: The selected profile name to be used for the base Helm values
+            of the different applications in the deployment package
+          type: string
+        publisherName:
+          description: DEPRECATED - will remove in v2. Publisher of the deployment
+            package.
+          type: string
+        serviceExports:
+          items:
+            $ref: '#/components/schemas/ServiceExport'
+          type: array
+        status:
+          $ref: '#/components/schemas/Deployment_Status'
+        targetClusters:
+          description: Cluster labels on which we want to deploy the application.
+          items:
+            $ref: '#/components/schemas/TargetClusters'
+          type: array
+      required:
+      - appName
+      - appVersion
+      type: object
+    Deployment_Status:
+      description: Status has details of the deployment.
+      properties:
+        message:
+          readOnly: true
+          type: string
+        state:
+          enum:
+          - UNKNOWN
+          - RUNNING
+          - DOWN
+          - INTERNAL_ERROR
+          - DEPLOYING
+          - UPDATING
+          - TERMINATING
+          - ERROR
+          - NO_TARGET_CLUSTERS
+          format: enum
+          readOnly: true
+          type: string
+        summary:
+          $ref: '#/components/schemas/Summary'
+      type: object
+    DeploymentInstancesCluster:
+      properties:
+        apps:
+          description: Apps has per-app details.
+          items:
+            $ref: '#/components/schemas/App'
+          readOnly: true
+          type: array
+        deploymentDisplayName:
+          description: Deployment display name.
+          type: string
+        deploymentName:
+          description: Deployment name (unique string assigned by Orchestrator).
+          readOnly: true
+          type: string
+        deploymentUid:
+          description: Deployment CR UID.
+          readOnly: true
+          type: string
+        status:
+          $ref: '#/components/schemas/Deployment_Status'
+      type: object
+    GetAPIExtensionResponse:
+      description: Response message for GetAPIExtension method.
+      properties:
+        apiExtension:
+          $ref: '#/components/schemas/APIExtension'
+      required:
+      - apiExtension
+      type: object
+    GetClusterResponse:
+      description: Response message for GetCluster method.
+      properties:
+        cluster:
+          $ref: '#/components/schemas/Cluster'
+      type: object
+    GetDeploymentResponse:
+      description: Response message for the GetDeployment method.
+      properties:
+        deployment:
+          $ref: '#/components/schemas/Deployment'
+      required:
+      - deployment
+      type: object
+    GetDeploymentsStatusResponse:
+      description: Response message for the GetDeploymentsStatus method.
+      properties:
+        deploying:
+          format: int32
+          readOnly: true
+          type: integer
+        down:
+          format: int32
+          readOnly: true
+          type: integer
+        error:
+          format: int32
+          readOnly: true
+          type: integer
+        running:
+          format: int32
+          readOnly: true
+          type: integer
+        terminating:
+          format: int32
+          readOnly: true
+          type: integer
+        total:
+          format: int32
+          readOnly: true
+          type: integer
+        unknown:
+          format: int32
+          readOnly: true
+          type: integer
+        updating:
+          format: int32
+          readOnly: true
+          type: integer
+      type: object
+    ListClustersResponse:
+      description: Response message for the ListClusters method.
+      properties:
+        clusters:
+          description: A list of Cluster Objects.
+          items:
+            $ref: '#/components/schemas/ClusterInfo'
+          type: array
+        totalElements:
+          format: int32
+          type: integer
+      required:
+      - clusters
+      - totalElements
+      type: object
+    ListDeploymentClustersResponse:
+      description: Response message for ListDeploymentClusters method.
+      properties:
+        clusters:
+          items:
+            $ref: '#/components/schemas/Cluster'
+          type: array
+        totalElements:
+          format: int32
+          type: integer
+      required:
+      - clusters
+      - totalElements
+      type: object
+    ListDeploymentsPerClusterResponse:
+      description: Response message for the ListDeploymentsPerCluster method.
+      properties:
+        deploymentInstancesCluster:
+          description: A list of Deployment Instance Cluster Objects.
+          items:
+            $ref: '#/components/schemas/DeploymentInstancesCluster'
+          type: array
+        totalElements:
+          format: int32
+          type: integer
+      required:
+      - deploymentInstancesCluster
+      - totalElements
+      type: object
+    ListDeploymentsResponse:
+      description: Response message for the ListDeployments method.
+      properties:
+        deployments:
+          description: A list of Deployment Objects.
+          items:
+            $ref: '#/components/schemas/Deployment'
+          type: array
+        totalElements:
+          format: int32
+          type: integer
+      required:
+      - deployments
+      - totalElements
+      type: object
+    ListUIExtensionsResponse:
+      description: Response message for the ListUIExtensions method.
+      properties:
+        uiExtensions:
+          description: A list of UIExtensions.
+          items:
+            $ref: '#/components/schemas/UIExtension'
+          type: array
+      required:
+      - uiExtensions
+      type: object
+    OverrideValues:
+      description: The Override values can be used to override any of the base helm
+        values of applications based on Deployment scenario.
+      properties:
+        appName:
+          description: deployment package name to use when overriding values.
+          type: string
+        targetNamespace:
+          description: The namespace to deploy the app onto, default namespace is
+            default.
+          type: string
+        values:
+          description: The YAML representing Helm overrides
+          type: object
+      required:
+      - appName
+      type: object
+    ServiceExport:
+      properties:
+        appName:
+          type: string
+        enabled:
+          type: boolean
+      required:
+      - appName
+      type: object
+    Summary:
+      description: Count of status.
+      properties:
+        down:
+          description: Number of down apps/clusters in the deployment.
+          format: int32
+          readOnly: true
+          type: integer
+        running:
+          description: Number of running apps/clusters in the deployment, value from
+            owned GitRepo objects.
+          format: int32
+          readOnly: true
+          type: integer
+        total:
+          description: Total count of apps/clusters in the deployment, value from
+            owned GitRepo objects.
+          format: int32
+          readOnly: true
+          type: integer
+        type:
+          description: Type of thing that we're counting, ie clusters, apps.
+          readOnly: true
+          type: string
+        unknown:
+          description: Unknown status to indicate cluster not reachable.
+          format: int32
+          readOnly: true
+          type: integer
+      type: object
+    TargetClusters:
+      description: Set target clusters based on labels.
+      properties:
+        appName:
+          description: The targeted deployment package name.
+          type: string
+        clusterId:
+          description: Cluster id to match the target cluster when targeted deployment.
+          type: string
+        labels:
+          additionalProperties:
+            type: string
+          description: Cluster labels to match the target cluster when auto-scaling
+            deployment.
+          type: object
+      type: object
+    UIExtension:
+      description: Details of UI Extension.
+      properties:
+        appName:
+          description: The name of the application corresponding to this UI extension.
+          type: string
+        description:
+          description: Description states the purpose of the dashboard that this UIExtension
+            represents.
+          type: string
+        fileName:
+          description: The name of the main file to load this specific UI extension.
+          type: string
+        label:
+          description: Label represents a dashboard in the main UI.
+          type: string
+        moduleName:
+          description: The application module to be loaded.
+          type: string
+        serviceName:
+          description: The name of the API Extension endpoint.
+          type: string
+      required:
+      - serviceName
+      - description
+      - label
+      - fileName
+      - appName
+      - moduleName
+      type: object
+    UpdateDeploymentResponse:
+      description: Response message for the UpdateDeployment method.
+      properties:
+        deployment:
+          $ref: '#/components/schemas/Deployment'
+      required:
+      - deployment
+      type: object
+  securitySchemes:
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

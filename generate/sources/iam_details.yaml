@@ -1,0 +1,177 @@
+---
+# SPDX-FileCopyrightText: (C) 2025 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+# Groups
+
+## Global (SI) Groups
+
+iam-admin-group: Can manage the Identity and Access Management (IAM) components, including SSO/Federation.
+
+org-admin-group: Can create, update, and delete organizations.
+
+sre-admin-group: Typically used by a Site Reliability Engineer, has read access to Edge Orchestrator components and telemetry for troubleshooting, but cannot make changes.
+
+service-admin-group: Maintains the Edge Orchestration software including the IAM, and third-party components of Edge Orchestrator (Rancher\* platform, and so on).
+
+alerts-m2m-service-account: Used internally to allow the alert system to read the user list. Do not place users in this group.
+
+apps-m2m-service-account: Used internally to allow communication between application and cluster services.  Do not place users in this group.
+
+host-manager-m2m-service-account: Used internally in the Edge Orchestrator for edge node onboarding and provisioning. Do not place users in this group.
+
+## Org specific
+
+<org-id>_Project-Manager-Group: Can create, update, and delete Projects. Organization specific.
+
+## Projects specific
+
+<project-id>_Edge-Manager-Group: Can read or write cluster templates; import registry artifact; create, update, delete, or debug edge clusters; create, delete, and update deployments; create applications, profiles, and deployment packages; and upload Helm\* charts and container images.
+
+<project-id>_Edge-Operator-Group: Can list, create, update, or delete existing deployments and list or debug edge clusters, but **not** define applications, profiles, cluster templates, and so on.
+
+<project-id>_Host-Manager-Group: Provides read and write access to Infrastructure Manager components including managing regions, sites, hosts, scheduling, and so on.
+
+<project-id>_Edge-Onboarding-Group: Place users in this group who will onboard edge nodes through the password based method and without pre-registration. You must place a user **only** in a *single* edge onboarding group - the onboarded edge node will be added to this user's project.
+
+<project-id>_Edge-Node-M2M-Service-Account: Used internally to allow edge nodes to interact with Edge Orchestrator. Do not place users in this group.
+
+# Roles
+
+## Admin
+
+admin: Administrator for the IAM of the Edge Orchestrator installation.
+
+## Alerts
+
+alrt-rx-rw: Grants read/write access to alert receivers.
+
+alrt-r: Grants read-only access to alerts and alert definitions.
+<project-id>_alrt-r: Grants read-only access to alerts and alert definitions for a specific project.
+
+alrt-rw: Grants read/write access to alerts and alert definitions.
+<project-id>_alrt-rw: Grants read/write access to alerts and alert definitions for a specific project.
+
+## m2m
+
+ao-m2m-rw: Grants read/write access to Application Orchestration; used internally between services.
+co-m2m-rw: Grants read/write access to Cluster Orchestration; used internally between services.
+
+## Edge Node
+
+en-agent-rw: Granted to edge nodes to allow communication with Edge Orchestrator.  # Was "node-agent-readwrite-role"
+<project-id>_en-agent-rw: Granted to edge nodes to allow communication with Edge Orchestrator, project specific.
+
+## Org roles
+
+org-delete-role: Grants delete on organizations.
+org-read-role: Grants read on organizations.
+org-update-role: Grants update on organizations.
+org-write-role: Grants write (create) on organizations.
+
+## Project roles
+
+<org-id>_project-delete-role: Grants delete on projects within an organization.
+<org-id>_project-read-role: Grants read on projects within an organization.
+<org-id>_project-update-role: Grants update on projects within an organization.
+<org-id>_project-write-role: Grants write (create) on projects within an organization.
+
+## Release Service
+
+rs-access-r: Read access to the release service.
+rs-proxy-r: Read access to the release service proxy.
+
+## IAM
+
+secrets-root-role: Access to IAM secrets.
+
+## Keycloak\* solution native roles
+
+account/manage-account: Can manage their own account in Keycloak solution.
+
+account/view-profile: Can view their own account profile in Keycloak solution.
+
+realm/manage-clients: Specific to Keycloak solution, see `Realm specific roles <https://www.keycloak.org/docs/latest/server_admin/index.html#realm-specific-roles>`_
+
+realm/query-users: Specific to Keycloak solution, see `Realm specific roles <https://www.keycloak.org/docs/latest/server_admin/index.html#realm-specific-roles>`_
+
+realm/view-users: Specific to Keycloak solution, see `Realm specific roles <https://www.keycloak.org/docs/latest/server_admin/index.html#realm-specific-roles>`_
+
+## Telemetry
+
+telemetry-client/admin: Grants ability to admin, edit, and view the telemetry configuration.
+
+telemetry-client/viewer: Grants ability to view telemetry configuration.
+
+<project-id>_tc-r: Grants view (read) access to telemetry for a project.
+
+## Membership indicator
+
+<org-id>_<project-id>_m: Used internally to indicate membership in a specific organization and project.
+
+#############################
+# Possibly not used
+
+alerts-r: Was "alerts-read-role".
+<project-id>_alerts-r: Was "<project-id>_alerts-read-role".
+
+alert-defs-r: Was "alert-definitions-read-role".
+<project-id>_alert-defs-r: Was "<project-id>_alert-definitions-read-role".
+
+alert-defs-rw: Was "alert-definitions-write-role", inclusive of "alert-definitions-read-role".
+<project-id>_alert-defs-rw: Was "<project-id>_alert-definitions-write-role", inclusive of "alert-definitions-read-role".
+alert-rx-r: Was "alert-receivers-read-role".
+
+## registry
+
+<project-id>_reg-a: Grants admin/read/write access to Application Registry for a project. # Was "<project-id>_registry-admin-role", includes "<project-id>_registry-editor-role".
+<project-id>_reg-r: Grants read-only access to Application Registry for a project. #  Was "<project-id>_registry-viewer-role", viewer conceptually maps to read.
+
+## Catalog
+
+<project-id>_cat-pub-r: Was "<project-id>_catalog-publisher-read-role".
+<project-id>_cat-pub-rw: Was "<project-id>_catalog-publisher-write-role", inclusive of "<project-id>_catalog-publisher-read-role".
+
+<project-id>_cat-o-r: Was "<project-id>_catalog-other-read-role".
+<project-id>_cat-o-rw: Was "<project-id>_catalog-other-write-role", inclusive of "<project-id>_catalog-other-read-role".
+
+<project-id>_cat-res-r: Was "<project-id>_catalog-restricted-read-role".
+<project-id>_cat-res-rw: Was "<project-id>_catalog-restricted-write-role", inclusive of "<project-id>_catalog-restricted-read-role".
+
+## App Orch
+
+<project-id>_asp-r:  Was "<project-id>_app-service-proxy-read-role" # Not used - delete?
+<project-id>_asp-rw:  Was "<project-id>_app-service-proxy-write-role", inclusive of "<project-id>_app-service-proxy-read-role".
+
+<project-id>_adm-r: Was "<project-id>_app-deployment-manager-read-role" # Not used - delete?
+<project-id>_adm-rw: Was "<project-id>_app-deployment-manager-write-role", inclusive of "<project-id>_app-deployment-manager-read-role".
+
+<project-id>_arm-r: Was "<project-id>_app-resource-manager-read-role" # Not used - delete?
+<project-id>_arm-rw: Was "<project-id>_app-resource-manager-write-role", inclusive of "<project-id>_app-resource-manager-read-role".
+
+<project-id>_vmc-w: Was "<project-id>_app-vm-console-write-role".
+
+## Cluster Orch
+
+<project-id>_cl-r: Grants read-only access to Cluster Orchestration within a project. # Was "<project-id>_clusters-read-role".
+<project-id>_cl-rw: Grants read/write access to Cluster Orchestration within a project. # Was "<project-id>_clusters-write-role", inclusive of "<project-id>_clusters-read-role".
+
+<project-id>_cl-tpl-r: Grants read-only access to Cluster Orchestration templates within a project. # Was "<project-id>_cluster-templates-read-role".
+<project-id>_cl-tpl-rw: Grants read/write access to Cluster Orchestration templates within a project. # Was "<project-id>_cluster-templates-write-role", inclusive of "<project-id>_cluster-templates-read-role".
+
+## EIM
+
+<project-id>_im-r: Grants read-only access to Edge Infrastructure Manager within a project. # Was "<project-id>_infra-manager-core-read-role".
+<project-id>_im-rw: Grants read/write access to Edge Infrastructure Manager within a project. # Was "<project-id>_infra-manager-core-write-role", inclusive of "<project-id>_infra-manager-core-read-role".
+
+<project-id>_en-ob: Grants the ability to onboard edge nodes interactively using Edge Infrastructure Manager within a project. # Was "<project-id>_edge-onboarding-role".
+
+## Catalog
+
+<project-id>_cat-r: Grants read-only access to Application Catalog within a project. # Combines "<project-id>_catalog-publisher-read-role" and "<project-id>_catalog-other-read-role".  Note that this grants "other-read" rights to group "<project-id>_Edge-Node-M2M-Service-Account".
+
+<project-id>_cat-rw: Grants read/write access to Application Catalog within a project. # Combines "<project-id>_catalog-publisher-write-role", "<project-id>_catalog-other-write-role", "<project-id>_catalog-restricted-write-role", and all corresponding read roles.
+
+## App Orch
+
+<project-id>_ao-rw: Grants read/write access to Application Orchestration within a project. # Combines "<project-id>_app-service-proxy-write-role", "<project-id>_app-deployment-manager-write-role", "<project-id>_app-resource-manager-write-role", "<project-id>_app-vm-console-write-role", and all read roles.

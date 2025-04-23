@@ -1,0 +1,96 @@
+{# SPDX-FileCopyrightText: (C) 2025 Intel Corporation #}
+{# SPDX-License-Identifier: Apache-2.0 #}
+Edge Orchestrator Groups and Roles
+==================================
+
+{{ autogen_warning }}
+
+This document lists all the groups and roles available in |software_prod_name|.
+
+Instructions for creating users and assigning them to groups can be found in
+:doc:`shared_gs_iam` and :doc:`shared_ht_iam_ext`.
+
+In this document, the following syntax is used:
+
+- ``<org-id>`` is replaced with an organization identifier. This is a UUID
+  corresponding to the organization, and are created when the organization is
+  created.
+
+- ``<project-id>`` is replaced with a project identifier. This is a UUID
+  corresponding to the project, and are created when the project is created.
+
+.. note::
+
+   There are also groups and roles with the ``M2M`` or ``service-account`` in
+   their names.  These groups are used internally between services, and must
+   not have users added to them.
+
+
+Groups
+------
+
+|software_prod_name| creates the following user groups, by default. Some groups
+are automatically created for every organization and project. With one
+organization and one project created, there will be
+{{ groups | length }} groups.
+
+You can place users in multiple groups; the users will be granted the union of
+all permissions.  Within a single organization, you can place a user in
+multiple project groups.
+
+.. warning::
+
+   Intel recommends placing users **only** in groups instead of granting
+   them individual roles, which may change between software releases.
+
+{% for group, roles in groups.items() %}
+
+{{ group }}
+{{ group | underline }}
+
+{% if group in details %}
+{{ details[group] | wordwrap(break_on_hyphens=False) }}
+
+{% endif %}
+Contains {{ roles | length }} Roles:
+
+{% for role in roles %}
+- `{{ role }}`_
+{% endfor %}
+
+{% endfor %}
+
+Roles
+-----
+
+The following roles are created by default, or created for each organization
+and project. With one organization and one project created, there will be
+{{ roles | length }} roles.
+
+{% for role, groups in roles.items() %}
+
+{{ role }}
+{{ role | underline }}
+
+{% if role in details %}
+{{ details[role] | wordwrap(break_on_hyphens=False) }}
+
+{% endif %}
+Present in {{ groups | length }} Groups:
+
+{% for group in (groups | sort) %}
+- `{{ group }}`_
+{% endfor %}
+
+{% endfor %}
+
+X/Y Table of Groups and Roles
+-----------------------------
+
+.. Note::
+   Groups are columns, roles are rows.
+
+.. csv-table:: Groups and Roles
+   :file: {{ csv_out_path }}
+   :header-rows: 1
+
