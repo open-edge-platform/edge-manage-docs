@@ -286,14 +286,6 @@ Platform services
      - Type
      - Link
      - Version
-   * - aws-lb
-     - helm chart
-     - https://aws.github.io/eks-charts
-     - 1.7.1
-   * - aws-lb
-     - image
-     - public.ecr.aws/eks/aws-load-balancer-controller
-     - 2.7.1
    * - botkube
      - helm chart
      - https://charts.botkube.io/
@@ -346,7 +338,7 @@ Platform services
      - image
      - registry.k8s.io/ingress-nginx/controller
      - v1.9.6
-   * - istio base
+   * - istio-base
      - helm chart
      - https://istio-release.storage.googleapis.com/charts
      - 1.18.0
@@ -361,15 +353,15 @@ Platform services
    * - keycloak
      - helm chart
      - https://github.com/bitnami/charts/tree/main/bitnami/keycloak
-     - 24.0.1
+     - 24.4.12
    * - keycloak
      - image
      - docker.io/bitnami/keycloak
-     - 26.0.1-debian-12-r0
+     - 26.1.3-debian-12-r0
    * - keycloak (config-cli)
      - image
      - docker.io/bitnami/keycloak-config-cli
-     - 6.1.6-debian-12-r4
+     - 6.4.0-debian-12-r0
    * - curl-jq
      - Container (utility)
      - https://hub.docker.com/r/badouralix/curl-jq
