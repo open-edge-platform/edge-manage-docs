@@ -78,7 +78,7 @@ trivyfsscan: ## run Trivy scan locally
 	trivy --version ;\
 	trivy fs --scanners vuln,misconfig,secret -s HIGH,CRITICAL .
 
-build: generate sphinx-html ## Build all documentation
+build: sphinx-html ## Build all documentation
 
 serve: sphinx-serve ## Serve documentation locally
 
