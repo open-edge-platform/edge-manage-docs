@@ -1,5 +1,5 @@
 How it Works
-==========================================
+============
 
 Key features of |software_prod_name| include:
 
@@ -36,11 +36,11 @@ At a high level, you can use the following steps to use Edge Orchestrator.
   .. figure:: ./images/how_it_works2.png
       :alt: How it works
 
-1. TO DO Set up Edge Infrastructure: Leverage Edge Orchestrator’s fleet
+1. :doc:`/user_guide/set_up_edge_infra/index`: Leverage Edge Orchestrator’s fleet
 management and cluster orchestration capabilities to onboard and configure
 hosts and form them into clusters.
 
-2. TO DO Package and Deploy Applications: Use Edge Orchestrator’s application
+2. :doc:`/user_guide/package_software/index`: Use Edge Orchestrator’s application
 orchestration features to import and package applications. Create profiles to
 customize deploy-time environments. Configure conditions for automated
 deployment.
@@ -50,15 +50,15 @@ metadata, or to lists of custom targets. Edge Orchestrator automatically
 distributes software updates and deploys the latest packages to new hosts as
 they onboard.
 
-4. TO DO Monitor Deployment:Observability features are woven throughout Edge
+4. :doc:`/user_guide/monitor_deployments/index`: Observability features are woven throughout Edge
 Orchestrator. Performance monitoring and alerting highlight critical issues,
 while the unified dashboard offers visibility across the entire edge stack.
 
  For more details, see:
 
-•	TO DO Set up Edge Infrastructure
-•	TO DO Package and Deploy Applications
-•	TO DO Monitor Deployment
+•	:doc:`/user_guide/set_up_edge_infra/index`
+•	:doc:`/user_guide/package_software/index`
+•	:doc:`/user_guide/monitor_deployments/index`
 
 .. toctree::
    :hidden:
