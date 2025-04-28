@@ -23,7 +23,7 @@ Application Orchestration
      - rancher/fleet
      -
    * - Fleet-Controller
-     - Helm
+     - Helm*
      - https://rancher.github.io/fleet-helm-charts/fleet
      - 0.10.2
    * - Fleet-CRD
@@ -88,7 +88,7 @@ Cluster Orchestration
      - Link
      - Version
    * - cluster-api-operator
-     - Helm/Container
+     - Helm*/Container
      - https://github.com/kubernetes-sigs/cluster-api-operator/tree/release-0.15/hack/charts/cluster-api-operator
      -
    * - cluster-api core provider
