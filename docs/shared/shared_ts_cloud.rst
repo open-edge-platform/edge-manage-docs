@@ -96,6 +96,6 @@ You need to add the required IAM policy to your AWS account. Use the following c
 
 .. code-block:: shell
 
-   echo '{"Version": "2012-10-17","Statement": [{"Sid": "VisualEditor0","Effect": "Allow","Action": "sts:GetCallerIdentity","Resource": "*"}]}' > /tmp/dummy.json
-   aws iam create-policy --policy-name aws_load_balancer_controller --policy-document file:///tmp/dummy.json
-   rm -f /tmp/dummy.json
+   curl https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/refs/heads/main/docs/install/iam_policy.json -o /tmp/iam_policy.json
+   aws iam create-policy --policy-name aws_load_balancer_controller --policy-document file:///tmp/iam_policy.json
+   rm -f /tmp/iam_policy.json
