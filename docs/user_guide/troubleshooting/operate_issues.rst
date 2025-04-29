@@ -19,7 +19,7 @@ hardware, or applications of Edge Orchestrator.
 * `VM is not responding <#vm-is-not-responding>`__
 * `Cannot connect to VM through VNC console or through SSH <#cannot-connect-to-vm-through-vnc-console-or-through-ssh>`__
 * `Ingress of VMs does not work <#ingress-of-vms-does-not-work>`__
-* `Troubleshooting Interconnect (Interconnect article) <../package_software/interconnect.html#troubleshooting-interconnect>`__
+* :ref:`user_guide/package_software/interconnect:troubleshooting interconnect`
 * `Docker\* Hub returns a 429 Too Many Requests error <#docker-hub-returns-a-429-too-many-requests-error>`__
 * `Host has error status immediately after provisioning <#host-error-status-after-provision>`__
 * `Application VM can't connect to it's cloud counterpart (Exceeded MTU) <#application-vm-can-t-connect-to-it-s-cloud-counterpart-exceeded-mtu>`__
@@ -281,7 +281,7 @@ by adding the credentials to a cluster template.
 
 To add Docker Hub account credentials to a cluster template, do the following:
 
-#. `Export the cluster template <../additional_howtos/export_cluster_template.html>`__ you wish to modify.
+#. :ref:`Export the cluster template <user_guide/additional_howtos/export_cluster_template:export cluster template>` you wish to modify.
 #. Download a raw copy of this file: https://github.com/open-edge-platform/cluster-manager/blob/v2.0.3/default-cluster-templates/config.toml.tmpl
 #. Add the following lines to the file:
 

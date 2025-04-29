@@ -43,7 +43,7 @@ The **Provision Host** feature allows you to provision an OS profile onto a prev
 #. On the final page, review the details of the host to be provisioned and confirm that it is correct. If there are any errors,
    you can use the **Previous** option at the bottom of the page to navigate to the incorrect page. Click **Next** to accept
    the configuration and to provision the host. If you are configuring one host, you have the option to create a cluster
-   for that host (the user must be a part of the `Project ID Edge Manager Group <../../shared/shared_iam_groups.html#project-id-edge-manager-group>`__).
+   for that host (the user must be a part of the :ref:`Project ID Edge Manager Group <shared/shared_iam_groups:<project-id>_edge-manager-group>`).
 
    .. figure:: images/default_cluster.png
       :alt: Default Cluster
