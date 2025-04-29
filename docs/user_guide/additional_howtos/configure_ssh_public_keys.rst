@@ -8,6 +8,19 @@ Edge Manageability Framework allows you to add **public SSH keys** into a host d
    .. figure:: images/ssh_key_menu.png
       :alt: Public SSH keys
 
+#. You can edit and run the following example commands on a Linux\* machine to generate the SSH key pair:
+
+   .. code-block:: bash
+
+      ssh-keygen -t ed25519 -f ~/your_key_name  # Generates in ed25519 format
+      ssh-keygen -t ecdsa -b 521 -f ~/your_key_name # Generates in ecdsa-sha2-nistp521 format
+
+   .. note::
+
+      | Only **Public Key** based authentication with the following SSH Key algorithms are supported:
+      | * **ed25519**
+      | * **ecdsa-sha2-nistp521**
+
 #. Click **Add Key** to open the menu, add the **Key Name** and SSH **Public Key**, then click **Add**:
 
    .. figure:: images/add_ssh_key_menu.png
@@ -23,7 +36,9 @@ Edge Manageability Framework allows you to add **public SSH keys** into a host d
    :doc:`/user_guide/set_up_edge_infra/provision_host` instructions to enable this.
 
 #. To delete an SSH key, click the **Delete** option under the **Actions** column next to the key you want to delete. 
-   A confirmation dialog will appear. Click **Delete** to confirm the deletion: .. note:: You cannot delete the SSH Key if it is associated with a          provisioned host.
+   A confirmation dialog will appear. Click **Delete** to confirm the deletion:
+
+    .. note:: You cannot delete the SSH Key if it is associated with a provisioned host.
 
    .. figure:: images/delete_ssh_key_menu.png
       :alt: Delete SSH public key
@@ -32,20 +47,6 @@ Edge Manageability Framework allows you to add **public SSH keys** into a host d
 
    .. figure:: images/ssh-key-using-host.png
       :alt: View hosts using SSH public key
-
-#. You can edit and run the following example commands on a Linux\* machine to generate the SSH key pair:
-
-   .. code-block:: bash
-
-      ssh-keygen -t ed25519 -f ~/your_key_name  # Generates in ed25519 format
-      ssh-keygen -t ecdsa -b 521 -f ~/your_key_name # Generates in ecdsa-sha2-nistp521 format
-
-   .. note::
-
-      | Only **Public Key** based authentication with the following SSH Key algorithms are supported:
-      | * **ed25519**
-      | * **ecdsa-sha2-nistp521**
-
 
 #. To access the host's console using SSH, run the following command:
 
