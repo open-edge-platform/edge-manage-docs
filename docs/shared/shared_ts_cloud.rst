@@ -79,3 +79,23 @@ check and try to provision the cluster without checking the quotas.
 Intel does not recommend adding the flag and this may fail with a
 ``((ResourceLimitExceeded))`` error, but it may be useful if there is a
 resource usage estimation error causing the check to fail when the AWS cloud still allows the resource to be provisioned.
+
+Missing required IAM policy
+------------------------------------------------
+
+If you encounter an error message similar to this:
+
+.. code-block:: shell
+
+   Error: no matching IAM Policy found
+
+  with module.eks.data.aws_iam_policy.lb_controller,
+  on ../../module/eks/main.tf line 373, in data "aws_iam_policy" "lb_controller": 373: data "aws_iam_policy" "lb_controller" {
+
+You need to add the required IAM policy to your AWS account. Use the following commands to add the policy:
+
+.. code-block:: shell
+
+   curl https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/refs/heads/main/docs/install/iam_policy.json -o /tmp/iam_policy.json
+   aws iam create-policy --policy-name aws_load_balancer_controller --policy-document file:///tmp/iam_policy.json
+   rm -f /tmp/iam_policy.json
