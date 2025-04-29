@@ -7,7 +7,7 @@ Applications
 ------------
 
 Applications are individually deployable and based on Helm\* Charts and Container
-(Docker\*) Images. They may be either container-based, or virtual machine based.
+(Docker\*) Images. They may be either container-based or virtual machine based.
 The customer may leverage Application Orchestration’s internal registry to
 house these Helm Charts and Images, or they may leverage an external registry,
 such as a public registry or a private enterprise registry. Applications
@@ -24,10 +24,10 @@ configuring the application.
 
 Extensions are a set of pre-curated applications that are provided by the
 |software_prod_name| team. They are loaded on creation of a Multi-Tenancy
-project. Some are installed automatically on the Edge Node 
-(those in the :ref:`cluster_base_extension`), and others are part of 
-the :ref:`application_extension` that can be installed by end users on demand. 
-They usually include utility packages such as cert-manager, observability etc.
+project. Some are installed automatically on the Edge Node
+(those in the :ref:`cluster_base_extension`), and others are part of
+the :ref:`application_extension` that can be installed by end users on demand.
+They usually include utility packages such as cert-manager, observability, etc.
 
 Other end-user Applications will be designed and added by end users.
 
@@ -44,23 +44,23 @@ process.
 
 Deployment Package Extensions are a special case of Deployment Packages that
 are pre-curated and provided by the |software_prod_name| team. In general, only
-one instance of an extension is deployed to an edge node cluster. They are
-divided into two sets - Cluster Extensions and Application Extensions.
+one instance of an extension is deployed to an Edge Node Cluster. They are
+divided into two sets: Cluster Extensions and Application Extensions.
 
 .. _cluster_base_extension:
 
 Cluster Base Extensions Deployment Package
-"""""""""""""""""""""""""""""""""""""""""""
-- Cluster Base Extensions Deployment Package are a set of pre-curated Extension
-  Applications that extend the basic Kubernetes deployment on the Edge Node
-  cluster to provide enhanced operational capabilities like Gatekeeper,
-  Prometheus, Fluent Bit, OpenEBS, and others. These Deployment Packages are
-  deployed by default on every Edge Node cluster.
+""""""""""""""""""""""""""""""""""""""""""
+- Cluster Base Extensions Deployment Package is a set of pre-curated Extension
+  Applications that extend the basic Kubernetes\* deployment on the Edge Node
+  Cluster to provide enhanced operational capabilities like Gatekeeper\*,
+  Prometheus\*, Fluent Bit\*, OpenEBS\*, and others. These Deployment Packages are
+  deployed by default on every Edge Node Cluster.
 
 .. _application_extension:
 
 Application Extensions Deployment Packages
-"""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
 - Application Extensions Deployment Packages are a set of pre-curated
   Deployment Packages loaded onto |software_prod_name| by default that group
   Application Extensions. These are deployed on demand by the user to provide
@@ -78,12 +78,12 @@ Registries
 
 Registries are links to external or internal OCI Registries that contain the
 Helm Charts and Container Images that are to be deployed. Applications are
-associated with a Registry, and at deployment time the Root URL and optionally
-the credentials and certificate information for the Registry are used to pull
+associated with a Registry, and at deployment time the Root URL, and optionally
+the credentials and certificate information for the Registry, are used to pull
 the Helm Charts and Container Images.
 
 Deployments
-------------
+-----------
 
 Deployments are used to take a Deployment Package and schedule it for
 deployment to a set of edges, according to a policy. Deployments are lifecycle
@@ -92,14 +92,14 @@ instances of Deployment Packages (and therefore Applications) with a chosen
 Profile and optionally value overrides (parameter templates).
 
 Networks
----------
+--------
 
 Network objects are a CRD that can be used to drive the
 :doc:`Interconnect service <key_components>` to connect
 services in deployed Applications across Edge Node Clusters.
 
 Multi-Tenant Projects
-----------------------------
+---------------------
 
 The multi-tenancy data model of the |software_prod_name| is based on a two-tier
 model of Organizations and Projects. All of the above Data Model entities are

@@ -4,7 +4,7 @@ Technology Stack
 Implementation
 --------------
 
-The `Go\* language <https://go.dev/>`_ is the primary development language for the
+The `Go\* programming language <https://go.dev/>`_ is the primary development language for the
 Application Orchestration components.
 
 Each API that a component exposes is implemented using `gRPC <https://grpc.io/>`_ ,
@@ -16,9 +16,9 @@ Where the API is exposed through the Multi-Tenancy Gateway, it is done using
 the gRPC definition to an `OpenAPI* <https://www.openapis.org/>`_ specification and
 exposes a REST interface using `Gin <https://gin-gonic.com/>`_ (a Go-based web server).
 
-Where the component has a backing database (e.g. Application Catalog) it is implemented
-using `ENT <https://entgo.io/>`_, which is a Go library for Entity Resource Mapping (ERM)
-and is used to define the schema of the database and the queries that are used.
+Where the component has a backing database (e.g., Application Catalog) it is implemented
+using `ENT <https://entgo.io/>`_, which is a Go library for Entity Resource Mapping (ERM).
+It is used to define the schema of the database and the queries that are used.
 
 ENT is used with the `PostgreSQL\* database <https://www.postgresql.org/>`_. In cloud-based
 deployments, a managed service such as `AWS\* Aurora <https://aws.amazon.com/rds/aurora/>`_
@@ -31,16 +31,16 @@ The Tenant Provisioner component is built in Go and uses a plugin approach for e
 the actions it takes during the creation and deletion of Multi-Tenant Projects.
 
 `Keycloak\* solution <https://www.keycloak.org/>`_ is the Identity and Access Management (IAM) system
-used by the |software_prod_name| and the Application Orchestration components handle JWT
-bearer tokens from it that are attached to API requests to validate the call is
+used by |software_prod_name|. The Application Orchestration components handle JWT
+bearer tokens from it that are attached to API requests to validate that the call is
 authenticated and to drive any authorization checks.
 
 `Open Policy Agent <https://www.openpolicyagent.org/>`_ is used by some of the Application
 Orchestration components to enforce RBAC authorization policies (checked against a set of
 REGO rules) on the data presented in an API call.
 
-`Harbor\* OCI Registry <https://goharbor.io/>`_ is used to store and distribute Docker images
-and Helm charts.
+`Harbor\* OCI Registry <https://goharbor.io/>`_ is used to store and distribute Docker\* images
+and Helm\* charts.
 
 `Argo\* CD tool <https://argo-cd.readthedocs.io/en/stable/>`_ is used to deploy the initial
 components of the application.
@@ -99,7 +99,7 @@ The principal points of integration between Application Orchestration and other
 
 - Cluster Orchestration for the deployment of the applications to the Edge Node
   Clusters
-- PostgreSQL Database for the Application Catalog
+- PostgreSQL\* Database for the Application Catalog
 - Keycloak solution for Identity and Access Management (IAM)
 - Argo CD tool for the initial deployment of the components
 - Tenant Manager for the creation and deletion of Multi-Tenant Projects
@@ -107,6 +107,6 @@ The principal points of integration between Application Orchestration and other
 The principal points of integration between Application Orchestration and external
 systems are:
 
-- OCI Registries for the storage and distribution of Docker\* images and Helm\* charts.
-  The registry definition can be configured in the Application Catalog and be shared
+- OCI Registries for the storage and distribution of Docker images and Helm charts.
+  The registry definition can be configured in the Application Catalog and can be shared
   across many applications.

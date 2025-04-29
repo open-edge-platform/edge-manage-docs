@@ -1,5 +1,5 @@
-Packaging Applications
-=======================
+Package Applications
+====================
 
 As outlined in the Developer Workflow :doc:`/developer_guide/application_developer_workflow/packaging-applications/index`,
 the next step is to package the application.

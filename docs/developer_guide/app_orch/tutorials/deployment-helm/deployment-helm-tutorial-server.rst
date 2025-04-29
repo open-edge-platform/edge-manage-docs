@@ -1,12 +1,12 @@
-Helm* for Tutorial Server
--------------------------
+Helm* Chart for Tutorial Server
+===============================
 
-In the previous step we created generic Helm\* Chart for the Tutorial Server.
-In this step we will customize the Tutorial Server Deployment in the Helm
-Chart and will do the same to the Tutorial Web UI in the next step.
+In the previous step, you created a generic Helm\* chart for the Tutorial Server.
+In the next steps, you will customize the Tutorial Server Deployment in the Helm
+chart and then do the same to the Tutorial Web UI.
 
 Remove Unwanted Files
-~~~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 To simplify the deployment, you must remove the following files from the **templates** directory:
 
@@ -17,10 +17,10 @@ To simplify the deployment, you must remove the following files from the **templ
     rm templates/ingress.yaml
 
 Modify the Deployment
-~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 values.yaml
-*************
+~~~~~~~~~~~
 
 #. Add Values: Add to **values.yaml** file the following variables to be used in the template:
 
@@ -31,7 +31,7 @@ values.yaml
           greeting: "Deployed by Helm"
           initialCount: 0
 
-#. Change Port: There is also a change in **service.port** needs to be made to the values.yaml file
+#. Change Port: There is also a change in **service.port** that needs to be made to the values.yaml file
    to match the port used in the Dockerfile and the FastAPI application.
 
    .. code:: yaml
@@ -42,7 +42,7 @@ values.yaml
           port: 8000
 
    .. note::
-      Here, you must leave the service type as **ClusterIP**. This is the default type and
+      Leave the service type as **ClusterIP**. This is the default type and
       means that the service is only accessible from within the cluster. This is suitable for
       a backend server that is not exposed to the outside world.
 
@@ -69,10 +69,10 @@ values.yaml
 
 
 Chart.yaml
-*************
+~~~~~~~~~~
 
-#. Update AppVersion: Modify the **Chart.yaml** file changing the `appVersion` to match the tag **0.1.0** we will give the
-   docker image in :doc:`../deploying-applications/pushing_charts_and_images`:
+#. Update AppVersion: Modify the **Chart.yaml** file, changing the `appVersion` to match the tag **0.1.0** we will give the
+   Docker image in :doc:`../deploying-applications/pushing_charts_and_images`:
 
    .. code:: yaml
 
@@ -80,7 +80,7 @@ Chart.yaml
         appVersion: "0.1.0"
 
 templates/deployment.yaml
-**************************
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The **deployment.yaml** file contains the Deployment definition for the Tutorial Server.
 
@@ -95,8 +95,8 @@ The **deployment.yaml** file contains the Deployment definition for the Tutorial
           - name: INITIAL_COUNT
             value: {{ .Values.tutorialServer.initialCount | quote }}
 
-Checking the Helm chart
-~~~~~~~~~~~~~~~~~~~~~~~
+Checking the Helm Chart
+-----------------------
 
 Running **helm lint** (while back out to the **tutorial-charts** directory) on the chart is recommended to check for
 any errors.
@@ -111,7 +111,7 @@ Then run the helm template to check the output of the chart.
 
     helm -n tutorial template --release-name foobar ./tutorial-server --set image.tag=latest
 
-The output under Deployment -> spec.templates.spec.containers should look like the following
+The output under Deployment -> spec.templates.spec.containers should look like the following,
 where the environment variables, image, and port are set properly:
 
 .. code:: yaml
@@ -148,13 +148,13 @@ where the environment variables, image, and port are set properly:
     is not 200, then Kubernetes\* platform will regard the pod as unhealthy and restart it.
 
 
-Testing the Helm chart
-~~~~~~~~~~~~~~~~~~~~~~
+Testing the Helm Chart
+----------------------
 
 At this stage, it is possible to test the Helm chart by installing it on a Kubernetes cluster.
 
 .. note::
-    This level of testing is included for demonstration purposes. Many developers will be able to
+    This level of testing is included for demonstration purposes. You can
     skip this step and go straight to the next step of deploying through |software_prod_name|.
 
 There are many frameworks that allow you run Kubernetes cluster on your local machine. In this example, use
@@ -181,7 +181,7 @@ Then you can install the Helm chart on the KinD cluster.
 
     helm -n tutorial install --create-namespace tutorial-server ./tutorial-server --set image.tag=latest
 
-This should deploy within a few seconds and we can check the status and get the service details:
+This should deploy within a few seconds. You can check the status and get the service details:
 
 .. code:: shell
 
@@ -213,4 +213,4 @@ And in another terminal window, you can test the application with the command:
     curl -X GET http://localhost:8000/counter
     curl -X POST http://localhost:8000/increment
 
-The next step create the Helm Chart for the Tutorial Web UI.
+The next step creates the Helm chart for the Tutorial Web UI.
