@@ -70,7 +70,7 @@ Download the Installation Script
     REGISTRY_URL='registry-rs.edgeorchestration.intel.com'
     RS_PATH='edge-orch/common/files/on-prem'
     ORAS_VERSION='1.1.0'
-    ORCH_VERSION='v3.0.0-rc1'
+    ORCH_VERSION='v3.0.0'
 
     # Install oras if not already installed
     if ! command -v oras &> /dev/null; then
