@@ -30,11 +30,12 @@ Your development machine must have the following software installed:
     directory on your $PATH.
 
    - Prepend ``$ASDF_DATA_DIR/shims`` to your ``$PATH`` environment variable.
+
    .. code-block:: bash
       
       export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
-- Docker\*
+- Docker\* software
 
 Development Environment Setup
 -----------------------------
