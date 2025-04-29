@@ -31,7 +31,11 @@ Your development machine must have the following software installed:
 
    - Prepend ``$ASDF_DATA_DIR/shims`` to your ``$PATH`` environment variable.
 
-- Docker\*
+   .. code-block:: bash
+      
+      export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+- Docker\* software
 
 Development Environment Setup
 -----------------------------
@@ -64,9 +68,9 @@ To set up your development environment, follow these steps:
           asdf plugin add "${plugin}"
       done
 
-      asdf plugin install golang 1.24.1
-      asdf plugin install jq 1.6
-      asdf plugin install mage 1.14.0
+      asdf install golang 1.24.1
+      asdf install jq 1.6
+      asdf install mage 1.14.0
 
       mage asdfPlugins
 
@@ -192,7 +196,6 @@ Build repo archive and installer packages and move them to default directories:
 .. code-block:: bash
 
    mage tarball:onpremFull
-   sudo rm -r repo_archives
    mkdir -p repo_archives
    mv onpremFull_edge-manageability-framework_$(head -1 VERSION).tgz repo_archives/
    cd on-prem-installers
