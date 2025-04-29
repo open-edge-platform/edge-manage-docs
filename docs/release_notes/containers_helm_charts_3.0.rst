@@ -1320,8 +1320,8 @@ Docker Containers
      - registry.k8s.io/metrics-server/metrics-server:v0.7.2
    * - 16
      - orchestrator-installer-cloudfull
-     - v3.0.0-dev-a2f9db5
-     - registry-rs.edgeorchestration.intel.com/edge-orch/common/files/orchestrator/cloudfull:v3.0.0-dev-a2f9db5
+     - v3.0.0
+     - registry-rs.edgeorchestration.intel.com/edge-orch/common/files/orchestrator/cloudfull:v3.0.0
    * - 17
      - nginx-unprivileged
      - alpine3.21
