@@ -11,9 +11,9 @@ view the available onboarded hosts.
 You can search for a host using the search bar at the top of the page.
 
 Once onboarded, you can provision hosts with a custom name,
-`Operating System Profile <./provision_host.html#operating-system-profile>`__
+:ref:`Operating System Profile <user_guide/set_up_edge_infra/provision_host:operating system profile>`
 and security configuration,
-`host label <./provision_host.html#host-label>`__,
+:ref:`host label <user_guide/set_up_edge_infra/provision_host:host label>`,
 and associate them with their specific
 :doc:`location </user_guide/set_up_edge_infra/location_main>`.
 

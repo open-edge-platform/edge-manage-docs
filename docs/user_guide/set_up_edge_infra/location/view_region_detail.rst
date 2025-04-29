@@ -20,4 +20,4 @@ Note that the **Region Id** is automatically generated and cannot be modified.
     .. figure:: ../images/region_detail.png
        :alt: Region details
 
-You can also update or edit the `advanced settings <./add_region.html#advanced-settings>`__.
+You can also update or edit the :ref:`advanced settings <user_guide/set_up_edge_infra/location/add_region:advanced settings>`.

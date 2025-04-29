@@ -27,8 +27,8 @@ To edit site details, do the following:
 The **Edit Site** page appears.
 
 You can also make changes to the
-`Deployment Metadata <./add_site.html#advanced-settings-deployment-metadata>`__
-and `Telemetry <./add_site.html#advanced_settings_telemetry>`__.
+:ref:`Deployment Metadata <user_guide/set_up_edge_infra/location/add_site:advanced settings: deployment metadata>`
+and :ref:`Telemetry <user_guide/set_up_edge_infra/location/add_site:advanced settings: telemetry>`.
 
 
 

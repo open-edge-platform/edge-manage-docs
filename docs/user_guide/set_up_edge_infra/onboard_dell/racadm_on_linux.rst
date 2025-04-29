@@ -129,8 +129,8 @@ is set to the OS Profile name you are trying to install (e.g. `microvisor-nonrt`
 .. note::
 
    To interact with Edge Orchestrator API, you must authenticate with a user who is
-   part of the `Edge Manager Group <./../../../shared/shared_iam_groups.html#project-id-host-manager-group>`__ and obtain a JWT token
-   used here as `JWT_TOKEN` variable (see `Obtaining a JSON Web Token (JWT) <./../../../shared/shared_gs_iam.html#obtaining-a-json-web-token-jwt>`__ for instructions).
+   part of the :ref:`Edge Manager Group <shared/shared_iam_groups:<project-id>_host-manager-group>` and obtain a JWT token
+   used here as `JWT_TOKEN` variable (see :ref:`Obtaining a JSON Web Token (JWT) <shared/shared_gs_iam:obtaining a json web token (jwt)>` for instructions).
 
    The variables `CLUSTER_FQDN` are `PROJECT_NAME` should be the same as used
    for obtaining the `JTW_TOKEN` value.

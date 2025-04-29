@@ -143,7 +143,7 @@ View Host Label
 ~~~~~~~~~~~~~~~~
 
 Click the **Host Labels** tab to view the host label. For information about host
-label, see `host label <./provision_host.html#host-label>`__.
+label, see :ref:`host label <user_guide/set_up_edge_infra/provision_host:host label>`.
 
 .. figure:: images/host_label.png
    :alt: View Host Label
