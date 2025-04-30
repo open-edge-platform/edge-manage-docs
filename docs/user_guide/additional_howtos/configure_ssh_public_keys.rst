@@ -17,7 +17,7 @@ Edge Manageability Framework allows you to add **public SSH keys** into a host d
 
    .. note::
 
-      | Only **Public Key** based authentication with the following SSH Key algorithms are supported:
+      | Only **Public Key** based authentication with the following SSH key algorithms are supported:
       | * **ed25519**
       | * **ecdsa-sha2-nistp521**
 
@@ -38,12 +38,12 @@ Edge Manageability Framework allows you to add **public SSH keys** into a host d
 #. To delete an SSH key, click the **Delete** option under the **Actions** column next to the key you want to delete. 
    A confirmation dialog will appear. Click **Delete** to confirm the deletion:
 
-    .. note:: You cannot delete the SSH Key if it is associated with a provisioned host.
+    .. note:: You cannot delete the SSH key if it is associated with a provisioned host.
 
    .. figure:: images/delete_ssh_key_menu.png
       :alt: Delete SSH public key
 
-#. To view the list of hosts using the SSH key, click the **View Details** option under the **Actions** column next to the SSH key. A list of hosts currently using the SSH Key will be displayed:
+#. To view the list of hosts using the SSH key, click the **View Details** option under the **Actions** column next to the SSH key. A list of hosts currently using the SSH key will be displayed:
 
    .. figure:: images/ssh-key-using-host.png
       :alt: View hosts using SSH public key
@@ -54,7 +54,7 @@ Edge Manageability Framework allows you to add **public SSH keys** into a host d
 
       ssh -i ~/your_private_key <key-name>@<host_ip_address>
 
-   Legend:
+   .. note::
       * **<key-name>** is the name provided when you add the SSH key.
       * **<host_ip_address>** is the IP address of the host. You can get the IP address through the **host** `View I/O Devices Details <./../set_up_edge_infra/provisioned_host_details.html#view-i-o-devices-details>`__ page of the web UI.
 
