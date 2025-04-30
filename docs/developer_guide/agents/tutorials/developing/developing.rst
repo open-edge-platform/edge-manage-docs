@@ -1,5 +1,5 @@
 Developing Guidelines for Edge Node Agents
-=========================================
+==========================================
 
 This section covers the process of developing and contributing an Edge Node Agent.
 

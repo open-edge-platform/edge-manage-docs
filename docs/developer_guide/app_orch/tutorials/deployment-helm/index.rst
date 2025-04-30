@@ -16,7 +16,7 @@ as **sub-charts**. This more advanced topic is not covered in this tutorial.
     but the |software_prod_name| platform simplifies this process by using a Deployment Package to
     bundle the two applications together. This is covered in :doc:`../deployment-packages/index`.
 
-Name this the "Tutorial Chart," and create it in a new folder outside of the development
+Name this the "Tutorial Chart" and create it in a new folder outside of the development
 directories you created previously.
 
 .. code:: bash
