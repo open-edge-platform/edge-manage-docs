@@ -17,7 +17,7 @@ Edge Manageability Framework allows you to add **public SSH keys** into a host d
 
    .. note::
 
-      | Only **Public Key** based authentication with the following SSH key algorithms are supported:
+      | Only **public key**-based authentication with the following SSH key algorithms are supported:
       | * **ed25519**
       | * **ecdsa-sha2-nistp521**
 
