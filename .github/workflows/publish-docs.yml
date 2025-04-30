@@ -3,7 +3,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 name: Publish Documentation
-on:   # yamllint disable-line rule:truthy
+on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -12,10 +15,13 @@ permissions:
   issues: write           # needed to post PR comment
 
 jobs:
-  build:
-    uses: >-
-      open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@734970a73e3d6e8d7cd160e2cad6366770f52403
-    secrets:
-      SYS_ORCH_GITHUB: ${{ secrets.SYS_ORCH_GITHUB }}
-      DOC_AWS_ACCESS_KEY_ID: ${{ secrets.DOC_AWS_ACCESS_KEY_ID }}
-      DOC_AWS_SECRET_ACCESS_KEY: ${{ secrets.DOC_AWS_SECRET_ACCESS_KEY }}
+  publish-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish Documentation
+        uses: >-
+          open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@734970a73e3d6e8d7cd160e2cad6366770f52403
+        with:
+          SYS_ORCH_GITHUB: ${{ secrets.SYS_ORCH_GITHUB }}
+          DOC_AWS_ACCESS_KEY_ID: ${{ secrets.DOC_AWS_ACCESS_KEY_ID }}
+          DOC_AWS_SECRET_ACCESS_KEY: ${{ secrets.DOC_AWS_SECRET_ACCESS_KEY }}
