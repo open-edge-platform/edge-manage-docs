@@ -20,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: "Verify Branch Name"
         uses: open-edge-platform/orch-ci/verify-branch-name@main
   pre-merge-pipeline:

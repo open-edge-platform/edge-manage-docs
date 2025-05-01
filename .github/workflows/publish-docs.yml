@@ -6,15 +6,14 @@ name: Publish Documentation
 on:   # yamllint disable-line rule:truthy
   workflow_dispatch:
 
-permissions:
-  contents: read          # needed for actions/checkout
-  pull-requests: read     # needed for gh pr list
-  issues: write           # needed to post PR comment
 
 jobs:
-  build:
-    uses: >-
-      open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@734970a73e3d6e8d7cd160e2cad6366770f52403
+  publish-documentation:
+    permissions:
+      contents: read          # needed for actions/checkout
+      pull-requests: read     # needed for gh pr list
+      issues: write           # needed to post PR comment
+    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@734970a73e3d6e8d7cd160e2cad6366770f52403
     with:
       simple_mode: false
     secrets:

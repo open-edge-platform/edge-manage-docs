@@ -11,11 +11,6 @@ on:  # yamllint disable-line rule:truthy
       - release-*
   workflow_dispatch:
 
-permissions:
-  contents: read          # needed for actions/checkout
-  pull-requests: read     # needed for gh pr list
-  issues: write           # needed to post PR comment
-
 jobs:
   post-merge-pipeline:
     uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@main
@@ -29,9 +24,12 @@ jobs:
       run_artifact: false
       orch_ci_repo_ref: "main"
     secrets: inherit
-  publish:
-    uses: >-
-      open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@main
+  publish-documentation:
+    permissions:
+      contents: read          # needed for actions/checkout
+      pull-requests: read     # needed for gh pr list
+      issues: write           # needed to post PR comment
+    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@main
     with:
       simple_mode: false
     secrets:
