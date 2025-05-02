@@ -206,8 +206,9 @@ Build repo archive and installer packages and move them to default directories:
 
 Ensure that the ``TF_VAR_deploy_tag`` is set to the correct version that matches the version of Debian\* packages.
 Due to Debian versioning, if you are building from a tagged version branch (e.g., v3.0.0), the ``mage build:all`` command will remove the v prefix so you may need to manually export ``TF_VAR_deploy_tag``.
-
-If the ``TF_VAR_deploy_tag`` is set, because of the Terraform's precendence rules, the `deploy_tag` must not be set in the ``terraform/orchestrator/terraform.tfvars`` file.
+If ``TF_VAR_deploy_tag`` is set, ensure that ``deploy_tag`` is not defined in 
+the ``terraform/orchestrator/terraform.tfvars`` file due to Terraform's 
+precedence rules.
 
 Edit ``terraform/orchestrator/terraform.tfvars`` to use locally built
 artifacts:
