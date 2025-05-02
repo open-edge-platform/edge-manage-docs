@@ -8,7 +8,7 @@ Edge Manageability Framework allows you to add **public SSH keys** into a host d
    .. figure:: images/ssh_key_menu.png
       :alt: Public SSH keys
 
-#. You can edit and run the following example commands on a Linux\* machine to generate the SSH key pair:
+#. You can edit and run the following example commands on a Linux\* or Mac\* machine to generate the SSH key pair:
 
    .. code-block:: bash
 
@@ -30,7 +30,7 @@ Edge Manageability Framework allows you to add **public SSH keys** into a host d
 
       The SSH **Key Name** will be used to establish the user account on the host. 
       Ensure that the provided name does not conflict with any restricted usernames (example: root, admin, and etc.)
-      in the Linux\* OS.
+      in the Linux or Mac OS.
 
    Once the key is added to the SSH key list, you can add it to a host when configuring it. Follow the 
    :doc:`/user_guide/set_up_edge_infra/provision_host` instructions to enable this.
