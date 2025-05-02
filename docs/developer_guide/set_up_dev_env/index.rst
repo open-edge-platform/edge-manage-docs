@@ -27,12 +27,11 @@ Your development machine must have the following software installed:
   - Download the appropriate asdf binary for your operating system/architecture
     combo from the `GitHub releases page
     <https://github.com/asdf-vm/asdf/releases>`_. Ensure to place it in a
-    directory on your $PATH.
-
-   - Prepend ``$ASDF_DATA_DIR/shims`` to your ``$PATH`` environment variable.
+    directory on your ``$PATH``. For example, you can prepend 
+    ``$ASDF_DATA_DIR/shims`` to your ``$PATH`` environment variable:
 
    .. code-block:: bash
-      
+
       export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 - Docker\* software
