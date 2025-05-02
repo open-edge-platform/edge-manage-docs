@@ -13,7 +13,7 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   post-merge-pipeline:
-    uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@main
+    uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@fb3f26822094c836ce15e42a66de0b1ac4fad508  # yamllint disable-line rule:line-length
     with:
       run_version_check: true
       run_dep_version_check: false
@@ -24,10 +24,15 @@ jobs:
       run_artifact: false
       orch_ci_repo_ref: "main"
     secrets: inherit
-  publish:
-    uses: >-
-      open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@main
+  publish-documentation:
+    permissions:
+      contents: read          # needed for actions/checkout
+      pull-requests: read     # needed for gh pr list
+      issues: write           # needed to post PR comment
+    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@fb3f26822094c836ce15e42a66de0b1ac4fad508  # yamllint disable-line rule:line-length
     with:
-      orch_ci_repo_ref: "main"  # TODO: Change to version after orch-ci releases
       simple_mode: false
-    secrets: inherit
+    secrets:
+      SYS_ORCH_GITHUB: ${{ secrets.SYS_ORCH_GITHUB }}
+      DOC_AWS_ACCESS_KEY_ID: ${{ secrets.DOC_AWS_ACCESS_KEY_ID }}
+      DOC_AWS_SECRET_ACCESS_KEY: ${{ secrets.DOC_AWS_SECRET_ACCESS_KEY }}

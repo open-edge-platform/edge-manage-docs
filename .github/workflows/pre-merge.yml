@@ -20,11 +20,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: "Verify Branch Name"
-        uses: open-edge-platform/orch-ci/verify-branch-name@main
+        uses: open-edge-platform/orch-ci/verify-branch-name@fb3f26822094c836ce15e42a66de0b1ac4fad508  # yamllint disable-line rule:line-length
   pre-merge-pipeline:
     needs: pre-checks
-    uses: open-edge-platform/orch-ci/.github/workflows/pre-merge.yml@main
+    uses: open-edge-platform/orch-ci/.github/workflows/pre-merge.yml@fb3f26822094c836ce15e42a66de0b1ac4fad508  # yamllint disable-line rule:line-length
     with:
       run_security_scans: false
       run_version_check: true
