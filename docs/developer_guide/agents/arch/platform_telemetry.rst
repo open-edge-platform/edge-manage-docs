@@ -5,7 +5,7 @@ Background
 ----------
 
 This document provides high-level design and implementation guidelines. Refer
-to `Platform Telemetry Agent <https://github.com/open-edge-platform/edge-node-agents/tree/main/platform-telemetry-agent>`_ in Edge Node Agents' GitHub repository for
+to `Platform Telemetry Agent <https://github.com/open-edge-platform/edge-node-agents/tree/main/platform-telemetry-agent>`_ in the Edge Node Agents GitHub\* repository for
 implementation details.
 
 Target Audience
@@ -184,7 +184,7 @@ profile meta-data it receives from the Telemetry-manager and construct the
 collectors configuration files.
 
 System Diagram
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
 
 Platform Telemetry Agent is dependent on DKAM/Tinkerbell, Node Agent, and Edge Infrastructure Manager.
 
@@ -197,7 +197,7 @@ Platform Telemetry Agent is dependent on DKAM/Tinkerbell, Node Agent, and Edge I
       pta -->|Set config| telegraf[Telegraf\*]
       pta -->|Set config| fluentbit[FluentBit\*]
 
-Figure 3: Platform Telemetry Agent system diagram
+Figure 3: Platform Telemetry Agent System Diagram
 
 Integrations
 ~~~~~~~~~~~~

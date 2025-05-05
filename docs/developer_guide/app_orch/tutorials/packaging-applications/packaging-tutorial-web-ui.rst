@@ -1,13 +1,13 @@
-Packaging Tutorial Web UI
-=========================
+Package Tutorial Web UI
+=======================
 
-Setup for static output
+Setup for Static Output
 -----------------------
 
-By default, the Next.js framework creates a server-side rendered application. For the Tutorial Web UI we want the output to be
-static files that can be served by a web server. We will use NGINX* web server for this.
+By default, the Next.js\* framework creates a server-side rendered application. For the Tutorial Web UI you want the output to be
+static files that can be served by a web server. You will use NGINX\* web server for this.
 
-To do this we need to set the `output` option in the `next.config.ts` file to `export`.
+To do this, you need to set the `output` option in the `next.config.ts` file to `export`.
 
 .. code:: typescript
 
@@ -17,25 +17,25 @@ To do this we need to set the `output` option in the `next.config.ts` file to `e
 
 This will allow us to use the `npx next build` command to create the production ready static files in the Dockerfile.
 
-Creating a Dockerfile
----------------------
+Create a Dockerfile
+-------------------
 
 Similar to the Tutorial Server, the Tutorial Web UI application needs to be
 packaged in a Container image.
 
-We want it to serve the static files from the Next.js application, but we want the
-Node.js* server available to minify these files in the first place. We don't need
-to have the Node.js server running in the final image, so we will use a multi-stage
+You want it to serve the static files from the Next.js application, but want the
+Node.js\* server available to minify these files in the first place. You do not need
+to have the Node.js server running in the final image, so use a multi-stage
 build to create the final image.
 
 The first stage will build the application and the second stage will copy the
-results in to a minimal NGINX image.
+results into a minimal NGINX image.
 
 .. note::
     The NGINX image is much smaller than the Node.js image, and so the final image will be smaller.
-    Again we only take base images from reputable sources.
+    You should only take base images from reputable sources.
 
-Add the following to a file `Dockerfile` in the `tutorial-web-ui` directory.
+Add the following to a `Dockerfile` in the `tutorial-web-ui` directory.
 
 .. code:: dockerfile
 
@@ -63,8 +63,8 @@ Add the following to a file `Dockerfile` in the `tutorial-web-ui` directory.
     COPY --from=build /app/out /usr/share/nginx/html
 
 
-Build the Container image
---------------------------
+Build the Container Image
+-------------------------
 
 Build the Container image using the Dockerfile.
 
@@ -72,8 +72,8 @@ Build the Container image using the Dockerfile.
 
     docker build --platform=linux/amd64 -t tutorial-web-ui-image .
 
-Examining the Container image shows is 1/10th the size of the Tutorial Server image
-because we were able to use a multi-stage build.
+Examining the Container image shows it is 1/10th the size of the Tutorial Server image,
+because you used a multi-stage build.
 
 .. code:: bash
 
@@ -85,8 +85,8 @@ because we were able to use a multi-stage build.
    tutorial-server-image   latest    16bc7692277d   50 minutes ago   563MB
 
 
-Testing the Container image
------------------------------
+Test the Container Image
+------------------------
 
 .. code:: bash
 
@@ -94,30 +94,30 @@ Testing the Container image
 
 Open your web browser to **http://localhost:8080** to see the default page.
 
-The Tutorial Web UI application is now running in a Container image but is
+The Tutorial Web UI application is now running in a Container image, but is
 not yet connected to the Tutorial Server.
 
-In the development stage we had a special mapping that pointed to the API
-at **http://localhost:8000**. This is not available in the final image, and now we
+In the development stage, you had a special mapping that pointed to the API
+at **http://localhost:8000**. This is not available in the final image, and
 are in **production** mode, so it expects to access the API at the
 same URL from which the HTML, CSS, and JavaScript\* files are served.
 
-We will see how to set this up in the next section.
+You will see how to set this up in the next section.
 
 .. note::
     This is a security feature of modern browsers to prevent cross-site scripting.
 
 
-Understanding the Container image
----------------------------------
+Understand the Container Image
+------------------------------
 
-Similar to the Tutorial Server, we can jump in to this container image to inspect it.
+Similar to the Tutorial Server, you can jump into this container image to inspect it.
 
 .. code:: bash
 
     docker run -it --platform=linux/amd64 --entrypoint /bin/sh tutorial-web-ui-image
 
-Running some commands in this shows that the base container is based on the Alpine Linux\* distribution.
+Running commands in this shows that the base container is based on the Alpine Linux\* distribution.
 
 .. code:: bash
 

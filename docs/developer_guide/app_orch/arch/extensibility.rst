@@ -1,13 +1,13 @@
 Extensibility
 =============
 
-Every aspect of Application Orchestration system is designed to be extensible and
+Every aspect of the Application Orchestration system is designed to be extensible and
 customizable.
 
 - **Adding Components**:
 
-  - Because of the granular cloud-native architecture of all of the Application
-    Orchestration components it is possible to add new components to the system.
+  - Because of the granular, cloud-native architecture of all of the Application
+    Orchestration components, it is possible to add new components to the system.
     This could be a new service that provides a new capability, or a new controller
     that manages existing or new CRDs.
 

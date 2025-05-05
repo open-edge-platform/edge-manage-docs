@@ -5,7 +5,7 @@ Background
 ----------
 
 This document provides high-level design and implementation guidelines. Refer
-to `Platform Update Agent <https://github.com/open-edge-platform/edge-node-agents/tree/main/platform-update-agent>`_ in Edge Node Agents' GitHub\* repository for
+to `Platform Update Agent <https://github.com/open-edge-platform/edge-node-agents/tree/main/platform-update-agent>`_ in the Edge Node Agents GitHub\* repository for
 implementation details.
 
 Target Audience
@@ -26,7 +26,7 @@ Platform Update Agent is part of the Open Edge Platform's Edge Node
 Zero Touch Provisioning. It is installed, configured and automatically executed
 at Provisioning time.
 
-The main responsibility of the agent is to provide system level (Operating
+The main responsibility of the agent is to provide system-level (Operating
 System packages, Edge Node Agents, Kernel Command-line) update capabilities and
 installation of new packages during Day 2 operation of the Edge Node.
 
@@ -77,7 +77,7 @@ Workflow Stages
 1. **Update Sequence Diagram - Ubuntu\* OS detailed view**:
 
    Sequence diagram showcasing the communication between the Maintenance
-   Manager in Edge Orchestrator and Platform Update Agent on the Edge Node.
+   Manager in |software_prod_name| and Platform Update Agent on the Edge Node.
 
    Ubuntu OS update as an example with focus on the internal components of the
    Platform Update Agent.
@@ -178,7 +178,7 @@ Figure 2: Platform Update Agent - Ubuntu OS detailed view
 2. **Platform Update Agent sequence - interaction with Edge Infrastructure Manager - Edge Microvisor Toolkit detailed view**:
 
    Sequence diagram showcasing the communication between the Platform Update
-   Agent and the Edge Orchestrator.
+   Agent and |software_prod_name|.
 
    Edge Microvisor Toolkit update as an example with focus on the
    communication between Edge Infrastructure Manager and Platform Update Agent.
@@ -307,8 +307,8 @@ Figure 3: Platform Update Agent sequence - interaction with Edge Infrastructure 
 Extensibility
 -------------
 
-The Platform Update Agent supports installation of new Ubuntu OS packages, to
-install new packages follow Edge Node update instructions.
+The Platform Update Agent supports installation of new Ubuntu OS packages. To
+install new packages, follow Edge Node update instructions.
 
 Deployment
 ----------
@@ -332,13 +332,13 @@ update stages.
 Platform Update Agent pulls a Platform Update Schedule from the Maintenance
 Manager residing in the Edge Infrastructure Manager.
 
-The schedule comes as part of the API call response from Maintenance Manager,
-it contains update_schedule (time to perform update), update_source (the
+The schedule comes as part of the API call response from Maintenance Manager.
+It contains update_schedule (time to perform update), update_source (the
 sources information) and installed_packages (new packages to be installed)
 fields.
 
-Internally PUA call INBM software to initiate the download and installation of
-new or updated OS level packages.
+Internally, PUA call INBM software to initiate the download and installation of
+new or updated OS-level packages.
 
 System Diagram
 ~~~~~~~~~~~~~~
@@ -374,20 +374,20 @@ periodically to:
 
 Platform Update Agent statuses (communicated to Maintenance Manager):
 
-- STATUS_TYPE_DOWNLOADED 6 - Status when the EN completes downloading update
+- STATUS_TYPE_DOWNLOADED 6 - Status when the Edge Node completes downloading update
   artifacts
 
-- STATUS_TYPE_DOWNLOADING 5 - Status when the EN is downloading update
+- STATUS_TYPE_DOWNLOADING 5 - Status when the Edge Node is downloading update
   artifacts
 
-- STATUS_TYPE_FAILED 4 - Status when the EN update fails; a detailed log is
+- STATUS_TYPE_FAILED 4 - Status when the Edge Node update fails; a detailed log is
   also sent
 
-- STATUS_TYPE_UPDATED 3 - Status when the EN update is completed successfully
+- STATUS_TYPE_UPDATED 3 - Status when the Edge Node update is completed successfully
 
-- STATUS_TYPE_STARTED 2 - Status when the update process of EN has started
+- STATUS_TYPE_STARTED 2 - Status when the update process of Edge Node has started
 
-- STATUS_TYPE_UP_TO_DATE 1 - Status when EN is not performing any update
+- STATUS_TYPE_UP_TO_DATE 1 - Status when Edge Node is not performing any update
   related actions
 
 - STATUS_TYPE_UNSPECIFIED 0 - Default value, status not specified

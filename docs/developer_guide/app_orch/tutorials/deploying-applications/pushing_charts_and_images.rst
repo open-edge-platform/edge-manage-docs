@@ -1,9 +1,9 @@
-Load the Helm* Charts and Images in to the OCI Local Registry
+Load the Helm* Charts and Images into the OCI Local Registry
 =============================================================
 
-The Helm\* charts that was created earlier for the Tutorial Server and the
+The Helm\* charts that were created earlier for the Tutorial Server and the
 Tutorial Web UI are only present locally in the file system. They must be
-bundled and pushed to an OCI registry so that they will be available for
+bundled and pushed to an OCI registry, so they will be available for
 deployment to the Edge Node. You must push them to the local OCI registry that
 is running in the |software_prod_name|.
 
@@ -24,20 +24,20 @@ is running in the |software_prod_name|.
     helm package tutorial-server
     helm package tutorial-web-ui
 
-This creates two Archive files that we can push to the OCI registry. To get the
-password for the Registry, follow the instructions in the User Guide in
+This creates two Archive files that you can push to the OCI registry. To get the
+password for the Registry, follow the instructions in
 :doc:`/user_guide/package_software/push_registry`.
 
 .. note::
 
-    It is not possible to say what the CLUSTER_FQDN is in advance as every
-    deployment will be different. It's better for the user to set it as a
-    variable and then we refer to the variable below. Same for USER_NAME, ORG
-    and PROJECT. You should never put a password in to a variable. The user
+    It is not possible to say what the CLUSTER_FQDN is in advance, as every
+    deployment will be different. It is better for the user to set it as a
+    variable (see how to refer to the variable below). Same for USER_NAME, ORG
+    and PROJECT. You should never put a password into a variable. The user
     should be part of the Edge Manager Group - see
     :doc:`/user_guide/concepts/cluster_usergroups` for more information.
 
-Then, you can push the images to the registry like:
+Push the images to the registry:
 
 .. code:: bash
 
@@ -55,16 +55,16 @@ Then, you can push the images to the registry like:
     helm push tutorial-server-0.1.0.tgz oci://registry-oci.$CLUSTER_FQDN/catalog-apps-$ORG-$PROJECT
     helm push tutorial-web-ui-0.1.0.tgz oci://registry-oci.$CLUSTER_FQDN/catalog-apps-$ORG-$PROJECT
 
-Load the Container images in to the local OCI registry
-------------------------------------------------------
+Load the Container Images into the Local OCI Registry
+-----------------------------------------------------
 
-Likewise the Container images that was created earlier for the Tutorial Server
+Likewise, the Container images created earlier for the Tutorial Server
 and the Tutorial Web UI are only present in the local computer. You must push
-them to the same OCI registry, so that they will be available for deployment to
+them to the same OCI registry, so they will be available for deployment to
 the Edge Node.
 
-You can use the **docker** command to push the images to the OCI registry.
-First, you must tag the images so that docker knows which registry to push them
+You can use the ``docker`` command to push the images to the OCI registry.
+First, tag the images so Docker knows which registry to push them
 to.
 
 .. code:: bash
@@ -74,13 +74,13 @@ to.
 
 .. note::
 
-    Here we have given the images a version number of 0.1.0. This is not
-    required (it will use ``latest`` by default), but it is a good idea to give
-    the images a semantic version number so that we can track the versions of
+    Here the images have a version number of 0.1.0. This is not
+    required (it will use ``latest`` by default), but it is recommended to give
+    the images a semantic version number, so you can track the versions of
     the images that are deployed. The value used here must match the version in
     the values files in the Deployment Package from the previous steps.
 
-Then, you can push the images to the OCI registry:
+Push the images to the OCI registry:
 
 .. code:: bash
 
@@ -90,7 +90,7 @@ Then, you can push the images to the OCI registry:
     docker push registry-oci.$CLUSTER_FQDN/catalog-apps-$ORG-$PROJECT/tutorial-server-image:0.1.0
     docker push registry-oci.$CLUSTER_FQDN/catalog-apps-$ORG-$PROJECT/tutorial-web-ui-image:0.1.0
 
-After these pushes, the images and the charts can be seen side by side in the
+After these pushes, the images and charts can be seen side by side in the
 OCI registry.
 
 .. figure:: ../images/app-orch-tutorial-oci-registry.png

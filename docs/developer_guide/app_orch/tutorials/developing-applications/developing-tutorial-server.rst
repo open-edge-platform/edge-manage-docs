@@ -1,10 +1,10 @@
-Developing the Tutorial Server
-==============================
+Develop the Tutorial Server
+===========================
 
-Fast API First Steps
---------------------
+FastAPI\* First Steps
+---------------------
 
-First we develop a FastAPI\* application such that it can run and be tested locally.
+First we develop a FastAPI\* application so that it can run and be tested locally.
 
 .. note::
     In this tutorial commands are written for a Unix-like operating system. If you are using Windows\* OS, you may need to
@@ -36,13 +36,13 @@ Create a requirements file and install the required packages.
     pip install -r requirements.txt
 
 .. note::
-    You should see output showing the packages being installed. If you got an error along the way it is possible the
+    You should see output showing the packages being installed. If you got an error along the way, it is possible the
     version of Python you are using is not compatible with the versions of the packages. These versions in the
     requirements file are known to work with **Python 3.13** release. You might have multiple versions of Python installed on your
-    computer - check with the command: **which -a python3**. If you have multiple versions, you can specify the version
+    computer. Check with the command: **which -a python3**. If you have multiple versions, you can specify the version
     explicitly when creating the virtual env (venv) above.
 
-Following `Fast API First Steps document <https://fastapi.tiangolo.com/tutorial/first-steps/>`_, copy the following code
+Following `FastAPI First Steps document <https://fastapi.tiangolo.com/tutorial/first-steps/>`_, copy the following code
 into a file named `main.py` in the project directory.
 
 .. code-block:: python
@@ -62,19 +62,19 @@ into a file named `main.py` in the project directory.
     Ensure the code is indented correctly because Python programming is sensitive to indentation.
 
 
-And run the program locally with the following command
+Run the program locally with the following command:
 
 .. code:: bash
 
     fastapi dev main.py
 
-In another terminal, run the following command to test the application
+In another terminal, run the following command to test the application:
 
 .. code:: bash
 
     curl localhost:8000
 
-and it should reply with:
+It should reply with:
 
 .. code:: json
 
@@ -84,7 +84,7 @@ and it should reply with:
 Additions to the FastAPI Application
 ------------------------------------
 
-Now that we have the basics in place we want to add our code to perform the functions related to the counter.
+Now that you have the basics in place, add the code to perform the functions related to the counter.
 
 Update the `main.py` file with the following code:
 
@@ -149,22 +149,22 @@ Update the `main.py` file with the following code:
         return counter
 
 .. note::
-    That's it - the server is now complete.
-    This uses a simple counter in memory to maintain the count. In a real application this would
+    The server is now complete.
+    This uses a simple counter in memory to maintain the count. In a real application, this would
     require a database or other persistent storage, and would need an "atomic" operation to ensure
     the count is not corrupted by multiple requests.
 
 Testing the Tutorial Server
 ---------------------------
 
-Now that we have developed our Tutorial Server we want to test it.
+Now that you have developed the Tutorial Server, you want to test it.
 
-In the code above we have modified the root endpoint to return a message based on the environment variable
-`TUTORIAL_GREETING`. Also the counter is initialized through the INITIAL_COUNT environment variable, so that we can
-control these at start up of the program. We will demonstrate how these can be controlled by the user on an Edge
+In the code above, you have modified the root endpoint to return a message based on the environment variable
+`TUTORIAL_GREETING`. Also the counter is initialized through the INITIAL_COUNT environment variable, so that you can
+control these at startup of the program. You will see how these can be controlled by the user on an Edge
 Deployment later in this tutorial.
 
-For the moment can set these variables and test the application. Start the server again with the following
+Set the variables and test the application. Start the server again with the following
 command:
 
 .. code:: bash
@@ -177,7 +177,7 @@ In a separate terminal, run the command:
 
     curl localhost:8000
 
-and it should reply with:
+It should reply with:
 
 .. code:: json
 
@@ -189,16 +189,16 @@ The other endpoints can be tested in a similar way. For example, to increment th
 
     curl -X POST localhost:8000/increment
 
-and it should reply with:
+It should reply with:
 
 .. code:: json
 
     {"count":6}
 
-Because Fast API generates a REST API out of these specially annotated functions, it is easy to produce a client to
-test it. Indeed opening a Web Browser and going to **http://localhost:8000/docs** will show the Swagger\* UI, which can be
+Because FastAPI generates a REST API out of these specially annotated functions, it is easy to produce a client to
+test it. Opening a Web Browser and going to **http://localhost:8000/docs** will show the Swagger\* UI, which can be
 used directly
 
 The `OpenAPI 3.1 specification <https://spec.openapis.org/oas/v3.1.0.html>`_ for the Tutorial Server can be found at
-**http://localhost:8000/openapi.json** and imported in to many tools such as
+**http://localhost:8000/openapi.json** and imported into many tools such as
 `Postman <https://www.postman.com/product/what-is-postman/>`_ or `Insomnia <https://insomnia.rest/>`_.

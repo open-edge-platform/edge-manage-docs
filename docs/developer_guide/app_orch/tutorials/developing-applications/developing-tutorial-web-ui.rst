@@ -1,23 +1,23 @@
 Develop the Tutorial Web UI
-================================
+===========================
 
 Web UI First Steps
--------------------
+------------------
 
-First we develop a simple Next.js\* application that will interact with the Tutorial Server.
-We develop and test it locally first on our own computer and will see how to package it in
+You will develop a simple Next.js\* application that will interact with the Tutorial Server.
+First, you will develop and test it locally on your computer and then see how to package it in
 to an edge application later.
 
 .. note::
-    It is not essential to test the application on your own computer, if you do not have Node JS installed.
-    When we are packaging the code at a later stage in the Dockerfile, we will be able to test it then.
+    It is not essential to test the application on your own computer if you do not have Node.js\* environment installed.
+    When you are packaging the code at a later stage in the Dockerfile, you will be able to test it then.
 
-The application is developed in a single HTML file, which is a good way to get started with Next.js application.
-We will follow the `Docs <https://nextjs.org/docs>`_ page where you can find
-much more details.
+The application is developed in a single HTML file, which is a good way to get started with a Next.js application.
+Follow the `Docs <https://nextjs.org/docs>`_ page where you can find
+more details.
 
 Ensure `Node.js application <https://nodejs.org>`_ version 18 or later is installed on your computer and install
-Next.js using npm (part of NodeJS).
+Next.js using npm (part of Node.js).
 
 .. code:: bash
 
@@ -30,15 +30,15 @@ Next.js using npm (part of NodeJS).
 This creates all the needed files to run a Client and makes it available on **http://localhost:3000**.
 Open your web browser to this address to see the default page.
 
-It is clear that the default page is not what we want, so we will modify the code to our needs.
+The default page will not be what you want, so you will modify the code.
 
-Customizing the UI
-------------------
+Customize the UI
+----------------
 
-The default page is a simple page with a link to the Next.js documentation.
-We will remove this and only add what we need.
+The default page contains only a link to the Next.js documentation.
+You will remove this and only add what you need.
 
-First we will remove the `app/page.tsx` file and create a new file **app/page.tsx** with the following content:
+First, you remove the `app/page.tsx` file and create a new file **app/page.tsx** with the following content:
 
 .. code-block::
     :linenos:
@@ -138,14 +138,14 @@ First we will remove the `app/page.tsx` file and create a new file **app/page.ts
         );
     }
 
-While you do not need to understand all the details of the code, it is clear that we are using Axios library to make
-calls to the Tutorial Server. We are using the `useState` and `useEffect` hooks (from React) to manage the
+While you do not need to understand all the details of the code, it is clear that you are using Axios library to make
+calls to the Tutorial Server. You are using the `useState` and `useEffect` hooks (from React) to manage the
 state of the local variables.
 
 `Tailwind CSS <https://v1.tailwindcss.com/>`_ is used by default with Next.js, therefore, it is easy to style the page.
 
-Verifying the UI
-----------------
+Verify the UI
+-------------
 
 To verify the UI, keep the Tutorial Server running in one terminal and start the Next.js application in another with:
 
@@ -153,7 +153,7 @@ To verify the UI, keep the Tutorial Server running in one terminal and start the
 
     npx next dev --turbopack
 
-And open your web browser to **http://localhost:3000**.
+Open your web browser to **http://localhost:3000**.
 
 .. figure:: ../images/app-orch-tutorial-web-ui.png
   :alt: Tutorial Web UI with browser tools
@@ -163,12 +163,11 @@ And open your web browser to **http://localhost:3000**.
     This is an essential tool to understand the requests that are going between your browser and
     the Tutorial Server.
 
-While your browser is still open, run the **curl** commands from the Tutorial Server page
-to see that requests from the UI are equivalent to those from the command line,
+While your browser is still open, run the **curl** commands from the Tutorial Server page. This allows you to see that requests from the UI are equivalent to those from the command line,
 and that the UI is updating the counter as expected when the buttons are clicked.
 
-Next steps
+Next Steps
 ----------
 
-You can now package the Tutorial Web UI and Tutorial Server in to a Container
-images so that we can deploy them to the edge.
+You can now package the Tutorial Web UI and Tutorial Server into a Container
+image, so you can deploy them to the edge.

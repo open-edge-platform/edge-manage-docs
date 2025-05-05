@@ -1,11 +1,11 @@
-Helm* for Tutorial Web UI
--------------------------
+Helm* Chart for Tutorial Web UI
+===============================
 
 In this step, you will add the Tutorial Web UI Deployment and Service to the
-Helm\* Chart.
+Helm\* chart.
 
 Remove Unwanted Files
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 To simplify the deployment, you must remove the following files from the
 **templates** directory:
@@ -18,10 +18,10 @@ To simplify the deployment, you must remove the following files from the
 
 
 Modify the Deployment
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 values.yaml
-************
+~~~~~~~~~~~
 
 #. Add values: You can add some variables to the ``values.yaml`` file that will
    be useful later:
@@ -45,7 +45,7 @@ values.yaml
           type: ClusterIP
           port: 8080
 
-#. Update repository: In the same file change the ``image.repository`` to match
+#. Update repository: In the same file, change the ``image.repository`` to match
    the container image:
 
    .. code:: yaml
@@ -70,15 +70,15 @@ values.yaml
 
 
 templates/service.yaml
-**********************
+~~~~~~~~~~~~~~~~~~~~~~
 
-We are going to utilise a special feature of the Application Orchestration -
-the Application Server Proxy (Service Link) which allows up to proxy directly
+You can use a special feature of the Application Orchestration -
+the Application Server Proxy (Service Link), which allows proxy directly
 to a service run on an Edge Node. See the Service Link documentation in the
 User Guide :doc:`/user_guide/package_software/package_create_helm`.
 
-#. Add annotations: To prepare for this we add the following to the
-   **templates/service.yaml** file under "metadata" so that we can add
+#. Add annotations: To prepare for this, add the following to the
+   **templates/service.yaml** file under "metadata," so that we can add
    annotations at a later date:
 
    .. code:: yaml
@@ -89,10 +89,10 @@ User Guide :doc:`/user_guide/package_software/package_create_helm`.
         {{- end }}
 
 Chart.yaml
-**********
+~~~~~~~~~~
 
 #. App Version: Modify the **Chart.yaml** file changing the ``appVersion`` to
-   match the tag ``0.1.0`` we will give the docker image in
+   match the tag ``0.1.0`` you will give the Docker\* image in
    :doc:`../deploying-applications/pushing_charts_and_images` :
 
    .. code:: yaml
@@ -101,12 +101,12 @@ Chart.yaml
         appVersion: "0.1.0"
 
 templates/deployment.yaml
-*************************
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Because we have a highly secure configuration for nginx it can't create
+Because NGINX\* has a highly secure configuration, it cannot create
 temporary files in the ``/tmp`` folder of the read-only file system.
 
-#. Add Volume: We modify the **templates/deployment.yaml** file to add a volume
+#. Add Volume: Modify the **templates/deployment.yaml** file to add a volume
    mount for the ``/tmp`` directory.
 
    .. code:: yaml
@@ -127,11 +127,10 @@ temporary files in the ``/tmp`` folder of the read-only file system.
           mountPath: /tmp
 
 
-Checking the Helm chart
-~~~~~~~~~~~~~~~~~~~~~~~
+Checking the Helm Chart
+-----------------------
 
-Running ``helm lint`` (back out at the tutorial-charts directory) on the chart
-is recommended to check for any errors.
+To check for errors, run ``helm lint`` at the tutorial-charts directory on the chart.
 
 .. code:: shell
 
@@ -143,19 +142,19 @@ Then run helm template to check the output of the chart.
 
     helm -n tutorial template --release-name foobar ./tutorial-web-ui --set image.tag=latest
 
-Test the Helm chart
-~~~~~~~~~~~~~~~~~~~
+Test the Helm Chart
+-------------------
 
-You can deploy this Helm chart alongside the Tutorial Server chart in to the
+You can deploy this Helm chart alongside the Tutorial Server chart into the
 same namespace.
 
-First load the container image in to KinD:
+First load the container image into KinD:
 
 .. code:: shell
 
     kind load docker-image tutorial-web-ui-image:latest
 
-Then you can install the Helm chart on the KinD cluster.
+Then you can install the Helm chart on the KinD cluster:
 
 .. code:: shell
 
@@ -168,21 +167,18 @@ browser through a ``port-forward``:
 
     kubectl -n tutorial port-forward service/tutorial-web-ui 8080:80
 
-And in another terminal window you can test the application with the command:
-
-And in a web browser open ``http://localhost:8080`` and you should see the UI.
+In a web browser, open ``http://localhost:8080``. You should see the UI.
 
 .. figure:: ../images/app-orch-tutorial-web-ui-fail.png
    :alt: Tutorial Web UI failing to connect to the server
 
-But we can see in this that it is unable to connect to the Tutorial Server - it
+It is unable to connect to the Tutorial Server. It
 is performing a ``GET`` against ``http://localhost:8000/api/counter``.
 
-You might have missed where this ``/api`` came from - we set it in the
-**app/page.tsx** file in
+We set this ``/api`` in the **app/page.tsx** file in
 :doc:`../developing-applications/developing-tutorial-web-ui`. This is the base
 of all Axios calls to the Tutorial Server, but as you can see from the
-following snippet, the behaviour is dependent on being in development mode or
+following snippet, the behavior is dependent on being in development mode or
 not.
 
 .. code:: typescript
@@ -192,13 +188,13 @@ not.
     });
 
 .. note::
-    In non-development mode we are not giving this ``baseURL`` a hostname, and
-    so it will take the hostname of the web page - which is
+    In non-development mode, you are not giving this ``baseURL`` a hostname, and
+    so it will take the hostname of the web page, which is
     ``http://localhost:8080`` and adds on ``/api``.
 
-    Hardcoding a value for hostname would be a bad idea at this stage as it
-    would leave us with a brittle solution that would become high maintenance
-    as we moved to production. It was fine for when we were developing, as we
+    Hardcoding a value for hostname is not a good idea at this stage, as it
+    would leave a brittle solution that would become high maintenance
+    as it moves to production. During development it was fine, as you
     were able to control the environment.
 
-You can tackle this problem in the next step.
+The next step explains this in more detail.

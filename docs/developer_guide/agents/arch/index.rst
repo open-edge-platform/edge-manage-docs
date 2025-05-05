@@ -1,7 +1,7 @@
 Architecture
 ============
 
-`Edge Node Agents (ENA) <https://github.com/open-edge-platform/edge-node-agents>`_ are a collection of OS level agents which make up an Edge Node.
+`Edge Node Agents <https://github.com/open-edge-platform/edge-node-agents>`_ are a collection of OS-level agents that make up an Edge Node.
 
 .. toctree::
    :hidden:
