@@ -236,7 +236,7 @@ The installer script prompts for configuration input during installation.
    Load Balancer for Argo CD UI, Traefik application proxy, and NGINX web server as follows.
    These IPs must be in the same subnet (for example, `10.0.0.1/24`) of the
    Edge Orchestrator Node, see
-   `Edge Orchestrator Network Topology <./on_prem_prereq.html#edge-orchestrator-network-topology>`__.
+   `Edge Orchestrator Network Topology <./index.html#edge-orchestrator-network-topology>`__.
 
    For an example of the topology.
 
