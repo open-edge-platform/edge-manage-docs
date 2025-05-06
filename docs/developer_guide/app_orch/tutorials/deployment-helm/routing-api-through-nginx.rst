@@ -1,8 +1,8 @@
 Route API through NGINX* Web Server
---------------------------------------
+===================================
 
 In the Tutorial Web UI, you can make calls using Axios to the Tutorial Server
-API at ``/api``. While there are many alternative approaches that could be
+API at ``/api``. While there are many alternative approaches to
 used, it is a common pattern in web applications, where the web server (NGINX\*
 web server) also acts as a reverse proxy to route traffic to the appropriate
 backend service (Tutorial Server).
@@ -11,16 +11,16 @@ backend service (Tutorial Server).
    :alt: Tutorial web UI with NGINX web server
 
 Override the NGINX Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
-To add this reverse proxy functionality add a new **nginx.conf** file to the
+To add this reverse proxy functionality, add a new **nginx.conf** file to the
 Tutorial Web UI project. This file overwrites the existing
 ``/etc/nginx.conf.d/default.conf`` that came with our base image. To do this,
 create a ConfigMap in the Helm\* chart and mount it to the container.
 
-#. Create a file **configmap.yaml** in the **tutorial-web-ui/templates** folder
+#. Create a file **configmap.yaml** in the **tutorial-web-ui/templates** folder.
 
-#. Copy the following in to it:
+#. Copy the following into it:
 
    .. code:: yaml
 
@@ -65,22 +65,22 @@ create a ConfigMap in the Helm\* chart and mount it to the container.
 
 .. note::
 
-    An alternative approach to all this would be to have updated the NGINX.conf
+    An alternative approach would be to update the NGINX.conf
     file in the Dockerfile, but this would have required hardcoding the
-    Tutorial Server address in to the file. This is not a good practice as it
+    Tutorial Server address into the file. This is not good practice as it
     would require rebuilding the image if the Tutorial Server address changed.
-    Instead we prefer a late binding approach that gives us the flexibility to
+    Instead, use a late-binding approach that gives the flexibility to
     adjust the configuration at deployment time.
 
-Update the Deployment to use the ConfigMap
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Update the Deployment to Use the ConfigMap
+------------------------------------------
 
-Next we need to mount the ConfigMap in to the container. To do this we extend
-the a **volumes** and **volumeMounts** section that we added to the to the
+Next we need to mount the ConfigMap into the container. To do this, extend
+the **volumes** and **volumeMounts** section that you added to the
 **deployment.yaml** file on the previous page.
 
 templates/deployment.yaml
-**************************
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Edit the Deployment File: Open the
    ``tutorial-web-ui/templates/deployment.yaml`` file.
@@ -114,10 +114,10 @@ templates/deployment.yaml
               mountPath: /etc/nginx/conf.d
 
 Test the NGINX Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
 
 Now you can test the NGINX configuration by upgrading the ``tutorial-web-ui``
-Helm chart. You can check if the config map is installed:
+Helm chart. Check if the config map is installed:
 
 .. code:: shell
 
@@ -127,17 +127,17 @@ Helm chart. You can check if the config map is installed:
 
     kubectl -n tutorial get configmap tutorial-web-ui -o yaml
 
-Reactivating the port-forward again to the service with:
+Reactivate the port-forward to the service again with:
 
 .. code:: shell
 
     kubectl -n tutorial port-forward service/tutorial-web-ui 8080:8080
 
-And in a web browser open ``http://localhost:8080`` and you should see the
+In a web browser open ``http://localhost:8080``. You should see the
 message being set properly.
 
 .. figure:: ../images/app-orch-tutorial-web-ui-helm.png
    :alt: Tutorial Web UI with NGINX reverse proxy working
 
-In the next step, you will create a deployment package so that we can deploy
+In the next step, you will create a deployment package so that you can deploy
 this with |software_prod_name| Application Orchestration.

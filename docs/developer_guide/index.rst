@@ -23,17 +23,17 @@ networks at scale.
 |software_prod_name| consists of seven main components, deployable on-premises
 or in the cloud:
 
-* **Edge Node Agents**: A set of agents that run on the edge nodes as OS level agents.
+* **Edge Node Agents**: A set of agents that run on the edge nodes as OS-level agents.
   They communicate with the services running in the |software_prod_name| and provide a
   consistent interface for the edge node software. Read more about :doc:`agents/index`.
 
-* **Edge Infrastructure Manager**: Policy based secure life cycle management
+* **Edge Infrastructure Manager**: Policy-based, secure lifecycle management
   of a fleet of edge nodes/devices at scale, spread across distributed locations
   allowing onboarding, provisioning, inventory management, upgrades and more.
   Read more about :doc:`infra_manager/index`.
 
 * **Edge Cluster Orchestrator**: A lightweight multi-cluster orchestrator based
-  on the Cluster API (CAPI) standard designed to automate the deployment and
+  on the Cluster API (CAPI) standard, designed to automate the deployment and
   lifecycle management of Kubernetes\* clusters at scale across distributed
   edges, providing centralized monitoring and access control.
   Read more about :doc:`cluster_orch/index`.
@@ -52,9 +52,9 @@ or in the cloud:
   Read more about :doc:`observability/index`.
 
 * **Platform Services**: A collection of services that support the deployment
-  and management of the Edge Orchestrator, including Identity and Access
+  and management of Edge Orchestrator, including Identity and Access
   management, multitenancy management, ingress route configuration, secrets
-  and certificate management, cloud and on-prem infrastructure life-cycle
+  and certificate management, cloud and on-prem infrastructure lifecycle
   management and more. Read more about :doc:`platform/index`.
 
 All of the components are exposed via a seamless, consistent, intuitive, and

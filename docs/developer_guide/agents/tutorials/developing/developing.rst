@@ -1,23 +1,22 @@
-Developing Guideline for Edge Node Agents
-=========================================
+Developing Guidelines for Edge Node Agents
+==========================================
 
 This section covers the process of developing and contributing an Edge Node Agent.
 
-Common code and functionality for Ubuntu* and Edge Microvisor Toolkit
----------------------------------------------------------------------
+Common Code and Functionality for Ubuntu\* and Edge Microvisor Toolkit
+----------------------------------------------------------------------
 
-An Edge Node supports two types of Operating Systems - Ubuntu* and `Edge Microvisor Toolkit <https://github.com/open-edge-platform/edge-microvisor-toolkit>`_. All Edge Node agents support deployment on both types of OS.
-Each Edge Node Agent must be capable of being packaged as both Debian package (Ubuntu) and RPM package (Edge Microvisor Toolkit).
+An Edge Node supports two types of Operating Systems: Ubuntu\* and `Edge Microvisor Toolkit <https://github.com/open-edge-platform/edge-microvisor-toolkit>`_. All Edge Node Agents support deployment on both types of OS.
+Each Edge Node Agent must be capable of being packaged as both Debian\* package (Ubuntu) and RPM package (Edge Microvisor Toolkit).
 The implementation and functionality provided by an Edge Node Agent must be the same where physically possible.
-In cases where the paths or files differ between the OSes the difference should be handled within the specification and/or the configuration
+In cases where the paths or files differ between the OSes, the difference should be handled within the specification and/or the configuration
 files of the `debian` or `rpm` package (i.e., Edge Node Agent systemctl service files for each OS).
 
-Occasionally while the overarching functionality provided by an Edge Node Agent may be the same across OSes the underlying functionality/implementation
-may drastically differ due to the nature of the OS - in such cases the divergence must still be handled by the same Edge Node Agent.
-An example of this is the Platform Update Agent. It provides the overarching functionality of updating the Edge Node with the latest software versions - but under the
-hood the updates happen differently for Ubuntu and Edge Microvisor Toolkit due to the nature of the OS.
-The mutable Ubuntu OS is being updated via `apt` package manager, while the immutable Edge Microvisor Toolkit is updated via `A/B Update` method.
-Both of the update workflow scenarios are covered as part of the same Edge Node Agent being able to differentiate between the OS'.
+Occasionally, while the overarching functionality provided by an Edge Node Agent may be the same across OSes, the underlying functionality/implementation
+may differ drastically due to the nature of the OS. In such cases, the divergence must still be handled by the same Edge Node Agent.
+Platform Update Agent is an example of this is. It provides the overarching functionality of updating the Edge Node with the latest software versions. Under-the-hood updates happen differently for Ubuntu and Edge Microvisor Toolkit due to the nature of the OS.
+The mutable Ubuntu OS is updated via `apt` package manager, while the immutable Edge Microvisor Toolkit is updated via `A/B Update` method.
+Both of the update workflow scenarios are covered as part of the same Edge Node Agent being able to differentiate between the OSes.
 
 Developing the Edge Node Agent
 ------------------------------
@@ -25,24 +24,24 @@ Developing the Edge Node Agent
 The design and development of an Edge Node Agent must adhere to the guidelines set out in :doc:`../../../agents/arch/hl_architecture`.
 The source code of the Edge Node Agents is developed as part of the `edge-node-agents <https://github.com/open-edge-platform/edge-node-agents>`_ repository.
 Each Edge Node Agent is contained within its own directory.
-A new directory is to be created when contributing a new Edge Node Agent which will contain its source code.
-Contributions to existing Edge Node Agent are to be done within the existing directories.
-The Edge Node Agents are developed using Go programming language.
-Every Edge Node Agent along with the source code must consist of:
+A new directory needs to be created when contributing a new Edge Node Agent that will contain its source code.
+Contributions to existing Edge Node Agents are to be done within the existing directories.
+The Edge Node Agents are developed using Go\* programming language.
+Every Edge Node Agent, along with the source code, must consist of:
 
-- Makefile.
-- Suitable set of tests.
-- Suitable set of configurations.
-- VERSION file.
-- README file describing the functionality of the Edge Node Agent and how to use the Make targets.
+- Makefile
+- Suitable set of tests
+- Suitable set of configurations
+- VERSION file
+- README file describing the functionality of the Edge Node Agent and how to use the Make targets
 
-Every Edge Node Agent change must be reflected in the top level directory of the repo:
+Every Edge Node Agent change must be reflected in the top-level directory of the repo:
 
-- Individual Makefile's targets must be able to be called from the top level Makefile.
+- Individual Makefile's targets must be able to be called from the top-level Makefile.
 - The agent must be present in the `ena-manifest.yaml` file with a version bumped on every non-development version update for the agent.
 - The CHANGELOG.md is to be updated.
 
-Edge Node Agent directory structure
+Edge Node Agent Directory Structure
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
@@ -55,7 +54,7 @@ Edge Node Agent directory structure
    │   └── sudoers.d # User configuration
    ├── debian # Debian configurations directory
    ├── go.mod
-   ├── go.sum 
+   ├── go.sum
    ├── internal # Internal packages directory
    ├── Makefile # Makefile for the Edge Node Agent
    ├── README.md # Readme document
@@ -63,12 +62,12 @@ Edge Node Agent directory structure
    ├── test # Test directory
    └── VERSION # Semantic Version
 
-Edge Node Agent Make targets
+Edge Node Agent Make Targets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Edge Node agent are expected to be build, tested and packaged using Make targets.
-The top level Makefile in the repository consists of targets that call Makefile targets in Edge Node Agent's individual directories.
-To maintain this modularity the Makefile targets within the sub-directories must remain consistent across agents.
+The Edge Node Agents are expected to be built, tested and packaged using Make targets.
+The top-level Makefile in the repository consists of targets that call Makefile targets in Edge Node Agent's individual directories.
+To maintain this modularity, the Makefile targets within the sub-directories must remain consistent across agents.
 The typical targets required of an Edge Node Agent are:
 
 .. code-block:: bash
@@ -83,16 +82,16 @@ The typical targets required of an Edge Node Agent are:
     tarball-agents       runs `tarball` target for each sub directory/agents
     test-agents          runs `test` target for each sub directory/agents
 
-Building and Running Edge Node Agent binary
+Building and Running Edge Node Agent Binary
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To build an Edge Node Agent binary run the `make build` target within the Edge Node Agent's directory.
+To build an Edge Node Agent binary, run the `make build` target within the Edge Node Agent's directory.
 
 .. code-block:: bash
 
     make build
 
-To run the binary start the application with the Edge Node Agent configuration file as an argument
+To run the binary, start the application with the Edge Node Agent configuration file as an argument:
 
 .. code-block:: bash
 
@@ -103,7 +102,7 @@ Note that Edge Node Agent's functionality may be dependent on other agents, i.e.
 Creating an Edge Node Agent tarball
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To create a tarball of Edge Node Agent related source/artifacts run the `make tarball` target.
+To create a tarball of Edge Node Agent-related source/artifacts, run the `make tarball` target.
 
 .. code-block:: bash
 
@@ -114,18 +113,18 @@ The artifact will be output to the `build/artifacts/<edge-node-agent>-<version>.
 Testing the Edge Node Agent on Ubuntu
 -------------------------------------
 
-Testing of an Edge Node Agent can be done on an existing Edge Node with Ubuntu OS. To access an Edge Node use the local SSH feature :doc:`../../../../../user_guide/additional_howtos/configure_ssh_public_keys`.
+Testing an Edge Node Agent can be done on an existing Edge Node with Ubuntu OS. To access an Edge Node use the local SSH feature :doc:`../../../../../user_guide/additional_howtos/configure_ssh_public_keys`.
 
-Building Debian package
+Building Debian Package
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-To build the Debian package for an Edge Node Agent use the `make package` target within the Edge Node Agent's directory
+To build the Debian package for an Edge Node Agent, use the `make package` target within the Edge Node Agent's directory
 
 .. code-block:: bash
 
     make package
 
-The debian package will be present under `./build/artifacts` directory
+The Debian package will be present under `./build/artifacts` directory:
 
 .. code-block:: bash
 
@@ -134,22 +133,22 @@ The debian package will be present under `./build/artifacts` directory
     <edge-node-agent>_<VERSION>_amd64.buildinfo  <edge-node-agent>_<VERSION>_amd64.deb
 
 
-Edge Node Agent installation test workflow on Ubuntu OS
+Edge Node Agent Installation Test Workflow on Ubuntu OS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When testing a change to an existing Edge Node Agent the previous version of the Edge Node Agent should be uninstalled before new package is installed.
+When testing a change to an existing Edge Node Agent, the previous version of the Edge Node Agent should be uninstalled before a new package is installed.
 
 .. code-block:: bash
 
     sudo apt remove <edge-node-agent>
 
-To install a new Edge Node Agent or a new version of the Edge Node Agent copy the agents debian package to the Edge Node and install using the `apt` tool.
+To install a new Edge Node Agent or a new version of the Edge Node Agent, copy the agents Debian package to the Edge Node and install using the `apt` tool.
 
 .. code-block:: bash
 
     sudo apt install -y ./build/artifacts/<edge-node-agent>_<VERSION>_amd64.deb
 
-To check that the Edge Node Agent is installed check the service status (Hardware Discovery Agent as an example)
+To check that the Edge Node Agent is installed, check the service status (Hardware Discovery Agent is used as an example):
 
 .. code-block:: bash
 
@@ -168,40 +167,40 @@ To check that the Edge Node Agent is installed check the service status (Hardwar
             └─23610 lshw -C display
 
 Testing the Edge Node Agent on Edge Microvisor Toolkit
--------------------------------------------------------
+------------------------------------------------------
 
 Testing of an Edge Node Agent can be done on an Edge Microvisor Toolkit Edge Node installed using the ISO image.
-Edge Microvisor Toolkit installed using the ISO image will not have any Edge Node Agents running by default but will be mutable allowing an agent to be installed from RPM.
+Edge Microvisor Toolkit installed using the ISO image will not have any Edge Node Agents running by default, but will be mutable, allowing an agent to be installed from RPM.
 
-Using Edge Microvisor Toolkit ISO installation as a testing platform
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Using Edge Microvisor Toolkit ISO Installation as a Testing Platform
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once the ISO image is obtained it can be installed on a bare-metal server or virtual machine.
-For installation on bare-metal system mount the ISO to USB drive or Virtual Disk.
-For installation on a virtual machine follow instructions for the virtualization software in use.
-Once booted from ISO follow onscreen installation instructions.
-The Edge Node Agent RPMs can be build and installed on the system using the `tarball` generated out of the
+Once the ISO image is obtained, it can be installed on a bare-metal server or virtual machine.
+- For installation on bare-metal system, mount the ISO to USB drive or Virtual Disk.
+- For installation on a virtual machine, follow instructions for the virtualization software in use.
+Once booted from ISO, follow onscreen installation instructions.
+The Edge Node Agent RPMs can be built and installed on the system using the `tarball` generated out of the
 `edge-node-agents <https://github.com/open-edge-platform/edge-node-agents>`_ `make tarball` artifact for a given Edge Node Agent.
 
 Building RPM
 ^^^^^^^^^^^^
 
-The Edge Node Agents coming as part of an Edge Microvisor Toolkit are built as RPMs using `the SPEC files
+The Edge Node Agents that are part of an Edge Microvisor Toolkit are built as RPMs using `the SPEC files
 provided in the edge-microvisor-toolkit <https://github.com/open-edge-platform/edge-microvisor-toolkit/tree/3.0/SPECS>`_ repository.
 
-The RPM packages to be included as part of Edge Microvisor Toolkit are built and released using a CI in that repo - but
+The RPM packages to be included as part of Edge Microvisor Toolkit are built and released using a CI in that repo. They
 can also be individually tested by manually including the Edge Node Agent tarball and editing spec file on a local system.
 
 `rpm-build` tool can be installed on the system to build the RPM packages.
 
-Note that the `dnf` will attempt to download packages from `http://rpm-edgemicrovisor.intel.com/3.0/`, ensure that
-the address is reachable for `dnf` if system is placed behind corporate proxy.
+Note that the `dnf` will attempt to download packages from `http://rpm-edgemicrovisor.intel.com/3.0/`. Ensure that
+the address is reachable for `dnf` if the system is placed behind a corporate proxy.
 
 .. code-block::
 
     sudo dnf install rpm-build
 
-To test the build of RPM package for an Edge Node Agent create a SOURCE directory and include the `tarball` package
+To test the build of RPM package for an Edge Node Agent, create a SOURCE directory and include the `tarball` package
 build from the Edge Node Agent's `make tarball` target of `edge-node-agents <https://github.com/open-edge-platform/edge-node-agents>`_ repository.
 
 .. code-block::
@@ -211,7 +210,7 @@ build from the Edge Node Agent's `make tarball` target of `edge-node-agents <htt
     sudo cp <edge-node-agent>*.* env_wrapper.sh <any_other_needed_artifact> /usr/src/azl/SOURCES/ #Copy the artifacts in SPEC needed to build the RPM
 
 Bump the VERSION in spec file to that of new Edge Node Agent being tested and make any other changes if necessary.
-In case of a new Edge Node Agent create the necessary spec and configs using one of the other Edge Node Agents as an example.
+In case of a new Edge Node Agent, create the necessary spec and configs using one of the other Edge Node Agents as an example.
 
 .. code-block::
 
@@ -224,7 +223,7 @@ Build the rpm package.
 
     sudo rpmbuild -bb <edge-node-agent>.spec
 
-Existing Edge Node Agent are expected to build two RPM packages the actual <edge-node-agent>.rpm and <edge-node-agent>-selinux.rpm
+Existing Edge Node Agents are expected to build two RPM packages: the actual <edge-node-agent>.rpm and <edge-node-agent>-selinux.rpm
 
 .. code-block::
 
@@ -233,7 +232,7 @@ Existing Edge Node Agent are expected to build two RPM packages the actual <edge
     ls  /usr/src/azl/RPMS/noarch/
     <edge-node-agent>-selinux-<version>-1.emt3.noarch.rpm
 
-Test the installation of the package using the generated RPM
+Test the installation of the package using the generated RPM:
 
 .. code-block::
 
@@ -257,7 +256,7 @@ Test the installation of the package using the generated RPM
 
     Complete!
 
-Test that the Edge Node Agent is installed and the systemctl service is loaded
+Test that the Edge Node Agent is installed and the systemctl service is loaded:
 
 .. code-block::
 
@@ -267,7 +266,7 @@ Test that the Edge Node Agent is installed and the systemctl service is loaded
 
     systemctl status <edge-node-agent>
 
-Contributing the Edge Node Agent to Edge Node Agents repository
+Contributing the Edge Node Agent to Edge Node Agents Repository
 ---------------------------------------------------------------
 
 To contribute new agents and changes to the `edge-node-agents <https://github.com/open-edge-platform/edge-node-agents>`_ repository the following criteria should be met:
@@ -279,24 +278,24 @@ To contribute new agents and changes to the `edge-node-agents <https://github.co
   * Unit tests must be written and passing
 * The Edge Node Agent must be tested on Edge Microvisor Toolkit
   * RPM package build and install must be tested
-* A Pull Request must be open in edge-node-agents repo
+* A Pull Request must be opened in edge-node-agents repo
 * The Pull Request will be reviewed before contribution is accepted
 
 Contributing Edge Node Agent to Ubuntu based deployments
 --------------------------------------------------------
 
-For the Edge Node Agent contributions to be absorbed into Ubuntu based Edge Node deployments the `ena-manifest.yaml` version must be adjusted
+For the Edge Node Agent contributions to be absorbed into Ubuntu based Edge Node deployments, the `ena-manifest.yaml` version must be adjusted
 in the `edge-manageability-framework <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/argocd/applications/configs/infra-onboarding.yaml>`_ repo
 in the `infra-onboarding.yaml` file under the `enAgentManifestTag` field.
 
 Contributing Edge Node Agent to Edge Microvisor Toolkit
 --------------------------------------------------------
 
-For the Edge Node Agent contribution to be absorbed into the Edge Microvisor Toolkit a contribution must be made to the
+For the Edge Node Agent contribution to be absorbed into the Edge Microvisor Toolkit, a contribution must be made to the
 `edge-microvisor-toolkit <https://github.com/open-edge-platform/edge-microvisor-toolkit>`_ repository.
 
-Once the Edge Node Agent is tested and merged into the `edge-node-agents <https://github.com/open-edge-platform/edge-node-agents>`_ repository
-changes or additions to the SPEC files of the Edge Node Agent must be made in order for the RPMs to be build and included in the Edge Microvisor Toolkit release.
+Once the Edge Node Agent is tested and merged into the `edge-node-agents <https://github.com/open-edge-platform/edge-node-agents>`_ repository,
+changes or additions to the SPEC files of the Edge Node Agent must be made in order for the RPMs to build and be included in the Edge Microvisor Toolkit release.
 
 The SPEC file changes should be made into the `edge-microvisor-toolkit/tree/<version>/SPECS/<edge-node-agent>` directory.
 For an example on how to structure the SPEC/<edge-node-agent> content to build RPMs, follow the implementation for other Edge Node Agents.

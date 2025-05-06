@@ -1,20 +1,20 @@
 Access Applications
-======================
+===================
 
 After the application is deployed with the **default** Deployment Profile, you can access it from the Web UI.
 
 In the deployment page, you can view the **tutorial-web-ui** Application and its status.
 
-We can also see the **tutorial-server** Application.
+You can also see the **tutorial-server** Application.
 
 .. figure:: ../images/app-orch-tutorial-deployed.png
    :width: 100%
    :alt: Tutorial Application deployed
 
 Here, you can see both the **tutorial-server** and **tutorial-web-ui** applications in this single deployment on this cluster.
-The `tutorial-web-ui` is expanded, you can see the Service Link that was created earlier by annotation of the service.
+The `tutorial-web-ui` is expanded, and you can see the Service Link that was created earlier by annotation of the service.
 
-Click the link to open a new browser window that will redirect to the Tutorial Web UI page.
+Select the link to open a new browser window that will redirect to the Tutorial Web UI page.
 
 .. figure:: ../images/app-orch-tutorial-app-service-proxy.png
    :width: 100%
@@ -26,7 +26,7 @@ From the UI, you can infer the following:
 - The tutorial server is deployed and running properly
 - The tutorial server is getting the initial variables from the default Profile
 - The counter is getting initialized at 10 (from the default profile)
-- The tutorial server is reachable from the web ui through the nginx proxy
+- The tutorial server is reachable from the web ui through the NGINX\* proxy
 
 You can also change the counter value in the **alternate** profile and deploy it to see how the web ui
 changes.
@@ -34,13 +34,13 @@ changes.
 Similarly, see the **alternate-pt** profile to see how the parameter templates work during deployment.
 
 
-Understanding the deployment
-------------------------------
+Understand the Deployment
+-------------------------
 
 You can download the **KubeConfig** from the edge node to explore it further. See
 :doc:`/user_guide/set_up_edge_infra/clusters_main` for more information on how to do this.
 
-Once established you can see all the resources that have been created by the Application Orchestrator.
+Once established, you can see all the resources that have been created by the Application Orchestrator.
 
 .. code:: bash
 
@@ -65,8 +65,8 @@ This should give an output like:
     NAME                                         DESIRED   CURRENT   READY   AGE
     replicaset.apps/tutorial-server-78585ff665   1         1         1       21m
 
-You can see how the Helm\* Chart has been deployed as a Deployment and Service. The Application Orchestrator has also
-created some supporting items:
+You can see how the Helm\* chart has been deployed as a Deployment and Service. The Application Orchestrator has also
+created supporting items:
 
 .. code:: bash
 
@@ -77,8 +77,8 @@ created some supporting items:
     sh.helm.release.v1.b-d79db76a-5a73-5f1a-befa-39568c4d2c10.v1   helm.sh/release.v1               1      4m12s
     sh.helm.release.v1.b-ec7b9684-61c5-5c98-b7c2-9ecace3aefa6.v1   helm.sh/release.v1               1      4m13s
 
-The first two secrets are the docker credentials for the Application Orchestrator to pull the images from the registry.
-The others are the Helm release secrets that are used to track the deployment of the Helm Chart.
+The first two secrets are the Docker\* credentials for the Application Orchestrator to pull the images from the registry.
+The others are the Helm release secrets that are used to track the deployment of the Helm chart.
 
 .. code:: bash
 
@@ -91,8 +91,8 @@ The others are the Helm release secrets that are used to track the deployment of
 
 The Application Orchestrator has created Network Policies to allow the applications to communicate with each other.
 
-Monitoring the Deployment
-----------------------------
+Monitor the Deployment
+----------------------
 
-To monitor the Tutorial application and to view its logs, refer to the
+To monitor the Tutorial application and view its logs, refer to
 :doc:`/user_guide/monitor_deployments/grafana_content` in the User Guide.

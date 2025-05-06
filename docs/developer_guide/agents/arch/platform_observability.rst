@@ -5,13 +5,13 @@ Background
 ----------
 
 This document provides high-level design and implementation guidelines. Refer
-to `Platform Observability Agent <https://github.com/open-edge-platform/edge-node-agents/tree/main/platform-observability-agent>`_ in Edge Node Agents GitHub repository for
+to `Platform Observability Agent <https://github.com/open-edge-platform/edge-node-agents/tree/main/platform-observability-agent>`_ in the Edge Node Agents GitHub\* repository for
 implementation details.
 
 Target Audience
 ~~~~~~~~~~~~~~~
 
-The target audience for this document is:
+The target audience for this document includes:
 
 - Developers interested in contributing to the implementation of the Platform
   Observability Agent.
@@ -26,7 +26,7 @@ Platform Observability Agent is part of the Open Edge Platform's Edge
 Node Zero Touch Provisioning. It is installed, configured and automatically
 executed at Provisioning time.
 
-The Platform Observability Agent (POA) is a set of four observability agents
+The Platform Observability Agent is a set of four observability agents
 deployed as individual systemd services alongside the other Edge Node Agents on
 the Edge Node. These services are:
 
@@ -74,7 +74,7 @@ Data Flow
 ---------
 
 The data flow of the Platform Observability Agent can be broken down into
-multiple concepts called out in `Workflow Stages` section.
+multiple concepts called out in the `Workflow Stages` section.
 
 Workflow Stages
 ~~~~~~~~~~~~~~~
@@ -214,35 +214,35 @@ Workflow Stages
          - `Attributes processor plugin
            <https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/attributesprocessor/README.md>`_
            applies the edge node UUID as a tag onto the logs before the
-           collector sends them to the Edge Orchestrator.
+           collector sends them to |software_prod_name|.
 
       - Exporters
 
          - `Otlphttp exporter plugin
            <https://github.com/open-telemetry/opentelemetry-collector/blob/main/exporter/otlphttpexporter/README.md>`_
            configured to send `platform-observability-logging` service logs to
-           the Edge Orchestrator log endpoint.
+           |software_prod_name| log endpoint.
 
          - `Otlphttp exporter plugin
            <https://github.com/open-telemetry/opentelemetry-collector/blob/main/exporter/otlphttpexporter/README.md>`_
            configured to send system logs from the cluster ``fluentbit``
-           service to the Edge Orchestrator log endpoint.
+           service to |software_prod_name| log endpoint.
 
          - `Otlphttp exporter plugin
            <https://github.com/open-telemetry/opentelemetry-collector/blob/main/exporter/otlphttpexporter/README.md>`_
            configured to send application logs from the cluster ``fluentbit``
-           service to the Edge Orchestrator log endpoint.
+           service to |software_prod_name| log endpoint.
 
          - `Otlphttp exporter plugin
            <https://github.com/open-telemetry/opentelemetry-collector/blob/main/exporter/otlphttpexporter/README.md>`_
            configured to send container logs from the cluster ``fluentbit``
-           service to the Edge Orchestrator log endpoint.
+           service to |software_prod_name| log endpoint.
 
       - Extensions
          - `Bearer token authentication extension plugin
            <https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/extension/bearertokenauthextension/README.md>`_
            applies the JWT token as a HTTP header to the collector output to
-           Edge Orchestrator.
+           |software_prod_name|.
 
    .. mermaid::
 
@@ -344,13 +344,13 @@ Figure 2: Log Collection configuration
          - `Attributes processor plugin
            <https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/attributesprocessor/README.md>`_
            applies the edge node UUID as a tag onto the metrics before the
-           collector sends them to the Edge Orchestrator.
+           collector sends them to |software_prod_name|.
 
       - Exporters
 
          - `Otlphttp exporter plugin
            <https://github.com/open-telemetry/opentelemetry-collector/blob/main/exporter/otlphttpexporter/README.md>`_
-           configured to send metrics to the Edge Orchestrator metrics endpoint.
+           configured to send metrics to |software_prod_name| metrics endpoint.
 
       - Extensions
          - `Bearer token authentication extension plugin
@@ -384,7 +384,7 @@ The Platform Observability Agent is deployed as a set of system daemons via
 installation of a *.deb* package during the provisioning or *.rpm* package as
 part of the Edge Microvisor Toolkit.
 
-The POA installs four services, platform-observability-logging,
+The Platform Observability Agent installs four services, platform-observability-logging,
 platform-observability-health-check, platform-observability-metrics and
 platform-observability-collector, when deployed on to the Edge Node.
 
@@ -419,10 +419,10 @@ services configured for collection of desired logs and metrics.
 System Diagram
 ~~~~~~~~~~~~~~
 
-Platform Observability Agent depends on Edge Orchestrator endpoints:
+Platform Observability Agent depends on |software_prod_name| endpoints:
 
-- Edge Orchestrator central log collector service endpoint.
-- Edge Orchestrator central metrics collector service endpoint.
+- |software_prod_name| central log collector service endpoint.
+- |software_prod_name| central metrics collector service endpoint.
 
 Platform Observability Agent external telemetry collectors:
 
@@ -446,7 +446,7 @@ Integrations
 ~~~~~~~~~~~~
 
 Platform Observability Agent does not expose an API, it exposes metrics to the
-endpoints of the Edge Orchestrator.
+endpoints of the |software_prod_name|.
 
 Platform Observability Agent integrates the 3rd party metric collectors -
 FluentBit, Telegraf, OpenTelemetry collector.

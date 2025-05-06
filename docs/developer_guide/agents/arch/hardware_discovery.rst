@@ -5,7 +5,7 @@ Background
 ----------
 
 This document provides high-level design and implementation guidelines. Refer
-to `Hardware Discovery Agent <https://github.com/open-edge-platform/edge-node-agents/tree/main/hardware-discovery-agent>`_ in the Edge Node Agents' GitHub repository for
+to `Hardware Discovery Agent <https://github.com/open-edge-platform/edge-node-agents/tree/main/hardware-discovery-agent>`_ in the Edge Node Agents' GitHub\* repository for
 implementation details.
 
 Target Audience
@@ -38,7 +38,7 @@ Architecture Diagram
 --------------------
 
 The Hardware Discovery Agents follows the architecture and design principles
-set out in :doc:`hl_architecture`
+set out in :doc:`hl_architecture`.
 
 .. figure:: ./images/hda-architecture.drawio.svg
    :alt: High-Level Architecture of the Hardware Discovery Agent
@@ -67,8 +67,8 @@ Workflow Stages
 1. **Hardware Discovery Agent Workflow**:
 
    The Hardware Discovery Agent retrieves its access token on start, gathers
-   the Edge Node's hardware information and sends the data to the Hardware
-   Resource Manager on the Edge Orchestrator.
+   the Edge Node's hardware information, and sends the data to the Hardware
+   Resource Manager on |software_prod_name|.
 
    It then pauses and repeats the HW information gathering and forwarding
    steps.
@@ -154,7 +154,7 @@ includes tools such as:
 - ``lsusb``, which provides information on USB devices connected to the Edge
   Node.
 
-- ``lshw`` and ``lspci``, which provides information on GPU devices on the Edge
+- ``lshw`` and ``lspci``, which provide information on GPU devices on the Edge
   Node.
 
 - ``ip``, which provides information on IP addresses associated with interfaces
@@ -179,7 +179,7 @@ System Diagram
 Hardware Discovery Agent is dependent on DKAM, Node Agent, and Hardware
 Resource Manager.
 
-Required OS tools dependencies are listed in the Hardware Discovery Agent's
+Required OS tool dependencies are listed in the Hardware Discovery Agent's
 Debian Control file in the source repository.
 
    .. mermaid::
@@ -195,7 +195,7 @@ Integrations
 ~~~~~~~~~~~~
 
 Hardware Discovery Agent does not expose any API. It consumes APIs from the
-Hardware Resource Manager.  Communication with Hardware Resource Manager is
+Hardware Resource Manager. Communication with Hardware Resource Manager is
 implemented using gRPC. Hardware Resource Manager acts as a server, Hardware
 Discovery Agent acts as a client.
 

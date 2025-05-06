@@ -5,7 +5,7 @@ Background
 ----------
 
 This document provides high-level design and implementation guidelines. Refer
-to `Cluster Agent <https://github.com/open-edge-platform/edge-node-agents/tree/main/cluster-agent>`_ in Edge Node Agents' GitHub repository for implementation
+to `Cluster Agent <https://github.com/open-edge-platform/edge-node-agents/tree/main/cluster-agent>`_ in the Edge Node Agents' GitHub\* repository for implementation
 details.
 
 Target Audience
@@ -24,12 +24,12 @@ Overview
 
 Cluster Agent is part of the Open Edge Platform's Edge Node Zero Touch
 Provisioning. It is installed, configured and automatically executed at
-Provisioning time.  It registers itself in Edge Cluster Manager of the Edge
+Provisioning time. It registers itself in Edge Cluster Manager of the Edge
 Orchestrator service and bootstrap/uninstall the Kubernetes Engine on the Edge
 Node on which it is executing.
 
 Architecture Diagram
------------------------
+--------------------
 
 The Cluster Agents follows the architecture and design principles set out in
 :doc:`hl_architecture`
@@ -40,7 +40,7 @@ The Cluster Agents follows the architecture and design principles set out in
       Figure 1: High-Level Architecture of Cluster Agent
 
 Key Components
-----------------
+--------------
 
 1. The Cluster Agent is a system daemon packaged as a `.deb` or `.rpm` package
    (depending on target Operating System).
@@ -53,7 +53,7 @@ Data Flow
 ---------
 
 The data flow of the Cluster Agent can be broken down into multiple concepts
-called out in `Workflow Stages` section.
+called out in the `Workflow Stages` section.
 
 Workflow Stages
 ~~~~~~~~~~~~~~~
@@ -83,7 +83,7 @@ Figure 2: Cluster Agent state machine
 
    Configuration consists of:
 
-   - The config file which is part of cluster-agent Debian/RPM package and
+   - The config file, which is part of cluster-agent Debian/RPM package and
      installed at ``/etc/edge-node/node/confs/cluster-agent.yaml``
 
    - The JWT token at /etc/intel_edge_node/tokens/cluster-agent
@@ -130,8 +130,7 @@ Figure 3: Cluster Agent configuration
 
 1. **Cluster Agent status update**:
 
-   Cluster Agent sends it's current status to *Edge Cluster Manager* in the
-   Edge Orchestrator on regular intervals. In response, it can receive request
+   Cluster Agent sends its current status to Edge Cluster Manager in |software_prod_name| on regular intervals. In response, it can receive a request
    to transition to a new state.
 
    .. mermaid::
@@ -154,7 +153,7 @@ Figure 4: Cluster Agent status update
 
 1. **Kubernetes Engine Installation flow**:
 
-   While in **registering** state Cluster Agent request Kubernetes Engine
+   While in **registering** state Cluster Agent, request Kubernetes Engine
    installation command via RPC from **Edge Cluster Manager**.
 
    .. mermaid::
@@ -185,7 +184,7 @@ Figure 5: Cluster Agent Kubernetes Engine installation
 
 4. **Kubernetes Engine Uninstallation flow**:
 
-   While in **deregistering** state Cluster Agent request Kubernetes Engine
+   While in **deregistering** state Cluster Agent, request Kubernetes Engine
    uninstallation command via RPC from **Edge Cluster Manager**.
 
    .. mermaid::
@@ -219,7 +218,7 @@ The Cluster Agent receives and runs installation and uninstallation
 commands/scripts to be executed on the Edge Node from the **Edge Cluster
 Manager**.
 
-To extend the support for bootstrapping new Kubernetes Engines an appropriate
+To extend the support for bootstrapping new Kubernetes Engines, an appropriate
 set of commands should be send from **ECM** to the Cluster Agent.
 
 Deployment
@@ -237,24 +236,24 @@ Agent's technology stack.
 Implementation
 ~~~~~~~~~~~~~~
 
-The Cluster Agent is written in Go programming language, it is implemented as a
+The Cluster Agent is written in Go programming language and is implemented as a
 state machine. Cluster Agent does not persist any data on disk nor in database
-as all state is in memory.  Previous state is re-created after reboot by
+as all state is in memory. Previous state is re-created after reboot by
 following state machine from the beginning (each state just finishes early if
-it was already executed).  This implementation allows for crash recovery and
-updates to not require special attention.
+it was already executed). This implementation allows for crash recovery and
+updates do not require special attention.
 
 The Cluster agent is agnostic of the Open Edge Platform's Kubernetes
 Engine implementation used. The scripts/commands provided to the Cluster Agent
-by the **Edge Cluster Manager** should be idempotent.  Cluster Agent performs
+by the **Edge Cluster Manager** should be idempotent. Cluster Agent performs
 both Kubernetes Engine installation & uninstallation via abstraction of a shell
-scripts.  Edge Cluster Manager should store multiple pairs of shell scripts for
+script. Edge Cluster Manager should store multiple pairs of shell scripts for
 different Kubernetes Engine implementations and return appropriate pair to the
-Cluster Agent for execution.  Both scripts are assumed to be idempotent. This
-means they could be executed multiple times safely.  Subsequent executions of
+Cluster Agent for execution. Both scripts are assumed to be idempotent. This
+means they could be executed multiple times safely. Subsequent executions of
 the same script either progresses overall execution (if it was not completed)
 or exits early (if previously completed), which is an important property in the
-context of crash recovery.  Cluster Agent should be able to execute the same
+context of crash recovery. Cluster Agent should be able to execute the same
 command again after intermediate failure and progress.
 
 System Diagram
@@ -278,11 +277,11 @@ Cluster Agent does not expose any API. It consumes APIs from both Edge Cluster
 Manager and Node Agent.
 
 - Edge Cluster Manager - Communication with Edge Cluster Manager is implemented
-  via gRPC protocol. Edge Cluster Manager acts as a server, Cluster Agent acts
+  via gRPC protocol. Edge Cluster Manager acts as a server; Cluster Agent acts
   as a client.
 
 - Node Agent - Communication with Node Agent is implemented via a text file
-  stored on a host filesystem.  When
+  stored on a host filesystem. When
   ``/etc/intel_edge_node/tokens/cluster-agent/access_token`` is created it is
   interpreted as signal to start communication with Edge Cluster Manager.
 

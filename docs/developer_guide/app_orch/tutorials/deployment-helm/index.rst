@@ -1,23 +1,23 @@
-Deployment Using Helm*
-=======================
+Deployment Using Helm* Chart
+============================
 
 As outlined in the Developer Workflow, :doc:`/developer_guide/application_developer_workflow/deployment-helm/index`
-Helm\* Chart is a packaging tool for Kubernetes\* applications.
+Helm\* chart is a packaging tool for Kubernetes\* applications.
 
-In this step we will write Helm Charts to deploy the Tutorial Server and the Tutorial Web UI.
+In this step, we will write Helm charts to deploy the Tutorial Server and the Tutorial Web UI.
 
-It is possible to write one Helm chart that will encompass both applications, but it is more
+While it is possible to write one Helm chart encompassing both applications, it is more
 conventional to have a chart for each application.
 An alternative approach is to write a single **umbrella chart** that contains both charts as
-as **sub-charts**. This is a more advanced topic and is not covered in this tutorial.
+as **sub-charts**. This more advanced topic is not covered in this tutorial.
 
 .. note::
-    Making this structural choice here has important implications for how the application is deployed,
+    Making this structural choice has important implications for how the application is deployed,
     but the |software_prod_name| platform simplifies this process by using a Deployment Package to
-    bundle the 2 applications together. This is covered in :doc:`../deployment-packages/index`.
+    bundle the two applications together. This is covered in :doc:`../deployment-packages/index`.
 
-We will call this the "Tutorial Chart" and create it in a new folder outside of the development
-directories we have previously created.
+Name this the "Tutorial Chart" and create it in a new folder outside of the development
+directories you created previously.
 
 .. code:: bash
 
@@ -27,13 +27,13 @@ directories we have previously created.
     helm create tutorial-server
     helm create tutorial-web-ui
 
-The **helm create** command creates a sample Helm directory structure that is suitable for deploying
-the **NGINX*** Web Server by default, which suits our needs, since Tutorial Web UI is based on nginx.
+The **helm create** command creates a sample Helm directory structure suitable for deploying
+the **NGINX\*** Web Server by default, which works here, since Tutorial Web UI is based on NGINX.
 
 Understanding the Helm Chart
------------------------------
+----------------------------
 
-The directory structure of each chart looks like this:
+The directory structure of each chart looks like the following:
 
 .. code:: shell
 
@@ -51,8 +51,8 @@ The directory structure of each chart looks like this:
     │          └── test-connection.yaml
     └── values.yaml
 
-It contains many resources that will work with Kubernetes* that can be viewed using the
-**helm template** command (for `tutorial-server` - it will be similar for `tutorial-web-ui`).
+It contains many resources that will work with Kubernetes and can be viewed using the
+**helm template** command (for `tutorial-server` it will be similar for `tutorial-web-ui`).
 
 .. code:: shell
 
@@ -61,8 +61,8 @@ It contains many resources that will work with Kubernetes* that can be viewed us
 The output in yaml format shows the result of the templates in the **templates** directory
 when the values.yaml file is applied to it.
 
-For instance this snippet from the output shows what each file in the **templates**
-folder produces and how it will be rendered in Kubernetes platform. Here you can see the creation of
+For instance, this snippet from the output shows what each file in the **templates**
+folder produces and how it will be rendered in the Kubernetes platform. You can see the creation of
 a Service and a ServiceAccount and how the **release-name** and the **namespace** are applied:
 
 .. code:: yaml
@@ -104,7 +104,7 @@ a Service and a ServiceAccount and how the **release-name** and the **namespace*
     ......
 
 Inspecting the **values.yaml** file shows how the powerful configurability of Helm
-allows overriding of template behavior without having to adjust the templates. For instance
+allows overriding template behavior without having to adjust the templates. For instance,
 the following snippet shows how the image repository, tag and pull policy can be overridden
 just by changing the values.yaml file.
 
@@ -124,11 +124,10 @@ just by changing the values.yaml file.
       port: 80
 
 A common practice is to create a **values-production.yaml** file that contains values that will
-override the inbuilt values.yaml rather than modifying it. We will demonstrate this later and
-managing different versions of override files is an import part of |software_prod_name| deployment.
+override the inbuilt values.yaml rather than modify it. (You will see this demonstrated later.) Managing different versions of override files is an import part of |software_prod_name| deployment.
 
 
-We deal with modifying the charts to suit our needs in the next section.
+In the next section, you will learn how to modify the charts for this tutorial.
 
 .. toctree::
    :hidden:

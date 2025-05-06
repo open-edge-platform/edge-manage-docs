@@ -4,8 +4,8 @@ Edge Node Agent
 Background
 ----------
 
-This document provides high level design and implementation guidelines. Refer
-to `Node Agent <https://github.com/open-edge-platform/edge-node-agents/tree/main/node-agent>`_ in Edge Node Agents' GitHub repository for implementation
+This document provides high-level design and implementation guidelines. Refer
+to `Node Agent <https://github.com/open-edge-platform/edge-node-agents/tree/main/node-agent>`_ in the Edge Node Agents' GitHub\* repository for implementation
 details.
 
 Target Audience
@@ -29,21 +29,19 @@ Node Agent interacts with Host Manager to send heartbeats from the node as it
 runs indefinitely.
 
 The second responsibility of the Node Agent is to obtain JWT tokens for all
-other agents running on the Edge Node.
-
-For this, the agent uses OAuth 2.0 Client Credential Grant which requires a
+other agents running on the Edge Node. For this, the agent uses OAuth 2.0 Client Credential Grant, which requires a
 pair of credentials on the Edge Node.
 
-The Node Agent makes API calls to Keycloak IDP Service to obtain fresh and
-renewed JWT tokens.  It authenticates to the Keycloak IDP Service using the
+The Node Agent makes API calls to Keycloak\* IDP Service to obtain fresh and
+renewed JWT tokens. It authenticates to the Keycloak IDP Service using the
 credentials provisioned on the Edge Node during provisioning.
 
 Node Agent is also responsible for the setting up of Caddy proxy.
 
 Caddy is a third party proxy server being used as a forward proxy on the Edge
-Node.  This serves as a forward proxy for containerd and apt client that runs
-on Edge Node.  It appends JWT token to requests from either of the clients.
-Node Agent installs Caddy as a dependency in the Debian/RPM package.
+Node. This serves as a forward proxy for containerd and apt client that runs
+on Edge Node. It appends JWT token to requests from either of the clients.
+Node Agent installs Caddy as a dependency in the Debian\* and RPM package.
 
 Architecture Diagram
 --------------------
@@ -66,20 +64,20 @@ Key Components
 
    3. The Node Agent requires a designated JWT token.
 
-   4. The Node Agent kickstarts deployment of Caddy proxy.
+   4. The Node Agent kick starts deployment of Caddy proxy.
 
 Data Flow
 ---------
 
 The data flow of the Node Agent can be broken down into multiple concepts
-called out in `Workflow Stages` section.
+called out in the `Workflow Stages` section.
 
 Workflow Stages
 ~~~~~~~~~~~~~~~
 
-1. **Caddy as forward proxy**: Following diagram illustrates how Caddy is
-   installed and configured during provisioning.  It also captures the token
-   refresh mechanism which ensures Caddy always uses an updated token in the
+1. **Caddy as forward proxy**: The following diagram illustrates how Caddy is
+   installed and configured during provisioning. It also captures the token
+   refresh mechanism, which ensures Caddy always uses an updated token in the
    header of the outgoing request.
 
    .. figure:: ./images/caddy-architecture.png
@@ -120,9 +118,9 @@ Figure 3: Secrets Provisioning Sequence Flow
 
 3. **Access Token Renewal**:
 
-   Refresh token is no used to renew the access token.
+   Refresh token is not used to renew the access token.
 
-   As per the `RFC 6749 <https://datatracker.ietf.org/doc/html/rfc6749>_,` a
+   As per the `RFC 6749 <https://datatracker.ietf.org/doc/html/rfc6749>`_, a
    refresh token is not required to be used for Client Credentials Grant.
 
    Whenever an access token needs to be refreshed, *client_id/client_secret*

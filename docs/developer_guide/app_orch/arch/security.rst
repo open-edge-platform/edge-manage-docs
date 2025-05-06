@@ -34,19 +34,18 @@ Authentication
 In the |software_prod_name| platform, authentication is handled by the Keycloak\*
 Identity and Access Management (IAM) platform. User details and permissions are
 stored in the Keycloak database. Keycloak database's authentication can be extended by
-connecting to upstream Identity Providers such as Azure or LDAP.
+connecting to upstream Identity Providers such as Microsoft Azure\* or LDAP.
 
-Application Orchestration endpoints sit behind the Multi Tenancy API Gateway and
-at both levels they are secured using OpenIDConnect generated JSON Web Tokens (JWTs) for
+Application Orchestration endpoints sit behind the Multi-Tenancy API Gateway. At both levels they are secured using OpenIDConnect-generated JSON Web Tokens (JWTs) for
 defence in depth. The tokens are passed as a Bearer tokens in all API calls, and
 are validated against Keycloak database's public keys (rotated every on a regular basis).
 
 Access Control
 --------------
 
-As the Application Orchestration components APIs are accessed the set of roles in
+As the Application Orchestration components APIs are accessed, the set of roles in
 the token are extracted and checked against a set of policies (REGO rules) in the
-Open Policy Agent (OPA sidecar) to ensure that the user has the necessary
+Open Policy Agent (OPA sidecar). This ensures the user has the necessary
 permissions to access the resource (thereby implementing Role Based Access
 Control).
 
@@ -65,5 +64,5 @@ Incident Response
 Overall incident response is managed by the |software_prod_name| Platform and
 Observability components. The Application Orchestration components are designed
 to logs activities clearly and concisely to the |software_prod_name| logging
-system which are used by the upper level components to detect and respond to
+system, which are used by the upper-level components to detect and respond to
 incidents.

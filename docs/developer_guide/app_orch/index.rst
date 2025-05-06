@@ -24,10 +24,10 @@ at scale and manage their lifecycle by utilizing |software_prod_name| Edge
 Infrastructure Management and |software_prod_name| Edge Cluster Orchestrator.
 
 Customers Highlights
-^^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 * **Simplified Application Management**: Aggregate applications and profiles
-  into Deployment Packages, streamline the deployment process for complex
+  into Deployment Packages, and streamline the deployment process for complex
   solutions across various environments.
 * **Centralized Deployment Management**: Manage multiple edge devices as a
   logical group, ensuring consistent deployment status and configuration across
@@ -39,7 +39,7 @@ Customers Highlights
   Provisioning for efficient and automated deployment.
 
 Developers Highlights
-^^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
 * Model-based design naturally extends the concepts of Helm charts, containers,
   and VMs with configuration in a cloud-native way.
