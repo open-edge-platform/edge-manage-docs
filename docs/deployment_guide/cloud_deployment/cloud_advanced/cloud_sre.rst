@@ -72,7 +72,6 @@ The following is a snippet of the example YAML file named ``example.yaml``:
    useLocalValues: true
    clusterValues:
      - orch-configs/profiles/enable-platform.yaml
-     - orch-configs/profiles/enable-multitenancy.yaml
      - orch-configs/profiles/enable-o11y.yaml
      - orch-configs/profiles/enable-kyverno.yaml
      - orch-configs/profiles/enable-app-orch.yaml
