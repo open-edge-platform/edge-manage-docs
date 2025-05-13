@@ -235,16 +235,14 @@ The installer script prompts for configuration input during installation.
 #. The installer prompts you to enter the IP addresses used by the
    Load Balancer for Argo CD UI, Traefik application proxy, and NGINX web server as follows.
    There are strict requirements on these IP addresses:
-   - All three IP addresses must be in the same subnet (for example, `10.0.0.1/24`) of the
-     Edge Orchestrator Node.
-   - IP addresses must be unique - you cannot use the same IP address for all three endpoints.
-     The installation will fail, if any IP address is duplicated.
-   - These are "Virtual IPs" - they don't need to be assigned to any hardware network interface,
-     but they should be reserved within the local subnet. Make sure your DHCP server doesn't assign conflicting IP addresses.
+   - All three IP addresses must be on the same subnet (for example, `10.0.0.1/24`) of the Edge Orchestrator node.
+   - IP addresses must be unique - you cannot use the same IP address for all three endpoints. The installation will fail, if any IP address is duplicated.
+   - These are "Virtual IPs" - they do not need to be assigned to any hardware network interface,
+     but they must be reserved within the local subnet. Ensure your DHCP server does not assign conflicting IP addresses.
 
-   See `Edge Orchestrator Network Topology <./on_prem_prereq.html#edge-orchestrator-network-topology>`__ for more details about network configurations.
+   See `Edge Orchestrator Network Topology <./on_prem_prereq.html#edge-orchestrator-network-topology>`__ for details about network configurations.
 
-   For an example of the topology.
+   An example of the topology:
 
    - `Argo IP` is the IP for CI/CD automated deployment tool.
 
@@ -379,10 +377,10 @@ Configure Custom Settings
    This configuration applies for every organization and project by default when they are created, but you can edit the nZTP configuration for each project at a later time.
    To learn more about the nZTP feature, see the :doc:`/user_guide/concepts/nztp` section in the *User Guide*.
 
-#. You can configure custom Traefik Rate Limit. See :doc:`/shared/shared_traefik_rate_limit`.
+#. You can configure a custom Traefik rate limit. See :doc:`/shared/shared_traefik_rate_limit`.
 
-   Configure the Traefik\* rate limit in ``[path_to_untarred_repo]/orch-configs/profiles/default-traefik-rate-limit.yaml``
-   and add the profile in the ``[path_to_untarred_repo]/orch-configs/clusters/onprem.yaml`` file:
+   Configure the Traefik rate limit in the ``[path_to_untarred_repo]/orch-configs/profiles/default-traefik-rate-limit.yaml``
+   file and add the profile in the ``[path_to_untarred_repo]/orch-configs/clusters/onprem.yaml`` file:
 
    .. code-block:: shell
 
@@ -694,7 +692,7 @@ using self-signed certificates:
 * \https://vnc.CLUSTER_FQDN
 * \https://CLUSTER_FQDN
 
-You can also retrieve self-signed certificate from the cluster:
+You can also retrieve the self-signed certificate from the cluster:
 
 .. code-block:: shell
 
