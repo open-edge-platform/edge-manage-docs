@@ -235,8 +235,13 @@ The installer script prompts for configuration input during installation.
 #. The installer prompts you to enter the IP addresses used by the
    Load Balancer for Argo CD UI, Traefik application proxy, and NGINX web server as follows.
    There are strict requirements on these IP addresses:
-   - All three IP addresses must be on the same subnet (for example, `10.0.0.1/24`) of the Edge Orchestrator node.
-   - IP addresses must be unique - you cannot use the same IP address for all three endpoints. The installation will fail, if any IP address is duplicated.
+
+   - All three IP addresses must be on the same subnet (for example, `10.0.0.1/24`)
+     of the Edge Orchestrator node.
+
+   - IP addresses must be unique - you cannot use the same IP address for all three endpoints.
+     The installation will fail, if any IP address is duplicated.
+
    - These are "Virtual IPs" - they do not need to be assigned to any hardware network interface,
      but they must be reserved within the local subnet. Ensure your DHCP server does not assign conflicting IP addresses.
 
