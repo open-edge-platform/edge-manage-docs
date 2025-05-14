@@ -10,10 +10,10 @@ Create S3 Bucket for AWS Cloud
 #. Use AWS CLI to `create a new S3 bucket <https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/create-bucket.html>`_.
 #. Note the bucket name, region, and key.
 
-Create Directory and Set Up Terraform Configuration
+Create a Directory and Set Up Terraform Configuration
 ---------------------------------------------------
 
-#. In a terminal, navigate to the environment main directory.
+#. In a terminal, navigate to the environments main directory.
 #. Create a new directory with the S3 bucket name:
 
    .. code-block:: bash
@@ -26,7 +26,7 @@ Create Directory and Set Up Terraform Configuration
 
       cp example-config/buckets/{backend.tf,variable.tfvar} buckets/environments/<bucket_name>
 
-   The ``backend.tf`` file describes where to store the Terraform state for this bucket deployment.
+   The ``backend.tf`` file specifies where to store the Terraform state for this bucket deployment.
    Store the Terraform state with the ``backend.tf`` and ``variable.tfvar`` file here. See the following example:
 
    .. code-block:: bash
@@ -66,8 +66,8 @@ You will need to adjust the following according to the target deployment scale:
       default = "t3.2xlarge"
    }
 
-   // Each instance type can support up to certain number of pod per node.
-   // Find the right eks_max_pods value for given instance type at
+   // Each instance type can support up to a certain number of pods per node.
+   // Find the right eks_max_pods value for a given instance type at
    // https://github.com/aws/amazon-vpc-cni-k8s/blob/master/misc/eni-max-pods.txt
    variable "eks_max_pods" {
       default = 58

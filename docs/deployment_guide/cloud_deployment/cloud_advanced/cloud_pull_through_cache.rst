@@ -1,7 +1,7 @@
 Set up Pull-through Cache for Cloud Deployment
 ===============================================
 
-A pull-through cache is a caching mechanism that stores container images on your Amazon Elastic Container Registry\* (Amazon ECR\*).
+A pull-through cache is a caching mechanism that stores container images in your Amazon Elastic Container Registry\* (Amazon ECR\*).
 This cache can be used to reduce the time it takes to download images from the Internet.
 It also prevents rate limiting from certain registries such as Docker Hub\* or GitHub\* container registry.
 
@@ -39,7 +39,7 @@ Repository Creation Template
 2. Click **Create template**.
 3. In the template details, select **Pull through cache** and choose **Any prefix in your ECR registry**.
 4. In Repository settings, set **Image tag mutability** to **Mutable** and set **Encryption configuration** to **AES-256**.
-5. Leave other fields empty and click **Create** in the last page.
+5. Leave other fields empty and click **Create** on the last page.
 
 Pull-Through Cache Rules
 ``````````````````````````
@@ -55,7 +55,7 @@ Do the following for each upstream registry:
 
 1. Navigate to **Private registry** > **Features & Settings** > **Pull through cache**.
 2. Click **Add rule**.
-3. For authentication, select the secret you created in the previous step, if prompted.
+3. For authentication, select the secret you created in the previous step if prompted.
 4. For **Cache namespace**, select **A specific prefix**. Use the following prefixes for the respective registries:
 
   - ``dockercache`` for ``registry-1.docker.io``

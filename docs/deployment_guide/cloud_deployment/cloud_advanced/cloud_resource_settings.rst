@@ -9,14 +9,14 @@ Edge Orchestrator Service Resource Settings
 Introduction
 ------------
 
-This document provides instructions on configuring resource settings for the Edge Orchestrator Service. Proper resource settings ensure optimal performance and resource utilization in your cluster.
+This document provides instructions on configuring resource settings for the Edge Orchestrator Service. Properly configured resource settings ensure optimal performance and resource utilization in your cluster.
 
 Prerequisites
 -----------------
 
 - Ensure you have the ``kubectl`` command-line interface (CLI) installed and configured to access your cluster.
 
-- Commands will be run in the installer container environment, see `Start the Installation Environment <../cloud_get_started/cloud_start_installer.html#start-the-installation-environment>`__ for more information.
+- Commands will be run in the installer container environment, refer to `Start the Installation Environment <../cloud_get_started/cloud_start_installer.html#start-the-installation-environment>`__ for more information.
 
 - You will need to install additional Python\* packages to run the resource settings commands. You can do this by running the following command in the installer container:
 
@@ -60,7 +60,7 @@ For example, you can set the CPU and memory requests for the Traefik\* service w
 Automatic Resource Settings
 ----------------------------
 
-Intel provides an automatic way to set the resource settings for each service based on the resource usage of the services.
+Intel provides an automatic method for setting resource settings for each service based on the resource usage of those services.
 
 You can enable it by using the following command. Note that you must have the ``kubectl`` command installed and configured to access the resource data:
 
@@ -69,7 +69,7 @@ You can enable it by using the following command. Note that you must have the ``
   orchestrator-admin:~$ cd edge-manageability-framework
   orchestrator-admin:~$ ./tools/resource-limit/manage-resource-limit.py freeze
 
-This command will collect resource usage from the cluster and generate the resource settings for each service based on the usage. It will also apply the new resource settings to the cluster once they are generated.
+This command collects resource usage from the cluster and generates resource settings for each service based on the usage. It will also apply the new resource settings to the cluster once they are generated.
 
 You can also find the generated file at ``/tmp/resource-config.yaml``.
 
