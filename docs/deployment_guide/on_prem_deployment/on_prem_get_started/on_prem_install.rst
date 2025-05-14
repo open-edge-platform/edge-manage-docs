@@ -46,7 +46,7 @@ Now you are ready to bootstrap the information to integrate Edge Orchestrator wi
 
    .. code-block:: shell
 
-      openssl s_client -connect LOCA_IP:443.
+      openssl s_client -connect LOCA_IP:443
 
 You will need the LOC-A CA as input to the profile `enable-lenovo.yaml`. You must repeat this process for all LOC-A
 instances that need to be integrated with the Edge Orchestrator.
@@ -697,11 +697,18 @@ using self-signed certificates:
 * \https://vnc.CLUSTER_FQDN
 * \https://CLUSTER_FQDN
 
-You can also retrieve the self-signed certificate from the cluster:
+You can also retrieve the self-signed certificate from the K8s cluster:
 
 .. code-block:: shell
 
    kubectl get secret -n orch-gateway tls-orch -o jsonpath='{.data.ca\.crt}' | base64 --decode > orch.crt
+
+Otherwise, use ``opensssl``, if you don't have access to ``kubectl``:
+
+.. code-block:: shell
+
+   openssl s_client -connect web-ui.CLUSTER_FQDN:443
+   # Copy Server Certificate from the output and paste to orch.crt file
 
 Copy the ``orch.crt`` file to your local machine and import it to your system trust store.
 
