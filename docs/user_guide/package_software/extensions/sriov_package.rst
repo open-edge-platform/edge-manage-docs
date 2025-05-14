@@ -272,4 +272,4 @@ For more information on SR-IOV, refer to:
 
   - `SR-IOV Network Operator <https://github.com/openshift/sriov-network-operator>`_
   - `Configure SR-IOV Device <https://docs.openshift.com/container-platform/4.11/networking/hardware_networks/configuring-sriov-device.html>`_
-  - `Architecture <https://github.com/kubevirt/kubevirt/blob/main/docs/sriov.md>`_
+  - `Architecture <https://github.com/kubevirt/kubevirt/blob/main/docs/network/sriov.md>`_
