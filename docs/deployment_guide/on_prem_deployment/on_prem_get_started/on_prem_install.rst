@@ -242,8 +242,8 @@ The installer script prompts for configuration input during installation.
    - IP addresses must be unique - you cannot use the same IP address for all three endpoints.
      The installation will fail, if any IP address is duplicated.
 
-   - These are "Virtual IPs" - they do not need to be assigned to any hardware network interface,
-     but they must be reserved within the local subnet. Ensure your DHCP server does not assign conflicting IP addresses.
+   - These are "Virtual IPs" - you do not have to assign these IPs to any hardware network interface,
+     but you must reserve these IPs within the local subnet. Ensure your DHCP server does not assign conflicting IP addresses.
 
    See `Edge Orchestrator Network Topology <./on_prem_prereq.html#edge-orchestrator-network-topology>`__ for details about possible network configurations.
 
