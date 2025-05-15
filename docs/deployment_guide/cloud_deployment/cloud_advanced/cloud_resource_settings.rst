@@ -16,7 +16,7 @@ Prerequisites
 
 - Ensure you have the ``kubectl`` command-line interface (CLI) installed and configured to access your cluster.
 
-- Commands will be run in the installer container environment, refer to `Start the Installation Environment <../cloud_get_started/cloud_start_installer.html#start-the-installation-environment>`__ for more information.
+- Commands will be run in the installer container environment, see `Start the Installation Environment <../cloud_get_started/cloud_start_installer.html#start-the-installation-environment>`__ for more information.
 
 - You will need to install additional Python\* packages to run the resource settings commands. You can do this by running the following command in the installer container:
 
