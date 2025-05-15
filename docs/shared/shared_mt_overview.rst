@@ -25,8 +25,6 @@ An organization is the top-level tenant construct, which provides:
 * Isolation of organization-wide observability data, which are the logs and
   metrics.
 
-* Licensing of the Edge Node software.
-
 Projects
 ~~~~~~~~
 
