@@ -203,7 +203,7 @@ The script does the following:
 - Prompts to configure Argo\* CD tool, Traefik\* application proxy, and NGINX\* web server IP addresses, for details see
   `Installer Prompts and Deployment Configuration <#installer-prompts-and-deployment-configuration>`__
 
-- Prompts to confirm custom configurations to the deployment,for more details see
+- Prompts to confirm custom configurations to the deployment,for details see
   `Installer Prompts and Deployment Configuration <#installer-prompts-and-deployment-configuration>`__
 
 - Downloads installation packages for individual component installations
@@ -224,7 +224,7 @@ The script does the following:
 
   - Starts Edge Orchestrator via Argo CD tool to populate the Gitea repositories
 
-See the following sections for more details about the installation process and prompts.
+See the following sections for details about the installation process and prompts.
 
 
 Installer Prompts and Deployment Configuration
@@ -245,7 +245,7 @@ The installer script prompts for configuration input during installation.
    - These are "Virtual IPs" - they do not need to be assigned to any hardware network interface,
      but they must be reserved within the local subnet. Ensure your DHCP server does not assign conflicting IP addresses.
 
-   See `Edge Orchestrator Network Topology <./on_prem_prereq.html#edge-orchestrator-network-topology>`__ for more details about possible network configurations.
+   See `Edge Orchestrator Network Topology <./on_prem_prereq.html#edge-orchestrator-network-topology>`__ for details about possible network configurations.
 
    An example of the topology:
 
