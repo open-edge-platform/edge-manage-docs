@@ -697,7 +697,7 @@ using self-signed certificates:
 * \https://vnc.CLUSTER_FQDN
 * \https://CLUSTER_FQDN
 
-You can also retrieve the self-signed certificate from the K8s cluster:
+You can also retrieve the self-signed certificate from the Kubernetes cluster:
 
 .. code-block:: shell
 
