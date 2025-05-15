@@ -4,10 +4,10 @@ Configure Email Notifications
 Enable Mail Server (SMTP) for notifications
 -------------------------------------------
 
-An external SMTP server is required to enable alerts by email.
+An external SMTP server is required to enable email alerts.
 
 During the setup of the cluster provisioning configuration, you will be
-prompted by an editor to edit the tfvar file and set the required variables.
+prompted by an editor to edit the tfvars file and set the required variables.
 For more information, see :doc:`../cloud_get_started/cloud_orchestrator_install`.
 
 These variables also need to be set in the
@@ -62,9 +62,9 @@ the identity of the SMTP server using its SSL/TLS certificate.
 
 Prometheus Alertmanager trusts CAs added by the Prometheus Team from the Debian\* OS distribution `ca-certificates
 <https://packages.debian.org/buster/all/ca-certificates/filelist>`_, and checks
-that the certificate is signed by a trusted CA.
+that a trusted CA signs the certificate.
 
-If the SMTP server is using a self-signed certificate, or a certificate signed
+If the SMTP server is using a self-signed certificate or a certificate signed
 by a non-public CA, this verification process will fail. Self-signed
 certificates and certificates signed by non-public CAs aren't automatically
 trusted.
@@ -79,7 +79,7 @@ Configure self-signed or non-public SMTP server
 
 Disable the SMTP server identity verification.
 
-Add the following line in the configuration file to the Argo configuration.
+Add the following line to the Argo configuration file:
 
 .. code-block:: yaml
 
