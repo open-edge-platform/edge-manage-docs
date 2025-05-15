@@ -46,7 +46,7 @@ Now you are ready to bootstrap the information to integrate Edge Orchestrator wi
 
    .. code-block:: shell
 
-      openssl s_client -connect LOCA_IP:443.
+      openssl s_client -connect LOCA_IP:443
 
 You will need the LOC-A CA as input to the profile `enable-lenovo.yaml`. You must repeat this process for all LOC-A
 instances that need to be integrated with the Edge Orchestrator.
@@ -203,7 +203,7 @@ The script does the following:
 - Prompts to configure Argo\* CD tool, Traefik\* application proxy, and NGINX\* web server IP addresses, for details see
   `Installer Prompts and Deployment Configuration <#installer-prompts-and-deployment-configuration>`__
 
-- Prompts to confirm custom configurations to the deployment,for more details see
+- Prompts to confirm custom configurations to the deployment, for details see
   `Installer Prompts and Deployment Configuration <#installer-prompts-and-deployment-configuration>`__
 
 - Downloads installation packages for individual component installations
@@ -224,7 +224,7 @@ The script does the following:
 
   - Starts Edge Orchestrator via Argo CD tool to populate the Gitea repositories
 
-See the following sections for more details about the installation process and prompts.
+See the following sections for details about the installation process and prompts.
 
 
 Installer Prompts and Deployment Configuration
@@ -234,11 +234,20 @@ The installer script prompts for configuration input during installation.
 
 #. The installer prompts you to enter the IP addresses used by the
    Load Balancer for Argo CD UI, Traefik application proxy, and NGINX web server as follows.
-   These IPs must be in the same subnet (for example, `10.0.0.1/24`) of the
-   Edge Orchestrator Node, see
-   `Edge Orchestrator Network Topology <./index.html#edge-orchestrator-network-topology>`__.
+   There are strict requirements on these IP addresses:
 
-   For an example of the topology.
+   - All three IP addresses must be on the same subnet (for example, `10.0.0.1/24`)
+     of the Edge Orchestrator node.
+
+   - IP addresses must be unique - you cannot use the same IP address for all three endpoints.
+     The installation will fail, if any IP address is duplicated.
+
+   - These are "Virtual IPs" - you do not have to assign these IPs to any hardware network interface,
+     but you must reserve these IPs within the local subnet. Ensure your DHCP server does not assign conflicting IP addresses.
+
+   See `Edge Orchestrator Network Topology <./on_prem_prereq.html#edge-orchestrator-network-topology>`__ for details about possible network configurations.
+
+   An example of the topology:
 
    - `Argo IP` is the IP for CI/CD automated deployment tool.
 
@@ -251,9 +260,9 @@ The installer script prompts for configuration input during installation.
       Enter Argo IP:
       [xx.xx.xx.xx]
       Enter Traefik IP:
-      [xx.xx.xx.xx]
+      [yy.yy.yy.yy]
       Enter Nginx IP:
-      [xx.xx.xx.xx]
+      [zz.zz.zz.zz]
 
 Configure Custom Settings
 ++++++++++++++++++++++++++++
@@ -372,6 +381,15 @@ Configure Custom Settings
 
    This configuration applies for every organization and project by default when they are created, but you can edit the nZTP configuration for each project at a later time.
    To learn more about the nZTP feature, see the :doc:`/user_guide/concepts/nztp` section in the *User Guide*.
+
+#. You can configure a custom Traefik rate limit. See :doc:`/shared/shared_traefik_rate_limit`.
+
+   Configure the Traefik rate limit in the ``[path_to_untarred_repo]/orch-configs/profiles/default-traefik-rate-limit.yaml``
+   file and add the profile in the ``[path_to_untarred_repo]/orch-configs/clusters/onprem.yaml`` file:
+
+   .. code-block:: shell
+
+       +    - profiles/default-traefik-rate-limit.yaml
 
 
 Disable SRE (Optional)
@@ -666,8 +684,8 @@ file:
 
    address=/loca.<on.prem.domain.name>/<loca-external-ip>
 
-Add Exceptions to the Browser Certificate
-+++++++++++++++++++++++++++++++++++++++++
+Add Exceptions to the Browser or Import Self-Signed Certificate (Optional)
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Add exceptions to your browser for the following Edge Orchestrator domains,
 replacing ``CLUSTER_FQDN`` with domain that you used during installation when
@@ -678,6 +696,21 @@ using self-signed certificates:
 * \https://argocd.CLUSTER_FQDN
 * \https://vnc.CLUSTER_FQDN
 * \https://CLUSTER_FQDN
+
+You can also retrieve the self-signed certificate from the Kubernetes cluster:
+
+.. code-block:: shell
+
+   kubectl get secret -n orch-gateway tls-orch -o jsonpath='{.data.ca\.crt}' | base64 --decode > orch.crt
+
+Otherwise, use ``opensssl``, if you do not have access to ``kubectl``:
+
+.. code-block:: shell
+
+   openssl s_client -connect web-ui.CLUSTER_FQDN:443
+   # Copy Server Certificate from the output and paste to orch.crt file
+
+Copy the ``orch.crt`` file to your local machine and import it to your system trust store.
 
 Add Exceptions to the Browser Certificate for LOC-A (Optional)
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

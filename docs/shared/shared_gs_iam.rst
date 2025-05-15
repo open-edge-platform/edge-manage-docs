@@ -42,7 +42,7 @@ Change the IdP Admin password
 2. Choose **Administration Console**. You may be redirected to this page by
    default.
 
-4. Next to user account icon at top left, click the ``admin`` username and
+4. Next to user account icon at top right, click the ``admin`` username and
    select ``Manage account``.
 
 5. Navigate to the **Account Security** tab and click on ``Signing in``, and in

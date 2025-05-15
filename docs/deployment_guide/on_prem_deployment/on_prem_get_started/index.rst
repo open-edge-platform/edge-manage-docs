@@ -301,7 +301,6 @@ When deploying Edge Orchestrator with Squid proxy, you will need an additional f
    system_requirements_on_prem_orch
    on_prem_certs
    ../../../shared/shared_gs_preinstall
-   ../../../shared/shared_traefik_rate_limit
    on_prem_install
    ../../../shared/shared_gs_iam
    ../../../shared/shared_mt_overview

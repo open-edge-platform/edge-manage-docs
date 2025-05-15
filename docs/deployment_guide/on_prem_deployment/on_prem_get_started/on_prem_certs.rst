@@ -68,4 +68,4 @@ Orchestrator.
 
 Using a Self-Signed certificate requires the certificate to be manually added to the trust stores of all clients (e.g., CLI tools, browsers, etc) that want to access the Edge Orchestrator. If a client does not trust the Self-Signed certificate, the client's browser will display an insecure warning when attempting to access the Edge Orchestrator, up to refusing to connect to the Edge Orchestrator.
 
-See :doc:`/deployment_guide/on_prem_deployment/on_prem_get_started/on_prem_certs` for information on how to generate a TLS certificate.
+See :doc:`/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_certificates` for information on how to generate a TLS certificate.
