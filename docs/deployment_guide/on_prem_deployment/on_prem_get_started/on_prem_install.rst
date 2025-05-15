@@ -203,7 +203,7 @@ The script does the following:
 - Prompts to configure Argo\* CD tool, Traefik\* application proxy, and NGINX\* web server IP addresses, for details see
   `Installer Prompts and Deployment Configuration <#installer-prompts-and-deployment-configuration>`__
 
-- Prompts to confirm custom configurations to the deployment,for details see
+- Prompts to confirm custom configurations to the deployment, for details see
   `Installer Prompts and Deployment Configuration <#installer-prompts-and-deployment-configuration>`__
 
 - Downloads installation packages for individual component installations
