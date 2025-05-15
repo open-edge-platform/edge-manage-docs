@@ -703,7 +703,7 @@ You can also retrieve the self-signed certificate from the Kubernetes cluster:
 
    kubectl get secret -n orch-gateway tls-orch -o jsonpath='{.data.ca\.crt}' | base64 --decode > orch.crt
 
-Otherwise, use ``opensssl``, if you don't have access to ``kubectl``:
+Otherwise, use ``opensssl``, if you do not have access to ``kubectl``:
 
 .. code-block:: shell
 
