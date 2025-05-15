@@ -13,7 +13,7 @@ jobs:
       contents: read          # needed for actions/checkout
       pull-requests: read     # needed for gh pr list
       issues: write           # needed to post PR comment
-    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@2f1b44c87e3c1f8f239d5297ef9e7f3577e40241  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@jmo/Support-version-switcher  # yamllint disable-line rule:line-length
     with:
       simple_mode: false
     secrets:
