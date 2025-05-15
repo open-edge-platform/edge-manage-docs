@@ -3,7 +3,7 @@ Configure SRE Exporter Service
 
 If the Service Reliability Engineering (SRE) exporter service is enabled in
 Edge Orchestrator, it exports Service Level Indicator (SLI) metrics that
-constantly monitor Edge Orchestrator cluster availability, and the health of edge node hosts using an external monitoring system.
+constantly monitor the Edge Orchestrator cluster availability, and the health of edge node hosts using an external monitoring system.
 
 The service sends the metrics to the external SRE Destination Endpoint at a regular time interval. The default is 30 seconds.
 
@@ -15,7 +15,7 @@ If TLS protocol is enabled, publicly trusted Certificate Authority (CA) certific
 Optionally, you can provide a private CA certificate of the destination server.
 
 To enable the SRE Exporter service, include `enable-sre.yaml` profile in the cluster definition template.
-No further configuration is required, but the default settings may be overriden if needed, see
+No further configuration is required, but the default settings may be overridden if needed, see
 `SRE Exporter Service Configuration <#sre-exporter-service-configuration>`__.
 
 Configure SRE Destination Endpoint

@@ -14,7 +14,7 @@ Cluster Template Examples
     #
     # SPDX-License-Identifier: Apache-2.0
 
-    # Cluster specific values applied to root-app only
+    # Cluster-specific values applied to root-app only
     root:
       useLocalValues: true
       clusterValues:
