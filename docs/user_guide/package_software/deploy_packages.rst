@@ -122,7 +122,7 @@ The choice of strategy will depend on the complexity of the deployment
 and the need for reusability.
 
 .. note:: It is also possible to reuse some of the "extensions" deployment
-  packages that are provided by the |software_prod_name| team.
+  packages that are provided by the |software_prod_name|.
 
 Deployment packages have a number of features that make it worthwhile
 taking the multiple applications with a single deployment package
