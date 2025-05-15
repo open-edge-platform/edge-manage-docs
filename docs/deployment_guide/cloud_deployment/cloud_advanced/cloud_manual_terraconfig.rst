@@ -13,7 +13,7 @@ Create S3 Bucket for AWS Cloud
 Create a Directory and Set Up Terraform Configuration
 ---------------------------------------------------
 
-#. In a terminal, navigate to the environments main directory.
+#. In a terminal, navigate to the environment's main directory.
 #. Create a new directory with the S3 bucket name:
 
    .. code-block:: bash
