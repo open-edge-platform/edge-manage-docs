@@ -14,19 +14,19 @@ The SRE (Service Reliability Engineering) Destination Endpoint server must suppo
 with basic access authentication and optionally TLS.
 
 The Destination Endpoint URL, basic authentication username and password must be provided
-during manual installation. If TLS is enabled, publicly trusted Certificate Authority (CA)
+during manual installation. If TLS is enabled, a publicly trusted Certificate Authority (CA)
 certificates for the destination server are supported by default. Optionally, a private CA
 certificate of the destination server can be provided.
 
 To enable the SRE Exporter service, include `enable-sre.yaml` profile in a cluster
 definition template. No further configuration is required, but the default settings
-may be overridden if needed, see
+may be overridden if needed, refer to
 `SRE Exporter Service Configuration <../../cloud_deployment/cloud_advanced/cloud_sre.html#sre-exporter-service-configuration>`__
 
 
 
 
-Configure SRE Destination Endpoint
+Configure the SRE Destination Endpoint
 ----------------------------------
 
 The following parameters can be configured on Edge Orchestrator installation for the SRE
@@ -37,7 +37,7 @@ Destination Endpoint:
 * Basic-auth password
 * TLS authentication and destination server private TLS CA certificate
 
-See :doc:`/deployment_guide/on_prem_deployment/on_prem_get_started/on_prem_install`
+Refer to :doc:`/deployment_guide/on_prem_deployment/on_prem_get_started/on_prem_install`
 for more information.
 
 
@@ -45,13 +45,13 @@ for more information.
 SRE Exporter service configuration
 ----------------------------------
 
-Enabling of SRE Exporter service, export time interval and ``customer`` label can be configured in the cluster definition in the following steps.
+Enabling of the SRE Exporter service, export time interval and ``customer`` label can be configured in the cluster definition through the following steps.
 
 #. To enable / disable SRE Exporter service include / exclude ``profiles/enable-sre.yaml`` in the *cluster definition* YAML file under ``root.clusterValues``.
 #. Optionally, if need to override the time interval of sending metrics (default is ``30s``), set ``.Values.argo.o11y.sre.pushInterval`` to the desired value in the *cluster definition* YAML file.
 #. Optionally, ``customer`` label of exported metrics can be overridden (default is ``.Values.argo.clusterName``) by setting ``.Values.argo.o11y.sre.customerLabel`` in the *cluster definition* YAML file.
 
-See an example of snippet of the cluster definition YAML file named ``example.yaml`` below.
+Refer to an example of snippet of the cluster definition YAML file named ``example.yaml`` below.
 
 .. code-block:: yaml
 
@@ -87,5 +87,5 @@ See an example of snippet of the cluster definition YAML file named ``example.ya
             pushInterval: 60s
             customerLabel: example
 
-See :doc:`/deployment_guide/on_prem_deployment/on_prem_get_started/on_prem_install`
+Refer to :doc:`/deployment_guide/on_prem_deployment/on_prem_get_started/on_prem_install`
 for more details on custom settings configuration in the cluster definition.
