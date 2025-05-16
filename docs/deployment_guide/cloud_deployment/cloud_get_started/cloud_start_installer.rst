@@ -105,7 +105,7 @@ Set up the AWS Cloud Login
 
 .. note::
    The AWS user must have the right permission access in AWS cloud,
-   see :doc:`Required AWS IAM Permissions </deployment_guide/cloud_deployment/cloud_appendix/cloud_aws_iam_permissions>` for more information.
+   Refer to :doc:`Required AWS IAM Permissions </deployment_guide/cloud_deployment/cloud_appendix/cloud_aws_iam_permissions>` for more information.
 
 Option 1 - Connect with AWS SSO
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -115,7 +115,7 @@ Set the AWS IAM using SSO. This uses temporary credentials, and permits SSO logi
 Choose this option for more secure connections and SSO login support in Edge Orchestrator.
 This is a good option for long-term installation.
 
-See `Configure your profile with the aws configure sso wizard <https://docs.aws.amazon.com/cli/latest/userguide/sso-configure-profile-token.html#sso-configure-profile-token-auto-sso>`_
+Refer to `Configure your profile with the aws configure sso wizard <https://docs.aws.amazon.com/cli/latest/userguide/sso-configure-profile-token.html#sso-configure-profile-token-auto-sso>`_
 for more information.
 
 .. code-block:: shell
@@ -160,7 +160,7 @@ The script starts the ``orchestrator-admin`` container that provides the tools, 
 Verify Installer Environment Container
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-After the installer environment is successfully started, the command prompt changes. See the following example:
+After the installer environment is successfully started, the command prompt changes. Refer to the following example:
 
 .. code-block:: shell
 

@@ -93,10 +93,10 @@ Create provisioning configuration
    * ``ca_cert``
 
 #. Configure the SMTP server settings. The SMTP server is used to send
-   notifications and alerts. See :doc:`/deployment_guide/cloud_deployment/cloud_advanced/cloud_alerts` for more information.
+   notifications and alerts. Refer to :doc:`/deployment_guide/cloud_deployment/cloud_advanced/cloud_alerts` for more information.
 
 
-#. Configure the SRE endpoint. See :doc:`/deployment_guide/cloud_deployment/cloud_advanced/cloud_sre` for more information.
+#. Configure the SRE endpoint. Refer to :doc:`/deployment_guide/cloud_deployment/cloud_advanced/cloud_sre` for more information.
 
 #. Save and close the editor.
 
@@ -145,7 +145,7 @@ Provision Required AWS Resources
       container is running. This value limits access to the secure tunnel
       required to access administration and management operations on the
       Edge Orchestrator cluster to the specified IP address ranges. This should be as limited as possible to enable all necessary administration host addresses.
-      The ``--jumphost-ip-allow-list`` may also need include the IP addresses of the proxy services when systems are
+      The ``--jumphost-ip-allow-list`` may also need to include the IP addresses of the proxy services when systems are
       running behind a corporate proxy server.
 
 Deploy Edge Orchestrator
@@ -166,7 +166,7 @@ Configure and deploy Edge Orchestrator to the provisioned AWS environment.
 
       orchestrator-admin:~$ ./configure-cluster.sh
 
-   This process creates a default cluster definition, and prompts you to review it.
+   This process creates a default cluster definition and prompts you to review it.
 
    .. note::
       If deploying with `auto-cert` enabled, ensure that the following line is **uncommented** in the cluster definition file:
@@ -200,7 +200,7 @@ If you see an immediate error when attempting to create a namespace, it may be d
 Restart your cluster network tunnel by calling the ``./start-tunnel.sh script``, and refresh your AWS access tokens.
 
 When installation is successful, the Argo\* CD tool is up and running in your
-cluster and the application deployment is in process.
+cluster, and the application deployment is in process.
 
 Deployment can take up to an hour to complete.
 

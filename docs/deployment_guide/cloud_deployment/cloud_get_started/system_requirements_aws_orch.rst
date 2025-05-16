@@ -7,14 +7,14 @@ Edge Orchestrator Cloud-based AWS Resource Quotas
 Many AWS resources are restricted by per-account `service quotas <https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html>`_.
 
 The following lists the quantity of service quota limited
-resources required for each Edge Orchestrator instance installed. Ensure that the service quota settings accomodate the allocation of the following resources. To request a service quota increase, see
+resources required for each Edge Orchestrator instance installed. Ensure that the service quota settings accommodate the allocation of the following resources. To request a service quota increase, refer to 
 `Requesting a quota increase <https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html>`_.
 
 * `Elastic IP addresses (EIPs) <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html>`_ - 7 EIPs required per Edge Orchestrator instance. The quota is specified per region and defaults to five. This has to be increased to support an Edge Orchestrator installation.
 
   * 3 For NAT Gateway that allows outbound internet access for the Edge Orchestrator instance.
   * 3 For the Network Load Balancer that allows inbound access to the Edge Orchestrator BIOS service.
-  * 1 For the bastion host that allows to access private API endpoints such as AWS EKS\* and AWS RDS\*.
+  * 1 For the bastion host that allows access to private API endpoints such as AWS EKS\* and AWS RDS\*.
 
 * `Application Load Balancers (ALBs) <https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html>`_ - Two ALBs are required per Edge Orchestrator instance. This quota is applied per region.
 
@@ -26,17 +26,17 @@ resources required for each Edge Orchestrator instance installed. Ensure that th
 
 * `Amazon Relational Database Service\* (Amazon RDS\*) DB instances <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.DBInstance.html>`_ - Three Amazon RDS DB instances are required. This quota is applied per region.
 
-* `Amazon Simple Storage Service\* (Amazon S3\*) buckets <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonS3.html>`_ - 11 Amazon S3 buckets required per Edge Orchestrator instance. The quota is specified per account and must accomodate resources required in all regions.
+* `Amazon Simple Storage Service\* (Amazon S3\*) buckets <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonS3.html>`_ - 11 Amazon S3 buckets required per Edge Orchestrator instance. The quota is specified per account and must accommodate resources required in all regions.
 
-* `Amazon Elastic File System (Amazon EFS) <https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html>`_ - There is a single quota applied per account that needs to specify the total available Amazon EFS space. The value set in this quota must allow for each Edge Orchestrator instance to use up to approximately 50 GB.
+* `Amazon Elastic File System (Amazon EFS) <https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html>`_ - A single quota is applied per account, which requires specifying the total available Amazon EFS space. The value set in this quota must allow for each Edge Orchestrator instance to use up to approximately 50 GB.
 
 AWS Resource Requirements
 -------------------------
 
 The resource requirement depends on the number of edge nodes connected to the Edge Orchestrator.
 Intel has validated the following configurations for various scales.
-The following Resource requirements can be changed during installation script.
-The `--profile` options allows you to decide which scale profile they want to use. Currently, there are four profiles:
+The following Resource requirements can be changed during the installation script.
+The `--profile` option allows you to decide which scale profile they want to use. Currently, there are four profiles:
 
 * default(3 x t3.2xlarge + 1 x t3.2xlarge nodes)
 
@@ -44,7 +44,7 @@ The `--profile` options allows you to decide which scale profile they want to us
 
 * 1k edge node (3 x m4.4xlarge + 3 x r5.4xlarge)
 
-More options allows you to fine tune your cluster scale abilities:
+More options allow you to fine tune your cluster scale abilities:
 
 * `--min-o11y-nodes`, `--desired-o11y-nodes`, `--max-o11y-nodes`: sets min, desired, and max
   number of observability nodes. Refer to
@@ -124,7 +124,7 @@ Intel configures the default settings to match this scale.
 Common Requirement Across Various Scales
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Storage: Auto-scaled through Amazon EFS, from 16 GiB. Observability stack uses Amazon EBS.
+* Storage: Auto-scaled through Amazon EFS, from 16 GiB. The observability stack uses Amazon EBS.
 
 * Network: Default Amazon VPC
 
@@ -136,7 +136,7 @@ Observability components are deployed on a dedicated ``observability`` node grou
 
 For larger deployments, you must scale up the capacity according to the recommendation.
 
-Number of edge nodes that can be handled by specific instances in ``observability`` node group are as follows:
+The number of edge nodes that can be handled by specific instances in ``observability`` node group are as follows:
 
 ==================  =====================  ===================   =======================  ========================
 Edge Nodes (up to)  Observability Profile  Pod-configs profile   Observability Node Type  Observability Node Count

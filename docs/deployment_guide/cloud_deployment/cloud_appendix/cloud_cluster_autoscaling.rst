@@ -6,7 +6,7 @@ Kubernetes Cluster Autoscaler
 
 Kubernetes Cluster Autoscaler (CAS) is a tool that automatically scales Kubernetes cluster horizontally when one of the following conditions is true:
 
-- There are pods that failed to schedule in the cluster because of insufficient resources.
+- Some pods failed to schedule in the cluster because of insufficient resources.
 - There are nodes in the cluster that have been underutilized for an extended period of time and their pods can be placed on other existing nodes.
 
 You would need to add the following to the deployment to support autoscaling:
@@ -27,9 +27,9 @@ Currently, Intel uses the default setting for CAS; we will revisit settings when
 Vertical Pod Autoscaler
 -----------------------
 
-The vertical pod autoscaler (VPA) sets pod resources (for example, the CPU and memory) automatically based on usage.
+The vertical pod autoscaler (VPA) automatically sets pod resources (such as CPU and memory) based on usage.
 
-VPA can down-scale pods that are over-requesting resources, and up-scale pods that are under-requesting resources based on their usage over time.
+VPA can down-scale pods that are over-requesting resources and up-scale pods that are under-requesting resources based on their usage over time.
 
 To enable VPA on the cluster, add one profile to the cluster config under ``orch-config/cluster/your-cluster.yaml``:
 
@@ -44,8 +44,8 @@ To use VPA for your application or service, you need to:
 - Ensure there are more than one replica for your service to ensure the service is
   available when VPA is updating the service. (See the following note)
 
-- Create a VerticalPodAutoscaler resource, so that VPA knows which resource needs
-  to be monitored and the minimum and maximum quantities for the resource.
+- Create a VerticalPodAutoscaler resource so that VPA knows which resource needs
+  to be monitored, and the minimum and maximum quantities for the resource.
 
 .. note::
 
