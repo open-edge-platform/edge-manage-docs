@@ -1,18 +1,18 @@
 Scale Edge Orchestrator
 ========================
 
-You can deploy the |software_prod_name| on cloud providers at various scales to support different number of edge nodes
+You can deploy the |software_prod_name| on cloud providers at various scales to support different numbers of edge nodes
 and you can scale Edge Orchestrator dynamically after the initial deployment;
-this allows for right-sizing of the Edge Orchestrator as the number of edge nodes grow,
+this allows for right-sizing of the Edge Orchestrator as the number of edge nodes grows,
 to achieve better cost efficiency.
 
 Intel supports both horizontal and vertical scaling for general and observability nodes.
 You can achieve horizontal scaling by adding more Amazon Elastic Kubernetes Service\* (Amazon EKS\*) nodes to
-Edge Orchestrator, and vertical scaling by increasing the resources of the existing Amazon EKS nodes.
+Edge Orchestrator and vertical scaling by increasing the resources of the existing Amazon EKS nodes.
 
 Intel also supports scaling the Aurora Capacity Units (ACU).
 
-This section explains the available parameters and predefined scale profiles, and shows how to update cluster
+This section explains the available parameters and predefined scale profiles, and shows how to update the cluster
 settings using the same provision script used for installation.
 
 Scale Parameters
@@ -160,7 +160,7 @@ You can also select from the following predefined profiles when provisioning the
     - 1
     - 128
 
-See :doc:`/deployment_guide/cloud_deployment/cloud_get_started/system_requirements_aws_orch`
+Refer to :doc:`/deployment_guide/cloud_deployment/cloud_get_started/system_requirements_aws_orch`
 for more information about resource requirements for each scenario.
 
 Update Cluster Scale Settings
@@ -168,7 +168,7 @@ Update Cluster Scale Settings
 
 .. note::
    Scaling Edge Orchestrator cluster may require changing of observability profile.
-   For details on observability profiles, see
+   For details on observability profiles, refer to
    `Observability Configuration <../../cloud_deployment/cloud_get_started/system_requirements_aws_orch#edge-orchestrator-observability-configuration>`__.
 
 .. note::
@@ -201,7 +201,7 @@ There are three ways you can specify scale settings:
          --environment customer1-env1 --parent-domain [root-domain].com --region us-east-1
          --email myname@abc.[root-domain] --socks-proxy proxy-dmz.example_proxy.com:1080
 
-3. Override certain values from the profile, for example, to have more nodes with the `100en` profile:
+3. Override specific values from the profile, for example, to have more nodes with the `100en` profile:
 
    .. code-block:: bash
 
