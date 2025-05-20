@@ -25,7 +25,7 @@ Email notifications
 ------------------------------------------------
 
 To enable email notifications, add the `alerting-emails` profile
-to the *clusterValues*. Refer to the example of the profile below.
+to the *clusterValues*. See the example of the profile below.
 
 .. code-block:: yaml
 
