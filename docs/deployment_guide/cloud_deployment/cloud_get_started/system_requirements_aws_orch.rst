@@ -7,7 +7,7 @@ Edge Orchestrator Cloud-based AWS Resource Quotas
 Many AWS resources are restricted by per-account `service quotas <https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html>`_.
 
 The following lists the quantity of service quota limited
-resources required for each Edge Orchestrator instance installed. Ensure that the service quota settings accommodate the allocation of the following resources. To request a service quota increase, refer to 
+resources required for each Edge Orchestrator instance installed. Ensure that the service quota settings accommodate the allocation of the following resources. To request a service quota increase, see 
 `Requesting a quota increase <https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html>`_.
 
 * `Elastic IP addresses (EIPs) <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html>`_ - 7 EIPs required per Edge Orchestrator instance. The quota is specified per region and defaults to five. This has to be increased to support an Edge Orchestrator installation.
@@ -47,7 +47,7 @@ The `--profile` option allows you to decide which scale profile they want to use
 More options that allow you to fine-tune your cluster scale abilities:
 
 * `--min-o11y-nodes`, `--desired-o11y-nodes`, `--max-o11y-nodes`: sets min, desired, and max
-  number of observability nodes. Refer to
+  number of observability nodes. See
   `Observability Configuration <#edge-orchestrator-observability-configuration>`__
   for guidance.
 
@@ -56,10 +56,10 @@ More options that allow you to fine-tune your cluster scale abilities:
 * `--node-type`: sets the default worker node type (for example, m4.4xlarge)
 
 * `--o11y-node-type`: sets the observability worker node type (for example, r5.2xlarge).
-  Refer to `Observability Configuration <#edge-orchestrator-observability-configuration>`__
+  See `Observability Configuration <#edge-orchestrator-observability-configuration>`__
   for guidance.
 
-Refer to :doc:`/deployment_guide/cloud_deployment/cloud_get_started/cloud_start_installer`
+See :doc:`/deployment_guide/cloud_deployment/cloud_get_started/cloud_start_installer`
 to use these options during the installation process and
 :doc:`/deployment_guide/cloud_deployment/cloud_advanced/cloud_manual_terraconfig`
 to learn more about how to configure scale-related parameters in the configuration files.
@@ -69,7 +69,7 @@ Minimum Requirement (up to 100 Edge Nodes)
 
 * Multi-node Amazon EKS cluster
 
-  * Three-node Amazon Elastic Kubernetes Service (Amazon EKS\*) node group backed by three ``t3.2xlarge`` instances (refer to `Amazon EC2 Instance types <https://aws.amazon.com/ec2/instance-types/>`_)
+  * Three-node Amazon Elastic Kubernetes Service (Amazon EKS\*) node group backed by three ``t3.2xlarge`` instances (see `Amazon EC2 Instance types <https://aws.amazon.com/ec2/instance-types/>`_)
 
     * CPU: Eight vCPUs (each) on 2.4 GHz Intel® Xeon® E5-2676 v3 Processor
 
@@ -77,7 +77,7 @@ Minimum Requirement (up to 100 Edge Nodes)
 
     * Disk: 128-Gb elastic block storage (EBS)
 
-  * One-node Amazon EKS node group backed by a ``r5.2xlarge`` instance (Refer to `Amazon EC2 Instance types <https://aws.amazon.com/ec2/instance-types/>`_)
+  * One-node Amazon EKS node group backed by a ``r5.2xlarge`` instance (see to `Amazon EC2 Instance types <https://aws.amazon.com/ec2/instance-types/>`_)
 
     * CPU: 8 vCPUs on 3.1-GHz Intel® Xeon® Platinum 8175 Processor
 
@@ -98,7 +98,7 @@ Intel configures the default settings to match this scale.
 
 * Multi-node Amazon EKS cluster
 
-  * Three-node Amazon EKS node group backed by ``m4.4xlarge`` instances (refer to `Amazon EC2 Instance types <https://aws.amazon.com/ec2/instance-types/>`_)
+  * Three-node Amazon EKS node group backed by ``m4.4xlarge`` instances (see to `Amazon EC2 Instance types <https://aws.amazon.com/ec2/instance-types/>`_)
 
     * CPU: 16 vCPUs (each) on 2.4 GHz Intel® Xeon® E5-2676 v3** Processor
 
@@ -106,7 +106,7 @@ Intel configures the default settings to match this scale.
 
     * Disk: 128-Gb EBS type
 
-  * Three-node Amazon EKS node group backed by ``r5.4xlarge`` instance (Refer to `Amazon EC2 Instance types <https://aws.amazon.com/ec2/instance-types/>`_)
+  * Three-node Amazon EKS node group backed by ``r5.4xlarge`` instance (see to `Amazon EC2 Instance types <https://aws.amazon.com/ec2/instance-types/>`_)
 
     * CPU: 16 vCPUs (each) on 3.1-GHz Intel® Xeon® Platinum 8175 Processor
 
@@ -150,7 +150,7 @@ Edge Nodes (up to)  Observability Profile  Pod-configs profile   Observability N
 .. note::
    In case of deployment beyond 1k edge nodes it is recommended to use multiple r5.8xlarge instances (preferred observability node count is the multiple of 3).
 
-Due to the limit of EBS volumes attached to a single EC2 instance, it is recommended to use two or more observability nodes for the ``o11y-release-large`` observability profile (Refer to `Amazon EBS volume limits for Amazon EC2 instances <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html>`_).
+Due to the limit of EBS volumes attached to a single EC2 instance, it is recommended to use two or more observability nodes for the ``o11y-release-large`` observability profile (See `Amazon EBS volume limits for Amazon EC2 instances <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html>`_).
 Note that placing multiple observability nodes in the same availability zone (AZ) will reduce AWS regional data transfer costs.
 
 See also :doc:`/deployment_guide/cloud_deployment/cloud_how_to/cloud_scale_orch` for more
