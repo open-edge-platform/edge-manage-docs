@@ -68,7 +68,7 @@ Configure self-signed or non-public SMTP server
 -----------------------------------------------
 
 .. warning::
-   Disabling verification makes the connection to the SMTP server less secure because it allows connections to servers with untrusted certificates.
+   Disabling verification allows connections to servers with untrusted certificates, hence making the connection to the SMTP server less secure.
    Use this option only if you understand the risks.
 
 #. Disable the SMTP server identity verification.
