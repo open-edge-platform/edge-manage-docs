@@ -4,7 +4,7 @@ Install Edge Orchestrator
 Download and Install Lenovo\* Open Cloud Automation (LOC-A) (Optional)
 ----------------------------------------------------------------------
 
-For details on the LOC-A installation process and setup, refer to the
+For details on the LOC-A installation process and setup, see the
 `Lenovo\* ISG Support Plan - LOC-A (Lenovo Open Cloud Automation) <https://support.lenovo.com/us/en/solutions/ht509884-loc-a-lenovo-open-cloud-automation-for-vcf>`_.
 
 This Edge Orchestrator version is compatible with LOC-A version 3.3.x. To get a
@@ -122,7 +122,7 @@ Optional Parameters
 +++++++++++++++++++++++++++++++++++
 
 Some configuration parameters the installer uses have default values that you
-can set manually. Refer to the following table for more information about each parameter.
+can set manually. See the following table for more information about each parameter.
 
 .. list-table:: Other Installation Parameters
    :widths: 30 40 30
@@ -160,7 +160,7 @@ Configure SMTP Variables for Notifications
 ++++++++++++++++++++++++++++++++++++++++++
 
 To enable email notifications for alerts, set the following environmental variables
-for the external SMTP server. Refer to 
+for the external SMTP server. See 
 :doc:`/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_alerts`
 for more information. If not needed or if the SMTP server is not available, you can
 disable the SMTP server authentication when installing Edge Orchestrator.
@@ -200,10 +200,10 @@ Run Installer
 
 The script does the following:
 
-- Prompts to configure Argo\* CD tool, Traefik\* application proxy, and NGINX\* web server IP addresses, for details refer to
+- Prompts to configure Argo\* CD tool, Traefik\* application proxy, and NGINX\* web server IP addresses, for details see
   `Installer Prompts and Deployment Configuration <#installer-prompts-and-deployment-configuration>`__
 
-- Prompts to confirm custom configurations to the deployment,for more details refer to
+- Prompts to confirm custom configurations to the deployment,for more details see
   `Installer Prompts and Deployment Configuration <#installer-prompts-and-deployment-configuration>`__
 
 - Downloads installation packages for individual component installations
@@ -224,7 +224,7 @@ The script does the following:
 
   - Starts Edge Orchestrator via Argo CD tool to populate the Gitea repositories
 
-Refer to the following sections for more information about the installation process and prompts.
+See the following sections for more information about the installation process and prompts.
 
 
 Installer Prompts and Deployment Configuration
@@ -235,7 +235,7 @@ The installer script prompts for configuration input during the installation pro
 #. The installer prompts you to enter the IP addresses used by the
    Load Balancer for Argo CD UI, Traefik application proxy, and NGINX web server as follows.
    These IPs must be in the same subnet (for example, `10.0.0.1/24`) of the
-   Edge Orchestrator Node, refer to
+   Edge Orchestrator Node, see
    `Edge Orchestrator Network Topology <./index.html#edge-orchestrator-network-topology>`__.
 
    For an example of the topology.
@@ -260,7 +260,7 @@ Configure Custom Settings
 
 #. Create any custom configurations for the Edge Orchestrator deployment
    before pushing the source code into the local ``Gitea repository``.
-   Refer to `Email notifications <../../cloud_deployment/cloud_advanced/cloud_alerts.html#email-notifications>`__
+   See `Email notifications <../../cloud_deployment/cloud_advanced/cloud_alerts.html#email-notifications>`__
    to enable email notifications.
 
 #. To change the deployment parameters, edit the following files
@@ -371,7 +371,7 @@ Configure Custom Settings
          defaultProfile: ubuntu-22.04-lts-generic # OS to be provisioned when autoProvision is enabled
 
    This configuration applies for every organization and project by default when they are created, but you can edit the nZTP configuration for each project at a later time.
-   To learn more about the nZTP feature, refer to the :doc:`/user_guide/concepts/nztp` section in the *User Guide*.
+   To learn more about the nZTP feature, see the :doc:`/user_guide/concepts/nztp` section in the *User Guide*.
 
 
 Disable SRE (Optional)
@@ -385,7 +385,7 @@ It is possible to configure or fully disable SRE during the next step by doing t
 
 #. Optionally, the default values for SRE can be overridden in the *cluster definition* YAML file under ``.argo.o11y.sre``.
 
-Refer to :doc:`/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_sre`
+See :doc:`/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_sre`
 for more information.
 
 Enable TLS for SRE Exporter endpoint (Optional)
@@ -408,7 +408,7 @@ path to the file containing the certificate after ``-s`` flag:
 
    ./onprem_installer.sh -s [path_to_SRE_Endpoint_TLS_CA_Cert]
 
-If you want to disable SRE functionality fully, refer to the
+If you want to disable SRE functionality fully, see the
 `Disable SRE <#disable-sre-optional>`__ section above.
 
 
@@ -424,7 +424,7 @@ Use the ``-d`` option to turn off the TLS authentication between the SMTP server
 Prepare TLS Certificate Secret
 ------------------------------
 
-Refer to :doc:`/deployment_guide/on_prem_deployment/on_prem_get_started/on_prem_certs`
+See :doc:`/deployment_guide/on_prem_deployment/on_prem_get_started/on_prem_certs`
 
 Obtain the previously prepared TLS certificate bundle and TLS key and create a Kubernetes\* secret file `tls-secret.yaml` using the information from the certificate and key.
 
@@ -569,7 +569,7 @@ Sub-applications continue to deploy in the ``syncwave`` order until all the appl
 View Application Deployment
 ++++++++++++++++++++++++++++++++
 
-To refer to the deployment progress, run the following:
+To see the deployment progress, run the following:
 
 .. code-block:: shell
 
@@ -596,7 +596,7 @@ When using self-signed certificate:
 
 When using custom non-self signed certificate:
 
-Find the external IPs allocated to services reachable from outside of the cluster (refer to the EXTERNAL-IP in the output):
+Find the external IPs allocated to services reachable from outside of the cluster (see the EXTERNAL-IP in the output):
 
 .. code-block:: shell
 
@@ -697,5 +697,5 @@ Edge Orchestrator Restart
 -----------------------------------------------
 
 Restarting Edge Orchestrator will seal the HashiCorp Vault\* system.
-Refer to :doc:`/shared/shared_on_prem_ts_vault_unseal`
+See :doc:`/shared/shared_on_prem_ts_vault_unseal`
 for more information about the HashiCorp Vault used with Edge Orchestrator.
