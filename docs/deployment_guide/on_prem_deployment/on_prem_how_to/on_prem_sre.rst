@@ -20,7 +20,7 @@ certificate of the destination server can be provided.
 
 To enable the SRE Exporter service, include `enable-sre.yaml` profile in a cluster
 definition template. No further configuration is required, but the default settings
-may be overridden if needed, refer to
+may be overridden if needed, see
 `SRE Exporter Service Configuration <../../cloud_deployment/cloud_advanced/cloud_sre.html#sre-exporter-service-configuration>`__
 
 
@@ -37,7 +37,7 @@ Destination Endpoint:
 * Basic-auth password
 * TLS authentication and destination server private TLS CA certificate
 
-Refer to :doc:`/deployment_guide/on_prem_deployment/on_prem_get_started/on_prem_install`
+See :doc:`/deployment_guide/on_prem_deployment/on_prem_get_started/on_prem_install`
 for more information.
 
 
@@ -51,7 +51,7 @@ You can configure the SRE Exporter service, export time interval, and ``customer
 #. Optionally, if need to override the time interval of sending metrics (default is ``30s``), set ``.Values.argo.o11y.sre.pushInterval`` to the desired value in the *cluster definition* YAML file.
 #. Optionally, ``customer`` label of exported metrics can be overridden (default is ``.Values.argo.clusterName``) by setting ``.Values.argo.o11y.sre.customerLabel`` in the *cluster definition* YAML file.
 
-Refer to an example of snippet of the cluster definition YAML file named ``example.yaml`` below.
+See an example of snippet of the cluster definition YAML file named ``example.yaml`` below.
 
 .. code-block:: yaml
 
@@ -87,5 +87,5 @@ Refer to an example of snippet of the cluster definition YAML file named ``examp
             pushInterval: 60s
             customerLabel: example
 
-Refer to :doc:`/deployment_guide/on_prem_deployment/on_prem_get_started/on_prem_install`
+See :doc:`/deployment_guide/on_prem_deployment/on_prem_get_started/on_prem_install`
 for more details on custom settings configuration in the cluster definition.
