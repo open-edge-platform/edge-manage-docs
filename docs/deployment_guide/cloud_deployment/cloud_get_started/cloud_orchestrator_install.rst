@@ -93,10 +93,10 @@ Create provisioning configuration
    * ``ca_cert``
 
 #. Configure the SMTP server settings. The SMTP server is used to send
-   notifications and alerts. Refer to :doc:`/deployment_guide/cloud_deployment/cloud_advanced/cloud_alerts` for more information.
+   notifications and alerts. See :doc:`/deployment_guide/cloud_deployment/cloud_advanced/cloud_alerts` for more information.
 
 
-#. Configure the SRE endpoint. Refer to :doc:`/deployment_guide/cloud_deployment/cloud_advanced/cloud_sre` for more information.
+#. Configure the SRE endpoint. See :doc:`/deployment_guide/cloud_deployment/cloud_advanced/cloud_sre` for more information.
 
 #. Save and close the editor.
 
