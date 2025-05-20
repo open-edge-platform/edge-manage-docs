@@ -91,7 +91,7 @@ Troubleshooting
    You must only enable email notifications for alerts during the installation phase.
    Intel does not support email notifications added during runtime.
 
-Cluster examples provided in **orch-configs** contain *profiles/alerting-emails.yaml* that enables alert notifications by default. This implies that the secrets containing SMTP server data **needs to be provided** during the install phase, otherwise the **alerting-monitor** application deployment will fail.
+Cluster examples provided in **orch-configs** contain *profiles/alerting-emails.yaml* that enables alert notifications by default. This implies that the secrets containing SMTP server data **needs to be provided** during the installation phase, otherwise the **alerting-monitor** application deployment will fail.
 
 .. note::
    In the **profiles/alerting-emails.yaml** was enabled but required secrets were not provided, the deployment will fail. To recover from this, you need to provide the secrets containing SMTP server data, followed by redeployment of the full **alerting-monitor** application.
