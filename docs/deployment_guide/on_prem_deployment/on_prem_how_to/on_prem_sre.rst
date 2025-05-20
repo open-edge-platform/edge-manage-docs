@@ -27,7 +27,7 @@ may be overridden if needed, see
 
 
 Configure the SRE Destination Endpoint
-----------------------------------
+---------------------------------------
 
 The following parameters can be configured on Edge Orchestrator installation for the SRE
 Destination Endpoint:
