@@ -3,7 +3,7 @@ Code Commit Access Key Refresh
 
 Code Commit user credentials expire annually. An Edge Orchestrator administrator will be notified by email from AWS\* that access keys are expiring for the ``_codecommit_user_ IAM`` user.
 
-Additionally, access to the Edge Orchestrator GitOps deployment repositories from Argo CD will begin to fail, resulting in failed deployments and updates on the managed cluster.
+Additionally, access to the Edge Orchestrator GitOps deployment repositories from Argo CD tool will begin to fail, resulting in failed deployments and updates on the managed cluster.
 
 An Edge Orchestrator administrator will need to rotate the AWS Access keys for the credentials and provide the updated credentials to Edge Orchestrator.
 
