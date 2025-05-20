@@ -44,5 +44,5 @@ Uninstall Edge Orchestrator with no load balancer installed
    installer from behind a proxy. This parameter is blank by default.
 
 
-For a full list of flags available, refer to
+For a full list of flags available, see
 `flag examples <../cloud_examples/cloud_flags#flag-examples>`__.
