@@ -71,7 +71,7 @@ Certificate Authority (CA) providers.
 #. Select ``4096`` from **Key Size**.
 #. Click **Generate CSR**.
 #. Copy the certificate request information and paste it into a new text file called ``certificate.key``.
-#. Copy the ``private key`` information and past it into a new text file called ``private.key``.
+#. Copy the ``private key`` information and paste it into a new text file called ``private.key``.
 #. Save these files in a secure location.
 #. Follow your DNS provider's certificate installation instructions.
 
@@ -79,7 +79,7 @@ Generate a New Certificate from the Command Line
 ++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 This option prompts you for variables and makes an OpenSSL\* CSR and a private
-RSA key file from the command line. This file works for most CA providers.
+RSA key file from the command line. This file is compatible with most CA providers.
 
 #. From the command line, run
 
@@ -88,4 +88,4 @@ RSA key file from the command line. This file works for most CA providers.
       $ openssl req -nodes -newkey rsa:4096 -sha256 -keyout example.key -out example.csr
 
 #. Save these files in a secure location.
-#. Refer to the CA instructions to complete the certificate installation.
+#. See the CA instructions to complete the certificate installation.

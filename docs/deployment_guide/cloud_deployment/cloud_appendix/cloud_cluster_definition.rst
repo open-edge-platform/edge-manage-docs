@@ -99,7 +99,7 @@ This example uses the following values:
 Scale-Related Edge Orchestrator Configurations
 ----------------------------------------------
 
-There is a set of scale-related profiles available to the cluster definition. You will need to select according to the target deployment scale.
+A set of scale-related profiles is available for the cluster definition. You will need to select according to the target deployment scale.
 
 See :doc:`/deployment_guide/cloud_deployment/cloud_get_started/system_requirements_aws_orch`
 and :doc:`/deployment_guide/cloud_deployment/cloud_how_to/cloud_scale_orch`

@@ -4,7 +4,7 @@ Install Edge Orchestrator
 Download and Install Lenovo\* Open Cloud Automation (LOC-A) (Optional)
 ----------------------------------------------------------------------
 
-For details on the LOC-A installation process and setup, refer to the
+For details on the LOC-A installation process and setup, see the
 `Lenovo\* ISG Support Plan - LOC-A (Lenovo Open Cloud Automation) <https://support.lenovo.com/us/en/solutions/ht509884-loc-a-lenovo-open-cloud-automation-for-vcf>`_.
 
 This Edge Orchestrator version is compatible with LOC-A version 3.3.x. To get a
@@ -116,13 +116,13 @@ Download the Installation Script
 Installation Parameters
 ---------------------------
 
-Before running the installation script some optional configuration parameters can be provided.
+Before running the installation script, you can provide some optional configuration parameters.
 
 Optional Parameters
 +++++++++++++++++++++++++++++++++++
 
 Some configuration parameters the installer uses have default values that you
-can set manually. Refer to the following table for more information about each parameter.
+can set manually. See the following table for more information about each parameter.
 
 .. list-table:: Other Installation Parameters
    :widths: 30 40 30
@@ -146,7 +146,7 @@ can set manually. Refer to the following table for more information about each p
        ``8428/api/v1/write``
    * - ``export CLUSTER_DOMAIN=<cluster_domain>``
      - Sets the cluster domain name for Edge Orchestrator services, which defines
-       the base for full service domain names by adding subdomains
+       the base for full-service domain names by adding subdomains
        (not to be confused with the Kubernetes\* cluster domain).
      - ``cluster.onprem``
    * - ``export RELEASE_SERVICE_URL=<url>``
@@ -160,7 +160,7 @@ Configure SMTP Variables for Notifications
 ++++++++++++++++++++++++++++++++++++++++++
 
 To enable email notifications for alerts, set the following environmental variables
-for the external SMTP server. See
+for the external SMTP server. See 
 :doc:`/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_alerts`
 for more information. If not needed or if the SMTP server is not available, you can
 disable the SMTP server authentication when installing Edge Orchestrator.
@@ -224,13 +224,14 @@ The script does the following:
 
   - Starts Edge Orchestrator via Argo CD tool to populate the Gitea repositories
 
+
 See the following sections for details about the installation process and prompts.
 
 
 Installer Prompts and Deployment Configuration
 --------------------------------------------------
 
-The installer script prompts for configuration input during installation.
+The installer script prompts for configuration input during the installation process.
 
 #. The installer prompts you to enter the IP addresses used by the
    Load Balancer for Argo CD UI, Traefik application proxy, and NGINX web server as follows.
@@ -401,7 +402,7 @@ It is possible to configure or fully disable SRE during the next step by doing t
    ``[path_to_untarred_repo]/orch-configs/profiles/enable-sre.yaml``
    in the *cluster definition* YAML file under ``root.clusterValues``.
 
-#. Optionally, the default values for SRE can be overriden in the *cluster definition* YAML file under ``.argo.o11y.sre``.
+#. Optionally, the default values for SRE can be overridden in the *cluster definition* YAML file under ``.argo.o11y.sre``.
 
 See :doc:`/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_sre`
 for more information.
@@ -426,7 +427,7 @@ path to the file containing the certificate after ``-s`` flag:
 
    ./onprem_installer.sh -s [path_to_SRE_Endpoint_TLS_CA_Cert]
 
-If you want to fully disable SRE functionality, refer to the
+If you want to disable SRE functionality fully, see the
 `Disable SRE <#disable-sre-optional>`__ section above.
 
 
@@ -447,7 +448,7 @@ See :doc:`/deployment_guide/on_prem_deployment/on_prem_get_started/on_prem_certs
 Obtain the previously prepared TLS certificate bundle and TLS key and create a Kubernetes\* secret file `tls-secret.yaml` using the information from the certificate and key.
 
 Execute the following command to create the Kubernetes secret file `tls-secret.yaml` that contains the TLS certificate
-and key if you manually generated the certificate:
+and key if you manually generate the certificate:
 
 .. code-block:: shell
 
@@ -614,7 +615,7 @@ When using self-signed certificate:
 
 When using custom non-self signed certificate:
 
-Find the external IPs allocated to services reachable from outside of the cluster (see EXTERNAL-IP in the output):
+Find the external IPs allocated to services reachable from outside of the cluster (see the EXTERNAL-IP in the output):
 
 .. code-block:: shell
 

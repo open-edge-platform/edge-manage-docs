@@ -13,7 +13,7 @@ Domain
 
 A domain is required for the Edge Orchestrator installation. Purchase a domain
 name from a domain registrar if you do not have one. The domain must be a
-valid domain name that is resolvable by public DNS servers and you must be
+valid domain name that is resolvable by public DNS servers, and you must be
 able to create DNS records for the domain name.
 
 The domain name must be unique and not used by any other service in the
@@ -26,7 +26,7 @@ Edge Orchestrator Network Topology
 ----------------------------------
 
 .. warning::
-   Ensure that there are no incorrect configurations while setting up your DNS server for Edge Orchestrator. Incorrect configurations can lead to deployment failures. Specifically, the RKE2 server might start using the 8.8.8.8 server for DNS resolution, if no other DNS server is properly configured.
+   Ensure that there are no incorrect configurations while setting up your DNS server for Edge Orchestrator. Incorrect configurations can lead to deployment failures. Specifically, the RKE2 server might start using the 8.8.8.8 server for DNS resolution, if no other DNS server is configured correctly.
 
   1. Avoid configuring `/etc/resolv.conf` and `/run/systemd/resolve/resolv.conf` to point exclusively to loopback or multicast nameservers. This can cause issues during deployment.
 
@@ -57,9 +57,9 @@ Edge Orchestrator for Edge Nodes without Direct Internet Access
 Lenovo\* Open Cloud Automation (LOC-A) Network Topology (Optional)
 ------------------------------------------------------------------
 
-When integrating the Lenovo\* Open Cloud Automation (LOC-A) software, you can use networking settings of your choice.
+When integrating the Lenovo\* Open Cloud Automation (LOC-A) software, you can use the networking settings of your choice.
 
-In general, Edge Orchestrator and LOC-A can share the same subnet but this might not be desirable for the Baseboard Management Controller (BMC) of the edge devices (or not entirely possible). The following figure shows a simple network topology:
+In general, Edge Orchestrator and LOC-A can share the same subnet, but this might not be desirable for the Baseboard Management Controller (BMC) of the edge devices (or not entirely possible). The following figure shows a simple network topology:
 
 .. image:: ../images/on-prem-loca-install-topology-config.png
    :alt: The network topology for Edge Orchestrator and LOC-A
@@ -76,7 +76,7 @@ This Edge Orchestrator version is compatible with LOC-A version 3.2.
 Firewall Configuration
 ----------------------
 
-The following table lists the network endpoints for Edge Orchestrator and edge nodes. You can use this to configure the firewall rules appropriate for your network environment.
+The following table lists the network endpoints for Edge Orchestrator and edge nodes, which you can use to configure firewall rules tailored to your network environment.
 
 * ArgoCD Admin UI at ``argo.{domain}``. Intel recommends that you restrict the incoming traffic to a subset of known source IPs because this is an administrator interface.
 * BIOS Onboarding accesses ``tinkerbell-nginx.{domain}``.

@@ -105,7 +105,7 @@ Set up the AWS Cloud Login
 
 .. note::
    The AWS user must have the right permission access in AWS cloud,
-   see :doc:`Required AWS IAM Permissions </deployment_guide/cloud_deployment/cloud_appendix/cloud_aws_iam_permissions>` for more information.
+   See :doc:`Required AWS IAM Permissions </deployment_guide/cloud_deployment/cloud_appendix/cloud_aws_iam_permissions>` for more information.
 
 Option 1 - Connect with AWS SSO
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -25,7 +25,7 @@ Email notifications
 ------------------------------------------------
 
 To enable email notifications, add the `alerting-emails` profile
-to the *clusterValues*. See an example of the profile below.
+to the *clusterValues*. See the example of the profile below.
 
 .. code-block:: yaml
 
@@ -49,8 +49,8 @@ to the *clusterValues*. See an example of the profile below.
       - profiles/release-service-external.yaml
       - clusters/example.yaml
 
-Using self-signed certificates with SMTP server
-------------------------------------------------
+Using self-signed certificates with an SMTP server
+---------------------------------------------------
 
 When the notification feature sends alerts through an SMTP server,
 it relays this to the Grafana* Prometheus Alertmanager, which attempts to verify
@@ -58,9 +58,9 @@ the identity of the SMTP server using its SSL/TLS certificate.
 
 Prometheus Alertmanager trusts Certificate Authorities (CA) added by the Prometheus Team
 from Linux Debian* `ca-certificates <https://packages.debian.org/buster/all/ca-certificates/filelist>`_,
-and checks that the certificate is signed by a trusted CA.
+and checks that a trusted CA signs the certificate.
 
-If the SMTP server is using a self-signed certificate, or a certificate signed by a non-public CA,
+If the SMTP server is using a self-signed certificate or a certificate signed by a non-public CA,
 this verification process will fail. Self-signed certificates and certificates signed by
 non-public CAs aren't automatically trusted.
 
@@ -68,7 +68,7 @@ Configure self-signed or non-public SMTP server
 -----------------------------------------------
 
 .. warning::
-   Disabling verification makes the connection to the SMTP server less secure because this allows connections to servers with untrusted certificates.
+   Disabling verification allows connections to servers with untrusted certificates, hence making the connection to the SMTP server less secure.
    Use this option only if you understand the risks.
 
 #. Disable the SMTP server identity verification.
@@ -88,12 +88,12 @@ Troubleshooting
 ---------------
 
 .. warning::
-   You must only enable email notifications for alerts during the install phase.
+   You must only enable email notifications for alerts during the installation phase.
    Intel does not support email notifications added during runtime.
 
-Cluster examples provided in **orch-configs** contain *profiles/alerting-emails.yaml* that enables alert notifications by default. This implies that the secrets containing SMTP server data **needs to be provided** during install phase, otherwise the **alerting-monitor** application deployment will fail.
+Cluster examples provided in **orch-configs** contain *profiles/alerting-emails.yaml* that enables alert notifications by default. This implies that the secrets containing SMTP server data **needs to be provided** during the installation phase, otherwise the **alerting-monitor** application deployment will fail.
 
 .. note::
    In the **profiles/alerting-emails.yaml** was enabled but required secrets were not provided, the deployment will fail. To recover from this, you need to provide the secrets containing SMTP server data, followed by redeployment of the full **alerting-monitor** application.
 
-To turn off email notifications for alerts, you need to **remove** **profiles/alerting-emails.yaml** from **target cluster definition**.
+To turn off email notifications for alerts, you need to **remove** the **profiles/alerting-emails.yaml** file from the **target cluster definition**.

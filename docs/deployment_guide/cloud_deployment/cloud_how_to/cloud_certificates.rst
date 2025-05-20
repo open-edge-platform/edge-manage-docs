@@ -11,7 +11,7 @@ You may use the following certificates:
 
 .. note::
    Optionally, you can use the `auto-cert` flag to generate a 90-day
-   certificate during installation. The Edge Orchestrator is designed to handle the renewal of this certificate seamlessly prior to its expiration.
+   certificate during installation. The Edge Orchestrator is designed to handle the renewal of this certificate seamlessly before its expiration.
    Also, note that Let's Encrypt\* limits issuance to 50 certificates per domain weekly; certificate renewals are exempt from this rate limit.
 
 
@@ -58,10 +58,10 @@ If you use the AWS DNS service, see `Requesting a public certificate <https://do
 Verify that your Amazon certificate matches the
 `New Certificate Requirements <#new-certificate-requirements>`__ before completing it.
 
-Generate a New Certificate with CSR Generator
+Generate a New Certificate with a CSR Generator
 +++++++++++++++++++++++++++++++++++++++++++++++++
 
-This option uses a web template to prompt for the required information,
+This option uses a web template to prompt for the required information
 and generates a CSR request and private key file. This file works for most
 Certificate Authority (CA) providers.
 
@@ -84,7 +84,7 @@ Generate a New Certificate from the Command Line
 ++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 This option prompts you for variables and makes an OpenSSL\* CSR and a private
-RSA key file from the command line. This file works for most CA providers.
+RSA key file from the command line. This file is compatible with most CA providers.
 
 #. From the command line, run
 

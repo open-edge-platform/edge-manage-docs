@@ -1,7 +1,7 @@
 Certificate Requirements
 ============================================================
 
-To install and configure Edge Orchestrator, Intel recommends to use a
+To install and configure Edge Orchestrator, Intel recommends using a
 TLS Certificate issued by a public Certificate Authority (CA) for production deployments.
 
 The TLS certificate and key should meet these requirements:
@@ -59,7 +59,7 @@ and `privkey.pem`, respectively. Be sure to rename these files to
 Self-Signed TLS Certificate
 --------------------------------------
 
-A Self-Signed TLS certificate can be used, but there are many limitations and because of such, a Self-Signed TLS certificate is not recommended for
+A Self-Signed TLS certificate can be used, but there are many limitations, and because of such, a Self-Signed TLS certificate is not recommended for
 production deployments.
 
 An Edge Orchestrator deployed with a Self-Signed certificate is not
