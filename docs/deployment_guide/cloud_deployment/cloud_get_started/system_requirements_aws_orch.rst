@@ -35,7 +35,7 @@ AWS Resource Requirements
 
 The resource requirement depends on the number of edge nodes connected to the Edge Orchestrator.
 Intel has validated the following configurations for various scales.
-The following Resource requirements can be changed during the installation script.
+The following Resource requirements can be changed during installation.
 The `--profile` option allows you to decide which scale profile they want to use. Currently, there are four profiles:
 
 * default(3 x t3.2xlarge + 1 x t3.2xlarge nodes)
