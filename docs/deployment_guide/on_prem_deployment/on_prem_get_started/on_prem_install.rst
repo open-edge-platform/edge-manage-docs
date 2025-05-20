@@ -116,7 +116,7 @@ Download the Installation Script
 Installation Parameters
 ---------------------------
 
-Before running the installation script, some optional configuration parameters can be provided.
+Before running the installation script, you can provide some optional configuration parameters.
 
 Optional Parameters
 +++++++++++++++++++++++++++++++++++
