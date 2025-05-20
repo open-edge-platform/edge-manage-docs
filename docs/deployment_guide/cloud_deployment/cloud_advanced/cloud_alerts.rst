@@ -79,7 +79,7 @@ Configure self-signed or non-public SMTP server
 
 Disable the SMTP server identity verification.
 
-Add the following line to the Argo configuration file:
+Add the following line to the Argo CD configuration file:
 
 .. code-block:: yaml
 
