@@ -50,7 +50,7 @@ to the *clusterValues*. See the example of the profile below.
       - clusters/example.yaml
 
 Using self-signed certificates with an SMTP server
-------------------------------------------------
+---------------------------------------------------
 
 When the notification feature sends alerts through an SMTP server,
 it relays this to the Grafana* Prometheus Alertmanager, which attempts to verify
