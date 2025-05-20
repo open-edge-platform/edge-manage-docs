@@ -48,7 +48,7 @@ Choose a method to generate a new certificate:
 Create an Amazon Certificate
 +++++++++++++++++++++++++++++++
 
-If you use the AWS DNS service, refer to `Requesting a public certificate <https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html>`_.
+If you use the AWS DNS service, see `Requesting a public certificate <https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html>`_.
 
 Verify that your Amazon certificate matches the
 `Certificate Requirements <../../cloud_deployment/cloud_how_to/cloud_certificates#new-certificate-requirements>`__
@@ -88,4 +88,4 @@ RSA key file from the command line. This file is compatible with most CA provide
       $ openssl req -nodes -newkey rsa:4096 -sha256 -keyout example.key -out example.csr
 
 #. Save these files in a secure location.
-#. Refer to the CA instructions to complete the certificate installation.
+#. See the CA instructions to complete the certificate installation.
