@@ -44,7 +44,7 @@ The `--profile` option allows you to decide which scale profile they want to use
 
 * 1k edge node (3 x m4.4xlarge + 3 x r5.4xlarge)
 
-More options allow you to fine tune your cluster scale abilities:
+More options that allow you to fine-tune your cluster scale abilities:
 
 * `--min-o11y-nodes`, `--desired-o11y-nodes`, `--max-o11y-nodes`: sets min, desired, and max
   number of observability nodes. Refer to
