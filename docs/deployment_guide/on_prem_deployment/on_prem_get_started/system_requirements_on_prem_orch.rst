@@ -36,7 +36,7 @@ Depending on the number of edge nodes, you must include cluster-specific configu
 * The default profile ``onprem`` supports up to 100 edge nodes.
 * The large-scale profile ``onprem-1k`` supports up to 1,000 edge nodes.
 
-Refer to the installation section at
+See the installation section at
 :doc:`/deployment_guide/on_prem_deployment/on_prem_get_started/on_prem_install`.
 
 .. note:: These profiles use `xlarge` as the value for `resourcesPreset` of the `postgresql` database.
