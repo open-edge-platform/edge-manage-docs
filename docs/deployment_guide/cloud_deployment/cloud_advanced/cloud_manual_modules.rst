@@ -25,7 +25,7 @@ used during `Terraform configuration <adv_manual_terraconfig>`_.
 
 Every environment must use a unique region, bucket, and key combination. Terraform can't distinguish between environments.
 
-Each ``variable.tfvar`` file has different variables. For each module type, refer to the ``README`` file in the ``example-config >/<module_name>`` directory to determine which variables are required.
+Each ``variable.tfvar`` file has different variables. For each module type, see the ``README`` file in the ``example-config >/<module_name>`` directory to determine which variables are required.
 
 Configure account module
 ------------------------
