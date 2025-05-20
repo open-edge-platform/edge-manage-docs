@@ -160,7 +160,7 @@ You can also select from the following predefined profiles when provisioning the
     - 1
     - 128
 
-Refer to :doc:`/deployment_guide/cloud_deployment/cloud_get_started/system_requirements_aws_orch`
+See :doc:`/deployment_guide/cloud_deployment/cloud_get_started/system_requirements_aws_orch`
 for more information about resource requirements for each scenario.
 
 Update Cluster Scale Settings
@@ -168,7 +168,7 @@ Update Cluster Scale Settings
 
 .. note::
    Scaling Edge Orchestrator cluster may require changing of observability profile.
-   For details on observability profiles, refer to
+   For details on observability profiles, see
    `Observability Configuration <../../cloud_deployment/cloud_get_started/system_requirements_aws_orch#edge-orchestrator-observability-configuration>`__.
 
 .. note::
