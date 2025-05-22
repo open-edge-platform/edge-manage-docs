@@ -13,7 +13,7 @@ Edge Infrastructure Manager domain is highlighted in green.
 .. figure:: ./arch/images/eim_stack.png
    :alt: High-Level functional domains of Edge Infrastructure Manager
 
-Customers Highlights
+Customers Highlights -- test - do not merge
 ^^^^^^^^^^^^^^^^^^^^^
 
 - Organize edge devices into a hierarchical structure of organizations,
