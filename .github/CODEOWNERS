@@ -7,15 +7,15 @@
 # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
 # default owners - covers lint/config/build tooling in repo root
-* @achamuah @swpng @adreanneb @alponsirenas @zdw @jouillet
+* @achamuah @swpng @adreanneb @alponsirenas @zdw @jouillet @andrea-campanella @ajaythakurintel @patricia-cahill
 
 # documentation content
-docs/ @achamuah @swpng
-docs/developer_guide @adreanneb @alponsirenas @achamuah @swpng
-README.md @achamuah @swpng @adreanneb @cjbooth @zdw
+docs/ @achamuah @swpng @zdw @andrea-campanella @ajaythakurintel @patricia-cahill
+docs/developer_guide @adreanneb @alponsirenas @achamuah @swpng @zdw @andrea-campanella @ajaythakurintel @patricia-cahill
+README.md @achamuah @swpng @adreanneb @cjbooth @zdw @andrea-campanella @ajaythakurintel @patricia-cahill
 
 # CI files
-.github/ @zdw @jouillet @alponsirenas
+.github/ @zdw @jouillet @alponsirenas @andrea-campanella @ajaythakurintel @patricia-cahill
 
 # shared doc config
-docconf/ @zdw @jouillet @alponsirenas
+docconf/ @zdw @jouillet @alponsirenas @andrea-campanella @ajaythakurintel @patricia-cahill
