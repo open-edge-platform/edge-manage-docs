@@ -11,8 +11,14 @@ on:  # yamllint disable-line rule:truthy
       - release-*
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   post-merge-pipeline:
+    permissions:
+      contents: read
+      security-events: write
+      id-token: write
     uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@b58fe211f05c4495ffe990a6b9efa8deef12a4ef  # yamllint disable-line rule:line-length
     with:
       run_version_check: true
@@ -23,7 +29,12 @@ jobs:
       run_version_tag: true
       run_artifact: false
       orch_ci_repo_ref: "main"
-    secrets: inherit
+    secrets:
+      SYS_ORCH_GITHUB: ${{ secrets.SYS_ORCH_GITHUB }}
+      COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
+      COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
+      NO_AUTH_ECR_PUSH_USERNAME: ${{ secrets.NO_AUTH_ECR_PUSH_USERNAME }}
+      NO_AUTH_ECR_PUSH_PASSWD: ${{ secrets.NO_AUTH_ECR_PUSH_PASSWD }}
   publish-documentation:
     permissions:
       contents: read          # needed for actions/checkout
