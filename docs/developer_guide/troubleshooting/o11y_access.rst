@@ -2,6 +2,8 @@
 o11y Access Issues
 ==================
 
+.. _devguide_troubleshoot_o11y_access:
+
 Grafana\* Dashboard login page shows Internal Error
 ===================================================
 
