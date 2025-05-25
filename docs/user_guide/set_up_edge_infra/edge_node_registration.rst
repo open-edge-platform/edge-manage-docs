@@ -200,6 +200,7 @@ The following is an example:
 Check the CSV File
 --------------------
 
+needs fix
 You can now validate the CSV file that you have created yourself or through the `Generate a .csv File </user_guide/set_up_edge_infra/edge_node_registration.html#generate-a-.csv-file>`__ step. Enter the filename (for example, `test.csv`). If there are errors in the input file, a new CSV file named `preflight_error_timestamp_filename` is generated with error messages corresponding to each faulty record in the CSV file.
 
 .. code-block:: bash

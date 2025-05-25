@@ -5,13 +5,13 @@ In many cases, you need to communicate with edge applications or users, from the
 
 You can access deployed applications with the following options:
 
-* Application service proxy – See `Service Link Support <#service-link-support>__` to access an application through a link in the Edge Orchestrator user interface.
+* Application service proxy – See :doc:`/user_guide/package_software/package_create_helm#service-link-support` to access an application through a link in the Edge Orchestrator user interface.
 
-* Load balancer or Load balancer with DNS – `Apply Load Balancer and DNS <#apply-load-balancer-and-dns>__` to use the Load Balancer package in the application Helm\* chart to expose services outside of the cluster.
+* Load balancer or Load balancer with DNS – See :doc:`/user_guide/package_software/extensions/load_balancer` to use the Load Balancer package in the application Helm\* chart to expose services outside of the cluster.
 
-* Ingress controller – See `Apply Ingress <#apply-ingress>__` to define the Ingress resource in the application's Helm chart, so that you can use it.
+* Ingress controller – See :doc:`/user_guide/package_software/extensions/load_baancer#apply-ingress` to define the Ingress resource in the application's Helm chart, so that you can use it.
 
-* Virtual machine (VM) console (if the application is VM-based) – See :doc:`vm_actions` to access the application through the VM console. This will only work for a VM-based application.
+* Virtual machine (VM) console (if the application is VM-based) – See :doc:`/user_guide/package_software/vm_actions` to access the application through the VM console. This will only work for a VM-based application.
 
 
 
