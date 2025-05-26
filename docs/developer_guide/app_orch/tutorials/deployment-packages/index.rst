@@ -94,8 +94,8 @@ Create **tutorial-server-values-default.yaml**:
       greeting: "Deployed by Application Orchestration (default)"
       initialCount: 10
     image:
-        #  Please update with your CLUSTER_FQDN and your ORG and PROJECT names
-        repository: registry-oci.<CLUSTER_FQDN>/catalog-apps-<ORG>-<PROJECT>/tutorial-server-image
+      #  Will update with your CLUSTER_FQDN and your ORG and PROJECT names
+      repository: "%ImageRegistryURL%/tutorial-server-image"
     imagePullSecrets:
     - name: "%GeneratedDockerCredential%"
 
@@ -106,13 +106,12 @@ a fixed value, it means the Tutorial Web UI will be able to reference this servi
 manner.
 
 .. note::
-    The image repository is the OCI registry where the Tutorial Server image is stored. In the next step we will
-    push the image to this registry. You must adjust it to suit |software_prod_name|'s
-    Full Qualified Domain Name, the Organization you're in and the multi-tenancy Project you're deploying in.
-    You will see how to edit this after the Deployment Package is imported in
-    :doc:`../deploying-applications/edit-image-location`.
-    The imagePullSecrets has an automatically calculated value that will allow the deployment to pull
+    The `image.repository` is the OCI registry where the Tutorial Server image is stored and includes a placeholder to
+    use the imageRegistry `rootURL`. In the next step we will push the image to this registry.
+    The `imagePullSecrets` has an automatically generated Secret that will allow the deployment to pull
     the image from the OCI registry.
+    See :doc:`../../../application_developer_workflow/deployment-packages/reference-placeholders` for more details on the
+    placeholders used here.
 
 Create **tutorial-server-values-alternate.yaml**:
 
@@ -123,8 +122,8 @@ Create **tutorial-server-values-alternate.yaml**:
       greeting: "Deployed by Application Orchestration (alternate)"
       initialCount: 5
     image:
-        #  Please update with your CLUSTER_FQDN and your ORG and PROJECT names
-        repository: registry-oci.<CLUSTER_FQDN>/catalog-apps-<ORG>-<PROJECT>/tutorial-server-image
+      #  Will update with your CLUSTER_FQDN and your ORG and PROJECT names
+      repository: "%ImageRegistryURL%/tutorial-server-image"
     imagePullSecrets:
     - name: "%GeneratedDockerCredential%"
 
@@ -141,8 +140,8 @@ Create **tutorial-server-values-alternate-pt.yaml**:
       greeting: "Deployed by Application Orchestration (alternate-pt)"
       initialCount: 0
     image:
-        #  Please update with your CLUSTER_FQDN and your ORG and PROJECT names
-        repository: registry-oci.<CLUSTER_FQDN>/catalog-apps-<ORG>-<PROJECT>/tutorial-server-image
+      #  Will update with your CLUSTER_FQDN and your ORG and PROJECT names
+      repository: "%ImageRegistryURL%/tutorial-server-image"
     imagePullSecrets:
     - name: "%GeneratedDockerCredential%"
 
@@ -152,8 +151,8 @@ Create **tutorial-web-ui-values.yaml**:
 
     fullnameOverride: tutorial-web-ui
     image:
-        #  Please update with your CLUSTER_FQDN and your ORG and PROJECT names
-        repository: registry-oci.<CLUSTER_FQDN>/catalog-apps-<ORG>-<PROJECT>/tutorial-web-ui-image
+      #  Will update with your CLUSTER_FQDN and your ORG and PROJECT names
+      repository: "%ImageRegistryURL%/tutorial-web-ui-image"
     imagePullSecrets:
     - name: "%GeneratedDockerCredential%"
     service:

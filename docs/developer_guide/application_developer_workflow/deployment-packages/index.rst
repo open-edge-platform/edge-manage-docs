@@ -4,10 +4,10 @@ Deployment Packages
 Deployment Packages and Applications are a concept introduced in the
 |software_prod_name|.
 
-They are used to simplify the deployment of applications to the edge.
+They are used to simplify the deployment of complex applications to the edge.
 Deployment Packages are a collection of Applications and Deployment
-Profiles. Deployment Profiles are configurations that define how an
-Application should be deployed to an Edge Node.
+Profiles. Deployment Profiles are configurations that define how one or more
+Applications should be deployed to an Edge Node.
 
 See :doc:`/developer_guide/app_orch/arch/data_model`
 for a detailed explanation of the data model. The diagram gives an
@@ -118,12 +118,11 @@ deployment:
   time of creating the values file. They can be marked as required or
   optional, secret or plain text, or given default values.
 - **Ignore Resources** allows you to ignore changes to certain Kubernetes
-  resources that will be deployed by the Helm Chart.
-- This is useful in the case where some Job or Hook in the Helm Chart
-  changes a value in the resource after deployment from what was
-  originally specified in the Helm Chart. Because |software_prod_name|
-  tracks all changes to Resources by default, this feature can provide
-  the flexibility to ignore certain changes, thereby allowing the
+  resources that will be deployed by the Helm Chart. This is useful in the case
+  where some Job or Hook in the Helm Chart changes a value in the resource after
+  deployment from what was originally specified in the Helm Chart. Because
+  |software_prod_name| tracks all changes to Resources by default, this feature
+  can provide the flexibility to ignore certain changes, thereby allowing the
   deployment to complete.
 
 Reference Deployment Package
@@ -135,9 +134,6 @@ Import Deployment Package. See
 :doc:`/user_guide/package_software/import_deployment`.
 
 deployment-package.yaml::
-
-   # SPDX-FileCopyrightText: (C) 2025 Intel Corporation
-   # SPDX-License-Identifier: Apache-2.0
 
    specSchema: DeploymentPackage
    schemaVersion: "0.1"
@@ -156,9 +152,6 @@ deployment-package.yaml::
     hello-world-app: hello-world
 
 application.yaml::
-
-   # SPDX-FileCopyrightText: (C) 2025 Intel Corporation
-   # SPDX-License-Identifier: Apache-2.0
 
    specSchema: Application
    schemaVersion: "0.1"
@@ -179,16 +172,19 @@ application.yaml::
 
 hello-world-values.yaml::
 
-   # SPDX-FileCopyrightText: (C) 2025 Intel Corporation
-   # SPDX-License-Identifier: Apache-2.0
    ---
    service:
     type: ClusterIP
    replicaCount: 1
+   image:
+     repository: '%ImageRegistryURL%/hello-world-image'
    imagePullSecrets:
     - name: '%GeneratedDockerCredential%'
 
-.. note::
-  Refer to Image Pull Secrets
-   :doc:`/user_guide/package_software/image_pull_secret` to understand the
-   usage of ``%GeneratedDockerCredential%``.
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   reference-placeholders
+   application-yaml-reference
+   deployment-package-yaml-reference
