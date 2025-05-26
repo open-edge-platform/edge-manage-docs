@@ -110,7 +110,7 @@ Workflow Stages
          k8s-C->>k8s-C : Read [access credentials] from /etc/intel_edge_node/tokens
          k8s-C->>k8s-C : Starts with Default configuration for<br>- Input plugin <br>- Interval
 
-         PTA->>PTA : Checks for dependecies
+         PTA->>PTA : Checks for dependencies
          PTA->>PTA : Creates back up of original ENA Collectors configuration
 
          PTA ->> TM : Query Telemetry profile

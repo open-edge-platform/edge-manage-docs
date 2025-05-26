@@ -539,7 +539,7 @@ By default, the LOC-A integration for Edge Orchestrator is not enabled. Update t
                         #   e. May contain at most 2 consecutive occurrences of the same character. The length of the password should be between 10 and 32 characters.
 
             providerConfig: # One entry for each LOC-A instance
-               - name: # Unique indentifier for the LOC-A instance. Max length is 40 char and
+               - name: # Unique identifier for the LOC-A instance. Max length is 40 char and
                        # should be validated against the following regex ^[a-zA-Z-_0-9. ]+$
                  username: # encoded64 username to access LOC-A UI (check with your Lenovo representative) - use for example echo -n "username" | base64
                  password: # encoded64 password to access LOC-A UI (check with your Lenovo representative) - use for example echo -n "password" | base64

@@ -6,7 +6,7 @@ You can upgrade existing deployments on the Deployments page using the **Upgrade
 .. note::
     For the Upgrade option to be available, the deployment package names must be identical and the package version must be higher.
 
-To upgrade the deployment, fo the following:
+To upgrade the deployment, do the following:
 
 1. In the **Deployments** page, select the deployment setup where an upgrade is available.
 

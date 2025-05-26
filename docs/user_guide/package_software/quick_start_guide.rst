@@ -269,7 +269,7 @@ While the application is deploying, the **Status** column will display "Deployin
 
 .. image:: images/quick_start/app-running.png
    :width: 800pt
-   :alt: Runnning Status
+   :alt: Running Status
 
 1. Click "my-first-deployment" to drill down into the deployment details.
    You will see that the application is running on the selected cluster.  Click the
