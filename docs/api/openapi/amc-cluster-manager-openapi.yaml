@@ -795,7 +795,7 @@ components:
           format: int32
           type: integer
         inProgress:
-          description: The number of clusters that are in progess state (provisioning/deleting).
+          description: The number of clusters that are in progress state (provisioning/deleting).
           format: int32
           type: integer
         ready:
