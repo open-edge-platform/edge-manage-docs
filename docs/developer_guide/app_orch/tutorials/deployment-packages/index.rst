@@ -94,7 +94,7 @@ Create **tutorial-server-values-default.yaml**:
       greeting: "Deployed by Application Orchestration (default)"
       initialCount: 10
     image:
-      #  Will update with your CLUSTER_FQDN and your ORG and PROJECT names
+      #  Will update the placeholder with the rootURL of the imageRegistry
       repository: "%ImageRegistryURL%/tutorial-server-image"
     imagePullSecrets:
     - name: "%GeneratedDockerCredential%"
@@ -122,7 +122,7 @@ Create **tutorial-server-values-alternate.yaml**:
       greeting: "Deployed by Application Orchestration (alternate)"
       initialCount: 5
     image:
-      #  Will update with your CLUSTER_FQDN and your ORG and PROJECT names
+      #  Will update the placeholder with the rootURL of the imageRegistry
       repository: "%ImageRegistryURL%/tutorial-server-image"
     imagePullSecrets:
     - name: "%GeneratedDockerCredential%"
@@ -140,7 +140,7 @@ Create **tutorial-server-values-alternate-pt.yaml**:
       greeting: "Deployed by Application Orchestration (alternate-pt)"
       initialCount: 0
     image:
-      #  Will update with your CLUSTER_FQDN and your ORG and PROJECT names
+      #  Will update the placeholder with the rootURL of the imageRegistry
       repository: "%ImageRegistryURL%/tutorial-server-image"
     imagePullSecrets:
     - name: "%GeneratedDockerCredential%"
@@ -151,7 +151,7 @@ Create **tutorial-web-ui-values.yaml**:
 
     fullnameOverride: tutorial-web-ui
     image:
-      #  Will update with your CLUSTER_FQDN and your ORG and PROJECT names
+      #  Will update the placeholder with the rootURL of the imageRegistry
       repository: "%ImageRegistryURL%/tutorial-web-ui-image"
     imagePullSecrets:
     - name: "%GeneratedDockerCredential%"
