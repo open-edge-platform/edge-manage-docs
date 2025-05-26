@@ -34,8 +34,8 @@ For example it might be `oci://registry-oci.my-cluster.example.com/catalog-apps-
 .. figure:: ../images/helm-docker-oci-root-url.png
    :alt: harbor-docker-oci Registry object showing rootURL (location)
 
-Usage
-~~~~~~~
+Usage of `%ImageRegistryURL%`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the values file it usually used to override the `image.repository` value, like:
 
@@ -56,8 +56,8 @@ The main use for the `%ImageRegistryURL%` placeholder is with the `harbor-docker
 imageRegistry, but it can also be used with any Registry objects you add yourself
 for your own private registry.
 
-Related links
-~~~~~~~~~~~~~~~~
+Related links for `%ImageRegistryURL%`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - :doc:`/user_guide/package_software/registry`
 
@@ -72,8 +72,8 @@ username and password from the `Registry` object that your application points to
 This is useful for Helm Charts that need to pull images from a **private** registry
 that requires authentication.
 
-Usage
-~~~~~~
+Usage of `%GeneratedDockerCredential%`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Generally the placeholder is used in the `imagePullSecrets` section of the values
 file, like:
@@ -106,8 +106,8 @@ created with a random name. The contents in the Secret will be in the form:
       - accessKeyId=robot$catalog-apps-sample-org-sample-project+catalog-apps-read-write
       - secretKey=****
 
-Related links
-~~~~~~~~~~~~~~~
+Related links for `%GeneratedDockerCredential%`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - :doc:`/user_guide/package_software/image_pull_secret`
 
@@ -133,8 +133,8 @@ The actual placeholder will not be replaced with a Secret name, but rather the
 `%PreHookCredential%` placeholder. Therefore, the `%PreHookCredential%` placeholder
 is to trigger the creation of the Secret before the main application is deployed.
 
-Usage
-~~~~~~
+Usage of `%PreHookCredential%`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The placeholder is used together with the in the `%GeneratedDockerCredential%`
 placeholder in the `imagePullSecrets` section of the values file, like:
@@ -147,12 +147,12 @@ placeholder in the `imagePullSecrets` section of the values file, like:
 
 .. note::
 
-It does not matter what Helm Chart value the `%PreHookCredential%` placeholder is
-used in, it just has to be present at least once in the values override file. The
-placeholder will not be replaced.
+   It does not matter what Helm Chart value the `%PreHookCredential%` placeholder is
+   used in, it just has to be present at least once in the values override file. The
+   placeholder will not be replaced.
 
-Related links
-~~~~~~~~~~~~~~~
+Related links for `%PreHookCredential%`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - :doc:`/user_guide/package_software/image_pull_secret`
 
@@ -167,8 +167,8 @@ multi-tenant Project of the |software_prod_name| that you are deploying with.
 
 The placeholders can be used independently or together.
 
-Usage
-~~~~~~
+Usage of `%OrgName%` and `%ProjectName%`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The placeholder may be used in the override values files of the Application Profile,
 in any context where the Organization name is needed, such as:
@@ -180,7 +180,7 @@ in any context where the Organization name is needed, such as:
         org: '%OrgName%'
         project: '%ProjectName%'
 
-Related links
-~~~~~~~~~~~~~~
+Related links for `%OrgName%` and `%ProjectName%`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - :doc:`/shared/shared_mt_overview`
