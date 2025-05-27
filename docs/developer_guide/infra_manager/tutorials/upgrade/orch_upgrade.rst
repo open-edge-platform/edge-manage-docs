@@ -1,7 +1,7 @@
-Upgrading Edge Orchestrator v3.0 to v3.1
-========================================
+Upgrading Edge Infrastructure Manager
+=====================================
 
-Edge Orchestrator is expected to support seamless upgrades of Infra Manager helm charts between versions 3.0.0 and 3.1. Therefore, intermittent changes in the infra-charts repository must be verified against Edge Orchestrator version 3.0 to ensure they do not introduce breaking changes and that the Orchestrator remains fully functional.
+Edge Orchestrator is expected to support seamless upgrades of the Infrastructure Manager helm charts between versions 3.0 and 3.1. Therefore, intermittent changes in the infra-charts repository must be verified against Edge Orchestrator version 3.0 to ensure they do not introduce breaking changes and that the Orchestrator remains fully functional.
 
 Changes in the SB and NB APIs, as well as database schema updates, are validated during the CI phase through a set of automated lint and integration checks.
 
