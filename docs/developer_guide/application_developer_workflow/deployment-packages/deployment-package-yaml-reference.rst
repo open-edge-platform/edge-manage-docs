@@ -177,13 +177,13 @@ on smaller applications.
 
 
 `applicationDependencies.application`
-"""""""""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Name of the Application that has a dependency. This must be one of the Applications
 listed in the `applications` section of the DeploymentPackage
 
 `applicationDependencies.dependsOn`
-"""""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Name of the Application that the first Application depends on. This must be
 one of the Applications listed in the `applications` section of the DeploymentPackage.
