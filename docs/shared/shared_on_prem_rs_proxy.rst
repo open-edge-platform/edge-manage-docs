@@ -1,7 +1,7 @@
 rs-proxy is not deploying when proxy is set
 ===========================================
 
-The recommended way to set the proxy on on-prem is by following the approach described in :ref:`_set_up_dev_env`.
+The recommended way to set the proxy on on-prem is by following the approach described in :ref:`set_up_dev_environment`.
 
 However, it has been observed that in some environments behind a proxy, egress communication may be blocked by the `istio-proxy`. As a result, the `rs-proxy` does not get deployed. To resolve this, follow these steps:
 
