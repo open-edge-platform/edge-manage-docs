@@ -7,7 +7,7 @@ Changes in the SB and NB APIs, as well as database schema updates, are validated
 
 To test the upgradeability of infra charts with changes proposed in a given infra-charts pull request, we introduced the `upgrade-test <link>`_ workflow. This test can be manually triggered on any PR in the infra-charts repository, and is also executed periodically on the main branch to ensure long-term compatibility.
 
-In addition, users can manually test a newly released version of an Infra Helm chart in a deployed Edge Orchestrator via Argo CD's web UI. Specifically, users can modify the Helm chart version in the following Argo CD Infra manager applications of the Edge Manageability Framework:
+In addition, users can manually test a newly released version of an Infra helm chart in a deployed Edge Orchestrator via Argo CD's web UI. Specifically, users can modify the Helm chart version in the following Argo CD Infra manager applications of the Edge Manageability Framework:
 
 - infra-managers
 - infra-core
@@ -25,7 +25,7 @@ The following requirements must be met to consider the system upgradeable:
 2. Any new version of OS Profiles is automatically populated, and end users can upgrade their configured Edge Nodes in place.
 3. Downtime is allowed for individual components or services during upgrade activities.
 4. The Orchestrator upgrade must not impact the operational state of existing Edge Nodes.
-5. If the upgrade fails, manual recovery is possible through documented rollback procedures.
+5. If the upgrade fails, manual recovery is possible through rollback procedures.
 
 Steps to Upgrade Edge Manageability Apps
 ----------------------------------------
