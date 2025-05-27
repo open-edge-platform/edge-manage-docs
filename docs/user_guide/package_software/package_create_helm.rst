@@ -32,7 +32,7 @@ To create a Docker\* container image for an application, write a Dockerfile and 
       # FROM: To describe a base image; Ubuntu 22.04 is the base image in this example.
       # RUN: To execute build commands; Installing Python3 library and then building applications with Makefile in this example.
       # COPY: To copy files or directories to this image; source_app directory is copied to the image /app directory in this example.
-      # CMD: To specify default commands; app.py will be executed by defailt when spinning up this image in this example.
+      # CMD: To specify default commands; app.py will be executed by default when spinning up this image in this example.
 
 #. Build the container image, with the following Docker commands:
 

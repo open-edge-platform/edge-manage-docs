@@ -17,14 +17,21 @@ Edge Orchestrator On-Premises Resource Requirements
 
 * Compute resources
 
-  For large scale deployments, Intel recommends the following compute resources setups:
+  * For small scale deployments (10 ENs), Intel recommends the following compute resources setups:
 
-    * RAM: 475 GiB
-    * CPU: 128 physical cores
+     * RAM: 32 GiB
+     * CPU: 16 physical cores
+     * Disk: 512 GiB
+
+  * For large scale deployments (1.000 ENs), Intel recommends the following compute resources setups:
+
+     * RAM: 475 GiB
+     * CPU: 128 physical cores
+     * Disk: 2 TiB
 
 Storage consumption varies with environment-specific details, including user-specific telemetry collection policies and application log generation.
 
-With the specifications above, the system has been validated to support up to 682 edge nodes concurrently connected, each node with a cluster deployed on it and one deployment package.
+With the specifications above, the system has been validated to support up to 1000 edge nodes concurrently connected, 100 of with a cluster deployed on it and one application.
 
 
 

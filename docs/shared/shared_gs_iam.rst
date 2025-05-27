@@ -100,6 +100,9 @@ You must also set a password for the user, see `Setting a password for
 a user
 <https://www.keycloak.org/docs/latest/server_admin/index.html#proc-setting-password-user_server_administration_guide>`_.
 
+Setting email for the user is also required to avoid issues with accessing Observability dashboards.
+See :ref:`devguide_troubleshoot_o11y_access` for additional details.
+
 Add users to groups
 ~~~~~~~~~~~~~~~~~~~
 
