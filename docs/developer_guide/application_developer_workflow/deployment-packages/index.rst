@@ -65,8 +65,6 @@ simplify deployments. At its core:
   only a reference to one Application (Helm Chart), as this is the
   principal unit of deployment.
 
-Here's a `Reference Deployment Package`_ for the example application
-shown in :doc:`/user_guide/package_software/quick_start_guide`.
 
 Deployment Package design strategies
 -------------------------------------
@@ -125,61 +123,14 @@ deployment:
   can provide the flexibility to ignore certain changes, thereby allowing the
   deployment to complete.
 
-Reference Deployment Package
-----------------------------
+Reference
+----------
 
-Store the content mentioned here in the specified files in a folder on
-your local machine and import the folder into the |software_prod_name| through
-Import Deployment Package. See
-:doc:`/user_guide/package_software/import_deployment`.
+* :doc:`application-yaml-reference`
+* :doc:`deployment-package-yaml-reference`
+* :doc:`registry-yaml-reference`
+* :doc:`reference-placeholders`
 
-deployment-package.yaml::
-
-   specSchema: DeploymentPackage
-   schemaVersion: "0.1"
-   $schema: "https://schema.intel.com/catalog.orchestrator/0.1/schema"
-
-   description: "My Hello World Deployment Package"
-   name: "hello-world-dp"
-   displayName: "hello-world-dp"
-   version: "0.1.0"
-
-   applications:
-    - name: hello-world-app
-      version: "0.1.0"
-
-   defaultNamespaces:
-    hello-world-app: hello-world
-
-application.yaml::
-
-   specSchema: Application
-   schemaVersion: "0.1"
-   $schema: "https://schema.intel.com/catalog.orchestrator/0.1/schema"
-
-   name: hello-world-app
-   version: "0.1.0"
-   description: "My hello world app"
-
-   imageRegistry: "harbor-docker-oci"
-   helmRegistry: "harbor-helm-oci"
-   chartName: "hello-world"
-   chartVersion: "0.1.0"
-
-   profiles:
-    - name: "default"
-      valuesFileName: "hello-world-values.yaml"
-
-hello-world-values.yaml::
-
-   ---
-   service:
-    type: ClusterIP
-   replicaCount: 1
-   image:
-     repository: '%ImageRegistryURL%/hello-world-image'
-   imagePullSecrets:
-    - name: '%GeneratedDockerCredential%'
 
 .. toctree::
    :hidden:
@@ -188,3 +139,4 @@ hello-world-values.yaml::
    reference-placeholders
    application-yaml-reference
    deployment-package-yaml-reference
+   registry-yaml-reference

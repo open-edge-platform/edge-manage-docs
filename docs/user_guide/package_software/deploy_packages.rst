@@ -12,6 +12,13 @@ application must be deployed to an edge node.
 .. figure:: images/deployment-package-relationships.png
   :alt: Deployment packages and relationships
 
+See the :doc:`general overview of Deployment Packages </developer_guide/application_developer_workflow/deployment-packages/index>`
+covering:
+
+- Deployment Package Structure
+- Deployment Package Design Strategies
+- Fine tuning Applications
+
 View Deployment Packages
 ------------------------
 
@@ -71,74 +78,6 @@ Deployment Package Fields
 
    * - Actions
      - Click the three-dot icon to view details, deploy, edit, delete, or clone the deployment package.
-
-Deployment Package Structure
-----------------------------
-
-The layout of deployment packages and applications is designed to
-simplify deployments. At its core:
-
-- Applications represent a 1:1 link to a Helm\* Chart through the
-  combination of a chart name and registry.
-- The Registry is a reference to a container registry that holds the
-  Helm Chart, with the ability to set a password and SSL certificate if
-  necessary. The registry is a global object that can be used by multiple
-  applications.
-- A set of registries are already loaded into the |software_prod_name|
-  platform and may be reused.
-- Each application profile refers to a values file that is used to
-  configure the Helm Chart.
-- This allows the user to easily group different configurations for the
-  same Helm Chart.
-- A deployment package is a collection of applications.
-- A deployment profile is a collection of applications profiles.
-- This allows the user to easily choose application profiles for many
-  applications at deployment time.
-
-.. note:: The deployment package is always needed, even if it only refers
-          to one application (Helm Chart) because the deployment package is
-          a principal unit of deployment.
-
-Here's a
-:ref:`developer_guide/application_developer_workflow/deployment-packages/index:reference
-deployment package` for the example application shown in
-:doc:`/user_guide/package_software/quick_start_guide`.
-
-Deployment Package Design Strategies
--------------------------------------
-
-If you need to deploy multiple Helm Charts together, use one of the following
-strategies:
-
-- Create an application for each Helm Chart and a single deployment
-  package that contains all applications, **or**
-- Create an "umbrella" Helm Chart that contains all Helm Charts and
-  create a single application and deployment Package, **or**
-- Create multiple deployment packages, each with one or more applications,
-  **or**
-- Any combination of the above.
-
-The choice of strategy will depend on the complexity of the deployment
-and the need for reusability.
-
-.. note:: It is also possible to reuse some of the "extensions" deployment
-  packages that are provided by the |software_prod_name|.
-
-Deployment packages have a number of features that make it worthwhile
-taking the multiple applications with a single deployment package
-approach:
-
-- You can have many different profiles for each application, allowing you
-  to configure each application differently.
-- You can assign namespaces to each application individually.
-- You can assign different registries to each application.
-- You can mark that one application is dependent on another being
-  installed first.
-- You can define namespaces with labels and annotations to be created
-  before the application is installed.
-
-.. note:: Having a single deployment package with multiple applications
-  allows you to deploy them in a single step.
 
 
 From this page, you can do the following tasks:

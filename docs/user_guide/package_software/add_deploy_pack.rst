@@ -9,17 +9,14 @@ and deployment Package through a series of steps in the web pages **or**
 choose to create them as YAML files and import these into the web UI
 before deploying them to an edge node.
 
+:doc:`/developer_guide/application_developer_workflow/deployment-packages/deployment-package-yaml-reference`
+describes the YAML format for the Deployment Package configuration file and describes the
+fields in greater detail.
+
 The :doc:`/api/app_catalog` also allows uploading of multiple YAML formatted
 files together.
 
-When using the YAML format, the user must use `yamllint
-<https://yamllint.readthedocs.io/en/stable/>` to check the syntax of the YAML
-files and the `YAML schema
-<https://github.com/open-edge-platform/cluster-extensions/blob/main/catalog-orchestrator-0.1.schema.yaml>`_
-to validate that the file is structured correctly. Many integrated development
-environments (IDEs) allow importing a YAML schema to aid in the editing
-process. These checks will also be applied by the API and UI when the files are
-uploaded.
+For the Web UI, it is described in :doc:`import_deployment`
 
 Create Deployment Packages in the Web UI
 ----------------------------------------

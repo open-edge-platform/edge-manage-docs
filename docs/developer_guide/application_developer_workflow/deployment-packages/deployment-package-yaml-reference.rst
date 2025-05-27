@@ -10,7 +10,7 @@ Overview
 ------------
 
 The source definition of the `DeploymentPackage` definition is derived from the Application
-Catalog API definition **message DeploymentPackage** in the Protobuf file
+Catalog API definition message **DeploymentPackage** in the Protobuf file
 `resources.proto <https://github.com/open-edge-platform/app-orch-catalog/blob/main/api/catalog/v3/resources.proto>`_.
 
 The `deployment_package.yaml` file serves as a way to import and export DeploymentPackage
@@ -28,11 +28,21 @@ does not cover all aspects of the DeploymentPackage definition.
 Since the DeploymentPackage is essentially a collections of Applications, this
 reference can be used alongside the corresponding :doc:`application-yaml-reference`.
 
+When using the YAML format, the user must use `yamllint <https://yamllint.readthedocs.io/en/stable/>`_
+to check the syntax of the YAML files and the `YAML schema
+<https://github.com/open-edge-platform/cluster-extensions/blob/main/catalog-orchestrator-0.1.schema.yaml>`_
+to validate that the file is structured correctly. Many integrated development
+environments (IDEs) allow importing a YAML schema to aid in the editing
+process. These checks will also be applied by the API and UI when the files are
+uploaded.
+
+Definition
+-------------
 
 `specSchema`
 ~~~~~~~~~~~~~~
 
-This field specifies the schema type of the file. For an DeploymentPackage, it should
+This field specifies the schema type of the file. For a DeploymentPackage, it should
 be set to `DeploymentPackage`.
 
 `schemaVersion`
@@ -171,19 +181,18 @@ Application to be in place before it runs.
 
 In the case of a Deployment Package with multiple Applications, the deployment
 may be faster if the Applications can be deployed in order, rather than in parallel.
-
-The determining factor is whether the larger applications have any dependencies
-on smaller applications.
+This could be the case when larger applications have dependencies on resources
+from smaller applications.
 
 
 `applicationDependencies.application`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Name of the Application that has a dependency. This must be one of the Applications
 listed in the `applications` section of the DeploymentPackage
 
 `applicationDependencies.dependsOn`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Name of the Application that the first Application depends on. This must be
 one of the Applications listed in the `applications` section of the DeploymentPackage.
@@ -209,7 +218,8 @@ and Egress permissions for Applications in the namespace.
 
    While individual resources in a Helm\* Chart can explicitly specify a namespace,
    this is discouraged, as it will ignore this `defaultNamespaces` for that resources
-   and lead to confusion about which namespace the Application is deployed to.
+   and lead to confusion about which namespace the Application is deployed to. See
+   this, and other Helm Chart best practices in :doc:`../deployment-helm/index`.
 
 
 `defaultNamespaces.<application>`

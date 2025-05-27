@@ -44,3 +44,13 @@ When you deploy applications by pulling containers or containerized VMs from the
    :hidden:
 
    param_template
+
+Reference for Application
+---------------------------
+
+An Application and Application Profiles can also be :doc:`Imported <import_deployment>`
+from a YAML file while importing a Deployment Package.
+
+:doc:`/developer_guide/application_developer_workflow/deployment-packages/application-yaml-reference`
+describes the YAML format for the Application configuration file and describes the
+fields in greater detail.

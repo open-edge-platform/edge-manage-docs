@@ -32,7 +32,7 @@ is the multi-tenant project name you are working in.
 For example it might be `oci://registry-oci.my-cluster.example.com/catalog-apps-my-org-my-project`.
 
 .. figure:: ../images/helm-docker-oci-root-url.png
-   :alt: harbor-docker-oci Registry object showing rootURL (location)
+   :alt: harbor-docker-oci Registry object showing rootUrl (location)
 
 Usage of `%ImageRegistryURL%`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

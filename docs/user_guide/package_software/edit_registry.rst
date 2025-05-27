@@ -18,3 +18,10 @@ To edit a registry, perform the following steps:
 #. Click **Ok**.
 
 .. note:: You cannot edit the name of the registry.
+
+Reference for Registry
+------------------------
+
+:doc:`/developer_guide/application_developer_workflow/deployment-packages/registry-yaml-reference`
+describes the YAML format for the Registry configuration file and describes the
+fields in greater detail.

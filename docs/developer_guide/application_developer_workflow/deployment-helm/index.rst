@@ -124,7 +124,9 @@ properly:
    check their values are as expected. If something else is changing the
    values, then the deployment will not complete. This only applies to resources
    specified in the chart, and does not apply to **new** resources that might be
-   created by a Job or Hook. They will be owned by whatever created them.
+   created by a Job or Hook. They will be owned by whatever created them. See
+   `ignoredResources` in :doc:`../deployment-packages/application-yaml-reference`
+   for a way to ignore certain resources that are created by the Helm Chart.
 
 #. It is not recommended to create a namespace in the Helm chart.
    |software_prod_name| has a method to manage namespaces outside of the Helm

@@ -10,7 +10,7 @@ Overview
 ------------
 
 The source definition of the `Application` is derived from the Application
-Catalog API definition **message Application** in the Protobuf file
+Catalog API definition message **Application** in the Protobuf file
 `resources.proto <https://github.com/open-edge-platform/app-orch-catalog/blob/main/api/catalog/v3/resources.proto>`_.
 
 The `application.yaml` file serves as a way to import and export Application definitions
@@ -89,7 +89,7 @@ If omitted the default value is **normal**, and is suitable for customer applica
 ~~~~~~~~~~~~~~~
 
 The name of the Helm chart that defines the application. This will be concatenated
-with the `rootURL` (Location) of the associated Helm Registry.
+with the `rootUrl` (Location) of the associated Helm\* Registry.
 
 `chartVersion`
 ~~~~~~~~~~~~~~~
@@ -110,7 +110,7 @@ the Registry object.
 Many Registry objects are configured in the Application Catalog by default - see
 :doc:`/user_guide/package_software/registry` for details. You can also create
 your own Registry object to point to a custom Helm chart repository through the
-UI or in a `registry.yaml` file.
+UI or in a `registry.yaml` file - see :doc:`registry-yaml-reference`.
 
 `imageRegistry`
 ~~~~~~~~~~~~~~~~
@@ -121,6 +121,8 @@ Both OCI and traditional Docker registries are supported.
 
 Many applications will not require this field, as they may have their images in
 a public registry such as Docker Hub\*.
+
+See description above on how to reuse or create a Registry object.
 
 The main use of this field is to allow the images to be pulled from a private registry.
 To use this private registry, you must create a Registry object in the Application Catalog
