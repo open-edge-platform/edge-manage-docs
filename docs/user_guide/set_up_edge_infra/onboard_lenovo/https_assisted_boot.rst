@@ -59,7 +59,7 @@ Prepare the ISO image one time, so that it will be mounted as Virtual Media on t
       mkdir -p ISO
       mv *.der ISO/
       mv Full_server.crt ISO/
-      mkisofs -R -J -o cerificate.iso ISO/
+      mkisofs -R -J -o certificate.iso ISO/
 
 #. Load the ISO image as virtual media using the local remote disk on card (RDOC) functionality:
 
@@ -91,7 +91,7 @@ Enable HTTPs-Assisted Boot
       :alt: HTTP Enabled
       :width: 750px
 
-#. Load the HTTPs boot certificate. Navigate to `System Settings` > `Network` > `Tls Auth Configuration` > `Server CA Confiuration` > `Enroll Cert`:
+#. Load the HTTPs boot certificate. Navigate to `System Settings` > `Network` > `Tls Auth Configuration` > `Server CA Configuration` > `Enroll Cert`:
 
    .. image:: ../images/tls.png
       :alt: Enroll Certificate

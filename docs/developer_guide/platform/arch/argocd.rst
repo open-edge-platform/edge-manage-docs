@@ -141,7 +141,7 @@ subject to minor adjustments and omits less important files.
   │   └── templates                  # Templates for generating cluster and platform
   │   └                              # service configuration
   ├── pod-configs                    # Cloud infrastructure Terraform definitions
-  ├── tools                          # Miscellaneous tools used to support developement
+  ├── tools                          # Miscellaneous tools used to support development
   |                                  # and CI/CD workflows
   └── README.md                      # Something you should always read first :)
 

@@ -38,9 +38,18 @@ Key Performance Indicators for Cloud Based Edge Orchestrator
    * - Deploying Application to Edge Node
      - 15 Minutes
      - ~4 minutes
+   * - Concurrent Edge Node provisioning batch
+     - 50
+     - 50
+   * - Number of Edge Nodes
+     - 10.000
+     - 10.700
    * - Number of Edge Nodes, Clusters and Apps
      - 100
      - 100
+   * - Number of Concurrent Edge Node Upgrades
+     - 1.000
+     - 1.000
 
 Key Performance Indicators for On-premises Edge Orchestrator
 ---------------------------------------------------------------
@@ -73,9 +82,18 @@ Key Performance Indicators for On-premises Edge Orchestrator
    * - Deploying Application to Edge Node
      - 15 Minutes
      - ~4 minutes
+   * - Concurrent Edge Node provisioning batch
+     - 50
+     - 50
+   * - Number of Edge Nodes
+     - 1.000
+     - 1.000
    * - Number of Edge Nodes, Clusters and Apps
      - 100
      - 100
+   * - Number of Concurrent Edge Node Upgrades
+     - 1.000
+     - 1.000
 
 Key Performance Indicators for Edge AI Application Deployment Times
 --------------------------------------------------------------------

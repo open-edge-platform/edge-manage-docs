@@ -12,7 +12,7 @@
 # documentation content
 docs/ @achamuah @swpng @zdw @andrea-campanella @ajaythakurintel @patricia-cahill
 docs/developer_guide @adreanneb @achamuah @swpng @zdw @andrea-campanella @ajaythakurintel @patricia-cahill
-README.md @achamuah @swpng @adreanneb @cjbooth @zdw @andrea-campanella @ajaythakurintel @patricia-cahill
+README.md @achamuah @swpng @adreanneb @zdw @andrea-campanella @ajaythakurintel @patricia-cahill
 
 # CI files
 .github/ @zdw @jouillet @andrea-campanella @ajaythakurintel @patricia-cahill
