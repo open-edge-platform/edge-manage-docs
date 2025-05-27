@@ -7,7 +7,7 @@ Changes in the SB and NB APIs, as well as database schema updates, are validated
 
 To test the upgradeability of infra charts with changes proposed in a given infra-charts pull request, we introduced the `upgrade-test <link>`_ workflow. This test can be manually triggered on any PR in the infra-charts repository, and is also executed periodically on the main branch to ensure long-term compatibility.
 
-In addition, users can manually test a newly released version of an Infra helm chart in a deployed Edge Orchestrator via Argo CD's web UI. Specifically, users can modify the Helm chart version in the following Argo CD Infra manager applications of the Edge Manageability Framework:
+In addition, users can manually test a newly released version of an Infra helm chart in a deployed Edge Orchestrator via Argo CD's web UI. Specifically, usersthe Orchestrator operator can modify the Helm chart version in the following Argo CD Infra manager applications of the Edge Manageability Framework:
 
 - infra-managers
 - infra-core
@@ -50,102 +50,120 @@ Upgrade Infra Manager Version in Argo CD
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Log into the Argo CD UI for your deployment
-2. Disable autosync in the ``root-app`` application
-
-.. image:: images/disable-autosync.png
-   :alt: Disable autosync in Argo CD
-
+2. Disable autosync in the ``root-app`` application ``Details``:
 3. Search for the infra application you want to upgrade (e.g., ``infra-managers``)
 4. Open its manifest and allow editing
-5. Change the version of the application's Helm chart and save
+5. Change the helm chart version in ``targetRevision`` of the application's manifest and save
+6. Wait until the ``infra-managers`` app is in ``Healthy`` state (usually up to a minute). Meanwhile, observe the EN status — it should not change.
 
-.. image:: images/edit-manifest.png
-   :alt: Edit Helm chart version
+Steps to Test Upgraded Edge Manager
+-----------------------------------
 
-6. Wait until the ``infra-managers`` app is redeployed (usually up to a minute). Meanwhile, observe the EN status — it should not change.
+The upgraded Edge Orchestrator should display all applications in a Healthy state. The functionality of the Edge Manager can be further verified by confirming it is able to discover new OS profiles and perform EN OS updates.
 
 Verify OS Profiles
 ^^^^^^^^^^^^^^^^^^
 
-To verify the OS profiles are up to date, log into the web UI for the deployment and find the ``OS Profiles`` tab in ``Settings``.
+After the Edge Orchestrator upgrade, OS Profiles should be still automatically populated in the Web UI.
 
-Delete an OS profile using the API call and its ResourceID (RESOURCE_ID)::
+To verify if the OS profiles are automatically repopulated follow the steps:
 
-   CLUSTER_FQDN=edgeorchestration.example.com
-   PROJ_NAME=sample-project
-   RESOURCE_ID=os-cd58ac2
+1. Log into the web UI for the deployment
+2. Go to ``Settings`` and open the ``OS Profiles`` tab.
+3. Delete an unused OS profile using the API call and the ResourceID of the OS profile (e.g., RESOURCE_ID)::
 
-   curl -v -X DELETE "https://api.${CLUSTER_FQDN}/v1/projects/sample-project/compute/os/${RESOURCE_ID}" \
-        -H "accept: application/json" \
-        -H "Authorization: Bearer ${JWT_TOKEN}"
+   .. code-block:: bash
+      CLUSTER_FQDN=edgeorchestration.example.com
+      PROJ_NAME=sample-project
+      RESOURCE_ID=os-cd58ac2
 
-Soon, the deleted OS profile should be rediscovered by OS Resource Manager and displayed in the Web UI.
+      curl -v -X DELETE "https://api.${CLUSTER_FQDN}/v1/projects/sample-project/compute/os/${RESOURCE_ID}" \
+         -H "accept: application/json" \
+         -H "Authorization: Bearer ${JWT_TOKEN}"
 
-Trigger EN Upgrade
-^^^^^^^^^^^^^^^^^^
+Soon, the deleted OS profile should be rediscovered by OS Resource Manager and displayed in the Web UI. The OS profiles are updated by OS Resource Manager every 60 minutes.
 
-1. Manually add an OS Profile using the latest EMT, for example::
+Trigger EN Update
+^^^^^^^^^^^^^^^^^
 
-   OS_RESOURCES='{
-     "architecture": "x86_64",
-     "imageId": "3.0.20250514.2200",
-     "imageUrl": "files-edge-orch/repository/microvisor/non_rt/edge-readonly-3.0.20250514.2200.raw.gz",
-     "installedPackages": "",
-     "kernelCommand": "",
-     "name": "Edge Microvisor Toolkit 3.0.20250514",
-     "osType": "OPERATING_SYSTEM_TYPE_IMMUTABLE",
-     "profileName": "microvisor-nonrt",
-     "repoUrl": "files-edge-orch/repository/microvisor/non_rt/edge-readonly-3.0.20250514.2200.raw.gz",
-     "securityFeature": "SECURITY_FEATURE_NONE",
-     "sha256": "f56ba0b338434813b70ecd8b81dec9a8f389a344ba868454825b4442217f6428",
-     "updateSources": [],
-     "osProvider": "OPERATING_SYSTEM_PROVIDER_INFRA"
-   }'
+Update of the onboarded EN OS will test if the EN and the Infrastructure Mananger is still fully functional after the Edge Orchestrator upgrade.
 
-   curl -X POST \
-        -H "Accept: application/json" \
-        -H "Authorization: Bearer ${JWT_TOKEN}" \
-        --data "$OS_RESOURCES" \
-        --header "Content-Type: application/json" \
-        https://api.${CLUSTER_FQDN}/v1/projects/intel-proj/compute/os
+1. Manually add an OS Profile using the latest EMT, for example:
 
-2. Identify your EN instance ResourceID::
+   .. code-block:: bash
 
-   curl -X GET \
-        -H "Authorization: Bearer ${JWT_TOKEN}" \
-        https://api.${CLUSTER_FQDN}/v1/projects/proj/compute/instances
+      OS_RESOURCES='{
+         "architecture": "x86_64",
+         "imageId": "3.0.20250514.2200",
+         "imageUrl": "files-edge-orch/repository/microvisor/non_rt/edge-readonly-3.0.20250514.2200.raw.gz",
+         "installedPackages": "",
+         "kernelCommand": "",
+         "name": "Edge Microvisor Toolkit 3.0.20250514",
+         "osType": "OPERATING_SYSTEM_TYPE_IMMUTABLE",
+         "profileName": "microvisor-nonrt",
+         "repoUrl": "files-edge-orch/repository/microvisor/non_rt/edge-readonly-3.0.20250514.2200.raw.gz",
+         "securityFeature": "SECURITY_FEATURE_NONE",
+         "sha256": "f56ba0b338434813b70ecd8b81dec9a8f389a344ba868454825b4442217f6428",
+         "updateSources": [],
+         "osProvider": "OPERATING_SYSTEM_PROVIDER_INFRA"
+      }'
 
-3. Identify the OS Profile OSResourceID and set ``OSPROFILE`` environment variable accordingly.
+      curl -X POST \
+         -H "Accept: application/json" \
+         -H "Authorization: Bearer ${JWT_TOKEN}" \
+         --data "$OS_RESOURCES" \
+         --header "Content-Type: application/json" \
+         https://api.${CLUSTER_FQDN}/v1/projects/intel-proj/compute/os
 
-4. Update the EN instance ``desired_os`` to point to the OS Profile::
+2. Identify your EN instance ResourceID in the list of instances and set ``INSTANCE`` environment variable accordingly:
 
-   curl -X PATCH \
-        -H "Accept: application/json" \
-        -H "Authorization: Bearer ${JWT_TOKEN}" \
-        --data '{"osId":  "${OSPROFILE}"}' \
-        --header "Content-Type: application/json" \
-        https://api.${CLUSTER_FQDN}/v1/projects/itep/compute/instances/inst-2c301bd4
+   .. code-block:: bash
 
-5. Observe ``Upgrade available`` note on the Host page
+      curl -X GET \
+         -H "Authorization: Bearer ${JWT_TOKEN}" \
+         https://api.${CLUSTER_FQDN}/v1/projects/proj/compute/instances
 
-.. image:: images/upgrade-available.png
-   :alt: Upgrade available note
+3. Identify the OS Profile ResourceID in the list of profiles and set ``OSPROFILE`` environment variable accordingly.
+
+   .. code-block:: bash
+
+      curl -X GET \
+         -H "Authorization: Bearer ${JWT_TOKEN}" \
+         https://api.${CLUSTER_FQDN}/v1/projects/proj/compute/os
+
+4. Update the EN instance's ``desired_os`` to point to the OS profile:
+
+   .. code-block:: bash
+
+      curl -X PATCH \
+         -H "Accept: application/json" \
+         -H "Authorization: Bearer ${JWT_TOKEN}" \
+         --data '{"osId":  "${OSPROFILE}"}' \
+         --header "Content-Type: application/json" \
+         https://api.${CLUSTER_FQDN}/v1/projects/itep/compute/instances/${INSTANCE}
+
+5. Observe ``OS upgrade available`` note appears on the host page.
 
 6. Schedule a maintenance window for your EN by following the `guide on maintenance window creation <https://docs.openedgeplatform.intel.com/edge-manage-docs/main/user_guide/additional_howtos/host_schedule_main.html#schedule-maintenance-for-configured-and-active-hosts>`_
 
-7. Observe the status of the EN to confirm the update was completed
-
-.. image:: images/en-status-updated.png
-   :alt: Updated EN status
+7. Observe the ``Update`` status changes to confirm the update was completed - ``No new updates available`` status message confirms the update was successful.
 
 Perform Version Rollback
 ------------------------
 
-In case an upgrade was unsuccessful, it is important that the Orchestrator operator can perform a manual rollback. This is possible through the Argo CD UI by following these steps:
+In the event of an unsuccessful upgrade, the Orchestrator operator should be able to revert manually via the Argo CD UI. Follow these steps:
 
 1. Log into the Argo CD UI
 2. Search for and select the application you want to roll back
 3. Open the ``History and Rollback`` tab
+   
+   .. image:: images/rollback-tab.png
+      :alt: Rollback example
+
 4. Select the entry with the previous version of your application
-5. Select ``Rollback`` from the options menu
-6. Observe the application version change in the manifest
+5. Select ``Rollback`` from the three dot menu
+
+   .. image:: images/rollback-example.png
+      :alt: Rollback example
+
+6. Observe the application status changes to status ``Healthy`` and application version changes to the previous version. 
