@@ -9,7 +9,7 @@ to define applications, their configurations, and deployment settings.
 Overview
 ------------
 
-The source definition of the `Application` file is derived from the Application
+The source definition of the `Application` is derived from the Application
 Catalog API definition **message Application** in the Protobuf file
 `resources.proto <https://github.com/open-edge-platform/app-orch-catalog/blob/main/api/catalog/v3/resources.proto>`_.
 
@@ -17,15 +17,13 @@ The `application.yaml` file serves as a way to import and export Application def
 in to the Application Catalog database. Its format is generated automatically from
 the Protobuf definition above.
 
-The :doc:`/api/app_catalog` is also auto generated from this Protobuf.
+The :doc:`/api/app_catalog` is which relates to the Application is auto generated
+from this Protobuf.
 
 A guide on creating an Application through the Orchestrator Web UI
 :doc:`/user_guide/package_software/add_applications`
 provides a high-level overview of the process of creating an Application, but
 does not cover all aspects of the Application definition.
-
-Most of the fields in the `Application` file are self-explanatory and are not
-repeated in detail here.
 
 Definition
 ------------
@@ -64,7 +62,7 @@ within a |software_prod_name| multi-tenancy Project.
 ~~~~~~~~~~~~~~~
 
 Version of the application. Used in combination with the name to identify a unique
-application within a project. It must be present and should be 1-20 chars long and
+Application within a project. It must be present and should be 1-20 chars long and
 can contain only lowercase letters, numbers, and hyphens
 
 `displayName`
