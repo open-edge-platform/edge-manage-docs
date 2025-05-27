@@ -37,7 +37,7 @@ This field specifies the schema type of the file. For an Application, it should
 be set to `Application`.
 
 `schemaVersion`
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 This field indicates the version of the schema being used. It should be set to
 `"0.1"` for the current version.
