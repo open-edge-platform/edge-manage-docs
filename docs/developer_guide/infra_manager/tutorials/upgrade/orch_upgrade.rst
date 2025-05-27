@@ -7,7 +7,7 @@ Changes in the SB and NB APIs, as well as database schema updates, are validated
 
 To test the upgradeability of infra charts with changes proposed in a given infra-charts pull request, we introduced the `upgrade-test <link>`_ workflow. This test can be manually triggered on any PR in the infra-charts repository, and is also executed periodically on the main branch to ensure long-term compatibility.
 
-In addition, users can manually test a newly released version of an Infra helm chart in a deployed Edge Orchestrator via Argo CD's web UI. Specifically, the Orchestrator operator can modify the Helm chart version in the following Argo CD Infra manager applications of the Edge Manageability Framework:
+Additionally, users can manually test a newly released version of an Infra Helm chart in a deployed Edge Orchestrator using Argo CD's web UI. Specifically, the Orchestrator operator can modify the Helm chart version in the following Argo CD Infra manager applications of the Edge Manageability Framework:
 
 - infra-managers
 - infra-core
@@ -52,7 +52,7 @@ Upgrade Infra Manager Version in Argo CD
 2. Disable autosync in the ``root-app`` application  under ``Details``.
 3. Search for the infra application you want to upgrade (e.g., ``infra-managers``).
 4. Open its manifest and enable editing.
-5. Update the Helm chart version by modifying the ``targetRevision`` field in the application's manifest, then save.
+5. Update the Helm chart version by modifying the targetRevision field in the application's manifest, then save the changes.
 6. Wait until the application reaches the ``Healthy`` state (this usually takes up to a minute). Meanwhile, monitor the EN status — it should remain unchanged.
 
 Steps to Test Upgraded Edge Manager
@@ -63,7 +63,7 @@ The upgraded Edge Orchestrator should display all applications in a Healthy stat
 Verify OS Profiles
 ^^^^^^^^^^^^^^^^^^
 
-After the Edge Orchestrator upgrade, OS Profiles should be still automatically populated in the Web UI.
+After the Edge Orchestrator upgrade, OS Profiles should still be automatically populated in the Web UI.
 
 To verify if the OS profiles are automatically repopulated follow the steps:
 
@@ -97,7 +97,7 @@ Soon, the deleted OS profile should be rediscovered by OS Resource Manager and d
 Trigger EN Update
 ^^^^^^^^^^^^^^^^^
 
-Update of the onboarded EN OS will test if the EN and the Infrastructure Mananger is still fully functional after the Edge Orchestrator upgrade.
+An update of the onboarded EN OS will test if the EN and the Infrastructure Manager are still fully functional after the Edge Orchestrator upgrade.
 
 1. Manually add an OS Profile using the latest EMT image details, for example:
 
