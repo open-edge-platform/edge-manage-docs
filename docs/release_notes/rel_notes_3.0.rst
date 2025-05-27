@@ -39,7 +39,7 @@ Key Highlights of the release include, but not limited to:
 * Multitenancy support for multiple projects and organizations with
   centralized identity and access management for enhanced project and
   organization level isolation.
-* Ability to orchestrate heterogenous Kubernetes clusters and deploy and
+* Ability to orchestrate heterogeneous Kubernetes clusters and deploy and
   manage applications via an application orchestrator through policies defined
   by the user.
 * Advanced application orchestration capability to utilize application

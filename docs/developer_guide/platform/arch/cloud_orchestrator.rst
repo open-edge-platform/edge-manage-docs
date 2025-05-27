@@ -306,7 +306,7 @@ Scalability
 -----------
 
 The Cloud Edge Orchestrator is designed to be scalable to support large scale
-deployments.  We leverage most of the AWS and Kuberenetes scalability features
+deployments.  We leverage most of the AWS and Kubernetes scalability features
 to support scalability, and have validated scaling up to 10,000 edge nodes.
 
 - The architecture supports horizontal scaling, allowing you to add more

@@ -87,7 +87,7 @@ When a newer image of Edge Microvisor Toolkit is detected, the UI will indicate 
 The indication will be available in the **Active Hosts** view and as part of the individual edge node's view:
 
 .. figure:: images/update_available_emt_hosts.png
-      :alt: Edge Microvisor Toolkit avaiable update in Host view
+      :alt: Edge Microvisor Toolkit available update in Host view
 
 .. figure:: images/update_available_emt_en.png
       :alt: Edge Microvisor Toolkit available update in Edge Node view
@@ -97,7 +97,7 @@ Scheduling OS update
 
 To schedule an update of the edge node's Edge Microvisor Toolkit, follow the steps for **OS Update** maintenance type described in the
 :doc:`/user_guide/additional_howtos/host_schedule_main` section.
-Upon a successful scheduling of an update, the Platfrom Update Agent on the edge node will run the update at the selected time and date.
+Upon a successful scheduling of an update, the Platform Update Agent on the edge node will run the update at the selected time and date.
 The Platform Update Agent will respond with an appropriate status on a successful update, to the Maintenance Manager.
 In case of an update failure, the Platform Update Agent will return a relevant failure status and/or attempt a rollback to the Edge Microvisor Toolkit version installed prior to the update attempt.
 

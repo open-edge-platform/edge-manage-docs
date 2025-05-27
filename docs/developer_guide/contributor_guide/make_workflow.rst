@@ -642,7 +642,7 @@ Below is an example Makefile. It assumes that:
      python -m pip install --upgrade pip ;\
      python -m pip install -r requirements.txt
 
-   check: version-go | $(VENV_NAME) ## Check for and/or instal prerequisite tools
+   check: version-go | $(VENV_NAME) ## Check for and/or install prerequisite tools
 
    ### test targets ###
    test: lint unittest
