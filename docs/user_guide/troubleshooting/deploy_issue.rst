@@ -9,6 +9,7 @@ This section covers troubleshooting issues while deploying Edge Orchestrator.
 * :ref:`o11y_grafana_mimir_querying_issue`
 * :ref:`deploymentpage_errors`
 * :ref:`redeployment_with_crds`
+* :ref:`deployment_does_not_complete`
 
 .. _failure_appinstall:
 
@@ -232,3 +233,29 @@ deploy the application. If this is not desirable, then:
    resource does indeed have the old bundle name in its annotations before deleting.
 
 #. Once all are deleted, try the redeployment again.
+
+.. _deployment_does_not_complete:
+
+Deployment does not complete
+------------------------------------------------
+
+**Symptom:** The deployment does not complete, and the status remains as `In Progress`.
+
+**Solution:**
+
+1. Check the status of the deployment in the Deployments menu.
+#. If the status is `In Progress`, it means that the deployment is still being processed.
+#. Wait for a few minutes and refresh the page to see if the status changes.
+#. If the status remains `In Progress` for an extended period, check the logs of
+   the deployment to see if there are any errors.
+#. Check the BundleDeployment objects on the Orchestrator. There should be one
+   BundleDeployment object for each Application in the deployment. Use the
+   Describe command to check the status of each BundleDeployment object
+#. If the BundleDeployment description displays an `Error` it is possible that
+   something is changing a values outside of that specified in the Helm chart manifest.
+#. Examine the object mentioned in the error to see if it has extra `metadata` or
+   `data` or `spec` that was added by some other process or operator.
+#. Try adding an `ignoredResources` entry to the Application manifest
+   to ignore this resource. This will allow the deployment to continue without
+   failing due to this resource. See :doc:`/developer_guide/application_developer_workflow/deployment-packages/application-yaml-reference`
+   for more information on the `ignoredResources` field.
