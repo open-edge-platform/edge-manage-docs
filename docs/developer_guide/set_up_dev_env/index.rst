@@ -1,3 +1,5 @@
+.. _set_up_dev_env:
+
 Set Up Developer Environment
 ============================
 
