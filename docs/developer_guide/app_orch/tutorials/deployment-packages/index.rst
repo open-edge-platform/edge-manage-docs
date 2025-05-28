@@ -35,11 +35,11 @@ as **tutorial-server-app.yaml** in the same directory with the following content
     - name: "alternate-pt"
       valuesFileName: "tutorial-server-values-alternate-pt.yaml"
       parameterTemplates:
-      - name: "greeting"
+      - name: "tutorialServer.greeting"
         displayName: Greeting message
         default: "Deployed by Application Orchestration (pt)"
         type: string
-      - name: "initialCount"
+      - name: "tutorialServer.initialCount"
         displayName: Initial count
         default: "0"
         type: string

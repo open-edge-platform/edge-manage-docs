@@ -3,16 +3,25 @@ Access Applications
 
 After the application is deployed with the **default** Deployment Profile, you can access it from the Web UI.
 
-In the deployment page, you can view the **tutorial-web-ui** Application and its status.
+In the `Deployments` page you can view the details of the deployed application.
+With this you can see the status of the application, the profile used for deployment,
+and in the details the values used for the parameters in the profile.
 
-You can also see the **tutorial-server** Application.
-
-.. figure:: ../images/app-orch-tutorial-deployed.png
+.. figure:: ../images/app-orch-deploy-view.png
    :width: 100%
    :alt: Tutorial Application deployed
 
-Here, you can see both the **tutorial-server** and **tutorial-web-ui** applications in this single deployment on this cluster.
-The `tutorial-web-ui` is expanded, and you can see the Service Link that was created earlier by annotation of the service.
+
+Clicking on the cluster link you can see how the application is deployed to an
+Edge Node cluster.
+
+.. figure:: ../images/app-orch-tutorial-deployed.png
+   :width: 100%
+   :alt: Tutorial Application deployed on cluster
+
+Here, you can see both the **tutorial-server** and **tutorial-web-ui** applications
+in this single deployment on this cluster. The `tutorial-web-ui` is expanded, and
+you can see the Service Link that was created earlier by annotation of the service.
 
 Select the link to open a new browser window that will redirect to the Tutorial Web UI page.
 
@@ -24,8 +33,9 @@ From the UI, you can infer the following:
 
 - The web ui is deployed and running properly
 - The tutorial server is deployed and running properly
-- The tutorial server is getting the initial variables from the default Profile
-- The counter is getting initialized at 10 (from the default profile)
+- The tutorial server is getting the initial variables from the parameter in the
+  Profile
+- The counter is getting initialized at 26 (from the parameter in the profile)
 - The tutorial server is reachable from the web ui through the NGINX\* proxy
 
 You can also change the counter value in the **alternate** profile and deploy it to see how the web ui

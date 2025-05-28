@@ -6,6 +6,10 @@ you can now deploy the Tutorial Server and the Tutorial Web UI. This requires a 
 a multi-tenancy-project and cluster(s) configured on one or more Edge Nodes. The User Guide and Developer Guide have the
 details on how to do this.
 
+- :doc:`import-dp`
+- :doc:`pushing_charts_and_images`
+- :doc:`deploying`
+
 .. toctree::
    :hidden:
    :maxdepth: 1

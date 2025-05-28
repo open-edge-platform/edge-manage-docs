@@ -366,3 +366,4 @@ An example of an `application.yaml` from the
         displayName: Initial count
         default: "0"
         type: string
+
