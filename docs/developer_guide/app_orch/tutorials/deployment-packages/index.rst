@@ -19,7 +19,7 @@ as **tutorial-server-app.yaml** in the same directory with the following content
     $schema: "https://schema.intel.com/catalog.orchestrator/0.1/schema"
 
     name: tutorial-server
-    version: "0.1.0"
+    version: "0.1.1"
     description: "Tutorial Server"
 
     imageRegistry: "harbor-docker-oci"
@@ -70,7 +70,7 @@ Add another file **tutorial-web-ui-app.yaml** in the same directory with the fol
     $schema: "https://schema.intel.com/catalog.orchestrator/0.1/schema"
 
     name: tutorial-web-ui
-    version: "0.1.0"
+    version: "0.1.1"
     description: "Tutorial Server"
 
     imageRegistry: "harbor-docker-oci"
@@ -181,13 +181,13 @@ the Deployment Package:
     description: Application Orchestration Tutorial Deployment Package
     name: app-orch-tutorial-dp
     displayName: "Tutorial DP"
-    version: "0.1.0"
+    version: "0.1.1"
 
     applications:
     - name: tutorial-server
-      version: "0.1.0"
+      version: "0.1.1"
     - name: tutorial-web-ui
-      version: "0.1.0"
+      version: "0.1.1"
 
     deploymentProfiles:
       - name: "default-profile"
