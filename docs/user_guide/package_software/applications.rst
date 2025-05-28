@@ -12,6 +12,9 @@ An application in |software_prod_name| is defined by a single Helm\* chart with 
 * Use the *helm lint* command to check if the chart is well-formed.
 * All Kubernetes resource creation and updates are done through the Helm chart. However, Intel does not recommend dynamic resource creation or update because this could lead to unexpected results.
 
+See :doc:`/developer_guide/application_developer_workflow/deployment-helm/index`
+for more Helm chart Best Practices.
+
 View Applications
 ~~~~~~~~~~~~~~~~~
 
@@ -64,24 +67,8 @@ Application Fields
 Fine-tuning Applications
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Applications have a number of features that allow you to fine-tune the
-deployment:
-
-- **Application Profiles**, which are like value files in Helm Charts,
-  allow a variety of scenarios to be catered for at deployment time. Applications can have multiple :doc:`Application Profiles </user_guide/package_software/app_profile>` which consist of a profile name, description, Helm chart values, and value overrides.
-- **Parameter Templates** allow further fine-tuning at deployment time.
-  These are used to specify values that are impossible to know at the
-  time of creating the values file. They can be marked as required or
-  optional, secret or plain text, or given default values.
-- **Ignore Resources** allows you to ignore changes to certain Kubernetes
-  resources that will be deployed by the Helm Chart.
-- This is useful in the case where some job or hook in the Helm Chart
-  changes a value in the resource after deployment from what was
-  originally specified in the Helm Chart. Because |software_prod_name|
-  tracks all changes to Resources by default, this feature can provide
-  the flexibility to ignore certain changes, thereby allowing the
-  deployment to complete.
-
+See :doc:`/developer_guide/application_developer_workflow/deployment-packages/index`
+for more details.
 
 From this page, you can do the following tasks:
 

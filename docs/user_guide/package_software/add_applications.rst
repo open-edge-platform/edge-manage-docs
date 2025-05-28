@@ -55,3 +55,13 @@ Perform the following steps to add an application:
 
    After the updates are processed, you will be redirected to the
    **Applications** page, and the application is displayed on the **Applications** page.
+
+Reference for Application
+---------------------------
+
+An Application can also be :doc:`Imported <import_deployment>` from a YAML file
+while importing a Deployment Package.
+
+:doc:`/developer_guide/application_developer_workflow/deployment-packages/application-yaml-reference`
+describes the YAML format for the Application configuration file and describes the
+fields in greater detail.

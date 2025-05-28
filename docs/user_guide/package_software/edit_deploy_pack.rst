@@ -34,3 +34,9 @@ Perform the following steps to edit or update a deployment package:
    A message appears confirming that the deployment package is updated. After
    the updates are processed, the updated package is displayed in the deployment package list.
 
+Reference for Deployment Package
+----------------------------------------
+
+:doc:`/developer_guide/application_developer_workflow/deployment-packages/deployment-package-yaml-reference`
+describes the YAML format for the Deployment Package configuration file and describes the
+fields in greater detail.

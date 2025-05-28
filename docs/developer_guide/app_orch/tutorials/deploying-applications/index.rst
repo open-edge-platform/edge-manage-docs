@@ -12,5 +12,4 @@ details on how to do this.
 
    import-dp
    pushing_charts_and_images
-   edit-image-location
    deploying

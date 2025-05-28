@@ -44,6 +44,9 @@ as **tutorial-server-app.yaml** in the same directory with the following content
         default: "0"
         type: string
 
+The format of the Application YAML file is described in detail in
+:doc:`/developer_guide/application_developer_workflow/deployment-packages/application-yaml-reference`.
+
 Here you have three profiles: one for the default values and two for alternate values. This provides two ways to override
 the Helm chart values at deployment time - a) by having different values files and b) by having values parameter templates
 that can be chosen at deployment time.
@@ -94,8 +97,8 @@ Create **tutorial-server-values-default.yaml**:
       greeting: "Deployed by Application Orchestration (default)"
       initialCount: 10
     image:
-        #  Please update with your CLUSTER_FQDN and your ORG and PROJECT names
-        repository: registry-oci.<CLUSTER_FQDN>/catalog-apps-<ORG>-<PROJECT>/tutorial-server-image
+      #  Will update the placeholder with the rootUrl of the imageRegistry
+      repository: "%ImageRegistryURL%/tutorial-server-image"
     imagePullSecrets:
     - name: "%GeneratedDockerCredential%"
 
@@ -106,13 +109,12 @@ a fixed value, it means the Tutorial Web UI will be able to reference this servi
 manner.
 
 .. note::
-    The image repository is the OCI registry where the Tutorial Server image is stored. In the next step we will
-    push the image to this registry. You must adjust it to suit |software_prod_name|'s
-    Full Qualified Domain Name, the Organization you're in and the multi-tenancy Project you're deploying in.
-    You will see how to edit this after the Deployment Package is imported in
-    :doc:`../deploying-applications/edit-image-location`.
-    The imagePullSecrets has an automatically calculated value that will allow the deployment to pull
+    The `image.repository` is the OCI registry where the Tutorial Server image is stored and includes a placeholder to
+    use the imageRegistry `rootUrl`. In the next step we will push the image to this registry.
+    The `imagePullSecrets` has an automatically generated Secret that will allow the deployment to pull
     the image from the OCI registry.
+    See :doc:`../../../application_developer_workflow/deployment-packages/reference-placeholders` for more details on the
+    placeholders used here.
 
 Create **tutorial-server-values-alternate.yaml**:
 
@@ -123,8 +125,8 @@ Create **tutorial-server-values-alternate.yaml**:
       greeting: "Deployed by Application Orchestration (alternate)"
       initialCount: 5
     image:
-        #  Please update with your CLUSTER_FQDN and your ORG and PROJECT names
-        repository: registry-oci.<CLUSTER_FQDN>/catalog-apps-<ORG>-<PROJECT>/tutorial-server-image
+      #  Will update the placeholder with the rootUrl of the imageRegistry
+      repository: "%ImageRegistryURL%/tutorial-server-image"
     imagePullSecrets:
     - name: "%GeneratedDockerCredential%"
 
@@ -141,8 +143,8 @@ Create **tutorial-server-values-alternate-pt.yaml**:
       greeting: "Deployed by Application Orchestration (alternate-pt)"
       initialCount: 0
     image:
-        #  Please update with your CLUSTER_FQDN and your ORG and PROJECT names
-        repository: registry-oci.<CLUSTER_FQDN>/catalog-apps-<ORG>-<PROJECT>/tutorial-server-image
+      #  Will update the placeholder with the rootUrl of the imageRegistry
+      repository: "%ImageRegistryURL%/tutorial-server-image"
     imagePullSecrets:
     - name: "%GeneratedDockerCredential%"
 
@@ -152,8 +154,8 @@ Create **tutorial-web-ui-values.yaml**:
 
     fullnameOverride: tutorial-web-ui
     image:
-        #  Please update with your CLUSTER_FQDN and your ORG and PROJECT names
-        repository: registry-oci.<CLUSTER_FQDN>/catalog-apps-<ORG>-<PROJECT>/tutorial-web-ui-image
+      #  Will update the placeholder with the rootUrl of the imageRegistry
+      repository: "%ImageRegistryURL%/tutorial-web-ui-image"
     imagePullSecrets:
     - name: "%GeneratedDockerCredential%"
     service:
@@ -213,6 +215,9 @@ the Deployment Package:
     defaultNamespaces:
         tutorial-server: tutorial
         tutorial-web-ui: tutorial
+
+The format of the Deployment Package YAML file is described in detail in
+:doc:`/developer_guide/application_developer_workflow/deployment-packages/deployment-package-yaml-reference`.
 
 This is where the power of the Deployment Package can be seen, bringing together the Applications. It allows you to
 define which Applications (and their versions) to include, and to define the Deployment Profiles combining the
