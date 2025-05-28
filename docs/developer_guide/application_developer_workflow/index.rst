@@ -37,6 +37,19 @@ usually packaged as a tarball and published to a Registry.
    registry capable of storing and distributing Container images, Helm charts
    and other artifacts.
 
+Tutorial
+--------
+
+There is a comprehensive :doc:`../app_orch/index` with step-by-step instructions
+corresponding to the major steps in this Application Developer Workflow.
+
+Architecture of Application Orchestration
+------------------------------------------------
+
+A description on the architecture of the Application Orchestration feature is
+available in the :doc:`../app_orch/arch/index` section.
+
+
 .. toctree::
    :hidden:
    :maxdepth: 1
@@ -47,3 +60,4 @@ usually packaged as a tarball and published to a Registry.
    deployment-packages/index
    deploying-applications/index
    accessing-applications/index
+

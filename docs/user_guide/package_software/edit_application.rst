@@ -64,3 +64,10 @@ Click **Next** to review the updates.
 Review the updated information and click **Update Application** to confirm the changes.
 
 After the updates are processed, you will be redirected to the **Applications** page.
+
+Reference for Application
+---------------------------
+
+:doc:`/developer_guide/application_developer_workflow/deployment-packages/application-yaml-reference`
+describes the YAML format for the Application configuration file and describes the
+fields in greater detail.

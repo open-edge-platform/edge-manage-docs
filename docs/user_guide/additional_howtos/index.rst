@@ -17,7 +17,6 @@ perform several tasks to customize or extend the application's capabilities:
    * :doc:`/user_guide/additional_howtos/host_update_immutable_os`
    * :doc:`/shared/shared_adv_alerts`
    * :doc:`/shared/shared_adv_edge_node`
-   * :doc:`/user_guide/additional_howtos/deploy_pkg_ns`
    * :doc:`/user_guide/additional_howtos/configure_ssh_public_keys`
 
 .. toctree::
@@ -36,5 +35,4 @@ perform several tasks to customize or extend the application's capabilities:
    host_update_immutable_os
    ../../shared/shared_adv_alerts
    ../../shared/shared_adv_edge_node
-   deploy_pkg_ns
    configure_ssh_public_keys

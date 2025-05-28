@@ -183,6 +183,8 @@ This feature requires two steps:
       Note that the special string `'%GeneratedDockerCredential%'` for the image pull secret MUST be set in Profile, not directly in Helm chart.
       If you set the special string directly to Helm chart, the Helm chart rendering will fail.
 
+See also :doc:`/developer_guide/application_developer_workflow/deployment-packages/reference-placeholders` for more information about it.
+
 Make Image Pull Secret Configurable at values.yaml File
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -349,7 +351,8 @@ An example for container and VM application deployment.
 Override Image Pull Secret in values.yaml With %GeneratedDockerCredential% on Chart Values in Profile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Next, you should create or edit corresponding Applications' Profile to override image pull secret with `%GeneratedDockerCredential%` in Chart Values.
+Next, you should create or edit corresponding Applications' Profile to override image pull secret with
+`%GeneratedDockerCredential%` in Chart Values.
 Following is an example:
 
 .. code:: yaml

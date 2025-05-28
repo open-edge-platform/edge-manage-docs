@@ -32,3 +32,10 @@ To add a registry, do the following:
    The **Password** may be the actual password or an authentication token.
 
 #. Click **OK**.
+
+Reference for Registry
+------------------------
+
+:doc:`/developer_guide/application_developer_workflow/deployment-packages/registry-yaml-reference`
+describes the YAML format for the Registry configuration file and describes the
+fields in greater detail.
