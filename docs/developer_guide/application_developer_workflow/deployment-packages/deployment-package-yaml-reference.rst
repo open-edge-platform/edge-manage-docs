@@ -324,3 +324,4 @@ An example of an `application.yaml` from the
     defaultNamespaces:
         tutorial-server: tutorial
         tutorial-web-ui: tutorial
+
