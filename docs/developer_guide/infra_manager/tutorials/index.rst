@@ -15,3 +15,4 @@ Manager software.
 
    new_resource/index
    os_profiles/index
+   upgrade/index
