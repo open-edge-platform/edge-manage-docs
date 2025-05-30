@@ -47,6 +47,3 @@ Key Performance Indicators
    :maxdepth: 1
 
    arch/index
-   deployment/deployment
-   usage/index
-   tutorials/index
