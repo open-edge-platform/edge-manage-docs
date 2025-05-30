@@ -37,3 +37,4 @@ for initial configuration of the service.
    additional_howtos/index.rst
    troubleshooting/index.rst
    concepts/index.rst
+   virtual_edge_node/index.rst
