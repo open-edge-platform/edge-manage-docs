@@ -56,6 +56,9 @@ Next, you will deploy Edge Orchestrator on the target machine as defined in the 
 Download the Installation Script
 -----------------------------------------------
 
+.. note::
+   EMF is released on a weekly basis. To use a weekly build, refer to the latest weekly tag available `here <https://github.com/open-edge-platform/edge-manageability-framework/discussions>`_. In the below script, replace v3.0.0 with the appropriate weekly tag. Weekly tags follow the format: v3.1.0-nYYYYMMDD.
+
 #. Create the script file on the Edge Orchestrator node using the following command:
 
   .. code-block:: shell

@@ -84,6 +84,9 @@ If ``jq`` is not installed or is out of date, install or upgrade the software us
 Download the Installer Container Image
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. note::
+   EMF is released on a weekly basis. To use a weekly build, refer to the latest weekly tag available `here <https://github.com/open-edge-platform/edge-manageability-framework/discussions>`_. In the command below, replace v3.0.0 with the appropriate weekly tag. Weekly tags follow the format: v3.1.0-nYYYYMMDD.
+
 #. Download the installer container image:
 
    .. code-block:: shell
