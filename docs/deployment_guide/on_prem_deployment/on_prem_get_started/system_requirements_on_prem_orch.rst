@@ -4,7 +4,7 @@ Open Edge Platform System Requirements
 Edge Orchestrator On-Premises Resource Requirements
 --------------------------------------------------------
 
-* OS: Ubuntu 22.04.3 LTS.
+* OS: Ubuntu 22.04.3 Server LTS.
 
 * Storage: 1x Storage Device (SSD, HDD or NVMe) needed to install the OS to
   and needs to be at least 256 Gb; Intel suggests 512 Gb.
