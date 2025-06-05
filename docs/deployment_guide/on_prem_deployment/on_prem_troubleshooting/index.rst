@@ -14,6 +14,7 @@ deployment operations during the installation process. If an operation fails, yo
 - :doc:`/shared/shared_ts_rs_token`
 - :doc:`/shared/shared_ts_sriov_webhook`
 - :doc:`/shared/shared_on_prem_rs_proxy`
+- :doc:`/shared/shared_on_prem_rke2_deployment`
 
 .. toctree::
    :hidden:
@@ -24,3 +25,4 @@ deployment operations during the installation process. If an operation fails, yo
    ../../../shared/shared_ts_rs_token
    ../../../shared/shared_ts_sriov_webhook
    ../../../shared/shared_on_prem_rs_proxy
+   ../../../shared/shared_on_prem_rke2_deployment
