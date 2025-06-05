@@ -27,7 +27,6 @@ jobs:
       run_docker_build: false
       run_docker_push: false
       run_version_tag: true
-      run_artifact: false
       orch_ci_repo_ref: "main"
     secrets:
       SYS_ORCH_GITHUB: ${{ secrets.SYS_ORCH_GITHUB }}
