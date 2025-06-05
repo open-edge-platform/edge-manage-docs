@@ -1,5 +1,3 @@
-{# SPDX-FileCopyrightText: (C) 2025 Intel Corporation #}
-{# SPDX-License-Identifier: Apache-2.0 #}
 Other RKE2 Deployment Issues
 ============================
 
