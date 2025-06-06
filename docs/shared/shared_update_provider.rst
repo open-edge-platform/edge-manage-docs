@@ -1,9 +1,11 @@
 Update the Provisioning Provider Configuration
 ===============================================
 
-To use new OS profiles that have been added, to change the near Zero Touch Provisioning configuration (`autoProvisioning` setting), or to include default SSH Key, you must delete the Provisioning Provider Configuration and then recreate a new one by following the steps in this section.
+To use new OS profiles that have been added, to change the near Zero Touch Provisioning configuration (`autoProvisioning` setting), or to include default SSH Key,
+you must delete the Provisioning Provider Configuration and then recreate a new one by following the steps in this section.
 
-To interact with Edge Orchestrator API, you must authenticate with a user who is part of the `Project ID Host Manager Group <./shared_iam_groups.html#project-id-host-manager-group>`__ and obtain a JWT (see `Obtaining a JSON Web Token (JWT) <./shared_gs_iam.html#obtaining-a-json-web-token-jwt>`__ for instructions),
+To interact with Edge Orchestrator API, you must authenticate with a user who is part of the `Project ID Host Manager Group <./shared_iam_groups.html#project-id-host-manager-group>`__ and
+obtain a JWT (see `Obtaining a JSON Web Token (JWT) <./shared_gs_iam.html#obtaining-a-json-web-token-jwt>`__ for instructions),
 
 Also, ensure to have your project name in hand.
 
@@ -81,7 +83,7 @@ This will return a JSON list of objects that need to be parsed and from which th
 
 
    # Save the provider configuration. apiEndpoint and apiCredentials are required but not used.
-   # os-cfa1fb25 is the resourceID selected from the previous step.   
+   # os-cfa1fb25 is the resourceID selected from the previous step.
    body=$(cat << 'EOF'
     {
         "providerKind": "PROVIDER_KIND_BAREMETAL",
@@ -105,7 +107,8 @@ After this you are ready for onboarding new edge nodes.
 
 Add or Update the default SSH key for Near Zero-Touch Provisioning
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-To add or update the default SSH key during Near Zero-Touch Provisioning, first you need to add the SSH Key. Follow the instructions in the :doc:`./../user_guide/additional_howtos/configure_ssh_public_keys` section to add the SSH Key.
+To add or update the default SSH key during Near Zero-Touch Provisioning, first you need to add the SSH Key.
+Follow the instructions in the :doc:`./../user_guide/additional_howtos/configure_ssh_public_keys` section to add the SSH Key.
 
 Once you have added the SSH key, you can run the following command to get the list of SSH key IDs:
 
@@ -120,8 +123,8 @@ Select the SSH key ID from the list (E.g.: localaccount-dfb1cb32)and use it in t
 
 .. code-block:: shell
 
-   # Save the provider configuration. 
-   # localaccount-dfb1cb32 is the resourceID selected from the previous step.   
+   # Save the provider configuration.
+   # localaccount-dfb1cb32 is the resourceID selected from the previous step.
    body=$(cat << 'EOF'
     {
         "providerKind": "PROVIDER_KIND_BAREMETAL",

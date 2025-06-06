@@ -23,11 +23,13 @@ deploying a package, refer to :doc:`/user_guide/package_software/setup_deploy`.
 The extension applications will also be visible in a separate tab called
 **Extensions** in **Applications** page.
 
-If you need to deploy a dependency package and its associated applications before deploying the user application, ensure the dependent deployment packages are successfully installed on all edge clusters.
+If you need to deploy a dependency package and its associated applications before deploying the user application,
+ensure the dependent deployment packages are successfully installed on all edge clusters.
 
 If you want to deploy dependent packages manually, you do not have to include a `deploymentRequirements` section in the user application profile.
 
-The |software_prod_name| will check if the extension or dependency deployment package is already deployed. If it is, the |software_prod_name| will reuse the existing dependency deployment instead of creating a new one.
+The |software_prod_name| will check if the extension or dependency deployment package is already deployed. If it is,
+the |software_prod_name| will reuse the existing dependency deployment instead of creating a new one.
 
 Currently, you cannot create or delete extension deployment packages or
 extension applications; extension applications are pre-curated for use in extension deployment packages.
@@ -260,7 +262,7 @@ and import them into the user interface:
             - application: "nginx"
                profile: "default"
 
-	.. note::
+   .. note::
       To ensure that the deployment of the dependent package is not
       duplicated, set `forbidsMultipleDeployments: true`
       (default value is false, which means duplicated deployment is allowed).

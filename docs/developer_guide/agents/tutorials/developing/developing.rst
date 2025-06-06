@@ -14,7 +14,8 @@ files of the `debian` or `rpm` package (i.e., Edge Node Agent systemctl service 
 
 Occasionally, while the overarching functionality provided by an Edge Node Agent may be the same across OSes, the underlying functionality/implementation
 may differ drastically due to the nature of the OS. In such cases, the divergence must still be handled by the same Edge Node Agent.
-Platform Update Agent is an example of this is. It provides the overarching functionality of updating the Edge Node with the latest software versions. Under-the-hood updates happen differently for Ubuntu and Edge Microvisor Toolkit due to the nature of the OS.
+Platform Update Agent is an example of this is. It provides the overarching functionality of updating the Edge Node with the latest software versions.
+Under-the-hood updates happen differently for Ubuntu and Edge Microvisor Toolkit due to the nature of the OS.
 The mutable Ubuntu OS is updated via `apt` package manager, while the immutable Edge Microvisor Toolkit is updated via `A/B Update` method.
 Both of the update workflow scenarios are covered as part of the same Edge Node Agent being able to differentiate between the OSes.
 
@@ -113,7 +114,8 @@ The artifact will be output to the `build/artifacts/<edge-node-agent>-<version>.
 Testing the Edge Node Agent on Ubuntu
 -------------------------------------
 
-Testing an Edge Node Agent can be done on an existing Edge Node with Ubuntu OS. To access an Edge Node use the local SSH feature :doc:`../../../../../user_guide/additional_howtos/configure_ssh_public_keys`.
+Testing an Edge Node Agent can be done on an existing Edge Node with Ubuntu OS.
+To access an Edge Node use the local SSH feature :doc:`../../../../../user_guide/additional_howtos/configure_ssh_public_keys`.
 
 Building Debian Package
 ^^^^^^^^^^^^^^^^^^^^^^^

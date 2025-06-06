@@ -28,14 +28,14 @@ Edge Manageability Framework allows you to add **public SSH keys** into a host d
 
    .. note::
 
-      The SSH **Key Name** will be used to establish the user account on the host. 
+      The SSH **Key Name** will be used to establish the user account on the host.
       Ensure that the provided name does not conflict with any restricted usernames (example: root, admin, and etc.)
       in the Linux or Mac OS.
 
-   Once the key is added to the SSH key list, you can add it to a host when configuring it. Follow the 
+   Once the key is added to the SSH key list, you can add it to a host when configuring it. Follow the
    :doc:`/user_guide/set_up_edge_infra/provision_host` instructions to enable this.
 
-#. To delete an SSH key, click the **Delete** option under the **Actions** column next to the key you want to delete. 
+#. To delete an SSH key, click the **Delete** option under the **Actions** column next to the key you want to delete.
    A confirmation dialog will appear. Click **Delete** to confirm the deletion:
 
     .. note:: You cannot delete the SSH key if it is associated with a provisioned host.

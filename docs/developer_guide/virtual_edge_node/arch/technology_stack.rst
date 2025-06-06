@@ -4,7 +4,8 @@ Technology Stack
 Virtualization and Containerization
 ------------------------------------
 
-**KVM (Kernel-based Virtual Machine)**: Utilizes hardware acceleration to enhance VM performance and efficiency, manages CPU and memory resources, reducing overhead and maximizing throughput for demanding applications.
+**KVM (Kernel-based Virtual Machine)**: Utilizes hardware acceleration to enhance VM performance and efficiency,
+    manages CPU and memory resources, reducing overhead and maximizing throughput for demanding applications.
 
 **QEMU**: Provides virtualization capabilities when KVM is unavailable, ensuring flexible deployment options.
 

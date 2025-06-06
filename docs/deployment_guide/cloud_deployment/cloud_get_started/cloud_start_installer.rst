@@ -29,16 +29,16 @@ Verify Docker Software Access for User Account
 
 #. Check your current group listing.
 
-	.. code-block:: shell
+   .. code-block:: shell
 
-	   groups
+      groups
 
    If ``docker`` is not listed in the ``groups`` listing, use the following
    command to add your user account to the docker group.
 
-	.. code-block:: shell
+   .. code-block:: shell
 
-	   sudo usermod -aG docker [username]
+      sudo usermod -aG docker [username]
 
 #. Log out and reconnect after making this change, for it to take effect.
 
@@ -59,10 +59,10 @@ Check your locally installed version of ORAS CLI.
 .. code-block:: shell
 
    curl -LO "https://github.com/oras-project/oras/releases/download/v1.1.0/oras_1.1.0_linux_amd64.tar.gz" && \
-	  mkdir -p oras-install/ && \
-	  tar -zxf oras_1.1.0_*.tar.gz -C oras-install/ && \
-	  sudo mv oras-install/oras /usr/local/bin/ && \
-	  rm -rf oras_1.1.0_*.tar.gz oras-install/
+     mkdir -p oras-install/ && \
+     tar -zxf oras_1.1.0_*.tar.gz -C oras-install/ && \
+     sudo mv oras-install/oras /usr/local/bin/ && \
+     rm -rf oras_1.1.0_*.tar.gz oras-install/
 
 Verify ``jq`` Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~

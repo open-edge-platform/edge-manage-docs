@@ -70,7 +70,9 @@ Delete the host if you want to remove it from this page:
 Operating System Profile
 ------------------------------------
 
-Operating System Profile refers to the resources that describe the installation sources used. They are used for performing initial installations as well as propagating updates to the installed operating systems. They include information about the Operating System installation process, such as:
+Operating System Profile refers to the resources that describe the installation sources used.
+They are used for performing initial installations as well as propagating updates to the installed operating systems.
+They include information about the Operating System installation process, such as:
 
 * kernel command parameters and options
 * upstream packages and sources
@@ -97,9 +99,11 @@ For more information on OS and OS profiles, refer to
 
 Host Label
 ------------------------
-The **Host Label** refers to additional host-specific metadata. This option allows you to specify constraints for which Kubernetes Pods are deployed to specific hosts through automated deployment. Note that this is specified in the application's Helm chart.
+The **Host Label** refers to additional host-specific metadata. This option allows you to specify constraints for which Kubernetes Pods are deployed to specific hosts through automated deployment.
+Note that this is specified in the application's Helm chart.
 
-You can use them as a slicing mechanism. For example, if you want your solar plant controller Pod to be scheduled only on the hosts connected to the plants, you can specify this constraint as a special label identifying a subset of the hosts with this label. Hosts without this label would not receive this Pod.
+You can use them as a slicing mechanism. For example, if you want your solar plant controller Pod to be scheduled only on the hosts connected to the plants,
+you can specify this constraint as a special label identifying a subset of the hosts with this label. Hosts without this label would not receive this Pod.
 
 .. figure:: images/configure_host_labels.png
    :alt: Add Solar Plant Host Labels

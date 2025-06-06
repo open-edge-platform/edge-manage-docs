@@ -1,13 +1,17 @@
 Upgrading Edge Infrastructure Manager
 =====================================
 
-Edge Orchestrator is expected to support seamless upgrades of the Infrastructure Manager helm charts between versions 3.0 and 3.1. Therefore, intermittent changes in the infra-charts repository must be verified against Edge Orchestrator version 3.0 to ensure they do not introduce breaking changes and that the Orchestrator remains fully functional.
+Edge Orchestrator is expected to support seamless upgrades of the Infrastructure Manager helm charts between versions 3.0 and 3.1.
+Therefore, intermittent changes in the infra-charts repository must be verified against Edge Orchestrator version 3.0 to ensure they do not introduce breaking changes,
+and that the Orchestrator remains fully functional.
 
 Changes in the SB and NB APIs, as well as database schema updates, are validated during the CI phase through a set of automated lint and integration checks.
 
-To test the upgradeability of infra charts with changes proposed in a given infra-charts pull request, we introduced the `upgrade-test <link>`_ workflow. This test can be manually triggered on any PR in the infra-charts repository, and is also executed periodically on the main branch to ensure long-term compatibility.
+To test the upgradeability of infra charts with changes proposed in a given infra-charts pull request, we introduced the `upgrade-test <link>`_ workflow.
+This test can be manually triggered on any PR in the infra-charts repository, and is also executed periodically on the main branch to ensure long-term compatibility.
 
-Additionally, users can manually test a newly released version of an Infra Helm chart in a deployed Edge Orchestrator using Argo CD's web UI. Specifically, the Orchestrator operator can modify the Helm chart version in the following Argo CD Infra manager applications of the Edge Manageability Framework:
+Additionally, users can manually test a newly released version of an Infra Helm chart in a deployed Edge Orchestrator using Argo CD's web UI.
+Specifically, the Orchestrator operator can modify the Helm chart version in the following Argo CD Infra manager applications of the Edge Manageability Framework:
 
 - infra-managers
 - infra-core
@@ -58,7 +62,8 @@ Upgrade Infra Manager Version in Argo CD
 Steps to Test Upgraded Edge Manager
 -----------------------------------
 
-The upgraded Edge Orchestrator should display all applications in a Healthy state. The functionality of the Edge Manager can be further verified by confirming it is able to discover new OS profiles and perform EN OS updates.
+The upgraded Edge Orchestrator should display all applications in a Healthy state.
+The functionality of the Edge Manager can be further verified by confirming it is able to discover new OS profiles and perform EN OS updates.
 
 Verify OS Profiles
 ^^^^^^^^^^^^^^^^^^
@@ -72,7 +77,7 @@ To verify if the OS profiles are automatically repopulated follow the steps:
 3. Identify the ``ResourceID`` of an unused profile:
 
    .. code-block:: bash
-      
+
       CLUSTER_FQDN=edgeorchestration.example.com
       PROJ_NAME=sample-project
 
@@ -167,7 +172,7 @@ In the event of an unsuccessful upgrade, the Orchestrator operator should be abl
 1. Log into the Argo CD UI.
 2. Search for and select the application you want to roll back.
 3. Open the ``History and Rollback`` tab.
-   
+
    .. image:: images/rollback-tab.png
       :alt: Rollback example
 
@@ -177,4 +182,4 @@ In the event of an unsuccessful upgrade, the Orchestrator operator should be abl
    .. image:: images/rollback-example.png
       :alt: Rollback example
 
-6. Ensure the application status is ``Healthy`` and that it reflects the previous version. 
+6. Ensure the application status is ``Healthy`` and that it reflects the previous version.

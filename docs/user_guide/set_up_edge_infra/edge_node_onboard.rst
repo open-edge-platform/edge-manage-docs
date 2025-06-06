@@ -1,7 +1,9 @@
 Onboard Edge Nodes
 =============================================================================
 
-Systems from different vendors may have different BIOS interfaces. |software_prod_name| supports different boot methodologies, depending on the vendor. This section describes the onboarding of some of the selected edge node configurations from different vendors. Contact us on the community channels if you need help with onboarding your specific edge node.
+Systems from different vendors may have different BIOS interfaces. |software_prod_name| supports different boot methodologies, depending on the vendor.
+This section describes the onboarding of some of the selected edge node configurations from different vendors.
+Contact us on the community channels if you need help with onboarding your specific edge node.
 
 .. note::
    Secure Boot (SB) is disabled by default. To enable it, follow the steps below to configure SB in the BIOS.

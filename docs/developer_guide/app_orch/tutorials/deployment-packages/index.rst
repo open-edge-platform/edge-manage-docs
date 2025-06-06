@@ -164,7 +164,7 @@ Create **tutorial-web-ui-values.yaml**:
 
 The service-proxy annotation is used to tell the Application Orchestrator to expose the web UI service,
 as described **Service Link Support** section of in
-:doc:`/user_guide/package_software/package_create_helm`. 
+:doc:`/user_guide/package_software/package_create_helm`.
 
 Create the Deployment Package
 -----------------------------

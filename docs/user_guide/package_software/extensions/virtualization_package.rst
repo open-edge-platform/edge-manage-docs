@@ -10,7 +10,8 @@ The Virtualization Package contains the following:
 * **Containerized Data Importer (CDI)** - Persistent storage management add-on that provides a declarative way to build VM disks on PersistentVolumeClaim (PVC).
 * **KubeVirt Helper** - Add-on that restarts VM after the `VirtualMachineSpec` update.
 
-The Virtualization Package is pre-configured and satisfies most of the use cases. However, it offers a dedicated deployment profile enabling software emulation for virtualization (which is useful if hardware virtualization is unavailable).
+The Virtualization Package is pre-configured and satisfies most of the use cases.
+However, it offers a dedicated deployment profile enabling software emulation for virtualization (which is useful if hardware virtualization is unavailable).
 
 Here are some references:
 
