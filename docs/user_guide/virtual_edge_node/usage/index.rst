@@ -1,5 +1,5 @@
 Usage
-==================
+=====
 
 Overview
 --------
@@ -34,8 +34,15 @@ Features
 
 - **Monitoring**: Uses socket_login.exp to give live updates on VM provisioning, helping quickly spot and fix issues. Provides detailed logs and alerts for proactive monitoring and management.
 
+* :doc:`how_it_works_content`
+* :doc:`getting_started`
+* :doc:`setup_virtual_edge_node`
+* :doc:`deploy_virtual_edge_node`
+* :doc:`manage_virtual_edge_node`
+
 
 .. toctree::
+     :hidden:
      :maxdepth: 1
 
      how_it_works_content
@@ -43,3 +50,4 @@ Features
      setup_virtual_edge_node
      deploy_virtual_edge_node
      manage_virtual_edge_node
+
