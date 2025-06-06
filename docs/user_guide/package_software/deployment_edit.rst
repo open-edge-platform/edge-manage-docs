@@ -13,16 +13,16 @@ To edit a deployment, perform the following steps:
    :scale: 50 %
    :alt: Edit Deployment Button
 
-3. In the **Edit Deployment** window, review the currently selected **Package Profile**. 
-    If you wish to change the profile, select a different option from the list of available profiles. 
+3. In the **Edit Deployment** window, review the currently selected **Package Profile**.
+    If you wish to change the profile, select a different option from the list of available profiles.
     This enables you to update the deployment with a new set of package configurations as needed.
     Once you have confirmed or changed the profile, click **Next** to continue.
 
-4. Review and update any **Override Values** configured for the deployment. 
-    These values allow you to customize specific parameters or settings for the deployed package. 
+4. Review and update any **Override Values** configured for the deployment.
+    These values allow you to customize specific parameters or settings for the deployed package.
     Make any necessary adjustments to tailor the deployment to your requirements, then click **Next** to continue.
 
-5. On the **Change Deployment Details** page, you can update the deployment name and cluster selection, depending 
+5. On the **Change Deployment Details** page, you can update the deployment name and cluster selection, depending
    on the deployment type chosen during the deployment setup.
 
     - If **Automatic** was selected as the deployment type, you can specify metadata in key-value format to determine the target cluster.
