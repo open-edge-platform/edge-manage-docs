@@ -43,48 +43,48 @@ Create provisioning configuration
 #. Configure the cluster provisioning parameters. Edit the variables
    and run the following command; this opens an editor for the configuration template:
 
-	.. code-block:: shell
+   .. code-block:: shell
 
-	   orchestrator-admin:~/pod-configs$ ./utils/provision.sh config \
-	   --aws-account [AWS account] \
-	   --customer-state-prefix [S3 bucket name prefix to store provision state] \
-	   --environment [Cluster name] \
-	   --parent-domain [Root domain for deployment] \
-	   --region [AWS region to install the cluster] \
-	   --jumphost-ip-allow-list [IPs to permit cluster administration access]
+      orchestrator-admin:~/pod-configs$ ./utils/provision.sh config \
+      --aws-account [AWS account] \
+      --customer-state-prefix [S3 bucket name prefix to store provision state] \
+      --environment [Cluster name] \
+      --parent-domain [Root domain for deployment] \
+      --region [AWS region to install the cluster] \
+      --jumphost-ip-allow-list [IPs to permit cluster administration access]
 
-	.. note::
+   .. note::
 
-	   The ``customer-state-prefix`` is a prefix for the S3 bucket name used to store
-	   the state of the cluster. It can be arbitrary, but must be follow AWS bucket
-	   `naming rules <https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html>`_.
+      The ``customer-state-prefix`` is a prefix for the S3 bucket name used to store
+      the state of the cluster. It can be arbitrary, but must be follow AWS bucket
+      `naming rules <https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html>`_.
 
-	The following is an example:
+   The following is an example:
 
-	.. code-block:: shell
+   .. code-block:: shell
 
-	   orchestrator-admin:~/pod-configs$ ./utils/provision.sh config \
-	   --aws-account 1234567890 \
-	   --customer-state-prefix customer-a \
-	   --environment [Cluster name] \
-	   --parent-domain root-domain \
-	   --region [AWS region to install the cluster] \
-	   --jumphost-ip-allow-list [jumphost IP allow list]
+      orchestrator-admin:~/pod-configs$ ./utils/provision.sh config \
+      --aws-account 1234567890 \
+      --customer-state-prefix customer-a \
+      --environment [Cluster name] \
+      --parent-domain root-domain \
+      --region [AWS region to install the cluster] \
+      --jumphost-ip-allow-list [jumphost IP allow list]
 
-	.. note::
+   .. note::
 
-	   Add ``--auto-cert`` argument to the command to deploy with automatically
-	   created certificates.
+      Add ``--auto-cert`` argument to the command to deploy with automatically
+      created certificates.
 
-	.. note::
+   .. note::
 
-	   The ``--jumphost-ip-allow-list`` must include the IP where the install
-	   container is running. This value limits access to the secure tunnel
-	   required to access administration and management operations on the
-	   Edge Orchestrator cluster to the specified IP ranges.
-	   This must be as limited as possible to enable all necessary administration host addresses.
-	   The ``--jumphost-ip-allow-list`` may also need include the IPs of the proxy services when systems are
-	   running behind a corporate proxy server.
+      The ``--jumphost-ip-allow-list`` must include the IP where the install
+      container is running. This value limits access to the secure tunnel
+      required to access administration and management operations on the
+      Edge Orchestrator cluster to the specified IP ranges.
+      This must be as limited as possible to enable all necessary administration host addresses.
+      The ``--jumphost-ip-allow-list`` may also need include the IPs of the proxy services when systems are
+      running behind a corporate proxy server.
 
 #. **(Optional)** If deploying Edge Orchestrator with ``auto-cert`` enabled, you can leave the following variables in the template blank because they will be automatically generated :
 

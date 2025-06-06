@@ -29,7 +29,7 @@ Your development machine must have the following software installed:
   - Download the appropriate asdf binary for your operating system/architecture
     combo from the `GitHub releases page
     <https://github.com/asdf-vm/asdf/releases>`_. Ensure to place it in a
-    directory on your ``$PATH``. For example, you can prepend 
+    directory on your ``$PATH``. For example, you can prepend
     ``$ASDF_DATA_DIR/shims`` to your ``$PATH`` environment variable:
 
    .. code-block:: bash
@@ -207,8 +207,8 @@ Build repo archive and installer packages and move them to default directories:
 
 Ensure that the ``TF_VAR_deploy_tag`` is set to the correct version that matches the version of Debian\* packages.
 Due to Debian versioning, if you are building from a tagged version branch (e.g., v3.0.0), the ``mage build:all`` command will remove the v prefix so you may need to manually export ``TF_VAR_deploy_tag``.
-If ``TF_VAR_deploy_tag`` is set, ensure that ``deploy_tag`` is not defined in 
-the ``terraform/orchestrator/terraform.tfvars`` file due to Terraform's 
+If ``TF_VAR_deploy_tag`` is set, ensure that ``deploy_tag`` is not defined in
+the ``terraform/orchestrator/terraform.tfvars`` file due to Terraform's
 precedence rules.
 
 Edit ``terraform/orchestrator/terraform.tfvars`` to use locally built

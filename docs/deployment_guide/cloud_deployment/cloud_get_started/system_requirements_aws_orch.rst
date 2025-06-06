@@ -7,7 +7,8 @@ Edge Orchestrator Cloud-based AWS Resource Quotas
 Many AWS resources are restricted by per-account `service quotas <https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html>`_.
 
 The following lists the quantity of service quota limited
-resources required for each Edge Orchestrator instance installed. Ensure that the service quota settings accommodate the allocation of the following resources. To request a service quota increase, see 
+resources required for each Edge Orchestrator instance installed. Ensure that the service quota settings accommodate the allocation of the following resources.
+To request a service quota increase, see
 `Requesting a quota increase <https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html>`_.
 
 * `Elastic IP addresses (EIPs) <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html>`_ - 7 EIPs required per Edge Orchestrator instance. The quota is specified per region and defaults to five. This has to be increased to support an Edge Orchestrator installation.
@@ -156,13 +157,17 @@ Note that placing multiple observability nodes in the same availability zone (AZ
 See also :doc:`/deployment_guide/cloud_deployment/cloud_how_to/cloud_scale_orch` for more
 information about pod-configs profiles and how to scale the cluster.
 
-The default replication factor for edge node logs and metrics is ``3``. You can configure it in the cluster definition with these settings: ``.Values.argo.o11y.edgeNode.loki.replicationFactor`` and ``.Values.argo.o11y.edgeNode.mimir.replicationFactor``.
+The default replication factor for edge node logs and metrics is ``3``. You can configure it in the cluster definition with these settings:
+``.Values.argo.o11y.edgeNode.loki.replicationFactor`` and ``.Values.argo.o11y.edgeNode.mimir.replicationFactor``.
 
 .. note:: Replication factor ``2`` is not supported for Grafana Mimir\* storage (metrics).
 
-The default data retention period for edge node logs and metrics is 15 days (``360h``). You can configure it in the cluster definition with these settings: ``.Values.argo.o11y.edgeNode.loki.logRetentionPeriod`` and ``.Values.argo.o11y.edgeNode.mimir.structuredConfig.metricsRetentionPeriod``.
+The default data retention period for edge node logs and metrics is 15 days (``360h``).
+You can configure it in the cluster definition with these settings:
+``.Values.argo.o11y.edgeNode.loki.logRetentionPeriod`` and ``.Values.argo.o11y.edgeNode.mimir.structuredConfig.metricsRetentionPeriod``.
 
-The default data retention period for edge node provisioning logs is 31 days (``744h``). You can configure it in the cluster definition with this setting ``.Values.argo.o11y.edgeNode.loki.provisioningLogRetentionPeriod``.
+The default data retention period for edge node provisioning logs is 31 days (``744h``).
+You can configure it in the cluster definition with this setting ``.Values.argo.o11y.edgeNode.loki.provisioningLogRetentionPeriod``.
 
 .. note:: The minimum data retention period for edge node logs and metrics is 1 day (``24h``).
 

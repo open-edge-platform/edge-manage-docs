@@ -55,7 +55,7 @@ Once a connecting edge node reports a UUID or serial number that matches the reg
 You can proceed to **onboard** the host by following the
 :doc:`/user_guide/set_up_edge_infra/onboard_host` instructions.
 
-To **provision** the host after it is onboarded, follow the 
+To **provision** the host after it is onboarded, follow the
 :doc:`/user_guide/set_up_edge_infra/provision_host` instructions.
 
 Refer to :doc:`Registered Host Mismatch <../../shared/shared_registration_info_mismatch>` for any issues in encountered during set up.
@@ -92,7 +92,7 @@ The host will show the `Status` as `Unknown`; waiting for the edge node to attem
 Once a connecting edge node reports a UUID or serial number that matches the registered information, the status will become **Onboarded**.
 It will then be automatically moved to the Onboarded tab of the **Hosts** page.
 
-To **provision** the host after it is onboarded, follow the 
+To **provision** the host after it is onboarded, follow the
 :doc:`/user_guide/set_up_edge_infra/provision_host` instructions.
 
 Automated Onboarding and Provisioning
@@ -187,7 +187,9 @@ Go to the directory where the downloaded pre-flight tool resides (for example, ~
    chmod +x orch-host-preflight
    ./orch-host-preflight generate test.csv
 
-Now, you can populate the `.csv` file by appending details of systems. Do not change the first line `Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,Error - do not fill` because that is the expected format. You only need to fill in the first two columns, `Serial` and `UUID`, with the serial number and UUID of the edge node(s) you want to register. The other columns are not meant for this stage.
+Now, you can populate the `.csv` file by appending details of systems.
+Do not change the first line `Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,Error - do not fill` because that is the expected format.
+You only need to fill in the first two columns, `Serial` and `UUID`, with the serial number and UUID of the edge node(s) you want to register. The other columns are not meant for this stage.
 The following is an example:
 
 .. code-block:: bash
@@ -200,7 +202,9 @@ The following is an example:
 Check the CSV File
 --------------------
 
-You can now validate the CSV file that you have created yourself or through the `Generate a .csv File </user_guide/set_up_edge_infra/edge_node_registration.html#generate-a-.csv-file>`__ step. Enter the filename (for example, `test.csv`). If there are errors in the input file, a new CSV file named `preflight_error_timestamp_filename` is generated with error messages corresponding to each faulty record in the CSV file.
+You can now validate the CSV file that you have created yourself or through the `Generate a .csv File </user_guide/set_up_edge_infra/edge_node_registration.html#generate-a-.csv-file>`__ step.
+Enter the filename (for example, `test.csv`). If there are errors in the input file, a new CSV file named `preflight_error_timestamp_filename`
+is generated with error messages corresponding to each faulty record in the CSV file.
 
 .. code-block:: bash
 
@@ -235,7 +239,9 @@ This section shows how to use a CSV file to import a series of devices as edge n
    --remote-user <name/id>        Optional remote user name/id to configure for hosts. Alternatively, set env variable EDGEORCH_REMOTEUSER
    --metadata <data>              Optional metadata to configure for hosts. Alternatively, set env variable EDGEORCH_METADATA. Metadata format: key=value&key=value
 
-The fields `OSProfile`, `Site`, `Secure`, `RemoteUser`, and `Metadata` are used for provisioning configuration of the Edge Node. `OSProfile`, `Site`, and `RemoteUser` are fields that allow both name and ID to be used. The `Secure` field is a boolean value that can be set to `true` or `false`. The `Metadata` field is a key-value pair separated by an `=` sign, and multiple key-value pairs are separated by an `&` sign.
+The fields `OSProfile`, `Site`, `Secure`, `RemoteUser`, and `Metadata` are used for provisioning configuration of the Edge Node.
+`OSProfile`, `Site`, and `RemoteUser` are fields that allow both name and ID to be used.
+The `Secure` field is a boolean value that can be set to `true` or `false`. The `Metadata` field is a key-value pair separated by an `=` sign, and multiple key-value pairs are separated by an `&` sign.
 
 #. Do the following before running the bulk import tool:
 
@@ -264,7 +270,7 @@ The fields `OSProfile`, `Site`, `Secure`, `RemoteUser`, and `Metadata` are used 
          .. code-block:: bash
 
             $ ./orch-host-bulk-import import test.csv https://api.CLUSTER_FQDN
-	         Importing hosts from file: test.csv to server: https://api.CLUSTER_FQDN
+            Importing hosts from file: test.csv to server: https://api.CLUSTER_FQDN
             Checking CSV file: test.csv
             Enter Username: myusername
             Enter Password: mypassword
@@ -295,7 +301,9 @@ The fields `OSProfile`, `Site`, `Secure`, `RemoteUser`, and `Metadata` are used 
 
    .. note:: For all the options (except onboard), if optional parameter is passed along with the environment variable set, the optional parameter will take precedence. If either the environment variable or the optional parameter is set, they act as global values for the corresponding field in the input file and override the local value for all rows.
 
-#. Run the bulk import tool. Go to the directory where you have downloaded the file (e.g. ~). The URL in the command is a mandatory argument that points the tool towards the |software_prod_name| where the devices will be registered. Replace test.csv with your CSV filename, and CLUSTER_FQDN with the name of the domain used during installation:
+#. Run the bulk import tool. Go to the directory where you have downloaded the file (e.g. ~).
+   The URL in the command is a mandatory argument that points the tool towards the |software_prod_name| where the devices will be registered.
+   Replace test.csv with your CSV filename, and CLUSTER_FQDN with the name of the domain used during installation:
 
     .. code-block:: bash
 
@@ -321,21 +329,22 @@ The fields `OSProfile`, `Site`, `Secure`, `RemoteUser`, and `Metadata` are used 
       CSV import successful
 
 #. If there are errors during registration, a new CSV file with the name ``import_error_timestamp_filename`` is generated with each failed line having a corresponding error message.
-   Example of invocation and failure:
 
-	.. code-block:: bash
+Example of invocation and failure:
 
-	   $ ./orch-host-bulk-import import --onboard --project testProject test.csv https://api.CLUSTER_FQDN
-	   Importing hosts from file: test.csv to server: https://api.CLUSTER_FQDN
-	   Onboarding is enabled
-	   Checking CSV file: test.csv
-	   Generating error file: import_error_2025-04-15T18:28:44+05:30_test.csv
-	   error: Failed to import all hosts
+   .. code-block:: bash
+
+      $ ./orch-host-bulk-import import --onboard --project testProject test.csv https://api.CLUSTER_FQDN
+      Importing hosts from file: test.csv to server: https://api.CLUSTER_FQDN
+      Onboarding is enabled
+      Checking CSV file: test.csv
+      Generating error file: import_error_2025-04-15T18:28:44+05:30_test.csv
+      error: Failed to import all hosts
 
 
-	   $ cat import_error_2025-04-15T18\:28\:44+05\:30_test.csv
-	   Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,Error - do not fill
-	   FW908CX,4c4c4544-0946-5310-8052-cac04f515233,os-7d650dd1,Folsom,true,myuser-key,key1=value1&key2=value2,Host already registered
+      $ cat import_error_2025-04-15T18\:28\:44+05\:30_test.csv
+      Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,Error - do not fill
+      FW908CX,4c4c4544-0946-5310-8052-cac04f515233,os-7d650dd1,Folsom,true,myuser-key,key1=value1&key2=value2,Host already registered
 
 .. toctree::
    :hidden:

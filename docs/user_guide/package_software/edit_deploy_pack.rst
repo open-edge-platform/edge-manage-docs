@@ -21,7 +21,8 @@ Perform the following steps to edit or update a deployment package:
 
 #. In the **Applications** section, select the applications that you want to add or remove, from the deployment package and click **Next**. The **Deployment Package Profiles** page appears.
 
-#. In the **Deployment Package Profiles** page, you can change the default profile or click **Add Profile** to use the different set of application profiles other than the existing deployment profiles.
+#. In the **Deployment Package Profiles** page, you can change the default profile or
+click **Add Profile** to use the different set of application profiles other than the existing deployment profiles.
 
    .. note::
 

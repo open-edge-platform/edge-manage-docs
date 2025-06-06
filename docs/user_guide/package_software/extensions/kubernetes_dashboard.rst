@@ -6,7 +6,7 @@ The Kubernetes Dashboard allows you to see the full set of Kubernetes resources 
 on. It may also be used to deploy applications directly, though doing so will cause those applications to not be managed
 by the Edge Orchestrator and is therefore not recommended.
 
-Documentation for the Kubernetes Dashboard itself may be found at 
+Documentation for the Kubernetes Dashboard itself may be found at
 `Kubernetes Dashboard <https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/>`_.
 
 .. note::

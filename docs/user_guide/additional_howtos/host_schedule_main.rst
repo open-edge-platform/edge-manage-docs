@@ -130,7 +130,8 @@ There are eight possible update status messages that the Edge Orchestrator regis
 
    *   **No new updates available** - indicates that no software update is currently in progress.
    *   **Updating** - indicates that a software update is currently in progress.
-   *   **Update complete, x package(s) updated/installed** - indicates a successful software update in case of mutable OS updates. This message holds the number of packages modified during the update.
+   *   **Update complete, x package(s) updated/installed** - indicates a successful software update in case of mutable OS updates.
+         This message holds the number of packages modified during the update.
    *   **Update complete** - indicates a successful software update in case of immutable OS updates.
    *   **Update failed** - indicates that the latest software update ended with failure.
    *   **Downloading artifacts** - indicates that artifacts for immutable OS update are being downloaded.

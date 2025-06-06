@@ -130,7 +130,8 @@ is set to the OS Profile name you are trying to install (for example, `microviso
 Enable UEFI Secure Boot (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Secure boot is disabled by default. To enable it, follow the steps to configure secure boot in the BIOS. After that, see :doc:`/shared/shared_secure_boot_opt_in` to enable secure boot in |software_prod_name|\ .
+Secure boot is disabled by default. To enable it, follow the steps to configure secure boot in the BIOS. After that,
+see :doc:`/shared/shared_secure_boot_opt_in` to enable secure boot in |software_prod_name|\ .
 
 #. To enable the secure boot, navigate to `System Settings` > `Security` > `Secure Boot Configuration`. Enable the secure boot and change the policy to Custom:
 
@@ -146,7 +147,8 @@ Secure boot is disabled by default. To enable it, follow the steps to configure 
 
 #. Save and reboot the node in System Setup.
 
-#. Reset the trusted platform module hierarchy and clear the trusted platform module. Navigate to `System Settings` > `Security` > `Secure Boot Configuration` > `TPM` > `TPM2`. Select `Clear` in the `TPM2 Operation` dialog:
+#. Reset the trusted platform module hierarchy and clear the trusted platform module.
+   Navigate to `System Settings` > `Security` > `Secure Boot Configuration` > `TPM` > `TPM2`. Select `Clear` in the `TPM2 Operation` dialog:
 
    .. image:: ../images/clear-tpm.png
       :alt: Clear TPM

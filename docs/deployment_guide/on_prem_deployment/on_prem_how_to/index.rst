@@ -1,6 +1,7 @@
 How to
 ============
-This section provide detailed instructions to set up an external IAM with Keycloak, manage Edge Orchestrator groups and roles, configure external IAM security groups, set up email notifications, uninstall Edge Orchestrator infrastructure, handle certificates, and configure the SRE Exporter service.
+This section provide detailed instructions to set up an external IAM with Keycloak, manage Edge Orchestrator groups and roles, configure external IAM security groups,
+set up email notifications, uninstall Edge Orchestrator infrastructure, handle certificates, and configure the SRE Exporter service.
 
 * :doc:`/shared/shared_ht_iam_ext`
 * :doc:`/shared/shared_iam_groups`

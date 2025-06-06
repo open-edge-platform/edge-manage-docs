@@ -106,7 +106,7 @@ Metadata Rules
 ^^^^^^^^^^^^^^^^^^^^^^
 
 In the deployment process you must adhere to the metadata rules. Metadata
-enforces a lower case rule and does not accept spaces. 
+enforces a lower case rule and does not accept spaces.
 
 As Regions dynamically create metadata, they follow the same naming constraints as metadata.
 

@@ -3,8 +3,9 @@
 Export Cluster Template
 ================================
 
-You can export a cluster template in JSON format to a file. This feature allows you to edit your template files locally. Once exported, you can edit the JSON files using the desired text editor and assign the template a new version number, making it easy to manage and maintain cluster templates.  
-Maintaining each version of a cluster template using a source control system such as GitHub is recommended.			 
+You can export a cluster template in JSON format to a file. This feature allows you to edit your template files locally.
+Once exported, you can edit the JSON files using the desired text editor and assign the template a new version number, making it easy to manage and maintain cluster templates.
+Maintaining each version of a cluster template using a source control system such as GitHub is recommended.
 
 Do the following steps to export a cluster template:
 

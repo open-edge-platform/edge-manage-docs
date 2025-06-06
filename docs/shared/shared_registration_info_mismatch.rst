@@ -3,7 +3,7 @@
 Registration Information Mismatch
 =================================
 
-.. note:: 
+.. note::
 
           If the edge device's reported information does not match the registered host's information, the status will become **Connected - Error** in the UI.
 

@@ -9,7 +9,9 @@ Trusted Compute is a set of software-defined security extensions that utilize ha
 
   **Confidential-workload** - a workload that handles sensitive or private data and requires protections from unauthorized access or tampering.
 
-* **Security Objective:** Trusted Compute ensures the integrity of code and data within container workloads running in a trusted VM instance, protecting against attacks from unprivileged software, applications, and simple hardware adversaries. Trusted Compute prevents access to sensitive code and data during boot and runtime, detects tampering or unauthorized changes to platform software, and isolates the host from future workloads.
+* **Security Objective:** Trusted Compute ensures the integrity of code and data within container workloads running in a trusted VM instance, protecting against attacks from unprivileged software,
+  applications, and simple hardware adversaries. Trusted Compute prevents access to sensitive code and data during boot and runtime, detects tampering or unauthorized changes to platform software,
+  and isolates the host from future workloads.
 
 Do the following to enable Trusted Compute on a host and cluster, and to configure and deploy your trusted applications.
 

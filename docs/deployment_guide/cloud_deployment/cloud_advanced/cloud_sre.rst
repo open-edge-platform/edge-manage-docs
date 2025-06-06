@@ -51,17 +51,21 @@ Following is an example of the configuration:
 SRE Exporter Service Configuration
 -------------------------------------
 
-You can enable the SRE Exporter service, configure the export time interval, and set the ``customer`` label using :doc:`/deployment_guide/cloud_deployment/cloud_appendix/cloud_cluster_definition` in the following steps:
+You can enable the SRE Exporter service, configure the export time interval, and set the ``customer`` label using
+:doc:`/deployment_guide/cloud_deployment/cloud_appendix/cloud_cluster_definition` in the following steps:
 
 #. To enable or disable the SRE Exporter service, include or exclude ``profiles/enable-sre.yaml`` in the **cluster definition** YAML file under ``root.clusterValues``.
 
 #. To enable or disable TLS for the SRE Exporter service, set ``.Values.argo.o11y.sre.tls.enabled`` to ``true`` or ``false`` in the **cluster definition** YAML file.
 
-#. Optionally, if the destination server private TLS CA certificate is provided, set ``.Values.argo.o11y.sre.tls.enabled`` and ``.Values.argo.o11y.sre.tls.caSecretEnabled`` values to ``true`` in the *cluster definition* YAML file.
+#. Optionally, if the destination server private TLS CA certificate is provided,
+   set ``.Values.argo.o11y.sre.tls.enabled`` and ``.Values.argo.o11y.sre.tls.caSecretEnabled`` values to ``true`` in the *cluster definition* YAML file.
 
-#. Optionally, if you need to override the time interval of sending metrics (default is ``30s``), set ``.Values.argo.o11y.sre.pushInterval`` to the desired value in the **cluster definition** YAML file.
+#. Optionally, if you need to override the time interval of sending metrics (default is ``30s``),
+   set ``.Values.argo.o11y.sre.pushInterval`` to the desired value in the **cluster definition** YAML file.
 
-#. Optionally, you can override the ``customer`` label of exported metrics (default is ``.Values.argo.clusterName``) by setting ``.Values.argo.o11y.sre.customerLabel`` in the **cluster definition** YAML file.
+#. Optionally, you can override the ``customer`` label of exported metrics (default is ``.Values.argo.clusterName``) by setting
+   ``.Values.argo.o11y.sre.customerLabel`` in the **cluster definition** YAML file.
 
 The following is a snippet of the example YAML file named ``example.yaml``:
 

@@ -6,7 +6,8 @@ This section provides detailed instructions for configuring Edge Orchestrator an
 Prerequisites
 -------------
 
-Before proceeding with the onboarding and provisioning of virtual edge nodes, ensure that Edge Orchestrator has been successfully installed and that the OS profile, specifically selecting the 'SECURITY_FEATURE_NONE' option, is correctly set within the `provider` configuration.
+Before proceeding with the onboarding and provisioning of virtual edge nodes, ensure that Edge Orchestrator has been successfully installed and that the OS profile,
+specifically selecting the 'SECURITY_FEATURE_NONE' option, is correctly set within the `provider` configuration.
 To update the provider configuration, follow the steps in Edge Orchestrator `provider update`.
 
 Additionally, clone the repository to access the necessary scripts and configurations for deployment:
@@ -30,7 +31,8 @@ Example command to download certificate:
 Dependencies
 ------------
 
-This section verifies the essential dependencies for establishing a KVM-based virtualization environment on your system. These dependencies ensure that your system has the necessary tools and libraries to effectively manage and operate virtual machines using KVM.
+This section verifies the essential dependencies for establishing a KVM-based virtualization environment on your system.
+These dependencies ensure that your system has the necessary tools and libraries to effectively manage and operate virtual machines using KVM.
 
 Run the following command to check dependencies:
 
@@ -38,7 +40,8 @@ Run the following command to check dependencies:
 
     make dependency-check
 
-If system supports KVM acceleration, you will see a message stating: "KVM acceleration is supported on this system." If not, you will be prompted to check your BIOS/UEFI settings to ensure that virtualization is enabled.
+If system supports KVM acceleration, you will see a message stating: "KVM acceleration is supported on this system."
+If not, you will be prompted to check your BIOS/UEFI settings to ensure that virtualization is enabled.
 
 Edge Orchestrator and Provisioning VM Configuration
 ---------------------------------------------------
@@ -119,7 +122,8 @@ Before running the NIO flow script, export the project API username and password
 Run the install_package script
 --------------------------------
 
-Before executing the create_vm script, ensure that you run the install_package script. This step is crucial as it installs all necessary dependencies and configurations required for the virtual machine setup.
+Before executing the create_vm script, ensure that you run the install_package script.
+This step is crucial as it installs all necessary dependencies and configurations required for the virtual machine setup.
 
 .. code:: shell
 

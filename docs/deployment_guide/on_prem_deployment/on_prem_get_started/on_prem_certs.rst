@@ -17,7 +17,8 @@ You will need two files to proceed with the Edge Orchestrator installation:
    certificate chain with the primary certificate for the domain, intermediate certificate, and root certificate in leaf-to-root order.
 #. `key.key`: The PEM-encoded private key for the certificate.
 
-An example of the `cert-bundle.crt` file is show below. Ensure the contents of the `cert-bundle.crt` file consist of a PEM-encoded certificate chain with the primary certificate for the domain, intermediate certificate, and root certificate in leaf-to-root order before proceeding.
+An example of the `cert-bundle.crt` file is show below. Ensure the contents of the `cert-bundle.crt` file consist of a PEM-encoded certificate chain with the primary certificate for the domain,
+intermediate certificate, and root certificate in leaf-to-root order before proceeding.
 
 .. note::
    The CA certificate bundle that is installed with Edge Orchestrator cannot be changed after installation. It is recommended to use a CA certificate bundle that is valid for at least 10 years.
@@ -34,7 +35,8 @@ An example of the `cert-bundle.crt` file is show below. Ensure the contents of t
    [root cert]
    -----END CERTIFICATE-----
 
-An example of the TLS key `.key` file is shown below. Ensure the contents of the `key.key` file consist of a PEM-encoded private key before proceeding. The key must be the private key that corresponds to the leaf certificate in the certificate bundle.
+An example of the TLS key `.key` file is shown below. Ensure the contents of the `key.key` file consist of a PEM-encoded private key before proceeding.
+The key must be the private key that corresponds to the leaf certificate in the certificate bundle.
 
 .. code-block:: shell
 
@@ -66,6 +68,8 @@ An Edge Orchestrator deployed with a Self-Signed certificate is not
 upgradable, nor are the Edge Nodes that have been onboarded with that Edge
 Orchestrator.
 
-Using a Self-Signed certificate requires the certificate to be manually added to the trust stores of all clients (e.g., CLI tools, browsers, etc) that want to access the Edge Orchestrator. If a client does not trust the Self-Signed certificate, the client's browser will display an insecure warning when attempting to access the Edge Orchestrator, up to refusing to connect to the Edge Orchestrator.
+Using a Self-Signed certificate requires the certificate to be manually added to the trust stores of all clients (e.g., CLI tools, browsers, etc) that want to access the Edge Orchestrator.
+If a client does not trust the Self-Signed certificate, the client's browser will display an insecure warning when attempting to access the Edge Orchestrator,
+up to refusing to connect to the Edge Orchestrator.
 
 See :doc:`/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_certificates` for information on how to generate a TLS certificate.

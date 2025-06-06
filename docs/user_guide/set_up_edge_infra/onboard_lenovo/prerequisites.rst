@@ -3,7 +3,9 @@ Prerequisites
 
 For HTTP-assisted boot and USB-assisted boot:
 
-- A Linux\* PC that can access |software_prod_name|\ UI and connect with the XCC2 service in the Lenovo servers to configure BIOS settings for the edge node, located on the same network as the edge node.
+- A Linux\* PC that can access |software_prod_name|\ UI and connect with the XCC2
+  service in the Lenovo servers to configure BIOS settings for the edge node,
+  located on the same network as the edge node.
 
 For LOC-A-assisted boot:
 
