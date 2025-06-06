@@ -59,14 +59,16 @@ Lenovo\* Open Cloud Automation (LOC-A) Network Topology (Optional)
 
 When integrating the Lenovo\* Open Cloud Automation (LOC-A) software, you can use the networking settings of your choice.
 
-In general, Edge Orchestrator and LOC-A can share the same subnet, but this might not be desirable for the Baseboard Management Controller (BMC) of the edge devices (or not entirely possible). The following figure shows a simple network topology:
+In general, Edge Orchestrator and LOC-A can share the same subnet, but this might not be desirable for the Baseboard Management Controller (BMC) of the edge devices (or not entirely possible).
+The following figure shows a simple network topology:
 
 .. image:: ../images/on-prem-loca-install-topology-config.png
    :alt: The network topology for Edge Orchestrator and LOC-A
    :width: 500px
    :align: center
 
-In addition to upstream connectivity, Edge Orchestrator requires connectivity to LOC-A; while the edge node requires connectivity to Edge Orchestrator. LOC-A also has its own network environment requirements to ensure proper communication between the LOC-A Portal and the edge nodes. For details on LOC-A and networking settings, see the `Lenovo ISG Support Plan - LOC-A (Lenovo Open Cloud Automation) <https://support.lenovo.com/us/en/solutions/ht509884-loc-a-lenovo-open-cloud-automation-for-vcf>`_.
+In addition to upstream connectivity, Edge Orchestrator requires connectivity to LOC-A; while the edge node requires connectivity to Edge Orchestrator.
+LOC-A also has its own network environment requirements to ensure proper communication between the LOC-A Portal and the edge nodes. For details on LOC-A and networking settings, see the `Lenovo ISG Support Plan - LOC-A (Lenovo Open Cloud Automation) <https://support.lenovo.com/us/en/solutions/ht509884-loc-a-lenovo-open-cloud-automation-for-vcf>`_.
 
 This Edge Orchestrator version is compatible with LOC-A version 3.2.
 
@@ -278,7 +280,8 @@ When integrating the LOC-A and Edge Orchestrator, you will need an additional en
 Squid Proxy Firewall Configuration (Optional)
 ---------------------------------------------
 
-When deploying Edge Orchestrator with Squid proxy, you will need an additional firewall entry to allow the edge node to reach the Squid proxy. Intel recommends that only the edge node subnet is allowed to access the Squid proxy endpoint.
+When deploying Edge Orchestrator with Squid proxy, you will need an additional firewall entry to allow the edge node to reach the Squid proxy.
+Intel recommends that only the edge node subnet is allowed to access the Squid proxy endpoint.
 
 .. list-table:: Network Endpoints for Squid Proxy.
    :header-rows: 1

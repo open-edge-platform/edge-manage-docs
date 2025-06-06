@@ -1,7 +1,7 @@
 Configure External IAM Security Groups (Optional)
 =================================================
 
-If a connection is made between Keycloak solution and an external IAM, you can manage groups 
+If a connection is made between Keycloak solution and an external IAM, you can manage groups
 in Keycloak solution or in the external IAM.
 
 See `Configuring Users and Groups in Keycloak IdP <configuring-users-and-groups-in-keycloak-idp>`__ for additional information on

@@ -32,7 +32,8 @@ After the secret is added, you need to set `imagePullSecrets` to the Kubernetes 
 For the container-based application, you can check and follow this link:
 `ImagePullSecret for Container-based app <https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret>`_
 
-The VM-based application has a different format to set the ImagePullSecret from the container-based application. There are two examples below - one for VM-based application with ephemeral disk and the other one for VM-based application with PV disk.
+The VM-based application has a different format to set the ImagePullSecret from the container-based application.
+There are two examples below - one for VM-based application with ephemeral disk and the other one for VM-based application with PV disk.
 
 * For VMs with ephemeral disk (containerDisk)
 

@@ -1,7 +1,8 @@
 Security
 ========
 
-Throughout development of Edge Orchestrator on-premise, security is always a top priority. This section provides an overview of the security measures in place, the importance of security for the project, and the security policies that are enforced.
+Throughout development of Edge Orchestrator on-premise, security is always a top priority.
+This section provides an overview of the security measures in place, the importance of security for the project, and the security policies that are enforced.
 
 
 Security Policies
@@ -11,7 +12,8 @@ Security Policies
 - Protect authenticity and integrity of microservices inter and infra communications
 - Protect availability of services from network or unprivileged SW adversaries
 - Protect unauthorized access or modification and availability of each tenant's data and resources from other tenant or unprivileged SW adversaries
-- Prevent exposure/disclosure and tampering of the following by network or unprivileged SW adversaries: User application/data (Images, input/output data), cluster logs, configurations, metrics and alerts.
+- Prevent exposure/disclosure and tampering of the following by network or unprivileged SW adversaries:
+    User application/data (Images, input/output data), cluster logs, configurations, metrics and alerts.
 - Prevent onboarding of unauthorized Edge Nodes and applications
 - Prevent authorized but malicious user access to the Orchestrator resources
 

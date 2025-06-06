@@ -23,7 +23,8 @@ To set up a deployment, perform the following steps:
 
 3. In the **Select a Profile** step, select the deployment profile, and click **Next**. The **Override Profile Values** page appears.
 
-4. The **Override Profile Values** page shows the deployment profile values that are available for overriding. Provide the necessary overriding values, then click **Next** to proceed to the **Select Deployment type** step.
+4. The **Override Profile Values** page shows the deployment profile values that are available for overriding.
+   Provide the necessary overriding values, then click **Next** to proceed to the **Select Deployment type** step.
 
 .. figure:: images/override_values.png
    :alt: Override Profile Values

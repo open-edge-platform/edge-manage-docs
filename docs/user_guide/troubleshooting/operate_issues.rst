@@ -23,7 +23,8 @@ hardware, or applications of Edge Orchestrator.
 * `Docker\* Hub returns a 429 Too Many Requests error <#docker-hub-returns-a-429-too-many-requests-error>`__
 * `Host has error status immediately after provisioning <#host-error-status-after-provision>`__
 * `Application VM can't connect to it's cloud counterpart (Exceeded MTU) <#application-vm-can-t-connect-to-it-s-cloud-counterpart-exceeded-mtu>`__
-* `Deployment is not getting installed due to updated Host metadata after first Host configuration to trigger ZTP <#deployment-is-not-getting-installed-due-to-updated-host-metadata-after-first-host-configuration-to-trigger-ztp>`__
+* `Deployment is not getting installed due to updated Host metadata after first`
+  `Host configuration to trigger ZTP <#deployment-is-not-getting-installed-due-to-updated-host-metadata-after-first-host-configuration-to-trigger-ztp>`__
 
 Host has been tampered with by someone obtaining physical access to it
 ---------------------------------------------------------------------------------
@@ -388,7 +389,9 @@ Deployment is not getting installed due to updated Host metadata after first Hos
 
 **Cause**
 
-The customer configured a Host the first time (from the un-configured host page) but forgot some metadata to allow for the deployment, thus the cluster got created without that metadata. The user/admin went in and added the metadata to the host **after** it got configured, directly from the host page. The cluster does not automatically receive the metadata configured on the host after the first configuration step, thus the ZTP of a deployment package is not triggered.
+The customer configured a Host the first time (from the un-configured host page) but forgot some metadata to allow for the deployment, thus the cluster got created without that metadata.
+The user/admin went in and added the metadata to the host **after** it got configured, directly from the host page.
+The cluster does not automatically receive the metadata configured on the host after the first configuration step, thus the ZTP of a deployment package is not triggered.
 
 **Preconditions**
 

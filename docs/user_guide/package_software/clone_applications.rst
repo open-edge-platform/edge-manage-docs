@@ -4,7 +4,8 @@ Clone Deployment Package
 You can replicate a deployment package to create a new instance with similar functionality. The following are a few scenarios for which you can clone an deployment package:
 
 * Update a deployment package but want to keep the older package active.
-* Test a new version of the deployment package before deploying it. In this scenario, you can clone the deployment package, make the required changes, and then set up a deployment environment that limits the deployment of the new package to a few test servers.
+* Test a new version of the deployment package before deploying it. In this scenario, you can clone the deployment package,
+   make the required changes, and then set up a deployment environment that limits the deployment of the new package to a few test servers.
 * Make changes to the deployment package profile.
 
 Perform the following steps to clone a deployment package:

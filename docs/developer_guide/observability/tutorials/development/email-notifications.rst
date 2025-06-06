@@ -122,8 +122,8 @@ Kind environment
 
    Cluster examples provided in `/orch-configs/profiles/alerting-emails.yaml`
    in the `Edge Manageability Framework` repository enable alert notifications
-   by default.  Users should verify this setting before proceeding 
-   with further tasks. Verify that the following section is present in 
+   by default.  Users should verify this setting before proceeding
+   with further tasks. Verify that the following section is present in
    the `alerting-emails.yaml`:
 
    .. code-block:: yaml
@@ -176,7 +176,7 @@ Kind environment
            key: password
          requireTls: false
          insecureSkipVerify: true
-  
+
   In this example, the ``insecureSkipVerify: true`` line disables the SMTP server identity verification.
 
 Accessing MailPit Tool

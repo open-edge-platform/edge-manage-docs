@@ -76,12 +76,12 @@ Option 1: Manual Provider Creation Using Curl Command
 
 .. code-block:: shell
 
-    export JWT_TOKEN=$(curl --location --insecure --request POST "https://keycloak.${CLUSTER}/realms/master/protocol/openid-connect/token" \ 
-    --header 'Content-Type: application/x-www-form-urlencoded' \ 
-    --data-urlencode 'grant_type=password' \ 
-    --data-urlencode 'client_id=system-client' \ 
-    --data-urlencode "username="${PROJECT_API_USER}" \ 
-    --data-urlencode "password="${PROJECT_API_PASSWORD}" \ 
+    export JWT_TOKEN=$(curl --location --insecure --request POST "https://keycloak.${CLUSTER}/realms/master/protocol/openid-connect/token" \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'grant_type=password' \
+    --data-urlencode 'client_id=system-client' \
+    --data-urlencode "username="${PROJECT_API_USER}" \
+    --data-urlencode "password="${PROJECT_API_PASSWORD}" \
     --data-urlencode 'scope=openid profile email groups' | jq -r '.access_token')
 
 3. Sample configuration to delete a provider
@@ -89,7 +89,7 @@ Option 1: Manual Provider Creation Using Curl Command
 
 .. code-block:: shell
 
-    curl -X DELETE -H 'Accept: application/json' -H "Authorization: Bearer ${JWT_TOKEN}" --header "Content-Type: application/json" \ 
+    curl -X DELETE -H 'Accept: application/json' -H "Authorization: Bearer ${JWT_TOKEN}" --header "Content-Type: application/json" \
     https://api.${CLUSTER}/v1/projects/${PROJECT_NAME}/providers/{provider-a2a751f9}
 
 
@@ -98,9 +98,9 @@ Option 1: Manual Provider Creation Using Curl Command
 
 .. code-block:: shell
 
-    curl -X POST "https://api.${CLUSTER}/v1/projects/${PROJECT_NAME}/providers" -H "accept: application/json" \ 
+    curl -X POST "https://api.${CLUSTER}/v1/projects/${PROJECT_NAME}/providers" -H "accept: application/json" \
     -H "Content-Type: application/json" -d '{"providerKind":"PROVIDER_KIND_BAREMETAL","name":"infra_onboarding", \
-    "apiEndpoint":"xyz123", "apiCredentials": ["abc123"], "config": "{\"defaultOs\":\"os-51c4eba0\",\"autoProvision\":false}" }' \ 
+    "apiEndpoint":"xyz123", "apiCredentials": ["abc123"], "config": "{\"defaultOs\":\"os-51c4eba0\",\"autoProvision\":false}" }' \
     -H "Authorization: Bearer ${JWT_TOKEN}"
 
 **Important**: For detailed instructions on configuring autoProvision settings, refer to :doc:`example4_auto_provision_false`

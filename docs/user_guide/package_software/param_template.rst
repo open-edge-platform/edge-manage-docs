@@ -4,7 +4,8 @@ Parameter Templates
 You can use the parameter template to override Helm\* chart values when deploying an application. These
 values are profile-specific and are typically known to the developer. You may need to change some overridden values, or define confidential values as secret, before deployment.
 
-For example, if your application needs a valid IP address to run, you can create a parameter template for the IP address so that unless you provide the IP address, the application will not be deployed.
+For example, if your application needs a valid IP address to run, you can create a parameter template for the IP address so that
+unless you provide the IP address, the application will not be deployed.
 
 To add a parameter template:
 

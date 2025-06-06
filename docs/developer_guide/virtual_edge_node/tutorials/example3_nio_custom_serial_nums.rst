@@ -88,7 +88,7 @@ Check Host Status
 You can see the host status by running the show_host_status.sh script as shown below.
 
 .. code-block:: shell
-   
+
    chmod +x ./scripts/show_host_status.sh
    ./scripts/show_host_status.sh
 

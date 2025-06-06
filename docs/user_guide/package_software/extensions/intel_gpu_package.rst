@@ -62,7 +62,8 @@ Once the application is deployed, enable GPU metrics gathering through the Intel
 
 **Updates**
 
-* Intel GPU's OS extension package can be automatically updated to the latest by the standard OS upgrade process. For details on enabling the OS updates, refer to the Maintenance Manager documentation.
+* Intel GPU's OS extension package can be automatically updated to the latest by the standard OS upgrade process.
+  For details on enabling the OS updates, refer to the Maintenance Manager documentation.
 * Intel GPU's Kubernetes extension can only be updated manually. For details
   on updating, refer to :doc:`../deploy_packages`.
 

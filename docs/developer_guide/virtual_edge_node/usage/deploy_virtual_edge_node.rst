@@ -35,8 +35,8 @@ Option 1: Manual Provider Creation Using Curl Command
    --data-urlencode 'password=${PROJECT_API_PASSWORD}' \
    --data-urlencode 'scope=openid profile email groups' | jq -r '.access_token')
 
-**Important**: Before executing the Below JWT export command, ensure that all NIO configurations are properly exported as environment variables. This step is crucial to ensure that the JWT export process has access to the necessary credentials and
-settings, preventing errors and ensuring smooth execution.
+**Important**: Before executing the Below JWT export command, ensure that all NIO configurations are properly exported as environment variables.
+This step is crucial to ensure that the JWT export process has access to the necessary credentials and settings, preventing errors and ensuring smooth execution.
 
 3. Select an existing OS profile, Sample ``osprofile id`` is **os-51c4eba0**
 4. Sample configuration to delete a provider
@@ -96,7 +96,8 @@ Example Commands
 VMs Creation with Scripts
 -------------------------
 
-Currently, VM onboarding and provisioning are supported only for OS profiles (Ubuntu\* OS with Edge Microvisor Toolkit) where the security feature is set to `SECURITY_FEATURE_NONE`, and the selected OS profile must be set as the default in the provider config.
+Currently, VM onboarding and provisioning are supported only for OS profiles (Ubuntu\* OS with Edge Microvisor Toolkit) where the security feature is set to `SECURITY_FEATURE_NONE`,
+and the selected OS profile must be set as the default in the provider config.
 
 .. figure:: ./images/Security_feature.png
   :alt: Security feature none OS resource

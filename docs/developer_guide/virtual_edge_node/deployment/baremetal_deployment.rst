@@ -2,7 +2,8 @@
 Installation On BareMetal Server
 ================================
 
-The Virtual Edge Node provisioning tool streamlines VM setup on bare metal servers using automated scripts and templates. Start by preparing your server environment and following the provided instructions for efficient deployment.
+The Virtual Edge Node provisioning tool streamlines VM setup on bare metal servers using automated scripts and templates.
+Start by preparing your server environment and following the provided instructions for efficient deployment.
 
 .. toctree::
     :maxdepth: 1

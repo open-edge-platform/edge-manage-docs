@@ -44,7 +44,8 @@ To check the vpc tunnel, run the following command:
 
    ps -ax | grep sshuttle
 
-The output of the ``ps`` command will show several ``sshuttle`` related processes running. If the processes are not running, something has prevented the tunnel from being established or caused it to be reset.
+The output of the ``ps`` command will show several ``sshuttle`` related processes running.
+If the processes are not running, something has prevented the tunnel from being established or caused it to be reset.
 
 The most common cause for this failure is a missing or invalid ``socks_proxy`` environment variable. Ensure that the
 ``socks_proxy`` environment variable is set to a working proxy server that supports SOCKS proxy connections. If

@@ -14,11 +14,11 @@ To edit an application:
 
 3. Edit the chart and image related fields on this page and click **Next**.
 
-	.. note:: You cannot edit the registry location fields.
+  .. note:: You cannot edit the registry location fields.
 
 #. Edit the application details fields on this page and click **Next**.
 
-	.. note:: You cannot edit the name and version of the application.
+  .. note:: You cannot edit the name and version of the application.
 
 #. In the **Profiles** page, set a default profile to the selected application or remove a profile that is set as default.
 

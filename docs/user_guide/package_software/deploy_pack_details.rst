@@ -1,7 +1,8 @@
 View Deployment Package Details
 =====================================
 
-You can view the deployment package details, including the creation date, deployment status, and the applications available in the package. To view the details of an deployment package, do the following:
+You can view the deployment package details, including the creation date, deployment status, and the applications available in the package.
+To view the details of an deployment package, do the following:
 
 1. In the **Deployment Packages** page, select the desired deployment package to view its details.
 

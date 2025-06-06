@@ -48,7 +48,8 @@ On the other hand, the Kubernetes resource `akri.io/gsm-dongle` is just one.
 Attach USB Peripherals to Container-based Applications
 ----------------------------------------------------------
 
-In the Kubernetes resource files creating Kubernetes pod such as Deployment, StatefulSet, and so on,`requests` and `limits` in `resources` section must have the Kubernetes USB peripherals resource IDs and the number of requested resources.
+In the Kubernetes resource files creating Kubernetes pod such as Deployment, StatefulSet, and so on,
+`requests` and `limits` in `resources` section must have the Kubernetes USB peripherals resource IDs and the number of requested resources.
 
 .. code:: yaml
 

@@ -12,7 +12,8 @@ You can follow this guide to see the requests and responses that the UI sends an
 
 #. Open the browser console
     - Note that to capture requests the console needs to be open before the request is sent
-    - To do that, right-click anywhere on the page, and select “Inspect” (note that different browsers will have small variations, e.g., “Inspect Element”). The common shortcut to open the console is Cmd + Alt + J (Google* Chrome on Mac*)
+    - To do that, right-click anywhere on the page, and select “Inspect” (note that different browsers will have small variations, e.g., “Inspect Element”).
+      The common shortcut to open the console is Cmd + Alt + J (Google* Chrome on Mac*)
 #. In the top Menu of the console select “Network”
     - You can filter the request for “Fetch/XHR” as all the API interactions will be in that category
     - If you are looking for a specific object and you know the ID (e.g., a deployment) you can also use the text box to filter only the requests that have that ID in the URL
@@ -43,7 +44,8 @@ You can follow this guide to see the requests and responses that the UI sends an
 Known issues and solutions
 ==========================
 
-The following is a list of known issues that occasionally appear in the UI during development and the best-known solution. This is not intended to address issues in productions, as those should be treated as bugs and fixed.
+The following is a list of known issues that occasionally appear in the UI during development and the best-known solution.
+This is not intended to address issues in productions, as those should be treated as bugs and fixed.
 
 Application registries cannot be fetched
 ----------------------------------------

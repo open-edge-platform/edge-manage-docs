@@ -111,9 +111,11 @@ Update OS Resources
 -------------------------
 You can now update the chosen OS resource by patching the OS resource.
 
-1. Add the APT source created in multi-line format, to the `updateSources` list in single-line format. The following example includes two update sources: the Intel(R) Release Service repository and the MongoDB\* repository.
+1. Add the APT source created in multi-line format, to the `updateSources` list in single-line format.
+    The following example includes two update sources: the Intel(R) Release Service repository and the MongoDB\* repository.
 
-#. Add the names of the packages that must be installed, to the `installedPackages` field, separating them with the "\n" character. You cannot specify versions of the package; the latest version available in the APT repository will be installed.
+#. Add the names of the packages that must be installed, to the `installedPackages` field, separating them with the "\n" character.
+    You cannot specify versions of the package; the latest version available in the APT repository will be installed.
 
 .. note:: Ensure that the `updateSources` and `installedPackages` fields contain the previous values plus the additional values required by the update; the `PATCH` overrides their content.
 
@@ -153,7 +155,8 @@ In case of an update failure, the Platform Update Agent will return a relevant f
 Successful Ubuntu OS Update
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Upon successful completion of the update procedure, the relevant status will be displayed in the UI for the updated host. Note that the update status will change to "No new updates available" shortly after completion.
+Upon successful completion of the update procedure, the relevant status will be displayed in the UI for the updated host.
+Note that the update status will change to "No new updates available" shortly after completion.
 
 .. figure:: images/update_done_ubuntu.png
       :alt: Ubuntu OS update complete
