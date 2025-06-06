@@ -20,7 +20,8 @@ solutions at scale. |software_prod_name| provides:
   deployments.
 
 - **Flexible Configuration**: From organizing your physical
-  infrastructure to managing the permutations of executing applications in a variety of runtime environments, |software_prod_name| gives you flexibility to define the policies, criteria, and hierarchies that make the most sense for your specific business needs.
+  infrastructure to managing the permutations of executing applications in a variety of runtime environments,
+  |software_prod_name| gives you flexibility to define the policies, criteria, and hierarchies that make the most sense for your specific business needs.
 
 See the :doc:`Get Started section </user_guide/get_started_guide/index>` for prerequisites and steps
 for initial configuration of the service.

@@ -12,7 +12,8 @@ You can also search for regions or sites using the search box.
 
 **Regions**
 
-Regions represent a physical area and are designed to adapt to your needs. As there are many ways to split up physical areas, |software_prod_name| allows you to implement your preferred scheme. For instance, regions can be:
+Regions represent a physical area and are designed to adapt to your needs. As there are many ways to split up physical areas,
+|software_prod_name| allows you to implement your preferred scheme. For instance, regions can be:
 
 * East and West groups
 * Geopolitical boundaries such as North American States, Canadian Territories, Japanese Prefectures

@@ -54,13 +54,18 @@ Specifically for observability, the following Edge Orchestrator profiles are use
 * The large-scale profile ``o11y-onprem-1k`` supports up to 1,000
   edge nodes.
 
-The default replication factor for edge node logs and metrics is ``3``. You can configure it in the cluster definition with these settings: ``.Values.argo.o11y.edgeNode.loki.replicationFactor`` and ``.Values.argo.o11y.edgeNode.mimir.replicationFactor``.
+The default replication factor for edge node logs and metrics is ``3``.
+You can configure it in the cluster definition with these settings:
+``.Values.argo.o11y.edgeNode.loki.replicationFactor`` and ``.Values.argo.o11y.edgeNode.mimir.replicationFactor``.
 
 .. note:: Replication factor ``2`` is not supported for Grafana Mimir\* storage (metrics).
 
-The default data retention period for edge node logs and metrics is 1 day (``24h``). You can configure it in the cluster definition with these settings: ``.Values.argo.o11y.edgeNode.loki.logRetentionPeriod`` and ``.Values.argo.o11y.edgeNode.mimir.structuredConfig.metricsRetentionPeriod``.
+The default data retention period for edge node logs and metrics is 1 day (``24h``).
+You can configure it in the cluster definition with these settings:
+``.Values.argo.o11y.edgeNode.loki.logRetentionPeriod`` and ``.Values.argo.o11y.edgeNode.mimir.structuredConfig.metricsRetentionPeriod``.
 
-The default data retention period for edge node provisioning logs is 7 days (``168h``). You can configure it in the cluster definition with the setting ``.Values.argo.o11y.edgeNode.loki.provisioningLogRetentionPeriod``.
+The default data retention period for edge node provisioning logs is 7 days (``168h``).
+You can configure it in the cluster definition with the setting ``.Values.argo.o11y.edgeNode.loki.provisioningLogRetentionPeriod``.
 
 .. note:: The minimum data retention period for edge node logs and metrics is 1 day (``24h``).
 

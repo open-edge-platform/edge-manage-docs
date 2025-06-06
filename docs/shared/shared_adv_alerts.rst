@@ -62,7 +62,8 @@ Prometheus Alertmanager trusts CAs added by the Prometheus Team
 from the Debian Linux distribution `ca-certificates <https://packages.debian.org/buster/all/ca-certificates/filelist>`_,
 and checks that the certificate is signed by a trusted CA.
 
-If the SMTP server is using a self-signed certificate, or a certificate signed by a non-public CA, this verification process will fail. Self-signed certificates and certificates signed by non-public CAs aren't automatically trusted.
+If the SMTP server is using a self-signed certificate, or a certificate signed by a non-public CA, this verification process will fail.
+Self-signed certificates and certificates signed by non-public CAs aren't automatically trusted.
 
 Configure self-signed or non-public SMTP server
 +++++++++++++++++++++++++++++++++++++++++++++++

@@ -1,7 +1,9 @@
 Troubleshooting DKAM Failed State
 =================================
 
-There is a known issue where the DKAM may enter a failure state due to storage complications when deployed on-premises. The root cause is the persistent volume Claim (PVC) being provisioned with the openebs-hostpath storage class, which is not ideal for this setup. The recommended solution is to transition to the openebs-lvmpv storage class, which will be incorporated in a future release.
+There is a known issue where the DKAM may enter a failure state due to storage complications when deployed on-premises.
+The root cause is the persistent volume Claim (PVC) being provisioned with the openebs-hostpath storage class, which is not ideal for this setup.
+The recommended solution is to transition to the openebs-lvmpv storage class, which will be incorporated in a future release.
 
 Check for DKAM Failed State
 ---------------------------------

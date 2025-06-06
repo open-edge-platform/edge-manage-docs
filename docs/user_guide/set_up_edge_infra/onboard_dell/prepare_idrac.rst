@@ -3,7 +3,7 @@ Prepare Dell iDRAC
 
 Enable UEFI Secure Boot (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Secure Boot (SB) is disabled by default. To enable it, follow the steps below to configure SB in the BIOS. 
+Secure Boot (SB) is disabled by default. To enable it, follow the steps below to configure SB in the BIOS.
 After that, refer to the instructions in :doc:`/shared/shared_secure_boot_opt_in` for enabling SB in |software_prod_name|\ .
 
 Enabling Secure Boot is optional, but recommended.

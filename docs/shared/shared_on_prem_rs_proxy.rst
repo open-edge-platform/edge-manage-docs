@@ -3,7 +3,8 @@ rs-proxy is not deploying when proxy is set
 
 The recommended way to set the proxy on on-prem is by following the approach described in :ref:`set_up_dev_environment`.
 
-However, it has been observed that in some environments behind a proxy, egress communication may be blocked by the `istio-proxy`. As a result, the `rs-proxy` does not get deployed. To resolve this, follow these steps:
+However, it has been observed that in some environments behind a proxy, egress communication may be blocked by the `istio-proxy`.
+As a result, the `rs-proxy` does not get deployed. To resolve this, follow these steps:
 
 #. For simplicity, assume this is a first-time deployment. Run the command below to uninstall the on-prem orchestrator:
 
@@ -31,7 +32,7 @@ However, it has been observed that in some environments behind a proxy, egress c
        Enter 'yes' to confirm that configuration is done in order to progress with installation
        ('no' will exit the script) !!!
 
-       Ready to proceed with installation? 
+       Ready to proceed with installation?
 
 #. In a separate terminal window, SSH into the VM running the installer. This document assumes the `onprem` profile is installed. If different, adjust as needed. Open the profile file:
 

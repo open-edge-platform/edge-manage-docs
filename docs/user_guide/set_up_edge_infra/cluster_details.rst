@@ -39,13 +39,13 @@ You can view the following details:
       * **unknown** - Status cannot be determined
 
    * **Infrastructure Ready** - Shows the readiness of the infrastructure.
-   
+
       * **ready** - Infrastructure fully functional
       * **not ready** - Infrastructure still initializing
       * **unknown** - Status cannot be determined
 
    * **Node Healthy** - Summarizes the health of the nodes in the cluster.
-      
+
       * **nodes are healthy** - All nodes are operational and passing health checks
       * **node(s) health unknown (X/Y)** - Some nodes haven't reported health yet
       * **nodes are unhealthy (X/Y)** - One or more nodes have failed health checks

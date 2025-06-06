@@ -16,7 +16,8 @@ Preparing software for automated deployment involves these steps:
    Import apps to the service from |software_prod_name|\'s registry or from a public or private registry. External registries must be added to the service before first use.
 
    |software_prod_name| creates a default application profile for each app you
-   import. Application profiles let you define chart values that can be overridden at the time of deployment. This lets you accommodate a range of runtime environments using a single deployment package.
+   import. Application profiles let you define chart values that can be overridden at the time of deployment.
+   This lets you accommodate a range of runtime environments using a single deployment package.
 
 #. Package and customize applications
 

@@ -4,10 +4,10 @@
 Delete Cluster Template
 ================================
 
-You can delete a previously imported cluster template.  
+You can delete a previously imported cluster template.
 
-.. note:: 
-   You cannot delete a cluster template that is either assigned as the default cluster template or was used to create existing clusters.    
+.. note::
+   You cannot delete a cluster template that is either assigned as the default cluster template or was used to create existing clusters.
 
 Perform the following steps to delete a cluster template:
 
@@ -18,7 +18,7 @@ Perform the following steps to delete a cluster template:
 .. figure:: images/delete_customer_template.png
    :width: 100 %
    :alt: Delete Cluster Template
-   
+
 3. On the confirmation window, click **Delete**.
 
 

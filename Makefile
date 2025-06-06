@@ -37,10 +37,10 @@ $(VENV_DIR): requirements.txt
 check: | $(VENV_DIR) ## Check for and/or install prerequisite tools
 
 # Eventually we want:
-# lint: license yamllint pylint black doc8 sphinx-spelling sphinx-linkcheck markdownlint ## Lint all tooling and docs
+# lint: license yamllint pylint black sphinx-spelling sphinx-linkcheck markdownlint ## Lint all tooling and docs
 
 # But for now, turn off format, spelling, link checks
-lint: license yamllint pylint black ## Lint all tooling
+lint: license yamllint pylint black doc8 ## Lint all tooling
 
 license: $(VENV_DIR) ## license check with REUSE tool
 	set +u; . ./$</bin/activate; set -u ;\

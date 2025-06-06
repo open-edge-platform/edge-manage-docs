@@ -130,7 +130,8 @@ is set to the OS Profile name you are trying to install (e.g. `microvisor-nonrt`
 Enable UEFI Secure Boot (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Secure Boot is disabled by default. To enable it, perform the following steps to configure secure boot in the BIOS. After that, see :doc:`/shared/shared_secure_boot_opt_in` to enable secure boot in |software_prod_name|\ .
+Secure Boot is disabled by default. To enable it, perform the following steps to configure secure boot in the BIOS. After that,
+see :doc:`/shared/shared_secure_boot_opt_in` to enable secure boot in |software_prod_name|\ .
 
 #. To enable secure boot, navigate to `System Settings` > `Security` > `Secure Boot Configuration`. Enable secure boot and change the policy to Custom:
 
@@ -146,7 +147,8 @@ Secure Boot is disabled by default. To enable it, perform the following steps to
 
 #. Save and reboot the node in System Setup.
 
-#. Reset the trusted platform module hierarchy and clear the trusted platform module by navigating to `System Settings`, `Security`, `Secure Boot Configuration`, `TPM`, `TPM2`. Select `Clear` in the `TPM2 Operation` dialog:
+#. Reset the trusted platform module hierarchy and clear the trusted platform module by navigating
+   to `System Settings`, `Security`, `Secure Boot Configuration`, `TPM`, `TPM2`. Select `Clear` in the `TPM2 Operation` dialog:
 
    .. image:: ../images/clear-tpm.png
       :alt: Clear TPM
@@ -157,7 +159,8 @@ Secure Boot is disabled by default. To enable it, perform the following steps to
 HTTP Boot Option
 ^^^^^^^^^^^^^^^^^
 
-#. To create the HTTP boot option, navigate to `System Settings` > `Network` > `HTTP Boot Configuration`. Select the interface that has upstream connectivity with |software_prod_name| \ . Create a boot option:
+#. To create the HTTP boot option, navigate to `System Settings` > `Network` > `HTTP Boot Configuration`.
+   Select the interface that has upstream connectivity with |software_prod_name| \ . Create a boot option:
 
    .. image:: ../images/boot-option.png
       :alt: Boot Option

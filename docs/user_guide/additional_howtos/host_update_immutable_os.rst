@@ -23,14 +23,16 @@ The latest Edge Microvisor Toolkit profile contains information about the latest
 OS Resource Manager Default Operation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, the OS Resource manager will automatically link the new OS Resource containing information about the latest Edge Microvisor Toolkit image, to the desired OS within the edge node instances associated with this type of OS.
+By default, the OS Resource manager will automatically link the new OS Resource containing information about the latest Edge Microvisor Toolkit image,
+to the desired OS within the edge node instances associated with this type of OS.
 This means that whenever a newer version of the the Edge Microvisor Toolkit is released, a subsequent scheduled update of the edge node will result in the latest OS being installed.
 
 Enable OS Resource Manager in Manual Mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It is possible to disable the automatic OS Resource linkage in the OS Resource Manager.
-This will allow for use cases where the latest-available Edge Microvisor Toolkit version may not be desirable, and an update within the fleet of edge nodes will only install a specific available version of the OS.
+This will allow for use cases where the latest-available Edge Microvisor Toolkit version may not be desirable,
+and an update within the fleet of edge nodes will only install a specific available version of the OS.
 To disable the automatic OS Resource linkage the Edge Orchestrator will be deployed with, enable the **os-resource-manager-manual-mode: true** option in the **enable-osrm-manual-mode.yaml**
 profile file of the Edge Orchestrator's orch-configs repository.
 For more information on how to deploy and configure Edge Orchestrator, refer to the relevant installation guide for either the cloud or on-premises.
@@ -43,42 +45,42 @@ To link an OS Resource to the desired OS within the edge-node instances when the
 
 1. Obtain access to API and discover the available OS Resources:
 
-	.. code-block::
+    .. code-block::
 
-		  CLUSTER_FQDN=<example.domain>
-		  ADMIN_USERNAME=<example_admin>
-		  ADMIN_PASSWORD=<example_password>
-		  CLIENT_ID=<example_clientID>
-		  PROJECT=<example_project>
+          CLUSTER_FQDN=<example.domain>
+          ADMIN_USERNAME=<example_admin>
+          ADMIN_PASSWORD=<example_password>
+          CLIENT_ID=<example_clientID>
+          PROJECT=<example_project>
 
-		  JWT_TOKEN=$(curl -s --location --request POST "https://keycloak.${CLUSTER_FQDN}/realms/master/protocol/openid-connect/token" \
-		  --header 'Content-Type: application/x-www-form-urlencoded' \
-		  --data-urlencode "grant_type=password" \
-		  --data-urlencode "client_id=${CLIENT_ID}" \
-		  --data-urlencode "username=${ADMIN_USERNAME}" \
-		  --data-urlencode "password=${ADMIN_PASSWORD}" \
-		  --data-urlencode "scope=openid profile email groups" | jq -r .access_token)
+          JWT_TOKEN=$(curl -s --location --request POST "https://keycloak.${CLUSTER_FQDN}/realms/master/protocol/openid-connect/token" \
+          --header 'Content-Type: application/x-www-form-urlencoded' \
+          --data-urlencode "grant_type=password" \
+          --data-urlencode "client_id=${CLIENT_ID}" \
+          --data-urlencode "username=${ADMIN_USERNAME}" \
+          --data-urlencode "password=${ADMIN_PASSWORD}" \
+          --data-urlencode "scope=openid profile email groups" | jq -r .access_token)
 
-		  export MI_API_URL=https://api.${CLUSTER_FQDN}/v1/projects/${PROJECT}
+          export MI_API_URL=https://api.${CLUSTER_FQDN}/v1/projects/${PROJECT}
 
-		  curl -X GET "$MI_API_URL/compute/os" -H "accept:application/json" -H "Authorization: Bearer ${JWT_TOKEN}"  | jq
+          curl -X GET "$MI_API_URL/compute/os" -H "accept:application/json" -H "Authorization: Bearer ${JWT_TOKEN}"  | jq
 
 #. Update the desired OS field of the instance in the inventory:
 
-	.. code-block::
+    .. code-block::
 
-		  # Find the instance
-		  curl -X GET "$MI_API_URL/compute/instances" -H "accept:application/json" -H "Authorization: Bearer ${JWT_TOKEN}"  | jq
+          # Find the instance
+          curl -X GET "$MI_API_URL/compute/instances" -H "accept:application/json" -H "Authorization: Bearer ${JWT_TOKEN}"  | jq
 
-		  # Update the instance with selected OS Resource containing desired OS version. Replace **<OSRESOURCE_ID>** and **<INSTANCE_ID>** with desired IDs.
-		  curl -X PATCH -H 'Accept: application/json' -H "Authorization: Bearer ${JWT_TOKEN}" --data '{"osId": "<OSRESOURCE_ID>"}' --header "Content-Type: application/json" $MI_API_URL/compute/instances/<INSTANCE_ID>
+          # Update the instance with selected OS Resource containing desired OS version. Replace **<OSRESOURCE_ID>** and **<INSTANCE_ID>** with desired IDs.
+          curl -X PATCH -H 'Accept: application/json' -H "Authorization: Bearer ${JWT_TOKEN}" --data '{"osId": "<OSRESOURCE_ID>"}' --header "Content-Type: application/json" $MI_API_URL/compute/instances/<INSTANCE_ID>
 
 
 #. From now on, any scheduled update will attempt to update the Edge Microvisor Toolkit to the specified version. To verify:
 
-	.. code-block::
+    .. code-block::
 
-		  curl -X GET "$MI_API_URL/compute/instances" -H "accept:application/json" -H "Authorization: Bearer ${JWT_TOKEN}"  | jq
+        curl -X GET "$MI_API_URL/compute/instances" -H "accept:application/json" -H "Authorization: Bearer ${JWT_TOKEN}"  | jq
 
 Display Available Updates on UI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

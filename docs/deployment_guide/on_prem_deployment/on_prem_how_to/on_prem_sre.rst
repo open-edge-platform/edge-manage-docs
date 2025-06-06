@@ -49,7 +49,8 @@ You can configure the SRE Exporter service, export time interval, and ``customer
 
 #. To enable or disable the SRE Exporter service, include or exclude ``profiles/enable-sre.yaml`` in the *cluster definition* YAML file under ``root.clusterValues``.
 #. Optionally, if need to override the time interval of sending metrics (default is ``30s``), set ``.Values.argo.o11y.sre.pushInterval`` to the desired value in the *cluster definition* YAML file.
-#. Optionally, ``customer`` label of exported metrics can be overridden (default is ``.Values.argo.clusterName``) by setting ``.Values.argo.o11y.sre.customerLabel`` in the *cluster definition* YAML file.
+#. Optionally, ``customer`` label of exported metrics can be overridden (default is ``.Values.argo.clusterName``) by setting
+   ``.Values.argo.o11y.sre.customerLabel`` in the *cluster definition* YAML file.
 
 See an example of snippet of the cluster definition YAML file named ``example.yaml`` below.
 

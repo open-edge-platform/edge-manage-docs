@@ -76,7 +76,8 @@ To troubleshoot:
 
 Deployment is in Unknown state
 ------------------------------
-When a deployment is in the Unknown state, this means that the Fleet Agent on at least one of its clusters has not reported in for a configurable period (default is 32 minutes, controlled by the `fleet.agentCheckIn` value). Possible causes include:
+When a deployment is in the Unknown state, this means that the Fleet Agent on at least one of its clusters has not reported in for a configurable
+period (default is 32 minutes, controlled by the `fleet.agentCheckIn` value). Possible causes include:
 
 - The cluster may be offline.
 - The Fleet Agent may have crashed and is not able to restart.
@@ -284,8 +285,10 @@ App Deployment Manager Custom Resources
 App Deployment Manager k8s CRs are used to manage the deployment of applications. Here are some of the ADM CRDs and their purposes:
 
 * **Deployment**: Represents a deployment of a deployment package. It contains information about the list of applications, target clusters, and the status of the deployment
-* **DeploymentCluster**: Represents a deployment of a deployment package to a specific cluster. It contains information about the status of the deployment and the list of application instances in the cluster.
-* **Cluster**: Represents an edge cluster that will be used by ADM to deploy applications. This resource is created by ADM for App deployment purposes when the cluster is provisioned by cluster orchestration.
+* **DeploymentCluster**: Represents a deployment of a deployment package to a specific cluster.
+  It contains information about the status of the deployment and the list of application instances in the cluster.
+* **Cluster**: Represents an edge cluster that will be used by ADM to deploy applications.
+  This resource is created by ADM for App deployment purposes when the cluster is provisioned by cluster orchestration.
 
 Here examples of using `kubectl` commands to check the status of the CRs with a output similar to the following:
 

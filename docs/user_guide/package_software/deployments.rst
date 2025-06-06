@@ -5,11 +5,14 @@ A deployment contains a deployment package name, profile name, deployment type, 
 
 Deployment to clusters and their hosts is initiated when one or more clusters meet the deployment's target cluster criteria.
 
-A **Deployment Instance** refers to an instance of a deployment that has been deployed to a cluster. It represents the state of that deployment on a specific cluster, essentially the status of applications within the deployed deployment package.
+A **Deployment Instance** refers to an instance of a deployment that has been deployed to a cluster.
+It represents the state of that deployment on a specific cluster, essentially the status of applications within the deployed deployment package.
 
-Click the **Deployments** tab on the top menu to view the **Deployments** page. In the **Deployments** page, you can view the list of the deployments that have been created. The status indicator shows a quick view of the status of the deployment that depends on many factors.
+Click the **Deployments** tab on the top menu to view the **Deployments** page. In the **Deployments** page, you can view the list of the deployments that have been created.
+The status indicator shows a quick view of the status of the deployment that depends on many factors.
 
-Using the search bar at the top of the page, you can search for a deployment. The other actions that you can perform from this page are setting up a deployment, deleting a deployment, and upgrading a deployment.
+Using the search bar at the top of the page, you can search for a deployment.
+The other actions that you can perform from this page are setting up a deployment, deleting a deployment, and upgrading a deployment.
 
 .. figure:: images/deployments_main.png
    :scale: 50 %

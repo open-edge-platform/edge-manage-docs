@@ -1,7 +1,8 @@
 Load Balancer Package
 =============================================================
 
-The Load Balancer Package enables load balancer and Domain Name System (DNS) services for workloads running on the edge. This package allows accessing applications deployed on edge nodes using a Fully Qualified Domain Name (FQDN) instead of the IP address.
+The Load Balancer Package enables load balancer and Domain Name System (DNS) services for workloads running on the edge.
+This package allows accessing applications deployed on edge nodes using a Fully Qualified Domain Name (FQDN) instead of the IP address.
 
 External IP address resolution is achieved by associating FQDN and assigning a routable IP address to your application.
 
@@ -65,8 +66,8 @@ How to Apply Load Balancer, DNS, and Ingress
 In many cases, you need to communicate with the edge applications from the systems outside the edge cluster.
 This may include IoT sensors, media displays, or interactive users that need to connect to the applications deployed onto the edge node.
 
-Though there are different ways, Intel recommends that you use the Load Balancer Package, which can provide the ability to assign externally accessible IP addresses and user-friendly FQDN for the edge application services.
-Or, even it supports the Ingress Kubernetes service too to access application services.
+Though there are different ways, Intel recommends that you use the Load Balancer Package, which can provide the ability to assign externally accessible IP addresses
+and user-friendly FQDN for the edge application services. Or, even it supports the Ingress Kubernetes service too to access application services.
 
 .. _apply_load_balancer_dns:
 
@@ -96,7 +97,8 @@ Do the following to use the Load Balancer package in the application Helm chart 
 
    Typically, you can configure the `type` and `loadBalancerIP` fields using chart overriding values.
 
-#. If you want to assign user-friendly FQDN instead of static Load Balancer IP, add the following annotation to the Service specification. Annotation value can be any domain name that you like. Also, include the annotation value variable in the chart.
+#. If you want to assign user-friendly FQDN instead of static Load Balancer IP, add the following annotation to the Service specification.
+   Annotation value can be any domain name that you like. Also, include the annotation value variable in the chart.
 
    .. code:: yaml
 

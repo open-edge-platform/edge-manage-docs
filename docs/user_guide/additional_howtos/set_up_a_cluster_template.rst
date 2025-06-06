@@ -1,7 +1,8 @@
 Cluster Template
 ==========================
 
-A cluster template is a predefined configuration or blueprint for setting up and managing clusters. Cluster templates allow you to rapidly provision and deploy clusters with uniform configurations, minimizing time and effort.
+A cluster template is a predefined configuration or blueprint for setting up and managing clusters.
+Cluster templates allow you to rapidly provision and deploy clusters with uniform configurations, minimizing time and effort.
 
 Edge Orchestrator supports the JSON format for creating, exporting, or importing a cluster template.
 
@@ -54,7 +55,8 @@ Built-in cluster templates have the following deployment metadata labels:
      - "default-extension": "privileged"
 
 
-|software_prod_name| comes with three built-in deployments corresponding to default deployment metadata. These are referred to as base extensions and contain the following set of common preconfigured Kubernetes extensions:
+|software_prod_name| comes with three built-in deployments corresponding to default deployment metadata.
+These are referred to as base extensions and contain the following set of common preconfigured Kubernetes extensions:
 
   * `Node Feature Discovery <https://intel.github.io/kubernetes-docs/nfd>`_
   * `OpenEBS\* container-attached storage solution <https://openebs.io/docs/>`_

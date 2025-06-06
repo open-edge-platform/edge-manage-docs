@@ -111,7 +111,8 @@ When the app registration is complete, verify the manifest has the correct value
    The ``optionalClaims`` value adds a group claim to provide membership data from Azure AD to Keycloak solution,
    and shares user group information.
 
-   The ``replyUrlsWithType`` value must include the Keycloak Redirect URI for any Keycloak IdP that connects to this registered application. Azure AD generates this URL when the Keycloak IdP connection is complete.
+   The ``replyUrlsWithType`` value must include the Keycloak Redirect URI for any Keycloak IdP that connects to this registered application.
+   Azure AD generates this URL when the Keycloak IdP connection is complete.
 
 Verify the SSO Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

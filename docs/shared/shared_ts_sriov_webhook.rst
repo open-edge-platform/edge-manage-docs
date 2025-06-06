@@ -1,7 +1,8 @@
 Troubleshooting SRIOV Extension Failed State
 =================================================
 
-There is a known issue where the SRIOV extension may enter a failure state due to permission settings in recent images. Despite this, the UI may show the deployment as "Running." We recommend applying a workaround until we resolve the root cause in a future release.
+There is a known issue where the SRIOV extension may enter a failure state due to permission settings in recent images.
+Despite this, the UI may show the deployment as "Running." We recommend applying a workaround until we resolve the root cause in a future release.
 
 
 Check for SRIOV Failed State

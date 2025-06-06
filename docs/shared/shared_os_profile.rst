@@ -33,9 +33,11 @@ The core part of an OS profile is the definition of an OS image to be installed 
 The OS image is attached to an OS profile by setting an URL where it is stored at.
 
 As of now, the Ubuntu images are directly downloaded to Edge Nodes from the upstream mirrors, while the Edge Microvisor Toolkit images are downloaded from the Release Service.
-This impacts how the OS image URL is defined in an OS profile - Ubuntu OS profiles will contain full path to the upstream mirror, while Edge Microvisor Toolkit OS profiles will only specify a sub-path on the Release Service that identifies an artifact.
+This impacts how the OS image URL is defined in an OS profile - Ubuntu OS profiles will contain full path to the upstream mirror,
+while Edge Microvisor Toolkit OS profiles will only specify a sub-path on the Release Service that identifies an artifact.
 
-Moreover, the OS profile should specify a SHA-256 checksum along with the OS image URL. The SHA256 is transferred via a secure channel to Edge Nodes during provisioning and is used for the integrity check of the downloaded OS image.
+Moreover, the OS profile should specify a SHA-256 checksum along with the OS image URL.
+The SHA256 is transferred via a secure channel to Edge Nodes during provisioning and is used for the integrity check of the downloaded OS image.
 
 Immutability of Operating System
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -50,7 +52,9 @@ This approach improves reliability, consistency, and security by preventing unin
 
 The important consequence of OS immutability is that any OS updates are made by replacing the entire OS image rather than modifying system in-place.
 
-In contrast, a mutable OS follows the traditional model where the system is fully writable. Users and administrators can modify files, install or remove packages, and change configurations directly on the running system. Updates are typically applied in-place, which offers flexibility but may increase the risk of drift, inconsistencies, or configuration errors over time.
+In contrast, a mutable OS follows the traditional model where the system is fully writable.
+Users and administrators can modify files, install or remove packages, and change configurations directly on the running system.
+Updates are typically applied in-place, which offers flexibility but may increase the risk of drift, inconsistencies, or configuration errors over time.
 
 The Edge Orchestrator supports both mutable and immutable OSes, with dedicated, distinct Day0 and Day2 workflows. Therefore, each OS Profile must define
 an OS type - immutable or mutable. Depending on the OS type, the Edge Orchestrator will use a different set of Day0 installation scripts and a dedicated Day2 workflow for OS updates.
@@ -60,7 +64,8 @@ Security Features
 
 The Edge Orchestrator supports advanced security features like Secure Boot (SB) or Full-Disk Encryption (FDE) (see :doc:`/developer_guide/infra_manager/arch/security`).
 
-Since not all of Operating Systems support these security features, the OS profile should explicitly define OS security capabilities (SB+FDE or none). The OS security features define the maximum security level that can be set for an Edge Node that uses a given OS Profile.
+Since not all of Operating Systems support these security features, the OS profile should explicitly define OS security capabilities (SB+FDE or none).
+The OS security features define the maximum security level that can be set for an Edge Node that uses a given OS Profile.
 
 Examples of OS Profile Resources
 --------------------------------

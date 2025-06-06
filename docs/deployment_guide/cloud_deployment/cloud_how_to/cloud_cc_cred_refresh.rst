@@ -30,7 +30,8 @@ When an administrator receives a notification email from AWS that the access key
 #. (Optional) Add a description for the new access key on the **Set description tag** page. Select **Create access key** to proceed.
 
 #. Select **Download the .csv file** to retrieve a file containing the new
-   ``Access key ID`` and ``Secret access key``. Store the ``.csv`` file in a secure location. You will need the ``Access key ID`` and ``Secret access key`` to update the Edge Orchestrator settings in the next step.
+   ``Access key ID`` and ``Secret access key``. Store the ``.csv`` file in a secure location.
+   You will need the ``Access key ID`` and ``Secret access key`` to update the Edge Orchestrator settings in the next step.
 
 
 Provide the updated credentials to Edge Orchestrator

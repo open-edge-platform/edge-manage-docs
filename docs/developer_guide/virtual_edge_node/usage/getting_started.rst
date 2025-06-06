@@ -10,7 +10,8 @@ System Requirements for Virtual Edge Node Installation on Baremetal or Virtual M
 
 **Minimum System Requirements**
 
-It is essential that the host machine—whether installed on baremetal or a virtual machine—has Ubuntu\* 22.04/24.04 LTS installed to ensure compatibility. The following specifications are recommended for onboarding and provisioning virtual machines (VMs). The number of VMs that can be provisioned will depend on these specifications:
+It is essential that the host machine—whether installed on baremetal or a virtual machine—has Ubuntu\* 22.04/24.04 LTS installed to ensure compatibility.
+The following specifications are recommended for onboarding and provisioning virtual machines (VMs). The number of VMs that can be provisioned will depend on these specifications:
 
 - **Operating System**: Ubuntu 22.04 LTS or 24.04 LTS (must be installed on the host machine)
 - **CPU**: 16 cores
@@ -32,7 +33,8 @@ Below is an example of how to configure these proxy settings:
 
 **Granting Administrative and Virtualization Permissions to a User**
 
-Ensure that a user has the necessary permissions to perform administrative tasks and manage virtualization and containerization tools. The below command adds the specified user to important groups, granting them the required access rights.
+Ensure that a user has the necessary permissions to perform administrative tasks and manage virtualization and containerization tools.
+The below command adds the specified user to important groups, granting them the required access rights.
 
 Sample command to add a user named john to these groups:
 

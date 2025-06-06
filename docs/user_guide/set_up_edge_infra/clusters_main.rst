@@ -73,7 +73,7 @@ You can view the following details of the cluster:
 
    * - Actions
      - Click the three-dots (…) icon to perform the following actions:
-     
+
        * Edit
        * View Details
        * Delete

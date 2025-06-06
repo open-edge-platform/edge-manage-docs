@@ -1,7 +1,8 @@
 Applications
 ============
 
-An application in |software_prod_name| is defined by a single Helm\* chart with predefined runtime configurations or profiles. The Helm chart must fulfill the following criteria, to be deployed and managed using |software_prod_name|\ :
+An application in |software_prod_name| is defined by a single Helm\* chart with predefined runtime configurations or profiles.
+The Helm chart must fulfill the following criteria, to be deployed and managed using |software_prod_name|\ :
 
 * Deployable on CNCF-certified Kubernetes\* version v1.27.
 * All Helm charts, including applications and dependencies, are stored in the Helm or OCI registry and can be downloaded through the network.
@@ -18,7 +19,9 @@ for more Helm chart Best Practices.
 View Applications
 ~~~~~~~~~~~~~~~~~
 
-To view the **Applications** page, click the **Deployments** tab and then click **Applications** on the left menu. On the **Applications** page, you can view the list of applications and the available registries. You can search for applications and registries using the search bar at the top of the page. The other actions you can perform from this page are editing, viewing details, and deleting an application.
+To view the **Applications** page, click the **Deployments** tab and then click **Applications** on the left menu.
+On the **Applications** page, you can view the list of applications and the available registries.
+You can search for applications and registries using the search bar at the top of the page. The other actions you can perform from this page are editing, viewing details, and deleting an application.
 
 Applications are partitioned into two tabs:
 

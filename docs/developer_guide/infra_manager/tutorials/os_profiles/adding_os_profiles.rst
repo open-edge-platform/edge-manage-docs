@@ -3,7 +3,8 @@ Managing Default OS Profiles
 
 An OS profile defines an Operating System (OS), with all its capabilities and metadata, that is used for Edge Node provisioning.
 All available OS profile definitions are stored as YAML manifest files under the `os-profiles <https://github.com/open-edge-platform/infra-core/blob/main/os-profiles>`_ repository.
-The YAML files are pushed to the Release Service (RS) and read by the Edge Orchestrator at runtime. The Edge Orchestrator creates a set of OS resources (see :doc:`/shared/shared_os_profile`) based on the OS profile definitions.
+The YAML files are pushed to the Release Service (RS) and read by the Edge Orchestrator at runtime.
+The Edge Orchestrator creates a set of OS resources (see :doc:`/shared/shared_os_profile`) based on the OS profile definitions.
 
 Each YAML manifest file defines a single OS profile and must set pre-defined OS profile's parameters like OS image URL, OS image version, SHA-256 of OS image, etc.
 The meaning and usage of all fields are documented in the `OS profile template <https://github.com/open-edge-platform/infra-core/blob/main/os-profiles/template/profile-template.yaml>`_.
@@ -62,15 +63,18 @@ An example of Edge Microvisor Toolkit non-RT profile is defined in the `microvis
 
 Edge Microvisor Toolkit is an immutable OS developed and distributed by Intel. Let's assume we want to update Edge Microvisor Toolkit version to ``3.0.20250105.2206``.
 
-The Edge Microvisor Toolkit image is stored on the Release Service (RS) file server under the following subpath ``files-edge-orch/repository/microvisor/non_rt/edge-readonly-dev-3.0.20250324.1008.raw.gz``.
+The Edge Microvisor Toolkit image is stored on the Release Service (RS) file server under the following subpath
+``files-edge-orch/repository/microvisor/non_rt/edge-readonly-dev-3.0.20250324.1008.raw.gz``.
 
 To update the Edge Microvisor Toolkit profile perform the following steps:
 
 1. Set `os_image_url` as the RS file server subpath. In this case it's ``files-edge-orch/repository/microvisor/non_rt/edge-readonly-dev-3.0.20250324.1008.raw.gz``.
-   Edge Orchestrator will automatically expand the URL to the full URL based on the cluster configuration (the RS endpoint is cluster-specific). Note that we only support the .raw.gz extension for Edge Microvisor Toolkit.
+   Edge Orchestrator will automatically expand the URL to the full URL based on the cluster configuration (the RS endpoint is cluster-specific).
+   Note that we only support the .raw.gz extension for Edge Microvisor Toolkit.
 2. Set ``os_image_version`` to ``3.0.20250324.1008``.
 3. Update the ``name`` field to reflect the new version. It can be ``Edge Microvisor Toolkit 3.0.20250324`` (you can omit the last part that identifies the build ID).
-4. Update the ``os_image_sha256`` field. The SHA2-56 checksum can be obtained by downloading the image and running ``sha256sum`` on it or by downloading ``.sha256sum`` file that is associated with the Edge Microvisor Toolkit image.
+4. Update the ``os_image_sha256`` field. The SHA2-56 checksum can be obtained by downloading the image and running ``sha256sum`` on it
+   or by downloading ``.sha256sum`` file that is associated with the Edge Microvisor Toolkit image.
 
 After updating the fields, the manifest should look like this:
 

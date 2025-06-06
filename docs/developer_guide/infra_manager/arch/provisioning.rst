@@ -77,8 +77,8 @@ Each Edge Node is represented in the Inventory data model as a pair of Host and 
 represents a bare metal machine with its basic device information like UUID or Serial Number. An Instance resource describes the actual OS that is running on the bare metal machine.
 Both Host and Instances follow the current and desired state model and the Onboarding Manager is responsible for running these resources to completion, i.e., achieving the desired state.
 
-The split into the Host and Instance resources expresses the split into the Onboarding and Provisioning phases - the Onboarding phase ends when the Host resource enters its desired state ``ONBOARDED``,
-while the Provisioning phase ends when the Instance resource achieves the ``RUNNING`` state.
+The split into the Host and Instance resources expresses the split into the Onboarding and Provisioning phases - the Onboarding phase ends when the Host resource enters its desired state
+``ONBOARDED``, while the Provisioning phase ends when the Instance resource achieves the ``RUNNING`` state.
 
 Edge Node Lifecycle
 ^^^^^^^^^^^^^^^^^^^
@@ -122,8 +122,8 @@ Device discovery is a Docker\* container that runs just after the Micro-OS is bo
 - reads basic device information (e.g., UUID, Serial Number, IP and MAC addresses) that are needed during onboarding
 - communicates with Onboarding Manager to perform device discovery and onboard the node.
 
-The Tink Worker is another Docker container that runs in the background and waits for the node onboarding to finish and queries the Tinkerbell gRPC server for any new Tinkerbell Workflows to execute. A Tinkerbell Workflow
-defines a set of operations (aka Tinker actions) that should be executed on the Edge Node by the Tink worker. Once the Tinkerbell Workflow is created by the Onboarding Manager,
+The Tink Worker is another Docker container that runs in the background and waits for the node onboarding to finish and queries the Tinkerbell gRPC server for any new Tinkerbell Workflows to execute.
+A Tinkerbell Workflow defines a set of operations (aka Tinker actions) that should be executed on the Edge Node by the Tink worker. Once the Tinkerbell Workflow is created by the Onboarding Manager,
 the Tink worker downloads the Tinkerbell Workflow and executes all the specified Tinker actions.
 
 The last action of the Tinkerbell Workflow performs the OS restart to boot into the target OS.

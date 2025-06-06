@@ -3,7 +3,7 @@ Installation Options
 
 Use the following options with the ``provision.sh`` installer package.
 
-.. code-block:: none
+.. code-block:: text
 
     utils/provision.sh
         <install | uninstall>

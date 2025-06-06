@@ -13,7 +13,7 @@ Step 1: Configure the Provider
 Begin the provisioning process by setting the provider with the Ubuntu OS profile resource, ensuring the security feature is set
 to "securityFeature":"SECURITY_FEATURE_NONE". Refer to the image below for guidance:
 
-Sample Ubuntu OS Resource: 
+Sample Ubuntu OS Resource:
 
 .. image:: images/Ubuntu_os.png
    :alt: Ubuntu OS Resource
@@ -89,7 +89,7 @@ Check Host Status
 You can see the host status by running the show_host_status.sh script as shown below.
 
 .. code-block:: shell
-   
+
    chmod +x ./scripts/show_host_status.sh
    ./scripts/show_host_status.sh
 

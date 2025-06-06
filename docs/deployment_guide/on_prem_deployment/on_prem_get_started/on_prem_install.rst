@@ -163,7 +163,7 @@ Configure SMTP Variables for Notifications
 ++++++++++++++++++++++++++++++++++++++++++
 
 To enable email notifications for alerts, set the following environmental variables
-for the external SMTP server. See 
+for the external SMTP server. See
 :doc:`/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_alerts`
 for more information. If not needed or if the SMTP server is not available, you can
 disable the SMTP server authentication when installing Edge Orchestrator.
@@ -495,7 +495,9 @@ execute the following command:
 LOC-A Enablement (Optional)
 ---------------------------
 
-By default, the LOC-A integration for Edge Orchestrator is not enabled. Update the ``<path_to_untarred_repo>/orch-configs/profiles/enable-lenovo.yaml`` file with the necessary information to enable communication between Edge Orchestrator and LOC-A. If the file does not exist, create it as follows:
+By default, the LOC-A integration for Edge Orchestrator is not enabled.
+Update the ``<path_to_untarred_repo>/orch-configs/profiles/enable-lenovo.yaml`` file with the necessary information to enable communication between Edge Orchestrator and LOC-A.
+If the file does not exist, create it as follows:
 
 .. code-block:: shell
 

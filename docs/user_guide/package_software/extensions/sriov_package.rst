@@ -11,8 +11,10 @@ The SR-IOV Package contains the following components:
 
 * **sriov-network-operator** - Controls the deployment of all SR-IOV components.
 * **sriov-network-config-daemon** - Runs an all-worker node, reporting SR-IOV capable NICs; responsible for applying requested SR-IOV configurations on given node.
-* **network-resources-injector** - Provides the functionality of patching POD specifications with requests and limits of custom network resources (managed by device plugins such as sriov-network-device-plugin).
-* **operator-webhook** - Validates the creation and update of the `SriovNetworkNodePolicy` custom resource (CR); mutates the `SriovNetworkNodePolicy` CR by setting the default value for the priority and deviceType fields when the CR is created, updated, or both.
+* **network-resources-injector** - Provides the functionality of patching POD specifications with requests and limits of custom network resources
+  (managed by device plugins such as sriov-network-device-plugin).
+* **operator-webhook** - Validates the creation and update of the `SriovNetworkNodePolicy` custom resource (CR);
+  mutates the `SriovNetworkNodePolicy` CR by setting the default value for the priority and deviceType fields when the CR is created, updated, or both.
 * **sriov-network-device-plugin** - Discovers and advertises networking resources in SR-IOV virtual functions (VFs) and PCI physical functions (PFs).
 * **sriov-cni** - Attaches VF interfaces allocated from the SR-IOV device plug-in, directly into a pod.
 
@@ -26,7 +28,8 @@ The following are some references:
 Attach SR-IOV Interface to Applications
 -------------------------------------------------
 
-Create SR-IOV-related resource files in the `templates` directory in the Helm\* chart and add configurations to pods, deployments, and StatefulSets resources for container-based applications and virtual machine resources for virtual machine-based applications.
+Create SR-IOV-related resource files in the `templates` directory in the Helm\* chart and add configurations to pods, deployments,
+and StatefulSets resources for container-based applications and virtual machine resources for virtual machine-based applications.
 
 For Virtual Machine-based Application
 +++++++++++++++++++++++++++++++++++++
