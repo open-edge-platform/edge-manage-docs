@@ -9,6 +9,6 @@ When checking the logs of the affected pods, you may observe the following error
 
     .. code-block:: bash
 
-       plugin type="portmap" failed (add): failed to open iptables: exec: "iptables": executable file not found in $PATH 
+       plugin type="portmap" failed (add): failed to open iptables: exec: "iptables": executable file not found in $PATH
 
 To resolve this problem, please install `iptables`.
