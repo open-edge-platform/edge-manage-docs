@@ -58,6 +58,7 @@ From this page, you can do the following:
    setup_deploy
    deployment_details
    deployment_upgrade
+   deployment_edit
    deployment_delete
    vm_actions
    access_deploy
