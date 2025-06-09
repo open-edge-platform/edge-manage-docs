@@ -18,7 +18,7 @@ Layer (DAL) business logic, the next step is to define the REST APIs through
 which users and external components can consume those resources. The REST APIs
 are defined in the Edge Infrastructure Manager `OpenAPI
 <https://www.openapis.org/>`_ specification (see :ref:`API
-documentation <api/edge_infra_manager>`_).
+documentation <api/edge_infra_manager:Edge Infrastructure Manager API>`).
 
 Edge Infrastructure Manager northbound APIs are designed to be declarative: the
 consumer express an Intent that gets translated into a `desired` field in the

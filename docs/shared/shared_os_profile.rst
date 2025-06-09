@@ -162,4 +162,5 @@ You must repackage third-party software in this format if you want to install it
 Edge Infrastructure Manager API
 -------------------------------
 
-.. note:: You can also refer to the :ref:`Edge Infrastructure Manager API documentation <api/edge_infra_manager>`_.
+.. note:: You can also refer to the
+   :ref:`Edge Infrastructure Manager API documentation <api/edge_infra_manager:Edge Infrastructure Manager API>`.
