@@ -61,17 +61,14 @@ To set up your development environment, follow these steps:
           python3.10-venv \
           unzip
 
-#. Install asdf plugins:
+#. Install asdf plugins based on the versions specified in ``.tool-versions``:
 
    .. code-block:: bash
 
       for plugin in golang jq mage; do
           asdf plugin add "${plugin}"
+          asdf install "${plugin}"
       done
-
-      asdf install golang 1.24.1
-      asdf install jq 1.6
-      asdf install mage 1.14.0
 
       mage asdfPlugins
 
