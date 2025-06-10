@@ -74,7 +74,7 @@ Upgrade Infra Manager Version
 
 To upgrade all Infrastructure Manager applications, log into your Edge Orchestrator and apply the following changes in the edge-managebility-framework repository cloned locally:
 
-1. Add infra-charts repo to ``githubRepos`` in ``mage/Magefile.go``
+1. Add infra-charts repo to ``githubRepos`` in ``mage/Magefile.go``:
    
    .. code-block:: bash
 
@@ -90,7 +90,7 @@ To upgrade all Infrastructure Manager applications, log into your Edge Orchestra
       sed -i "s/targetRevision: [a-zA-Z0-9.]\+/targetRevision: ${INFRA_CHARTS_REVISION}/" argocd/applications/templates/infra-onboarding.yaml
       sed -i "s/targetRevision: [a-zA-Z0-9.]\+/targetRevision: ${INFRA_CHARTS_REVISION}/" argocd/applications/templates/infra-external.yaml
 
-4. Replace ``chart: infra/charts/{{$appName}}`` with ``path: {{$appName}}``
+4. Replace ``chart: infra/charts/{{$appName}}`` with ``path: {{$appName}}``:
 
    .. code-block:: bash
 
@@ -99,7 +99,7 @@ To upgrade all Infrastructure Manager applications, log into your Edge Orchestra
       sed -i 's|chart: infra/charts/{{$appName}}|path: {{$appName}}|g' argocd/applications/templates/infra-onboarding.yaml
       sed -i 's|chart: infra/charts/{{$appName}}|path: {{$appName}}|g' argocd/applications/templates/infra-external.yaml
 
-5. Replace ``repoURL`` with git URL of infra-charts repository
+5. Replace ``repoURL`` with git URL of infra-charts repository:
    
    .. code-block:: bash
 
@@ -108,7 +108,7 @@ To upgrade all Infrastructure Manager applications, log into your Edge Orchestra
       sed -i 's|repoURL: {{ required "A valid chartRepoURL entry required!" .Values.argo.chartRepoURL }}|repoURL: https://github.com/open-edge-platform/infra-charts.git|g' argocd/applications/templates/infra-onboarding.yaml
       sed -i 's|repoURL: {{ required "A valid chartRepoURL entry required!" .Values.argo.chartRepoURL }}|repoURL: https://github.com/open-edge-platform/infra-charts.git|g' argocd/applications/templates/infra-external.yaml
 
-6. Commit the changes locally
+6. Commit the changes locally.
 7. Apply updates to your deployment:
    .. code-block:: bash
 
@@ -117,7 +117,7 @@ To upgrade all Infrastructure Manager applications, log into your Edge Orchestra
 
    .. note::
 
-      In local coder environment with autocert enabled, instead of the above steps run :
+      In a local Coder environment with autocert enabled, run the following commands instead:
 
       .. code-block:: bash
 
@@ -125,7 +125,7 @@ To upgrade all Infrastructure Manager applications, log into your Edge Orchestra
          mage deploy:waitUntilComplete
 
 
-8.  Verify sync status of the applications::
+8.  Verify sync status of the applications:
     
    .. code-block:: bash
 
@@ -134,7 +134,8 @@ To upgrade all Infrastructure Manager applications, log into your Edge Orchestra
       kubectl -n dev get applications infra-external -o yaml
       kubectl -n dev get applications infra-onboarding -o yaml
 
-If the changes in the Helm chart implementation did not result in amended K8s manifest of the application - update of the application will not be triggered. To force update of the application, please follow the steps: 
+If changes to the Helm chart implementation do not result in modifications to the rendered Kubernetes manifests, the application update will not be triggered automatically.
+To force an update of the application, follow these steps:
 
 1.  Log into argo:
     
