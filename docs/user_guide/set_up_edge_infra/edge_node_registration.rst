@@ -137,7 +137,7 @@ Bulk Import Edge Devices
 
 |software_prod_name| offers two tools to facilitate registration of a set of hardware devices as edge nodes through a comma-separated value (CSV) file:
 
-#. orch-host-preflight, which allows the creation of an empty template, and/or tests the validity of a given CSV file for it to be used with `orch-host-bulk-import` tool.
+#. orch-host-preflight, which allows the creation of an empty template, and/or tests the validity of a given CSV file for it to be used with the `orch-host-bulk-import` tool.
 #. orch-host-bulk-import, which facilitates the user to import in |software_prod_name| all of the edge nodes present in a CSV file.
 
 Download Tools
