@@ -1,24 +1,14 @@
-Upgrading Edge Infrastructure Manager
-=====================================
+Edge Orchestrator Upgrade Support
+=================================
 
-Edge Orchestrator is expected to support seamless upgrades of the Infrastructure Manager helm charts between versions 3.0 and 3.1.
-Therefore, intermittent changes in the infra-charts repository must be verified against Edge Orchestrator version 3.0 to ensure they do not introduce breaking changes,
-and that the Orchestrator remains fully functional.
+Edge Orchestrator, including the Infrastructure Manager, is expected to support seamless upgrades between its consecutive versions starting from versions 3.0 and 3.1.
+To facilitate this, we provide mechanisms for both operators and developers:
 
-Changes in the SB and NB APIs, as well as database schema updates, are validated during the CI phase through a set of automated lint and integration checks.
+- Operators can perform a full upgrade of the Orchestrator.
 
-To test the upgradeability of infra charts with changes proposed in a given infra-charts pull request, we introduced the `upgrade-test <link>`_ workflow.
-This test can be manually triggered on any PR in the infra-charts repository, and is also executed periodically on the main branch to ensure long-term compatibility.
+- Developers can test incremental changes in the infra-charts repository. All such changes must be verified against Edge Orchestrator version 3.0 to ensure they do not introduce breaking changes and that the Orchestrator remains fully functional.
 
-Additionally, users can manually test a newly released version of an Infra Helm chart in a deployed Edge Orchestrator using Argo CD's web UI.
-Specifically, the Orchestrator operator can modify the Helm chart version in the following Argo CD Infra manager applications of the Edge Manageability Framework:
-
-- infra-managers
-- infra-core
-- infra-external
-- infra-onboarding
-
-Through the platform's web UI, the user can verify the upgraded Orchestrator by onboarding an Edge Node (EN), monitoring its status, and performing an EN upgrade.
+.. _upgradeability-requirements:
 
 Upgradeability Requirements
 ---------------------------
@@ -31,17 +21,47 @@ The following requirements must be met to consider the system upgradeable:
 4. The Orchestrator upgrade must not impact the operational state of existing Edge Nodes.
 5. If the upgrade fails, manual recovery is possible through rollback procedures.
 
-Steps to Upgrade Edge Manageability Apps
-----------------------------------------
+Full Upgrade of the Edge Orchestrator Platform
+----------------------------------------------
 
-The following section provides step-by-step instructions to perform an upgrade of one of the Edge Manageability applications (e.g., ``infra-managers``) and to verify the above requirements.
+Starting with version 3.1, operators running an earlier version of Edge Orchestrator is expected to be able to perform a seamless upgrade of the entire platform to the latest release. The  `Orchestrator upgrade guide <TODO link>`_  provides the instructions for the operator to perform this upgrade.
+
+.. note::
+   Rollback to version 3.0 is not supported in Edge Orchestrator v3.1.
+
+Upgrade Edge Manageability Applications
+---------------------------------------
+
+To prevent the introduction of breaking changes in the Infrastructure Manager, all updates to the SB/NB APIs and database schema are validated during the CI phase using automated lint and integration checks.
+
+To test the upgradeability of infra-chart changes proposed in a pull request to the infra-charts repository, we introduced the `upgrade-test <TODOlink>`_ workflow.
+This workflow can be manually triggered on any pull request in the infra-charts repository, and is also executed periodically on the main branch to ensure continued compatibility.
+
+In addition, developers can manually test an unreleased version of an Infrastructure Manager Infra Helm chart in a locally deployed Edge Orchestrator.
+To do so, users can modify the chart revision of the following applications:
+
+- infra-managers
+- infra-core
+- infra-external
+- infra-onboarding
+
+Using the platform’s web UI, developers can then verify the upgraded Orchestrator by:
+
+- Onboarding an Edge Node (EN)
+- Monitoring the EN’s status
+- Performing an EN upgrade
+
+The following section provides step-by-step instructions for developers to upgrade the Edge Manageability applications and to verify that the upgrade meets the above requirements :ref:`_upgradeability-requirements`.
 
 Prerequisites
 ^^^^^^^^^^^^^
 
-1. Deploy an Edge Orchestrator v3.0
-2. Obtain your JWT_TOKEN
-3. Create User, Organization, and Project
+1. Edge Orchestrator v3.0 is deployed
+2. You have obtained your JWT_TOKEN
+3. A User, Organization, and Project have been created
+
+.. note::
+   This guide assumes that your Orchestrator is deployed in a kind environment.
 
 Register and Onboard an EN
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -49,26 +69,94 @@ Register and Onboard an EN
 Perform EN registration and onboarding by following the steps in the `EN registration guide <https://docs.openedgeplatform.intel.com/edge-manage-docs/main/user_guide/set_up_edge_infra/edge_node_registration.html#register-edge-nodes-in-software-prod-name>`_.
 On the ``Host`` page of the Web UI, observe the status of the EN until it is fully provisioned and onboarded.
 
-Upgrade Infra Manager Version in Argo CD
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Upgrade Infra Manager Version
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Log into the Argo CD UI for your deployment.
-2. Disable autosync in the ``root-app`` application  under ``Details``.
-3. Search for the infra application you want to upgrade (e.g., ``infra-managers``).
-4. Open its manifest and enable editing.
-5. Update the Helm chart version by modifying the targetRevision field in the application's manifest, then save the changes.
-6. Wait until the application reaches the ``Healthy`` state (this usually takes up to a minute). Meanwhile, monitor the EN status — it should remain unchanged.
+To upgrade all Infrastructure Manager applications, log into your Edge Orchestrator and apply the following changes in the edge-managebility-framework repository cloned locally:
 
-Steps to Test Upgraded Edge Manager
------------------------------------
+1. Add infra-charts repo to ``githubRepos`` in ``mage/Magefile.go``
+   
+   .. code-block:: bash
+
+      sed -i '/var githubRepos = \[\]/a\    "https://github.com/open-edge-platform/infra-charts",' mage/Magefile.go
+
+2. Get the commit hash of the infra-charts repository with the Helm charts you want to test and set INFRA_CHARTS_REVISION env variable accordingly.
+3. Replace ``targetRevision`` with the current git hash of the infra-charts commit:
+
+   .. code-block:: bash
+
+      sed -i "s/targetRevision: [a-zA-Z0-9.]\+/targetRevision: ${INFRA_CHARTS_REVISION}/" argocd/applications/templates/infra-core.yaml
+      sed -i "s/targetRevision: [a-zA-Z0-9.]\+/targetRevision: ${INFRA_CHARTS_REVISION}/" argocd/applications/templates/infra-managers.yaml
+      sed -i "s/targetRevision: [a-zA-Z0-9.]\+/targetRevision: ${INFRA_CHARTS_REVISION}/" argocd/applications/templates/infra-onboarding.yaml
+      sed -i "s/targetRevision: [a-zA-Z0-9.]\+/targetRevision: ${INFRA_CHARTS_REVISION}/" argocd/applications/templates/infra-external.yaml
+
+4. Replace ``chart: infra/charts/{{$appName}}`` with ``path: {{$appName}}``
+
+   .. code-block:: bash
+
+      sed -i 's|chart: infra/charts/{{$appName}}|path: {{$appName}}|g' argocd/applications/templates/infra-core.yaml
+      sed -i 's|chart: infra/charts/{{$appName}}|path: {{$appName}}|g' argocd/applications/templates/infra-managers.yaml
+      sed -i 's|chart: infra/charts/{{$appName}}|path: {{$appName}}|g' argocd/applications/templates/infra-onboarding.yaml
+      sed -i 's|chart: infra/charts/{{$appName}}|path: {{$appName}}|g' argocd/applications/templates/infra-external.yaml
+
+5. Replace ``repoURL`` with git URL of infra-charts repository
+   
+   .. code-block:: bash
+
+      sed -i 's|repoURL: {{ required "A valid chartRepoURL entry required!" .Values.argo.chartRepoURL }}|repoURL: https://github.com/open-edge-platform/infra-charts.git|g' argocd/applications/templates/infra-core.yaml
+      sed -i 's|repoURL: {{ required "A valid chartRepoURL entry required!" .Values.argo.chartRepoURL }}|repoURL: https://github.com/open-edge-platform/infra-charts.git|g' argocd/applications/templates/infra-managers.yaml
+      sed -i 's|repoURL: {{ required "A valid chartRepoURL entry required!" .Values.argo.chartRepoURL }}|repoURL: https://github.com/open-edge-platform/infra-charts.git|g' argocd/applications/templates/infra-onboarding.yaml
+      sed -i 's|repoURL: {{ required "A valid chartRepoURL entry required!" .Values.argo.chartRepoURL }}|repoURL: https://github.com/open-edge-platform/infra-charts.git|g' argocd/applications/templates/infra-external.yaml
+
+6. Commit the changes locally
+7. Apply updates to your deployment:
+   .. code-block:: bash
+
+      mage deploy:orchLocal dev
+      mage deploy:waitUntilComplete
+
+8.  Verify sync status of the applications::
+    
+    .. code-block:: bash
+         kubectl -n dev get applications infra-core -o yaml
+         kubectl -n dev get applications infra-managers -o yaml
+         kubectl -n dev get applications infra-external -o yaml
+         kubectl -n dev get applications infra-onboarding -o yaml
+
+If the changes in the Helm chart implementation did not result in amended K8s manifest of the application - update of the application will not be triggered. To force update of the application, please follow the steps: 
+
+1.  Log into argo:
+    
+   .. code-block:: bash
+      mage argo:login
+
+2.  Synchronize applications:
+    
+    .. code-block:: bash
+      argocd app sync dev/infra-managers dev/infra-core dev/infra-external dev/infra-onboarding --grpc-web
+
+3. Verify sync status of the applications::
+    
+    .. code-block:: bash
+         kubectl -n dev get applications infra-core -o yaml
+         kubectl -n dev get applications infra-managers -o yaml
+         kubectl -n dev get applications infra-external -o yaml
+         kubectl -n dev get applications infra-onboarding -o yaml
+
+Steps to Validate Upgraded Edge Infrastructure Manager
+------------------------------------------------------
 
 The upgraded Edge Orchestrator should display all applications in a Healthy state.
+
+   .. code-block:: bash
+      kubectl -n dev get applications
+
 The functionality of the Edge Manager can be further verified by confirming it is able to discover new OS profiles and perform EN OS updates.
 
 Verify OS Profiles
 ^^^^^^^^^^^^^^^^^^
 
-After the Edge Orchestrator upgrade, OS Profiles should still be automatically populated in the Web UI.
+After the Edge Manager upgrade, OS Profiles should still be automatically populated in the Web UI.
 
 To verify if the OS profiles are automatically repopulated follow the steps:
 
@@ -163,23 +251,3 @@ An update of the onboarded EN OS will test if the EN and the Infrastructure Mana
 6. Schedule a maintenance window for your EN by following the `guide on maintenance window creation <https://docs.openedgeplatform.intel.com/edge-manage-docs/main/user_guide/additional_howtos/host_schedule_main.html#schedule-maintenance-for-configured-and-active-hosts>`_.
 
 7. Monitor the ``Update`` status to confirm the update was completed. The ``No new updates available`` status message indicates a successful update.
-
-Perform Version Rollback
-------------------------
-
-In the event of an unsuccessful upgrade, the Orchestrator operator should be able to revert manually via the Argo CD UI. Follow these steps:
-
-1. Log into the Argo CD UI.
-2. Search for and select the application you want to roll back.
-3. Open the ``History and Rollback`` tab.
-
-   .. image:: images/rollback-tab.png
-      :alt: Rollback example
-
-4. Select the entry with the previous version of your application
-5. Select ``Rollback`` from the three dot menu.
-
-   .. image:: images/rollback-example.png
-      :alt: Rollback example
-
-6. Ensure the application status is ``Healthy`` and that it reflects the previous version.
