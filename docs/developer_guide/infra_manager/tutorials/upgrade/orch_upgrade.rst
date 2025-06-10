@@ -34,7 +34,7 @@ Upgrade Edge Manageability Applications
 
 To prevent the introduction of breaking changes in the Infrastructure Manager, all updates to the SB/NB APIs and database schema are validated during the CI phase using automated lint and integration checks.
 
-To test the upgradeability of infra-chart changes proposed in a pull request to the infra-charts repository, we introduced the `upgrade-test <TODOlink>`_ workflow.
+To test the upgradeability of infra chart changes proposed in a pull request to the infra-charts repository, we introduced the `upgrade-test <TODOlink>`_ workflow.
 This workflow can be manually triggered on any pull request in the infra-charts repository, and is also executed periodically on the main branch to ensure continued compatibility.
 
 In addition, developers can manually test an unreleased version of an Infrastructure Manager Infra Helm chart in a locally deployed Edge Orchestrator.
@@ -61,6 +61,7 @@ Prerequisites
 3. A User, Organization, and Project have been created
 
 .. note::
+
    This guide assumes that your Orchestrator is deployed in a kind environment.
 
 Register and Onboard an EN
@@ -100,7 +101,7 @@ To upgrade all Infrastructure Manager applications, log into your Edge Orchestra
       sed -i 's|chart: infra/charts/{{$appName}}|path: {{$appName}}|g' argocd/applications/templates/infra-external.yaml
 
 5. Replace ``repoURL`` with git URL of infra-charts repository:
-   
+
    .. code-block:: bash
 
       sed -i 's|repoURL: {{ required "A valid chartRepoURL entry required!" .Values.argo.chartRepoURL }}|repoURL: https://github.com/open-edge-platform/infra-charts.git|g' argocd/applications/templates/infra-core.yaml
@@ -124,9 +125,8 @@ To upgrade all Infrastructure Manager applications, log into your Edge Orchestra
          mage deploy:orchLocal dev-internal-coder-autocert
          mage deploy:waitUntilComplete
 
-
 8.  Verify sync status of the applications:
-    
+
    .. code-block:: bash
 
       kubectl -n dev get applications infra-core -o yaml
@@ -138,19 +138,19 @@ If changes to the Helm chart implementation do not result in modifications to th
 To force an update of the application, follow these steps:
 
 1.  Log into argo:
-    
+
    .. code-block:: bash
 
       mage argo:login
 
 2.  Synchronize applications:
-    
+
    .. code-block:: bash
-   
+
       argocd app sync dev/infra-managers dev/infra-core dev/infra-external dev/infra-onboarding
 
-3. Verify sync status of the applications::
-    
+3. Verify sync status of the applications:
+
    .. code-block:: bash
 
       kubectl -n dev get applications infra-core -o yaml
