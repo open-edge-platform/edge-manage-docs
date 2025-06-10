@@ -140,7 +140,7 @@ OS installation artifacts used to install this OS.
 
 These files contain or link to the artifacts needed to install the OS, as well
 as configuration options such as defaults for storage configuration and any
-required scripts or other mechanisms (cloudinit, kickstart, precede, or similar)
+required scripts or other mechanisms (cloudinit, kickstart, preseed, or similar)
 that help automate the installation.
 
 Upgrades and Customization of Installed Software
