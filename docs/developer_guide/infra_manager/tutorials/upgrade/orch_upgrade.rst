@@ -24,7 +24,7 @@ The following requirements must be met to consider the system upgradeable:
 Full Upgrade of the Edge Orchestrator Platform
 ----------------------------------------------
 
-Starting with version 3.1, operators running an earlier version of Edge Orchestrator is expected
+Starting with version 3.1, operators running an earlier version of Edge Orchestrator are expected
 to be able to perform a seamless upgrade of the entire platform to the latest release.
 The  `Orchestrator upgrade guide <TODO link>`_  provides the instructions for the operator to perform this upgrade.
 
