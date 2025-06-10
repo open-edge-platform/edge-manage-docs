@@ -127,7 +127,8 @@ To upgrade all Infrastructure Manager applications, log into your Edge Orchestra
 
 8.  Verify sync status of the applications::
     
-    .. code-block:: bash
+   .. code-block:: bash
+
       kubectl -n dev get applications infra-core -o yaml
       kubectl -n dev get applications infra-managers -o yaml
       kubectl -n dev get applications infra-external -o yaml
@@ -138,16 +139,19 @@ If the changes in the Helm chart implementation did not result in amended K8s ma
 1.  Log into argo:
     
    .. code-block:: bash
+
       mage argo:login
 
 2.  Synchronize applications:
     
    .. code-block:: bash
+   
       argocd app sync dev/infra-managers dev/infra-core dev/infra-external dev/infra-onboarding
 
 3. Verify sync status of the applications::
     
    .. code-block:: bash
+
       kubectl -n dev get applications infra-core -o yaml
       kubectl -n dev get applications infra-managers -o yaml
       kubectl -n dev get applications infra-external -o yaml
@@ -159,6 +163,7 @@ Validate Upgraded Edge Orchestrator
 Both Orchestrator operators and developers should verify that the Edge Orchestrator upgrade was successful. After the upgrade, all applications should appear in a Healthy state.
 
    .. code-block:: bash
+
       kubectl -n dev get applications
 
 The functionality of the Edge Manager can be further verified by confirming it is able to discover new OS profiles and perform EN OS updates.
