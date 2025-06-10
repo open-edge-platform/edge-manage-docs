@@ -21,8 +21,8 @@ The following requirements must be met to consider the system upgradeable:
 4. The Orchestrator upgrade must not impact the operational state of existing Edge Nodes.
 5. If the upgrade fails, manual recovery is possible through rollback procedures.
 
-Full Upgrade of the Edge Orchestrator Platform
-----------------------------------------------
+Full Upgrade of the Edge Orchestrator Platform in Production Environment
+------------------------------------------------------------------------
 
 Starting with version 3.1, operators running an earlier version of Edge Orchestrator are expected
 to be able to perform a seamless upgrade of the entire platform to the latest release.
@@ -30,13 +30,13 @@ The  `Orchestrator upgrade guide <TODO link>`_  provides the instructions for th
 
 .. note::
 
-   Rollback to version 3.0 is not supported in Edge Orchestrator v3.1.
+   Automatic rollback to version 3.0 is not supported in Edge Orchestrator v3.1.
 
-Upgrade Edge Manageability Applications
----------------------------------------
+Upgrade Edge Manageability Applications in Validation Environment
+-----------------------------------------------------------------
 
-To prevent the introduction of breaking changes in the Infrastructure Manager,
-all updates to the SB/NB APIs and database schema are validated during the CI phase using automated lint and integration checks.
+To prevent developers from introducing breaking changes in the Infrastructure Manager,
+all updates to the SB/NB APIs and database schema are validated during the CI phase through automated lint and integration checks.
 
 To test the upgradeability of infra chart changes proposed in a pull request to the infra-charts repository, we introduced the `upgrade-test <TODOlink>`_ workflow.
 This workflow can be manually triggered on any pull request in the infra-charts repository, and is also executed periodically on the main branch to ensure continued compatibility.
@@ -154,10 +154,10 @@ To force an update of the application, follow these steps:
       kubectl -n dev get applications infra-external -o yaml
       kubectl -n dev get applications infra-onboarding -o yaml
 
-Validate Upgraded Edge Orchestrator
------------------------------------
+Validate Upgraded Infrastructure Manager
+----------------------------------------
 
-Both Orchestrator operators and developers should verify that the Edge Orchestrator upgrade was successful. After the upgrade, all applications should appear in a Healthy state.
+Developers should be able to verify that the Edge Orchestrator upgrade in the validation environment was successful. After the upgrade, all applications should appear in a Healthy state.
 
    .. code-block:: bash
 
