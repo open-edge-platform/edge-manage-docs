@@ -78,8 +78,8 @@ trivyfsscan: ## run Trivy scan locally
 	trivy --version ;\
 	trivy fs --scanners vuln,misconfig,secret -s HIGH,CRITICAL .
 
-sphinx-spelling: $(VENV_DIR) ## lint docs for spelling errors with sphinx-spelling
-    set +u; . ./$</bin/activate; set -u ;\
+sphinx-spelling: $(VENV_DIR)
+	set +u; . ./$</bin/activate; set -u ;\
     sphinx-build -b spelling "$(SOURCEDIR)" "$(OUT_DIR)/spelling"
 
 build: sphinx-html ## Build all documentation
