@@ -51,7 +51,7 @@ Using the platform’s web UI, developers can then verify the upgraded Orchestra
 - Monitoring the EN’s status
 - Performing an EN upgrade
 
-The following section provides step-by-step instructions for developers to upgrade the Edge Manageability applications and to verify that the upgrade meets the above requirements :ref:`_upgradeability-requirements`.
+The following section provides step-by-step instructions for developers to upgrade the Edge Manageability applications and to verify that the upgrade meets the above requirements :ref:`upgradeability-requirements`.
 
 Prerequisites
 ^^^^^^^^^^^^^
@@ -143,10 +143,10 @@ If the changes in the Helm chart implementation did not result in amended K8s ma
          kubectl -n dev get applications infra-external -o yaml
          kubectl -n dev get applications infra-onboarding -o yaml
 
-Steps to Validate Upgraded Edge Infrastructure Manager
-------------------------------------------------------
+Validate Upgraded Edge Orchestrator
+-----------------------------------
 
-The upgraded Edge Orchestrator should display all applications in a Healthy state.
+Both Orchestrator operators and developers should verify that the Edge Orchestrator upgrade was successful. After the upgrade, all applications should appear in a Healthy state.
 
    .. code-block:: bash
       kubectl -n dev get applications
@@ -172,7 +172,6 @@ To verify if the OS profiles are automatically repopulated follow the steps:
       curl -X GET \
          -H "Authorization: Bearer ${JWT_TOKEN}" \
          https://api.${CLUSTER_FQDN}/v1/projects/${PROJ_NAME}/compute/os
-
 
 
 4. Use the OS profile’s ResourceID to delete an unused profile via an API call (e.g., RESOURCE_ID):
