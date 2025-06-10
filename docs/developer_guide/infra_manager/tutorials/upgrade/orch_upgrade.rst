@@ -114,7 +114,7 @@ To upgrade all Infrastructure Manager applications, log into your Edge Orchestra
 
 6. Commit the changes locally.
 7. Apply updates to your deployment:
-   
+
    .. code-block:: bash
 
       mage deploy:orchLocal dev
