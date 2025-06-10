@@ -173,7 +173,6 @@ To verify if the OS profiles are automatically repopulated follow the steps:
          -H "Authorization: Bearer ${JWT_TOKEN}" \
          https://api.${CLUSTER_FQDN}/v1/projects/${PROJ_NAME}/compute/os
 
-
 4. Use the OS profile’s ResourceID to delete an unused profile via an API call (e.g., RESOURCE_ID):
 
    .. code-block:: bash
