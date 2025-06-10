@@ -76,7 +76,7 @@ Deployments page shows continuous errors after deleting a cluster
 -----------------------------------------------------------------
 
 **Symptom:** deployments page shows continuous errors after deleting a cluster even through
-there are other instantiations of the application/extension successfully running on other clusters.
+there are other installations of the application/extension successfully running on other clusters.
 
 .. figure:: images/deployment_error.png
       :alt: Deployments Errors
