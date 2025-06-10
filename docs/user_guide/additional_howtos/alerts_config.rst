@@ -7,7 +7,7 @@ alerts and tweak conditions under which they are triggered.
 
 .. note::
   Only users with special privileges can view and configure Alert Definitions.
-  To enable viewing and editing the alrt-rw role must be assigned to gain access
+  To enable viewing and editing the alert-rw role must be assigned to gain access
   across all projects. To enable per-project viewing and editing the following
   roles must be assigned respectively: `<project-id>_alrt-r` and `<project-id>_alrt-rw`.
   For additional details, see :doc:`/shared/shared_iam_groups`.

@@ -34,7 +34,7 @@ Once deployed, the Kubernetes Dashboard may be accessed as follows:
 #. There will be a list of clusters. Pick the cluster that you want to use.
 #. On the cluster page, expand the set of Workloads and Endpoints. You will see an endpoint marked `kong-proxy`.
    This endpoint will have a clickable port 443. Click that port.
-#. The kubernetes dashboard will open in your browser.
+#. The Kubernetes dashboard will open in your browser.
 
 .. note::
    The browser's Application Service Proxy (ASP) only allows one application to be tunneled to at a time.
