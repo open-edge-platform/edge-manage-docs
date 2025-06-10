@@ -115,6 +115,16 @@ To upgrade all Infrastructure Manager applications, log into your Edge Orchestra
       mage deploy:orchLocal dev
       mage deploy:waitUntilComplete
 
+   .. note::
+
+      In local coder environment with autocert enabled, instead of the above steps run :
+
+      .. code-block:: bash
+
+         mage deploy:orchLocal dev-internal-coder-autocert
+         mage deploy:waitUntilComplete
+
+
 8.  Verify sync status of the applications::
     
     .. code-block:: bash
@@ -133,7 +143,7 @@ If the changes in the Helm chart implementation did not result in amended K8s ma
 2.  Synchronize applications:
     
    .. code-block:: bash
-      argocd app sync dev/infra-managers dev/infra-core dev/infra-external dev/infra-onboarding --grpc-web
+      argocd app sync dev/infra-managers dev/infra-core dev/infra-external dev/infra-onboarding
 
 3. Verify sync status of the applications::
     
