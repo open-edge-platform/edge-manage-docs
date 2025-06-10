@@ -120,7 +120,7 @@ To upgrade all Infrastructure Manager applications, log into your Edge Orchestra
       mage deploy:orchLocal dev
       mage deploy:waitUntilComplete
 
-8.  Verify sync status of the applications:
+8. Verify sync status of the applications:
 
    .. code-block:: bash
 
@@ -135,13 +135,13 @@ Force Upgrade of Infra Manager Applications
 If changes to the Helm chart implementation do not result in modifications to the rendered Kubernetes manifests, the application update will not be triggered automatically.
 To force an update of the application, follow these steps:
 
-1.  Log into argo:
+1. Log into argo:
 
    .. code-block:: bash
 
       mage argo:login
 
-2.  Synchronize applications:
+2. Synchronize applications:
 
    .. code-block:: bash
 
