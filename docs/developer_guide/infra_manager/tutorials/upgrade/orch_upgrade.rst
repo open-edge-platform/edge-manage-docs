@@ -121,15 +121,6 @@ To upgrade all Infrastructure Manager applications, log into your Edge Orchestra
       mage deploy:orchLocal dev
       mage deploy:waitUntilComplete
 
-   .. note::
-
-      In a local Coder environment with autocert enabled, run the following commands instead:
-
-      .. code-block:: bash
-
-         mage deploy:orchLocal dev-internal-coder-autocert
-         mage deploy:waitUntilComplete
-
 8.  Verify sync status of the applications:
 
    .. code-block:: bash
