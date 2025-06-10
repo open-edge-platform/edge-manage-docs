@@ -29,6 +29,7 @@ to be able to perform a seamless upgrade of the entire platform to the latest re
 The  `Orchestrator upgrade guide <TODO link>`_  provides the instructions for the operator to perform this upgrade.
 
 .. note::
+
    Rollback to version 3.0 is not supported in Edge Orchestrator v3.1.
 
 Upgrade Edge Manageability Applications
