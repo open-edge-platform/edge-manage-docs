@@ -118,10 +118,10 @@ To upgrade all Infrastructure Manager applications, log into your Edge Orchestra
 8.  Verify sync status of the applications::
     
     .. code-block:: bash
-         kubectl -n dev get applications infra-core -o yaml
-         kubectl -n dev get applications infra-managers -o yaml
-         kubectl -n dev get applications infra-external -o yaml
-         kubectl -n dev get applications infra-onboarding -o yaml
+      kubectl -n dev get applications infra-core -o yaml
+      kubectl -n dev get applications infra-managers -o yaml
+      kubectl -n dev get applications infra-external -o yaml
+      kubectl -n dev get applications infra-onboarding -o yaml
 
 If the changes in the Helm chart implementation did not result in amended K8s manifest of the application - update of the application will not be triggered. To force update of the application, please follow the steps: 
 
@@ -132,16 +132,16 @@ If the changes in the Helm chart implementation did not result in amended K8s ma
 
 2.  Synchronize applications:
     
-    .. code-block:: bash
+   .. code-block:: bash
       argocd app sync dev/infra-managers dev/infra-core dev/infra-external dev/infra-onboarding --grpc-web
 
 3. Verify sync status of the applications::
     
-    .. code-block:: bash
-         kubectl -n dev get applications infra-core -o yaml
-         kubectl -n dev get applications infra-managers -o yaml
-         kubectl -n dev get applications infra-external -o yaml
-         kubectl -n dev get applications infra-onboarding -o yaml
+   .. code-block:: bash
+      kubectl -n dev get applications infra-core -o yaml
+      kubectl -n dev get applications infra-managers -o yaml
+      kubectl -n dev get applications infra-external -o yaml
+      kubectl -n dev get applications infra-onboarding -o yaml
 
 Validate Upgraded Edge Orchestrator
 -----------------------------------
