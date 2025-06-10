@@ -7,7 +7,7 @@ and remain operational. it can also operate in other edge locations if
 the deleted node was the only one at that `site`.
 
 You might find it beneficial to delete a Host, for instance, when it has been
-de-authorized or when it is replaced by another Host with better performance.
+deauthorized or when it is replaced by another Host with better performance.
 
 .. note::
    Once a Host is deleted, the current installation is not valid. To manage it again via |software_prod_name|\ , you need to reprovision the Host from scratch, starting with the remote installation process.

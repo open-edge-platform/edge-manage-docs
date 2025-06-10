@@ -40,7 +40,7 @@ check: | $(VENV_DIR) ## Check for and/or install prerequisite tools
 # lint: license yamllint pylint black sphinx-spelling sphinx-linkcheck markdownlint ## Lint all tooling and docs
 
 # But for now, turn off format, spelling, link checks
-lint: license yamllint pylint black doc8 ## Lint all tooling
+lint: license yamllint pylint black doc8 sphinx-spelling ## Lint all tooling
 
 license: $(VENV_DIR) ## license check with REUSE tool
 	set +u; . ./$</bin/activate; set -u ;\
@@ -77,6 +77,10 @@ trivyfsscan: ## run Trivy scan locally
 	@echo "Running Trivy scan on the filesystem"
 	trivy --version ;\
 	trivy fs --scanners vuln,misconfig,secret -s HIGH,CRITICAL .
+
+sphinx-spelling: $(VENV_DIR) ## lint docs for spelling errors with sphinx-spelling
+    set +u; . ./$</bin/activate; set -u ;\
+    sphinx-build -b spelling "$(SOURCEDIR)" "$(OUT_DIR)/spelling"
 
 build: sphinx-html ## Build all documentation
 

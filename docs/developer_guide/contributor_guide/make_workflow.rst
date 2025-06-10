@@ -521,7 +521,7 @@ Makefile Style Guide
 ~~~~~~~~~~~~~~~~~~~~
 
 When referring to variables, generally you should wrap them with smooth
-parens, such as: ``$(VAR_NAME)``. While curly braces will work as well,
+params, such as: ``$(VAR_NAME)``. While curly braces will work as well,
 it can be more easily confused with shell substitutions, and mixing the
 smooth/curly within a Makefile can result in errors when running
 ``make``.
