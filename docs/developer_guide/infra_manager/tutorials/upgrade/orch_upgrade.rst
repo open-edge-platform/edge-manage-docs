@@ -129,6 +129,9 @@ To upgrade all Infrastructure Manager applications, log into your Edge Orchestra
       kubectl -n dev get applications infra-external -o yaml
       kubectl -n dev get applications infra-onboarding -o yaml
 
+Force Upgrade of Infra Manager Applications
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 If changes to the Helm chart implementation do not result in modifications to the rendered Kubernetes manifests, the application update will not be triggered automatically.
 To force an update of the application, follow these steps:
 
