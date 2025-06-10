@@ -210,7 +210,7 @@ Submitting Changes to a Component Repo
 In order to submit a component pull request, follow these steps:
 
 1. Push a branch that contains your code change to the repo that you've forked
-   on Github repository.
+   on GitHub repository.
 
 2. `Create a Pull Request
    <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request>`_.

@@ -102,7 +102,7 @@ The available agents are:
 - Caddy
 - Telegraf
 - Installer
-- APt Install History Logs
+- Apt Install History Logs
 - INBM
 - INBM Dispatcher
 - INBM Configuration
