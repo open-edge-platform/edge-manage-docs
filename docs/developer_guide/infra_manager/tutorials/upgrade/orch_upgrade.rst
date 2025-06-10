@@ -4,11 +4,9 @@ Edge Orchestrator Upgrade Support
 Edge Orchestrator, including the Infrastructure Manager, is expected to support seamless upgrades between its consecutive versions starting from versions 3.0 and 3.1.
 To facilitate this, we provide mechanisms for both operators and developers:
 
-- Operators can perform a full upgrade of the Orchestrator.
+- Operators can perform a full upgrade of the Orchestrator in the production environment.
 
 - Developers can test modified infra charts to prevent breaking changes.
-
-.. _upgradeability-requirements:
 
 Upgradeability Requirements
 ---------------------------
@@ -56,7 +54,7 @@ Using the platform’s web UI, developers can then verify the upgraded Orchestra
 - Performing an EN upgrade
 
 The following section provides step-by-step instructions for developers to upgrade the Edge Manageability applications and to verify
-that the upgrade meets the above requirements :ref:`upgradeability-requirements`.
+that the upgrade meets the above requirements.
 
 Prerequisites
 ^^^^^^^^^^^^^
