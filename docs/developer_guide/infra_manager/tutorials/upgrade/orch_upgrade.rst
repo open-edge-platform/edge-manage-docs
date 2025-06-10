@@ -6,7 +6,7 @@ To facilitate this, we provide mechanisms for both operators and developers:
 
 - Operators can perform a full upgrade of the Orchestrator.
 
-- Developers can test incremental changes in the infra-charts repository. All such changes must be verified against Edge Orchestrator version 3.0 to ensure they do not introduce breaking changes and that the Orchestrator remains fully functional.
+- Developers can test modified infra charts to prevent breaking changes.
 
 .. _upgradeability-requirements:
 
@@ -24,7 +24,9 @@ The following requirements must be met to consider the system upgradeable:
 Full Upgrade of the Edge Orchestrator Platform
 ----------------------------------------------
 
-Starting with version 3.1, operators running an earlier version of Edge Orchestrator is expected to be able to perform a seamless upgrade of the entire platform to the latest release. The  `Orchestrator upgrade guide <TODO link>`_  provides the instructions for the operator to perform this upgrade.
+Starting with version 3.1, operators running an earlier version of Edge Orchestrator is expected
+to be able to perform a seamless upgrade of the entire platform to the latest release.
+The  `Orchestrator upgrade guide <TODO link>`_  provides the instructions for the operator to perform this upgrade.
 
 .. note::
    Rollback to version 3.0 is not supported in Edge Orchestrator v3.1.
@@ -51,7 +53,8 @@ Using the platform’s web UI, developers can then verify the upgraded Orchestra
 - Monitoring the EN’s status
 - Performing an EN upgrade
 
-The following section provides step-by-step instructions for developers to upgrade the Edge Manageability applications and to verify that the upgrade meets the above requirements :ref:`upgradeability-requirements`.
+The following section provides step-by-step instructions for developers to upgrade the Edge Manageability applications and to verify
+that the upgrade meets the above requirements :ref:`upgradeability-requirements`.
 
 Prerequisites
 ^^^^^^^^^^^^^
@@ -76,7 +79,7 @@ Upgrade Infra Manager Version
 To upgrade all Infrastructure Manager applications, log into your Edge Orchestrator and apply the following changes in the edge-managebility-framework repository cloned locally:
 
 1. Add infra-charts repo to ``githubRepos`` in ``mage/Magefile.go``:
-   
+
    .. code-block:: bash
 
       sed -i '/var githubRepos = \[\]/a\    "https://github.com/open-edge-platform/infra-charts",' mage/Magefile.go
