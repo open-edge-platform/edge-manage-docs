@@ -11,33 +11,57 @@ Edge Node can fail in two phases:
 * INITIALIZATION_FAILED
 * PROVISION_FAILED
 
-Edge Orchestrator will provided the reason for the failure and the provisioning
+Edge Orchestrator will provide the reason for the failure and the provisioning
 step of failure.
 
 Cause
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Edge Node provisioning can fail for various reasons, mostly network-related:
+Edge Node provisioning can fail for various reasons :
 
-* network timeout
-* network disruption during micro OS (µOS) download
-* network disruption during OS download
-* resource download (either OS or µOS) does not resume after a network
+Network Issue
+
+* Network timeout
+* Network disruption during micro OS (µOS) download
+* Network disruption during OS download
+* Resource download (either OS or µOS) does not resume after a network
   disruption
+
+Configuration Mismatch
+
+* Secure boot mismatch between Edge Orchestrator UI and Edge Node
 
 Solution
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UI will point out the step and the reason for the error that caused the
-initialization or provisioning failure.
+The Edge Orchestrator UI will indicate the step and reason for the initialization or provisioning failure.
 
-Automatic error recovery is not supported during remote onboarding and
-provisioning; the following steps are needed to recover the host and
-re-provision.
+.. note::
+   Automatic error recovery is not supported during remote onboarding and
+   provisioning. Manual intervention is required following the steps below.
 
-Steps:
+Recovery Steps for Network Issues
+-----------------------------------
+1. Delete the configured Host in UI :doc:`/user_guide/set_up_edge_infra/delete_host`
+2. Reboot the Edge Node from the management console or power button
+3. Edge Orchestrator will automatically start provisioning again; follow the
+   process in :doc:`/user_guide/set_up_edge_infra/edge_node_onboard`
 
-* Delete the configured Host in UI :doc:`/user_guide/set_up_edge_infra/delete_host`.
+Recovery Steps for Configuration Mismatch
+-------------------------------------------
+1. Delete the configured Host in UI :doc:`/user_guide/set_up_edge_infra/delete_host`
+2. Reregister the host following :doc:`/user_guide/set_up_edge_infra/edge_node_registration`
+   and ensure configuration (Secure Boot) settings match between Edge Orchestrator UI and Edge Node
+3. Reboot the Edge Node from the management console or power button
+4. Edge Orchestrator will automatically start provisioning again; follow the
+   process in :doc:`/user_guide/set_up_edge_infra/edge_node_onboard`
 
-* Reboot the Edge Node from the management console or power button.
+Secure Boot Configuration
+----------------------------
 
-* Edge Orchestrator will automatically start provisioning again; follow the
-  process as in :doc:`/user_guide/set_up_edge_infra/edge_node_onboard` section.
+   For detailed Secure Boot information, see :doc:`/shared/shared_secure_boot_opt_in`
+
+   To configure Secure Boot:
+
+    * Edge Orchestrator UI (during registration):
+      :doc:`/user_guide/set_up_edge_infra/provision_host`
+    * Edge Node configuration:
+      :doc:`/user_guide/set_up_edge_infra/edge_node_onboard`
