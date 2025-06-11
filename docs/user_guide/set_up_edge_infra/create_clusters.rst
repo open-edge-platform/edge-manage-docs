@@ -75,7 +75,7 @@ To create a single node cluster, do the following:
    the **Key** and **Value** fields, select the metadata category and
 
    corresponding value. For more information about metadata,
-   see :doc:`/user_guide/how_it_works/automated_deployment`.
+   see :doc:`/user_guide/additional_howtos/automated_deployment`.
 
    .. figure:: images/deployment_metadata.png
       :width: 100 %
