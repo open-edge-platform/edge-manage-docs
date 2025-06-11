@@ -36,7 +36,7 @@ Upgrade Edge Manageability Applications in Validation Environment
 To prevent developers from introducing breaking changes in the Infrastructure Manager,
 all updates to the SB/NB APIs and database schema are validated during the CI phase through automated lint and integration checks.
 
-To test the upgradeability of infra chart changes proposed in a pull request, we introduced the `upgrade-test <TODOlink>`_ workflow.
+To test the upgradeability of infra chart changes proposed in a pull request, we introduced the `upgrade-test <https://github.com/open-edge-platform/infra-charts/blob/main/.github/workflows/sanity-upgrade-test.yml>`_ workflow.
 This workflow can be manually triggered on any pull request in the infra-charts repository, and is also executed periodically on the main branch to ensure continued compatibility.
 
 In addition, developers can manually test an unreleased version of an Infrastructure Manager Helm chart in a locally deployed Edge Orchestrator.
