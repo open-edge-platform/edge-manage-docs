@@ -55,6 +55,7 @@ Recovery Steps for Configuration Mismatch
    process in :doc:`/user_guide/set_up_edge_infra/edge_node_onboard`
 
 Secure Boot Configuration
+----------------------------
 
    For detailed Secure Boot information, see :doc:`/shared/shared_secure_boot_opt_in`
 
