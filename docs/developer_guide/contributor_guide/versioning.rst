@@ -64,7 +64,7 @@ add features and fixes to the component, the following steps are taken:
 
    Component Version Bump
 
-1. If it hasn't already happened, a pull request is created to change the
+1. If it has not already happened, a pull request is created to change the
    ``VERSION`` file to increase to the next version and also add the
    ``-dev`` unreleased version suffix:
 

@@ -43,7 +43,7 @@ Built-in cluster templates have the following deployment metadata labels:
    :header-rows: 1
 
    * - Cluster Template Name
-     - deployment-metdata
+     - deployment-metadata
 
    * - restricted
      - "default-extension": "restricted"
