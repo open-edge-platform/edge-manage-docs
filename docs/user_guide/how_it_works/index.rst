@@ -15,10 +15,16 @@ capabilities, dashboards for quick views of status & issue identification,
 and management of all software deployments & infrastructure components including
 edge nodes (i.e. hosts) and clusters.
 
-At a high level, you can use the following steps to use Edge Orchestrator.
+At a high level, this is how you can use Edge Orchestrator.
 
   .. figure:: ./images/how_it_works2.png
       :alt: How it works
+
+The :doc:`Get Started Guide </user_guide/get_started_guide/index>` provides
+you with a step by step process to use the system.
+
+If instead you are directly interested in one of the orchestrator functionality
+you can use one of the following steps:
 
 1. :doc:`/user_guide/set_up_edge_infra/index`: Leverage Edge Orchestrator’s fleet
 management and cluster orchestration capabilities to onboard and configure
