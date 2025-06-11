@@ -51,7 +51,7 @@ boot to download the iPXE image. Use any Linux based machine to perform the foll
       lsblk --output NAME,TYPE,TRAN | grep disk| grep usb | awk '{print $1}'
 
    .. note::
-      The output of the above command is the USB device identifier. If the identifier is different from sdb, e.g. sdc then In any of the commands below where /dev/sdb is found, sdb it needs to be replaced with the correct device identifier, eg. /dev/sdc
+      The output of the above command is the USB device identifier. If the identifier is different from sdb, e.g. sdc then In any of the commands below where /dev/sdb is found, sdb it needs to be replaced with the correct device identifier, e.g. /dev/sdc
 
 #. Use the following command to download the iPXE EFI.
    Replace CLUSTER_FQDN with the name of the domain that is used during installation.
