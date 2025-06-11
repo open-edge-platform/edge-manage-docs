@@ -159,13 +159,13 @@ To force an update of the application, follow these steps:
 Validate Upgraded Infrastructure Manager
 ----------------------------------------
 
-Developers should be able to verify that the Edge Orchestrator upgrade in the validation environment was successful. After the upgrade, all applications should appear in a Healthy state.
+As part of the validation effort, developers should be able to verify that the Edge Orchestrator upgrade was successful. After the upgrade, all applications should appear in a Healthy state.
 
    .. code-block:: bash
 
       kubectl -n dev get applications
 
-The functionality of the Edge Manager can be further verified by confirming it is able to discover new OS profiles and perform EN OS updates.
+The functionality of the Edge Manager can be further validated by confirming it is able to discover new OS profiles and perform EN OS updates.
 
 Verify OS Profiles
 ^^^^^^^^^^^^^^^^^^
