@@ -16,187 +16,62 @@ Release Highlights
 
 Edge Orchestrator is the primary product within the Edge Manageability Framework.
 
-Edge Orchestrator enables you to securely onboard and provision remote
+Edge Manageability Framework enables you to securely onboard and provision remote
 edge devices to a central management plane, orchestrate Kubernetes\* clusters and
 applications across distributed edge, at scale. Edge Node software provides the
 profiles of infrastructure software configurations that get provisioned onto an
 onboarded node.
 
-Key Highlights of the release include, but not limited to:
+The 3.1 release builds upon the first 3.0 open source release adding key functionality.
+You can review the general functionality of the system in
+the :ref:`3.0 release notes </release_notes/3.0/rel_notes_3.0:Version 3.0 Release Notes>`.
 
-* Zero-touch, secure, onboarding, and provisioning of remote edge nodes on
-  management plane, that makes it easy to manage lifecycle of
-  distributed edge infrastructure – from maintenance to upgrades.
-* Onboarding remote devices either via HTTPs boot or USB-assisted boot to
-  provide flexibility to onboard for a range of existing as well as new
-  devices.
-* Built-in security capabilities such secure onboarding, full disk
-  encryption, secure communications, and so on to help with zero trust security
-  needs at the edge.
-* Ability to scale easily to thousands of edge nodes in distributed
-  locations, enabling IT teams to have better visibility into the
-  distributed edge infrastructure, from a single dashboard.
-* Multitenancy support for multiple projects and organizations with
-  centralized identity and access management for enhanced project and
-  organization level isolation.
-* Ability to orchestrate heterogeneous Kubernetes clusters and deploy and
-  manage applications via an application orchestrator through policies defined
-  by the user.
-* Advanced application orchestration capability to utilize application
-  interconnects that can help build a fully automated pipeline such as those
-  required for MLOps.
-* Pre-built Edge Node Software profiles to provision edge nodes with Ubuntu\* OS
-  as well as Edge Microvisor Toolkit immutable operating system, enabling
-  deployment of modern AI workloads in containers or virtual machines.
-* Intel-GPU support built in, so that applications can easily take advantage
-  of the computing power from integrated and discrete Intel® Arc™ graphics
-* An intuitive user interface to with a dashboard to have a simplified,
-  central view into all the nodes, clusters, and applications running across
-  the distributed edge infrastructure.
-* Deep observability and telemetry built in, along with pre-built Grafana\*
-  dashboards to look at the metrics for resource utilization, and so on, enabling
-  teams to improve operational efficiency.
-* Support for Intel Atom® platform, Intel® Core™ processor, Intel® Core™ Ultra
-  processor, Intel® Xeon® platform, and Intel® Ethernet Network Adapters.
-* Support for Intel® Arc™ and Intel® integrated graphics.
-* Ability to deploy Edge orchestrator both on cloud and on premises
-  infrastructure with easy to use installer scripts.
+Key Highlights of the 3.1 release include, but are not limited to:
 
-For a detailed list of features, see the following release notes.
+* Integration of vPro and openAMT services with EMF, allowing the user to enable
+  vPRO on any capable platfrom. First functionality supported is Remote Power
+  ON/OFF and Device Reboot capabilities.
+* Enhanced Provisioning capabilites and improvements
+    * Ability to perform PXE boot, targeted for Standalone EMT-S edge nodes to
+      serve OXMs usecases.
+    * Support the different image varieties, including EMT with Docker and k3s.
+    * Per edge Edge Node configuration through custom cloud-init script,
+      to provide fixed IP during provisioning, specific proxies, enabling
+      Kubernetes right at the very installation of the nodes or finally
+      configuring GPU SRIOV or X11.
+    * HookOS has been replaced with a lightweight EMT, ensuring full control
+      and optimization of the components used to provision an EN.
+* Ability to independently track software component and Edge Node usage for
+  managed and standalone edge nodes, with an customer opt-out selection.
+  The objective  to gain better performance and usage insights with the goal
+  of always enhancing the product.
+* Support for dGPU (Battlemage, Nvidia) and iGPU, including also GPU SR-IOV
+  configuration capabilities in EMT-S and EMF.
+* History of Day 2 update operations of an Edge node is now tracked and exposed,
+  allowing the user to retrace the different steps of an Edge Node's life.
+  The Day 2 update process now aligns with industry well known constructus.
+* Security Compliance of an Edge Node is also now implemented through CVE
+  tracking for installed and available OS images.
+* Kubernetes k3s distribution is brought to the edge node to replace RKE2
+  achieving lightweight deployments in resource-constrained devices.
+  An EMT image with the k3s binaries already included is present via an OS Profile.
+* Cluster Orchestration now supports 1000 clusters concurrently managed.
+* Improved application onboarding tools.
+* Test automation has been overhauled providing the foundation of testing
+  platform capable of reaching 100% test automation over time. TODO add number of automation and such.
+* Additionally, efforts have been focusing on Trusted Compute to enable
+  customers, benchmark it and adapt to minimal common EMT as trusted OS.
 
-The software comprises of the following key components:
+All of the codebase is Apache\* software version 2.0 licensed and available on Github.
 
-* Application Orchestrator and Catalog Services
-* Cluster Orchestrator
-* Edge Infrastructure Manager
-* Comprehensive User Interface
-* Observability, Telemetry, Monitoring, and Alerting
-* Edge Node Software Agents
-* Foundational Platform Services
-
-
-
-Detailed Features in This Release
---------------------------------------------
-
-Version 3.1 provides the following additional features and enhancements on
-top of previous closed source versions.
-
-Open Sourcing of the codebase
-
-* Open Sourcing of the codebase
-
-  * Use Apache\* software version 2.0 license.
-  * All repositories can be cloned and built as an artifact
-    (binary file, rpm, or Docker\* container).
-  * All components have minor versions.
-  * Simplified the total number of repositories.
-  * Each repository has a README.md file.
-
-* Introduce a complete and new Developer Documentation.
-
-  * Edge Orchestrator overview.
-  * Contributing guide.
-  * Architecture guide for all components.
-  * Tutorials and troubleshooting.
-  * Application development flow.
-
-* Edge node cluster management via Cluster API (CAPI)
-
-  * Cluster providers are based on the open cluster API standard, for the
-    existing device and infrastructure, Kubernetes\* clusters in Rancher\* Setup provisioning and other flavors like the vanilla Kubernetes setup.
-  * Support cluster templates and profiles based on CAPI, to
-    configure the cluster.
-  * Continuous support for multitenancy, edge-cluster access, and
-    integration with other Edge Orchestrator services.
-  * Support for single-node clusters.
-
-* Edge node zero-touch onboarding and provisioning with pre-registration
-
-  * Pre-register a node with OS, security (secure boot and
-    full-disk encryption), metadata, and SSH key configuration.
-  * Allow the user to avoid, by default, several manual BIOS configuration
-    ahead of on-boarding and provisioning a node, such as secure boot and
-    full-disk encryption); moving from an opt-out model to an opt-in,
-    optional configuration.
-
-* Day0 and Day1 configuration for edge nodes and OS
-  configuration is done via industry standard `cloud-init
-  <https://cloudinit.readthedocs.io/en/latest/>`_. Cloud-init performs
-  static configuration files and perform OS configurations that are
-  self-contained and do not require network connectivity
-
-* Remote edge-node access using SSH public key-based authentication.
-
-* Increased and enhanced infrastructure edge-node status and user-interface
-  pages
-
-  * All hosts are reported in a single page; categorized using
-    `Provisioned`, `Onboarded`, `Registered`, and `All`, matching the
-    lifecycle phase.
-  * Report of the different edge-node agents and component status.
-  * Visibility to additional elements, such as workload.
-  * Drop-down menu for each host with inline details.
-  * Visual cue of the ability to upgrade the node.
-  * List of installed packages for immutable images.
-
-* Enhanced Lenovo\* system integration
-
-  * Support for LOC-A version 3.3.x.
-  * OS provisioning can be triggered using |software_prod_name|\.
-  * Support for `Viana\* platform <https://www.meldcx.com/products/viana>`_  edge-init v1.0 application.
-
-* Support for Intel® applications
-
-  * Newest version of pallet defect detection.
-  * Image-based video search.
-  * ChatQnA.
-
-* Support for common Helm\* applications
-
-  * A sample set of Bitnami\* applications was selected to validate Edge Orchestrator's compatibility
-    with common Helm charts and applications. These examples were chosen to represent varying levels
-    of complexity, ranging from simple single-pod applications to multi-pod applications that
-    incorporate databases, ingress controllers, and persistent volumes. The selected applications include:
-
-     * Gitea\* platform, a self-hosted Git\* service
-     * JupyterHub\* server, a web-based interactive computing platform with multiple services
-     * MongoDB\* platform, a NoSQL database
-     * NGINX\* web server
-     * WordPress\* system, a blogging platform that includes an internal Postgres\* database
-
-* Enhanced Edge Orchestration deployment and operation
-
-  * Reduced number of manual steps.
-  * One click installation in less than 30 minutes.
-
-* Initial Support for Trusted Compute
-
-  * Provision a Trusted Compute-capable edge node.
-  * Create a cluster to have Trusted Compute-capable edge node.
-  * Remove the Trusted Compute-capable edge node in a cluster.
-  * Add Trusted Workloads into the Application Catalog.
-  * Attestation Failure on the Trusted Compute-capable edge node.
-
-Refer to the user guide for detailed documentation of these features.
-
-All of the before mentioned enhancements are present in both AWS\* cloud-based and
-on-premises Product deployments.
-
-The following are further descriptions of some of the enumerated
-enhancements.
+For a detailed list of features, see the Overview page.
 
 Upgrades from Previous Releases
 ----------------------------------
 
-You would not be able to upgrade |software_prod_name| to release 3.1 from
-any previous releases, because of the changes and features outlined in the
-sections above, especially the move to open source repository and the
-deprecation of Rancher\* platform.
-
-Any installation must be a fresh install; if you had a previous
-installation Intel recommends to uninstall by following the instructions in
-the guide and then proceeding with a fresh install of release 3.1.
+Edge Manageability Framework 3.1 can be upgraded from version 3.0 automatically
+as described in the user guide. TODO: link guide.
+Any version prior to 3.0 can not be upgraded to 3.1.
 
 Known Issues
 ----------------------------------
