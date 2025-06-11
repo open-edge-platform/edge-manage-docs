@@ -26,9 +26,9 @@ Network Issue
 * Resource download (either OS or µOS) does not resume after a network
   disruption
 
-Configuration Mismatch 
+Configuration Mismatch
 
-* Secure boot mismatch between Edge Orchestrator UI and Edge Node 
+* Secure boot mismatch between Edge Orchestrator UI and Edge Node
 
 Solution
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
