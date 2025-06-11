@@ -1,35 +1,19 @@
 How it Works
 ============
 
-Key features of |software_prod_name| include:
+Edge Manageability Framework is the primary solution to manage edge environments
+efficiently and securely. It encompasses a range of features that cater to the
+unique demands of edge computing, ensuring seamless integration and operation
+across diverse hardware and software landscapes.
 
-**Infrastructure management** for lifecycle management of hosts, at scale.
-
-- Create a custom hierarchical data model that matches your organization’s
-  needs and manages hosts with policy-based management.
-- Securely onboard and provision hosts remotely with cloud-based onboarding.
-
-**Cluster orchestration** to Manage, monitor, and operate Kubernetes clusters
-across hosts.
-
-- Simplify cluster lifecycle management at all stages of operation.
-- Streamline and standardize downstream cluster creation with Kubernetes
-  templates.
-
-**Application orchestration** to easily package, deploy, and monitor
-cloud-native applications across distributed edge networks.
-
-- Simplify deployment of complex solutions with flexible packaging, profiles,
-  and custom deploy-time environments.
-- Deploy, run, and manage container and virtual machine workloads side by side.
-- Deploy software automatically based on metadata, or to a list of known
-  targets.
-
-**Observability** to gain visibility and insight at every level, from the
-workload to the cluster.
-
-- Health monitoring and alerting help you quickly identify and repair
-  issues.
+Edge Manageability Framework is designed to be the central hub for managing
+edge infrastructure and edge application deployments at scale across
+geographically distributed edge sites. It offers automated application
+deployment based on customer-defined configuration & criteria, multitenancy
+and identity & access management for tenants, observability & alerting
+capabilities, dashboards for quick views of status & issue identification,
+and management of all software deployments & infrastructure components including
+edge nodes (i.e. hosts) and clusters.
 
 At a high level, you can use the following steps to use Edge Orchestrator.
 
@@ -59,8 +43,3 @@ while the unified dashboard offers visibility across the entire edge stack.
 •	:doc:`/user_guide/set_up_edge_infra/index`
 •	:doc:`/user_guide/package_software/index`
 •	:doc:`/user_guide/monitor_deployments/index`
-
-.. toctree::
-   :hidden:
-
-   automated_deployment
