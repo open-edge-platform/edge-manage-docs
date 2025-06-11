@@ -21,6 +21,6 @@ The cluster template includes the following details:
 * An optional list of deployment metadata key-value pairs. Clusters assigned the
   deployment metadata provided in the cluster template will automatically have matching
   deployments installed. For more information on deployment metadata, see
-  :doc:`/user_guide/how_it_works/automated_deployment`.
+  :doc:`/user_guide/additional_howtos/automated_deployment`.
 
 The **Export Template** option allows you to export the template to a JSON file.

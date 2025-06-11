@@ -10,7 +10,7 @@ You can set up two types of deployment:
 .. note::
 
    For more insights into how deployments are linked to hosts, see the
-   :doc:`/user_guide/how_it_works/automated_deployment` section.
+   :doc:`/user_guide/additional_howtos/automated_deployment` section.
 
 To set up a deployment, perform the following steps:
 

@@ -10,6 +10,7 @@ perform several tasks to customize or extend the application's capabilities:
    * :doc:`/shared/shared_ht_iam_ext`
    * :doc:`/shared/shared_ht_iam_groups`
    * :doc:`/user_guide/additional_howtos/set_up_a_cluster_template`
+   * :doc:`/user_guide/additional_howtos/automated_deployment`
    * :doc:`/user_guide/additional_howtos/view_os_profiles`
    * :doc:`/user_guide/additional_howtos/alerting`
    * :doc:`/user_guide/additional_howtos/host_schedule_main`
@@ -33,6 +34,7 @@ perform several tasks to customize or extend the application's capabilities:
    host_schedule_main
    install_new_packages
    host_update_immutable_os
+   automated_deployment
    ../../shared/shared_adv_alerts
    ../../shared/shared_adv_edge_node
    configure_ssh_public_keys
