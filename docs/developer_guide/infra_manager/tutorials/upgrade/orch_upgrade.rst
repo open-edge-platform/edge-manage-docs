@@ -76,7 +76,7 @@ On the ``Host`` page of the Web UI, observe the status of the EN until it is ful
 Upgrade Infra Manager Version
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To upgrade all Infrastructure Manager applications, log into your Edge Orchestrator and apply the following changes in the edge-managebility-framework repository cloned locally:
+To upgrade all Infrastructure Manager applications, log into your Edge Orchestrator and apply the following changes in the edge-manageability-framework repository cloned locally:
 
 1. Add infra-charts repo to ``githubRepos`` in ``mage/Magefile.go``:
 
