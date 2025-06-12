@@ -8,7 +8,7 @@ System Requirements
 
 Your development machine must meet the following minimum requirements:
 
-- Operating System: Ubuntu\* 24.04 Server
+- Operating System: Ubuntu\* 22.04 Server
 
 - Processor: 16 cores or more with Intel® Virtualization Technology (Intel® VT)
   for IA-32, Intel® 64 and Intel® Architecture (Intel® VT-x) and Intel®
