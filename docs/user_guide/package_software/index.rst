@@ -43,7 +43,7 @@ Preparing software for automated deployment involves these steps:
    See :doc:`/user_guide/package_software/setup_deploy` for step-by-step instructions for configuring each type of deployment.
 
    For an end-to-end example of applying deployment metadata, see
-   :doc:`/user_guide/how_it_works/automated_deployment`.
+   :doc:`/user_guide/additional_howtos/automated_deployment`.
 
    Once you have prepared both your infrastructure and software, |software_prod_name| automatically deploys it.
 

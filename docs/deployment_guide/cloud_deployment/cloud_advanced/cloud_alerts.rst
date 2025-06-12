@@ -66,7 +66,7 @@ that a trusted CA signs the certificate.
 
 If the SMTP server is using a self-signed certificate or a certificate signed
 by a non-public CA, this verification process will fail. Self-signed
-certificates and certificates signed by non-public CAs aren't automatically
+certificates and certificates signed by non-public CAs are not automatically
 trusted.
 
 Configure self-signed or non-public SMTP server

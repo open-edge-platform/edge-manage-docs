@@ -76,7 +76,7 @@ Add one or more hosts to the cluster. All the hosts in the cluster must come fro
 the same site. Then, add deployment metadata to your cluster, which is needed to
 enable automated deployment. Deployment metadata takes the form of key-value pairs
 and matches target clusters with the deployment package during
-:doc:`/user_guide/how_it_works/automated_deployment`.
+:doc:`/user_guide/additional_howtos/automated_deployment`.
 
 For more information, see :doc:`/user_guide/set_up_edge_infra/create_clusters`.
 

@@ -249,7 +249,7 @@ The installer script prompts for configuration input during the installation pro
    - These are "Virtual IPs" - you do not have to assign these IPs to any hardware network interface,
      but you must reserve these IPs within the local subnet. Ensure your DHCP server does not assign conflicting IP addresses.
 
-   See `Edge Orchestrator Network Topology <./on_prem_prereq.html#edge-orchestrator-network-topology>`__ for details about possible network configurations.
+   See `Edge Orchestrator Network Topology <./index.html#edge-orchestrator-network-topology>`__ for details about possible network configurations.
 
    An example of the topology:
 

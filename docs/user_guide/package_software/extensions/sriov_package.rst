@@ -84,7 +84,7 @@ For Virtual Machine-based Application
     * `networkNamespace` to indicate the namespace of the virtual machine or container-based application that is running.
     * `ipam` with empty object `{}` for virtual machine-based applications.
 
-#. Update the resource files in the `templates`` directory for virtual machine-based applications (for example, virtualmachine):
+#. Update the resource files in the `templates`` directory for virtual machine-based applications (for example, virtualMachine):
 
     .. code:: yaml
 

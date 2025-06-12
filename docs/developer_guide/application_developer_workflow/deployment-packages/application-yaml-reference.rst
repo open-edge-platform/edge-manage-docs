@@ -233,7 +233,7 @@ or a password.
 
 This is an optional boolean field that indicates the parameter is a secret and should
 not be displayed in the UI. Within the orchestrator this value will be stored in a
-kubernetes Secret and will not be displayed in the UI or logs or be accessible
+Kubernetes Secret and will not be displayed in the UI or logs or be accessible
 through the API. It is useful for sensitive information such as passwords or
 API keys.
 

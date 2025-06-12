@@ -34,7 +34,7 @@ The common settings in the cluster templates include:
 * Common configuration of the cluster IP addresses - cluster or service CIDRs
 * Optional list of deployment metadata key-value pairs populated as cluster labels
   and used to identify clusters as targets for
-  :doc:`/user_guide/how_it_works/automated_deployment`.
+  :doc:`/user_guide/additional_howtos/automated_deployment`.
 
 Built-in cluster templates have the following deployment metadata labels:
 
@@ -43,7 +43,7 @@ Built-in cluster templates have the following deployment metadata labels:
    :header-rows: 1
 
    * - Cluster Template Name
-     - deployment-metdata
+     - deployment-metadata
 
    * - restricted
      - "default-extension": "restricted"

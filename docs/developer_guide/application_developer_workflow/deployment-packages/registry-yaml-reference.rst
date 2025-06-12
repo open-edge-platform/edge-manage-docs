@@ -62,7 +62,7 @@ multi-tenancy Project.
 ~~~~~~~~~~~~~~
 
 Display name is an optional human-readable name for the Registry. When
-specified, it must be unique among all Registryies within a project. It is
+specified, it must be unique among all Registries within a project. It is
 used for display purposes on user interfaces. If no `displayName` is provided the
 Application Catalog will copy the `name` field to the `displayName` field.
 
