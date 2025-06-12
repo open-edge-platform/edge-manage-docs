@@ -1,7 +1,7 @@
 Version 3.1 Key Performance Indicators (KPIs)
 =======================================================
 
-TODO UPDATE after latest build is generated
+TODO UPDATE after latest build is generated (Point of Contact Ajay and Hardik)
 
 For 3.1 release the following KPI goals were met that assured the quality
 and proficiency of |software_prod_name|.

@@ -56,7 +56,13 @@ Key Highlights of the 3.1 release include, but are not limited to:
   achieving lightweight deployments in resource-constrained devices.
   An EMT image with the k3s binaries already included is present via an OS Profile.
 * Cluster Orchestration now supports 1000 clusters concurrently managed.
-* Improved application onboarding tools.
+* Vastly improved Application Onboarding
+    * Ability to directly import helm charts, thus removing the need to write
+      the deployment package for single helm chart applications.
+    * Deployment Packages are now directly exportable from the user interface,
+      to help portability and debuggability.
+    * Deployment packages can now be imported as tar files,
+      making them more portable and easy to share.
 * Test automation has been overhauled providing the foundation of testing
   platform capable of reaching 100% test automation over time. TODO add number of automation and such.
 * Additionally, efforts have been focusing on Trusted Compute to enable
@@ -64,7 +70,8 @@ Key Highlights of the 3.1 release include, but are not limited to:
 
 All of the codebase is Apache\* software version 2.0 licensed and available on Github.
 
-For a detailed list of features, see the Overview page.
+For a detailed list of features, see the :doc:`Overview page </user_guide/index>`
+and the :ref:`Edge Manageability Framework README file <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/README.md>`.
 
 Upgrades from Previous Releases
 ----------------------------------

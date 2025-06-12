@@ -1,6 +1,7 @@
 Third Party Components
 ===========================
-TODO UPDATE after latest build is generated
+TODO UPDATE after latest build is generated (this was manually mantained)
+https://intel.sharepoint.com/:x:/r/sites/nex-oie/Shared%20Documents/Security/LP%20SDLe%20Projects/SDLe/ITEP-3.0/ITEP%20External%20Dependencies.xlsx?d=we80f0febd91b4b439192baf67d42306a&csf=1&web=1&e=cRu6bq
 
 Following is a list of all the third party components that |software_prod_name|
 version 3.1 uses.

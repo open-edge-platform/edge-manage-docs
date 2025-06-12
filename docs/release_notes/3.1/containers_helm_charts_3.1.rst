@@ -1,7 +1,7 @@
 Containers and Helm\* Charts
 ============================
 
-TODO UPDATE after latest build is generated
+TODO UPDATE after latest build is generated (mage gen:releaseImageManifest)
 
 Here is a list of all the Helm Charts and Containers that
 make up |software_prod_name| version 3.1.
