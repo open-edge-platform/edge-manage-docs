@@ -23,8 +23,8 @@ profiles of infrastructure software configurations that get provisioned onto an
 onboarded node.
 
 The 3.1 release builds upon the first 3.0 open source release adding key functionality.
-You can review the general functionality of the system in
-the :ref:`3.0 release notes </release_notes/3.0/rel_notes_3.0:Version 3.0 Release Notes>`.
+You can review the general functionality of the system in the
+:doc:`3.0 release notes </release_notes/3.0/rel_notes_3.0>`.
 
 Key Highlights of the 3.1 release include, but are not limited to:
 
@@ -71,7 +71,7 @@ Key Highlights of the 3.1 release include, but are not limited to:
 All of the codebase is Apache\* software version 2.0 licensed and available on Github.
 
 For a detailed list of features, see the :doc:`Overview page </user_guide/index>`
-and the :ref:`Edge Manageability Framework README file <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/README.md>`.
+and the `Edge Manageability Framework README file <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/README.md>`_.
 
 Upgrades from Previous Releases
 ----------------------------------
