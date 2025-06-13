@@ -38,7 +38,7 @@ status does not transition to running within the Deployments menu.
    limit of unique deployments. The maximum number of unique, i.e. different in
    applications chosen, deployments is limited to 1000 per Edge Orchestrator
    instance. Refer to the `Limitations` section in release notes
-   :doc:`/release_notes/rel_notes_3.0`.
+   :doc:`/release_notes/3.0/rel_notes_3.0`.
    If the number of unique deployments is lower
    than 300 there is no limit on the total amount of deployment replicas.
    Contact Intel engineering or support for assistance.
