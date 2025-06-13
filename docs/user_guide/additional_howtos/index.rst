@@ -1,8 +1,9 @@
-Administration
+Advanced Functionality
 ==========================================
 
-In addition to the main tasks outlined in this user guide, you might need to
-perform several tasks to customize or extend the application's capabilities:
+In addition to the main tasks outlined in this user guide, these are
+more advanced tasks such as administrative ones to customize or extend the
+application's capabilities:
 
    * :doc:`/shared/shared_gs_iam`
    * :doc:`/shared/shared_mt_overview`
