@@ -6,9 +6,7 @@ name: Post-Merge CI Pipeline
 
 on:  # yamllint disable-line rule:truthy
   push:
-    branches:
-      - main
-      - release-*
+    branches: ['main', 'release-[0-9]+.[0-9]+*']
   workflow_dispatch:
 
 permissions: {}
@@ -19,7 +17,7 @@ jobs:
       contents: read
       security-events: write
       id-token: write
-    uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@37eef2d2a0909dfe8ff26bb0730ab2f13dfbcaf6  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@d475e84f8b0b7bff118f0e8f56712390ef8d2828  # yamllint disable-line rule:line-length
     with:
       run_version_check: true
       run_dep_version_check: false
@@ -40,9 +38,10 @@ jobs:
       contents: read          # needed for actions/checkout
       pull-requests: read     # needed for gh pr list
       issues: write           # needed to post PR comment
-    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@37eef2d2a0909dfe8ff26bb0730ab2f13dfbcaf6  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@d475e84f8b0b7bff118f0e8f56712390ef8d2828  # yamllint disable-line rule:line-length
     with:
       simple_mode: false
+      branch_pattern: '^(main|release-[0-9]+\.[0-9]+*)$'
     secrets:
       SYS_ORCH_GITHUB: ${{ secrets.SYS_ORCH_GITHUB }}
       DOC_AWS_ACCESS_KEY_ID: ${{ secrets.DOC_AWS_ACCESS_KEY_ID }}
