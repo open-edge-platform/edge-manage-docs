@@ -142,7 +142,7 @@ Scheduling Ubuntu OS Update
 ------------------------------------
 
 To schedule an update of an edge node's Ubuntu OS, follow the steps for **OS Update** maintenance type described in the
-:doc:`/user_guide/additional_howtos/host_schedule_main` section.
+:doc:`/user_guide/advanced_functionality/host_schedule_main` section.
 Upon a successful scheduling of an update, the Platform Update Agent on the edge node will run the update at the selected time and date.
 If new packages were specified before the update, the packages will be installed as part of this process.
 As part of the update process, all packages with update candidates available in the remote `APT` repositories will be updated to the available version.

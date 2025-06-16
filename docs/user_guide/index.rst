@@ -35,6 +35,7 @@ for initial configuration of the service.
    package_software/index.rst
    monitor_deployments/index.rst
    intel_solutions/index.rst
-   additional_howtos/index.rst
+   advanced_functionality/index.rst
+   administration/index.rst
    troubleshooting/index.rst
    concepts/index.rst

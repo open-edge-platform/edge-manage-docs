@@ -189,7 +189,7 @@ profiles into LOC-A instance templates.
              |software_prod_name|\.
 
 #. Verify that the Lenovo Ubuntu 22.04.03 profile is visible in the OS profiles
-   page as shown in :doc:`/user_guide/additional_howtos/view_os_profiles`.
+   page as shown in :doc:`/user_guide/advanced_functionality/view_os_profiles`.
 
 #. Login in to LOC-A UI, navigate to `Templates` page, and verify that the
    expected instance templates has been created. One template per device model

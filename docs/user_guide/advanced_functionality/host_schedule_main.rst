@@ -39,9 +39,9 @@ To schedule maintenance for a single Edge Node, do the following:
 
    * **Maintenance**: To schedule any administrative downtime or edge node maintenance.
    * **OS Update**: To schedule edge node software updates (i.e. updates of already installed packages or to install new packages):
-      - Refer to :doc:`/user_guide/additional_howtos/host_update_immutable_os` for more information regarding the update of edge node's immutable
+      - Refer to :doc:`/user_guide/advanced_functionality/host_update_immutable_os` for more information regarding the update of edge node's immutable
         Edge Microvisor Toolkit operating system software.
-      - Refer to :doc:`/user_guide/additional_howtos/install_new_packages`
+      - Refer to :doc:`/user_guide/advanced_functionality/install_new_packages`
         to install new packages and update an edge node with mutable Ubuntu\* OS.
 
 #. Select the schedule type from the **Schedule Type** drop-down box. You have the option to select one of the following schedule type:
