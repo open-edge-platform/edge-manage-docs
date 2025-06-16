@@ -115,7 +115,7 @@ Testing the Edge Node Agent on Ubuntu
 -------------------------------------
 
 Testing an Edge Node Agent can be done on an existing Edge Node with Ubuntu OS.
-To access an Edge Node use the local SSH feature :doc:`../../../../../user_guide/additional_howtos/configure_ssh_public_keys`.
+To access an Edge Node use the local SSH feature :doc:`../../../../../user_guide/advanced_functionality/configure_ssh_public_keys`.
 
 Building Debian Package
 ^^^^^^^^^^^^^^^^^^^^^^^

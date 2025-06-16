@@ -34,7 +34,7 @@ The common settings in the cluster templates include:
 * Common configuration of the cluster IP addresses - cluster or service CIDRs
 * Optional list of deployment metadata key-value pairs populated as cluster labels
   and used to identify clusters as targets for
-  :doc:`/user_guide/additional_howtos/automated_deployment`.
+  :doc:`/user_guide/advanced_functionality/automated_deployment`.
 
 Built-in cluster templates have the following deployment metadata labels:
 
@@ -150,11 +150,11 @@ The following table lists the various enabled and disabled settings for the defa
 
 From this page, you can click the three-dot (...) icon in the **Actions** column and you can do the following:
 
-    * :doc:`/user_guide/additional_howtos/view_cluster_template`
-    * :doc:`/user_guide/additional_howtos/set_default_cluster_template`
-    * :doc:`/user_guide/additional_howtos/import_cluster_template`
-    * :doc:`/user_guide/additional_howtos/export_cluster_template`
-    * :doc:`/user_guide/additional_howtos/delete_cluster_template`
+    * :doc:`/user_guide/advanced_functionality/view_cluster_template`
+    * :doc:`/user_guide/advanced_functionality/set_default_cluster_template`
+    * :doc:`/user_guide/advanced_functionality/import_cluster_template`
+    * :doc:`/user_guide/advanced_functionality/export_cluster_template`
+    * :doc:`/user_guide/advanced_functionality/delete_cluster_template`
 
 
 .. toctree::

@@ -75,7 +75,7 @@ To create a single node cluster, do the following:
    the **Key** and **Value** fields, select the metadata category and
 
    corresponding value. For more information about metadata,
-   see :doc:`/user_guide/additional_howtos/automated_deployment`.
+   see :doc:`/user_guide/advanced_functionality/automated_deployment`.
 
    .. figure:: images/deployment_metadata.png
       :width: 100 %
@@ -108,10 +108,10 @@ To create a single node cluster, do the following:
    See the following documents for more information:
 
    To create and modify a cluster template, see the following document:
-   :doc:`/user_guide/additional_howtos/set_up_a_cluster_template`
+   :doc:`/user_guide/advanced_functionality/set_up_a_cluster_template`
 
    However, if you are using a template you want to modify, you
-   can export the chosen template and then edit it. See: :doc:`../additional_howtos/export_cluster_template`
+   can export the chosen template and then edit it. See: :doc:`../advanced_functionality/export_cluster_template`
 
    To modify the subnets, update the `clusterNetwork` section in the cluster template:
 
@@ -134,7 +134,7 @@ To create a single node cluster, do the following:
    for your edge environment.
 
    After editing the template, should you wish to use it as the default template.
-   you can do so using this guide: :doc:`../additional_howtos/set_default_cluster_template`
+   you can do so using this guide: :doc:`../advanced_functionality/set_default_cluster_template`
 
    **Note:** If no valid DNS server is available on the system, RKE2 may fall back
    to using `8.8.8.8` (Google's public DNS). Ensure that your DNS configuration

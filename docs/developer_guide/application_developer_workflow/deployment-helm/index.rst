@@ -137,7 +137,7 @@ properly:
 #. If the Helm Chart includes Custom Resource Definitions (CRDs), please
    follow the `Helm best practices document <https://helm.sh/docs/chart_best_practices/custom_resource_definitions/>`_.
 
-#. If deploying to :doc:`Edge Microvisor Toolkit </user_guide/additional_howtos/host_update_immutable_os>`
+#. If deploying to :doc:`Edge Microvisor Toolkit </user_guide/advanced_functionality/host_update_immutable_os>`
    please be aware that it features an immutable root file system, and this may require additional effort to ensure that
    your application does not use Host Paths or other features that might attempt to write to the immutable partition.
 
@@ -180,7 +180,7 @@ properly:
    * Intel® GPU - a Kubernetes device plugin for Intel® GPUs
    * SRIOV - a Kubernetes device plugin for SRIOV devices
 
-#. Be aware of the different :doc:`/user_guide/additional_howtos/set_up_a_cluster_template`
+#. Be aware of the different :doc:`/user_guide/advanced_functionality/set_up_a_cluster_template`
    that are in effect on the Edge Node(s) that you are deploying to.
 
    The **Privileged** cluster template is the most permissive template but also provides the least secure enforcement.

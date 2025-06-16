@@ -22,7 +22,7 @@ Configure the edge node according to the following to ensure that the Intel GPU 
    these configurations.
 
 .. note::
-   Refer to :doc:`/user_guide/additional_howtos/install_new_packages`
+   Refer to :doc:`/user_guide/advanced_functionality/install_new_packages`
    for prerequisites of installing new Debian\* packages.
 
 Supported GPU Devices

@@ -67,7 +67,7 @@ Update the Default OS for Near Zero-Touch Provisioning
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following are instructions to update the default OS to be used in case of nZTP. First, you need to get a list of OS profiles
-created in the project that you are operating on (you can also see the available OSes using :doc:`/user_guide/additional_howtos/view_os_profiles`):
+created in the project that you are operating on (you can also see the available OSes using :doc:`/user_guide/advanced_functionality/view_os_profiles`):
 
 .. code-block:: shell
 
@@ -108,7 +108,7 @@ After this you are ready for onboarding new edge nodes.
 Add or Update the default SSH key for Near Zero-Touch Provisioning
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 To add or update the default SSH key during Near Zero-Touch Provisioning, first you need to add the SSH Key.
-Follow the instructions in the :doc:`./../user_guide/additional_howtos/configure_ssh_public_keys` section to add the SSH Key.
+Follow the instructions in the :doc:`./../user_guide/advanced_functionality/configure_ssh_public_keys` section to add the SSH Key.
 
 Once you have added the SSH key, you can run the following command to get the list of SSH key IDs:
 

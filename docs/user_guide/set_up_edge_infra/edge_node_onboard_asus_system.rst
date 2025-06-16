@@ -74,7 +74,7 @@ boot to download the iPXE image. Use any Linux based machine to perform the foll
    #. Following you need to download the `db-emt.der` file from Release Service.
 
       Repository URL path of Edge Microvisor Toolkit can be found by looking at the
-      :doc:`OS Profile </user_guide/additional_howtos/view_os_profiles>` you are trying to
+      :doc:`OS Profile </user_guide/advanced_functionality/view_os_profiles>` you are trying to
       install and copying manually the `Repository URL` value without `raw.gz` suffix.
       Alternatively, it can be acquired using the Edge Orchestrator API - see the
       `Acquiring the Edge Microvisor Toolkit repository URL path from Edge Orchestrator API`_
@@ -155,7 +155,7 @@ Acquiring the Edge Microvisor Toolkit repository URL path from Edge Orchestrator
 For Edge Microvisor Toolkit, the repository URL path of the certificate can
 be acquired from Edge Orchestrator API with the following command, where `PROFILE_NAME`
 is set to the OS Profile name you are trying to install (e.g. `microvisor-nonrt`, see
-:doc:`/user_guide/additional_howtos/view_os_profiles`):
+:doc:`/user_guide/advanced_functionality/view_os_profiles`):
 
 .. note::
 

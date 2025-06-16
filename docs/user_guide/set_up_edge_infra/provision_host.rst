@@ -35,7 +35,7 @@ The **Provision Host** feature allows you to provision an OS profile onto a prev
 
 #. To enable SSH login using keys, select the required SSH public key from the drop-down menu and click **Next**.
    It is optional to add an SSH key, however you must have submitted the public key to the web UI using the instructions
-   in :doc:`../../user_guide/additional_howtos/configure_ssh_public_keys`.
+   in :doc:`../../user_guide/advanced_functionality/configure_ssh_public_keys`.
 
    .. figure:: images/provision_os_public_ssh_key.png
       :alt: Host public SSH key
@@ -94,7 +94,7 @@ Additionally:
 .. note:: Only Debian-style OSs are currently supported by this software version. Each repeated text must be in the `DEB822 <https://manpages.debian.org/bookworm/apt/sources.list.5.en.html>`_ format, which can embed the GNU Privacy Guard (GPG) key with the "Signed-By:" line.
 
 For more information on OS and OS profiles, refer to
-:doc:`/user_guide/additional_howtos/view_os_profiles`.
+:doc:`/user_guide/advanced_functionality/view_os_profiles`.
 
 
 Host Label

@@ -134,7 +134,7 @@ The summary of the creation will look like the following:
    :width: 750px
 
 .. note:: Verify that the Ubuntu OS version 22.04.3 for Lenovo, is visible in
-   :doc:`/user_guide/additional_howtos/view_os_profiles`.
+   :doc:`/user_guide/advanced_functionality/view_os_profiles`.
 
 LOC-A setup is now completed. You can proceed with the onboarding and the provisioning of
 servers using LOC-A. For more information about onboarding hosts, see

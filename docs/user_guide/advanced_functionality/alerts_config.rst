@@ -1,5 +1,5 @@
 
-Configure Alert Definitions
+Configure Alert Paramteters
 ===========================
 
 **Alert Definitions** allow you to enable and disable

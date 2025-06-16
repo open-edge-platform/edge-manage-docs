@@ -98,7 +98,7 @@ Scheduling OS update
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To schedule an update of the edge node's Edge Microvisor Toolkit, follow the steps for **OS Update** maintenance type described in the
-:doc:`/user_guide/additional_howtos/host_schedule_main` section.
+:doc:`/user_guide/advanced_functionality/host_schedule_main` section.
 Upon a successful scheduling of an update, the Platform Update Agent on the edge node will run the update at the selected time and date.
 The Platform Update Agent will respond with an appropriate status on a successful update, to the Maintenance Manager.
 In case of an update failure, the Platform Update Agent will return a relevant failure status and/or attempt a rollback to the Edge Microvisor Toolkit version installed prior to the update attempt.

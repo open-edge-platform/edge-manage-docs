@@ -51,7 +51,7 @@ Manager, refer to the `Maintenance Manager documentation <https://github.com/ope
 
 An Edge Node update can be scheduled through the Web UI, which creates a dedicated maintenance
 window for the update process. To learn more about scheduling updates for Edge Nodes, see the
-:ref:`guide on scheduling maintenance <user_guide/additional_howtos/host_schedule_main:Schedule Maintenance for Configured and Active Hosts>`.
+:ref:`guide on scheduling maintenance <user_guide/advanced_functionality/host_schedule_main:Schedule Maintenance for Configured and Active Hosts>`.
 
 
 EN Update Flow
