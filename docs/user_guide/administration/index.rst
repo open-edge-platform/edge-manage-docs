@@ -9,6 +9,8 @@ administrative configuration allowed:
    * :doc:`/shared/shared_iam_groups`
    * :doc:`/shared/shared_ht_iam_ext`
    * :doc:`/shared/shared_ht_iam_groups`
+   * :doc:`/user_guide/administration/alerting`
+   * :doc:`/shared/shared_adv_edge_node`
 
 .. toctree::
    :hidden:
@@ -18,4 +20,6 @@ administrative configuration allowed:
    ../../shared/shared_iam_groups
    ../../shared/shared_ht_iam_ext
    ../../shared/shared_ht_iam_groups
+   ../../shared/shared_adv_edge_node
+   alerting
 

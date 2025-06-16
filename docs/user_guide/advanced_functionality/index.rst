@@ -8,12 +8,10 @@ application's capabilities:
    * :doc:`/user_guide/advanced_functionality/set_up_a_cluster_template`
    * :doc:`/user_guide/advanced_functionality/automated_deployment`
    * :doc:`/user_guide/advanced_functionality/view_os_profiles`
-   * :doc:`/user_guide/advanced_functionality/alerting`
+   * :doc:`/user_guide/advanced_functionality/alerts_config`
    * :doc:`/user_guide/advanced_functionality/host_schedule_main`
    * :doc:`/user_guide/advanced_functionality/install_new_packages`
    * :doc:`/user_guide/advanced_functionality/host_update_immutable_os`
-   * :doc:`/shared/shared_adv_alerts`
-   * :doc:`/shared/shared_adv_edge_node`
    * :doc:`/user_guide/advanced_functionality/configure_ssh_public_keys`
 
 .. toctree::
@@ -21,11 +19,9 @@ application's capabilities:
 
    set_up_a_cluster_template
    view_os_profiles
-   alerting
+   alerts_config
    host_schedule_main
    install_new_packages
    host_update_immutable_os
    automated_deployment
-   ../../shared/shared_adv_alerts
-   ../../shared/shared_adv_edge_node
    configure_ssh_public_keys

@@ -14,7 +14,7 @@ To navigate to **Email Alerts** settings, navigate to **Alerts Configuration** p
 by clicking **Settings** tab on the top menu and clicking **Alerts** on the left menu, and then selecting
 **Email Alerts** option.
 
-.. figure:: images/alerts/EO-email-config.png
+.. figure:: images/EO-email-config.png
    :alt: Configuring email recipients
 
 .. list-table::
