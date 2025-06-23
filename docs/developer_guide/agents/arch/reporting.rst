@@ -165,8 +165,8 @@ Applications running on the cluster are identified by reading the following labe
 
 #. Intel specific labels populated by applications fully supporting Open Edge Platform:
 
-    - `com.intel.edgeplatform.application.name`
-    - `com.intel.edgeplatform.application.version`
+    - ``com.intel.edgeplatform.application.name``
+    - ``com.intel.edgeplatform.application.version``
 
 2. Default well-known kubernetes labels:
 
