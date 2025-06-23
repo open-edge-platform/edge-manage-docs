@@ -47,9 +47,9 @@ The Reporting Agent follows the general principles of Open Edge Platform's `Edge
 but introduces few unique features.
 
 #. Requires configuration settings to be provided during Edge Node installation. Absence of any of the following will prevent Agent from sending any data:
-    - `/etc/edge-node/metrics/endpoint` - shall contain target endpoint to send data to
-    - `/etc/edge-node/metrics/token` - shall contain access token to authenticate with the target endpoint
-    - `/etc/edge-node/metrics/group_id` - shall contain group identifier to which the Edge Node belongs
+    - ``/etc/edge-node/metrics/endpoint`` - shall contain target endpoint to send data to
+    - ``/etc/edge-node/metrics/token`` - shall contain access token to authenticate with the target endpoint
+    - ``/etc/edge-node/metrics/group_id`` - shall contain group identifier to which the Edge Node belongs
 #. Pushes data to Cloud Backend:
     - Invokes HTTP POST with ``ContentType: application/json`` using `Grafana Loki* Data Format <https://grafana.com/docs/loki/latest/reference/loki-http-api/#ingest-logs>`_
     - Target tenant in Grafana Loki* is set using ``X-Scope-OrgID=reporting-v1``
@@ -78,7 +78,7 @@ via ``cron`` job defined as part of Edge Microvisor:
 - if enabled the Reporting Agent is invoked:
 
     - on every reboot (`@reboot`) with full system information
-    - periodically (every `1h`) with data set reduced to application data
+    - periodically (every ``1h``) with data set reduced to application data
 
 Default ``cron`` configuration is stored in `SPEC definition for Reporting Agent <https://github.com/open-edge-platform/edge-microvisor-toolkit/tree/3.0/SPECS/reporting-agent>`_.
 
@@ -95,7 +95,8 @@ Reporting Agent queries system data grouped in following sets:
         - System UUID ``sudo dmidecode -s system-uuid``
         - System Serial ``sudo dmidecode -s system-serial-number``
         - Network Cards MAC addresses ``sudo lshw -class network | grep -i "serial:"`` (sorted ascending)
-    #. ``InitialMachineId`` - provides means to detect hardware changes during Edge Node lifetime and allow more precise querying. It contains a copy of the first ``MachineId`` calculation stored in ``/etc/edge-node/metrics/machine_id``.
+    #. ``InitialMachineId`` - provides means to detect hardware changes during Edge Node lifetime and allow more precise querying.
+       It contains a copy of the first ``MachineId`` calculation stored in ``/etc/edge-node/metrics/machine_id``.
     #. ``GroupId`` - contains ``/etc/edge-node/metrics/group_id`` value supplied during installation of the Edge Node.
 #. ``OperatingSystem`` - contains details of the currently running OS:
     #. Timezone ``date +%Z``
@@ -141,13 +142,13 @@ Reporting Agent queries system data grouped in following sets:
             - Speed,
             - Manufacturer
     #. Disk data from ``lsblk -o KNAME,VENDOR,MODEL,SIZE,TYPE -J -b --tree``
-        - filtered, only `"type": "disk"`
+        - filtered, only ``"type": "disk"``
 
 Kubernetes applications
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 If the Edge Node has a Kubernetes Cluster populated, the Agent collects information about running applications via ``kubectl`` command.
-Supported kubernetes clusters include ``k3s`` and ``RKE`` installations.
+Supported kubernetes clusters include ``k3s`` and ``RKE2`` installations.
 
 #. Default ``RKE2`` cluster configuration and binary locations:
     .. code-block:: bash
