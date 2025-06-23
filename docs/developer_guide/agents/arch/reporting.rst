@@ -177,7 +177,7 @@ Applications running on the cluster are identified by reading the following labe
 .. note::
    Only a set of unique values representing detected applications is exported. For applications containing Intel specific labels the default well-known kubernetes labels are also sent.
 
-Reporting Agent queries kubernetes application data grouped in following sets:
+Reporting Agent queries Kubernetes application data grouped into the following sets:
 
 #. ``Kubernetes`` data from ``kubectl``
     - server vendor
