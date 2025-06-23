@@ -22,9 +22,10 @@ Serve the document from a local server using `make` from the root directory:
 
 ## Build
 
-To build and develop the documents locally, you must have a supported Python\* 3 software release.
-The minimum required version of Python is `>=3.11.0`. Following dependencies also have to be met:
-``libbz2-dev``, ``libncurses5-dev``, ``libssl-dev``, ``liblzma-dev``, ``libsqlite3-dev``.
+To build and develop the documents locally, you must have a supported
+Python\* 3 software release. The minimum required version of Python is
+`>=3.11.0`. Following dependencies also have to be met: ``libbz2-dev``,
+``libncurses5-dev``, ``libssl-dev``, ``liblzma-dev``, ``libsqlite3-dev``.
 
 Build the docs with `make` from the root directory:
 
