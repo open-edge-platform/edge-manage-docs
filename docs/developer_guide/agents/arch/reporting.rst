@@ -76,7 +76,6 @@ via ``cron`` job defined as part of Edge Microvisor:
 - ``crontab`` entries location: ``/etc/cron.d/edge-node-metrics``
 - is executed only if ``/etc/edge-node/metrics/disabled`` is not set
 - if enabled the Reporting Agent is invoked:
-
     - on every reboot (`@reboot`) with full system information
     - periodically (every ``1h``) with data set reduced to application data
 
@@ -165,12 +164,10 @@ Supported kubernetes clusters include ``k3s`` and ``RKE2`` installations.
 Applications running on the cluster are identified by reading the following labels:
 
 #. Intel specific labels populated by applications fully supporting Open Edge Platform:
-
     - ``com.intel.edgeplatform.application.name``
     - ``com.intel.edgeplatform.application.version``
 
-2. Default well-known kubernetes labels:
-
+#. Default well-known kubernetes labels:
     - ``app.kubernetes.io/name``
     - ``app.kubernetes.io/version``
     - ``app.kubernetes.io/part-of``
