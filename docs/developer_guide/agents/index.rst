@@ -14,6 +14,9 @@ the OS it is running on. In the case of mutable OSes, they are dynamically downl
 installed as `.deb` packages. In the case of immutable OSes, they are already part of
 the OS distribution.
 
+In addition to BareMetal EIM Agents running as system daemons the :ref:`developer_guide/agents/arch/reporting`
+is available as a CLI application that is also a part of the immutable OS distribution.
+
 .. toctree::
    :hidden:
    :maxdepth: 1
