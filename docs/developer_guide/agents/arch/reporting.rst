@@ -33,7 +33,7 @@ Architecture Diagram
 
 The Reporting Agent is a small footprint binary deployed on the Edge Nodes that collects
 and sends the data about underlying hardware, operating system, and about applications
-running on kubernetes cluster.
+running on Kubernetes cluster.
 
 .. figure:: ./images/reporting-agent.png
    :alt: High-Level Architecture of the Reporting Agent
@@ -146,8 +146,8 @@ Reporting Agent queries system data grouped in following sets:
 Kubernetes applications
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-If the Edge Node has a Kubernetes Cluster populated, the Agent collects information about running applications via ``kubectl`` command.
-Supported kubernetes clusters include ``k3s`` and ``RKE2`` installations.
+If the Edge Node has a Kubernetes cluster populated, the Agent collects information about running applications via ``kubectl`` command.
+Supported Kubernetes clusters include ``k3s`` and ``RKE2`` installations.
 
 #. Default ``RKE2`` cluster configuration and binary locations:
     .. code-block:: bash
@@ -167,13 +167,13 @@ Applications running on the cluster are identified by reading the following labe
     - ``com.intel.edgeplatform.application.name``
     - ``com.intel.edgeplatform.application.version``
 
-#. Default well-known kubernetes labels:
+#. Default well-known Kubernetes labels:
     - ``app.kubernetes.io/name``
     - ``app.kubernetes.io/version``
     - ``app.kubernetes.io/part-of``
 
 .. note::
-   Only a set of unique values representing detected applications is exported. For applications containing Intel specific labels the default well-known kubernetes labels are also sent.
+   Only a set of unique values representing detected applications is exported. For applications containing Intel specific labels the default well-known Kubernetes labels are also sent.
 
 Reporting Agent queries Kubernetes application data grouped into the following sets:
 
