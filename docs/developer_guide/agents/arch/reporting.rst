@@ -161,7 +161,7 @@ Supported kubernetes clusters include ``k3s`` and ``RKE`` installations.
        > export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
        > /var/lib/rancher/k3s/bin/kubectl get nodes
 
-Applications running on the cluster are identified via reading following labels:
+Applications running on the cluster are identified by reading the following labels:
 
 #. Intel specific labels populated by applications fully supporting Open Edge Platform:
 
