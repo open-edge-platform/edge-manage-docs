@@ -96,7 +96,7 @@ Reporting Agent queries system data grouped in following sets:
         - System Serial ``sudo dmidecode -s system-serial-number``
         - Network Cards MAC addresses ``sudo lshw -class network | grep -i "serial:"`` (sorted ascending)
     #. ``InitialMachineId`` - provides means to detect hardware changes during Edge Node lifetime and allow more precise querying. It contains a copy of the first ``MachineId`` calculation stored in ``/etc/edge-node/metrics/machine_id``.
-    #. `GroupId` - contains `/etc/edge-node/metrics/group_id` value supplied during installation of the Edge Node.
+    #. ``GroupId`` - contains ``/etc/edge-node/metrics/group_id`` value supplied during installation of the Edge Node.
 #. ``OperatingSystem`` - contains details of the currently running OS:
     #. Timezone ``date +%Z``
     #. Locale ``locale -k LC_ADDRESS`` (country_name, country_ab2, lang_name, lang_ab)
