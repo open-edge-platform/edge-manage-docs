@@ -51,8 +51,8 @@ but introduces few unique features.
     - `/etc/edge-node/metrics/token` - shall contain access token to authenticate with the target endpoint
     - `/etc/edge-node/metrics/group_id` - shall contain group identifier to which the Edge Node belongs
 #. Pushes data to Cloud Backend:
-    - Invokes HTTP POST with ``ContentType: application/json`` using `Loki Data Format <https://grafana.com/docs/loki/latest/reference/loki-http-api/#ingest-logs>`_
-    - Target tenant in Grafana Loki is set using ``X-Scope-OrgID=reporting-v1``
+    - Invokes HTTP POST with ``ContentType: application/json`` using `Grafana Loki* Data Format <https://grafana.com/docs/loki/latest/reference/loki-http-api/#ingest-logs>`_
+    - Target tenant in Grafana Loki* is set using ``X-Scope-OrgID=reporting-v1``
     - Upon failure the request is retried ``20`` times with exponential backoff
 #. Stores its logs on the Edge Node with time-based data retention:
     - Agent's logs are rotated with default ``90d`` retention
