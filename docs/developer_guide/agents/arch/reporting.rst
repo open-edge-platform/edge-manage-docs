@@ -170,9 +170,9 @@ Applications running on the cluster are identified by reading the following labe
 
 2. Default well-known kubernetes labels:
 
-    - `app.kubernetes.io/name`
-    - `app.kubernetes.io/version`
-    - `app.kubernetes.io/part-of`
+    - ``app.kubernetes.io/name``
+    - ``app.kubernetes.io/version``
+    - ``app.kubernetes.io/part-of``
 
 .. note::
    Only a set of unique values representing detected applications is exported. For applications containing Intel specific labels the default well-known kubernetes labels are also sent.
