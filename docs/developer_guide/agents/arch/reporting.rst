@@ -76,7 +76,7 @@ via ``cron`` job defined as part of Edge Microvisor:
 - ``crontab`` entries location: ``/etc/cron.d/edge-node-metrics``
 - is executed only if ``/etc/edge-node/metrics/disabled`` is not set
 - if enabled the Reporting Agent is invoked:
-    - on every reboot (`@reboot`) with full system information
+    - on every reboot (``@reboot``) with full system information
     - periodically (every ``1h``) with data set reduced to application data
 
 Default ``cron`` configuration is stored in `SPEC definition for Reporting Agent <https://github.com/open-edge-platform/edge-microvisor-toolkit/tree/3.0/SPECS/reporting-agent>`_.
