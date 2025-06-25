@@ -4,7 +4,7 @@ Dashboard and Alerts
 Monitor the status of your deployments and the health of host infrastructure
 from the |software_prod_name| dashboard and view the alerts in the
 :doc:`Alerts </user_guide/monitor_deployments/alerts_view>` page.
-To configure alerts, :doc:`configure alerts </user_guide/additional_howtos/alerts_config>` page.
+To configure alerts, :doc:`configure alerts </user_guide/advanced_functionality/alerts_config>` page.
 
 * :doc:`/user_guide/monitor_deployments/status_deployment`
 * :doc:`/user_guide/monitor_deployments/alerts_view`

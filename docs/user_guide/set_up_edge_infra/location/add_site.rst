@@ -44,4 +44,4 @@ For more details, see :doc:`../../../../shared/shared_howtos_advanced_settings`
 Finally, click **Add**. The new site will be listed on the Site page.
 
 To know more about Telemetry Settings, see
-:doc:`/user_guide/additional_howtos/region_site_telemetry`.
+:doc:`/user_guide/advanced_functionality/region_site_telemetry`.

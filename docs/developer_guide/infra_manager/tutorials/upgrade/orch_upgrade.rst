@@ -260,6 +260,6 @@ An update of the onboarded EN OS will test if the EN and the Infrastructure Mana
 
 5. Observe that the ``OS upgrade available`` note appears on the host page.
 
-6. Schedule a maintenance window for your EN by following the `guide on maintenance window creation <https://docs.openedgeplatform.intel.com/edge-manage-docs/main/user_guide/additional_howtos/host_schedule_main.html#schedule-maintenance-for-configured-and-active-hosts>`_.
+6. Schedule a maintenance window for your EN by following the `guide on maintenance window creation <https://docs.openedgeplatform.intel.com/edge-manage-docs/main/user_guide/advanced_functionality/host_schedule_main.html#schedule-maintenance-for-configured-and-active-hosts>`_.
 
 7. Monitor the ``Update`` status to confirm the update was completed. The ``No new updates available`` status message indicates a successful update.
