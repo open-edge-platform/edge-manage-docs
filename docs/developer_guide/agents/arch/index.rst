@@ -14,4 +14,4 @@ Architecture
    platform_observability
    platform_telemetry
    platform_update
-
+   reporting
