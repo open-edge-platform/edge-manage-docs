@@ -68,6 +68,7 @@ Then, you must explicitly define the ``onprem-oxm`` deployment profile and start
    You may also want to set CLUSTER_DOMAIN to a domain name of your choice. By default, it's set to "cluster.onprem".
 
 .. code-block:: shell
+
    export ORCH_INSTALLER_PROFILE=onprem-oxm
    ./onprem_installer.sh
 
@@ -77,6 +78,7 @@ Refer to :ref:`oxm_network_topology` and :ref:`on_prem_installer_prompts` for in
 At some point the script will stop waiting for user inputs:
 
 .. code-block:: shell
+
    Edit config values.yaml files with custom configurations if necessary!!!
    The files are located at:
    [path_to_untarred_repo]/orch-configs/profiles/<profile>.yaml
@@ -131,6 +133,7 @@ This file contains main customization settings for OXM profile.
         enNoProxy: localhost,127.0.0.1,<Traefik-IP-endpoint-or-subnet-of-Edge-Orchestrator>,.internal,.cluster.local,<domain-of-orchestrator>
 
 Once all modifications are done, type ``yes`` and press the **Enter** key to complete the installation. It will usually take around 15-20 minutes to complete.
+In the meantime, you can observe the installation progress, see :ref:`on_prem_view_argocd`.
 
 Post-installation steps
 -----------------------
@@ -142,6 +145,7 @@ Post-installation steps
    * For the OXM profile it enough to add the following DNS records to your local DNS server.
 
      .. code-block:: shell
+
         address=/[on.prem.domain.name]/[traefik-external-ip]
         address=/tinkerbell-nginx.[on.prem.domain.name]/[ingress-nginx-external-ip]
 
