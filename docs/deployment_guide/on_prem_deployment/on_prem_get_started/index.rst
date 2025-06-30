@@ -46,6 +46,8 @@ Edge Orchestrator Network Topology with Corporate Proxy
    :width: 500px
    :align: center
 
+.. _on_prem_network_topology_squid_proxy:
+
 Edge Orchestrator for Edge Nodes without Direct Internet Access
 ----------------------------------------------------------------
 

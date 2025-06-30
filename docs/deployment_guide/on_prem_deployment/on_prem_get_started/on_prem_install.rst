@@ -53,6 +53,8 @@ instances that need to be integrated with the Edge Orchestrator.
 
 Next, you will deploy Edge Orchestrator on the target machine as defined in the pre-requisite steps.
 
+.. _download_on_prem_installation_script:
+
 Download the Installation Script
 -----------------------------------------------
 
@@ -230,6 +232,7 @@ The script does the following:
 
 See the following sections for details about the installation process and prompts.
 
+.. _on_prem_installer_prompts:
 
 Installer Prompts and Deployment Configuration
 --------------------------------------------------
@@ -601,6 +604,7 @@ To see the deployment progress, run the following:
 
 This process can take up to an hour to complete.
 
+.. _on_prem_dns_configuration:
 
 DNS Configuration
 -----------------
