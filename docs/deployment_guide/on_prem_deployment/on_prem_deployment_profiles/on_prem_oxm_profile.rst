@@ -142,7 +142,7 @@ Post-installation steps
 
    * Make sure you run ``generate_fqdn`` and copy the output to ``/etc/hosts``.
 
-   * For the OXM profile it enough to add the following DNS records to your local DNS server.
+   * For the OXM profile it is enough to add the following DNS records to your local DNS server.
 
      .. code-block:: shell
 
