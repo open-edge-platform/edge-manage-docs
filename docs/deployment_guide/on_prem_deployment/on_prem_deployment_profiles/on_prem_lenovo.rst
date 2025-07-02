@@ -93,7 +93,7 @@ At some point the script will stop waiting for user inputs:
    Edit config values.yaml files with custom configurations if necessary!!!
    The files are located at:
    [path_to_untarred_repo]/orch-configs/profiles/<profile>.yaml
-   [path_to_untarred_repo]/orch-configs/clusters/onprem-oxm.yaml
+   [path_to_untarred_repo]/orch-configs/clusters/onprem.yaml
    Enter 'yes' to confirm that configuration is done in order to progress with installation
    ('no' will exit the script) !!!
 
