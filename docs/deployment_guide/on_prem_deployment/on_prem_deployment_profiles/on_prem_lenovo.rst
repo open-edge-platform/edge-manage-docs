@@ -5,7 +5,7 @@ The Lenovo Deployment Profile is an On-Premises Edge Orchestrator's profile that
 Edge Manageability Framework along with the Lenovo\* Open Cloud Automation (LOC-A) components.
 
 The Lenovo Deployment Profile assumes the network configuration as described in :ref:`on_prem_lenovo_network_topology`.
-It also requires additional firewall configuration (if applicable), see :ref:`on_premlenovo_firewall_configuration`.
+It also requires additional firewall configuration (if applicable), see :ref:`on_prem_lenovo_firewall_configuration`.
 
 Prerequisites
 -------------
