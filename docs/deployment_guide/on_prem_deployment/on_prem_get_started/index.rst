@@ -46,6 +46,8 @@ Edge Orchestrator Network Topology with Corporate Proxy
    :width: 500px
    :align: center
 
+.. _on_prem_network_topology_squid_proxy:
+
 Edge Orchestrator for Edge Nodes without Direct Internet Access
 ----------------------------------------------------------------
 
@@ -53,6 +55,8 @@ Edge Orchestrator for Edge Nodes without Direct Internet Access
    :alt: The network topology for Edge Orchestrator
    :width: 500px
    :align: center
+
+.. _on_prem_lenovo_network_topology:
 
 Lenovo\* Open Cloud Automation (LOC-A) Network Topology (Optional)
 ------------------------------------------------------------------
@@ -257,6 +261,8 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
      -  TCP
      -  443
      -  ArgoCD UI
+
+.. _on_prem_lenovo_firewall_configuration:
 
 LOC-A Firewall Configuration (Optional)
 ---------------------------------------
