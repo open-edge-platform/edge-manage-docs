@@ -161,6 +161,6 @@ Post-installation steps
 
    .. code-block:: shell
 
-      kubectl -n orch-platform get secret platform-keycloak -o jsonpath='{.data.admin-password}' | base64 -d && echo
+      ORCH_PASSWORD="$(kubectl -n orch-platform get secret platform-keycloak -o jsonpath='{.data.admin-password}' | base64 -d)"
 
    Save the password. It will be used for all interactions via API/CLI.
