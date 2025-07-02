@@ -14,14 +14,16 @@ Set up environment
 
    .. code-block:: shell
 
-      orch-cli login local-admin $ORCH_PASS --keycloak https://keycloak.cluster.onprem/realms/master
+      orch-cli login local-admin $ORCH_PASSWORD --keycloak https://keycloak.cluster.onprem/realms/master
 
 #. Create default region and site that will be used for all provisioned Edge Nodes.
 
    .. code-block:: shell
 
-      orch-cli create region --project local-admin default
-      orch-cli create site --project local-admin default
+      orch-cli create region --project local-admin default --type region --api-endpoint https://api.cluster.onprem
+      # Retrieve region ID
+      orch-cli list region --project local-admin default --api-endpoint https://api.cluster.onprem
+      orch-cli create site --project local-admin default --region <region-ID> --api-endpoint https://api.cluster.onprem
 
 Provision Edge Nodes
 --------------------
