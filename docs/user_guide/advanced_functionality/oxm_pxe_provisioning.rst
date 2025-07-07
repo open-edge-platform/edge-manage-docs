@@ -16,6 +16,12 @@ Set up environment
 
       orch-cli login local-admin $ORCH_PASSWORD --keycloak https://keycloak.cluster.onprem/realms/master
 
+   * The token will be valid for limited period. To refresh you have to logout and login again:
+
+     .. code-block:: shell
+
+     orch-cli logout local-admin
+
 #. Create default region and site that will be used for all provisioned Edge Nodes.
 
    .. code-block:: shell
@@ -47,11 +53,25 @@ Follow the steps below to provision multiple Edge Nodes at once.
 
    * Fill in the ``config-file`` as per the user guide in the in-line comments.
 
+   * You can customize the custom-config section as per your use case. For example, see
+     `reference cloud-init for EMT image with Desktop Virtualization features <https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/heads/sn-emt-uOS-integration/standalone-node/docs/user-guide/desktop-virtualization-cloud-init.md>`_
+
+   * If you want to pre-load any user apps, create a directory and place all of your artifacts in that directory.
+     Then, use the below command to copy user apps to the Edge Orchestrator's storage. They will be downloaded
+     to ``/opt/user-apps`` after EN is provisioned.
+
+     .. note::
+        See the document on `pre-loading user apps in the USB installer <https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/heads/sn-emt-uOS-integration/standalone-node/docs/user-guide/pre-loading-user-apps.md>`_ for more details.
+
+     .. code-block:: shell
+
+        kubectl cp -n orch-infra ./user-apps/  $(kubectl -n orch-infra get pods -l app.kubernetes.io/name=dkam --no-headers | awk '{print $1}'):/data
+
    * Use ``orch-cli`` to generate custom cloud-init configuration based on ``config-file``.
 
      .. code-block:: shell
 
-        orch-cli generate standalone-config -c config-file -o cloud-init.cfg
+        orch-cli generate standalone-config -c config-file -o cloud-init.cfg [-u ./user-apps --api-endpoint https://api.<CLUSTER-FQDN>]
 
 #. Create the custom cloud-init configuration object in the Edge Orchestrator.
 
