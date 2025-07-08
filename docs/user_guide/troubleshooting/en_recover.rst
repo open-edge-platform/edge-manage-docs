@@ -48,7 +48,7 @@ Recovery Steps for Network Issues
 Recovery Steps for Configuration Mismatch
 -------------------------------------------
 1. Delete the configured Host in UI :doc:`/user_guide/set_up_edge_infra/delete_host`
-2. Re-register the host following :doc:`/user_guide/set_up_edge_infra/edge_node_registration`
+2. Re-register the host following :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration`
    and ensure configuration (Secure Boot) settings match between Edge Orchestrator UI and Edge Node
 3. Reboot the Edge Node from the management console or power button
 4. Edge Orchestrator will automatically start provisioning again; follow the

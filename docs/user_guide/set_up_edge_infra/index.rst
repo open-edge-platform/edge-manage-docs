@@ -18,7 +18,7 @@ After onboarding your host(s), do the following to set up your edge infrastructu
 #. :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host` (not required in case of :doc:`Automated Onboarding and Provisioning </user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration>`)
 #. :doc:`/user_guide/set_up_edge_infra/clusters/create_clusters`
 
-If you have access to your edge node’s UUID or serial number, you can :doc:`/user_guide/set_up_edge_infra/edge_node_registration`
+If you have access to your edge node’s UUID or serial number, you can :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration`
 to facilitate faster onboarding.
 
 **Register Hosts**
@@ -27,7 +27,7 @@ Registered hosts are hosts registered to the orchestrator but not yet connected 
 Registered hosts appear on the :doc:`/user_guide/set_up_edge_infra/edge_node_states/registered_hosts` page.
 You must complete the onboarding before proceeding to the provisioning step.
 
-For more information see :doc:`/user_guide/set_up_edge_infra/edge_node_registration`.
+For more information see :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration`.
 
 **Onboard Hosts**
 

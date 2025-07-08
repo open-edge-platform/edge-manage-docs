@@ -64,7 +64,7 @@ Delete the host if you want to remove it from this page:
 
 .. note::
    To create a cluster for an individual host, see
-   :doc:`/user_guide/set_up_edge_infra/create_clusters`.
+   :doc:`/user_guide/set_up_edge_infra/clusters/create_clusters`.
 
 
 Operating System Profile
