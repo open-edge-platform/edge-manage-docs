@@ -25,7 +25,7 @@ Set up LOC-A Cloud Template
    LOC-A 3.3.x. Alternatively, you can download the template file from the `Upload`
    tab in the `Setup` page:
 
-   .. image:: ../images/download-template.png
+   .. image:: ../../images/download-template.png
       :alt: Download the template from LOC-A 3.3
       :width: 750px
 
@@ -34,7 +34,7 @@ Set up LOC-A Cloud Template
    automatically synchronize site metadata and |software_prod_name|\  Cloud Service with
    LOC-A, the latter will show in the UI with the relevant information:
 
-   .. image:: ../images/loca-site.png
+   .. image:: ../../images/loca-site.png
       :alt: Set up a Site that Supports Edge Manageability Framework Deployment
       :width: 750px
 
@@ -114,7 +114,7 @@ Set up LOC-A Cloud Template
 
 #. Upload the cloud template using the `Upload` tab in the `Setup` section:
 
-   .. image:: ../images/upload.png
+   .. image:: ../../images/upload.png
       :alt: Upload cloud template
       :width: 750px
 
@@ -129,7 +129,7 @@ LOC-A instance templates (one for each device).
 
 The summary of the creation will look like the following:
 
-.. image:: ../images/template_end.png
+.. image:: ../../images/template_end.png
    :alt: Create Instance template
    :width: 750px
 

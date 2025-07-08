@@ -9,7 +9,7 @@ To delete a cluster, do the following:
 2. Click the three-dot (...) icon in the **Actions** column for the desired cluster
    and select **Delete**.
 
-.. figure:: images/delete_cluster.png
+.. figure:: ../images/delete_cluster.png
    :width: 100 %
    :alt: Delete Cluster
 

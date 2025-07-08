@@ -25,7 +25,7 @@ To create a single node cluster, do the following:
 1. On the **Cluster List** page, click **Create Cluster**. The **Create
    Cluster** page appears.
 
-   .. figure:: images/create_cluster.png
+   .. figure:: ../images/create_cluster.png
       :width: 100 %
       :alt: Create Clusters
 
@@ -52,7 +52,7 @@ To create a single node cluster, do the following:
 
 #. Click **Next**. The **Select Host & Roles** step appears.
 
-   .. figure:: images/create_cluster_host.png
+   .. figure:: ../images/create_cluster_host.png
       :width: 100 %
       :alt: Create Cluster Select Site
 
@@ -77,7 +77,7 @@ To create a single node cluster, do the following:
    corresponding value. For more information about metadata,
    see :doc:`/user_guide/advanced_functionality/automated_deployment`.
 
-   .. figure:: images/deployment_metadata.png
+   .. figure:: ../images/deployment_metadata.png
       :width: 100 %
       :alt: Add deployment metadata
 

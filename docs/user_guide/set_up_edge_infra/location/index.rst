@@ -50,11 +50,11 @@ From this page, you can:
 .. toctree::
    :hidden:
 
-   location/add_region
-   location/view_region_detail
-   location/delete_region
-   location/add_site
-   location/site_details
-   location/delete_site
+   add_region
+   view_region_detail
+   delete_region
+   add_site
+   site_details
+   delete_site
 
 

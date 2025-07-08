@@ -38,7 +38,7 @@ To view the **Clusters** page, click the **Infrastructure** tab
 on the top menu and select **Clusters** on the left menu.
 On the **Clusters** page, you can view the list of available clusters.
 
-.. figure:: images/cluster_list_new.png
+.. figure:: ../images/cluster_list_new.png
    :alt: View Clusters Page
 
 You can view the following details of the cluster:
@@ -87,7 +87,7 @@ in the cluster. You can view details of the host like the status,
 UUID, and serial number of the host. Click the **View Host Details**
 link to view the host details.
 
-.. figure:: images/cluster_list_new1.png
+.. figure:: ../images/cluster_list_new1.png
    :alt: Cluster list with details
 
 

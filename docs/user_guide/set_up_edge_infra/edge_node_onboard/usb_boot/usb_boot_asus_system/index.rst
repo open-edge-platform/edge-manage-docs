@@ -1,11 +1,13 @@
 Onboard Edge Node ASUS\* IoT PE3000G System
 ==============================================================
 
+.. note:: Before reading this guide, make sure you meet :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/asus_prerequisites`.
+
+
 Edge Node onboarding securely configures edge nodes into the
 |software_prod_name| service. The edge nodes, or hosts in the
 UI, can be configured and fully provisioned, lifecycle managed, and added to
 clusters for workload deployment.
-
 
 .. _prepare_usb_drive:
 

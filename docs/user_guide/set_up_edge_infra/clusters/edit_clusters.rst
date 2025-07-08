@@ -18,7 +18,7 @@ To edit clusters, follow these steps:
 
 #. Click the three-dot (...) icon in the **Actions** column for the desired cluster and select **Edit**.
 
-   .. figure:: images/edit_cluster.png
+   .. figure:: ../images/edit_cluster.png
       :width: 100 %
       :alt: Edit Cluster
 

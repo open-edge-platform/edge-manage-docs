@@ -63,7 +63,7 @@ Prepare the ISO image one time, so that it will be mounted as Virtual Media on t
 
 #. Load the ISO image as virtual media using the local remote disk on card (RDOC) functionality:
 
-   .. image:: ../images/vmedia.png
+   .. image:: ../../images/vmedia.png
       :alt: Load Virtual Media
       :width: 750px
 
@@ -81,19 +81,19 @@ Enable HTTPs-Assisted Boot
 
 #. At `IPv4 HTTP Support` change from Disabled to Enabled:
 
-   .. image:: ../images/httpv4-enabled.png
+   .. image:: ../../images/httpv4-enabled.png
       :alt: HTTPv4 Enabled
       :width: 750px
 
 #. Do the same for IPv6 if needed:
 
-   .. image:: ../images/httpv4v6-enabled.png
+   .. image:: ../../images/httpv4v6-enabled.png
       :alt: HTTP Enabled
       :width: 750px
 
 #. Load the HTTPs boot certificate. Navigate to `System Settings` > `Network` > `Tls Auth Configuration` > `Server CA Configuration` > `Enroll Cert`:
 
-   .. image:: ../images/tls.png
+   .. image:: ../../images/tls.png
       :alt: Enroll Certificate
       :width: 750px
 
@@ -135,13 +135,13 @@ see :doc:`/shared/shared_secure_boot_opt_in` to enable secure boot in |software_
 
 #. To enable secure boot, navigate to `System Settings` > `Security` > `Secure Boot Configuration`. Enable secure boot and change the policy to Custom:
 
-   .. image:: ../images/secure-boot.png
+   .. image:: ../../images/secure-boot.png
       :alt: Enable secure boot
       :width: 750px
 
 #. Append the `db.der` and `db-emt.der` public keys through the `Secure Boot Custom Policy` page:
 
-   .. image:: ../images/add-db.png
+   .. image:: ../../images/add-db.png
       :alt: Append db.der
       :width: 750px
 
@@ -150,7 +150,7 @@ see :doc:`/shared/shared_secure_boot_opt_in` to enable secure boot in |software_
 #. Reset the trusted platform module hierarchy and clear the trusted platform module by navigating
    to `System Settings`, `Security`, `Secure Boot Configuration`, `TPM`, `TPM2`. Select `Clear` in the `TPM2 Operation` dialog:
 
-   .. image:: ../images/clear-tpm.png
+   .. image:: ../../images/clear-tpm.png
       :alt: Clear TPM
       :width: 750px
 
@@ -162,7 +162,7 @@ HTTP Boot Option
 #. To create the HTTP boot option, navigate to `System Settings` > `Network` > `HTTP Boot Configuration`.
    Select the interface that has upstream connectivity with |software_prod_name| \ . Create a boot option:
 
-   .. image:: ../images/boot-option.png
+   .. image:: ../../images/boot-option.png
       :alt: Boot Option
       :width: 750px
 
@@ -174,7 +174,7 @@ HTTP Boot Option
 
 #. Select UEFI HTTP from the one-time boot option:
 
-   .. image:: ../images/start-options.png
+   .. image:: ../../images/start-options.png
       :alt: Start Options
       :width: 750px
 

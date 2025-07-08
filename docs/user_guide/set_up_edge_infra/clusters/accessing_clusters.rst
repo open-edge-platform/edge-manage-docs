@@ -10,7 +10,7 @@ To do so, go to the **Cluster List** page, select the cluster, and in the **Acti
 To copy the contents of the Kubeconfig file, go to the **Cluster List** page, select the cluster, and in the **Actions** column, click the three-dot icon and then click **Copy Kubeconfig File**.
 
 
-.. figure:: images/downloadkubeconfig.png
+.. figure:: ../images/downloadkubeconfig.png
    :width: 100 %
    :alt: Download and Copy Kubeconfig
 

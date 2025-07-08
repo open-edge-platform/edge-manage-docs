@@ -5,7 +5,7 @@ The **Onboard Host** feature allows the User to onboard into the Edge Orchestrat
 
 #. Go to the **Infrastructure tab**, click **Hosts** on the left menu and select the **Registered** tab.
 
-   .. figure:: images/registered_hosts.png
+   .. figure:: ../images/registered_hosts.png
       :alt: Registered Hosts
 
 #. Find a host in `Connected` state
@@ -13,7 +13,7 @@ The **Onboard Host** feature allows the User to onboard into the Edge Orchestrat
 #. Go to the **Actions** column and click the three-dot icon for the desired
    host, then click **Onboard**.
 
-   .. figure:: images/onboard_host_action.png
+   .. figure:: ../images/onboard_host_action.png
       :alt: Onboard Host
 
 Once the node is onboarded, you can find it on the **Onboarded** tab.

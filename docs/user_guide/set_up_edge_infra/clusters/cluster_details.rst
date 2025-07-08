@@ -4,7 +4,7 @@ View Cluster Details
 The **Cluster Details** page allows you to view the cluster information, such as cluster name, Kubernetes* version, cluster nodes' details, and cluster labels.
 To view the details of the cluster, on the **Clusters** page, you can click the cluster's name or select **View Details**.
 
-.. figure:: images/cluster_details1.png
+.. figure:: ../images/cluster_details1.png
    :width: 100 %
    :alt: Cluster Details for Healthy Cluster
 
@@ -58,6 +58,6 @@ In the **Status Details** tab, a cluster in a healthy state will show all status
 A cluster in an unhealthy state will show some statuses as red, with messages providing troubleshooting information.
 In the following image, a single-node cluster is offline; the cluster's offline status can be inferred from the disconnected agents and unhealthy node.
 
-.. figure:: images/cluster_details2.png
+.. figure:: ../images/cluster_details2.png
    :width: 100 %
    :alt: Cluster Details for Offline Cluster

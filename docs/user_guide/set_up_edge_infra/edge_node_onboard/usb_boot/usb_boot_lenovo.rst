@@ -137,13 +137,13 @@ see :doc:`/shared/shared_secure_boot_opt_in` to enable secure boot in |software_
 
 #. To enable the secure boot, navigate to `System Settings` > `Security` > `Secure Boot Configuration`. Enable the secure boot and change the policy to Custom:
 
-   .. image:: ../images/secure-boot.png
+   .. image:: ../../../images/secure-boot.png
       :alt: Enable secure boot
       :width: 750px
 
 #. Append the `db.der` and `db-emt.der` public key through the `Secure Boot Custom Policy` page:
 
-   .. image:: ../images/add-db.png
+   .. image:: ../../../images/add-db.png
       :alt: Append db.der
       :width: 750px
 
@@ -152,7 +152,7 @@ see :doc:`/shared/shared_secure_boot_opt_in` to enable secure boot in |software_
 #. Reset the trusted platform module hierarchy and clear the trusted platform module.
    Navigate to `System Settings` > `Security` > `Secure Boot Configuration` > `TPM` > `TPM2`. Select `Clear` in the `TPM2 Operation` dialog:
 
-   .. image:: ../images/clear-tpm.png
+   .. image:: ../../../images/clear-tpm.png
       :alt: Clear TPM
       :width: 750px
 
@@ -163,13 +163,13 @@ USB Boot Option
 
 #. Select the one-time boot option:
 
-   .. image:: ../images/start-options.png
+   .. image:: ../../../images/start-options.png
       :alt: Start Options
       :width: 750px
 
 #. Select USB and confirm:
 
-   .. image:: ../images/usb-boot.png
+   .. image:: ../../../images/usb-boot.png
       :alt: USB Boot
       :width: 750px
 

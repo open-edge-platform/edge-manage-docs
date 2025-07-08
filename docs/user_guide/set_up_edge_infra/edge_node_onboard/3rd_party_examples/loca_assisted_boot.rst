@@ -38,13 +38,13 @@ Device Onboarding using LOC-A
 
    For details on device onboarding, see the user guide at `Lenovo ISG Support Plan - LOC-A (Lenovo Open Cloud Automation)) <https://support.lenovo.com/us/en/solutions/ht509884-loc-a-lenovo-open-cloud-automation-for-vcf>`_.
 
-   .. image:: ../images/devices.png
+   .. image:: ../../images/devices.png
       :alt: Upload Device Template
       :width: 750px
 
 #. When the registration process completes, the device will be onboarded to the |software_prod_name|\ .
 
-   .. image:: ../images/loca-devices-complete.png
+   .. image:: ../../images/loca-devices-complete.png
       :alt: Device Registered
       :width: 750px
 
