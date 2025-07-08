@@ -13,7 +13,7 @@ Edge Onboarding securely configures the Lenovo\* ThinkSystem SE350 Edge Server, 
 You can then configure, provision, lifecycle manage, and add the edge nodes or hosts in the UI to clusters for workload deployment. The main sections are as follows:
 
 * :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/https_boot/https_boot_lenovo`
-* :doc:`/user_guide/set_up_edge_infra/onboard_lenovo/usb_boot/usb_boot_lenovo`
+* :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/usb_boot/usb_boot_lenovo`
 * :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/3rd_party_examples/setup_loca`
 * :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/3rd_party_examples/loca_assisted_boot`
 

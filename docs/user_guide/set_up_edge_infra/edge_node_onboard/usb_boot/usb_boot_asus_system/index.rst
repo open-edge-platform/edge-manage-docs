@@ -215,7 +215,7 @@ Provision the Edge Node
 #. Go to **Main** > **Exit**  and select the USB drive from the list.
 
 iPXE starts downloading and starts the chain loading process. The next steps are in
-:doc:`/user_guide/set_up_edge_infra/edge_node_onboard_common`.
+:doc:`/user_guide/set_up_edge_infra/edge_node_onboard/common`.
 
 Troubleshooting and Recommendations
 ------------------------------------

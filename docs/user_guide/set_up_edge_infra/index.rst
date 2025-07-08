@@ -11,12 +11,12 @@ In Edge Infrastructure, "infrastructure" refers to:
 Ensure that you have properly configured the :doc:`/user_guide/concepts/nztp`.
 
 Before setting up your edge infrastructure within the service, you must onboard your
-hosts by referring to the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard` section.
+hosts by referring to the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/index` section.
 After onboarding your host(s), do the following to set up your edge infrastructure:
 
-#. :doc:`View Onboarded Hosts </user_guide/set_up_edge_infra/onboarded_hosts>`
-#. :doc:`/user_guide/set_up_edge_infra/provision_host` (not required in case of :doc:`Automated Onboarding and Provisioning </user_guide/set_up_edge_infra/edge_node_registration>`)
-#. :doc:`/user_guide/set_up_edge_infra/create_clusters`
+#. :doc:`View Onboarded Hosts </user_guide/set_up_edge_infra/edge_node_states/onboarded_hosts>`
+#. :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host` (not required in case of :doc:`Automated Onboarding and Provisioning </user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration>`)
+#. :doc:`/user_guide/set_up_edge_infra/clusters/create_clusters`
 
 If you have access to your edge node’s UUID or serial number, you can :doc:`/user_guide/set_up_edge_infra/edge_node_registration`
 to facilitate faster onboarding.
@@ -24,7 +24,7 @@ to facilitate faster onboarding.
 **Register Hosts**
 
 Registered hosts are hosts registered to the orchestrator but not yet connected or onboarded.
-Registered hosts appear on the :doc:`/user_guide/set_up_edge_infra/registered_hosts` page.
+Registered hosts appear on the :doc:`/user_guide/set_up_edge_infra/edge_node_states/registered_hosts` page.
 You must complete the onboarding before proceeding to the provisioning step.
 
 For more information see :doc:`/user_guide/set_up_edge_infra/edge_node_registration`.
@@ -33,11 +33,11 @@ For more information see :doc:`/user_guide/set_up_edge_infra/edge_node_registrat
 
 Onboarding is completed with the attestation of the edge nodes and enables
 the host to connect to the backend services. Onboarded hosts appear on the
-:doc:`/user_guide/set_up_edge_infra/onboarded_hosts` page.
+:doc:`/user_guide/set_up_edge_infra/edge_node_states/onboarded_hosts` page.
 You must provision the hosts before adding them the cluster.
 
 For more information about onboarding hosts, see
-:doc:`/user_guide/set_up_edge_infra/edge_node_onboard`.
+:doc:`/user_guide/set_up_edge_infra/edge_node_onboard/index`.
 
 **Provision Hosts**
 
@@ -57,12 +57,12 @@ can be grouped into regions. Regions can also be grouped, creating hierarchies, 
 you to organize and manage your deployments.
 
 Intel recommends planning your region hierarchies ahead of time. See
-:doc:`/user_guide/set_up_edge_infra/location_main`.
+:doc:`/user_guide/set_up_edge_infra/location/index`.
 
 For more information on provisioning hosts, see the following sections:
 
-* :doc:`/user_guide/set_up_edge_infra/provision_host`
-* :doc:`/user_guide/set_up_edge_infra/provisioned_hosts_main`
+* :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host`
+* :doc:`/user_guide/set_up_edge_infra/edge_node_states/provisioned_hosts`
 
 **Create Clusters**
 
@@ -78,7 +78,7 @@ enable automated deployment. Deployment metadata takes the form of key-value pai
 and matches target clusters with the deployment package during
 :doc:`/user_guide/advanced_functionality/automated_deployment`.
 
-For more information, see :doc:`/user_guide/set_up_edge_infra/create_clusters`.
+For more information, see :doc:`/user_guide/set_up_edge_infra/clusters/create_clusters`.
 
 .. toctree::
    :hidden:

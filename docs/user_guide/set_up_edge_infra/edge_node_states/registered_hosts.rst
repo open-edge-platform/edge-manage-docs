@@ -60,9 +60,9 @@ For details, see :doc:`Registered Host Mismatch <../../../shared/shared_registra
 From this page, you can do the following:
 
     * :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/onboard_host`
-    * :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/delete_host`
-    * :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edit_host`
-    * :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/deauthorize_host`
+    * :doc:`/user_guide/set_up_edge_infra/delete_host`
+    * :doc:`/user_guide/set_up_edge_infra/edit_host`
+    * :doc:`/user_guide/set_up_edge_infra/deauthorize_host`
 
 View Registered Host Details
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

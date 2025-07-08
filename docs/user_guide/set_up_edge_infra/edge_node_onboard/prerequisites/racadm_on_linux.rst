@@ -6,7 +6,7 @@ RACADM on Linux\* PC
    to load certificates
    through the iDRAC Web UI, so it must be done through the RACADM tool. This
    section describes how this can be done on the Linux PC. See the alternative approach
-   using a Windows\* PC at :doc:`/user_guide/set_up_edge_infra/onboard_dell/racadm_on_windows`.
+   using a Windows\* PC at :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/racadm_on_windows`.
 
 
 Install RACADM on Linux PC

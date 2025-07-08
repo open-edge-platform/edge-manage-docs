@@ -1,3 +1,5 @@
+Edge Node Lifecycle States
+==========================
 
 .. toctree::
    :maxdepth: 6

@@ -20,7 +20,7 @@ of the `Edge Manager Group <./../../shared/shared_iam_groups.html#project-id-hos
 #. Automated onboarding and provisioning.
 
 .. note:: The first two registration options with manual provisioning assumes that Near Zero Touch Provisioning (nZTP) has been disabled. To confirm if nZTP is disabled, verify that nZTP has been disabled in the provider configuration.
-   For details on nZTP, see :doc:`Near Zero Touch Provisioning <../../user_guide/concepts/nztp>`.
+   For details on nZTP, see :doc:`Near Zero Touch Provisioning </user_guide/concepts/nztp>`.
 
 Manual Onboarding and Provisioning
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -58,7 +58,7 @@ You can proceed to **onboard** the host by following the
 To **provision** the host after it is onboarded, follow the
 :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host` instructions.
 
-Refer to :doc:`Registered Host Mismatch <../../shared/shared_registration_info_mismatch>` for any issues in encountered during set up.
+Refer to :doc:`Registered Host Mismatch </shared/shared_registration_info_mismatch>` for any issues in encountered during set up.
 
 Automated Onboarding and Manual Provisioning
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
