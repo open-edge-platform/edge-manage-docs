@@ -83,9 +83,9 @@ For more information, see :doc:`/user_guide/set_up_edge_infra/create_clusters`.
 .. toctree::
    :hidden:
 
-   location_main
-   edge_node_onboard
-   registered_hosts
-   onboarded_hosts
-   provisioned_hosts_main
-   clusters_main
+   location/index
+   edge_node_onboard/index
+   edit_host
+   delete_host
+   deauthorize_host
+   clusters/index

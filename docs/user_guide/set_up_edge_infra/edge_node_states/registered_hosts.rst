@@ -82,11 +82,3 @@ On the **Registered** tab, click the name of the host to view the host details.
      - The serial number of the host.
    * - UUID
      - The UUID of the host.
-
-.. toctree::
-   :hidden:
-
-   onboard_host
-   delete_host
-   edit_host
-   deauthorize_host

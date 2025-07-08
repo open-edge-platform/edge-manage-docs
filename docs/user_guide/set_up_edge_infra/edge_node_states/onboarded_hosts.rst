@@ -3,7 +3,7 @@ Onboarded Hosts
 
 After completing the edge node onboarding process, onboarded nodes appear on
 the Onboarded tab of the Hosts page. For more information on the onboarding process, see
-:doc:`/user_guide/set_up_edge_infra/edge_node_onboard` section.
+:doc:`/user_guide/set_up_edge_infra/edge_node_onboard/index` section.
 
 To view the **Hosts** page, click the **Infrastructure** tab and then
 click **Hosts** on the left menu. On the **Onboarded** tab, you can
@@ -64,12 +64,3 @@ From this page, you can perform the following tasks:
 * :doc:`/user_guide/set_up_edge_infra/provision_host`
 * :doc:`/user_guide/set_up_edge_infra/delete_host`
 * :doc:`/user_guide/set_up_edge_infra/deauthorize_host`
-
-
-.. toctree::
-   :hidden:
-
-   onboard_host_details
-   provision_host
-   delete_host
-   deauthorize_host

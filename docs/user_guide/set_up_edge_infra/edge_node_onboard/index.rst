@@ -42,7 +42,7 @@ Boot through a third-party provider:
 - Lenovo\* Open Cloud Automation (LOC-A) stack.
    - Lenovo ThinkEdge servers
 
-If you have access to your edge node’s UUID or serial number, you can :doc:`/user_guide/set_up_edge_infra/edge_node_registration` to facilitate faster onboarding.
+If you have access to your edge node’s UUID or serial number, you can :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration` to facilitate faster onboarding.
 
 The following sections will guide you through setting up and configuring edge nodes to work with |software_prod_name|.
 
@@ -65,5 +65,5 @@ The following sections will guide you through setting up and configuring edge no
    edge_node_onboard_dell_server
    edge_node_onboard_asus_system
    edge_node_onboard_lenovo
-   edge_node_onboard_common
+   common
 

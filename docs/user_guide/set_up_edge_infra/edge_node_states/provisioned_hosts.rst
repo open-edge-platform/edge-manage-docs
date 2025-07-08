@@ -85,14 +85,3 @@ From this page, you can do the following:
    * :doc:`/user_guide/set_up_edge_infra/delete_host`
    * :doc:`/user_guide/set_up_edge_infra/edit_host`
    * :doc:`/user_guide/set_up_edge_infra/deauthorize_host`
-
-
-.. toctree::
-   :hidden:
-
-
-   provisioned_host_details
-   delete_host
-   edit_host
-   deauthorize_host
-

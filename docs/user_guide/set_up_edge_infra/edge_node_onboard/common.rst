@@ -1,8 +1,6 @@
 Common Onboarding Procedures
 ==============================
 
-.. note:: When you use the **LOC-A software**, you will need to onboard the device there. You do not need to onboard the device through |software_prod_name| because |software_prod_name| will actively synchronize the devices and provisioned OSes from the **LOC-A software**.
-
 Verify Successful Registration and Onboard Edge Node (Not required if Auto-Onboard is selected)
 ------------------------------------------------------------------------------------------------
 
