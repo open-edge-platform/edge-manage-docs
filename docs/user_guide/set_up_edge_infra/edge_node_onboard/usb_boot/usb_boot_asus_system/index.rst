@@ -167,13 +167,13 @@ Set Boot Order Priorities:
 
 #. Disable unwanted boot options:
 
-   .. figure:: images/disable_unwanted_boot.png
+   .. figure:: ../../../images/disable_unwanted_boot.png
       :scale: 100%
       :alt: Disable unwanted boot options
 
 #. Choose the correct device in "Boot Option #1" with the configured HTTP device name:
 
-   .. figure:: images/fixed_bootorder_settings.png
+   .. figure:: ../../../images/fixed_bootorder_settings.png
       :scale: 100%
       :alt: Boot order settings
 
@@ -181,7 +181,7 @@ Set Boot Order Priorities:
 
 #. Choose the Second Boot Option as Hard Disk and disable other boot options if they are enabled:
 
-   .. figure:: images/fixed_bootorder_settings.png
+   .. figure:: ../../../images/fixed_bootorder_settings.png
       :scale: 100%
       :alt: Boot order settings
 

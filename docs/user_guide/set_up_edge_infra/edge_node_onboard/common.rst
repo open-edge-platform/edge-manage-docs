@@ -10,7 +10,7 @@ Verify Successful Registration and Onboard Edge Node (Not required if Auto-Onboa
 
 As an example, see host `Host345`:
 
-.. image:: images/register_host_success.png
+.. image:: ../images/register_host_success.png
    :alt: Registered hosts
 
 Once the host connects to Edge Orchestrator, its status will change to `Connected`.
@@ -26,7 +26,7 @@ Verify Successful Onboarding
 #. Click **Infrastructure** > **Hosts** and navigate to the **Onboarded** tab.
 #. Verify that the new edge node is present.
 
-.. image:: images/onboarded_hosts.png
+.. image:: ../images/onboarded_hosts.png
    :alt: Onboarded hosts
 
 After you have successfully onboarded a host, you can proceed to provision it by following
@@ -39,7 +39,7 @@ Verify Successful Provisioning
 #. Click **Infrastructure** > **Hosts** and navigate to the **Provisioned** tab.
 #. Verify that the new edge node is present.
 
-.. image:: images/provisioned_hosts.png
+.. image:: ../images/provisioned_hosts.png
    :alt: Provisioned hosts
 
 If you receive an error when going through the previous steps, refer to

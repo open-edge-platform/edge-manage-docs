@@ -6,7 +6,7 @@ and hardware details.
 
 In the **Hosts** page, click on the name of the host to view the host details.
 
-.. figure:: images/host_details.png
+.. figure:: ../../images/host_details.png
    :alt: View Host Details
 
 .. list-table:: Host Details

@@ -1,6 +1,24 @@
 Lenovo Prerequisites
 ====================
 
+Edge Onboarding securely configures the Lenovo\* ThinkSystem SE350 Edge Server, Lenovo ThinkEdge SE360 V2 Edge Server, and Lenovo ThinkEdge SE450 Edge Server into |software_prod_name|\ .
+
+.. note::
+
+   - You can use a USB stick as storage for HTTPs boot or to load the certificates into the UEFI or BIOS.
+   - In most cases, you can do the same operations described in the following
+     `instructions <https://pubs.lenovo.com/lxpm/UEFI_setup>`_,
+     with Lenovo\* XClarity Provisioning Manager.
+
+You can then configure, provision, lifecycle manage, and add the edge nodes or hosts in the UI to clusters for workload deployment. The main sections are as follows:
+
+* :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/https_boot/https_boot_lenovo`
+* :doc:`/user_guide/set_up_edge_infra/onboard_lenovo/usb_boot/usb_boot_lenovo`
+* :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/3rd_party_examples/setup_loca`
+* :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/3rd_party_examples/loca_assisted_boot`
+
+.. note:: You can only use one of the above options (HTTPs, USB, or LOC-A) to onboard Lenovo ThinkEdge servers during the edge node configuration cycle:
+
 For HTTP-assisted boot and USB-assisted boot:
 
 - A Linux\* PC that can access |software_prod_name|\ UI and connect with the XCC2

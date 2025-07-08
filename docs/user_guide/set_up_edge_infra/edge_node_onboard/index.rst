@@ -66,5 +66,5 @@ The following sections will guide you through setting up and configuring edge no
    https_boot/index
    usb_boot/index
    3rd_party_examples/index
-   onboarding_actions
+   onboarding_actions/index
    common

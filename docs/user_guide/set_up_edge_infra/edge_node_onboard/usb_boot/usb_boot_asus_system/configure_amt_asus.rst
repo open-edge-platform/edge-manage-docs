@@ -13,13 +13,13 @@ To disable Active Management Technology (AMT), do the following:
 
 3. In the BIOS menu, proceed to `Advanced` tab with right arrow, then select `AMT Configuration` by using down arrow and click `Enter`.
 
-.. figure:: images/amt_bios_disable.png
+.. figure:: ../../../images/amt_bios_disable.png
    :alt: Select AMT configuration
    :width: 100 %
 
 4. In the `AMT Configuration`, select the `AMT BIOS Features` click `<Enter>` to select `Disabled`
 
-   .. figure:: images/amt_bios_menu.png
+   .. figure:: ../../../images/amt_bios_menu.png
       :alt: Disable AMT BIOS features
       :width: 100 %
 

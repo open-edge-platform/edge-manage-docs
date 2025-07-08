@@ -29,7 +29,7 @@ Manual Onboarding and Provisioning
 
 #. On the **Hosts** page, click the **Register Hosts** option. The **Register Hosts** page appears:
 
-   .. figure:: images/register_host.png
+   .. figure:: ../images/register_host.png
       :alt: Register Host
 
 #. Enter in a user-friendly name in the **Host Name** field and either the serial number or UUID in the respective fields.
@@ -45,7 +45,7 @@ Manual Onboarding and Provisioning
 
 #. Click **Register Hosts** to submit the edge node(s); a redirect will happen to the list of nodes with a successful notification:
 
-   .. figure:: images/register_host_success.png
+   .. figure:: ../images/register_host_success.png
       :alt: Registration successful
 
 The Host will show `Status` as `Unknown`, waiting for the edge node to attempt to connect.
@@ -67,7 +67,7 @@ Automated Onboarding and Manual Provisioning
 
 #. On the **Hosts** page, click the **Register Hosts** option. The **Register Hosts** page appears.
 
-   .. figure:: images/register_host_automatic.png
+   .. figure:: ../images/register_host_automatic.png
       :alt: Register Host
 
 #. Enter in a user-friendly name in the **Host Name** field and either the serial number or UUID in their proper fields.
@@ -84,7 +84,7 @@ Automated Onboarding and Manual Provisioning
 
 #. Click **Register Hosts** to submit the edge node(s), a redirect will happen to the list of nodes with a successful notification.
 
-   .. figure:: images/register_host_success.png
+   .. figure:: ../images/register_host_success.png
       :alt: Registration successful
 
 The host will show the `Status` as `Unknown`; waiting for the edge node to attempt to connect.
@@ -102,7 +102,7 @@ Automated Onboarding and Provisioning
 
 #. On the **Hosts** page, click the **Register Hosts** option. The **Register Hosts** page appears:
 
-   .. figure:: images/register_host_automatic_provision.png
+   .. figure:: ../images/register_host_automatic_provision.png
       :alt: Register Host
 
 #. Enter in a user-friendly name in the **Host Name** field and either the serial number or UUID in the respective fields.
@@ -345,9 +345,3 @@ Example of invocation and failure:
       $ cat import_error_2025-04-15T18\:28\:44+05\:30_test.csv
       Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,Error - do not fill
       FW908CX,4c4c4544-0946-5310-8052-cac04f515233,os-7d650dd1,Folsom,true,myuser-key,key1=value1&key2=value2,Host already registered
-
-.. toctree::
-   :hidden:
-
-   onboard_host
-   registered_hosts

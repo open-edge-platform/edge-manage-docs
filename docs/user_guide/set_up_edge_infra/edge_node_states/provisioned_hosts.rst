@@ -9,7 +9,7 @@ at the top of the page.
 To view the **Hosts** page, click the **Infrastructure** tab and
 click **Hosts** on the left menu.
 
-.. figure:: images/host_main.png
+.. figure:: ../../images/host_main.png
    :scale: 50 %
    :alt: Configured Hosts
 

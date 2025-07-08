@@ -8,7 +8,7 @@ then click **Hosts** on the left menu. On the **Registered** tab, you
 can view the list of registered hosts and their status, search for a host
 with the search box, view details, onboard, deauthorize, or delete hosts.
 
-.. figure:: images/registered_hosts.png
+.. figure:: ../../images/registered_hosts.png
    :alt: Registered hosts
 
 
@@ -55,21 +55,21 @@ with the search box, view details, onboard, deauthorize, or delete hosts.
 
 You can view the host details, including the status of the host, metadata, and hardware details.
 
-For details, see :doc:`Registered Host Mismatch <../../shared/shared_registration_info_mismatch>`.
+For details, see :doc:`Registered Host Mismatch <../../../shared/shared_registration_info_mismatch>`.
 
 From this page, you can do the following:
 
-    * :doc:`/user_guide/set_up_edge_infra/onboard_host`
-    * :doc:`/user_guide/set_up_edge_infra/delete_host`
-    * :doc:`/user_guide/set_up_edge_infra/edit_host`
-    * :doc:`/user_guide/set_up_edge_infra/deauthorize_host`
+    * :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/onboard_host`
+    * :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/delete_host`
+    * :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edit_host`
+    * :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/deauthorize_host`
 
 View Registered Host Details
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 On the **Registered** tab, click the name of the host to view the host details.
 
-.. figure:: images/register_host_details.png
+.. figure:: ../../images/register_host_details.png
    :alt: View registered host details
 
 .. list-table::
