@@ -61,6 +61,7 @@ The following sections will guide you through setting up and configuring edge no
    :maxdepth: 6
    :hidden:
 
+   hardware_prerequisites
    edge_node_registration
    edge_node_onboard_dell_server
    edge_node_onboard_asus_system

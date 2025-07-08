@@ -1,5 +1,5 @@
-Onboard Edge Node Using HTTPs-Assisted Boot
-====================================================
+Onboard Lenovo ThinkEdge Using HTTPs-Assisted Boot
+==================================================
 
 You will need the HTTPS boot to onboard devices securely.
 

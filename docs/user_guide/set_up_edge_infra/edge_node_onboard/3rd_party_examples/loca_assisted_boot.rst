@@ -1,6 +1,8 @@
 Onboard Edge Node Using LOC-A Assisted Boot
 ====================================================
 
+.. note:: Before reading this guide, make sure you meet :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/lenovo_prerequisites`.
+
 You will need to :doc:`/user_guide/set_up_edge_infra/onboard_lenovo/setup_loca`
 before proceeding with the onboarding process.
 

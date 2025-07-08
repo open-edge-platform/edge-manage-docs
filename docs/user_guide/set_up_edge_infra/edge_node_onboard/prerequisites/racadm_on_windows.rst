@@ -6,7 +6,7 @@ RACADM on Windows PC
    through the iDRAC Web UI, so it must be done through the  RACADM tool. This
    section describes how this can be done on a Windows PC. The Linux based
    alternative is given in the next page
-   :doc:`/user_guide/set_up_edge_infra/onboard_dell/racadm_on_linux`.
+   :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/racadm_on_linux`.
 
 Install RACADM on Windows PC
 ----------------------------
@@ -115,8 +115,8 @@ Finally, you can Upload the certificates to the server with the `racadm` command
     racadm.exe -r {iDRAC IP address} - u [iDRAC username] -p [iDRAC password] httpsbootcert import -i 1 -f C:\\\<{path_to_certificates}\>\\Full_server.crt
     racadm.exe -r {iDRAC IP address} - u [iDRAC username] -p [iDRAC password] serveraction powercycle
 
-Skip the :doc:`/user_guide/set_up_edge_infra/onboard_dell/racadm_on_linux` page
-and go to :doc:`/user_guide/set_up_edge_infra/onboard_dell/https_assisted_boot`.
+Skip the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/racadm_on_linux` page
+and go to :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/https_boot/https_boot_dell/index`.
 
 Acquiring the Edge Microvisor Toolkit repository URL path from Edge Orchestrator API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

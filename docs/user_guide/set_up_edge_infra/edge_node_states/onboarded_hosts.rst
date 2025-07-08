@@ -60,7 +60,7 @@ To provision a host, see the :doc:`/user_guide/set_up_edge_infra/provision_host`
 
 From this page, you can perform the following tasks:
 
-* :doc:`/user_guide/set_up_edge_infra/onboard_host_details`
+* :doc:`/user_guide/set_up_edge_infra/edge_node_states/onboard_host_details`
 * :doc:`/user_guide/set_up_edge_infra/provision_host`
 * :doc:`/user_guide/set_up_edge_infra/delete_host`
 * :doc:`/user_guide/set_up_edge_infra/deauthorize_host`

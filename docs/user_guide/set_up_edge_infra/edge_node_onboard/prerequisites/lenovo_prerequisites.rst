@@ -1,5 +1,5 @@
-Prerequisites
-===============================
+Lenovo Prerequisites
+====================
 
 For HTTP-assisted boot and USB-assisted boot:
 

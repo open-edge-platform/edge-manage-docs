@@ -1,5 +1,7 @@
-Onboard Edge Node Using USB-Assisted Boot
-=====================================================
+Onboard Lenovo ThinkEdge Using USB-Assisted Boot
+================================================
+
+.. note:: Before reading this guide, make sure you meet :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/lenovo_prerequisites`.
 
 You can use USB-assisted boot to load the iPXE image.
 

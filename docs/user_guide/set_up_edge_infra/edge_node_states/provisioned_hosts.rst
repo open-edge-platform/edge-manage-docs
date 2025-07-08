@@ -81,7 +81,7 @@ Each host will also have a drop-down menu to view the Host Details.
 
 From this page, you can do the following:
 
-   * :doc:`/user_guide/set_up_edge_infra/provisioned_host_details`
+   * :doc:`/user_guide/set_up_edge_infra/edge_node_states/provisioned_host_details`
    * :doc:`/user_guide/set_up_edge_infra/delete_host`
    * :doc:`/user_guide/set_up_edge_infra/edit_host`
    * :doc:`/user_guide/set_up_edge_infra/deauthorize_host`

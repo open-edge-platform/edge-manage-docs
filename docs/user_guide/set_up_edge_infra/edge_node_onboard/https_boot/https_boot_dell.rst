@@ -1,7 +1,9 @@
-Onboard Edge Node Using HTTPs-Assisted Boot
+Onboard Dell XR12 Using HTTPs-Assisted Boot
 ====================================================
 
 .. note:: This HTTPS option is mutually exclusive with the USB assisted approach.
+
+.. note:: Before reading this guide, make sure you meet :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/dell_prerequisites`.
 
 Identify NIC
 ------------

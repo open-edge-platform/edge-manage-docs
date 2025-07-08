@@ -1,5 +1,7 @@
-Onboard Edge Node Using USB-Assisted Boot
+Onboard Dell XR12 Using USB-Assisted Boot
 =====================================================
+
+.. note:: Before reading this guide, make sure you meet :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/dell_prerequisites`.
 
 If the BIOS does not support HTTPS boot, you can use the USB-assisted boot solution to load the iPXE image.
 

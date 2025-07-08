@@ -1,4 +1,4 @@
-Prerequisites
+Dell Prerequisites
 =================================================
 
 * A Linux* PC or Windows* PC to run the command line tool RACADM to
@@ -32,3 +32,10 @@ Dell PowerEdge\* XR12 Rack Server
 * 1/2/3 SSDs (Minimum 1 SSD with 500GB)
 * Intel® Ethernet Network Adapter X710-T2L Dual Port 10GbE BASE-T
 * USB drive (minimum 4GB)
+
+Set up iDRAC
+------------
+
+- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/prepare_idrac`
+- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/racadm_on_linux`
+- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/racadm_on_windows`
