@@ -6,6 +6,8 @@ Onboard Edge Node Using LOC-A Assisted Boot
 You will need to :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/3rd_party_examples/setup_loca`
 before proceeding with the onboarding process.
 
+.. include:: setup_loca.rst
+
 Device Onboarding using LOC-A
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
