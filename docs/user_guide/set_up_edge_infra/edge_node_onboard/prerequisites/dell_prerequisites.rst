@@ -33,9 +33,8 @@ Dell PowerEdge\* XR12 Rack Server
 * Intel® Ethernet Network Adapter X710-T2L Dual Port 10GbE BASE-T
 * USB drive (minimum 4GB)
 
-Set up iDRAC
-------------
+.. include:: prepare_idrac.rst
 
-- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/prepare_idrac`
-- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/racadm_on_linux`
-- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/racadm_on_windows`
+.. include:: racadm_on_linux.rst
+
+.. include:: racadm_on_windows.rst

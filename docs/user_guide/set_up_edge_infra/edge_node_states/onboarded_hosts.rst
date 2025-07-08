@@ -17,8 +17,6 @@ and security configuration,
 and associate them with their specific
 :doc:`location </user_guide/set_up_edge_infra/location/index>`.
 
-To provision a host, see the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host` section.
-
 .. figure:: ../images/onboarded_hosts.png
    :alt: Onboarded hosts
 
@@ -60,7 +58,8 @@ To provision a host, see the :doc:`/user_guide/set_up_edge_infra/edge_node_onboa
 
 From this page, you can perform the following tasks:
 
-* :doc:`/user_guide/set_up_edge_infra/edge_node_states/onboard_host_details`
 * :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host`
 * :doc:`/user_guide/set_up_edge_infra/delete_host`
 * :doc:`/user_guide/set_up_edge_infra/deauthorize_host`
+
+.. include:: onboard_host_details.rst
