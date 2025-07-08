@@ -34,7 +34,7 @@ with the search box, view details, onboard, deauthorize, or delete hosts.
 
        To view additional details on the Host Status, click on the status in the column to open up a menu showing the status of different components of the host:
 
-       .. figure:: images/registered_host_status_menu.png
+       .. figure:: ../images/registered_host_status_menu.png
           :alt: Host Status Menu
 
    * - Serial Number

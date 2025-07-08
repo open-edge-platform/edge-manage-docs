@@ -55,6 +55,12 @@ click **Hosts** on the left menu.
    * - Action
      - Click the three-dot icon to edit, schedule maintenance, view metrics, delete, or deauthorize the host.
 
+From this page, you can do the following:
+
+   * :doc:`/user_guide/set_up_edge_infra/delete_host`
+   * :doc:`/user_guide/set_up_edge_infra/edit_host`
+   * :doc:`/user_guide/set_up_edge_infra/deauthorize_host`
+
 Each host will also have a drop-down menu to view the Host Details.
 
 .. list-table:: Provisioned Host Details
@@ -79,9 +85,4 @@ Each host will also have a drop-down menu to view the Host Details.
    * - Trusted Compute
      - Outlines if the host supports trusted compute or not.
 
-From this page, you can do the following:
-
-   * :doc:`/user_guide/set_up_edge_infra/edge_node_states/provisioned_host_details`
-   * :doc:`/user_guide/set_up_edge_infra/delete_host`
-   * :doc:`/user_guide/set_up_edge_infra/edit_host`
-   * :doc:`/user_guide/set_up_edge_infra/deauthorize_host`
+.. include:: provisioned_host_details.rst
