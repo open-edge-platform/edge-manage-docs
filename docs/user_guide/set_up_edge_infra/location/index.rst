@@ -6,7 +6,7 @@ Locations define the organizational structure of your regions and sites, helping
 To view the **Locations** page, go to **Infrastructure** > **Locations**. You will see the list of available regions. Click the ">" icon next to the region to reveal the sites.
 You can also search for regions or sites using the search box.
 
-.. figure:: images/locations_homepage.png
+.. figure:: ../images/locations_homepage.png
   :alt: Locations page
 
 

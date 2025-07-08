@@ -19,7 +19,7 @@ and associate them with their specific
 
 To provision a host, see the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host` section.
 
-.. figure:: images/onboarded_hosts.png
+.. figure:: ../images/onboarded_hosts.png
    :alt: Onboarded hosts
 
 .. list-table::

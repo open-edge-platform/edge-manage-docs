@@ -85,6 +85,7 @@ For more information, see :doc:`/user_guide/set_up_edge_infra/clusters/create_cl
 
    location/index
    edge_node_onboard/index
+   edge_node_states/index
    edit_host
    delete_host
    deauthorize_host

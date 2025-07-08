@@ -8,7 +8,7 @@ then click **Hosts** on the left menu. On the **Registered** tab, you
 can view the list of registered hosts and their status, search for a host
 with the search box, view details, onboard, deauthorize, or delete hosts.
 
-.. figure:: ../../images/registered_hosts.png
+.. figure:: ../images/registered_hosts.png
    :alt: Registered hosts
 
 
@@ -69,7 +69,7 @@ View Registered Host Details
 
 On the **Registered** tab, click the name of the host to view the host details.
 
-.. figure:: ../../images/register_host_details.png
+.. figure:: ../images/register_host_details.png
    :alt: View registered host details
 
 .. list-table::

@@ -124,7 +124,7 @@ Automated Onboarding and Provisioning
 #. After completing and reviewing the provisioning settings, click **Provision** to submit the edge node(s),
    a redirect will happen to the list of nodes with a successful notification.
 
-   .. figure:: images/register_host_success_automatic_provision.png
+   .. figure:: ../images/register_host_success_automatic_provision.png
       :alt: Registration successful
 
 The Host will show `Status` as `Unknown`, waiting for the edge node to attempt to connect.
