@@ -46,15 +46,18 @@ If you have access to your edge node’s UUID or serial number, you can :doc:`/u
 
 The following sections will guide you through setting up and configuring edge nodes to work with |software_prod_name|.
 
-- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard_dell_server`
-- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard_asus_system`
-- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard_lenovo`
-- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard_common`
+- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/index`
+- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration`
+- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/https_boot/index`
+- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/usb_boot/index`
+- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/3rd_party_examples/index`
+- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/index`
+- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/common`
 
 .. note::
    Provisioning Ubuntu on a node that was previously provisioned and not cleaned up will not succeed. User should manually remove the persistent volumes before re-provisioning either of these below options:
 
-   1. :doc:`/user_guide/set_up_edge_infra/delete_clusters` from the edge devices using web-UI
+   1. :doc:`/user_guide/set_up_edge_infra/clusters/delete_clusters` from the edge devices using web-UI
    2. Run the command from the edge node ``dd`` command (change the `disk name`): `dd if=/dev/zero of="/dev/<disk_name>" bs=1G count=100`
 
 .. toctree::

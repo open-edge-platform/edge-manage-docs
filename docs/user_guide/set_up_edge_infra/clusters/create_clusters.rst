@@ -17,7 +17,7 @@ with customizable settings. Within this setup, You have the option to:
 .. note::
    You can also create a single-node cluster during the host configuration
    process. Clusters created this way use the default cluster template. For more information,
-   see :doc:`/user_guide/set_up_edge_infra/provision_host`.
+   see :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host`.
 
 
 To create a single node cluster, do the following:
@@ -111,7 +111,7 @@ To create a single node cluster, do the following:
    :doc:`/user_guide/advanced_functionality/set_up_a_cluster_template`
 
    However, if you are using a template you want to modify, you
-   can export the chosen template and then edit it. See: :doc:`../advanced_functionality/export_cluster_template`
+   can export the chosen template and then edit it. See: :doc:`/user_guide/advanced_functionality/export_cluster_template`
 
    To modify the subnets, update the `clusterNetwork` section in the cluster template:
 
@@ -134,7 +134,7 @@ To create a single node cluster, do the following:
    for your edge environment.
 
    After editing the template, should you wish to use it as the default template.
-   you can do so using this guide: :doc:`../advanced_functionality/set_default_cluster_template`
+   you can do so using this guide: :doc:`/user_guide/advanced_functionality/set_default_cluster_template`
 
    **Note:** If no valid DNS server is available on the system, RKE2 may fall back
    to using `8.8.8.8` (Google's public DNS). Ensure that your DNS configuration

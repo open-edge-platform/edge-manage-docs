@@ -27,15 +27,15 @@ total time of the onboarding and provisioning process for a node.
 It covers the entire lifecycle from the time when the node is first
 booted up (via HTTPS-based or USB-based boot) and starts initial network configuration via iPXE,
 through all the onboarding and provisioning steps (including iPXE, Micro-OS and OS installation phases),
-until the node is fully operational with all required agents running (see :doc:`/user_guide/set_up_edge_infra/provisioned_host_details`).
+until the node is fully operational with all required agents running (see :doc:`/user_guide/set_up_edge_infra/edge_node_states/provisioned_host_details`).
 
 This metric is crucial for users to understand the duration required for
 a node to complete its onboarding and provisioning processes. The Provisioning Time value may vary
 depending on the node's hardware, network conditions, OS distribution, and the provisioning mode
 (Zero-Touch or non Zero-Touch Provisioning). See the following pages for more details about provisioning modes:
 
-* :doc:`/user_guide/set_up_edge_infra/edge_node_registration`
-* :doc:`/user_guide/set_up_edge_infra/provision_host`
+* :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration`
+* :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host`
 
 Dashboard Visibility for Provisioning Time
 ---------------------------------------------------

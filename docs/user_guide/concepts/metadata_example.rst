@@ -43,7 +43,7 @@ Start with the location requirement, whether a cluster is remote or on-premises.
 cluster's site, so associate a deployment metadata tag with the site.
 Every host assigned to that site will be tagged with the site's deployment metadata.
 
-When you :doc:`provision a host </user_guide/set_up_edge_infra/provision_host>`,
+When you :doc:`provision a host </user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host>`,
 you assign it to a site. Each site is in a single region, which may belong to one
 or more parent regions. When you assign a host to a site, the host is
 associated with the entire region hierarchy.
@@ -52,7 +52,7 @@ Additionally, you can associate deployment metadata tags with a site. All hosts 
 the site will receive the deployment metadata.
 
 All hosts in a cluster must come from the same site. When you
-:doc:`/user_guide/set_up_edge_infra/create_clusters`,
+:doc:`/user_guide/set_up_edge_infra/clusters/create_clusters`,
 it receives site, region, and site deployment metadata from its hosts.
 
 In this case, assume that when you set up the

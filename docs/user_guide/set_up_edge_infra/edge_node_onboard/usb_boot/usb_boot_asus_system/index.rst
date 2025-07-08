@@ -227,4 +227,4 @@ Expected to enable Network/HTTPS boot in BIOS, when performing the USB boot.
 Intel also recommends to disable the `AMT` configuration in the
 ASUS\* IoT PE3000G System.
 Refer to this guide -
-:doc:`/user_guide/set_up_edge_infra/configure_amt_asus`.
+:doc:`/user_guide/set_up_edge_infra/edge_node_onboard/usb_boot/usb_boot_asus_system/configure_amt_asus`.

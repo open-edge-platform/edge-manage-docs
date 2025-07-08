@@ -17,7 +17,7 @@ Once the host connects to Edge Orchestrator, its status will change to `Connecte
 
 After you have successfully registered a host and it has connected to Edge Orchestrator,
 you can proceed to onboard it by following the steps in
-:doc:`/user_guide/set_up_edge_infra/onboard_host`.
+:doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/onboard_host`.
 
 Verify Successful Onboarding
 ------------------------------------
@@ -30,7 +30,7 @@ Verify Successful Onboarding
    :alt: Onboarded hosts
 
 After you have successfully onboarded a host, you can proceed to provision it by following
-the steps in :doc:`/user_guide/set_up_edge_infra/provision_host`
+the steps in :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host`
 
 Verify Successful Provisioning
 ------------------------------------

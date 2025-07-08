@@ -179,4 +179,4 @@ HTTP Boot Option
       :width: 750px
 
 The system now boots through the iPXE environment. The next steps are in
-:doc:`/user_guide/set_up_edge_infra/edge_node_onboard_common`.
+:doc:`/user_guide/set_up_edge_infra/edge_node_onboard/common`.

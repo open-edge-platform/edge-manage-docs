@@ -51,7 +51,7 @@ You can view the following details:
       * **nodes are unhealthy (X/Y)** - One or more nodes have failed health checks
 
 * **Hosts** - Displays the details of the host. For more information, see the
-  :doc:`/user_guide/set_up_edge_infra/provisioned_host_details` page.
+  :doc:`/user_guide/set_up_edge_infra/edge_node_states/provisioned_host_details` page.
 * **Deployment Instances** - Lists the instances of deployments, their status, and the number of applications running on a given cluster.
 
 In the **Status Details** tab, a cluster in a healthy state will show all statuses as green as shown at the top of the page.

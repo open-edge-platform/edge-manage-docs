@@ -12,8 +12,8 @@ Enable and Disable Secure Boot/FDE (opt-in) in |software_prod_name|
 **Host Registration or Host Provisioning:**
 
 Users can enable or disable Secure Boot and FDE during the registration of Edge Node(s) using the User Interface (UI) or the bulk tool,
-following the steps in :doc:`/user_guide/set_up_edge_infra/edge_node_registration` section.
-Additionally, this configuration can also be performed during host provisioning, with steps detailed in :doc:`/user_guide/set_up_edge_infra/provision_host`.
+following the steps in :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration` section.
+Additionally, this configuration can also be performed during host provisioning, with steps detailed in :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host`.
 
 - **Secure Boot and Full Disk Encryption Disabled:**
 
@@ -26,11 +26,11 @@ Additionally, this configuration can also be performed during host provisioning,
   Ensure that Secure Boot settings are enabled in the BIOS of the selected edge node.
 
   .. note::
-     If Secure Boot is enabled, make sure to enroll the certificates into the BIOS following the vendor-specific rules described in the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard` section.
+     If Secure Boot is enabled, make sure to enroll the certificates into the BIOS following the vendor-specific rules described in the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/index` section.
 
 If the host is not registered, the edge node will automatically utilize the fallback onboarding mechanism.
 This procedure ensures that the device can still be provisioned even if initial registration steps are missed by user.
-For detailed instructions on this process, users can refer to the documentation: :doc:`/user_guide/set_up_edge_infra/edge_node_onboard` section.
+For detailed instructions on this process, users can refer to the documentation: :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/index` section.
 
 - **Secure Boot and Full Disk Encryption Disabled:**
 

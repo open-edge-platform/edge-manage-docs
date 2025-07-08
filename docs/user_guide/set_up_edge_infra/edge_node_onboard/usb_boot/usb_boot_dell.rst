@@ -72,7 +72,7 @@ boot to download the iPXE image. Use any Linux\*-based machine to do the followi
    - Replace /dev/sdb with the appropriate device identifier for your USB drive.
    - Replace CLUSTER_FQDN with the name of the domain that is used during installation.
    - If secure boot is enabled, enroll the certificates into BIOS as mentioned in the
-     :doc:`UEFI Secure Boot </user_guide/set_up_edge_infra/onboard_dell/prepare_idrac>` section.
+     :doc:`UEFI Secure Boot </user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/prepare_idrac>` section.
    - You can plug in the same USB drive into multiple edge nodes to do the
      provisioning flow; you do not have to prepare the USB drive every time.
    - Ensure to unplug the USB stick once the edge node is provisioned.

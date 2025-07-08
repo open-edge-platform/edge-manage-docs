@@ -53,10 +53,10 @@ The Host will show `Status` as `Unknown`, waiting for the edge node to attempt t
 Once a connecting edge node reports a UUID or serial number that matches the registered information, the status will become **Registered**.
 
 You can proceed to **onboard** the host by following the
-:doc:`/user_guide/set_up_edge_infra/onboard_host` instructions.
+:doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/onboard_host` instructions.
 
 To **provision** the host after it is onboarded, follow the
-:doc:`/user_guide/set_up_edge_infra/provision_host` instructions.
+:doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host` instructions.
 
 Refer to :doc:`Registered Host Mismatch <../../shared/shared_registration_info_mismatch>` for any issues in encountered during set up.
 
@@ -93,7 +93,7 @@ Once a connecting edge node reports a UUID or serial number that matches the reg
 It will then be automatically moved to the Onboarded tab of the **Hosts** page.
 
 To **provision** the host after it is onboarded, follow the
-:doc:`/user_guide/set_up_edge_infra/provision_host` instructions.
+:doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host` instructions.
 
 Automated Onboarding and Provisioning
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -119,7 +119,7 @@ Automated Onboarding and Provisioning
 #. If multiple edge nodes are to be registered, you can add additional fields by clicking the **+** option.
 
 #. Click **Continue** to configure the provisioning settings. This follows the
-   :doc:`/user_guide/set_up_edge_infra/provision_host` instructions.
+   :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host` instructions.
 
 #. After completing and reviewing the provisioning settings, click **Provision** to submit the edge node(s),
    a redirect will happen to the list of nodes with a successful notification.

@@ -30,7 +30,7 @@ Set up LOC-A Cloud Template
       :width: 750px
 
 #. Set up a site that supports Edge Manageability Framework deployment by following the instruction
-   defined in :doc:`/user_guide/set_up_edge_infra/location_main`. |software_prod_name|\  will
+   defined in :doc:`/user_guide/set_up_edge_infra/location/index`. |software_prod_name|\  will
    automatically synchronize site metadata and |software_prod_name|\  Cloud Service with
    LOC-A, the latter will show in the UI with the relevant information:
 
@@ -138,4 +138,4 @@ The summary of the creation will look like the following:
 
 LOC-A setup is now completed. You can proceed with the onboarding and the provisioning of
 servers using LOC-A. For more information about onboarding hosts, see
-:doc:`/user_guide/set_up_edge_infra/onboard_lenovo/loca_assisted_boot`.
+:doc:`/user_guide/set_up_edge_infra/edge_node_onboard/3rd_party_examples/loca_assisted_boot`.

@@ -37,5 +37,5 @@ Set UEFI HTTPS boot through iDRAC
 #. Select **UEFI HTTP boot**.
 #. Go to **Power** > **Reset System (warm boot)**.
 
-Skip the :doc:`/user_guide/set_up_edge_infra/onboard_dell/usb_assisted_boot`
-page and go to :doc:`/user_guide/set_up_edge_infra/edge_node_onboard_common` next.
+The machine will reboot and start OS provisioning.
+To monitor the host status go to :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/common`.

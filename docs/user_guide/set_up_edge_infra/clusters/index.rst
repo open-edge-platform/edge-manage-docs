@@ -21,7 +21,7 @@ Clusters can be configured currently in the following:
   single node cluster creation method, the default cluster template is utilized
   to configure the cluster settings, deployment instances, and cluster labels.
   For more information,see
-  :doc:`/user_guide/set_up_edge_infra/provision_host`.
+  :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host`.
 
 .. note::
   In the Kubernetes\* system, a single-host cluster is equivalent to a single-node cluster.
@@ -29,7 +29,7 @@ Clusters can be configured currently in the following:
 The cluster configuration option is available while configuring
 a host and creating a cluster. For creating a cluster while
 configuring a host, see
-:doc:`/user_guide/set_up_edge_infra/provision_host`.
+:doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host`.
 
 
 To manage and monitor clusters, you can view each cluster's details from the
@@ -60,7 +60,7 @@ You can view the following details of the cluster:
        * **active** - Cluster is fully operational
        * **deleting** - Cluster is being removed
        * **failed** - Cluster creation has failed. Consult the
-         :doc:`/user_guide/set_up_edge_infra/cluster_details`
+         :doc:`/user_guide/set_up_edge_infra/clusters/cluster_details`
          page for troubleshooting information.
 
    * - Host Count
@@ -93,11 +93,11 @@ link to view the host details.
 
 From this page, you can do the following:
 
-* :doc:`/user_guide/set_up_edge_infra/cluster_details`
-* :doc:`/user_guide/set_up_edge_infra/create_clusters`
-* :doc:`/user_guide/set_up_edge_infra/edit_clusters`
-* :doc:`/user_guide/set_up_edge_infra/delete_clusters`
-* :doc:`/user_guide/set_up_edge_infra/accessing_clusters`
+* :doc:`/user_guide/set_up_edge_infra/clusters/cluster_details`
+* :doc:`/user_guide/set_up_edge_infra/clusters/create_clusters`
+* :doc:`/user_guide/set_up_edge_infra/clusters/edit_clusters`
+* :doc:`/user_guide/set_up_edge_infra/clusters/delete_clusters`
+* :doc:`/user_guide/set_up_edge_infra/clusters/accessing_clusters`
 
 
 .. toctree::
