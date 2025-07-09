@@ -1,5 +1,5 @@
 View Provisioned Host Details
-======================================================================
+-----------------------------
 
 You can view the host details, including the status of the host, metadata,
 and hardware details.
@@ -29,7 +29,7 @@ In the **Hosts** page, click on the name of the host to view the host details.
      - Outlines if the host supports trusted compute or not.
 
 View Status Details
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Click the **Status Details** tab to view information about specific host hardware and software status:
 
@@ -54,7 +54,7 @@ Click the **Status Details** tab to view information about specific host hardwar
 
 
 View Host Resources
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Click the **Resources** tab to view the host resources:
 
@@ -117,7 +117,7 @@ Click on CPUs, Memory, Storage, GPUs, or QAT to view details of each resource.
      - The capabilities of the GPU.
 
 View Host Specifications
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Click the **Specifications** tab to view the host specifications:
 
@@ -139,7 +139,7 @@ Click the **Specifications** tab to view the host specifications:
      - The product name of the host.
 
 View I/O Devices Details
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Click the **I/O Devices** tab to view details of the I/O devices:
 
@@ -195,7 +195,7 @@ Click on USB or Interfaces to view details of each resource.
      - Stands for Baseboard Management Controller Interface; either Yes or No.
 
 View OS Profile
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Click the **OS Profile** tab to view the OS profile details:
 
@@ -230,7 +230,8 @@ Click the **OS Profile** tab to view the OS profile details:
      - Command line options for the kernel on the host.
 
 View Host Label
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Click the **Host Labels** tab to view the host label. For information about host label,
 see the `host label <./provision_host.html#host-label>`__ section.
 
