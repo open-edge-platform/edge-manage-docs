@@ -9,7 +9,7 @@ before proceeding with the onboarding process.
 .. include:: setup_loca.rst
 
 Device Onboarding using LOC-A
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------
 
 #. LOC-A provides a near zero-touch onboarding experience through different means. See the LOC-A documentation for more details: `Lenovo ISG Support Plan - LOC-A (Lenovo Open Cloud Automation) <https://support.lenovo.com/us/en/solutions/ht509884-loc-a-lenovo-open-cloud-automation-for-vcf>`_. In this user guide, Intel assumes the use of either the device template registration spreadsheet or the built-in discovery functionality for device onboarding:
 
@@ -53,7 +53,7 @@ Device Onboarding using LOC-A
 .. _os_provisioning_loca_lenovo_350_360_450:
 
 OS Provisioning using |software_prod_name|\
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------
 
 Once the device has been onboarded, you can proceed with OS deployment.
 

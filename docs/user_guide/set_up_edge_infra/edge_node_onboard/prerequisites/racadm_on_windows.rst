@@ -1,5 +1,5 @@
 RACADM on Windows PC
-=====================================================
+-----------------------
 
 .. note::
    Because of limitations in Dell iDRAC it is not possible to load certificates
@@ -9,7 +9,7 @@ RACADM on Windows PC
    :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/racadm_on_linux`.
 
 Install RACADM on Windows PC
-----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. On the local PC machine, download and install
    `Dell Remote Access Control Admin (RACADM) <https://www.dell.com/support/home/en-in/drivers/driversdetails?driverid=3d7tf&oscode=naa&productcode=poweredge-xr12>`_.
@@ -17,7 +17,7 @@ Install RACADM on Windows PC
 #. Go to the RACADM CLI installation directory.
 
 Download and import Certificates with Windows PC
-------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Importing certificates requires the iDRAC IP address.
 

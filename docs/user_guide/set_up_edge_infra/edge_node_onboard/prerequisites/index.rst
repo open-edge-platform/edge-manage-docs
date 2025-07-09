@@ -11,6 +11,6 @@ Get familiar with the platform-specific prerequisites before starting to onboard
    :maxdepth: 6
    :hidden:
 
+   asus_prerequisites
    dell_prerequisites
    lenovo_prerequisites
-   asus_prerequisites

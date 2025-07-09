@@ -1,5 +1,5 @@
-Prerequisites
-=============
+ASUS Prerequisites
+==================
 
 * A Linux\* PC or Windows\* PC to configure BIOS settings for the edge node,
   on the same network as the edge node.
@@ -7,9 +7,6 @@ Prerequisites
 .. note::
    Secure Boot (SB) is disabled by default. To enable it, follow the steps below to configure SB in the BIOS.
    After that, refer to the instructions in :doc:`/shared/shared_secure_boot_opt_in` for enabling SB in |software_prod_name|\ .
-
-Edge Node Requirements
------------------------------
 
 Hardware Requirements
 -----------------------------

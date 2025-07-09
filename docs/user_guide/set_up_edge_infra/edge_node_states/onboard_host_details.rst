@@ -1,5 +1,5 @@
 View Onboard Host Details
-=============================
+-------------------------
 
 You can view the host details, including the status of the host, metadata, and
 hardware details.
@@ -22,7 +22,7 @@ On the **Hosts** page, click the name of the host to view the host details.
 
 
 View Status Details
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Click the **Status Details** tab to view information about specific host hardware and software status:
 
@@ -39,7 +39,7 @@ Click the **Status Details** tab to view information about specific host hardwar
      - Status of host's onboarding process (for example, Booting, Onboarded).
 
 View Host Resources
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Click the **Resources** tab to view the host resources:
 
@@ -79,7 +79,7 @@ Click CPUs or GPUs to view the details of each resource.
      - The capabilities of the GPU.
 
 View Host Specifications
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Click the **Specifications** tab to view the host specifications:
 
@@ -104,7 +104,7 @@ Click the **Specifications** tab to view the host specifications:
      - The product name of the host.
 
 View I/O Devices Details
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Click the **I/O Devices** tab to view details of the I/O devices:
 
@@ -135,12 +135,12 @@ Click USB to view details of each resource.
      - The unique identifier associated with the USB device.
 
 View OS Profile
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The **OS Profile** tab will be empty when the host is in `Onboarded` state.
 
 View Host Label
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Click the **Host Labels** tab to view the host label. For information about host
 label, see :ref:`host label <user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host:host label>`.
