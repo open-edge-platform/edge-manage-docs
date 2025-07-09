@@ -113,9 +113,3 @@ Finally, you can Upload the certificates to the server with the `racadm` command
     # Full_server.crt - TLS authorization with cluster for HTTPS boot.
     racadm.exe -r {iDRAC IP address} - u [iDRAC username] -p [iDRAC password] httpsbootcert import -i 1 -f C:\\\<{path_to_certificates}\>\\Full_server.crt
     racadm.exe -r {iDRAC IP address} - u [iDRAC username] -p [iDRAC password] serveraction powercycle
-
-Skip the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/racadm_on_linux` page
-and go to :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/https_boot/https_boot_dell`.
-
-.. include:: acquire_emt_repo.rst
-   :start-after: acquire_emt_repo

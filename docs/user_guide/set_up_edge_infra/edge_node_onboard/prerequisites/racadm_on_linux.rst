@@ -116,6 +116,3 @@ Finally, you can upload the certificates to the server with the `racadm` command
 
     # Reboot or Power Cycle
     racadm ${LOGIN} serveraction powercycle
-
-.. include:: acquire_emt_repo.rst
-   :start-after: acquire_emt_repo
