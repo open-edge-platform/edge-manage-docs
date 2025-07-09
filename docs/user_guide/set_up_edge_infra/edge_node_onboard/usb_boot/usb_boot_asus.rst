@@ -128,12 +128,6 @@ boot to download the iPXE image. Use any Linux based machine to perform the foll
 
 .. include:: ../../prerequisites/acquire_emt_repo.rst
 
-Disable Active Management Technology (AMT) for ASUS\* IoT PE3000G System
-------------------------------------------------------------------------------
-
-.. include:: configure_amt_asus.rst
-   :start-after: configure_amt_asus_start:
-
 Set Boot Order Priorities:
 --------------------------
 

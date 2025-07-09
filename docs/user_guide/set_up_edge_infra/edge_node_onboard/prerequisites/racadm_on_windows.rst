@@ -61,8 +61,7 @@ For Edge Microvisor Toolkit, if Secure Boot (SB) is enabled (Not required for Ub
    :doc:`OS Profile </user_guide/advanced_functionality/view_os_profiles>` you are trying to
    install and copying manually the `Repository URL` value without `raw.gz` suffix.
    Alternatively, it can be acquired using the Edge Orchestrator API - see the
-   `Acquiring the Edge Microvisor Toolkit repository URL path from Edge Orchestrator API`_
-   section.
+   :ref:`acquire_emt_repo` section.
 
    Choose the correct values for the command and replace them in the variables as per the example and resulting command below. Make sure that resulting HTTP status is successful.
 
