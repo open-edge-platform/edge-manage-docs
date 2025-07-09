@@ -87,10 +87,10 @@ Enabling Automated Deployment
 To enable an automated deployment based on metadata, you must first do
 the following:
 
-- :doc:`/user_guide/set_up_edge_infra/provision_host`,
+- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host`,
   including adding location information (for the location-based labels).
 
-- :doc:`/user_guide/set_up_edge_infra/create_clusters`, including adding
+- :doc:`/user_guide/set_up_edge_infra/clusters/create_clusters`, including adding
   user-defined metadata labels for the cluster.
 
 - :doc:`/user_guide/package_software/setup_deploy`, including adding the target labels for

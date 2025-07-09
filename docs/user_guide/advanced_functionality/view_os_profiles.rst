@@ -36,7 +36,7 @@ By clicking on the action menu you can get more details about a specific OS Prof
 Available OS Resources during the Host Configuration
 ----------------------------------------------------
 
-When configuring an host (see :doc:`/user_guide/set_up_edge_infra/provision_host`),
+When configuring an host (see :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host`),
 users can select the available OS profiles through the UI.
 
 .. note:: This option will be greyed out if `autoProvisioning` was enabled at installation time or configured at runtime :doc:`/shared/shared_update_provider`.

@@ -8,7 +8,7 @@ the Edge Orchestrator service by revoking its security certificates.
    Once Deauthorized, a host cannot communicate with Edge Orchestrator. The host
    must be fully re-provisioned to re-enable communication, starting with the
    remote installation. To onboard a host, see
-   :doc:`/user_guide/set_up_edge_infra/edge_node_onboard` section.
+   :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/index` section.
 
 1. Go to the **Infrastructure tab**, click **Hosts** on the left menu.
 
