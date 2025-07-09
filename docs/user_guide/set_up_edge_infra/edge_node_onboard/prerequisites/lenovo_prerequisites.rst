@@ -17,7 +17,7 @@ You can then configure, provision, lifecycle manage, and add the edge nodes or h
 * :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/3rd_party_examples/setup_loca`
 * :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/3rd_party_examples/loca_assisted_boot`
 
-.. note:: You can only use one of the above options (HTTPs, USB, or LOC-A) to onboard Lenovo ThinkEdge servers during the edge node configuration cycle:
+.. note:: You can only use one of the above options (HTTPs, USB, or LOC-A) to provision Lenovo ThinkEdge servers during the edge node configuration cycle:
 
 For HTTP-assisted boot and USB-assisted boot:
 
