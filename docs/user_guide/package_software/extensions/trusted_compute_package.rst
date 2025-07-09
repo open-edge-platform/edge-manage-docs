@@ -24,7 +24,7 @@ Follow the below steps to enable Trusted Compute extension on your host & cluste
 
 #. **Cluster Creation** - Use the privileged default-extension to create a cluster:
 
-   Refer to :doc:`/user_guide/set_up_edge_infra/create_clusters`
+   Refer to :doc:`/user_guide/set_up_edge_infra/clusters/create_clusters`
 
    a. Navigate to Infrastructure > Clusters > Create Cluster in the Edge Orchestrator UI.
 

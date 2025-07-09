@@ -11,7 +11,7 @@ deauthorized or when it is replaced by another Host with better performance.
 
 .. note::
    Once a Host is deleted, the current installation is not valid. To manage it again via |software_prod_name|\ , you need to reprovision the Host from scratch, starting with the remote installation process.
-   To onboard a Host, see the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard` section.
+   To onboard a Host, see the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/index` section.
 
    Intel **does not** recommend deleting a Host unless you are certain you can recover it.
 

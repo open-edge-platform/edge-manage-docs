@@ -148,7 +148,7 @@ Edge Node
 
 Diagnosing extension issues typically requires kubectl access to the cluster.
 You can do this by downloading the cluster kubeconfig from the UI. You can use
-this guideline :doc:`/user_guide/set_up_edge_infra/accessing_clusters` to
+this guideline :doc:`/user_guide/set_up_edge_infra/clusters/accessing_clusters` to
 download the kubeconfig of a target edge cluster.
 
 .. note::

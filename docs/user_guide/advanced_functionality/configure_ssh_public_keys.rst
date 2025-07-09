@@ -33,7 +33,7 @@ Edge Manageability Framework allows you to add **public SSH keys** into a host d
       in the Linux or Mac OS.
 
    Once the key is added to the SSH key list, you can add it to a host when configuring it. Follow the
-   :doc:`/user_guide/set_up_edge_infra/provision_host` instructions to enable this.
+   :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host` instructions to enable this.
 
 #. To delete an SSH key, click the **Delete** option under the **Actions** column next to the key you want to delete.
    A confirmation dialog will appear. Click **Delete** to confirm the deletion:

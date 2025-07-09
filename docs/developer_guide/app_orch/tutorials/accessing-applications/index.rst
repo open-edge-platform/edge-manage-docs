@@ -48,7 +48,7 @@ Understand the Deployment
 -------------------------
 
 You can download the **KubeConfig** from the edge node to explore it further. See
-:doc:`/user_guide/set_up_edge_infra/clusters_main` for more information on how to do this.
+:doc:`/user_guide/set_up_edge_infra/clusters/index` for more information on how to do this.
 
 Once established, you can see all the resources that have been created by the Application Orchestrator.
 
