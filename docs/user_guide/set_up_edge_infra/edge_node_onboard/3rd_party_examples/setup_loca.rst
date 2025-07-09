@@ -1,5 +1,5 @@
-Set Up LOC-A (Not Required for HTTPS- or USB-Assisted Boot)
-===========================================================
+Set Up LOC-A
+------------------------------
 
 `Lenovo Open Cloud Automation (LOC-A) <https://www.lenovo.com/us/en/servers-storage/software/open-cloud-automation/>`_
 is a modular automation framework designed to enable customers to easily deploy and manage
@@ -9,7 +9,7 @@ cloud solutions and workloads on Lenovo hardware.
    This is a one-time setup.
 
 Prerequisites
-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Before setting up LOC-A, ensure that the installation process has been completed successfully and
 that the Edge Infrastructure Manager Plugin* is installed correctly. Refer to the LOC-A installation section at
@@ -17,7 +17,7 @@ that the Edge Infrastructure Manager Plugin* is installed correctly. Refer to th
 Confirm that the LOC-A UI is accessible from your laptop. Log in into the LOC-A UI and proceed with the setup.
 
 Set up LOC-A Cloud Template
-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. Download the cloud template example from
    `Lenovo ISG Support Plan - LOC-A (Lenovo Open Cloud Automation) <https://support.lenovo.com/us/en/solutions/ht509884-loc-a-lenovo-open-cloud-automation-for-vcf>`_
@@ -121,7 +121,7 @@ Set up LOC-A Cloud Template
    .. note:: Do not use Edge Microvisor Toolkit images with LOC-A.
 
 Setup LOC-A Instance Template
-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The instance template configuration step is mandatory to deploy an OS on any Lenovo device.
 |software_prod_name|\  will automatically convert the Ubuntu\* system's Lenovo profile in

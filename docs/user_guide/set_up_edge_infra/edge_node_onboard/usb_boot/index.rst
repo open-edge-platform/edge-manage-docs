@@ -1,5 +1,7 @@
-Examples using USB-assisted boot
-================================
+USB-assisted boot
+=================
+
+Examples using USB-assisted boot:
 
 - :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/usb_boot/usb_boot_dell`
 - :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/usb_boot/usb_boot_asus`
