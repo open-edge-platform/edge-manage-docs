@@ -15,7 +15,8 @@ hosts by referring to the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/
 After onboarding your host(s), do the following to set up your edge infrastructure:
 
 #. :doc:`View Onboarded Hosts </user_guide/set_up_edge_infra/edge_node_states/onboarded_hosts>`
-#. :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host` (not required in case of :doc:`Automated Onboarding and Provisioning </user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration>`)
+#. :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host`
+   (not required in case of :doc:`Automated Onboarding and Provisioning </user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration>`)
 #. :doc:`/user_guide/set_up_edge_infra/clusters/create_clusters`
 
 If you have access to your edge node’s UUID or serial number, you can :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration`
