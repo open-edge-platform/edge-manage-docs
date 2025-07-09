@@ -54,8 +54,7 @@ boot to download the iPXE image. Use any Linux based machine to perform the foll
       :doc:`OS Profile </user_guide/advanced_functionality/view_os_profiles>` you are trying to
       install and copying manually the `Repository URL` value without `raw.gz` suffix.
       Alternatively, it can be acquired using the Edge Orchestrator API - see the
-      `Acquiring the Edge Microvisor Toolkit repository URL path from Edge Orchestrator API`_
-      section.
+      :ref:`acquire_emt_repo` section.
 
       Choose the correct values for the command and replace them in the variables as per the example and resulting command below. Make sure that resulting HTTP status is successful.
 
@@ -137,13 +136,13 @@ Set Boot Order Priorities:
 
 #. Disable unwanted boot options:
 
-   .. figure:: ../../../images/disable_unwanted_boot.png
+   .. figure:: ../../images/disable_unwanted_boot.png
       :scale: 100%
       :alt: Disable unwanted boot options
 
 #. Choose the correct device in "Boot Option #1" with the configured HTTP device name:
 
-   .. figure:: ../../../images/fixed_bootorder_settings.png
+   .. figure:: ../../images/fixed_bootorder_settings.png
       :scale: 100%
       :alt: Boot order settings
 
@@ -151,7 +150,7 @@ Set Boot Order Priorities:
 
 #. Choose the Second Boot Option as Hard Disk and disable other boot options if they are enabled:
 
-   .. figure:: ../../../images/fixed_bootorder_settings.png
+   .. figure:: ../../images/fixed_bootorder_settings.png
       :scale: 100%
       :alt: Boot order settings
 
@@ -193,8 +192,3 @@ Troubleshooting and Recommendations
 In a few Asus/NUC12 Pro platforms, it is observed that USB-based boot is not
 working when the Network boot option is disabled in BIOS.
 Expected to enable Network/HTTPS boot in BIOS, when performing the USB boot.
-
-Intel also recommends to disable the `AMT` configuration in the
-ASUS\* IoT PE3000G System.
-Refer to this guide -
-:doc:`/user_guide/set_up_edge_infra/edge_node_onboard/usb_boot/usb_boot_asus_system/configure_amt_asus`.
