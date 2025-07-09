@@ -197,7 +197,7 @@ To tear down the deployment and reset the network, run:
 Make changes
 ------------
 
-See :ref:`/developer_guide/contributor_guide/code_contribution` to learn more about
+See :doc:`/developer_guide/contributor_guide/code_contribution` to learn more about
 how to make changes to an Edge Orchestrator component.
 
 Locally Build and Test changes

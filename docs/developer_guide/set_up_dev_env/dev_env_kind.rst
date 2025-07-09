@@ -7,7 +7,7 @@ validate lifecycle management operations on already provisioned Edge Node.
 
 .. note::
    ENIC only emulates the real Edge Node and does not cover full Edge Node lifecycle management (from Day0 provisioning).
-   To set up developer environment that is closest to the real-world deployment, see :ref:`dev_env_onprem`.
+   To set up developer environment that is closest to the real-world deployment, see :doc:`/developer_guide/set_up_dev_env/dev_env_onprem`.
 
 System Requirements
 -------------------
@@ -233,7 +233,7 @@ To set up your development environment, follow these steps:
 Make changes
 ------------
 
-See :ref:`/developer_guide/contributor_guide/code_contribution` to learn more about
+See :doc:`/developer_guide/contributor_guide/code_contribution` to learn more about
 how to make changes to an Edge Orchestrator component.
 
 .. include:: code_standards.rst
