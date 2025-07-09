@@ -126,6 +126,7 @@ boot to download the iPXE image. Use any Linux based machine to perform the foll
    - Remember to unplug the USB stick once the Edge Node is provisioned.
 
 .. include:: ../../prerequisites/acquire_emt_repo.rst
+   :start-after: acquire_emt_repo
 
 Set Boot Order Priorities:
 --------------------------

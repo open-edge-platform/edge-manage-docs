@@ -103,6 +103,7 @@ Prepare the USB drive one time, so that the platform can use the USB-assisted bo
      provisioning flow; you do not have to prepare the USB drive every time.
 
 .. include:: ../prerequisites/acquire_emt_repo.rst
+   :start-after: acquire_emt_repo
 
 Enable UEFI Secure Boot (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

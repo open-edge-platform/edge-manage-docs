@@ -101,6 +101,7 @@ Enable HTTPs-Assisted Boot
 #. Select `Commit Changes and Exit`. You can verify that the certificate was enrolled by trying to `Delete Certificate`.
 
 .. include:: ../prerequisites/acquire_emt_repo.rst
+   :start-after: acquire_emt_repo
 
 Enable UEFI Secure Boot (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

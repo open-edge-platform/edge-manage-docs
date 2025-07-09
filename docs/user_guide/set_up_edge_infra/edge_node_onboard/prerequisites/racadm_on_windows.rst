@@ -118,3 +118,4 @@ Skip the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/rac
 and go to :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/https_boot/https_boot_dell`.
 
 .. include:: acquire_emt_repo.rst
+   :start-after: acquire_emt_repo
