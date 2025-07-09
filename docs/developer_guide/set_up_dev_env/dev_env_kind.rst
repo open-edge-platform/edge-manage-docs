@@ -160,6 +160,76 @@ To set up your development environment, follow these steps:
       mage tenantUtils:createDefaultMtSetup
       mage devUtils:createDefaultUser
 
+#. You have successfully set up your KinD-based development environment for Edge Orchestrator.
+
+    You can now start developing and testing your changes.
+
+    You can now reach the Edge Orchestrator UI at ``https://web-ui.kind.internal``.
+
+#. To deploy, register and provision ENiC:
+
+   * To deploy ENiC run the command below.
+     The first argument defines number of ENiCs you want to deploy.
+     For the second argument choose ``dev`` or ``dev-minimal``, based on the orchestrator profile you selected.
+
+     .. code-block:: bash
+
+        ORCH_ORG=sample-org
+        ORCH_PROJECT=sample-project
+        ORCH_USER=sample-project-onboarding-user
+        ORCH_USER_API=sample-project-api-user
+        mage devUtils:deployEnic 1 dev
+
+   * ENiC Pod(s) wil be created and running. You can list ENiC Pods with:
+
+     .. code-block:: bash
+
+        kubectl get pods -n enic
+
+   * To grab ENiC logs use commands from the `ENiC documentation <https://github.com/open-edge-platform/virtual-edge-node/tree/main/edge-node-container#edge-node-logs>`_.
+
+   * At this point ENiC Pod(s) will only be deployed, but won't be registered/onboarded to the Edge Orchestrator or provisioned.
+     To get emulated hardware details (UUID, Serial Number - may be needed for further registration) run:
+
+     .. code-block:: bash
+
+        mage devUtils:getEnicSerialNumber
+        mage devUtils:getEnicUUID
+
+   * If needed, perform automated registration and provisioning. By default, ENiC will provisioned with Ubuntu OS.
+     Note that you will need to repeat these command for all ENiC Pods if you deploy more than one.
+
+     .. code-block:: bash
+
+        ORCH_USER=sample-project-api-user mage devUtils:registerEnic enic-0
+
+        ORCH_USER=sample-project-api-user mage devUtils:provisionEnic enic-0
+
+   * Wait until ENiC is provisioned:
+
+     .. code-block:: bash
+
+        mage devUtils:WaitForEnic
+
+#. To get the default admin password, run:
+
+   .. code-block:: bash
+
+      kubectl get secret platform-keycloak -n orch-platform -o jsonpath='{.data.admin-password}' | base64 --decode
+
+#. To get the default admin password for Argo CD tool, run:
+
+   .. code-block:: bash
+
+      kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -decode
+
+#. To tear down the deployment run:
+
+   .. code-block:: bash
+
+      mage undeploy:kind clean
+
+
 Make changes
 ------------
 
