@@ -1,7 +1,7 @@
 .. _acquire_emt_repo:
 
 Acquiring the Edge Microvisor Toolkit repository URL path from Edge Orchestrator API
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+====================================================================================
 
 For Edge Microvisor Toolkit, the repository URL path of the certificate can
 be acquired from Edge Orchestrator API with the following command, where `PROFILE_NAME`
