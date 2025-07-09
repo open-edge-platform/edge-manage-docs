@@ -1,8 +1,9 @@
 Prepare Dell iDRAC
-====================================
+-----------------------
 
 Enable UEFI Secure Boot (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Secure Boot (SB) is disabled by default. To enable it, follow the steps below to configure SB in the BIOS.
 After that, refer to the instructions in :doc:`/shared/shared_secure_boot_opt_in` for enabling SB in |software_prod_name|\ .
 
@@ -16,7 +17,7 @@ Enabling Secure Boot is optional, but recommended.
 #. Go to **TPM Advanced** Settings and set **TPM2 Algorithm Selection** to ``SHA256``.
 
 Reset or Clear TPM
-------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Reset the TPM hierarchy and clear TPM.
 
