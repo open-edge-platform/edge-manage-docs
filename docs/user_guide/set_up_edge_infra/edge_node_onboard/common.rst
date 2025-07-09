@@ -1,4 +1,4 @@
-Common Onboarding Procedures
+Verify Onboarding
 ==============================
 
 Verify Successful Registration and Onboard Edge Node (Not required if Auto-Onboard is selected)

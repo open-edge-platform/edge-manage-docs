@@ -1,5 +1,5 @@
 RACADM on Linux\* PC
-====================
+-----------------------
 
 .. note::
    Because of limitations in Integrated Dell* Remote Access Controller (iDRAC), it is not possible
@@ -10,7 +10,7 @@ RACADM on Linux\* PC
 
 
 Install RACADM on Linux PC
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. On a local Linux machine, download and install
    `iDRAC tools <https://dl.dell.com/FOLDER09667202M/1/Dell-iDRACTools-Web-LX-11.1.0.0-5294_A00.tar.gz>`_.
@@ -38,7 +38,7 @@ Install RACADM on Linux PC
       LOGIN="-r ${NODE_BMC_IP} -u ${NODE_BMC_USER} -p ${NODE_BMC_PWD} --nocertwarn"
 
 Import Certificates with Linux PC
----------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 First you must need to download all the certificates to be uploaded.
 
