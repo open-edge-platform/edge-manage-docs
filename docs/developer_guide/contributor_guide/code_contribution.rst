@@ -200,7 +200,7 @@ Testing Changes to the edge-manageability-framework Deployment Repo
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 See
-:ref:`developer_guide/set_up_dev_env/index:locally build and test changes`
+:ref:`developer_guide/set_up_dev_env/dev_env_onprem:locally build and test changes`
 for instructions on how to locally test a deployment change in an ``onPrem``
 Edge Orchestrator.
 

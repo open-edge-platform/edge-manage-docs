@@ -61,7 +61,7 @@ To enable the near zero-touch provisioning:
    --data "${body}" \
    -H "Authorization: Bearer ${JWT_TOKEN}"
 
-.. note:: Once you disable the nZTP - you have to :doc:`/user_guide/set_up_edge_infra/provision_host` to have an OS provisioned on the edge devices
+.. note:: Once you disable the nZTP - you have to :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host` to have an OS provisioned on the edge devices
 
 Update the Default OS for Near Zero-Touch Provisioning
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
