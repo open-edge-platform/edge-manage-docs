@@ -63,7 +63,7 @@ Follow the steps below to provision multiple Edge Nodes at once.
 
      .. code-block:: shell
 
-        tar -czvf user-apps.tar.gz ./user-apps/
+        tar -czvf user-apps.tar.gz -C <path-to-directory-with-user-apps-folder> user-apps
         kubectl cp -n orch-infra user-apps.tar.gz  $(kubectl -n orch-infra get pods -l app.kubernetes.io/name=dkam --no-headers | awk '{print $1}'):/data
 
    * Use ``orch-cli`` to generate custom cloud-init configuration based on ``config-file``.
@@ -71,6 +71,8 @@ Follow the steps below to provision multiple Edge Nodes at once.
      .. code-block:: shell
 
         orch-cli generate standalone-config -c config-file -o cloud-init.cfg [--user-apps=true --api-endpoint https://api.<CLUSTER-FQDN>]
+
+     .. note:: Ensure you copied user apps as explain in the previous step. Also, ``--api-endpoint`` is mandatory when pre-loading user apps.
 
 #. Create the custom cloud-init configuration object in the Edge Orchestrator.
 
@@ -104,7 +106,7 @@ Follow the steps below to provision multiple Edge Nodes at once.
 
    .. code-block:: shell
 
-      orch-cli create host -i hosts.csv --site site-197179ab --cloud-init standalone --os-profile microvisor-standalone  --project local-admin --api-endpoint https://api.cluster.onprem
+      orch-cli create host -i hosts.csv --site <site-ID> --cloud-init standalone --os-profile microvisor-standalone  --project local-admin --api-endpoint https://api.cluster.onprem
 
    .. note::
       All Edge Nodes defined in ``hosts.csv`` will be provisioned with the same cloud-init (``standalone``) and OS profile (``microvisor-standalone``).
