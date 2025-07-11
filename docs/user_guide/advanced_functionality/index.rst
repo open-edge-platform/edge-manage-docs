@@ -13,6 +13,7 @@ application's capabilities:
    * :doc:`/user_guide/advanced_functionality/install_new_packages`
    * :doc:`/user_guide/advanced_functionality/host_update_immutable_os`
    * :doc:`/user_guide/advanced_functionality/configure_ssh_public_keys`
+   * :doc:`/user_guide/advanced_functionality/oxm_pxe_provisioning`
 
 .. toctree::
    :hidden:
@@ -25,3 +26,4 @@ application's capabilities:
    host_update_immutable_os
    automated_deployment
    configure_ssh_public_keys
+   oxm_pxe_provisioning
