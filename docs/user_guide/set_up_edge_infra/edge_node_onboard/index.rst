@@ -1,9 +1,21 @@
 Onboard Edge Nodes
 =============================================================================
 
-Systems from different vendors may have different BIOS interfaces. |software_prod_name| supports different boot methodologies, depending on the vendor.
-This section describes the onboarding of some of the selected edge node configurations from different vendors.
-Contact us on the community channels if you need help with onboarding your specific edge node.
+This section describes high-level steps to perform Zero Touch Provisioning of Edge Nodes at scale with |software_prod_name|.
+
+Zero-Touch Provisioning with |software_prod_name| consists of the following steps.
+
+Register Edge Nodes
+-------------------
+
+First, Edge Nodes must be registered to |software_prod_name| via their Serial Number or UUID
+(make sure to grab these hardware identifiers from your Edge Nodes to proceed). This step
+also authorizes Edge Nodes with |software_prod_name|.
+
+See :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration`.
+
+Configure and boot Edge Nodes
+-----------------------------
 
 .. note::
    Secure Boot (SB) is disabled by default. To enable it, follow the steps below to configure SB in the BIOS.
@@ -11,17 +23,43 @@ Contact us on the community channels if you need help with onboarding your speci
 
 As a pre-requisite, you must comply with the following steps to guarantee a successful onboarding (steps differ depending on the vendor - see the specific vendor onboarding sections to learn more):
 
-- HTTPs assisted boot:
+- HTTPS-assisted boot:
    - Ensure that the edge node is connected to the network and has access to the orchestrator.
    - Retrieve the provisioning certificate and create an HTTPs boot option for the interface providing upstream connectivity.
    - Configure the edge node to boot from the HTTPs boot option.
    - Configure the edge node to boot from the hard disk as second boot option.
 
-- USB assisted boot:
+- USB-assisted boot:
    - Ensure that the edge node is connected to the network and has access to the orchestrator.
    - Prepare the USB drive with the iPXE EFI file (see the specific vendor onboarding sections below to learn more).
    - Configure the edge node to boot from the USB boot option.
    - Configure the edge node to boot from the hard disk as second boot option.
+
+- PXE-assisted boot:
+   - Ensure that
+
+Observe Edge Node status
+------------------------
+
+
+
+#. :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration`
+
+   This step
+
+#. Configure and boot Edge Node
+
+#. Observe Edge Node status
+
+Systems from different vendors may have different BIOS interfaces. |software_prod_name| supports different boot methodologies,
+to flexibly support a variety of devices and vendors.
+As part of this documentation we describe generic boot options, together with examples of supported Edge Nodes from different vendors.
+Contact us on the community channels if you need help with onboarding your specific Edge Node.
+
+.. note::
+   Secure Boot (SB) is disabled by default. To enable it, follow the steps below to configure SB in the BIOS.
+   After that, refer to the instructions in :doc:`/shared/shared_secure_boot_opt_in` for enabling SB in |software_prod_name|\ .
+
 
 Some of the supported edge node configurations and the boot methodologies are as follows:
 
@@ -54,12 +92,6 @@ The following sections will guide you through setting up and configuring edge no
 - :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/index`
 - :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/common`
 
-.. note::
-   Provisioning Ubuntu on a node that was previously provisioned and not cleaned up will not succeed. User should manually remove the persistent volumes before re-provisioning either of these below options:
-
-   1. :doc:`/user_guide/set_up_edge_infra/clusters/delete_clusters` from the edge devices using web-UI
-   2. Run the command from the edge node ``dd`` command (change the `disk name`): `dd if=/dev/zero of="/dev/<disk_name>" bs=1G count=100`
-
 .. toctree::
    :maxdepth: 6
    :hidden:
@@ -68,6 +100,7 @@ The following sections will guide you through setting up and configuring edge no
    edge_node_registration
    https_boot/index
    usb_boot/index
+   pxe_boot/index
    3rd_party_examples/index
    onboarding_actions/index
    common
