@@ -55,7 +55,7 @@ Follow the steps below to provision multiple Edge Nodes at once.
      `reference cloud-init for EMT image with Desktop Virtualization features <https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/heads/sn-emt-uOS-integration/standalone-node/docs/user-guide/desktop-virtualization-cloud-init.md>`_
 
    * If you want to pre-load any user apps, create a directory and place all of your artifacts in that directory.
-     Then, use the below command to copy user apps to the Edge Orchestrator's storage. They will be downloaded
+     Then, use the below command to compress user apps and copy them to the Edge Orchestrator's storage. They will be downloaded
      to ``/opt/user-apps`` after EN is provisioned.
 
      .. note::
@@ -63,13 +63,14 @@ Follow the steps below to provision multiple Edge Nodes at once.
 
      .. code-block:: shell
 
-        kubectl cp -n orch-infra ./user-apps/  $(kubectl -n orch-infra get pods -l app.kubernetes.io/name=dkam --no-headers | awk '{print $1}'):/data
+        tar -czvf user-apps.tar.gz ./user-apps/
+        kubectl cp -n orch-infra user-apps.tar.gz  $(kubectl -n orch-infra get pods -l app.kubernetes.io/name=dkam --no-headers | awk '{print $1}'):/data
 
    * Use ``orch-cli`` to generate custom cloud-init configuration based on ``config-file``.
 
      .. code-block:: shell
 
-        orch-cli generate standalone-config -c config-file -o cloud-init.cfg [-u ./user-apps --api-endpoint https://api.<CLUSTER-FQDN>]
+        orch-cli generate standalone-config -c config-file -o cloud-init.cfg [--user-apps=true --api-endpoint https://api.<CLUSTER-FQDN>]
 
 #. Create the custom cloud-init configuration object in the Edge Orchestrator.
 
