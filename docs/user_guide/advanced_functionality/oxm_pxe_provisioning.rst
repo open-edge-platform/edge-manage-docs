@@ -6,9 +6,7 @@ This guide assumes the use of the :doc:`OXM deployment profile of the on-premise
 Set up environment
 ------------------
 
-#. Install CLI
-
-   TBD
+#. Install Edge Orchestrator CLI. Please reach out to Intel to get access to the Edge Orchestrator CLI.
 
 #. Login to the Edge Orchestrator.
 
