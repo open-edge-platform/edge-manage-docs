@@ -18,7 +18,7 @@ Set up environment
 
      .. code-block:: shell
 
-     orch-cli logout local-admin
+        orch-cli logout local-admin
 
 #. Create default region and site that will be used for all provisioned Edge Nodes.
 
