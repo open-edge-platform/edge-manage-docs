@@ -1,4 +1,4 @@
-Delete a Host
+Delete Host
 ======================
 
 You can delete a Host that has a deployment associated to it.
