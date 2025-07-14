@@ -14,9 +14,13 @@ Register Using the User Interface
 To register your edge node(s) through the User Interface (UI), you must be a member
 of the `Edge Manager Group <./../../shared/shared_iam_groups.html#project-id-host-manager-group>`__. Then:
 
+
 #. Manual onboarding and provisioning.
 #. Automated onboarding and manual provisioning.
 #. Automated onboarding and provisioning.
+
+.. note:: The first two registration options with manual provisioning assumes that Near Zero Touch Provisioning (nZTP) has been disabled. To confirm if nZTP is disabled, verify that nZTP has been disabled in the provider configuration.
+   For details on nZTP, see :doc:`Near Zero Touch Provisioning </user_guide/concepts/nztp>`.
 
 Manual Onboarding and Provisioning
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

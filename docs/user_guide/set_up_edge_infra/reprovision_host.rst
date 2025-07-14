@@ -4,6 +4,8 @@ Re-provision Host
 |software_prod_name|\ does not include an explicit re-provisioning operation.
 If you want to re-purpose your Edge Nodes:
 
+#. If exists, delete a Cluster that is running on a given Edge Node (see :doc:`/user_guide/set_up_edge_infra/clusters/delete_clusters`).
+
 #. :doc:`/user_guide/set_up_edge_infra/delete_host`
 
 #. Start Edge Node Onboarding from scratch (see :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/index`)

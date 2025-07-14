@@ -82,6 +82,10 @@ Download the PXE server Helm chart and deploy it. The following installation par
 
 * ``path-to-ipxe`` must be the full path to the downloaded iPXE script on your local disk.
 
+.. note::
+   Be aware that the PXE server will be deployed with ``hostNetwork: true``, so the PXE server Pod will have access to host networking.
+   This is required to intercept L2 broadcast DHCP packets.
+
 .. code-block:: bash
 
    https://github.com/open-edge-platform/infra-charts.git
