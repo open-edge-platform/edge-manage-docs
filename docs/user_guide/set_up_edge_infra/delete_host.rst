@@ -17,6 +17,8 @@ deauthorized or when it is replaced by another Host with better performance.
 
 To delete a Host:
 
+.. note:: If exists, delete a Cluster that is running on a given Edge Node before deleting it (see :doc:`/user_guide/set_up_edge_infra/clusters/delete_clusters`).
+
 1. In the **Hosts** page, identify the Host that you want to delete.
 
 #. If the status of the host, that is **Provisioned**, **Onboarded**, or
