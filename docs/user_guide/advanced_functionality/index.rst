@@ -14,6 +14,7 @@ application's capabilities:
    * :doc:`/user_guide/advanced_functionality/host_update_immutable_os`
    * :doc:`/user_guide/advanced_functionality/configure_ssh_public_keys`
    * :doc:`/user_guide/advanced_functionality/oxm_pxe_provisioning`
+   * :doc:`/user_guide/advanced_functionality/pxe_provisioning_with_cloud_emf`
 
 .. toctree::
    :hidden:
@@ -27,3 +28,4 @@ application's capabilities:
    automated_deployment
    configure_ssh_public_keys
    oxm_pxe_provisioning
+   pxe_provisioning_with_cloud_emf

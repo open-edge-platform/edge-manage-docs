@@ -90,4 +90,5 @@ For more information, see :doc:`/user_guide/set_up_edge_infra/clusters/create_cl
    edit_host
    delete_host
    deauthorize_host
+   reprovision_host
    clusters/index
