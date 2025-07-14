@@ -1,7 +1,7 @@
 PXE-assisted provisioning with cloud-based |software_prod_name|\
 ================================================================
 
-.. note:: This is an experimental feature. PXE provisioning is dedicated for :doc:`/deployment_guide/on_prem_deployment/on_prem_deployment_profiles/on_prem_oxm_profile.rst`.
+.. note:: This is an experimental feature. PXE provisioning is dedicated for :doc:`/deployment_guide/on_prem_deployment/on_prem_deployment_profiles/on_prem_oxm_profile`.
 
 The :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/pxe_boot/index` can also be used with the cloud-based |software_prod_name|.
 However, this option requires a PXE server to be deployed locally on site. The local PXE server must provide |software_prod_name|'s iPXE script to Edge Nodes booting via PXE.

@@ -51,7 +51,7 @@ As of now, |software_prod_name| supports the following boot options:
 #. :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/pxe_boot/index` leverages legacy PXE boot method to download
    iPXE bootloader from local DHCP/TFTP server and start the Edge Node onboarding process.
    It requires local Layer-2 network connectivity between Edge Nodes and local DHCP/TFTP server,
-   and it's primarily dedicated for the use with the :doc:`/deployment_guide/on_prem_deployment/on_prem_deployment_profiles/on_prem_oxm_profile.rst`.
+   and it's primarily dedicated for the use with the :doc:`/deployment_guide/on_prem_deployment/on_prem_deployment_profiles/on_prem_oxm_profile`.
 
 #. :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/3rd_party_examples/index` - |software_prod_name| can also be integrated
    with 3rd-party boot providers. An example of 3rd-party provider is Lenovo\* Open Cloud Automation (LOC-A)
