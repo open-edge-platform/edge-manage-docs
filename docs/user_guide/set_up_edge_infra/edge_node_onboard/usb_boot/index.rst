@@ -23,8 +23,7 @@ USB-assisted boot flow
 #. Prepare USB drive and inject the iPXE script downloaded from ``https://tinkerbell-nginx.CLUSTER_FQDN/tink-stack/signed_ipxe.efi``.
    See platform-specific instructions on how to prepare USB drive.
 
-#. Optionally, if Edge Nodes have been configured with Secure Boot, configure BIOS to enable Secure Boot and upload |software_prod_name| CA certificates
-   (see :ref:`download_certificates_windows` or :ref:`download_certificates_linux`).
+#. Optionally, if Edge Nodes have been configured with Secure Boot, configure BIOS to enable Secure Boot and upload |software_prod_name| CA certificates.
 
 #. Manage boot order to boot from USB as the fist option and reboot Edge Nodes.
 

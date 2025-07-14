@@ -27,7 +27,6 @@ PXE-assisted boot flow
    or :doc:`/user_guide/advanced_functionality/pxe_provisioning_with_cloud_emf` (experimental feature).
    The local PXE server must provide the iPXE script exposed at ``https://tinkerbell-nginx.CLUSTER_FQDN/tink-stack/signed_ipxe.efi`` via TFTP.
 
-#. Optionally, if Edge Nodes have been configured with Secure Boot, configure BIOS to enable Secure Boot and upload |software_prod_name| CA certificates
-   (see :ref:`download_certificates_windows` or :ref:`download_certificates_linux`).
+#. Optionally, if Edge Nodes have been configured with Secure Boot, configure BIOS to enable Secure Boot and upload |software_prod_name| CA certificates.
 
 #. Manage boot order to boot from PXE as the fist option and reboot Edge Nodes.

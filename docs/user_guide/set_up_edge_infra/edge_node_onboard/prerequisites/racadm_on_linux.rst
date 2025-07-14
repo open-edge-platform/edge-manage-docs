@@ -37,8 +37,6 @@ Install RACADM on Linux PC
       # RACADM login
       LOGIN="-r ${NODE_BMC_IP} -u ${NODE_BMC_USER} -p ${NODE_BMC_PWD} --nocertwarn"
 
-.. _download_certificates_linux:
-
 Import Certificates with Linux PC
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

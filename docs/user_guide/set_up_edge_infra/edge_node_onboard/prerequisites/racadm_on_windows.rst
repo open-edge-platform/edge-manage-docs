@@ -16,8 +16,6 @@ Install RACADM on Windows PC
 #. Launch the command prompt as Administrator.
 #. Go to the RACADM CLI installation directory.
 
-.. _download_certificates_windows:
-
 Download and import Certificates with Windows PC
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
