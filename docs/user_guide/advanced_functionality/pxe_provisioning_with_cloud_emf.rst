@@ -8,7 +8,7 @@ However, this option requires a PXE server to be deployed locally on site. The l
 
 The following deployment scenarios are possible:
 
-#. **:ref:`deploy_standalone`**
+#. :ref:`deploy_standalone`
 
    A reference topology for this deployment scenario is depicted below:
 
