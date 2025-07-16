@@ -7,11 +7,10 @@ on-premises environment.
 It provides a script that uses MinIO as an S3-compatible storage backend and Velero for backup
 and restore operations.
 
-Before proceeding, ensure you have the necessary permissions and access to the Edge Orchestrator environment.
 The backup and restore script is designed to be run on the Edge Orchestrator host machine or a
 machine with access to the Kubernetes cluster where Edge Orchestrator is deployed.
-
-The script is available in the Edge Orchestrator repository [here](https://github.com/open-edge-platform/edge-manageability-framework/blob/main/on-prem-installers/onprem/storage_backup.sh).
+Before proceeding, ensure you have the necessary permissions and access to the
+Edge Orchestrator environment.
 
 The script performs the following operations:
 - Installs Velero and its dependencies.
@@ -19,11 +18,20 @@ The script performs the following operations:
 - Cleans up the namespaces that are to be restored.
 - Restores the specified namespaces from the backup.
 
+The script is available in the Edge Orchestrator repository [here](https://github.com/open-edge-platform/edge-manageability-framework/blob/main/on-prem-installers/onprem/storage_backup.sh).
 
 Steps to Set Up Backup and Restore with MinIO and Velero
 --------------------------------------------------------
 
 1. **Deploy MinIO S3-Compatible Storage**
+
+Before running the backup script, you need to deploy MinIO as an S3-compatible storage backend.
+You can use Docker Compose to deploy MinIO easily. Ensure you have Docker and Docker Compose installed
+on your machine.
+
+If you do not have Docker installed, you can follow the instructions on the [Docker website](https://docs.docker.com/get-docker/).
+If you do not have Docker Compose installed, you can follow the instructions on the [Docker Compose website](https://docs.docker.com/compose/install/).
+You can also use any other S3-compatible storage backend if you prefer, but the script is tailored for MinIO.
 
 Create a `docker-compose.yaml` file with the following content to deploy MinIO:
 
@@ -68,7 +76,17 @@ following command:
 
         sudo apt-get install docker-compose
 
-2. **Install depedencies**
+2. **Create a MinIO bucket**
+
+In the MinIO web interface, create a bucket named `velero-backups`. The easiest way to do this is to
+navigate to `http://<minio_host>:9001` in your web browser, where `<minio_host>` is the IP address
+or hostname of the machine running MinIO.
+
+Log in using the credentials specified in the `docker-compose.yaml`
+file (default is `admin` and `password`). On the MinIO dashboard, click on the "Create Bucket" bucket button
+and enter `velero-backups` as the bucket name. Click "Create" to create the bucket.
+
+3. **Install depedencies**
 
 Install the necessary dependencies for the backup script.
 The command below will download and install Velero.
@@ -81,8 +99,18 @@ it has the necessary permissions to install software.
         
         ./storage_backup.sh install
 
+4. **Disable syncing of namespaces**
 
-3. **Create a Backup of the `orch-database` Namespace**
+Before running the backup script, you should disable the syncing of namespaces
+to avoid conflicts during the backup process. 
+
+You can do this by running the following command:
+
+    .. code-block:: bash
+
+        ./storage_backup.sh disable-sync
+
+5. **Create a Backup of the `orch-database` Namespace**
 
 Create a backup of the namespaces provided in the `namespaces` variable. 
 The backup will be stored in the MinIO bucket specified in the script.
@@ -97,7 +125,7 @@ being backed up.
 
         ./storage_backup.sh backup
 
-4. **Cleanup the namespaces that are to be restored**
+6. **Cleanup the namespaces that are to be restored**
 
 Before restoring the namespaces, you may want to clean up the existing namespaces
 to avoid conflicts.
@@ -109,7 +137,10 @@ you want to clean up. You can comment out the namespaces you do not want to clea
 
         ./storage_backup.sh cleanup
 
-5. **Restore the `orch-database` Namespace from Backup**
+Note that this step will delete the specified namespaces and their contents,
+so ensure that you have a backup of any important data before proceeding.
+
+7. **Restore the `orch-database` Namespace from Backup**
 
 Restore the namespaces from the backup stored in the MinIO bucket.
 Access to the MinIO bucket is required for this operation.
@@ -124,7 +155,7 @@ being restored.
 
         ./storage_backup.sh restore
 
-6. **Verify the Restoration**
+8. **Verify the Restoration**
 
 After the restore operation is complete, verify that the namespaces have been restored correctly.
 You can do this by checking the status of the applications.
@@ -136,6 +167,25 @@ You can do this by checking the status of the applications.
 This command will list all applications across all namespaces and should show that
 all the restored applications are Synced and Healthy.
 
+9. **Re-enable syncing of namespaces**
+
+After the restore operation is complete, you can re-enable the syncing of namespaces
+to ensure that the namespaces are kept in sync with the Edge Orchestrator.
+
+To confirm that the restore operation was successful, you may run the following command:
+
+    .. code-block:: bash
+
+        velero restore get
+
+If the restore was successful, you should see the status of the restore operation
+as `Completed`.        
+
+To sync the namespaces, you can run the following command:
+
+    .. code-block:: bash
+
+        ./storage_backup.sh enable-sync
 
 Troubleshooting
 ---------------
@@ -151,4 +201,3 @@ If you need to access the MinIO web interface, you can do so by navigating to
 `http://<minio_host>:9001` in your web browser, where `<minio_host>` is the IP address or hostname 
 of the machine running MinIO. Log in using the credentials specified in the `docker-compose.yaml` file
 (default is `admin` and `password`).
-
