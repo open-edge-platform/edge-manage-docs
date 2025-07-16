@@ -8,7 +8,9 @@ It provides a script that uses MinIO as an S3-compatible storage backend and Vel
 and restore operations.
 
 The backup and restore script is designed to be run on the Edge Orchestrator host machine or a
-machine with access to the Kubernetes cluster where Edge Orchestrator is deployed.
+machine with access to the Kubernetes cluster where Edge Orchestrator is deployed. 
+Ideally, this should be run on a machine other than the one where the Edge Orchestrator
+is installed.
 Before proceeding, ensure you have the necessary permissions and access to the
 Edge Orchestrator environment.
 
