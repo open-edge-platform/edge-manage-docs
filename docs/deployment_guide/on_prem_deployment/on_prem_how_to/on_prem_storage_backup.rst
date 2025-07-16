@@ -132,3 +132,23 @@ You can do this by checking the status of the applications.
     .. code-block:: bash
         
         kubectl get applications -A
+
+This command will list all applications across all namespaces and should show that
+all the restored applications are Synced and Healthy.
+
+
+Troubleshooting
+---------------
+
+If you encounter any issues during the backup or restore process, check the logs of the Velero pods
+for more information:
+
+    .. code-block:: bash
+
+        kubectl logs -n velero -l app=velero
+
+If you need to access the MinIO web interface, you can do so by navigating to
+`http://<minio_host>:9001` in your web browser, where `<minio_host>` is the IP address or hostname 
+of the machine running MinIO. Log in using the credentials specified in the `docker-compose.yaml` file
+(default is `admin` and `password`).
+
