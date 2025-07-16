@@ -7,6 +7,18 @@ on-premises environment.
 It provides a script that uses MinIO as an S3-compatible storage backend and Velero for backup
 and restore operations.
 
+Before proceeding, ensure you have the necessary permissions and access to the Edge Orchestrator environment.
+The backup and restore script is designed to be run on the Edge Orchestrator host machine or a
+machine with access to the Kubernetes cluster where Edge Orchestrator is deployed.
+
+The script is available in the Edge Orchestrator repository [here](https://github.com/open-edge-platform/edge-manageability-framework/blob/main/on-prem-installers/onprem/storage_backup.sh).
+
+The script performs the following operations:
+- Installs Velero and its dependencies.
+- Creates a backup of the specified namespaces in the Edge Orchestrator environment.
+- Cleans up the namespaces that are to be restored.
+- Restores the specified namespaces from the backup.
+
 
 Steps to Set Up Backup and Restore with MinIO and Velero
 --------------------------------------------------------
@@ -56,8 +68,6 @@ following command:
 
         sudo apt-get install docker-compose
 
-
-
 2. **Install depedencies**
 
 Install the necessary dependencies for the backup script.
@@ -89,9 +99,16 @@ being backed up.
 
 4. **Cleanup the namespaces that are to be restored**
 
+Before restoring the namespaces, you may want to clean up the existing namespaces
+to avoid conflicts.
 
-
+You can modify the `namespaces` variable in the script to include which namespaces
+you want to clean up. You can comment out the namespaces you do not want to clean up.
     
+    .. code-block:: bash
+
+        ./storage_backup.sh cleanup
+
 5. **Restore the `orch-database` Namespace from Backup**
 
 Restore the namespaces from the backup stored in the MinIO bucket.
