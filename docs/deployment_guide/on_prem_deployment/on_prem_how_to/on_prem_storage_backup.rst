@@ -8,7 +8,7 @@ It provides a script that uses MinIO as an S3-compatible storage backend and Vel
 and restore operations.
 
 The backup and restore script is designed to be run on the Edge Orchestrator host machine or a
-machine with access to the Kubernetes cluster where Edge Orchestrator is deployed. 
+machine with access to the Kubernetes cluster where Edge Orchestrator is deployed.
 Ideally, this should be run on a machine other than the one where the Edge Orchestrator
 is installed.
 Before proceeding, ensure you have the necessary permissions and access to the
@@ -107,21 +107,21 @@ Also, this script needs to be run with root privileges or with `sudo` to ensure
 it has the necessary permissions to install software.
 
     .. code-block:: bash
-        
+
         ./storage_backup.sh install
 
 Wait for the installation to complete. Double-check that the Velero deployment is running:
 
     .. code-block:: bash
 
-        kubectl logs deployment/velero -n velero 
+        kubectl logs deployment/velero -n velero
         kubectl get deployments -n velero
-      
+
 
 4. **Disable syncing of namespaces**
 
 Before running the backup script, you should disable the syncing of namespaces
-to avoid conflicts during the backup process. 
+to avoid conflicts during the backup process.
 
 You can modify the `namespaces` variable in the script to include which namespaces
 you want to disable syncing for, otherwise all the namespaces attached to a volume will have syncing disabled.
@@ -134,7 +134,7 @@ You can do this by running the following command:
 
 5. **Create a Backup of the selected namespace**
 
-Create a backup of the namespaces provided in the `namespaces` variable. 
+Create a backup of the namespaces provided in the `namespaces` variable.
 The backup will be stored in the MinIO bucket specified in the script.
 
 You can modify the `namespaces` variable in the script to include any other namespaces
@@ -154,7 +154,7 @@ to avoid conflicts.
 
 You can modify the `namespaces` variable in the script to include which namespaces
 you want to clean up, otherwise all the namespaces attached to a volume will be cleaned up.
-    
+
     .. code-block:: bash
 
         ./storage_backup.sh cleanup
@@ -183,7 +183,7 @@ After the restore operation is complete, verify that the namespaces have been re
 You can do this by checking the status of the applications.
 
     .. code-block:: bash
-        
+
         kubectl get applications -A
 
 This command will list all applications across all namespaces and should show that
@@ -205,7 +205,7 @@ To confirm that the restore operation was successful, you may run the following 
         velero restore get
 
 If the restore was successful, you should see the status of the restore operation
-as `Completed`.        
+as `Completed`.
 
 To sync the namespaces, you can run the following command:
 
@@ -224,7 +224,7 @@ for more information:
         kubectl logs -n velero -l app=velero
 
 If you need to access the MinIO web interface, you can do so by navigating to
-`http://<minio_host>:9001` in your web browser, where `<minio_host>` is the IP address or hostname 
+`http://<minio_host>:9001` in your web browser, where `<minio_host>` is the IP address or hostname
 of the machine running MinIO. Log in using the credentials specified in the `docker-compose.yaml` file
 (default is `admin` and `password`).
 
@@ -246,7 +246,7 @@ the failed operation. You can find the PodVolumeRestore resource by running:
     .. code-block:: bash
 
         # See all the PodVolumeRestore resources
-        kubectl -n velero get podvolumerestore 
+        kubectl -n velero get podvolumerestore
 
         # Delete a specific PodVolumeRestore resource
         # For example, if the resource name is `orch-backup-20250717120313-nfrq6`
