@@ -15,6 +15,8 @@ application's capabilities:
    * :doc:`/user_guide/advanced_functionality/configure_ssh_public_keys`
    * :doc:`/user_guide/advanced_functionality/oxm_pxe_provisioning`
    * :doc:`/user_guide/advanced_functionality/pxe_provisioning_with_cloud_emf`
+   * :doc:`/user_guide/advanced_functionality/custom_config`
+
 
 .. toctree::
    :hidden:
@@ -29,3 +31,4 @@ application's capabilities:
    configure_ssh_public_keys
    oxm_pxe_provisioning
    pxe_provisioning_with_cloud_emf
+   custom_config
