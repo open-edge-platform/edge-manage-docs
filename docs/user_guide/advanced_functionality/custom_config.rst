@@ -1,8 +1,8 @@
 Custom Configuration
-=====================
+=========================
 
-The custom config feature allows users to personalize the configuration of an edgenode by providing their own cloud-init file. During the provisioning 
-process, this user-supplied cloud-init file is applied, enabling tailored setup and initialization of the edgenode to meet specific requirements. This 
+The custom config feature allows users to personalize the configuration of an edgenode by providing their own cloud-init file. During the provisioning
+process, this user-supplied cloud-init file is applied, enabling tailored setup and initialization of the edgenode to meet specific requirements. This
 approach offers flexibility and control over the environment, making it easier to automate and customize deployments.
 
 The custom config feature is available to use through CLI or Orchestrator API's. You can use the `orch-cli` to add a custom config file to the edgenode.
@@ -49,7 +49,7 @@ TODO-ADD-LINK section of the user guide.
 
         orch-cli delete customconfig <custom-config-name> --project <your-project-name>
 
-#. Some example usecases of a cloud-init file for edgenode configuration
+#. Some example usecase of a cloud-init file for edgenode configuration
 
     a. To configure a specific proxy IP address for an edgenode, provide a cloud-init file similar to the example below.
     This will update the environment variables for HTTP and HTTPS proxies during provisioning and overwrite the default values:
@@ -98,6 +98,3 @@ TODO-ADD-LINK section of the user guide.
                     addresses:
                       - 8.8.8.8
                       - 8.8.4.4
-
-.. toctree::
-   :hidden:
