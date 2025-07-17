@@ -90,6 +90,15 @@ and enter `velero-backups` as the bucket name. Click "Create" to create the buck
 
 3. **Install depedencies**
 
+Before preceeding with the backup and restore operations, you need to install the necessary dependencies.
+
+Export the following environment variable to be able to connect to the MinIO bucket:
+
+    .. code-block:: bash
+
+        export MINIO_URL=<minio_host>:9000
+
+
 Install the necessary dependencies for the backup script.
 The command below will download and install Velero.
 
@@ -112,7 +121,7 @@ You can do this by running the following command:
 
         ./storage_backup.sh disable-sync
 
-5. **Create a Backup of the `orch-database` Namespace**
+5. **Create a Backup of the selected namespace**
 
 Create a backup of the namespaces provided in the `namespaces` variable. 
 The backup will be stored in the MinIO bucket specified in the script.
@@ -142,7 +151,7 @@ you want to clean up. You can comment out the namespaces you do not want to clea
 Note that this step will delete the specified namespaces and their contents,
 so ensure that you have a backup of any important data before proceeding.
 
-7. **Restore the `orch-database` Namespace from Backup**
+7. **Restore the namespaces from Backup**
 
 Restore the namespaces from the backup stored in the MinIO bucket.
 Access to the MinIO bucket is required for this operation.
