@@ -110,10 +110,21 @@ it has the necessary permissions to install software.
         
         ./storage_backup.sh install
 
+Wait for the installation to complete. Double-check that the Velero deployment is running:
+
+    .. code-block:: bash
+
+        kubectl logs deployment/velero -n velero 
+        kubectl get deployments -n velero
+      
+
 4. **Disable syncing of namespaces**
 
 Before running the backup script, you should disable the syncing of namespaces
 to avoid conflicts during the backup process. 
+
+You can modify the `namespaces` variable in the script to include which namespaces
+you want to disable syncing for, otherwise all the namespaces attached to a volume will have syncing disabled.
 
 You can do this by running the following command:
 
@@ -127,7 +138,7 @@ Create a backup of the namespaces provided in the `namespaces` variable.
 The backup will be stored in the MinIO bucket specified in the script.
 
 You can modify the `namespaces` variable in the script to include any other namespaces
-you want to back up. You can comment out the namespaces you do not want to back up.
+you want to back up, otherwise all the namespaces attached to a volume will be backed up.
 
 Allow some time for the backup to complete, depending on the size of the namespaces
 being backed up.
@@ -142,7 +153,7 @@ Before restoring the namespaces, you may want to clean up the existing namespace
 to avoid conflicts.
 
 You can modify the `namespaces` variable in the script to include which namespaces
-you want to clean up. You can comment out the namespaces you do not want to clean up.
+you want to clean up, otherwise all the namespaces attached to a volume will be cleaned up.
     
     .. code-block:: bash
 
@@ -157,7 +168,7 @@ Restore the namespaces from the backup stored in the MinIO bucket.
 Access to the MinIO bucket is required for this operation.
 
 You can modify the `namespaces` variable in the script to include which namespaces
-you want to restore. You can comment out the namespaces you do not want to restore.
+you want to restore, otherwise all the namespaces attached to a volume will be restored.
 
 Allow some time for the restore operation to complete, depending on the size of the namespaces
 being restored.
@@ -182,6 +193,10 @@ all the restored applications are Synced and Healthy.
 
 After the restore operation is complete, you can re-enable the syncing of namespaces
 to ensure that the namespaces are kept in sync with the Edge Orchestrator.
+
+You can modify the `namespaces` variable in the script to include which namespaces
+you want to re-enable syncing for, otherwise all the namespaces attached to a volume will have syncing
+re-enabled.
 
 To confirm that the restore operation was successful, you may run the following command:
 
@@ -212,3 +227,15 @@ If you need to access the MinIO web interface, you can do so by navigating to
 `http://<minio_host>:9001` in your web browser, where `<minio_host>` is the IP address or hostname 
 of the machine running MinIO. Log in using the credentials specified in the `docker-compose.yaml` file
 (default is `admin` and `password`).
+
+In case of any issues with the Velero backup or restore operations, double check if these operations
+have completed successfully by checking the status of the Velero backup and restore status:
+
+    .. code-block:: bash
+
+        # For backup status check that all say `Completed`
+        velero backup get
+
+        # For restore status check that all say `Completed`
+        velero restore get
+
