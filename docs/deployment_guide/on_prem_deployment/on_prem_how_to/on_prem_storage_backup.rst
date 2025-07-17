@@ -239,3 +239,38 @@ have completed successfully by checking the status of the Velero backup and rest
         # For restore status check that all say `Completed`
         velero restore get
 
+If an ongoing backup or restore operation is stuck or has failed, you can delete the
+PodVolumeBackup or PodVolumeRestore resource associated with it to allow the operation to be retried or to clean up
+the failed operation. You can find the PodVolumeRestore resource by running:
+
+    .. code-block:: bash
+
+        # See all the PodVolumeRestore resources
+        kubectl -n velero get podvolumerestore 
+
+        # Delete a specific PodVolumeRestore resource
+        # For example, if the resource name is `orch-backup-20250717120313-nfrq6`
+        kubectl -n velero patch  podvolumerestore orch-backup-20250717120313-nfrq6 -p '{"status":{"phase":"Failed"}}' --type merge
+
+        # See all the PodVolumeBackup resources
+        kubectl -n velero get podvolumebackup
+
+        # Delete a specific PodVolumeBackup resource
+        # For example, if the resource name is `orch-backup-20250717120313-nfrq6`
+        kubectl -n velero patch  podvolumebackup orch-backup-20250717120313-nfrq6 -p '{"status":{"phase":"Failed"}}' --type merge
+
+After this check that the status of the backup or restore operation has changed to `Failed` and then you can retry the backup or restore operation.
+
+    .. code-block:: bash
+
+        # For backup status says `Failed`
+        velero backup get
+
+        # For restore status says `Failed`
+        velero restore get
+
+If the vault is sealed, you may need to unseal it:
+
+    .. code-block:: bash
+
+        mage vault:unseal
