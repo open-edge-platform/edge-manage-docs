@@ -11,9 +11,10 @@ System Requirements
 Domain
 ------
 
-A domain is required for the Edge Orchestrator installation. This can be an internal
-private domain or in the case of multi-tenant deployments, an external public domain
-will be necessary.
+A domain name is required for Edge Orchestrator installation.
+
+- For typical on-premises deployments, where both EMF and edge nodes are on a local network, an internal private domain is sufficient.
+- If EMF is hosted by a third party for multiple tenants, and access between the end customer, EMF, and edge nodes occurs over the internet, an external public domain is required.
 
 The domain name must be unique and not used by any other service in the
 network. The domain name must be a fully qualified domain name (FQDN) and not
@@ -25,7 +26,7 @@ Edge Orchestrator Network Topology
 ----------------------------------
 
 .. warning::
-   Ensure that there are no incorrect configurations while setting up your DNS server for Edge Orchestrator. Incorrect configurations can lead to deployment failures. Specifically, the RKE2 server might start using the 8.8.8.8 server for DNS resolution, if no other DNS server is configured correctly.
+   Ensure that there are no incorrect configurations while setting up your DNS server for Edge Orchestrator. Incorrect configurations can lead to deployment failures. Specifically, the RKE2 (the kubernetes distribution used for EMF on-prem cluster) might start using the 8.8.8.8 server for DNS resolution, if no other DNS server is configured correctly.
 
   1. Avoid configuring `/etc/resolv.conf` and `/run/systemd/resolve/resolv.conf` to point exclusively to loopback or multicast nameservers. This can cause issues during deployment.
 
