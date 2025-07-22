@@ -26,7 +26,7 @@ The custom config file is a cloud-init file that will be applied during the prov
 
       Use caution when modifying the cloud-init file, as incorrect settings may lead to provisioning failures or misconfigurations.
 
-#. To list of custom configs, run the command:
+#. To list the custom configs, run the command:
 
     .. code-block:: bash
 
