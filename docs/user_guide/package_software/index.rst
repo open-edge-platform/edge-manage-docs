@@ -19,6 +19,8 @@ Preparing software for automated deployment involves these steps:
    import. Application profiles let you define chart values that can be overridden at the time of deployment.
    This lets you accommodate a range of runtime environments using a single deployment package.
 
+   Alternatively, you can import a Helm Chart directly, skipping steps #1 and #2. See :doc:`/user_guide/package_software/import_helm_chart` for details.
+
 #. Package and customize applications
 
    Create a deployment package for each set of applications you want to deploy as a group. If your applications use multiple profiles, specify the profiles to use with this package.
