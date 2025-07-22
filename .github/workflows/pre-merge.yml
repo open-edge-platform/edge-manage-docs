@@ -25,12 +25,12 @@ jobs:
         with:
           persist-credentials: false
       - name: "Verify Branch Name"
-        uses: open-edge-platform/orch-ci/verify-branch-name@d475e84f8b0b7bff118f0e8f56712390ef8d2828  # yamllint disable-line rule:line-length
+        uses: open-edge-platform/orch-ci/verify-branch-name@070a95caeeed643fc9d1a34c11eac78179ce136d  # yamllint disable-line rule:line-length
   pre-merge-pipeline:
     permissions:
       contents: read
     needs: pre-checks
-    uses: open-edge-platform/orch-ci/.github/workflows/pre-merge.yml@d475e84f8b0b7bff118f0e8f56712390ef8d2828  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/pre-merge.yml@070a95caeeed643fc9d1a34c11eac78179ce136d  # yamllint disable-line rule:line-length
     with:
       run_security_scans: false
       run_version_check: true
