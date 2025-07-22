@@ -11,10 +11,9 @@ System Requirements
 Domain
 ------
 
-A domain is required for the Edge Orchestrator installation. Purchase a domain
-name from a domain registrar if you do not have one. The domain must be a
-valid domain name that is resolvable by public DNS servers, and you must be
-able to create DNS records for the domain name.
+A domain is required for the Edge Orchestrator installation. This can be an internal
+private domain or in the case of multi-tenant deployments, an external public domain
+will be necessary.
 
 The domain name must be unique and not used by any other service in the
 network. The domain name must be a fully qualified domain name (FQDN) and not
