@@ -25,9 +25,9 @@ Import Helm Chart Steps
 To import a helm chart, follow these steps:
 
 1. In the **Deployment Package** page, click **Deployment Package Actions**.
-   This will open a drop-down. Select **Import Helm Chart**. 
+   This will open a drop-down. Select **Import Helm Chart**.
 
-   .. figure:: images/import_helm_dropdown.png
+   .. figure:: images/import_helm_chart_dropdown.png
      :scale: 50 %
      :alt: Import helm chart drop down emnu
 
@@ -66,7 +66,7 @@ Further Customization of Deployment Package
 -------------------------------------------
 
 The Application object is automatically created with a default profile that contains
-a stub values.yaml. Should you wish to furhter customize the values.yaml, this can be done by find the imported 
+a stub values.yaml. Should you wish to furhter customize the values.yaml, this can be done by find the imported
 application in the **Applications** page, clicking on the **Edit** button, and then editing the
 **Profile**. This will allow you to edit the values.yaml file that is used when deploying the package.
 You may also add additional profiles to the application, which will allow you deploy the profile in multiple
