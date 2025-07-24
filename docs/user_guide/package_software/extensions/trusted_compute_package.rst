@@ -120,3 +120,5 @@ Failure Status:
 
 
 For details on the Trusted Compute architecture, see :doc:`/developer_guide/trusted_compute/arch/architecture`.
+For details on the Trusted Compute troubleshoot issues, see :doc:`/user_guide/troubleshooting/trusted_compute_issues`.
+
