@@ -41,36 +41,49 @@ Provision Edge Nodes at scale
 
 Follow the steps below to provision multiple Edge Nodes at once.
 
-#. Generate custom cloud-init configuration for Standalone Edge Nodes.
+#. Prepare customized user-apps packages and upload them to the Edge Orchestrator.
 
-   * Download the ``config-file`` template from the Standalone Edge Node repository.
+   * Download the script and prepare kubernetes artifacts.
 
      .. code-block:: shell
 
-        curl https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/heads/sn-emt-uOS-integration/standalone-node/installation_scripts/config-file -o config-file
+        curl https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/tags/standalone-node/3.1.0/standalone-node/installation_scripts/download_images.sh -o download_images.sh
+        chmod +x download_images.sh
+        ./download_images.sh NON-RT # or DV
 
-   * Fill in the ``config-file`` as per the user guide in the in-line comments.
+     If you are using EMT image with desktop virtualization features then use `DV` parameter. For default EMT image which is a
+     non-Real Time kernel use `NON-RT` parameter.
 
-   * You can customize the custom-config section as per your use case. For example, see
-     `reference cloud-init for EMT image with Desktop Virtualization features <https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/heads/sn-emt-uOS-integration/standalone-node/docs/user-guide/desktop-virtualization-cloud-init.md>`_
-
-   * If you want to pre-load any user apps, create a directory and place all of your artifacts in that directory.
-     Then, use the below command to compress user apps and copy them to the Edge Orchestrator's storage. They will be downloaded
+   * If you want to pre-load any user apps, place all of your artifacts in the user-apps directory as well.
+     Then, use the below command to compress all the artifacts and copy them to the Edge Orchestrator's storage. They will be downloaded
      to ``/opt/user-apps`` after EN is provisioned.
 
      .. note::
-        See the document on `pre-loading user apps in the USB installer <https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/heads/sn-emt-uOS-integration/standalone-node/docs/user-guide/pre-loading-user-apps.md>`_ for more details.
+        See the document on `pre-loading user apps in the USB installer <https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/tags/standalone-node/3.1.0/standalone-node/docs/user-guide/pre-loading-user-apps.md>`_ for more details.
 
      .. code-block:: shell
 
         tar -czvf user-apps.tar.gz -C <path-to-directory-with-user-apps-folder>/user-apps/ ./
         kubectl cp -n orch-infra user-apps.tar.gz  $(kubectl -n orch-infra get pods -l app.kubernetes.io/name=dkam --no-headers | awk '{print $1}'):/data
 
+#. Generate custom cloud-init configuration for Standalone Edge Nodes.
+
+   * Download the ``config-file`` template from the Standalone Edge Node repository.
+
+     .. code-block:: shell
+
+        curl https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/tags/standalone-node/3.1.0/standalone-node/installation_scripts/config-file -o config-file
+
+   * Fill in the ``config-file`` as per the user guide in the in-line comments.
+
+   * You can customize the custom-config section as per your use case. For example, see
+     `reference cloud-init for EMT image with Desktop Virtualization features <https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/tags/standalone-node/3.1.0/standalone-node/docs/user-guide/desktop-virtualization-cloud-init.md>`_
+
    * Use ``orch-cli`` to generate custom cloud-init configuration based on ``config-file``.
 
      .. code-block:: shell
 
-        orch-cli generate standalone-config -c config-file -o cloud-init.cfg [--user-apps=true --api-endpoint https://api.<CLUSTER-FQDN>]
+        orch-cli generate standalone-config -c config-file -o cloud-init.cfg [--api-endpoint https://api.<CLUSTER-FQDN>]
 
      .. note:: Ensure you copied user apps as explain in the previous step. Also, ``--api-endpoint`` is mandatory when pre-loading user apps.
 
