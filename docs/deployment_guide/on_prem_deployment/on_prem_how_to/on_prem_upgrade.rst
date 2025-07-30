@@ -1,7 +1,7 @@
 EMF On-Prem Upgrade Guide
 =========================
 
-**Upgrade Path:** EMF On-Prem v3.0 → v3.1  
+**Upgrade Path:** EMF On-Prem v3.0 → v3.1
 **Document Version:** 1.0
 
 Overview
@@ -14,8 +14,8 @@ Important Notes
 ---------------
 
 .. warning::
-   **DISRUPTIVE UPGRADE WARNING**  
-   This upgrade requires edge node re-onboarding due to architecture changes (RKE2 → K3s).  
+   **DISRUPTIVE UPGRADE WARNING**
+   This upgrade requires edge node re-onboarding due to architecture changes (RKE2 → K3s).
    Plan for edge nodes service downtime and manual data backup/restore procedures in edge nodes.
 
 Prerequisites
@@ -34,7 +34,7 @@ Pre-Upgrade Checklist
 ~~~~~~~~~~~~~~~~~~~~~
 
 - [ ] Back up critical application data from edge nodes
-- [ ] Document current edge node configurations  
+- [ ] Document current edge node configurations
 - [ ] Remove all edge clusters and hosts:
   - `Delete clusters <https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/set_up_edge_infra/clusters/delete_clusters.html>`_
   - `De-authorize hosts <https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/set_up_edge_infra/deauthorize_host.html>`_
@@ -86,7 +86,7 @@ In **Terminal 1**, set the required environment variables:
    export TRAEFIK_IP=<TRAEFIK_LodeBalanceIP>
    export NGINX_IP=<NGINX_LodeBalanceIP>
 
-Note: if any docker limit hit issue user should set docker login credential as env 
+Note: if any docker limit hit issue user should set docker login credential as env
 
 .. code-block:: bash
 
@@ -285,13 +285,13 @@ During the `onprem_upgrade`, if Vault appears **sealed** or becomes **unavailabl
 Open Issues:
 ------------
 
-**API Gateway does not reflect API changes from v1 to v2 automatically**  
+**API Gateway does not reflect API changes from v1 to v2 automatically**
 *Workaround:* Manually delete the `nexus-api-gw` pod to recover API changes.
 
-**After upgrade, both RKE2 and K3s Cluster Templates are labeled as default**  
+**After upgrade, both RKE2 and K3s Cluster Templates are labeled as default**
 *Workaround:* Manually delete all old cluster templates related to 3.0 release RKE2 base.
 
-**Deployment package extensions are not updated after upgrade**  
+**Deployment package extensions are not updated after upgrade**
 *Workaround:* Manually delete the `app-orch-tenant-controller` pod.
 
 Automation Script for Workarounds
@@ -299,7 +299,7 @@ Automation Script for Workarounds
 
 To simplify post-upgrade recovery, the following script should be executed as part of the upgrade validation steps:
 
-**Script Name:** `after_upgrade_restart.sh`  
+**Script Name:** `after_upgrade_restart.sh`
 **Purpose:** Automates the following workaround actions:
 - Restarts the `nexus-api-gw` pod to reflect API changes from v1 to v2
 - Deletes outdated RKE2-based cluster templates from the 3.0 release
@@ -312,13 +312,13 @@ To simplify post-upgrade recovery, the following script should be executed as pa
 
       ./after_upgrade_restart.sh
 
-**EdgeNode local SSH connection error**  
-**RPS pod Postgres DB query failure**  
-**Host filter in the UI is not functioning correctly**  
-**Docker rate limit encountered despite using valid credentials** 
+**EdgeNode local SSH connection error**
+**RPS pod Postgres DB query failure**
+**Host filter in the UI is not functioning correctly**
+**Docker rate limit encountered despite using valid credentials**
 
 Post-Upgrade Steps EdgeNode onboarding process
 ----------------------------------------------
 
-After a successful upgrade, follow the EN onboarding process as outlined in the official documentation:  
+After a successful upgrade, follow the EN onboarding process as outlined in the official documentation:
 `Set Up Edge Infrastructure – Intel Open Edge Platform <https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/set_up_edge_infra/index.html>`_
