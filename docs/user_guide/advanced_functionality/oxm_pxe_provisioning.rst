@@ -63,7 +63,7 @@ Follow the steps below to provision multiple Edge Nodes at once.
 
      .. code-block:: shell
 
-        tar -czvf user-apps.tar.gz -C <path-to-directory-with-user-apps-folder>/user-apps/ ./
+        tar -czvf user-apps.tar.gz -C ./user-apps
         kubectl cp -n orch-infra user-apps.tar.gz  $(kubectl -n orch-infra get pods -l app.kubernetes.io/name=dkam --no-headers | awk '{print $1}'):/data
 
 #. Generate custom cloud-init configuration for Standalone Edge Nodes.
