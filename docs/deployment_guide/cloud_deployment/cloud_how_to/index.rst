@@ -8,6 +8,7 @@ How To
 - :doc:`/deployment_guide/cloud_deployment/cloud_how_to/cloud_cc_cred_refresh`
 - :doc:`/deployment_guide/cloud_deployment/cloud_how_to/cloud_uninstall`
 - :doc:`/deployment_guide/cloud_deployment/cloud_how_to/cloud_scale_orch`
+- :doc:`/deployment_guide/cloud_deployment/cloud_how_to/cloud_upgrade`
 
 .. toctree::
    :hidden:
@@ -19,3 +20,4 @@ How To
    cloud_cc_cred_refresh
    cloud_uninstall
    cloud_scale_orch
+   cloud_upgrade
