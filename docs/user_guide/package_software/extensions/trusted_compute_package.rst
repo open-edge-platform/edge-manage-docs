@@ -120,3 +120,7 @@ Failure Status:
 
 
 For details on the Trusted Compute architecture, see :doc:`/developer_guide/trusted_compute/arch/architecture`.
+For details on the Trusted Compute troubleshoot issues, see :doc:`/user_guide/troubleshooting/trusted_compute_issues`.
+
+how to deploy guest virtual machines next to Trusted compute VM is described in :doc:`/user_guide/package_software/extensions/virtualization_package`.
+Please refer this https://github.com/open-edge-platform/app-orch-catalog/tree/main/app-orch-tutorials/cirros-vm for a sample kubevirt application that deploys a guest VM next to the Trusted Compute VM.
