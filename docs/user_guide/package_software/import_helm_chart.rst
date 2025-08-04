@@ -32,7 +32,6 @@ To import a helm chart, follow these steps:
      :alt: Import helm chart drop down emnu
 
    The **Import Helm Chart** page appears:
-   The **Import Deployment Package** page appears:
 
    .. figure:: images/import_helm_chart_oci_url.png
      :scale: 50 %
@@ -61,6 +60,10 @@ To import a helm chart, follow these steps:
    helm chart.
 
 After you have imported the deployment package, the package is displayed in the **Deployment Package** list.
+
+.. figure:: images/import_helm_chart_dp_list.png
+   :scale: 50 %
+   :alt: Deployment package imported
 
 Further Customization of Deployment Package
 -------------------------------------------

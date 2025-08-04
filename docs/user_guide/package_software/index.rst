@@ -63,4 +63,4 @@ You can use pre-curated deployment packages that extend edge clusters to provide
    deployments
    extension_package
    quick_start_guide
-
+   import_helm_chart
