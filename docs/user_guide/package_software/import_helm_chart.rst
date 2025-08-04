@@ -9,7 +9,7 @@ charts.
 Note: Some Helm Charts publicly available on the Internet may require features that you have not yet configured in
 |software_prod_name|. For example, some charts may require a Load Balancer. This is particularly common in Bitnami charts, such
 as the Wordpress chart that is used in the example below. In this case, you will need to first configure a Load Balancer before
-the package cna be deployed.
+the package can be deployed.
 
 Importing a helm chart causes three objects to be created in |software_prod_name|:
 
