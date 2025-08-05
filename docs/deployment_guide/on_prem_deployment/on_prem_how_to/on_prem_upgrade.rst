@@ -1,4 +1,4 @@
-EMF On-Prem Upgrade Guide
+On-Prem Upgrade Guide
 =========================
 
 **Upgrade Path:** EMF On-Prem v3.0 → v3.1
@@ -93,8 +93,8 @@ Note: if any docker limit hit issue user should set docker login credential as e
    # Unset PROCEED to allow manual confirmation
    unset PROCEED
 
-   # Set deployment version (replace with your actual version tag)
-   export DEPLOY_VERSION=v3.1.0-rc1
+   # Set deployment version (replace with your actual upgrade version tag)
+   export DEPLOY_VERSION=v3.1.0
 
 Step 4: Terminal 1 - Run OnPrem Upgrade Script
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -250,9 +250,23 @@ Troubleshooting
 
 **Resolution Steps:**
 
-1. **Delete the application from ArgoCD: and resync reoo-app**
+1. **Delete the application from ArgoCD: and resync root-app** or using kubectl patch command
+
+**Note:** If the upgrade takes more than ~20 minutes and the ``root-app`` remains in an ``OutOfSync`` or ``Unhealthy`` state, apply the patch to the applications that are not healthy first, followed by the ``root-app``.
+
+.. code-block:: bash
+  1. **Patch the Affected Application**
+     kubectl patch application APPLICATION-NAME -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
+
+  2. **Patch the ``root-app``**
+     kubectl patch application root-app -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
+   
+After applying the patch, the ``root-app`` should sync cleanly **once** its dependencies have become healthy.
+
 
 During the `onprem_upgrade`, if Vault appears **sealed** or becomes **unavailable**, manual intervention may be required.
+
+Manually 
 
 **Symptom:**
 
