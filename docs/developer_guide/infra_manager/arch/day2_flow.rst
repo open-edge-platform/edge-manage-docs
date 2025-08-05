@@ -42,7 +42,7 @@ The four main entities involved in the Edge Node updates are:
   It updates existing OS profile details based on the latest information from the Release Service, ensuring that any changes are reflected in the system.
   When the Edge Orchestrator is upgraded to a version with a new `osProfileRevision`, the OS Resource Manager discovers new OS profiles for the Edge Microvisor Toolkit
   corresponding to the updated tag and generates the appropriate OS Resources in the Inventory.
-  
+
   The OS Resource Manager supports two operational modes:
 
    - *Automatic*: Newly discovered OS Resources are automatically linked to the desired OS version of each Instance.
