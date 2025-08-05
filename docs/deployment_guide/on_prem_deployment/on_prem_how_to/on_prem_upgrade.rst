@@ -255,10 +255,10 @@ Troubleshooting
 **Note:** If the upgrade takes more than ~20 minutes and the ``root-app`` remains in an ``OutOfSync`` or ``Unhealthy`` state, apply the patch to the applications that are not healthy first, followed by the ``root-app``.
 
 .. code-block:: bash
-  1. **Patch the Affected Application**
+    #Patch the Affected Application
      kubectl patch application APPLICATION-NAME -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
 
-  2. **Patch the ``root-app``**
+    #Patch the ``root-app``
      kubectl patch application root-app -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
    
 After applying the patch, the ``root-app`` should sync cleanly **once** its dependencies have become healthy.
