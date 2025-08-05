@@ -12,7 +12,7 @@ If you have a YAML file with properties required for the deployment package, you
 
 To import the deployment package:
 
-1. In the **Deployment Package** page, click **Import Deployment Package**.
+1. In the **Deployment Package** page, click **Deployment Package Actions** and select **Import From File**
    The **Import Deployment Package** page appears:
 
    .. figure:: images/import_deploy.png
@@ -20,7 +20,8 @@ To import the deployment package:
      :alt: Import deployment package
 
 2. In the **Import Deployment Package** page, you can choose to either drag and drop files or click **Browse Files**, to upload files.
+   You may select either the individual YAML files that compose your deployment package or a .tar.gz file that contains the deployment package.
 
-3. Click **Import** to import the file.
+3. Click **Import** to import the file(s).
 
 After you have imported the deployment package, the package is displayed in the **Deployment Package** list.
