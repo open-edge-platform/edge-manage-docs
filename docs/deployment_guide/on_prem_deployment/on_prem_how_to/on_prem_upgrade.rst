@@ -269,8 +269,6 @@ After applying the patch, the ``root-app`` should sync cleanly **once** its depe
 
 During the `onprem_upgrade`, if Vault appears **sealed** or becomes **unavailable**, manual intervention may be required.
 
-Manually 
-
 **Symptom:**
 
 - **Vault Unseal Problem**
