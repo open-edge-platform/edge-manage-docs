@@ -36,11 +36,11 @@ It is possible to disable the automatic OS Resource linkage in the OS Resource M
 This will allow for use cases where the latest-available Edge Microvisor Toolkit version may not be desirable,
 and an update within the fleet of edge nodes will only install a specific available version of the OS.
 To disable the automatic OS Resource linkage the Edge Orchestrator will be deployed with, enable the **os-resource-manager-manual-mode: true** option
-in the `**enable-osrm-manual-mode.yaml** <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/orch-configs/profiles/enable-osrm-manual-mode.yaml>`_
+in the `enable-osrm-manual-mode.yaml <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/orch-configs/profiles/enable-osrm-manual-mode.yaml>`_
 profile file of the Edge Orchestrator's edge-manageability-framework repository. Then, deploy the Edge Orchestrator with this profile.
 For more information on how to deploy and configure Edge Orchestrator, refer to the relevant installation guide for either the cloud or on-premises.
 
-To link an OS Resource to the desired OS within the edge-node instances when the manual mode is enabled for OS Resource Manager:
+To link an OS Resource to the desired OS within the edge-node instances when the manual mode is enabled for OS Resource Manager, follow the steps below:
 
 .. note::
 
