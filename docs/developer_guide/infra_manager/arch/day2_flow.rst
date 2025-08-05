@@ -37,16 +37,16 @@ The four main entities involved in the Edge Node updates are:
   the current version of Edge Microvisor Toolkit for the relevant Edge Node instance in the Inventory.
 
 - `OS Resource Manager <https://github.com/open-edge-platform/infra-managers/blob/main/os-resource>`_ — This Resource Manager periodically queries the Release Service
-    for OS profile manifests associated with a specific `os-profile` tag (as defined by `osProfileRevision` in the EMF configuration; see the
-    `os-resource configuration <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/argocd/applications/configs/infra-managers.yaml#L72>`_).
-    It updates existing OS profile details based on the latest information from the Release Service, ensuring that any changes are reflected in the system.
-    When the Edge Orchestrator is upgraded to a version with a new `osProfileRevision`, the OS Resource Manager discovers new OS profiles for the Edge Microvisor Toolkit
-    corresponding to the updated tag and generates the appropriate OS Resources in the Inventory.
+  for OS profile manifests associated with a specific `os-profile` tag (as defined by `osProfileRevision` in the EMF configuration; see the
+  `os-resource configuration <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/argocd/applications/configs/infra-managers.yaml#L72>`_).
+  It updates existing OS profile details based on the latest information from the Release Service, ensuring that any changes are reflected in the system.
+  When the Edge Orchestrator is upgraded to a version with a new `osProfileRevision`, the OS Resource Manager discovers new OS profiles for the Edge Microvisor Toolkit
+  corresponding to the updated tag and generates the appropriate OS Resources in the Inventory.
+  
+  The OS Resource Manager supports two operational modes:
 
-    The OS Resource Manager supports two operational modes:
-
-    - *Automatic*: Newly discovered OS Resources are automatically linked to the desired OS version of each Instance.
-    - *Manual*: Linking of OS Resources to Instances must be performed manually by the user via an API call.
+   - *Automatic*: Newly discovered OS Resources are automatically linked to the desired OS version of each Instance.
+   - *Manual*: Linking of OS Resources to Instances must be performed manually by the user via an API call.
 
 For more details on the communication between the Platform Update Agent and the Maintenance
 Manager, refer to the `Maintenance Manager documentation <https://github.com/open-edge-platform/infra-managers/blob/main/maintenance/docs/api/maintmgr.md>`_.
