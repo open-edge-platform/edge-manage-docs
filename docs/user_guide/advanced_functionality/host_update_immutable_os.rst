@@ -17,7 +17,7 @@ Updates to the Edge Microvisor Toolkit come in the form of new OS images availab
 A component called **OS Resource Manager** periodically queries the **Release Service** for the latest changes to the Edge Microvisor Toolkit profiles.
 When the Edge Orchestrator is upgraded, the OS Resource Manager detects new OS Profiles for
 the Edge Microvisor Toolkit images that are compatible with the current Edge Orchestrator version.
-The latest Edge Microvisor Toolkit profile contains information about the latest Edge Microvisor Toolkit image.
+The latest Edge Microvisor Toolkit profile contains information about the latest compatible Edge Microvisor Toolkit image.
 
 .. figure:: images/update_profiles.png
       :alt: Edge Microvisor Toolkit new profile
