@@ -87,6 +87,7 @@ From this page, you can do the following tasks:
    * :doc:`/user_guide/package_software/add_a_deploy_pkg_profile`
    * :doc:`/user_guide/package_software/edit_deploy_pack`
    * :doc:`/user_guide/package_software/import_deployment`
+   * :doc:`/user_guide/package_software/export_deployment`
    * :doc:`/user_guide/package_software/delete_deploy_pack`
    * :doc:`/user_guide/package_software/clone_applications`
 
@@ -98,5 +99,6 @@ From this page, you can do the following tasks:
    add_a_deploy_pkg_profile
    edit_deploy_pack
    import_deployment
+   export_deployment
    delete_deploy_pack
    clone_applications
