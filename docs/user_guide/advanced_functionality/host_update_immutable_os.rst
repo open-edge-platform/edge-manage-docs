@@ -14,7 +14,9 @@ Update an Edge Node with the Immutable OS
 ------------------------------------------------
 
 Updates to the Edge Microvisor Toolkit come in the form of new OS images available in the **Release Service**.
-A component called **OS Resource Manager** periodically queries the **Release Service** for the latest Edge Microvisor Toolkit profile.
+A component called **OS Resource Manager** periodically queries the **Release Service** for the latest changes to the Edge Microvisor Toolkit profiles.
+When the Edge Orchestrator is upgraded, the OS Resource Manager detects new OS Profiles for
+the Edge Microvisor Toolkit images that are compatible with the current Edge Orchestrator version.
 The latest Edge Microvisor Toolkit profile contains information about the latest Edge Microvisor Toolkit image.
 
 .. figure:: images/update_profiles.png
@@ -25,7 +27,7 @@ OS Resource Manager Default Operation
 
 By default, the OS Resource manager will automatically link the new OS Resource containing information about the latest Edge Microvisor Toolkit image,
 to the desired OS within the edge node instances associated with this type of OS.
-This means that whenever a newer version of the the Edge Microvisor Toolkit is released, a subsequent scheduled update of the edge node will result in the latest OS being installed.
+This means that whenever a newer version of the the Edge Microvisor Toolkit is discovered, a subsequent scheduled update of the edge node will result in the latest OS being installed.
 
 Enable OS Resource Manager in Manual Mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
