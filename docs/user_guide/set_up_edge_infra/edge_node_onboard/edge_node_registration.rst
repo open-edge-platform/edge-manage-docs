@@ -103,7 +103,7 @@ Automated Onboarding and Provisioning
 
 #. On the **Hosts** page, click the **Register Hosts** option. The **Register Hosts** page appears:
 
-   .. figure:: ../images/register_host_automatic_provisioning.png
+   .. figure:: ../images/register_host_automatic_provision.png
       :alt: Register Host Automatic Provisioning
 
 #. Enter in a user-friendly name in the **Host Name** field and either the serial number or UUID in the respective fields.
