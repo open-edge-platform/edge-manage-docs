@@ -8,7 +8,7 @@
 This repository contains documentation for the Edge Orchestrator.
 
 The repository root contains configuration and build tools; and the `docs/`
-directory contains the documentation text.
+the directory contains the documentation text.
 
 ## Create new content
 
@@ -22,8 +22,10 @@ Serve the document from a local server using `make` from the root directory:
 
 ## Build
 
-To build and develop the documents locally, you must have a supported Python\* 3
-software release. The minimum required version of Python is 3.11.
+To build and develop the documents locally, you must have a supported
+Python\* 3 software release. The minimum required version of Python is
+`>=3.11.0`. Following dependencies also have to be met: ``libbz2-dev``,
+``libncurses5-dev``, ``libssl-dev``, ``liblzma-dev``, ``libsqlite3-dev``.
 
 Build the docs with `make` from the root directory:
 
@@ -31,7 +33,7 @@ Build the docs with `make` from the root directory:
   the output in the `out` directory.
 
 - `make lint` will check both documentation and supporting code.  This will
-  also be run in CI. You must run it before submitting code.
+  also be run in CI. You must run it before submitting the code.
 
 ## Documentation Conventions
 
@@ -76,7 +78,7 @@ sphinx-spelling`.
 If a valid human language word or phrase needs to be added, add it to
 `dict.txt` in alphabetical order.
 
-Sometimes words that include "curly" or "smart" quotes in contractions will be
+Sometimes, words that include "curly" or "smart" quotes in contractions will be
 marked as invalid - for example, if you get a spelling error for a word like
 `doesn`, delete the quote character and replace with a normal, non-curly quote.
 
@@ -109,6 +111,25 @@ Certain web servers will disallow linkcheck to access them, and return a `403`
 or similar errors. In this case, you may want to add the web address to the
 `linkcheck_ignore` list given in the `conf.py`.
 
+### Markdownlint
+
+To ensure the quality and consistency of our documentation, we include a markdown
+linter check as part of our continuous integration process. This step will help us
+automatically identify andcorrect common markdown issues, ensuring we adhere
+to best practices.
+
+Requirements
+
+Before running the markdown linting checks, make sure you have the following installed:
+
+- Node.js (version 12 or higher)
+- npm (Node package manager)
+- markdownlint-cli2
+
+You can install markdownlint-cli2 via npm with the following command:
+
+    npm install -g markdownlint-cli2
+
 ### References
 
 For references, avoid defining references manually because
@@ -128,9 +149,9 @@ ref you're looking for.
 You can find configuration across all Sphinx invocations under docconf.
 
 `docconf` is a Python module that is included in the virtualenv, so if you
-modify it, you must delete and recreate the virtualenv (`make clean-all` will
+modify it, you must delete and recreate the virtualenv `make clean-all` will
 delete, and targets that used the virtualenv will recreate it.
 
 ## License
 
-The Edge Orchestration documentation is licensed under [Apache 2.0][apache-license].
+The Edge Orchestration documentation is licensed under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0).

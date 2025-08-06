@@ -1,4 +1,4 @@
-Delete a Host
+Delete Host
 ======================
 
 You can delete a Host that has a deployment associated to it.
@@ -11,11 +11,13 @@ deauthorized or when it is replaced by another Host with better performance.
 
 .. note::
    Once a Host is deleted, the current installation is not valid. To manage it again via |software_prod_name|\ , you need to reprovision the Host from scratch, starting with the remote installation process.
-   To onboard a Host, see the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard` section.
+   To onboard a Host, see the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/index` section.
 
    Intel **does not** recommend deleting a Host unless you are certain you can recover it.
 
 To delete a Host:
+
+.. note:: If exists, delete a Cluster that is running on a given Edge Node before deleting it (see :doc:`/user_guide/set_up_edge_infra/clusters/delete_clusters`).
 
 1. In the **Hosts** page, identify the Host that you want to delete.
 

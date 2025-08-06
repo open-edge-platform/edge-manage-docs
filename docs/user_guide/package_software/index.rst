@@ -19,6 +19,8 @@ Preparing software for automated deployment involves these steps:
    import. Application profiles let you define chart values that can be overridden at the time of deployment.
    This lets you accommodate a range of runtime environments using a single deployment package.
 
+   Alternatively, you can import a Helm Chart directly, skipping steps #1 and #2. See :doc:`/user_guide/package_software/import_helm_chart` for details.
+
 #. Package and customize applications
 
    Create a deployment package for each set of applications you want to deploy as a group. If your applications use multiple profiles, specify the profiles to use with this package.
@@ -43,7 +45,7 @@ Preparing software for automated deployment involves these steps:
    See :doc:`/user_guide/package_software/setup_deploy` for step-by-step instructions for configuring each type of deployment.
 
    For an end-to-end example of applying deployment metadata, see
-   :doc:`/user_guide/additional_howtos/automated_deployment`.
+   :doc:`/user_guide/advanced_functionality/automated_deployment`.
 
    Once you have prepared both your infrastructure and software, |software_prod_name| automatically deploys it.
 
@@ -61,4 +63,4 @@ You can use pre-curated deployment packages that extend edge clusters to provide
    deployments
    extension_package
    quick_start_guide
-
+   import_helm_chart

@@ -282,7 +282,7 @@ by adding the credentials to a cluster template.
 
 To add Docker Hub account credentials to a cluster template, do the following:
 
-#. :ref:`Export the cluster template <user_guide/additional_howtos/export_cluster_template:export cluster template>` you wish to modify.
+#. :ref:`Export the cluster template <user_guide/advanced_functionality/export_cluster_template:export cluster template>` you wish to modify.
 #. Download a raw copy of this file: https://github.com/open-edge-platform/cluster-manager/blob/v2.0.3/default-cluster-templates/config.toml.tmpl
 #. Add the following lines to the file:
 

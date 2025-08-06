@@ -61,7 +61,7 @@ deployment status will become `Unknown`.
 
 Check the cluster network connection and confirm that it can reach the
 |software_prod_name|. Reference the
-:doc:`/user_guide/set_up_edge_infra/clusters_main` page for more information.
+:doc:`/user_guide/set_up_edge_infra/clusters/index` page for more information.
 If the issue persists, contact Intel support for assistance.
 
 .. toctree::
@@ -227,7 +227,7 @@ The simplest solution is to delete the cluster and create it again, and then
 deploy the application. If this is not desirable, then:
 
 #. Get kubectl connectivity to the Edge Node where the application is being
-   deployed. See :doc:`../set_up_edge_infra/accessing_clusters`
+   deployed. See :doc:`../set_up_edge_infra/clusters/accessing_clusters`
 
 #. Inspect the resources named in the error, and delete them. Check that the
    resource does indeed have the old bundle name in its annotations before deleting.

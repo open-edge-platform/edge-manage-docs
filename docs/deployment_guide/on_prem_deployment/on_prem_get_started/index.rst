@@ -11,10 +11,10 @@ System Requirements
 Domain
 ------
 
-A domain is required for the Edge Orchestrator installation. Purchase a domain
-name from a domain registrar if you do not have one. The domain must be a
-valid domain name that is resolvable by public DNS servers, and you must be
-able to create DNS records for the domain name.
+A domain name is required for Edge Orchestrator installation.
+
+- For typical on-premises deployments, where both EMF and edge nodes are on a local network, an internal private domain is sufficient.
+- If EMF is hosted by a third party for multiple tenants, and access between the end customer, EMF, and edge nodes occurs over the internet, an external public domain is required.
 
 The domain name must be unique and not used by any other service in the
 network. The domain name must be a fully qualified domain name (FQDN) and not
@@ -26,7 +26,7 @@ Edge Orchestrator Network Topology
 ----------------------------------
 
 .. warning::
-   Ensure that there are no incorrect configurations while setting up your DNS server for Edge Orchestrator. Incorrect configurations can lead to deployment failures. Specifically, the RKE2 server might start using the 8.8.8.8 server for DNS resolution, if no other DNS server is configured correctly.
+   Ensure that there are no incorrect configurations while setting up your DNS server for Edge Orchestrator. Incorrect configurations can lead to deployment failures. Specifically, the RKE2 (the kubernetes distribution used for EMF on-prem cluster) might start using the 8.8.8.8 server for DNS resolution, if no other DNS server is configured correctly.
 
   1. Avoid configuring `/etc/resolv.conf` and `/run/systemd/resolve/resolv.conf` to point exclusively to loopback or multicast nameservers. This can cause issues during deployment.
 
@@ -46,6 +46,8 @@ Edge Orchestrator Network Topology with Corporate Proxy
    :width: 500px
    :align: center
 
+.. _on_prem_network_topology_squid_proxy:
+
 Edge Orchestrator for Edge Nodes without Direct Internet Access
 ----------------------------------------------------------------
 
@@ -53,6 +55,8 @@ Edge Orchestrator for Edge Nodes without Direct Internet Access
    :alt: The network topology for Edge Orchestrator
    :width: 500px
    :align: center
+
+.. _on_prem_lenovo_network_topology:
 
 Lenovo\* Open Cloud Automation (LOC-A) Network Topology (Optional)
 ------------------------------------------------------------------
@@ -257,6 +261,8 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
      -  TCP
      -  443
      -  ArgoCD UI
+
+.. _on_prem_lenovo_firewall_configuration:
 
 LOC-A Firewall Configuration (Optional)
 ---------------------------------------

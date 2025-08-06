@@ -42,7 +42,7 @@ For any deployment instance, you can view the following details:
 
    * - **Action**
      - Provides the option to view `deployment instance details <view-deployment-instance-details>` and
-       :doc:`/user_guide/set_up_edge_infra/cluster_details`. Click the three dots
+       :doc:`/user_guide/set_up_edge_infra/clusters/cluster_details`. Click the three dots
        icon (...) to perform the actions.
 .. _deployment_instance:
 

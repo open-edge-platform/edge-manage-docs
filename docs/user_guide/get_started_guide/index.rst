@@ -26,9 +26,9 @@ You must configure the following before
 working with |software_prod_name|:
 
 - :doc:`/shared/shared_mt_overview` to create Organizations and Projects
-- :doc:`/user_guide/set_up_edge_infra/location_main`
-- :doc:`/user_guide/additional_howtos/set_default_cluster_template`
+- :doc:`/user_guide/set_up_edge_infra/location/index`
+- :doc:`/user_guide/advanced_functionality/set_default_cluster_template`
 
 If you are deploying LOC-A with |software_prod_name|:
 
-- :doc:`/user_guide/set_up_edge_infra/onboard_lenovo/setup_loca`
+- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/3rd_party_examples/setup_loca`

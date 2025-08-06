@@ -46,7 +46,7 @@ Authenticating to the Kubernetes Dashboard
 
 The Kubernetes Dashboard requires a token for authentication.
 The token is automatically created when the dashboard is installed to an edge node, but you must retrieve it using the
-`kubectl` command line tool. Follow instructions at :doc:`/user_guide/set_up_edge_infra/accessing_clusters`.
+`kubectl` command line tool. Follow instructions at :doc:`/user_guide/set_up_edge_infra/clusters/accessing_clusters`.
 
 Once the kubeconfig file is downloaded, execute the following:
 

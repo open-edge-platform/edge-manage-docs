@@ -49,7 +49,7 @@ To troubleshoot:
   downloading the kubeconfig of the affected cluster and using the `kubectl` command to check the status of the Pods.
 
 .. note::
-  You can use this guideline :doc:`../../user_guide/set_up_edge_infra/accessing_clusters` to download the kubeconfig of a target edge cluster.
+  You can use this guideline :doc:`../../user_guide/set_up_edge_infra/clusters/accessing_clusters` to download the kubeconfig of a target edge cluster.
 
 
 Deployment is in No Target Clusters state

@@ -43,16 +43,16 @@ Recovery Steps for Network Issues
 1. Delete the configured Host in UI :doc:`/user_guide/set_up_edge_infra/delete_host`
 2. Reboot the Edge Node from the management console or power button
 3. Edge Orchestrator will automatically start provisioning again; follow the
-   process in :doc:`/user_guide/set_up_edge_infra/edge_node_onboard`
+   process in :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/index`
 
 Recovery Steps for Configuration Mismatch
 -------------------------------------------
 1. Delete the configured Host in UI :doc:`/user_guide/set_up_edge_infra/delete_host`
-2. Re-register the host following :doc:`/user_guide/set_up_edge_infra/edge_node_registration`
+2. Re-register the host following :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration`
    and ensure configuration (Secure Boot) settings match between Edge Orchestrator UI and Edge Node
 3. Reboot the Edge Node from the management console or power button
 4. Edge Orchestrator will automatically start provisioning again; follow the
-   process in :doc:`/user_guide/set_up_edge_infra/edge_node_onboard`
+   process in :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/index`
 
 Secure Boot Configuration
 ----------------------------
@@ -62,6 +62,6 @@ Secure Boot Configuration
    To configure Secure Boot:
 
     * Edge Orchestrator UI (during registration):
-      :doc:`/user_guide/set_up_edge_infra/provision_host`
+      :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host`
     * Edge Node configuration:
-      :doc:`/user_guide/set_up_edge_infra/edge_node_onboard`
+      :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/index`
