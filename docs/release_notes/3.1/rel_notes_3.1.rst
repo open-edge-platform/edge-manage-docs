@@ -5,7 +5,7 @@ Version History/Revision History
 -------------------------------------------------------
 
 This is the Release Notes for \ |software_prod_name|\ version 3.1, released
-July 23rd 2025.
+Aug 20 2025.
 
 .. note::
 
@@ -41,21 +41,13 @@ Key Highlights of the 3.1 release include, but are not limited to:
       configuring GPU SRIOV or X11.
     * HookOS has been replaced with a lightweight EMT, ensuring full control
       and optimization of the components used to provision an EN.
-* Ability to independently track software component and Edge Node usage for
-  managed and standalone edge nodes, with an customer opt-out selection.
-  The objective  to gain better performance and usage insights with the goal
-  of always enhancing the product.
 * Support for dGPU (Battlemage, Nvidia) and iGPU, including also GPU SR-IOV
   configuration capabilities in EMT-S and EMF.
-* History of Day 2 update operations of an Edge node is now tracked and exposed,
-  allowing the user to retrace the different steps of an Edge Node's life.
-  The Day 2 update process now aligns with industry well known constructus.
 * Security Compliance of an Edge Node is also now implemented through CVE
   tracking for installed and available OS images.
 * Kubernetes k3s distribution is brought to the edge node to replace RKE2
   achieving lightweight deployments in resource-constrained devices.
   An EMT image with the k3s binaries already included is present via an OS Profile.
-* Cluster Orchestration now supports 1000 clusters concurrently managed.
 * Vastly improved Application Onboarding
     * Ability to directly import helm charts, thus removing the need to write
       the deployment package for single helm chart applications.
@@ -63,8 +55,6 @@ Key Highlights of the 3.1 release include, but are not limited to:
       to help portability and debuggability.
     * Deployment packages can now be imported as tar files,
       making them more portable and easy to share.
-* Test automation has been overhauled providing the foundation of testing
-  platform capable of reaching 100% test automation over time. TODO add number of automation and such.
 * Additionally, efforts have been focusing on Trusted Compute to enable
   customers, benchmark it and adapt to minimal common EMT as trusted OS.
 
