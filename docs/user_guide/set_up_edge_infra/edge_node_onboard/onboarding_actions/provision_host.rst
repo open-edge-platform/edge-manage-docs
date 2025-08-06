@@ -21,7 +21,7 @@ The **Provision Host** feature allows you to provision an OS profile onto a prev
    .. figure:: ../../images/provision_host_flow.png
       :alt: Provision Host Stepper Flow
 
-#. Select the **site** the host is connected to.
+#. Select the **site** that the host is connected to.
 
    .. figure:: ../../images/provision_host_site_selection.png
       :alt: Site Selection
@@ -51,7 +51,7 @@ The **Provision Host** feature allows you to provision an OS profile onto a prev
    .. figure:: ../../images/provision_host_review_customize.png
       :alt: Review and Customize
 
-#. If you want to customize the configuration for a specific host, click the three dots next to the host, and then the **Edit** option.
+#. If you want to customize the configuration for a specific host, click the three-dot icon next to the host, and then the **Edit** option.
 
    .. figure:: ../../images/provision_host_edit_host.png
       :alt: Edit Host
@@ -64,7 +64,7 @@ The **Provision Host** feature allows you to provision an OS profile onto a prev
 #. Click **Provision** to finish the provisioning process.
 
 Once the host is provisioned, you can find it in the **Provisioned** tab.
-You can check the host details from this tab, using the drop-down menu for the host:
+You can check the host details from this tab by using the drop-down menu for the host:
 
 .. figure:: ../../images/provision_host_dropdown_menu.png
    :alt: Provision Host Drop Down menu
