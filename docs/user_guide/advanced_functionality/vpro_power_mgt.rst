@@ -8,8 +8,8 @@ This guide describes how to use Intel® vPro® features for power management, in
 Activation of vPro Power Management
 -----------------------------------
 
-
-To use vPro power management features, the device must be provisioned and activated. Provisioning is a prerequisite for activation and enables vPro management capabilities on the device.
+To use vPro power management features, the device must be provisioned and activated. Provisioning is a prerequisite for activation 
+and enables vPro management capabilities on the device.
 
 .. note::
    If the edge node is vPro-enabled, activation of vPro features occurs internally and automatically
@@ -22,8 +22,16 @@ Enabling vpro while creating host
    :width: 100 %
    :alt: Enable Vpro
 
+Assumptions & Recommendations
+----------------------------
+
+- **BIOS Enablement:** Ensure Intel® vPro® is enabled in the system BIOS. If vPro is not required, 
+   it is recommended to disable it in the BIOS for security and compliance.
+- **MEBx Password:** For enhanced security, set a strong and unique Intel® MEBx password during initial setup. 
+   If the default password is still in use, change it immediately to prevent unauthorized access.
+
 Power Operations
-----------------
+----------------------------
 
 Once activated, you can perform various power operations such as power on, power off, reset, and cycle.
 These operations can be managed through the user interface (UI): clicking 'Start' will power on the device, 'Stop' will power it off, and 'Reset' will reboot the device.
