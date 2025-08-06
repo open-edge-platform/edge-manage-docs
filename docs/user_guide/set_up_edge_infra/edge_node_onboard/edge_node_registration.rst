@@ -118,7 +118,7 @@ Automated Onboarding and Provisioning
    the provisioning process when connected. By default, the option is `disabled`.
 
 #. If both **Onboard Automatically** and **Provision Automatically** are selected, the **Create Single Node Cluster** option becomes available and enabled by default.
-   This will allow you to automatically create a Kubernetes cluster and attach it to this node. 
+   This will allow you to automatically create a Kubernetes cluster and attach it to this node.
 
    .. figure:: ../images/register_host_automatic_cluster.png
       :alt: Register Host Automatic Cluster

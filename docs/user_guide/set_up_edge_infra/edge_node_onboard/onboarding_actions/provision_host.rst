@@ -16,12 +16,14 @@ The **Provision Host** feature allows you to provision an OS profile onto a prev
    .. figure:: ../../images/provision_host_action.png
       :alt: Provision Host
 
-#. You will enter the Host Provisioning flow now. This flow has two steps - **Configure All Hosts** and **Review and Customize**. Any configuration that you make in the **Configure All Hosts** step will be applied to all hosts. Individual host configurations can be edited in the **Review and Customize** step.
+#. You will enter the Host Provisioning flow now. This flow has two steps - **Configure All Hosts** and **Review and Customize**.
+   Any configuration that you make in the **Configure All Hosts** step will be applied to all hosts. Individual host configurations can be
+   edited in the **Review and Customize** step.
 
    .. figure:: ../../images/provision_host_flow.png
       :alt: Provision Host Stepper Flow
 
-#. Select the **site** that the host is connected to.
+#. Search and select the **site** that the host is connected to.
 
    .. figure:: ../../images/provision_host_site_selection.png
       :alt: Site Selection
@@ -31,7 +33,8 @@ The **Provision Host** feature allows you to provision an OS profile onto a prev
    .. figure:: ../../images/provision_host_os_profile_selection.png
       :alt: OS Profile Selection
 
-#. If you came to this stepper flow from the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration` page and you selected **Create Single-host Clusters**, you can pick the required **Cluster Template** and **Version** now. Otherwise, these two dropdowns will not be shown.
+#. If you came to this stepper flow from the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration` page and you selected
+   **Create Single-host Clusters**, you can pick the required **Cluster Template** and **Version** now. Otherwise, these two dropdowns will not be shown.
 
    .. figure:: ../../images/host_provision_cluster_template_selection.png
       :alt: Cluster Template Selection
@@ -40,13 +43,15 @@ The **Provision Host** feature allows you to provision an OS profile onto a prev
 
    * **vPro**: Enable or disable vPro on the host. The default option is `disabled`.
    * **Secure Boot and Full Disk Encryption**: Enable or disable secure boot and full disk encryption. The default option is `disabled`.
-   * **SSH Key Name**: Select an SSH public key for login. It is optional to add an SSH key. However, you must have submitted the public key to the web UI using the instructions in :doc:`/user_guide/advanced_functionality/configure_ssh_public_keys`.
+   * **SSH Key Name**: Select an SSH public key for login. It is optional to add an SSH key. However, you must have submitted the public key to the
+     web UI using the instructions in :doc:`/user_guide/advanced_functionality/configure_ssh_public_keys`.
    * **Host Labels**: Add any optional host labels to the host.
 
    .. figure:: ../../images/provision_host_advanced_options.png
       :alt: Advanced Options
 
-#. Click **Next** to proceed to the **Review and Customize** step. Here, you can review the configuration for all hosts and customize individual host configurations. You can expand each host to see more details.
+#. Click **Next** to proceed to the **Review and Customize** step. Here, you can review the configuration for all hosts and customize individual
+   host configurations. You can expand each host to see more details.
 
    .. figure:: ../../images/provision_host_review_customize.png
       :alt: Review and Customize
