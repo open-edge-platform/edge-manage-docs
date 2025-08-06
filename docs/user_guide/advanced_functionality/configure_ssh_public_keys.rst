@@ -32,6 +32,10 @@ Edge Manageability Framework allows you to add **public SSH keys** into a host d
       Ensure that the provided name does not conflict with any restricted usernames (example: root, admin, and etc.)
       in the Linux or Mac OS.
 
+   .. warning::
+      The user account created with the SSH key will have passwordless sudo privileges on the host.
+
+
    Once the key is added to the SSH key list, you can add it to a host when configuring it. Follow the
    :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host` instructions to enable this.
 
@@ -57,6 +61,3 @@ Edge Manageability Framework allows you to add **public SSH keys** into a host d
    .. note::
       * **<key-name>** is the name provided when you add the SSH key.
       * **<host_ip_address>** is the IP address of the host. You can get the IP address through the **host** `View I/O Devices Details <./../set_up_edge_infra/provisioned_host_details.html#view-i-o-devices-details>`__ page of the web UI.
-
-.. toctree::
-   :hidden:
