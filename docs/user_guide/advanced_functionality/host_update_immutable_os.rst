@@ -65,19 +65,19 @@ To link an OS Resource to the desired OS within the edge-node instances, follow 
 #. Identify **resourceId** field value of the instance you want to update:
 
       .. code-block::
-      
+
         # Find the Instance
         curl -X GET "$MI_API_URL/compute/instances" -H "accept:application/json" -H "Authorization: Bearer ${JWT_TOKEN}"  | jq
 
 #. Identify **resourceId** field value of the OS resource you want to link to your instance:
 
       .. code-block::
-      
+
         # Find the OS Resource
         curl -X GET "$MI_API_URL/compute/os" -H "accept:application/json" -H "Authorization: Bearer ${JWT_TOKEN}"  | jq
 
 #. Update the desired OS field of the instance in the inventory, where **<OSRESOURCE_ID>** is the **resourceId** of the OS Resource you want to link to your instance,
-and **<INSTANCE_ID>** is the **resourceId** of the instance you want to update:
+   and **<INSTANCE_ID>** is the **resourceId** of the instance you want to update:
 
     .. code-block::
 
@@ -85,7 +85,8 @@ and **<INSTANCE_ID>** is the **resourceId** of the instance you want to update:
         curl -X PATCH -H 'Accept: application/json' -H "Authorization: Bearer ${JWT_TOKEN}" --data '{"osID": "<OSRESOURCE_ID>"}' --header "Content-Type: application/json" $MI_API_URL/compute/instances/<INSTANCE_ID>
 
 
-#. After linking the OS Resource, any scheduled update will attempt to upgrade the Edge Microvisor Toolkit to the specified version. To verify, check the **desiredOs** field in your instance - it should reference the OS Resource you linked:
+#. After linking the OS Resource, any scheduled update will attempt to upgrade the Edge Microvisor Toolkit to the specified version.
+   To verify, check the **desiredOs** field in your instance - it should reference the OS Resource you linked:
 
       .. code-block::
 
