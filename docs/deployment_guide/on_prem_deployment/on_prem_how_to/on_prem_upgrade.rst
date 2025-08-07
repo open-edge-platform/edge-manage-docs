@@ -245,6 +245,11 @@ Gitea
 
 Troubleshooting
 ---------------
+**Description:**  
+After performing an on-prem upgrade, the latest `orch-app` packages are not visible in the deployment extension list.
+
+**Workaround / Resolution:**  
+To resolve this issue, create a new project after the upgrade. This allows the latest deployment packages to become visible and accessible.
 
 **Symptom:** Sometimes the `infra-managers` application in ArgoCD may show as **Not Healthy** or **Out of Sync**. This can impact dependent components or cluster state.
 
