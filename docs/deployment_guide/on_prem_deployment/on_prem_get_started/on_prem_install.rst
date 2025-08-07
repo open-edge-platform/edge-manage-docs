@@ -308,7 +308,7 @@ Configure Custom Settings
    :doc:`/user_guide/advanced_functionality/host_update_immutable_os`.
 
    * To allow Edge Orchestrator to automatically associate the latest available Edge Microvisor Toolkit version with all edge nodes,
-   enable automatic mode for the Edge Infrastructure Manager's OS Resource Manager in the relevant profile file.
+     enable automatic mode for the Edge Infrastructure Manager's OS Resource Manager in the relevant profile file.
 
    * To enable automatic mode, edit the ``[path_to_untarred_repo]/orch-configs/profiles/enable-osrm-manual-mode.yaml`` file and set:
 
