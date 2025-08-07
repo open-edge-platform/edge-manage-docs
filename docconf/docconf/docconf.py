@@ -80,8 +80,8 @@ spelling_word_list_filename = [
 spelling_filters = ["sphinxcontrib.spelling.filters.ContractionFilter"]
 
 spelling_exclude_patterns = [
-    "release_notes/containers_helm_charts*",
-    "release_notes/third_party_components*",
+    "release_notes/**/containers_helm_charts*",
+    "release_notes/**/third_party_components*",
 ]
 
 # -- Options for HTML output -------------------------------------------------
@@ -162,8 +162,8 @@ linkcheck_request_headers = {
 }
 
 linkcheck_exclude_documents = [
-    "release_notes/containers_helm_charts*",
-    "release_notes/third_party_components*",
+    "release_notes/**/containers_helm_charts*",
+    "release_notes/**/third_party_components*",
 ]
 
 # Create empty myst_parser variables to enable /docs/conf.py be

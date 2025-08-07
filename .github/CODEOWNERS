@@ -7,15 +7,15 @@
 # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
 # default owners - covers lint/config/build tooling in repo root
-* @achamuah @swpng @adreanneb @zdw @jouillet @andrea-campanella @ajaythakurintel @patricia-cahill @soniabha-intc
+* @achamuah @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @diwanc
 
 # documentation content
-docs/ @achamuah @swpng @zdw @andrea-campanella @ajaythakurintel @patricia-cahill @soniabha-intc
-docs/developer_guide @adreanneb @achamuah @swpng @zdw @andrea-campanella @ajaythakurintel @patricia-cahill @soniabha-intc
-README.md @achamuah @swpng @adreanneb @zdw @andrea-campanella @ajaythakurintel @patricia-cahill @soniabha-intc
+docs/ @achamuah @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @diwanc
+docs/developer_guide @achamuah @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @diwanc
+README.md @achamuah @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @diwanc
 
 # CI files
-.github/ @zdw @jouillet @andrea-campanella @ajaythakurintel @patricia-cahill @soniabha-intc
+.github/ @achamuah @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @diwanc @jouillet
 
 # shared doc config
-docconf/ @zdw @jouillet @andrea-campanella @ajaythakurintel @patricia-cahill @soniabha-intc
+docconf/ @achamuah @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @diwanc @jouillet
