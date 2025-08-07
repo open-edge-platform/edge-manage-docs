@@ -304,7 +304,7 @@ Configure Custom Settings
 
 #. Edge Orchestrator detects the latest compatible versions of the Edge Microvisor Toolkit for update of edge nodes deployed with an immutable OS.
    By default, manual association of the Edge Microvisor Toolkit version with edge nodes is required. Alternatively,
-   you can choose a custom Edge Microvisor Toolkit version from the Release Service and link it to edge nodes. For more information, see
+   select custom Edge Microvisor Toolkit version from the Release Service and link it to edge nodes. For more information, see
    :doc:`/user_guide/advanced_functionality/host_update_immutable_os`.
 
    * To allow Edge Orchestrator to automatically associate the latest available Edge Microvisor Toolkit version with all edge nodes,
