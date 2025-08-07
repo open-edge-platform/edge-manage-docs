@@ -224,6 +224,8 @@ Clusters and Application Deployment
   may leave behind orphaned CRDs and related cluster-level objects. This can
   lead to an `annotation validation` error when attempting to redeploy on the cluster.
   See :doc:`troubleshooting guide </user_guide/troubleshooting/deploy_issue>`.
+* When using the "Create Single-host Clusters" option during host registration,
+  host names must be in lowercase; otherwise, cluster creation will fail.
 
 User Experience
 ^^^^^^^^^^^^^^^^^
@@ -422,6 +424,10 @@ Clusters and Application Deployment Limitations
   of deployment are not cleaned-up on the Cluster Deletion. This results in
   showing any errors from these deployments in subsequent successful deployments.
   Refer :ref:`deploymentpage_errors`.
+* When using the "Create Single-host Clusters" option during host registration,
+  a new cluster is automatically created and remains in "provisioning" state
+  until host onboarding. Enhanced state descriptions will be provided in a
+  future release.
 
 Multi-tenancy Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^
