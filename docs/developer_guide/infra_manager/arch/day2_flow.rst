@@ -37,7 +37,7 @@ The four main entities involved in the Edge Node updates are:
   the current version of Edge Microvisor Toolkit for the relevant Edge Node instance in the Inventory.
 
 - `OS Resource Manager <https://github.com/open-edge-platform/infra-managers/blob/main/os-resource>`_ — This Resource Manager periodically queries the Release Service
-  for OS profile manifests associated with a specific EMF release in the
+  for OS profile manifests associated with a specific EMF release as configured in the
   `os-resource configuration <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/argocd/applications/configs/infra-managers.yaml#L72>`_.
   It updates existing OS profile details based on the latest information from the Release Service, ensuring that any changes are reflected in the system.
   When the Edge Orchestrator is upgraded to a version with a new *osProfileRevision*, the OS Resource Manager discovers new OS profiles for the Edge Microvisor Toolkit
