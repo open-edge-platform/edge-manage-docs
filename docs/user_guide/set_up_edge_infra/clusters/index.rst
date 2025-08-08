@@ -1,42 +1,38 @@
 Clusters
 ====================================================================
 
-A cluster is a group of physical or virtual hosts, managed as a single entity,
-that runs containerized applications. |software_prod_name| enables you to
-manage the following full life cycle of clusters hosted on single edge
-node:
+A cluster (Kubernetes cluster in this context) is a group of physical or virtual
+hosts that are managed as a single entity that runs containerized applications.
+|software_prod_name| enables you to manage the following full life cycle of
+clusters hosted on single or multiple edges:
 
-* Create a single-node cluster.
+* Create a cluster.
 * Update existing clusters with new configurations or upgraded software
   versions.
 * Monitor the state of clusters.
 * Access clusters to troubleshoot or debug application deployments.
 * Retire or remove clusters no longer required.
 
-Clusters can be configured currently in the following:
+.. warning::
 
+   **Multi-node cluster creation** is not supported at the moment.
+   This limitation is expected to be resolved in a future release.
 
-* Single-host cluster: A cluster that resides on one host. You can initiate
-  a single-node cluster creation when configuring the host. For the automated
-  single node cluster creation method, the default cluster template is utilized
-  to configure the cluster settings, deployment instances, and cluster labels.
-  For more information,see
+Clusters can be configured in two ways:
+
+* Manually for hosts already onboarded and provisioned. For creating a cluster
+  manually, see :doc:`/user_guide/set_up_edge_infra/clusters/create_clusters`.
+
+* Automatically during the host onboarding process, where the cluster is created
+  as part of the host configuration. This method is useful for single-node
+  clusters and allows you to set up a cluster with minimal manual intervention.
+  For creating a cluster while configuring a host, see
   :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host`.
 
-.. note::
-  In the Kubernetes\* system, a single-host cluster is equivalent to a single-node cluster.
-
-The cluster configuration option is available while configuring
-a host and creating a cluster. For creating a cluster while
-configuring a host, see
-:doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host`.
-
-
 To manage and monitor clusters, you can view each cluster's details from the
-**Clusters** page.
-To view the **Clusters** page, click the **Infrastructure** tab
-on the top menu and select **Clusters** on the left menu.
-On the **Clusters** page, you can view the list of available clusters.
+**Clusters** page. To view the **Clusters** page, click the **Infrastructure**
+tab on the top menu and select **Clusters** on the left menu. On the
+**Clusters** page, you can view the list of available clusters.
 
 .. figure:: ../images/cluster_list_new.png
    :alt: View Clusters Page

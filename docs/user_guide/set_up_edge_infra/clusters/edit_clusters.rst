@@ -11,6 +11,10 @@ The following are a few scenarios where you can edit or update your cluster:
 
 * Add deployment metadata to the cluster as part of cluster edit operations.
 
+.. note::
+
+   Editing the cluster name and the cluster template is not allowed.
+
 To edit clusters, follow these steps:
 
 1. Click the **Infrastructure** tab at the top menu to view the **Clusters**
@@ -23,8 +27,3 @@ To edit clusters, follow these steps:
       :alt: Edit Cluster
 
 #. The **Edit Cluster** page appears. Edit the clusters as desired. To delete a metadata, click the **Trash** icon.
-
-   .. note::
-      You cannot edit the cluster name and the cluster template.
-
-
