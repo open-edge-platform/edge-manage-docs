@@ -1,18 +1,17 @@
+
 Deployment Guide
 ================
 
-You have the flexibility to deploy our |software_prod_name|\ using either
-Amazon Web Services\* (AWS\*) cloud or on-premises infrastructure, depending on
-your specific needs and preferences.
+You have the flexibility to deploy |software_prod_name| using either Amazon Web Services* (AWS*) cloud or on-premises infrastructure.
 
-To get started, refer to the following sections for detailed instructions and
-guidance tailored to each deployment option.
-
-* :doc:`cloud_deployment/index`
-* :doc:`on_prem_deployment/index`
+**Deployment Guide Navigation**
 
 .. toctree::
-   :hidden:
+   :maxdepth: 2
+   :caption: Deployment Guide Contents
 
    cloud_deployment/index
    on_prem_deployment/index
+
+**Section Overview**
+

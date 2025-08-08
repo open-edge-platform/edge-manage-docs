@@ -1,0 +1,17 @@
+/* Custom styles for interactive sitemap */
+.sitemap-list {
+  list-style: none;
+  padding-left: 0;
+}
+.sitemap-list li {
+  margin: 0.2em 0;
+}
+.sitemap-toggle {
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 0.3em;
+}
+.sitemap-children {
+  margin-left: 1.5em;
+  display: none;
+}
