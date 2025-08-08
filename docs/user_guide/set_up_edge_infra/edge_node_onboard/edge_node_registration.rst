@@ -123,7 +123,7 @@ Automated Onboarding and Provisioning
    .. figure:: ../images/register_host_automatic_cluster.png
       :alt: Register Host Automatic Cluster
 
-   .. note:: The **Create Single Node Cluster** option is only available when both automated onboarding and automated provisioning are enabled. This ensures the node is fully configured before cluster creation begins.
+   .. note:: The **Create Single Node Cluster** option is only available when both automated onboarding and automated provisioning are enabled. This ensures the node is fully configured before before initiating cluster bootstrap. Note that the cluster may remain in the `provisioning` status until the host is completely onboarded and provisioned.
 
 #. If multiple edge nodes are to be registered, you can add additional fields by clicking the **+** option.
 
