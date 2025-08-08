@@ -1,9 +1,12 @@
+
 APIs
 ====
 
 The following APIs are available for the Edge Orchestrator:
 
 .. toctree::
+   :maxdepth: 2
+   :caption: API Reference
 
    alerting_monitor
    app_catalog
