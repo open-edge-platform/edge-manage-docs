@@ -302,12 +302,15 @@ Configure Custom Settings
        -    - profiles/proxy-none.yaml
        +    - profiles/proxy.yaml
 
-#. By default, Edge Orchestrator automatically points to
-   the latest-available version of the Edge Microvisor Toolkit system
-   for an OS update of an edge-node deployed with immutable OS.
-   To manually choose the version for updates, enable the manual mode for the Edge Infrastructure Manager's OS Resource Manager in relevant profile file.
+#. Edge Orchestrator detects the latest compatible versions of the Edge Microvisor Toolkit for update of edge nodes deployed with an immutable OS.
+   By default, manual association of the Edge Microvisor Toolkit version with edge nodes is required. Alternatively,
+   select custom Edge Microvisor Toolkit version from the Release Service and link it to edge nodes. For more information, see
+   :doc:`/user_guide/advanced_functionality/host_update_immutable_os`.
 
-   * To enable manual mode for OS Resource Manager in the ``[path_to_untarred_repo]/orch-configs/profiles/enable-osrm-manual-mode.yaml`` file:
+   * To allow Edge Orchestrator to automatically associate the latest available Edge Microvisor Toolkit version with all edge nodes,
+     enable automatic mode for the Edge Infrastructure Manager's OS Resource Manager in the relevant profile file.
+
+   * To enable automatic mode, edit the ``[path_to_untarred_repo]/orch-configs/profiles/enable-osrm-manual-mode.yaml`` file and set:
 
      .. code-block:: shell
 
