@@ -66,7 +66,7 @@ and the `Edge Manageability Framework README file <https://github.com/open-edge-
 Upgrades from Previous Releases
 ----------------------------------
 
-Edge Manageability Framework 3.1 can be upgraded from version 3.0 automatically
+Edge Manageability Framework 3.1 can be upgraded from version 3.0
 as described in the user guide. TODO: link guide.
 Any version prior to 3.0 can not be upgraded to 3.1.
 
