@@ -428,6 +428,9 @@ Clusters and Application Deployment Limitations
   a new cluster is automatically created and remains in "provisioning" state
   until host onboarding. Enhanced state descriptions will be provided in a
   future release.
+* Deauthorizing a host does not automatically delete the associated cluster,
+  requiring manual deletion; both host and cluster will still enter an "error"
+  state and become inaccessible post-deauthorization as intended.
 
 Multi-tenancy Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^
