@@ -28,9 +28,10 @@ You can review the general functionality of the system in the
 
 Key Highlights of the 3.1 release include, but are not limited to:
 
-* Integration of vPro and openAMT services with EMF, allowing the user to enable
-  vPRO on any capable platfrom. First functionality supported is Remote Power
-  ON/OFF and Device Reboot capabilities.
+* New: Support for Out-of-band management using `Intel AMT/vPRO <https://www.intel.com/content/www/us/en/architecture-and-technology/vpro/vpro-manageability/overview.html>`.
+  Integration of vPro Device Manageability services with EMF, allowing use of 
+  out-of-band management features. Functionality supported this release include 
+  Remote Device Power ON/OFF and Remote Device Reboot capabilities.
 * Enhanced Provisioning capabilites and improvements
     * Ability to perform PXE boot, targeted for Standalone EMT-S edge nodes to
       serve OXMs usecases.
