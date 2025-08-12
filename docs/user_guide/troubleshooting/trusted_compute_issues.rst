@@ -2,16 +2,22 @@ Trusted Compute Issues
 ======================
 
 This section covers troubleshooting of Trusted Compute issues for EMF.
-  
 
-**Symptom: Failure of the Trusted Compute plugin installation due to security pre-requisites compatibility. trusted-compute-compatible is not true on EMF UI**
+* `Failure of the Trusted Compute plugin installation due to security pre-requisites compatibility. trusted-compute-compatible is not true on EMF UI>`__
+* `Host Attestation status is Unknown and all the pods are up and running>`__
+* `Verifier and Attestation Manager PODs have cordoned the node, and attestation PODs failed to transition to the ready state>`__ 
+* `Attestation failed and overall trust is showing as failed on the UI>`__ 
+* `trusted-workload POD status is not running>`__ 
+
+
+**Symptom:** Failure of the Trusted Compute plugin installation due to security pre-requisites compatibility. trusted-compute-compatible is not true on EMF UI
 
 
 **Solution:** To resolve this issue, ensure that the prerequisites are met. Full Disk Encryption (FDE) and Secure Boot (SB) must be enabled on the platform. Once these features are activated on the edge-node platform, the onboarding profile should also enable FDE and SB.
 The fix needs to be implemented in two areas: first, enable the features on the platform (FDE, SB); second, ensure that the profile features are aligned. To recover from this condition, re-onboard your edge-node with the prerequisites enabled.
 For details on the pre-requisites see :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/index`.
 
-**Symptom: Host Attestation status is Unknown and all the pods are up and running.**
+**Symptom:** Host Attestation status is Unknown and all the pods are up and running.
 
 .. figure:: images/Attestation_status_unknown.png
    :alt: Host Attestation Unknown
@@ -22,7 +28,7 @@ This issue may arise if the PCR banks on the TPM are not configured correctly. T
 .. figure:: images/SHA256_sample_BIOS_Settings.png
    :alt: TPM PCR bank settings
 
-**Symptom: Verifier and Attestation Manager PODs have cordoned the node, and attestation PODs failed to transition to the ready state.**
+**Symptom:** Verifier and Attestation Manager PODs have cordoned the node, and attestation PODs failed to transition to the ready state.
 
 
 **Solution:** When verification of the system fails, the node where attestation failed will be cordoned to protect the system for security analysis.
@@ -38,12 +44,12 @@ Sample commands:
    # Uncordon the node
    kubectl uncordon <node_name>
 
-**Symptom: Attestation failed and overall trust is showing as failed on the UI.**
+**Symptom:** Attestation failed and overall trust is showing as failed on the UI.
 
 **Solution:** This issue could be caused by a failure in updated components or a change in the bill of material of the system. To mitigate and audit the full attestation report, the user can check the verifier POD log and details. To recover from this state, you can analyze the attestation report and update the BOM accordingly or revert the faulty component from the Bill Of Material (BOM) list.
 To update the BOM, you can either delete and re-install the deployment package in question from the EMF UI or re-provision the edge node with the desired OS profile.
 
-**Symptom: trusted-workload POD status is not running.**
+**Symptom:** trusted-workload POD status is not running.
 
 **Solution:** this issue could be caused by a failure in following components. please follow following steps to debug it.
 1. Verify CRD installation: The operator creates the ccruntime CRD as can be observed in the following command:
