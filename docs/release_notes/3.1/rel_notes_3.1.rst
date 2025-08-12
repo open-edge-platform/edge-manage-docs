@@ -70,14 +70,6 @@ and the `Edge Manageability Framework README file <https://github.com/open-edge-
 Upgrades from Previous Releases
 ----------------------------------
 
-Edge Manageability Framework 3.1 can be upgraded from version 3.0
-as described in the `design guide <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/design-proposals/emf-upgrade-steps.md>`.
-Any version prior to 3.0 can not be upgraded to 3.1. 
-
-Upgrading EMF from 3.0 to 3.1 intorduces a breaking change on the 
-edge node. Edge nodes will have to be re-provisioned becasue of 
-the change in kubernetes distribution from rke2 to k3s. 
-
 Edge Manageability Framework (EMF) version 3.1 supports direct 
 upgrades from version 3.0 only. Upgrade instructions are detailed in the 
 `Design Guide<https://github.com/open-edge-platform/edge-manageability-framework/blob/main/design-proposals/emf-upgrade-steps.md>`.
@@ -178,18 +170,6 @@ Hosts and Infrastructure
   user is viewing the page, the maintenance status for the host in the
   table will not be updated until the user switches pages or refreshes the
   page.
-* When scheduling updates, select the start time of the OS updates after
-  the current time by at least 10 minutes; otherwise, the update may not
-  start.
-* It is possible that a node is reported with host status `Provisioning In
-  Progress: 26/26: Rebooting` in the host views of the User Interface.
-  Confirm the actual status of the host by clicking on it and checking the
-  detailed `Status` panel at the bottom: if the `Host Status` is `Running`,
-  then the node is in the correct state and can be used for cluster and
-  application installation. You will see that the `Provisioning Status` is
-  equal to what is shown in the list view. The issue happens because the
-  list view gives precedence to the `Provisioning Status` over the `Host
-  Status`.
 
 Clusters and Application Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
