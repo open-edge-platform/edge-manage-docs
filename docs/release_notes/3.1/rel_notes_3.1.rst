@@ -178,10 +178,6 @@ Hosts and Infrastructure
   user is viewing the page, the maintenance status for the host in the
   table will not be updated until the user switches pages or refreshes the
   page.
-* For Intel® Core™ processor platforms with E-cores and P-cores,
-  the CPU thread count may be reported incorrectly, where single-threaded
-  E-cores are counted as having two threads. The CPU model and total core
-  count (sum of both P and E) are correct.
 * When scheduling updates, select the start time of the OS updates after
   the current time by at least 10 minutes; otherwise, the update may not
   start.
