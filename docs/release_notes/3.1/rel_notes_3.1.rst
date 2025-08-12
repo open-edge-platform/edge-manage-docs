@@ -71,8 +71,24 @@ Upgrades from Previous Releases
 ----------------------------------
 
 Edge Manageability Framework 3.1 can be upgraded from version 3.0
-as described in the user guide. TODO: link guide.
-Any version prior to 3.0 can not be upgraded to 3.1.
+as described in the `design guide <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/design-proposals/emf-upgrade-steps.md>`.
+Any version prior to 3.0 can not be upgraded to 3.1. 
+
+Upgrading EMF from 3.0 to 3.1 intorduces a breaking change on the 
+edge node. Edge nodes will have to be re-provisioned becasue of 
+the change in kubernetes distribution from rke2 to k3s. 
+
+Edge Manageability Framework (EMF) version 3.1 supports direct 
+upgrades from version 3.0 only. Upgrade instructions are detailed in the 
+`Design Guide<https://github.com/open-edge-platform/edge-manageability-framework/blob/main/design-proposals/emf-upgrade-steps.md>`.
+Versions earlier than 3.0 are not compatible with the 3.1 upgrade path.
+
+Breaking Change Notice
+Upgrading from EMF 3.0 to 3.1 introduces a breaking change on 
+edge nodes due to a shift in the Kubernetes distribution—from RKE2 to K3s.
+As a result, all edge nodes must be re-provisioned during the upgrade 
+process to ensure compatibility and stability.
+
 
 Known Issues
 ----------------------------------
