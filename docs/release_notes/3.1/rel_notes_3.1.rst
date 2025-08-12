@@ -33,30 +33,33 @@ Key Highlights of the 3.1 release include, but are not limited to:
   out-of-band management features. Functionality supported this release include 
   Remote Device Power ON/OFF and Remote Device Reboot capabilities.
 * Enhanced Provisioning capabilites and improvements
-    * Ability to perform PXE boot, targeted for Standalone EMT-S edge nodes to
-      serve OXMs usecases.
-    * Support the different image varieties, including EMT with Docker and k3s.
-    * Per edge Edge Node configuration through custom cloud-init script,
+    * New: Scale provisioning of Standalone edge nodes that with Operating system and 
+      lightweight kubernetes - (OXM Profile). Support for PXE boot along with HTTPs 
+      and USB boot.
+    * New: Support New EMT Desktop virtualization image with advanced GPU SR-IOV and 
+      Virtualization capabilites.
+    * New: Per edge Edge Node configuration through custom cloud-init script,
       to provide fixed IP during provisioning, specific proxies, enabling
       Kubernetes right at the very installation of the nodes or finally
       configuring GPU SRIOV or X11.
-    * HookOS has been replaced with a lightweight EMT, ensuring full control
+    * Update: HookOS has been replaced with a lightweight EMT, ensuring full control
       and optimization of the components used to provision an EN.
-* Support for dGPU (Battlemage, Nvidia) and iGPU, including also GPU SR-IOV
+* New: Support for Discrete GPU from Intel Battlemage B580 and Nvidia P100 along with 
+  Intel integrated GPU with GPU SR-IOV.
   configuration capabilities in EMT-S and EMF.
-* Security Compliance of an Edge Node is also now implemented through CVE
+* New: Security Compliance of an Edge Node is also now implemented through CVE
   tracking for installed and available OS images.
-* Kubernetes k3s distribution is brought to the edge node to replace RKE2
+* New: Kubernetes distribution on edge node is migrated from rke2 to k3s
   achieving lightweight deployments in resource-constrained devices.
   An EMT image with the k3s binaries already included is present via an OS Profile.
-* Vastly improved Application Onboarding
+* New: Vastly improved Application Onboarding
     * Ability to directly import helm charts, thus removing the need to write
       the deployment package for single helm chart applications.
     * Deployment Packages are now directly exportable from the user interface,
       to help portability and debuggability.
     * Deployment packages can now be imported as tar files,
       making them more portable and easy to share.
-* Additionally, efforts have been focusing on Trusted Compute to enable
+* Update: Additionally, efforts have been focusing on Trusted Compute to enable
   customers, benchmark it and adapt to minimal common EMT as trusted OS.
 
 All of the codebase is Apache\* software version 2.0 licensed and available on Github.
