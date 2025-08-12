@@ -4,7 +4,7 @@ Trusted Compute Issues
 This section covers troubleshooting of Trusted Compute issues for EMF.
   
 
-**Symptom: Failure of the Trusted Compute plugin installation due to security pre-requisites compatibility. trusted-compute-compatible is not true on orchestrator UI**
+**Symptom: Failure of the Trusted Compute plugin installation due to security pre-requisites compatibility. trusted-compute-compatible is not true on EMF UI**
 
 
 **Solution:** To resolve this issue, ensure that the prerequisites are met. Full Disk Encryption (FDE) and Secure Boot (SB) must be enabled on the platform. Once these features are activated on the edge-node platform, the onboarding profile should also enable FDE and SB.
