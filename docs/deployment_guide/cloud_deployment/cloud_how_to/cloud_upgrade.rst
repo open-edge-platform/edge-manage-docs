@@ -24,7 +24,7 @@ Prerequisites
 System Requirements
 ~~~~~~~~~~~~~~~~~~~
 
-- Current EMF On-Prem installation version 3.0
+- Current EMF Cloud installation version 3.0
 - Root/sudo privileges on orchestrator node
 - PostgreSQL service running and accessible
 - docker user credential if any pull limit hit
