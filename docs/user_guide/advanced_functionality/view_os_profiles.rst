@@ -31,7 +31,26 @@ By clicking on the action menu you can get more details about a specific OS Prof
 * **Repository URL:** The URL repository of the OS update sources
 * **sha256:** SHA256 checksum of the OS resource in hexadecimal
 * **Kernel Command:** The OS resource kernel command
+
+View Installed Packages Details
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Click the **Installed Packages** tab to view information about list of installed packages on the OS resource (only for immutable OS):
+
+.. figure:: images/os_profile_drawer_installed_packages.png
+   :alt: View Installed Packages Details
+
 * **Installed Packages:** The list of installed packages on the OS resource (only for immutable OS)
+
+View CVEs Details
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Click the **Cves** tab to view the information about list of existing CVEs on the OS resource (only for immutable OS):
+
+.. figure:: images/os_profile_drawer_cves.png
+   :alt: View Resources
+
+* **Cves:** The list of existing CVEs on the OS resource (only for immutable OS)
 
 Available OS Resources during the Host Configuration
 ----------------------------------------------------
