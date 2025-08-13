@@ -559,7 +559,7 @@ Helm Charts for Platform services components
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
      - 1.0.1
    * - 5
-   * - copy-ca-cert-boots-to-gateway
+     - copy-ca-cert-boots-to-gateway
      - copy-secret
      - orch-gateway
      - "1400"
@@ -1122,7 +1122,7 @@ Helm Charts for Platform services components
      - orch-database
      - "140"
      - postgresql
-     -"registry-1.docker.io/bitnamicharts"
+     - "registry-1.docker.io/bitnamicharts"
      - 16.6.3
    * - 2
      - postgresql-secrets
