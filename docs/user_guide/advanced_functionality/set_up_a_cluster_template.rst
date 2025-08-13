@@ -55,93 +55,10 @@ Built-in cluster templates have the following deployment metadata labels:
      - "default-extension": "privileged"
 
 
-|software_prod_name| comes with three built-in deployments corresponding to default deployment metadata.
-These are referred to as base extensions and contain the following set of common preconfigured Kubernetes extensions:
+Each built-in template applies a set of security policies with varying levels of restrictions.
 
-  * `Node Feature Discovery <https://intel.github.io/kubernetes-docs/nfd>`_
-  * `OpenEBS\* container-attached storage solution <https://openebs.io/docs/>`_
-  * Observability stack:
-      * `Node Exporter agent <https://prometheus.io/docs/guides/node-exporter/>`_
-      * `Prometheus\* toolkit <https://prometheus.io/docs/introduction/overview/>`_
-      * `Telegraf\* agent <https://docs.influxdata.com/telegraf/v1/>`_
-      * `Fluent Bit\* telemetry agent <https://docs.fluentbit.io/manual/v/1.7>`_
-  * `cert-manager X.509 certificate controller <https://cert-manager.io/docs/>`_
-  * `Gatekeeper cloud-native policy controller <https://open-policy-agent.github.io/gatekeeper/website/docs/>`_
-
-
-The following table lists the various enabled and disabled settings for the default templates:
-
-.. list-table::
-   :widths: 20, 20, 20, 20
-   :header-rows: 1
-
-   * - Constraints
-     - restricted
-     - baseline
-     - privileged
-
-   * - capabilities
-       Controls Linux\* capabilities on containers. Corresponds to the allowedCapabilities field in  PodSecurityPolicy
-       Allowed: NET_BIND_SERVICE
-       All others are denied.
-     - ENABLED
-     - ENABLED
-     - DISABLED
-
-   * - host-network
-       Controls the usage of host network namespace by pod containers.
-       Corresponds to the hostNetwork fields in a PodSecurityPolicy.
-     - ENABLED
-     - DISABLED
-     - DISABLED
-
-   * - volumeTypes
-       Forbids hostPath volume type. Corresponds to the volumes field in a PodSecurityPolicy.
-     - ENABLED
-     - ENABLED
-     - DISABLED
-
-   * - hostNamespace
-       Disallows sharing of host PID and IPC namespaces by pod containers. Corresponds to the hostPID and hostIPC fields in a PodSecurityPolicy.
-     - ENABLED
-     - ENABLED
-     - DISABLED
-
-   * - hostPorts
-       Controls usage of host ports by pod containers. If usage of host ports is allowed, you must specify specific port ranges. Corresponds to the hostPorts field in a PodSecurityPolicy.
-       HostPorts usage is not allowed when this constraint is enabled.
-     - ENABLED
-     - ENABLED
-     - DISABLED
-
-   * - privilegedContainer
-       Disallows enabling privileged mode in containers. Corresponds to the privileged field in a PodSecurityPolicy.
-     - ENABLED
-     - ENABLED
-     - DISABLED
-
-   * - privilegedEscalation
-       Restricts escalation to root privileges. Corresponds to the allowPrivilegeEscalation field in a PodSecurityPolicy.
-     - ENABLED
-     - DISABLED
-     - DISABLED
-
-   * - read-only-root-filesystem
-       Requires the use of the read-only root file system by pod containers. Corresponds to the readOnlyRootFilesystem field in a PodSecurityPolicy.
-     - ENABLED
-     - DISABLED
-     - DISABLED
-
-   * - Sysctls
-       Controls the sysctl profile used by containers. Allowed sysctls when the constraint is enabled:
-       -	kernel.shm_rmid_forced
-       -	net.ipv4.ip_local_port_range
-       -	net.ipv4.ip_unprivileged_port_start
-       -	net.ipv4.tcp_syncookies
-       -	net.ipv4.ping_group_range
-     - ENABLED
-     - ENABLED
-     - DISABLED
+For more info on pod security admission policies, see the official Kubernetes documentation on
+`Pod Security Admission <https://kubernetes.io/docs/concepts/security/pod-security-admission/>`_.
 
 .. note::
    When security is of highest priority, Intel recommends using the 'restricted' template as
