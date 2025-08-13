@@ -1,11 +1,17 @@
 Provisioning Standalone Edge Nodes at Scale
 ===========================================
 
-This guide provides step-by-step instructions for customers wishing to provision both the operating system and Kubernetes across multiple edge nodes simultaneously. This solution is particularly relevant for OEM vendor customers who require efficient and scalable deployment capabilities. To enable this use case, we utilize the OXM deployment profile within the on-premises Edge Orchestrator.
+This guide provides step-by-step instructions for customers wishing to provision both the operating system and Kubernetes across multiple edge nodes simultaneously.
+This solution is particularly relevant for OEM vendor customers who require efficient and scalable deployment capabilities.
+To enable this use case, we utilize the OXM deployment profile within the on-premises Edge Orchestrator.
 
-When operating in OXM profile mode, the Edge Microvisor Framework (EMF) functions as a dedicated provisioning solution stack, focusing solely on initial system deployment and not enabling any edge node agents for device lifecycle management. This approach is designed specifically as a scalable provisioning solution, building upon the `single standalone edge node <https://github.com/open-edge-platform/edge-microvisor-toolkit-standalone-node>`.
+When operating in OXM profile mode, the Edge Microvisor Framework (EMF) functions as a dedicated provisioning solution stack,
+focusing solely on initial system deployment and not enabling any edge node agents for device lifecycle management.
+This approach is designed specifically as a scalable provisioning solution,
+building upon the `single standalone edge node <https://github.com/open-edge-platform/edge-microvisor-toolkit-standalone-node>`.
 
-Future releases will introduce the capability to add edge nodes to a complete device management EMF stack, allowing customers to leverage advanced lifecycle management features as their needs evolve.
+Future releases will introduce the capability to add edge nodes to a complete device management EMF stack,
+allowing customers to leverage advanced lifecycle management features as their needs evolve.
 
 Refer to the :doc:`OXM deployment profile documentation </deployment_guide/on_prem_deployment/on_prem_deployment_profiles/on_prem_oxm_profile>` for background information.
 
