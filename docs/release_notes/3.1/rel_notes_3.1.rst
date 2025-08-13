@@ -44,14 +44,14 @@ Key Highlights of the 3.1 release include, but are not limited to:
       configuring GPU SRIOV or X11.
     * Update: HookOS has been replaced with a lightweight EMT, ensuring full control
       and optimization of the components used to provision an EN.
+    * Update: User can choose the kubernetes cluster to be deployed during pre-registration in UI
+    * Update: Support for onboarding edge nodes without Serial number  
 * New: Support for Discrete GPU from Intel Battlemage B580 and Nvidia P100 along with 
   Intel integrated GPU with GPU SR-IOV.
-  configuration capabilities in EMT-S and EMF.
-* New: Security Compliance of an Edge Node is also now implemented through CVE
-  tracking for installed and available OS images.
+* New: Security Compliance of an Edge Node is also now implemented through open CVE
+  tracking for installed packages on EMT.
 * New: Kubernetes distribution on edge node is migrated from rke2 to k3s
-  achieving lightweight deployments in resource-constrained devices.
-  An EMT image with the k3s binaries already included is present via an OS Profile.
+  achieving lightweight deployments in resource-constrained devices.  
 * New: Vastly improved Application Onboarding
     * Ability to directly import helm charts, thus removing the need to write
       the deployment package for single helm chart applications.
@@ -59,6 +59,11 @@ Key Highlights of the 3.1 release include, but are not limited to:
       to help portability and debuggability.
     * Deployment packages can now be imported as tar files,
       making them more portable and easy to share.
+* New: EMF can now be configured using CLI - orch-cli * 
+* New: Support for refrence applciations 
+    * Weld Porosity [Links TBD] 
+    * Smart Parking 
+    * Loitering Detection 
 * Update: Additionally, efforts have been focusing on Trusted Compute to enable
   customers, benchmark it and adapt to minimal common EMT as trusted OS.
 
@@ -70,19 +75,21 @@ and the `Edge Manageability Framework README file <https://github.com/open-edge-
 Upgrades from Previous Releases
 ----------------------------------
 
-Edge Manageability Framework (EMF) version 3.1 supports direct 
-upgrades from version 3.0 only. Upgrade instructions are detailed in the 
-`Design Guide<https://github.com/open-edge-platform/edge-manageability-framework/blob/main/design-proposals/emf-upgrade-steps.md>`.
-Versions earlier than 3.0 are not compatible with the 3.1 upgrade path.
-
 Breaking Change Notice
 Upgrading from EMF 3.0 to 3.1 introduces a breaking change on 
 edge nodes due to a shift in the Kubernetes distribution—from RKE2 to K3s.
 As a result, all edge nodes must be re-provisioned during the upgrade 
 process to ensure compatibility and stability.
 
+Edge Manageability Framework (EMF) version 3.1 supports direct 
+upgrades from version 3.0 only. Upgrade instructions are detailed in the 
+`Design Guide<https://github.com/open-edge-platform/edge-manageability-framework/blob/main/design-proposals/emf-upgrade-steps.md>`.
+onprem upgrade guide: https://github.com/open-edge-platform/edge-manage-docs/blob/main/docs/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.rst
+cloud upgrade guide: https://github.com/open-edge-platform/edge-manage-docs/blob/main/docs/deployment_guide/cloud_deployment/cloud_how_to/cloud_upgrade.rst
+Versions earlier than 3.0 are not compatible with the 3.1 upgrade path.
 
-Known Issues
+
+Known Issues 
 ----------------------------------
 
 The following are known issues in the release. While several know issues
@@ -92,47 +99,16 @@ been still carried over from past releases.
 Provisioning
 ^^^^^^^^^^^^^
 
-* Provisioning is halted in case of Secure flag and Secure Boot BIOS
-  setting mismatch; the BIOS setting is used. There are different
-  cases:
-
-    * Case 1: Secure boot disabled in BIOS and Security Feature disabled
-      in UI - the edge node will boot seamlessly and a messages
-      "Verifying Secure Boot settings match" will be displayed
-      on the UI.
-    * Case 2: Secure boot disabled in BIOS and Security Feature
-      enabled in UI - the edge node will not boot and a message
-      "Verifying Secure Boot settings match failed" will be
-      displayed on the UI.
-
-* The OS is curated (configured) only once during edge node provisioning,
-  thus any update to the OS profile after that initial curation is not
-  applied dynamically.
 * If Out-of-Tree (OOT) driver installation with secure boot option enabled
   fails because of secure boot password request on the edge node hardware,
   reboot the edge node hardware.
 * If the edge node reboots during the full-disk encryption (FDE) stage, the
   edge node will try and boot to disk but will then fail because of partial
-  encryption. The workaround is to delete the host and then re-provision.
+  encryption. The workaround is to delete the host from EMF UI/cli and then re-provision.
 * If there are network issues during initial provisioning of the edge node,
   see :doc:`/user_guide/troubleshooting/en_recover`.
 * If an edge node fails to boot properly during initial provisioning, see
-  :doc:`/user_guide/troubleshooting/hard_disk_boot`.
-* An edge node's OS might intermittently enter maintenance mode during
-  provisioning after uOS workflow completion. Reboot the edge node,
-  possibly more than once, to get out of this state.
-* Occasionally during provisioning, a bad gateway (502) error can happen,
-  thus failing the workflow. Delete the edge node from the Product (see
-  :doc:`/user_guide/set_up_edge_infra/delete_host`) and then reboot it to
-  restart the provisioning.
-* On rare occasions, the Local Volume Manager (LVM) creation of edge nodes
-  with FDE disabled, fails because it requires input
-  through the keyboard. Reboot the edge node to proceed.
-* In certain situations during provisioning, the edge node might experience
-  a boot loop where it tries to complete the provisioning process.
-  Intel recommends powering off the edge node, deleting it (see
-  :doc:`/user_guide/set_up_edge_infra/delete_host`), and then re-provisioning
-  it.
+  :doc:`/user_guide/troubleshooting/hard_disk_boot`.  
 * Occasionally, logging and metrics are not enabled during
   deployment. This might be because the Docker\* software pull
   limit is reached. First, delete the edge node (see
@@ -145,23 +121,11 @@ Provisioning
   Docker\* account, there is a limit of 100 pulls per IP over a four-hour
   window. In this case, upgrade to the premium account or wait to
   provision more edge nodes.
-* When a user tries to re-provision without FDE, a
-  node that was previously provisioned with FDE will not succeed due to
-  un-successful persistent volume creation on disk. The workaround is to
-  manually issue the `dd` command: `dd if=/dev/zero of="/dev/disk_name"
-  bs=32m count=100` for the correct disk `disk_name` before re-provisioning
-  without FDE.
-* The AAEON UP Squared Pro 7000\* platform provisioning might fail - `Provisioning
-  Failed: 2/15: Erasing data from all non-removable disks failed`.
-  To proceed, the BIOS configuration for the eMMC controller must be disabled
-  in `Main > CRB Setup > CRB Chipset > PCH-IO Configuration >
-  SCS Configuration > eMMC Controller > Disabled`.
 * Provisioning a node with Ubuntu-ext OS profile through an on-premises
   Edge Orchestrator in an OT network will cause a failure due to squid proxy
   unauthorizing the request with 403. There is no workaround;
   utilize the base Ubuntu profile and install any additional drivers
   through Day 2 updates.
-* Logs and metrics are currently not available for Edge Nodes provisioned via LOC-A.
 
 Hosts and Infrastructure
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -321,61 +285,29 @@ been carried over from past releases.
 Provisioning Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* The proxy server could not be configured in the OS profile, thus this
-  setting is unavailable. The proxy server could not be used to connect the
-  edge node to the Product.
-* An edge node cannot be provisioned or operated behind a customer provided
-  Internet proxy server.
 * An edge node cannot be re-provisioned from scratch if it is not deleted
   first from the user interface. Follow the steps in
   :doc:`/user_guide/set_up_edge_infra/delete_host`
   and then re-provision the edge node.
-* For cloud-based onboarding, the µOS download during provisioning may run
-  up to 30 minutes because of Ethernet packet processing latencies
-  associated with the UEFI networking driver.
 * You cannot perform an initial boot behind a proxy server because the
   Original Equipment Manufacturer (OEM) BIOS does not support HTTPs booting
   behind a proxy server. After you have installed the OS, you can boot
-  behind a proxy server.
-* In a corporate environment where the Product is installed on-premises
-  behind a network proxy, the application [Dynamic Kit Adaptation Module (DKAM)] responsible for obtaining
-  EN installation artifacts fails to download the necessary artifacts
-  because of incorrect redirects to proxy and Intel Release Service.
+  behind a proxy server. Alternate is to use USB boot.
 * The embedded JSON Web Token (JWT) in the µOS are programmed to expire after a
   maximum of 60 minutes. If there is a delay in supplying the login
   details, the OS provisioning process may fail, which is the expected
   behavior. In such cases, the user must initiate the re-provisioning of
   the edge node.
-* All hardware to be onboarded into the Edge Orchestrator must have a valid
-  UUID and Serial Number as shown by the output of `dmidecode -s
-  system-uuid` and dmidecode -s system-serial-number`. If the hardware does
-  not have these correctly set, contact the vendor first.
 
 Hosts and Infrastructure Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* GPU support:
-
-  * Sharing of GPU resources between multiple applications on the same node
-    is not supported yet.
-  * GPU metrics collection is not supported yet.
-  * GPU is not detected and reported on the ASUS\* PE3000G system.
-
-* Persistent volumes:
-
-  * Local volumes are accessible only from every single node, thus local
-    volumes are subject to the availability of the underlying node and are
-    not suitable for all applications.
-  * If a node becomes unhealthy, then the local volume will also become
-    inaccessible, and an application using it will not run.
-
+* GPU support: GPU metrics collection is not supported yet.
 * The Dell\* EMC PowerEdge XR12 server with PCIe\* storage controller
   (`HBA355i
   <https://www.dell.com/en-us/shop/dell-hba355i-controller-front/apd/405-aaxv/storage-drives-media#overview_section>`_)
   is not supported by the cloud-based provisioning process. Remove this
   RAID controller from your node.
-* The Product does not differentiate P-cores and E-cores in Intel :sup:`®`
-  Core™ processor-based platforms.
 * You can create two sites with the same name under two different regions,
   although this does not cause the nodes to be present when creating
   clusters. Intel recommends that sites have unique, non-overlapping names.
