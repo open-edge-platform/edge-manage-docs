@@ -38,7 +38,7 @@ There is two login methods available:
         ./orch-cli login <USER> --keycloak https://keycloak.<CLUSTER_FQDN>/realms/master
         Enter Password:
 
-    #. **Password argument** - Alternatively the password can be provided as a second command line argument - the recommended way is to use prompt based login above.
+ #. **Password argument** - Alternatively the password can be provided as a second command line argument - the recommended way is to use prompt based login above.
     When using this method, be cautious as the password may be exposed in the command line history. If using this method exporting the password as an environment variable is recommended.
 
     .. code-block:: bash
