@@ -20,6 +20,8 @@ Set up environment
 
 #. Install Edge Orchestrator CLI (orch-cli) from Intel release service.
 
+:doc:`/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide`
+
 #. Login to the Edge Orchestrator.
 
    .. code-block:: shell
