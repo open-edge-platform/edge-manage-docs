@@ -47,16 +47,6 @@ are pre-curated and provided by the |software_prod_name| team. In general, only
 one instance of an extension is deployed to an Edge Node Cluster. They are
 divided into two sets: Cluster Extensions and Application Extensions.
 
-.. _cluster_base_extension:
-
-Cluster Base Extensions Deployment Package
-""""""""""""""""""""""""""""""""""""""""""
-- Cluster Base Extensions Deployment Package is a set of pre-curated Extension
-  Applications that extend the basic Kubernetes\* deployment on the Edge Node
-  Cluster to provide enhanced operational capabilities like Gatekeeper\*,
-  Prometheus\*, Fluent Bit\*, OpenEBS\*, and others. These Deployment Packages are
-  deployed by default on every Edge Node Cluster.
-
 .. _application_extension:
 
 Application Extensions Deployment Packages
@@ -65,7 +55,9 @@ Application Extensions Deployment Packages
   Deployment Packages loaded onto |software_prod_name| by default that group
   Application Extensions. These are deployed on demand by the user to provide
   access to commonly used utility services like Loadbalancer, GPU support,
-  SRIOV support.
+  SRIOV support. **Note**: Previously, a set of curated "base" extensions were installed
+  by default on the Edge Node Cluster. The applications in this package have been
+  moved to their own individual packages that can be installed at the user's discretion.
 
 .. figure:: images/app-orch-data-model.png
    :alt: Data Model of Application Orchestration in Open Edge Platform

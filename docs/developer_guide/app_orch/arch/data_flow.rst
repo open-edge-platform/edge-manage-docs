@@ -53,11 +53,11 @@ deletion of multi-tenant Projects.
 
 Specifically, on Project creation the Tenant Provisioner will create:
 
-* Application and Cluster Base Extensions in the Application Catalog
+* Application Extensions in the Application Catalog
 * A new project in the OCI Harbor Registry
 
 or on deletion of a Project the Tenant Provisioner will delete:
 
-* The Application and Cluster Base Extensions in the Application Catalog
+* The Application Extensions in the Application Catalog
 * The project in the OCI Harbor Registry
 * Any Deployments that had been made in that project
