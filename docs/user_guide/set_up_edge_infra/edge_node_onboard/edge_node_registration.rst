@@ -4,12 +4,12 @@ Register Edge Nodes in |software_prod_name|
 |software_prod_name| supports the following registration methods:
 
 #. UI-assisted registration
-#. Bulk import of edge devices through the `Bulk Import Tools <https://github.com/open-edge-platform/infra-core/tree/main/bulk-import-tools>`_
+#. Bulk import of edge devices through the `orch-cli`
 
 .. note:: When you use the **LOC-A software**, you must register the device there using one of the available methods. You do not need to register the device through |software_prod_name|.
 
 Register Using the User Interface
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To register your edge node(s) through the User Interface (UI), you must be a member
 of the `Edge Manager Group <./../../shared/shared_iam_groups.html#project-id-host-manager-group>`__. Then:
