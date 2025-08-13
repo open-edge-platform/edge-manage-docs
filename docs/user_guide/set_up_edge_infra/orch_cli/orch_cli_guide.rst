@@ -51,11 +51,13 @@ Running commands
 Generally the orch-cli commands follow this pattern for execution:
 
 .. code-block:: bash
+
     ./orch-cli <verb> <noun> <subject(s)> --<options>
 
 The endpoint and the project must be specified for most commands.
 
 .. code-block:: bash
+    
     --api-endpoint https://api.<CLUSTER_FQDN>
     --project <PROJECT_NAME>
 
