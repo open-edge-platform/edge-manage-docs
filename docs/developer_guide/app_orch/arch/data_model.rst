@@ -24,9 +24,7 @@ configuring the application.
 
 Extensions are a set of pre-curated applications that are provided by the
 |software_prod_name| team. They are loaded on creation of a Multi-Tenancy
-project. Some are installed automatically on the Edge Node
-(those in the :ref:`cluster_base_extension`), and others are part of
-the :ref:`application_extension` that can be installed by end users on demand.
+project and provide :ref:`application_extensions` that can be installed by end users on demand.
 They usually include utility packages such as cert-manager, observability, etc.
 
 Other end-user Applications will be designed and added by end users.
@@ -47,7 +45,7 @@ are pre-curated and provided by the |software_prod_name| team. In general, only
 one instance of an extension is deployed to an Edge Node Cluster. They are
 divided into two sets: Cluster Extensions and Application Extensions.
 
-.. _application_extension:
+.. _application_extensions:
 
 Application Extensions Deployment Packages
 """"""""""""""""""""""""""""""""""""""""""
