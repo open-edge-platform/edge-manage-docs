@@ -44,8 +44,9 @@ Key Highlights of the 3.1 release include, but are not limited to:
       configuring GPU SRIOV or X11.
     * Update: HookOS has been replaced with a lightweight EMT, ensuring full control
       and optimization of the components used to provision an EN.
-    * Update: User can choose the kubernetes cluster to be deployed during pre-registration in UI
-    * Update: Support for onboarding edge nodes without Serial number  
+    * Update: Support for onboarding edge nodes without Serial number
+    * Update: Simplified host provisioning flow in the UI e.g User can choose the kubernetes cluster to be deployed 
+      during registration in UI.
 * New: Support for Discrete GPU from Intel Battlemage B580 and Nvidia P100 along with 
   Intel integrated GPU with GPU SR-IOV.
 * New: Security Compliance of an Edge Node is also now implemented through open CVE
@@ -57,7 +58,7 @@ Key Highlights of the 3.1 release include, but are not limited to:
       the deployment package for single helm chart applications.
     * Deployment Packages are now directly exportable from the user interface,
       to help portability and debuggability.
-    * Deployment packages can now be imported as tar files,
+    * Deployment packages can now be imported as tar.gz files,
       making them more portable and easy to share.
 * New: EMF can now be configured using - orch-cli a command line utility similar to kubectl.  
 * New: Support for reference applications
@@ -65,7 +66,7 @@ Key Highlights of the 3.1 release include, but are not limited to:
     * `Smart Parking <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=smart-parking>` 
     * `Loitering Detection <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=loitering-detection>` 
 * Update: Additionally, efforts have been focusing on Trusted Compute to enable
-  customers, benchmark it and adapt to minimal common EMT as trusted OS.
+  customers, benchmark it and adapt to minimal common EMT as trusted OS. TODO: Update by Prakash needed
 
 All of the codebase is Apache\* software version 2.0 licensed and available on Github.
 
@@ -138,14 +139,11 @@ Clusters and Application Deployment
 * Even though deployment profile override values are present, they do not
   appear in the deployment package application details pop-up screen.
 * Temporary inconsistent states in the user interface between deployments
-  and cluster can show incorrect information on the dashboard.
-* Occasionally, because of inconsistency in handling cluster status, some
-  deployments are shown as `Down` but the applications are shown as
-  `Running`. The applications' state is the correct one.
+  and cluster can show incorrect information on the dashboard. TODO: Check in latest UI
 * When creating a cluster, you must select a region and a site but the
   region and site are not automatically added to the cluster's deployment
   metadata.  You must add them as deployment metadata manually if you
-  desire.
+  desire. TODO: Check in latest UI region is added, check site
 * Any USB peripherals connected to the edge node can be connected to a
   VM-based application. However, although the USB peripheral(s) are
   detached from the edge node, the VM-based application will still have the
@@ -153,7 +151,8 @@ Clusters and Application Deployment
   requiring USB peripherals, it will fail.
 * The same USB peripheral cannot be shared between the same type of
   applications, while the same USB peripheral can be simultaneously
-  connected to the different types of applications. In other words, at the
+  connected to the different types of applications.
+   In other words, at the
   same time, multiple container-based applications cannot occupy the same
   USB peripheral, and the same USB peripheral cannot be connected to
   multiple VM-based applications. However, a container-based application
@@ -163,11 +162,11 @@ Clusters and Application Deployment
   the USB package for container-based applications do not have the same USB
   peripheral in their `usbList` configuration. This prevents a container
   and VM-based application from sharing the same USB peripheral,
-  simultaneously.
-* Support for in-place upgrades of Edge Node Kubernetes cluster versions
+  simultaneously. TODO: Rephrase it 
+* Support for in-place upgrades of Edge Node Kubernetes cluster 
   is currently not available. This is to be addressed in a future release.
-  Currently in 3.1, Cluster upgrade can done by deleting the cluster and
-  recreating with a new cluster template version.
+  Currently in 3.1, Cluster upgrade can done by deleting the cluster and reprovisioning 
+  the Edgne Nodes and recreating with a new cluster template version.
 * Mulit-Node Cluster Provision is not supported in this release. This is to be
   addressed in future releases.
 * Cluster templates can be deleted even if they are actively being used by
@@ -175,7 +174,7 @@ Clusters and Application Deployment
   such as the inability to manage or update clusters associated with the
   deleted template. A fix for this issue is planned for a future release.
 * AI applications from the earlier release - Intel® SceneScape version 2024.1.2,
-  Intel® Edge Insights System version 2.0 enhanced, and Intel® Geti™ solution version 2.6.0 do not work on the 3.1 release. These applications will
+  Intel® Edge Insights System version 2.0 enhanced, and Intel® Geti™ solution version 2.6.0 do not work on the 3.1 release. These applications may
   be available in future releases.
 * If an application containing CRDs is deployed and subsequently undeployed, it
   may leave behind orphaned CRDs and related cluster-level objects. This can
@@ -183,13 +182,13 @@ Clusters and Application Deployment
   See :doc:`troubleshooting guide </user_guide/troubleshooting/deploy_issue>`.
 * When using the "Create Single-host Clusters" option during host registration,
   host names must be in lowercase; otherwise, cluster creation will fail.
+  Deauthorizing a host does not automatically delete the associated cluster. To delete a deauthorized host, 
+  the associated cluster must be deleted first. Note that deleting the cluster for a deauthorized host is
+  always recommended to make it inaccessible through EMF.
 
 User Experience
 ^^^^^^^^^^^^^^^^^
 
-* The Search feature in the Locations' hierarchical display (that is,
-  Regions and Sites) does not display the correct search results.  This
-  known issue will be resolved in an upcoming release.
 * `Let's Encrypt` certificates and Certificate Authority (CA) are deployed
   by default. `Let's Encrypt` poses an issue where if the Certificate
   Authority is changed, the edge nodes will not trust the Product anymore.
@@ -205,13 +204,9 @@ User Experience
   interface informs them that "Additional Permissions are Needed". As a
   workaround, click a different tab on the header bar to redirect to the
   login credentials screen.
-* The search field at the top of most table pages (for example, Cluster,
-  Hosts) enables you to search the `Name` field and other selected fields
-  within that table. While the `Name` field is always searchable, some
-  columns are not included in the search.
 * Telemetry Orchestrator services (OpenTelemetry\* and Mimir\*) do not have
   role-based access authorization enabled in the southbound interfaces
-  towards the edge node.
+  towards the edge node. TODO: Check with Chris
 * If the Product and Keycloak\* solution are restarted separately or if
   there is a Keycloak signing key rotation, the Product returns error 403.
   The workaround is to log out, close the browser, and wait approximately
@@ -221,7 +216,7 @@ User Experience
 * The querying capabilities of Mimir on orchestrator-observability and
   edgenode-observability may occasionally fail due to loss of communication
   between querier and query-frontend. The workaround is a restart of
-  querier pod through Argo CD tool.
+  querier pod through Argo CD tool. TODO: Check with Chris
 * A configurable toggle for FDE and secure boot (SB)
   is available during host configuration and is usable even if the edge
   node goes through zero-touch provisioning (ZTP). When provisioning
@@ -230,11 +225,11 @@ User Experience
   License`. You will need to provide the license, then a `LaunchCheck` will
   start to download a valid license every 60 seconds and will retry up to
   10 times, for a total of 1 hour. If no license is obtained after 10
-  retries, the EN will be rebooted as part of the enforcement process.
+  retries, the EN will be rebooted as part of the enforcement process.TODO: Check with Ram
 * If the expiration date of an edge node is pre-set to an earlier date than
   its original expiration on the IRC portal, after the edge node is fully
   provisioned, the edge node will not show a license error and will still
-  be able to run with a valid license.
+  be able to run with a valid license. TODO: Check with Ram
 * Occasionally, a reboot of the Product makes the Argo CD tool's `root-app`
   and `secret-config` remain in the `provisioning` state, and prevented
   creation of application deployment. The only known workaround is to
@@ -248,17 +243,7 @@ User Experience
   However, if the nodes pass the "Secure Boot MATCH" stage of provisioning,
   any inputs entered may be lost. The workaround is to confirm the cluster
   creation inputs prior to this stage or to re-enter the values if they are
-  lost.
-* You will notice a failed Kubernetes job when looking at the
-  platform-keycloak deployment in Argo CD tool. There is a `known issue
-  <https://github.com/bitnami/charts/issues/29851>`_ in the
-  bitnami/keycloak-config-cli job when used with Keycloak solution version
-  1.  The job will fail with an unrecognized field "hideOnLogin". You can
-  ignore this error because this field is not critical to Edge Manageability
-  Framework.
-* During Interactive Onboarding after the 3rd failed attempt to provide the
-  password the installation proceeds but has not obtained a valid JWT
-  token, thus failing to onboard the node.
+  lost. TODO: Check with Validation
 * During host state transitions, briefly such as registered to onboarded or
   configured and also active to deleted, the user interface might briefly
   show an outdated and/or inconsistent state.
@@ -313,53 +298,41 @@ Clusters and Application Deployment Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * A deployment package cannot be created by including two applications with
-  the same name but with different publishers or versions. Do not include
+  the same name but with different versions. Do not include
   two applications with the same name in a single deployment project. You
   can modify the name of one of the applications if required.
 * Parameter template variable names do not support the underscore `_` char.
   For example, `parameter_name=models_repository.image.tag` is not valid.
   If revising the Helm\* chart for the application to remove `_` is not
-  viable, use multiple profiles for that application.
+  viable, use multiple profiles for that application. TODO: Check in latest UI
 * Multiple "-" (for example, `1.0.0-dev-test`) characters are not allowed
   in an application's chart or version during creation.
 * The maximum number of unique deployments is limited to 300 per Product
   instance. This limitation spawns from the AWS service used in the
   backend. Based on the number of edge nodes, each deployment can have
-  multiple running instances.
-* You must not modify the extension deployment packages (SR-IOV,
-  Virtualization, Load Balancer, Intel® GPU) and cluster templates
-  (restricted, baseline, and privileged). These are automatically created
-  when the Product is installed.
+  multiple running instances. TODO: Check with Platform Team
 * When you use "%GeneratedDockerCredential%" in the Application Profile,
   any updates made to the image registry in Catalog are not automatically
   applied to existing deployments. To update the image pull secret, you
   must recreate the existing deployments.
-  <https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/#before-you-begin>`_.
-* When you create deployments to multiple target clusters, some deployments
-  show error status messages rarely, even though all Kubernetes resources
-  are created correctly. This is an issue in the Fleet agent and was fixed
-  by the Fleet community but not released yet. To resolve it, go to
-  Rancher UI > Continuous Delivery > Cluster and then click the "Force
-  Update" button.
-* Changes to a host’s labels (update, removal) performed after the cluster
-  has already been created will not be propagated to the corresponding
-  Kubernetes nodes. This has been documented internally and a fix for this issue will
-  be provided in the next release.
+  <https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/#before-you-begin>`_)
 * Bundle-Deployments for Application/Extension Deployments in Automatic Mode
   of deployment are not cleaned-up on the Cluster Deletion. This results in
   showing any errors from these deployments in subsequent successful deployments.
-  Refer :ref:`deploymentpage_errors`.
+  Refer :ref:`deploymentpage_errors`. TODO? Check with Validation team
 * When using the "Create Single-host Clusters" option during host registration,
   a new cluster is automatically created and remains in "provisioning" state
   until host onboarding. Enhanced state descriptions will be provided in a
   future release.
+
+  
 
 Multi-tenancy Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * If you add a user to many groups that provide project access, some Edge
   Orchestrator functionality may fail because of size limits for the
-  authorization token used in a web browser.
+  authorization token used in a web browser. TODO: Check with Validation
 
   As an example, as user added to more than five groups of type
   `group_projectid_edgemanagergroup` or `group_projectid_edgeoperatorgroup`
@@ -378,10 +351,10 @@ User Experience Limitations
 * Site name must be unique across all regions, that is, no two sites can
   have the same name in the Product deployment. Otherwise, the host
   allocated to one of the overlapping names might not appear in the user
-  interface.
+  interface. TODO: Check this Teos Comments
 * Remote access to the node is supported only at the virtual machine
   console and the kube-shell level. It is not user-supported at the OS
-  level.
+  level. TODO: We do support SSH, does this apply?
 * The OpenTelemetry Collector service on the edge node host acts as the
   single gateway for forwarding all logs (host agents and cluster) and
   hardware metrics to the Product. If the Collector service fails, then
@@ -396,11 +369,11 @@ User Experience Limitations
   metric query is set for 5 the metrics for the host `down` will be
   present. Also, if you choose a time period in time where the host did
   exist, then the host will be displayed in the dropdown. Wait until the
-  proper refresh time.
+  proper refresh time. TODO:Check with Chris
 * Accessing more than one edge web application at a time in a browser through
   the Service Link feature (Application Service Proxy) is not supported.
   The workaround is to open a second application in an incognito window or a
-  different browser.
+  different browser. TODO check with Scott
 * Scheduling a recurring maintenance to happen on the last day of the month
   before midnight in a timezone that is behind GMT/UTC, when the schedule
   is after midnight in GMT/UTC causes the maintenance to be scheduled on
@@ -417,12 +390,9 @@ User Experience Limitations
   certificates, thus if it's re-registered with the correct information it
   will immediately re-connect to the Edge Orchestrator
   but it will be rejected by the Edge Orchestrator APIs. Upon token
-  expiry (at most 1 hour) the reconnection will not happen.
+  expiry (at most 1 hour) the reconnection will not happen. TODO: Check on theuse case with Krishna of only deauthorize or only delete
 * The "Total Provisioning Time" metric is only available for approximately
   15 days since a node was provisioned.
-* The hosts table's `Operating System` column does not show the desired OS for
-  `Registered` hosts. It will only show the current OS of `Provisioned` hosts.
-  You can view the desired OS of a host on the host details page under `Updates`.
 
 Recommendations
 ---------------------
