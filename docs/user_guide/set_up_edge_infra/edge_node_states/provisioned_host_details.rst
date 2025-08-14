@@ -229,6 +229,17 @@ Click the **OS Profile** tab to view the OS profile details:
    * - Kernel Command
      - Command line options for the kernel on the host.
 
+.. list-table:: System Overview
+   :widths: 50 50
+   :header-rows: 1
+
+   * - Field
+     - Description
+   * - Installed Packages
+     - The list of installed packages on the installed OS.
+   * - Cves
+     - The list of existing CVEs on the installed OS.
+
 View Host Label
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 

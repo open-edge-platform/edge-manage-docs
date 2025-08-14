@@ -4,7 +4,8 @@ Clusters (Edge Node)
 Edge Node observability for **Clusters** provides visibility into the health
 and performance of the Kubernetes* cluster deployed on the Edge Node. For
 cluster telemetry, the shipping to a centralized location is done via two
-separate channels.
+separate channels. **Note** observability extensions are not installed by default
+on the Edge Node Cluster and must be installed by the user.
 
 * **Logs** are collected via ``Fluentbit`` instance and forwarded to
   :doc:`/developer_guide/agents/arch/platform_observability`,
