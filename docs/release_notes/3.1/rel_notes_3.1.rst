@@ -44,7 +44,7 @@ Key Highlights of the 3.1 release include, but are not limited to:
       configuring GPU SRIOV or X11.
     * Update: HookOS has been replaced with a lightweight EMT, ensuring full control
       and optimization of the components used to provision an EN.
-    * Update: User can choose the kubernetes cluster to be deployed during pre-registration in UI
+    * Update: User can choose the kubernetes cluster to be deployed during registration in UI
     * Update: Support for onboarding edge nodes without Serial number  
 * New: Support for Discrete GPU from Intel Battlemage B580 and Nvidia P100 along with 
   Intel integrated GPU with GPU SR-IOV.
@@ -57,15 +57,15 @@ Key Highlights of the 3.1 release include, but are not limited to:
       the deployment package for single helm chart applications.
     * Deployment Packages are now directly exportable from the user interface,
       to help portability and debuggability.
-    * Deployment packages can now be imported as tar files,
+    * Deployment packages can now be imported as tar.gz files,
       making them more portable and easy to share.
 * New: EMF can now be configured using CLI - orch-cli * 
-* New: Support for refrence applciations 
+* New: Support for new AI suite applications
     * Weld Porosity [Links TBD] 
     * Smart Parking 
     * Loitering Detection 
 * Update: Additionally, efforts have been focusing on Trusted Compute to enable
-  customers, benchmark it and adapt to minimal common EMT as trusted OS.
+  customers, benchmark it and adapt to minimal common EMT as trusted OS. TODO: Update by Prakash needed
 
 All of the codebase is Apache\* software version 2.0 licensed and available on Github.
 
@@ -73,13 +73,8 @@ For a detailed list of features, see the :doc:`Overview page </user_guide/index>
 and the `Edge Manageability Framework README file <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/README.md>`_.
 
 Upgrades from Previous Releases
-----------------------------------
+---------------------------------
 
-Breaking Change Notice
-Upgrading from EMF 3.0 to 3.1 introduces a breaking change on 
-edge nodes due to a shift in the Kubernetes distribution—from RKE2 to K3s.
-As a result, all edge nodes must be re-provisioned during the upgrade 
-process to ensure compatibility and stability.
 
 Edge Manageability Framework (EMF) version 3.1 supports direct 
 upgrades from version 3.0 only. Upgrade instructions are detailed in the 
@@ -87,6 +82,12 @@ upgrades from version 3.0 only. Upgrade instructions are detailed in the
 onprem upgrade guide: https://github.com/open-edge-platform/edge-manage-docs/blob/main/docs/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.rst
 cloud upgrade guide: https://github.com/open-edge-platform/edge-manage-docs/blob/main/docs/deployment_guide/cloud_deployment/cloud_how_to/cloud_upgrade.rst
 Versions earlier than 3.0 are not compatible with the 3.1 upgrade path.
+
+Breaking Change Notice
+Upgrading from EMF 3.0 to 3.1 introduces a breaking change on 
+edge nodes due to a shift in the Kubernetes distribution from RKE2 to K3s.
+As a result, all edge nodes must be re-provisioned during the upgrade 
+process to ensure compatibility.
 
 
 Known Issues 
@@ -141,14 +142,11 @@ Clusters and Application Deployment
 * Even though deployment profile override values are present, they do not
   appear in the deployment package application details pop-up screen.
 * Temporary inconsistent states in the user interface between deployments
-  and cluster can show incorrect information on the dashboard.
-* Occasionally, because of inconsistency in handling cluster status, some
-  deployments are shown as `Down` but the applications are shown as
-  `Running`. The applications' state is the correct one.
+  and cluster can show incorrect information on the dashboard. TODO: Check in latest UI
 * When creating a cluster, you must select a region and a site but the
   region and site are not automatically added to the cluster's deployment
   metadata.  You must add them as deployment metadata manually if you
-  desire.
+  desire. TODO: Check in latest UI region is added, check site
 * Any USB peripherals connected to the edge node can be connected to a
   VM-based application. However, although the USB peripheral(s) are
   detached from the edge node, the VM-based application will still have the
@@ -156,7 +154,8 @@ Clusters and Application Deployment
   requiring USB peripherals, it will fail.
 * The same USB peripheral cannot be shared between the same type of
   applications, while the same USB peripheral can be simultaneously
-  connected to the different types of applications. In other words, at the
+  connected to the different types of applications.
+   In other words, at the
   same time, multiple container-based applications cannot occupy the same
   USB peripheral, and the same USB peripheral cannot be connected to
   multiple VM-based applications. However, a container-based application
@@ -166,11 +165,11 @@ Clusters and Application Deployment
   the USB package for container-based applications do not have the same USB
   peripheral in their `usbList` configuration. This prevents a container
   and VM-based application from sharing the same USB peripheral,
-  simultaneously.
-* Support for in-place upgrades of Edge Node Kubernetes cluster versions
+  simultaneously. TODO: Rephrase it 
+* Support for in-place upgrades of Edge Node Kubernetes cluster 
   is currently not available. This is to be addressed in a future release.
-  Currently in 3.1, Cluster upgrade can done by deleting the cluster and
-  recreating with a new cluster template version.
+  Currently in 3.1, Cluster upgrade can done by deleting the cluster and reprovisioning 
+  the Edgne Nodes and recreating with a new cluster template version.
 * Mulit-Node Cluster Provision is not supported in this release. This is to be
   addressed in future releases.
 * Cluster templates can be deleted even if they are actively being used by
@@ -178,7 +177,7 @@ Clusters and Application Deployment
   such as the inability to manage or update clusters associated with the
   deleted template. A fix for this issue is planned for a future release.
 * AI applications from the earlier release - Intel® SceneScape version 2024.1.2,
-  Intel® Edge Insights System version 2.0 enhanced, and Intel® Geti™ solution version 2.6.0 do not work on the 3.1 release. These applications will
+  Intel® Edge Insights System version 2.0 enhanced, and Intel® Geti™ solution version 2.6.0 do not work on the 3.1 release. These applications may
   be available in future releases.
 * If an application containing CRDs is deployed and subsequently undeployed, it
   may leave behind orphaned CRDs and related cluster-level objects. This can
@@ -186,6 +185,9 @@ Clusters and Application Deployment
   See :doc:`troubleshooting guide </user_guide/troubleshooting/deploy_issue>`.
 * When using the "Create Single-host Clusters" option during host registration,
   host names must be in lowercase; otherwise, cluster creation will fail.
+  Deauthorizing a host does not automatically delete the associated cluster. To delete a deauthorized host, 
+  the associated cluster must be deleted first. Note that deleting the cluster for a deauthorized host is
+  always recommended to make it inaccessible through EMF.
 
 User Experience
 ^^^^^^^^^^^^^^^^^
@@ -316,53 +318,41 @@ Clusters and Application Deployment Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * A deployment package cannot be created by including two applications with
-  the same name but with different publishers or versions. Do not include
+  the same name but with different versions. Do not include
   two applications with the same name in a single deployment project. You
   can modify the name of one of the applications if required.
 * Parameter template variable names do not support the underscore `_` char.
   For example, `parameter_name=models_repository.image.tag` is not valid.
   If revising the Helm\* chart for the application to remove `_` is not
-  viable, use multiple profiles for that application.
+  viable, use multiple profiles for that application. TODO: Check in latest UI
 * Multiple "-" (for example, `1.0.0-dev-test`) characters are not allowed
   in an application's chart or version during creation.
 * The maximum number of unique deployments is limited to 300 per Product
   instance. This limitation spawns from the AWS service used in the
   backend. Based on the number of edge nodes, each deployment can have
-  multiple running instances.
-* You must not modify the extension deployment packages (SR-IOV,
-  Virtualization, Load Balancer, Intel® GPU) and cluster templates
-  (restricted, baseline, and privileged). These are automatically created
-  when the Product is installed.
+  multiple running instances. TODO: Check with Platform Team
 * When you use "%GeneratedDockerCredential%" in the Application Profile,
   any updates made to the image registry in Catalog are not automatically
   applied to existing deployments. To update the image pull secret, you
   must recreate the existing deployments.
-  <https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/#before-you-begin>`_.
-* When you create deployments to multiple target clusters, some deployments
-  show error status messages rarely, even though all Kubernetes resources
-  are created correctly. This is an issue in the Fleet agent and was fixed
-  by the Fleet community but not released yet. To resolve it, go to
-  Rancher UI > Continuous Delivery > Cluster and then click the "Force
-  Update" button.
-* Changes to a host’s labels (update, removal) performed after the cluster
-  has already been created will not be propagated to the corresponding
-  Kubernetes nodes. This has been documented internally and a fix for this issue will
-  be provided in the next release.
+  <https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/#before-you-begin>`_)
 * Bundle-Deployments for Application/Extension Deployments in Automatic Mode
   of deployment are not cleaned-up on the Cluster Deletion. This results in
   showing any errors from these deployments in subsequent successful deployments.
-  Refer :ref:`deploymentpage_errors`.
+  Refer :ref:`deploymentpage_errors`. TODO? Check with Validation team
 * When using the "Create Single-host Clusters" option during host registration,
   a new cluster is automatically created and remains in "provisioning" state
   until host onboarding. Enhanced state descriptions will be provided in a
   future release.
+
+  
 
 Multi-tenancy Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * If you add a user to many groups that provide project access, some Edge
   Orchestrator functionality may fail because of size limits for the
-  authorization token used in a web browser.
+  authorization token used in a web browser. TODO: Check with Validation
 
   As an example, as user added to more than five groups of type
   `group_projectid_edgemanagergroup` or `group_projectid_edgeoperatorgroup`
