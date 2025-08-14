@@ -216,7 +216,7 @@ User Experience
   The workaround is to log out, close the browser, and wait approximately
   15 minutes and then log back in and retry; the request should succeed as
   soon as the Product refreshes the new signing keys from Keycloak
-  solution, which happens periodically and automatically. TODO: Review with Gary/John
+  solution, which happens periodically and automatically.
 * The querying capabilities of Mimir on orchestrator-observability and
   edgenode-observability may occasionally fail due to loss of communication
   between querier and query-frontend. The workaround is a restart of
@@ -237,7 +237,7 @@ User Experience
 * Occasionally, a reboot of the Product makes the Argo CD tool's `root-app`
   and `secret-config` remain in the `provisioning` state, and prevented
   creation of application deployment. The only known workaround is to
-  reinstall the Product. TODO: Review with Gary/John
+  reinstall the Product.
 * When the edge node is running, if the network connection is moved from
   one interface to another interface on the edge node, there will be a
   delay of approximately 15 minutes before all edge node agents reconnect
@@ -253,10 +253,10 @@ User Experience
   show an outdated and/or inconsistent state.
 * On the rare event that the Org-Admin-Group is not created in keycloak,
   restarting the keycloak-tenant-controller pod via the Argo CD UI will
-  force the initial roles and groups to be recreated. TODO: Review with Gary/John
+  force the initial roles and groups to be recreated.
 * Users created in Keycloak must have email address set up to properly
   perform authentication to Grafana Observability Dashboards. Users without
-  email set won't be able to access metrics and logs via Grafana UI. TODO: Review with Gary/John
+  email set won't be able to access metrics and logs via Grafana UI.
 * On ASRock platform the hardware resources are not displayed properly in
   the Infrastructure tab, this has no impact on functionality of the nodes
   for cluster or application installation.
