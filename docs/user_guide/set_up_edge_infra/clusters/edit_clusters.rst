@@ -26,4 +26,9 @@ To edit clusters, follow these steps:
       :width: 100 %
       :alt: Edit Cluster
 
+   .. figure:: ../images/edit_cluster_view.png
+      :width: 100 %
+      :alt: Edit Cluster View
+
+
 #. The **Edit Cluster** page appears. Edit the clusters as desired. To delete a metadata, click the **Trash** icon.

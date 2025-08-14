@@ -21,7 +21,7 @@ cluster template. Intel provides and maintains these default templates. Each
 built-in template provides different restrictions that are automatically applied
 for customer workloads:
 
-.. figure:: images/cluster_template.png
+.. figure:: images/default_cluster_templates.png
    :width: 100 %
    :alt: Default Cluster Templates
 

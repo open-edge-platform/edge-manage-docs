@@ -15,13 +15,15 @@ Perform the following steps to delete a cluster template:
 
 2. In the **Action** column, click the three-dot (...) icon, then click **Delete**.
 
-.. figure:: images/delete_customer_template.png
+.. figure:: images/delete_cluster_template.png
    :width: 100 %
    :alt: Delete Cluster Template
 
 3. On the confirmation window, click **Delete**.
 
-
+.. figure:: images/delete_cluster_template_confirmation.png
+   :width: 100 %
+   :alt: Delete Cluster Template
 
 
 

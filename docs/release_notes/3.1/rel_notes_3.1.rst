@@ -428,10 +428,6 @@ Clusters and Application Deployment Limitations
   a new cluster is automatically created and remains in "provisioning" state
   until host onboarding. Enhanced state descriptions will be provided in a
   future release.
-* Deauthorizing a host does not automatically delete the associated cluster. To
-  delete a deauthorized host, the associated cluster must be deleted first. Note that
-  deleting the cluster for a deauthorized host is always recommended to make it
-  inaccessible through EMF.
 
 Multi-tenancy Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^
