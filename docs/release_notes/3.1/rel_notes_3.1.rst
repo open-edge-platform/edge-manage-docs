@@ -44,8 +44,9 @@ Key Highlights of the 3.1 release include, but are not limited to:
       configuring GPU SRIOV or X11.
     * Update: HookOS has been replaced with a lightweight EMT, ensuring full control
       and optimization of the components used to provision an EN.
-    * Update: User can choose the kubernetes cluster to be deployed during registration in UI
-    * Update: Support for onboarding edge nodes without Serial number  
+    * Update: Support for onboarding edge nodes without Serial number
+    * Update: Simplified host provisioning flow in the UI e.g User can choose the kubernetes cluster to be deployed 
+      during registration in UI.
 * New: Support for Discrete GPU from Intel Battlemage B580 and Nvidia P100 along with 
   Intel integrated GPU with GPU SR-IOV.
 * New: Security Compliance of an Edge Node is also now implemented through open CVE
@@ -192,9 +193,6 @@ Clusters and Application Deployment
 User Experience
 ^^^^^^^^^^^^^^^^^
 
-* The Search feature in the Locations' hierarchical display (that is,
-  Regions and Sites) does not display the correct search results.  This
-  known issue will be resolved in an upcoming release.
 * `Let's Encrypt` certificates and Certificate Authority (CA) are deployed
   by default. `Let's Encrypt` poses an issue where if the Certificate
   Authority is changed, the edge nodes will not trust the Product anymore.
@@ -210,23 +208,19 @@ User Experience
   interface informs them that "Additional Permissions are Needed". As a
   workaround, click a different tab on the header bar to redirect to the
   login credentials screen.
-* The search field at the top of most table pages (for example, Cluster,
-  Hosts) enables you to search the `Name` field and other selected fields
-  within that table. While the `Name` field is always searchable, some
-  columns are not included in the search.
 * Telemetry Orchestrator services (OpenTelemetry\* and Mimir\*) do not have
   role-based access authorization enabled in the southbound interfaces
-  towards the edge node.
+  towards the edge node. TODO: Check with Chris
 * If the Product and Keycloak\* solution are restarted separately or if
   there is a Keycloak signing key rotation, the Product returns error 403.
   The workaround is to log out, close the browser, and wait approximately
   15 minutes and then log back in and retry; the request should succeed as
   soon as the Product refreshes the new signing keys from Keycloak
-  solution, which happens periodically and automatically.
+  solution, which happens periodically and automatically. TODO: Review with Gary/John
 * The querying capabilities of Mimir on orchestrator-observability and
   edgenode-observability may occasionally fail due to loss of communication
   between querier and query-frontend. The workaround is a restart of
-  querier pod through Argo CD tool.
+  querier pod through Argo CD tool. TODO: Check with Chris
 * A configurable toggle for FDE and secure boot (SB)
   is available during host configuration and is usable even if the edge
   node goes through zero-touch provisioning (ZTP). When provisioning
@@ -235,15 +229,15 @@ User Experience
   License`. You will need to provide the license, then a `LaunchCheck` will
   start to download a valid license every 60 seconds and will retry up to
   10 times, for a total of 1 hour. If no license is obtained after 10
-  retries, the EN will be rebooted as part of the enforcement process.
+  retries, the EN will be rebooted as part of the enforcement process.TODO: Check with Ram
 * If the expiration date of an edge node is pre-set to an earlier date than
   its original expiration on the IRC portal, after the edge node is fully
   provisioned, the edge node will not show a license error and will still
-  be able to run with a valid license.
+  be able to run with a valid license. TODO: Check with Ram
 * Occasionally, a reboot of the Product makes the Argo CD tool's `root-app`
   and `secret-config` remain in the `provisioning` state, and prevented
   creation of application deployment. The only known workaround is to
-  reinstall the Product.
+  reinstall the Product. TODO: Review with Gary/John
 * When the edge node is running, if the network connection is moved from
   one interface to another interface on the edge node, there will be a
   delay of approximately 15 minutes before all edge node agents reconnect
@@ -253,26 +247,23 @@ User Experience
   However, if the nodes pass the "Secure Boot MATCH" stage of provisioning,
   any inputs entered may be lost. The workaround is to confirm the cluster
   creation inputs prior to this stage or to re-enter the values if they are
-  lost.
+  lost. TODO: Check with Validation
 * You will notice a failed Kubernetes job when looking at the
   platform-keycloak deployment in Argo CD tool. There is a `known issue
   <https://github.com/bitnami/charts/issues/29851>`_ in the
   bitnami/keycloak-config-cli job when used with Keycloak solution version
   1.  The job will fail with an unrecognized field "hideOnLogin". You can
   ignore this error because this field is not critical to Edge Manageability
-  Framework.
-* During Interactive Onboarding after the 3rd failed attempt to provide the
-  password the installation proceeds but has not obtained a valid JWT
-  token, thus failing to onboard the node.
+  Framework. TODO: Review with Gary/John
 * During host state transitions, briefly such as registered to onboarded or
   configured and also active to deleted, the user interface might briefly
   show an outdated and/or inconsistent state.
 * On the rare event that the Org-Admin-Group is not created in keycloak,
   restarting the keycloak-tenant-controller pod via the Argo CD UI will
-  force the initial roles and groups to be recreated.
+  force the initial roles and groups to be recreated. TODO: Review with Gary/John
 * Users created in Keycloak must have email address set up to properly
   perform authentication to Grafana Observability Dashboards. Users without
-  email set won't be able to access metrics and logs via Grafana UI.
+  email set won't be able to access metrics and logs via Grafana UI. TODO: Review with Gary/John
 * On ASRock platform the hardware resources are not displayed properly in
   the Infrastructure tab, this has no impact on functionality of the nodes
   for cluster or application installation.
@@ -371,10 +362,10 @@ User Experience Limitations
 * Site name must be unique across all regions, that is, no two sites can
   have the same name in the Product deployment. Otherwise, the host
   allocated to one of the overlapping names might not appear in the user
-  interface.
+  interface. TODO: Check this Teos Comments
 * Remote access to the node is supported only at the virtual machine
   console and the kube-shell level. It is not user-supported at the OS
-  level.
+  level. TODO: We do support SSH, does this apply?
 * The OpenTelemetry Collector service on the edge node host acts as the
   single gateway for forwarding all logs (host agents and cluster) and
   hardware metrics to the Product. If the Collector service fails, then
@@ -389,11 +380,11 @@ User Experience Limitations
   metric query is set for 5 the metrics for the host `down` will be
   present. Also, if you choose a time period in time where the host did
   exist, then the host will be displayed in the dropdown. Wait until the
-  proper refresh time.
+  proper refresh time. TODO:Check with Chris
 * Accessing more than one edge web application at a time in a browser through
   the Service Link feature (Application Service Proxy) is not supported.
   The workaround is to open a second application in an incognito window or a
-  different browser.
+  different browser. TODO check with Scott
 * Scheduling a recurring maintenance to happen on the last day of the month
   before midnight in a timezone that is behind GMT/UTC, when the schedule
   is after midnight in GMT/UTC causes the maintenance to be scheduled on
@@ -410,12 +401,9 @@ User Experience Limitations
   certificates, thus if it's re-registered with the correct information it
   will immediately re-connect to the Edge Orchestrator
   but it will be rejected by the Edge Orchestrator APIs. Upon token
-  expiry (at most 1 hour) the reconnection will not happen.
+  expiry (at most 1 hour) the reconnection will not happen. TODO: Check on theuse case with Krishna of only deauthorize or only delete
 * The "Total Provisioning Time" metric is only available for approximately
   15 days since a node was provisioned.
-* The hosts table's `Operating System` column does not show the desired OS for
-  `Registered` hosts. It will only show the current OS of `Provisioned` hosts.
-  You can view the desired OS of a host on the host details page under `Updates`.
 
 Recommendations
 ---------------------
