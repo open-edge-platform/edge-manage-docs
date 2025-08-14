@@ -24,4 +24,4 @@ is set to the OS Profile name you are trying to install (e.g. `microvisor-nonrt`
    # export PROFILE_NAME="microvisor-nonrt"
    export MICROVISOR_REPO_URL=$(curl -k -X GET https://api.${CLUSTER_FQDN}/v1/projects/${PROJECT_NAME}/compute/os \
          -H "accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer ${JWT_TOKEN}" \
-         | jq -r ".OperatingSystemResources[] | select(.profileName==\"${PROFILE_NAME}\") | .repoUrl" | sed 's/\.raw\.gz$//')
+         | jq -r ".OperatingSystemResources[] | select(.profileName==\"${PROFILE_NAME}\") | .imageUrl" | sed 's/\.raw\.gz$//')
