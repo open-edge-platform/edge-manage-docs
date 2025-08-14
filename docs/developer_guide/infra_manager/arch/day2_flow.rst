@@ -10,7 +10,7 @@ The Edge Orchestrator supports deployment and scheduled updates of two types of 
 
 In both scenarios, the Day 2 update of an Edge Node involves updates to the OS, drivers, and Bare Metal Agents.
 
-The three main entities involved in the Edge Node updates are:
+The four main entities involved in the Edge Node updates are:
 
 - `Inventory <https://github.com/open-edge-platform/infra-core/tree/main/inventory>`_ — Stores the Edge Node instances and the OS Resources related to each instance.
   OS Resources include OS version information, whereas an Instance Resource contains the
@@ -36,15 +36,17 @@ The three main entities involved in the Edge Node updates are:
   After a successful update, it receives updated OS version information from the PUA and sets
   the current version of Edge Microvisor Toolkit for the relevant Edge Node instance in the Inventory.
 
-- `OS Resource Manager <https://github.com/open-edge-platform/infra-managers/blob/main/os-resource>`_ — The Resource Manager periodically queries the Release Service
-  for the OS Profile manifest containing information about the latest Edge Microvisor
-  Toolkit image. Upon discovering new versions, it generates corresponding OS Resources
-  in the Inventory.
+- `OS Resource Manager <https://github.com/open-edge-platform/infra-managers/blob/main/os-resource>`_ — This Resource Manager periodically queries the Release Service
+  for OS profile manifests associated with a specific EMF release as configured in the
+  `os-resource configuration <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/argocd/applications/configs/infra-managers.yaml#L72>`_.
+  It updates existing OS profile details based on the latest information from the Release Service, ensuring that any changes are reflected in the system.
+  When the Edge Orchestrator is upgraded to a version with a new *osProfileRevision*, the OS Resource Manager discovers new OS profiles for the Edge Microvisor Toolkit
+  corresponding to the updated tag and generates the appropriate OS Resources in the Inventory.
 
-  It operates in two modes:
+  The OS Resource Manager supports two operational modes:
 
-  - *Automatic*: Newly discovered OS Resources are automatically linked to the desired OS version of an Instance.
-  - *Manual*: Linking must be performed by the user via an API call.
+  - *Manual (default)*: Linking of OS Resources to Instances must be performed manually by the user via an API call.
+  - *Automatic*: Newly discovered OS Resources are automatically linked to the desired OS version of each Instance.
 
 For more details on the communication between the Platform Update Agent and the Maintenance
 Manager, refer to the `Maintenance Manager documentation <https://github.com/open-edge-platform/infra-managers/blob/main/maintenance/docs/api/maintmgr.md>`_.
@@ -66,7 +68,7 @@ The actual update procedure for the Edge Microvisor Toolkit—delivered as a ful
 from the process used for the mutable Ubuntu OS. Subsequent sections describe detailed update
 procedures specific to each system type.
 
-High Level Update Flow
+High Level Day2 Flow
 ~~~~~~~~~~~~~~~~~~~~~~
 
 .. mermaid::
@@ -91,11 +93,15 @@ High Level Update Flow
     par
 
         loop periodically
-            osrm->>reg: download new Curated OS Profile manifests
+            osrm->>reg: download Curated OS Profile manifests as per osProfileRevision
             reg-->>osrm: return
             osrm->>osrm: parse the manifests
-            osrm->>inv: create OS Resources for new immutable OS Profiles
-            opt OSRM manualMode=false
+            alt osProfileRevision has changed (Edge Orchestrator was upgraded)
+                osrm->>inv: update existing OS resource and create OS Resources for new immutable OS Profiles
+            else osProfileRevision has not changed (Edge Orchestrator was not upgraded)
+                osrm->>inv: update existing OS Resources with latest OS profile information
+            end
+            opt OSRM manualMode=false and osProfileRevision has changed (Edge Orchestrator was upgraded)
                 osrm->>inv: update desired_os of immutable OS instances with latest OS
             end
         end
@@ -107,7 +113,7 @@ High Level Update Flow
             mm->>pua: PlatformUpdateStatusResponce (os_type, os_image_source, update_source, update_schedule)
             pua->>pua: write the update metadata to file
         end
-        opt OSRM manualMode=true
+        opt OSRM manualMode=true and osProfileRevision has changed (Edge Orchestrator was upgraded)
             a->>inv: update desired_os to a selected OS Resource in chosen immutable OS Instances
         end
         opt mutable OS needs updates
@@ -220,15 +226,16 @@ second partition (B). Depending on the success of the installation of
 updated OS, the OS is booted from the new partition (B) or rolled
 back to the original partition (A) in case of failure.
 
-By default the OS Resource manager automatically links the new OS Resource
-containing the information about the latest Edge Microvisor Toolkit image,
-to the desired OS within the Edge Node instances associated with this type of OS.
-This means that whenever a newer version of the Edge Microvisor Toolkit is released,
-a subsequent scheduled update of the Edge Node will result in the latest Edge Microvisor Toolkit being installed.
-
-It is possible to disable the automatic OS Resource linkage inside the OS Resource Manager.
+By default the OS Resource manager only discovers updated and new OS profiles. It does not link the OS resources to instances.
 This allows for use cases where the latest available Edge Microvisor Toolkit version may not be desirable,
 and an update within the fleet of Edge Nodes should only install a specific available version of the OS.
+
+It is possible to disable the manual mode and enable OS Resource linkage inside the OS Resource Manager.
+In this mode the OS Resource manager will automatically link the new OS Resource
+containing the information about the latest Edge Microvisor Toolkit image,
+to the desired OS within the Edge Node instances associated with this type of OS.
+This means that whenever a newer version of the Edge Microvisor Toolkit is discovered,
+a subsequent scheduled update of the Edge Node will result in the latest Edge Microvisor Toolkit being installed.
 
 Immutable OS Update Flow
 ~~~~~~~~~~~~~~~~~~~~~~~~
