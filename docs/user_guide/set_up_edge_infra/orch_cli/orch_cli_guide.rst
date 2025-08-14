@@ -8,7 +8,7 @@ Download
 ^^^^^^^^
 
 Ensure that you have ``oras`` available on your system or follow the instructions in the
-`public documentation <https://oras.land/docs/installation>`_ to install it.
+`oras documentation <https://oras.land/docs/installation>`_ to install it.
 
 The tool is made available in the public AWS* Elastic Container Registry. It can be pulled without any credentials using commands like below:
 
