@@ -174,7 +174,7 @@ This is followed by the password prompt:
    chmod +x orch-cli
 
    orch-cli login <USER> --keycloak https://keycloak.<CLUSTER_FQDN>/realms/master
-   Enter Password:            
+   Enter Password:
 
 Generate a .csv File
 --------------------
@@ -188,8 +188,10 @@ Go to the directory where the downloaded orch-cli tool resides (for example, ~),
    ./orch-cli create host  --api-endpoint <CLUSTER_FQDN>  --project <PROJECT_NAME>  --generate-csv=<FILENAME>.csv
 
 Now, you can populate the `.csv` file by appending details of systems.
-Do not change the first line `Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,AMTEnable,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill` because that is the expected format.
-The `Serial`, `UUID`, `OSProfile` and `Site` columns must be filled, with the serial number and UUID of the edge node(s) you want to register as well as the OSProfile name/resource ID, and the site resource ID.
+Do not change the first line `Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,AMTEnable,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill`
+because that is the expected format.
+The `Serial`, `UUID`, `OSProfile` and `Site` columns must be filled, with the serial number and UUID of the edge node(s) you want to register as well as the OSProfile
+name/resource ID, and the site resource ID.
 The other columns are optional - for more information seek help with `-h` flag.
 The following is an example:
 

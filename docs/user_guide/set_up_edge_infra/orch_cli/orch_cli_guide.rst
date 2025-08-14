@@ -57,7 +57,7 @@ Generally the orch-cli commands follow this pattern for execution:
 The endpoint and the project must be specified for most commands.
 
 .. code-block:: bash
-    
+
     --api-endpoint https://api.<CLUSTER_FQDN>
     --project <PROJECT_NAME>
 
@@ -69,7 +69,7 @@ OS Profile Management
 ^^^^^^^^^^^^^^^^^^^^^
 
 The tool allows for management of OS profiles.
-For an example of a valid OS profile see the `infra-core repo <https://github.com/open-edge-platform/infra-core/blob/main/os-profiles/microvisor-nonrt.yaml>`_ 
+For an example of a valid OS profile see the `infra-core repo <https://github.com/open-edge-platform/infra-core/blob/main/os-profiles/microvisor-nonrt.yaml>`_.
 
 To create an OS profile run the create command with a path to a valid OS profile YAML file.
 
