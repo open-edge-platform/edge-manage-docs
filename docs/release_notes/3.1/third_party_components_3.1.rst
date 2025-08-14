@@ -19,19 +19,19 @@ Application Orchestration
    * - Open Policy Agent
      - Container
      - openpolicyagent/opa
-     - 1.2.0
+     - 1.5.0/1.5.1
    * - Fleet-Controller
      - Container
      - rancher/fleet
-     -
+     - 0.12.1
    * - Fleet-Controller
      - Helm*
      - https://rancher.github.io/fleet-helm-charts/fleet
-     - 0.10.2
+     - 0.12.2
    * - Fleet-CRD
      - Helm
      - https://rancher.github.io/fleet-helm-charts/fleet-crd
-     - 0.10.2
+     - 0.12.2
    * - Fleet-Agent
      - Container
      - rancher/fleet-agent
@@ -66,7 +66,7 @@ Application Orchestration
      - v2.12.2
    * - Harbor-registry
      - Container
-     - goharbor/registry-photon:v2.12.2, goharbor/harbor-registryctl (*Multiplo*)
+     - goharbor/registry-photon:v2.12.2, goharbor/harbor-registryctl
      - v2.12.2
    * - Harbor-trivy
      - Container
@@ -75,7 +75,7 @@ Application Orchestration
    * - Harbor
      - Helm
      - https://helm.goharbor.io/harbor
-     - 1.16.2
+     - 1.17.0
 
 Cluster Orchestration
 ---------------------
@@ -92,15 +92,15 @@ Cluster Orchestration
    * - cluster-api-operator
      - Helm*/Container
      - https://github.com/kubernetes-sigs/cluster-api-operator/tree/release-0.15/hack/charts/cluster-api-operator
-     -
+     - 0.15.1
    * - cluster-api core provider
      - Container
      - https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.0
-     -
+     - 1.9.5
    * - CAPI rke2 controlplane/bootstrap provider
      - Container
      - https://github.com/rancher/cluster-api-provider-rke2/releases/tag/v0.12.0
-     -
+     - 0.14.0
    * - open-policy-agent
      - Container
      - openpolicyagent/opa
@@ -121,7 +121,7 @@ Cluster Extensions
    * - Skupper Router
      - Container
      - quay.io/skupper/skupper-router
-     -
+     - 0.2.1
    * - Skupper Config Sync
      - Container
      - quay.io/skupper/config-sync
@@ -133,15 +133,15 @@ Cluster Extensions
    * - Skupper Site Controller
      - Container
      - quay.io/skupper/site-controller
-     -
+     - 1.8.3
    * - MetallLB Controller
      - Container
      - quay.io/metallb/controller
-     - v0.13.11
+     - v0.14.8
    * - MetalLB Speaker
      - Container
      - quay.io/metallb/speaker
-     - v0.13.11
+     - v0.14.8
    * - Nginx Ingress Controller
      - Container
      - ingress-nginx-controller
@@ -149,39 +149,39 @@ Cluster Extensions
    * - Kube-Rbac-Proxy(GPU Ext)
      - Container
      - gcr.io/kubebuilder/kube-rbac-proxy
-     -
+     - v0.19.0
    * - macvtap-cni (Kubevirt)
      - Container
      - quay.io/kubevirt/macvtap-cni
-     -
+     - v0.11.1
    * - virt-controller (Kubevirt)
      - Container
      - quay.io/kubevirt/virt-controller
-     -
+     - v1.4.0
    * - virt-launcher (Kubevirt)
      - Container
      - quay.io/kubevirt/virt-launcher
-     -
+     - v1.4.0
    * - virt-handler (Kubevirt)
      - Container
      - quay.io/kubevirt/virt-handler
-     -
+     - v1.4.0
    * - virt-operator (Kubevirt)
      - Container
      - quay.io/kubevirt/virt-operator
-     -
+     - v1.4.0
    * - akri-agent
      - Container
-     - akri-agent-daemonset-vgxwn (*Nota: Potrebbe essere un nome di container specifico*)
-     -
+     - akri-agent-daemonset-vgxwn
+     - v0.12.20
    * - akri-discovery
      - Container
      - ghcr.io/project-akri/akri/udev-discovery
-     -
+     - v0.12.20
    * - akri-webhook-configuration
      - Container
      - ghcr.io/project-akri/akri/webhook-configuration
-     -
+     - v0.12.20
    * - sriov-network-operator
      - Container
      - rancher/hardened-sriov-network-operator
@@ -202,14 +202,10 @@ Cluster Extensions
      - Container
      - rancher/hardened-sriov-network-config-daemon
      -
-   * - cert-manager
-     - Helm/Container
-     - https://artifacthub.io/packages/helm/cert-manager/cert-manager
-     - 1.13.6
    * - fluent-bit
      - Helm/Container
      - https://github.com/fluent/helm-charts/tree/main/charts/fluent-bit
-     -
+     - 0.48.9
    * - gatekeeper
      - Helm/Container
      - https://github.com/open-policy-agent/gatekeeper/tree/master/charts/gatekeeper
@@ -217,11 +213,11 @@ Cluster Extensions
    * - nfd (node-feature-discovery)
      - Helm/Container
      - https://github.com/kubernetes-sigs/node-feature-discovery
-     -
+     - 0.17.0
    * - node-exporter
      - Helm/Container
      - https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-node-exporter
-     -
+     - 4.45.0
    * - openebs
      - Helm/Container
      - https://github.com/openebs/openebs/tree/main/charts
@@ -229,11 +225,11 @@ Cluster Extensions
    * - prometheus
      - Helm/Container
      - https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
-     - 1.7.0
+     - 70.3.0
    * - telegraf
      - Helm/Container
      - https://github.com/influxdata/helm-charts/tree/master/charts/telegraf
-     -
+     - 1.8.55
    * - cert-manager
      - Helm/Container
      - https://artifacthub.io/packages/helm/cert-manager/cert-manager/1.16.2
@@ -259,7 +255,7 @@ Edge Infrastructure Manager
      - Container
      - https://github.com/tinkerbell/smee
      - v0.9.0
-   * - tinkerbell - tink, controller, worker)
+   * - tinkerbell - tink, controller, worker
      - Container
      - https://github.com/tinkerbell/
      - v0.10.0
@@ -415,11 +411,11 @@ Platform services
    * - postgresql
      - helm chart
      - https://github.com/bitnami/charts/tree/main/bitnami/postgresql
-     - 15.5.26
+     - 16.6.3
    * - postgresql
      - image
      - docker.io/bitnami/postgresql
-     - 16.4.0-debian-12-r4
+     - 16.4
    * - reloader
      - helm chart
      - https://stakater.github.io/stakater-charts
@@ -459,7 +455,7 @@ Platform services
    * - metalLB
      - helm chart
      - https://metallb.github.io/metallb
-     - 0.13.11
+     - 0.14.3
    * - argocd
      - helm chart
      - https://argoproj.github.io/argo-helm
@@ -504,27 +500,27 @@ Observabilty (O11y)
    * - alertmanager
      - Helm Chart
      - https://prometheus-community.github.io/helm-charts/
-     -
+     - 1.14.0
    * - grafana
      - Helm Chart
      - https://grafana.github.io/helm-charts
-     - 1.7.0
+     - 9.2.2
    * - kube-prometheus-stack
      - Helm Chart
      - https://prometheus-community.github.io/helm-charts
-     - 1.7.0
+     - 69.3.2
    * - loki
      - Helm Chart
      - https://grafana.github.io/helm-charts
-     - 3.3.2
+     - 6.30.1
    * - mimir-distributed
      - Helm Chart
      - https://grafana.github.io/helm-charts
-     - 2.15.0
+     - 5.7.0
    * - minio
      - Helm Chart
      - https://charts.min.io/
-     -
+     - 5.4.0
    * - opentelemetry-collector
      - Helm Chart
      - https://open-telemetry.github.io/opentelemetry-helm-charts
@@ -532,11 +528,11 @@ Observabilty (O11y)
    * - opentelemetry-operator
      - Helm Chart
      - https://open-telemetry.github.io/opentelemetry-helm-charts
-     -
+     - 0.90.3
    * - tempo
      - Helm Chart
      - https://grafana.github.io/helm-charts
-     -
+     - 1.18.3
    * - open-policy-agent
      - Container
      - openpolicyagent/opa
@@ -579,25 +575,25 @@ Edge Node Agents
      - Source
      - https://www.openssl.org/
      - 3.1.2
-     - 1.1.1
+     - 3.3.3
    * - dmidecode
      - Debian pkg
      - Source
      - https://nongnu.org/dmidecode/
      - 3.3
-     - 3.4
+     - 3.6
    * - ipmitool
      - Debian pkg
      - Source
      - https://github.com/ipmitool/ipmitool
      - 1.8.18
-     - 1.8.18
+     - 1.8.19
    * - lsb-release
      - Debian pkg
      - Source
      - https://wiki.linuxfoundation.org/lsb/start
      - 11.1.0
-     - 11.1.0
+     - 3.2
    * - lshw
      - Debian pkg
      - Source
@@ -609,55 +605,55 @@ Edge Node Agents
      - Source
      - https://github.com/pciutils/pciutils
      - 3.7.0
-     - 3.7.0
+     - 3.11.1
    * - udev
      - Debian pkg
      - Source
      - https://github.com/systemd/systemd
-     - 249
+     - 249.11
      - 252
    * - usbutils
      - Debian pkg
      - Source
      - https://github.com/gregkh/usbutils
      - 014
-     - 014
+     - 017
    * - bash
      - Debian pkg
      - Source
      - https://www.gnu.org/software/bash/
      - 5.1
-     - 5.2
+     - 5.2.15
    * - zlib
      -
      - Source
      - https://zlib.net/
      -
-     - 1.2.13
+     - 1.3.1
    * - mosquitto
      - Debian pkg
      - Source
      - https://mosquitto.org/
      - 2.0.11
-     - 2.0.15
+     - 2.0.19
    * - cryptsetup
      - Debian pkg
      - Source
      - https://gitlab.com/cryptsetup/cryptsetup
      - 2.4.3
-     - 2.6.1
+     - 2.4.3
    * - tpm2-tools
      - Debian pkg
      - Source
      - https://github.com/tpm2-software/tpm2-tools
      - 5.2
-     - 5.4
+     - 5.5.1
    * - tpm2-abrmd
      - Debian pkg
      - Source
      - https://github.com/tpm2-software/tpm2-abrmd
      - 2.4.0
-     - 2.4.1
+     - 3.0.0
    * - apparmor
      - Debian pkg
      -
@@ -669,49 +665,49 @@ Edge Node Agents
      - Source
      - https://linuxcontainers.org/lxc/
      - 5.0.0
-     - 5.0.2
+     - 5.0.3
    * - fluent-bit
      - Debian pkg
      - Source
      - https://github.com/fluent/fluent-bit
      - 3.2.9
-     - 2.1.0
+     - 3.1.9
    * - jq
      - Debian pkg
      - Source
      - https://github.com/jqlang/jq
      - 1.6
-     - 1.6
+     - 1.7.1
    * - otelcol-contrib
      - Debian pkg
      - Source
      - https://github.com/open-telemetry/opentelemetry-collector-contrib
      - 0.122.1
-     - 0.118.0
+     - 0.117.0
    * - rasdaemon
      - Debian pkg
      - Source
      - https://github.com/mchehab/rasdaemon
      - 0.6.7
-     - 0.6.7
+     - 0.8.0
    * - smartmontools
      - Debian pkg
      - Source
      - https://www.smartmontools.org/
      - 7.2
-     - 7.3
+     - 7.4
    * - telegraf
      - Debian pkg
      - Source
      - https://github.com/influxdata/telegraf
      - 1.34.0
-     - 1.27.0
+     - 1.31.0
    * - curl
      - Debian pkg
      - Source
      - https://curl.se/
      - 7.81.0
-     - 8.0.1
+     - 8.11.1
 
 User Interface
 --------------
@@ -760,7 +756,7 @@ Trusted Compute
      -
    * - kata
      - Containers, scripts, ...
-     - https://github.com/kata-containers/kata-containers/releases/download/3.13.1/kata-static-3.13.1-amd64.tar.xz (*URL troncato*)
+     - https://github.com/kata-containers/kata-containers/releases/download/3.13.1/kata-static-3.13.1-amd64.tar.xz
      -
    * - Debian Bookworm
      - Containers and binaries
