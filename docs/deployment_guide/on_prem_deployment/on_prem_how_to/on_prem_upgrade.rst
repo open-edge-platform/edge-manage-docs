@@ -332,8 +332,6 @@ To simplify post-upgrade recovery, the following script should be executed as pa
 
       ./after_upgrade_restart.sh
 
-**Host filter in the UI is not functioning correctly**
-
 Post-Upgrade Steps EdgeNode onboarding process
 ----------------------------------------------
 
