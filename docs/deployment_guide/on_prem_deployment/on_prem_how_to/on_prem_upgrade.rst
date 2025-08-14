@@ -263,6 +263,8 @@ Troubleshooting
    # Patch the affected applications
    kubectl patch application APPLICATION1-NAME -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
    kubectl patch application APPLICATION2-NAME -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
+   kubectl patch application    root-app       -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
+
 
    # Patch the root-app
    kubectl patch application root-app -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
@@ -330,10 +332,7 @@ To simplify post-upgrade recovery, the following script should be executed as pa
 
       ./after_upgrade_restart.sh
 
-**EdgeNode local SSH connection error**
-**RPS pod Postgres DB query failure**
 **Host filter in the UI is not functioning correctly**
-**Docker rate limit encountered despite using valid credentials**
 
 Post-Upgrade Steps EdgeNode onboarding process
 ----------------------------------------------
