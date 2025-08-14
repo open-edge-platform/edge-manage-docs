@@ -158,7 +158,8 @@ The tool is made available in the public AWS* Elastic Container Registry. It can
 
 The package will be an archive which needs to be unpacked to access the binary.
 
-For more information about the orch-cli tool and how to use it to create and view other Edge Orchestrator resources, refer to the `public documentation <TODO>`_.
+For more information about the orch-cli tool and how to use it to create and view other Edge Orchestrator resources, refer to the:
+:doc:`/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide`
 
 Login to the Edge Orchestrator
 ------------------------------
