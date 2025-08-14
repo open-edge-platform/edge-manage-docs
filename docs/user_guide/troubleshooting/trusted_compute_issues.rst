@@ -90,19 +90,72 @@ To update the BOM, you can either delete and re-install the deployment package i
 
 4. Enable debug console for trusted VM
 
-   To enable full debug logs for QEMU hypervisor, Kata runtime, and Kata agent:
+   To enable full debug logs for QEMU hypervisor, Kata runtime, and Kata agent, use the following steps:
 
-   Follow the below mentioned steps.
-
-   Edit the file:
-   
-   1. /opt/kata/share/defaults/kata-containers/configuration-qemu.toml
-
-   2. In the respective sections ("[hypervisor.qemu]", "[runtime]", and "[agent]"), enable the debug configuration parameters.
-
-   3. Check the journalctl logs of containerd:
+   1. Open the containerd configuration file located at:
 
       .. code-block:: bash
 
-         # Check containerd logs
-         sudo journalctl -xeu containerd
+         sudo vim /etc/containerd/config.toml
+
+      a. Edit the below section and enable debug in containerd:
+
+         .. code-block:: toml
+
+            [debug]
+              level = "debug"
+
+      b. Restart containerd to apply the changes:
+
+         .. code-block:: bash
+
+            sudo systemctl restart containerd
+
+   2. Modify Kata Containers Configuration
+
+      a. Navigate to the Kata Containers default configuration directory:
+
+         .. code-block:: bash
+
+            sudo su -
+            cd /opt/kata/share/defaults/kata-containers
+
+      b. Open the appropriate .toml file for the VM you want to launch and uncomment the following lines:
+
+         .. code-block:: toml
+
+            debug_console_enabled = true
+            enable_debug = true
+
+      c. Save the changes and exit the editor.
+
+   3. Identify the Sandbox ID
+
+      a. Find the sandbox ID by running the following command:
+
+         .. code-block:: bash
+
+            ps aux | grep qemu
+
+      b. Copy the sandbox ID from the output.
+
+   4. Execute Kata Runtime.
+
+      .. code-block:: bash
+
+         sudo /opt/kata/bin/kata-runtime exec <sandbox_id>
+
+   5. Follow the below mentioned steps:
+
+      a. Edit the file:
+         
+         /opt/kata/share/defaults/kata-containers/configuration-qemu.toml
+
+      b. In the respective sections ("[hypervisor.qemu]", "[runtime]", and "[agent]"), enable the debug configuration parameters.
+
+      c. Check the journalctl logs of containerd:
+
+         .. code-block:: bash
+
+            # Check containerd logs
+            sudo journalctl -xeu containerd
