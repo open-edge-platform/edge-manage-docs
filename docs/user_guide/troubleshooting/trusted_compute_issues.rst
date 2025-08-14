@@ -59,7 +59,7 @@ To update the BOM, you can either delete and re-install the deployment package i
       # Check if the CRD is installed
       kubectl get crd | grep ccruntime
 
-   .. figure:: images/tc-wl-crd-installation.png
+   .. figure:: images/tc-wl-runtime-class-installation.png
       :align: left
       :width: 750px
       :alt: verify CRD installation
@@ -71,7 +71,7 @@ To update the BOM, you can either delete and re-install the deployment package i
       # verify runtime class
       kubectl get runtimeclass | grep kata
 
-   .. figure:: images/tc-wl-runtime-class-installation.png
+   .. figure:: images/tc-wl-crd-installation.png
       :align: left
       :width: 750px
       :alt: verify Runtime class
