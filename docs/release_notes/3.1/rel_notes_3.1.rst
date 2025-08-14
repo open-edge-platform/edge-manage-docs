@@ -59,11 +59,11 @@ Key Highlights of the 3.1 release include, but are not limited to:
       to help portability and debuggability.
     * Deployment packages can now be imported as tar files,
       making them more portable and easy to share.
-* New: EMF can now be configured using CLI - orch-cli * 
-* New: Support for refrence applciations 
-    * Weld Porosity [Links TBD] 
-    * Smart Parking 
-    * Loitering Detection 
+* New: EMF can now be configured using - orch-cli a command line utility similar to kubectl.  
+* New: Support for reference applications
+    * `Weld Porosity <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=weld-porosity-sample-application>` 
+    * `Smart Parking <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=smart-parking>` 
+    * `Loitering Detection <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=loitering-detection>` 
 * Update: Additionally, efforts have been focusing on Trusted Compute to enable
   customers, benchmark it and adapt to minimal common EMT as trusted OS.
 
@@ -82,10 +82,7 @@ As a result, all edge nodes must be re-provisioned during the upgrade
 process to ensure compatibility and stability.
 
 Edge Manageability Framework (EMF) version 3.1 supports direct 
-upgrades from version 3.0 only. Upgrade instructions are detailed in the 
-`Design Guide<https://github.com/open-edge-platform/edge-manageability-framework/blob/main/design-proposals/emf-upgrade-steps.md>`.
-onprem upgrade guide: https://github.com/open-edge-platform/edge-manage-docs/blob/main/docs/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.rst
-cloud upgrade guide: https://github.com/open-edge-platform/edge-manage-docs/blob/main/docs/deployment_guide/cloud_deployment/cloud_how_to/cloud_upgrade.rst
+upgrades from version 3.0 only. `onprem upgrade guide <https://github.com/open-edge-platform/edge-manage-docs/blob/main/docs/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.rst>` and `cloud upgrade guide <https://github.com/open-edge-platform/edge-manage-docs/blob/main/docs/deployment_guide/cloud_deployment/cloud_how_to/cloud_upgrade.rst>`.
 Versions earlier than 3.0 are not compatible with the 3.1 upgrade path.
 
 
