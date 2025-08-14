@@ -254,14 +254,17 @@ Troubleshooting
 
 .. note::
 
-   If the upgrade takes more than ~20 minutes and the ``root-app`` remains in an ``OutOfSync`` or ``Unhealthy`` state, apply the patch to the applications that are not healthy first, followed by the ``root-app``.
+   If the upgrade takes more than ~20 minutes and the ``root-app`` remains in an ``OutOfSync`` or ``Unhealthy`` state, apply the patch to the applications that are not healthy first, and then patch the ``root-app``.
+
+   **Example:** Sometimes, after an upgrade, the following applications may be in a ``Missing``, ``Unhealthy``, or ``OutOfSync`` state: ``tenancy-api-mapping``, ``tenancy-datamodel``, ``infra-external``, ``infra-managers``.
 
 .. code-block:: bash
 
-   # Patch the Affected Application
-   kubectl patch application APPLICATION-NAME -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
+   # Patch the affected applications
+   kubectl patch application APPLICATION1-NAME -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
+   kubectl patch application APPLICATION2-NAME -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
 
-   # Patch the ``root-app``
+   # Patch the root-app
    kubectl patch application root-app -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
 
 After applying the patch, the ``root-app`` should sync cleanly **once** its dependencies have become healthy.

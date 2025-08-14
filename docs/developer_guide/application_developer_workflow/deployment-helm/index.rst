@@ -162,20 +162,13 @@ properly:
 
    Do not install a Helm resources in to the `default` or `kube-system` namespaces.
 
-#. Try to reuse the **preinstalled** facilities of the Edge Node where possible, rather than deploying your own.
-   For example the Edge Node standard installation includes these preinstalled facilities:
-
-   * cert-manager
-   * prometheus
-   * openebs
-
-   See `base-extensions <https://github.com/open-edge-platform/cluster-extensions/tree/main/deployment-package/base-extensions>`_
-   for the full list.
 
 #. Try to reuse the **optional** Extensions that can be used alongside your application on the Edge Node.
    These are listed in detail in :doc:`/user_guide/package_software/extension_package`
    Examples include:
-
+   * Cert-Manager
+   * Prometheus
+   * Openebs
    * Load Balancer - includes MetalLB\* and NGINX\* ingress controller
    * Intel® GPU - a Kubernetes device plugin for Intel® GPUs
    * SRIOV - a Kubernetes device plugin for SRIOV devices
