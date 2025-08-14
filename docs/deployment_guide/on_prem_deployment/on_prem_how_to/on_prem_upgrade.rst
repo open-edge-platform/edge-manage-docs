@@ -265,7 +265,6 @@ Troubleshooting
    kubectl patch application APPLICATION2-NAME -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
    kubectl patch application    root-app       -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
 
-
    # Patch the root-app
    kubectl patch application root-app -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
 
