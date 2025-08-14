@@ -248,13 +248,6 @@ User Experience
   any inputs entered may be lost. The workaround is to confirm the cluster
   creation inputs prior to this stage or to re-enter the values if they are
   lost. TODO: Check with Validation
-* You will notice a failed Kubernetes job when looking at the
-  platform-keycloak deployment in Argo CD tool. There is a `known issue
-  <https://github.com/bitnami/charts/issues/29851>`_ in the
-  bitnami/keycloak-config-cli job when used with Keycloak solution version
-  1.  The job will fail with an unrecognized field "hideOnLogin". You can
-  ignore this error because this field is not critical to Edge Manageability
-  Framework. TODO: Review with Gary/John
 * During host state transitions, briefly such as registered to onboarded or
   configured and also active to deleted, the user interface might briefly
   show an outdated and/or inconsistent state.
