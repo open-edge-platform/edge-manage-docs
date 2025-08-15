@@ -152,7 +152,7 @@ Clusters and Application Deployment
 * The same USB peripheral cannot be shared between the same type of
   applications, while the same USB peripheral can be simultaneously
   connected to the different types of applications.
-   In other words, at the
+  In other words, at the
   same time, multiple container-based applications cannot occupy the same
   USB peripheral, and the same USB peripheral cannot be connected to
   multiple VM-based applications. However, a container-based application
