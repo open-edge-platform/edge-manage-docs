@@ -36,7 +36,7 @@ Key Highlights of the 3.1 release include, but are not limited to:
     * New: Scale provisioning of Standalone edge nodes that with Operating system and
       lightweight kubernetes - (OXM Profile). Support for PXE boot along with HTTPs
       and USB boot.
-    * New: Support New EMT Desktop virtualization image with advanced GPU SR-IOV and 
+    * New: Support New EMT Desktop virtualization image with advanced GPU SR-IOV and
       Virtualization capabilites.
     * New: Per edge Edge Node configuration through custom cloud-init script,
       to provide fixed IP during provisioning, specific proxies, enabling
