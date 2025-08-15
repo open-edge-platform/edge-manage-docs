@@ -35,43 +35,43 @@ Application Orchestration
    * - Fleet-Agent
      - Container
      - rancher/fleet-agent
-     -
+     - v0.12.2
    * - redis (gitea)
      - Container
      - docker.io/bitnami/redis
-     - 17.11.1
+     - 7.2.5-debian-12-r4
    * - Harbor-core
      - Container
      - goharbor/harbor-core
-     - v2.12.2
+     - v2.13.0
    * - Harbor-database
      - Container
      - goharbor/harbor-db
-     - v2.12.2
+     - v2.13.0
    * - Harbor-jobservice
      - Container
      - goharbor/harbor-jobservice
-     - v2.12.2
+     - v2.13.0
    * - Harbor-nginx
      - Container
      - goharbor/nginx-photon
-     - v2.12.2
+     - v2.13.0
    * - Harbor-portal
      - Container
      - goharbor/harbor-portal
-     - v2.12.2
+     - v2.13.0
    * - Harbor-redis
      - Container
      - goharbor/redis-photon
-     - v2.12.2
+     - v2.13.0
    * - Harbor-registry
      - Container
-     - goharbor/registry-photon:v2.12.2, goharbor/harbor-registryctl
-     - v2.12.2
+     - goharbor/registry-photon, goharbor/harbor-registryctl
+     - v2.13.0
    * - Harbor-trivy
      - Container
      - goharbor/trivy-adapter-photon
-     - v2.12.2
+     - v2.13.0
    * - Harbor
      - Helm
      - https://helm.goharbor.io/harbor
@@ -95,16 +95,20 @@ Cluster Orchestration
      - 0.15.1
    * - cluster-api core provider
      - Container
-     - https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.0
-     - 1.9.5
+     - https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.7
+     - 1.9.7
    * - CAPI rke2 controlplane/bootstrap provider
      - Container
-     - https://github.com/rancher/cluster-api-provider-rke2/releases/tag/v0.12.0
-     - 0.14.0
+     - https://github.com/rancher/cluster-api-provider-rke2/releases/tag/v0.16.2
+     - 0.16.2
    * - open-policy-agent
      - Container
      - openpolicyagent/opa
      - 1.2.0
+   * - CAPI k3s controlplane/bootstrap provider
+     - Container
+     - https://github.com/k3s-io/cluster-api-k3s/releases/tag/v0.3.0
+     - v0.3.0
 
 Cluster Extensions
 -------------------
@@ -134,7 +138,7 @@ Cluster Extensions
      - Container
      - quay.io/skupper/site-controller
      - 1.8.3
-   * - MetallLB Controller
+   * - MetalLB Controller
      - Container
      - quay.io/metallb/controller
      - v0.14.8
@@ -182,34 +186,10 @@ Cluster Extensions
      - Container
      - ghcr.io/project-akri/akri/webhook-configuration
      - v0.12.20
-   * - sriov-network-operator
-     - Container
-     - rancher/hardened-sriov-network-operator
-     -
-   * - sriov-network-resources
-     - Container
-     - rancher/hardened-sriov-network-resources-injector
-     -
-   * - sriov-network-webhook
-     - Container
-     - rancher/hardened-sriov-network-webhook
-     -
-   * - sriov-cni
-     - Container
-     - rancher/hardened-sriov-cni
-     -
-   * - sriov-network-config-daemon
-     - Container
-     - rancher/hardened-sriov-network-config-daemon
-     -
    * - fluent-bit
      - Helm/Container
      - https://github.com/fluent/helm-charts/tree/main/charts/fluent-bit
      - 0.48.9
-   * - gatekeeper
-     - Helm/Container
-     - https://github.com/open-policy-agent/gatekeeper/tree/master/charts/gatekeeper
-     -
    * - nfd (node-feature-discovery)
      - Helm/Container
      - https://github.com/kubernetes-sigs/node-feature-discovery
@@ -218,10 +198,6 @@ Cluster Extensions
      - Helm/Container
      - https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-node-exporter
      - 4.45.0
-   * - openebs
-     - Helm/Container
-     - https://github.com/openebs/openebs/tree/main/charts
-     -
    * - prometheus
      - Helm/Container
      - https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
@@ -232,8 +208,12 @@ Cluster Extensions
      - 1.8.55
    * - cert-manager
      - Helm/Container
-     - https://artifacthub.io/packages/helm/cert-manager/cert-manager/1.16.2
-     - 1.16.2
+     - https://artifacthub.io/packages/helm/cert-manager/cert-manager/1.16.3
+     - 1.16.3
+   * - kubernetes-dashboard
+     - Helm/Container
+     - https://github.com/kubernetes/dashboard/releases/tag/kubernetes-dashboard-7.13.0
+     - 7.13.0
 
 Edge Infrastructure Manager
 ----------------------------
@@ -271,6 +251,14 @@ Edge Infrastructure Manager
      - Container (utility)
      - https://hub.docker.com//busybox/
      - 1.36.1
+   * - mps
+     - Container
+     - docker.io/intel/oact-mps:v2.14.2
+     - v2.14.2
+   * - rps
+     - Container
+     - docker.io/intel/oact-rps:v2.24.0
+     - v2.24.0
 
 Platform services
 ----------------------
@@ -284,6 +272,14 @@ Platform services
      - Type
      - Link
      - Version
+   * - aws-lb
+     - helm chart
+     - https://aws.github.io/eks-charts
+     - 1.7.1
+   * - aws-lb
+     - image
+     - public.ecr.aws/eks/aws-load-balancer-controller
+     - 2.7.1
    * - botkube
      - helm chart
      - https://charts.botkube.io/
@@ -331,7 +327,7 @@ Platform services
    * - ingress-nginx (webhook)
      - image
      - registry.k8s.io/ingress-nginx/kube-webhook-certgen
-     - v20231226...
+     - v20231226-1a7112e06
    * - ingress-nginx (controller)
      - image
      - registry.k8s.io/ingress-nginx/controller
@@ -351,18 +347,18 @@ Platform services
    * - keycloak
      - helm chart
      - https://github.com/bitnami/charts/tree/main/bitnami/keycloak
-     - 24.4.12
+     - 24.0.1
    * - keycloak
      - image
      - docker.io/bitnami/keycloak
-     - 26.1.3-debian-12-r0
+     - 26.0.1-debian-12-r0
    * - keycloak (config-cli)
      - image
      - docker.io/bitnami/keycloak-config-cli
-     - 6.4.0-debian-12-r0
+     - 6.1.6-debian-12-r4
    * - curl-jq
      - Container (utility)
-     - https://hub.docker.com/r/badouralix/curl-jq
+     - badouralix/curl-jq
      - sha256:fe8a5ee49f613495df3b57afa86b39f081bd1b3b9ed61248f46c3d3d7df56092
    * - kubectl
      - image
@@ -411,11 +407,11 @@ Platform services
    * - postgresql
      - helm chart
      - https://github.com/bitnami/charts/tree/main/bitnami/postgresql
-     - 16.6.3
+     - 15.5.26
    * - postgresql
      - image
      - docker.io/bitnami/postgresql
-     - 16.4
+     - 16.4.0-debian-12-r4
    * - reloader
      - helm chart
      - https://stakater.github.io/stakater-charts
@@ -455,7 +451,7 @@ Platform services
    * - metalLB
      - helm chart
      - https://metallb.github.io/metallb
-     - 0.14.3
+     - 0.13.11
    * - argocd
      - helm chart
      - https://argoproj.github.io/argo-helm
@@ -524,7 +520,7 @@ Observabilty (O11y)
    * - opentelemetry-collector
      - Helm Chart
      - https://open-telemetry.github.io/opentelemetry-helm-charts
-     - 0.118.0
+     - 0.115.0
    * - opentelemetry-operator
      - Helm Chart
      - https://open-telemetry.github.io/opentelemetry-helm-charts
@@ -536,7 +532,7 @@ Observabilty (O11y)
    * - open-policy-agent
      - Container
      - openpolicyagent/opa
-     - 1.2.0
+     - 1.0.1-static
 
 Edge Node Agents
 ------------------
@@ -676,7 +672,7 @@ Edge Node Agents
      - Debian pkg
      - Source
      - https://github.com/jqlang/jq
-     - 1.6
+     - 1.6.2
      - 1.7.1
    * - otelcol-contrib
      - Debian pkg
@@ -708,6 +704,12 @@ Edge Node Agents
      - https://curl.se/
      - 7.81.0
      - 8.11.1
+   * - lms
+     - Debian package
+     - Source
+     - https://github.com/intel/lms
+     - 2506.0.0.0
+     - 2506.0.0.0
 
 User Interface
 --------------
