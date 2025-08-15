@@ -152,17 +152,6 @@ Clusters and Application Deployment
 * The same USB peripheral cannot be shared between the same type of
   applications, while the same USB peripheral can be simultaneously
   connected to the different types of applications.
-  In other words, at the
-  same time, multiple container-based applications cannot occupy the same
-  USB peripheral, and the same USB peripheral cannot be connected to
-  multiple VM-based applications. However, a container-based application
-  and a VM-based application can have the same USB peripheral, which can
-  lead to one of both applications crashing because of the USB sharing.
-  Ensure that both the virtualization package for VM-based applications and
-  the USB package for container-based applications do not have the same USB
-  peripheral in their `usbList` configuration. This prevents a container
-  and VM-based application from sharing the same USB peripheral,
-  simultaneously. TODO: Rephrase it
 * Support for in-place upgrades of Edge Node Kubernetes cluster
   is currently not available. This is to be addressed in a future release.
   Currently in 3.1, Cluster upgrade can done by deleting the cluster and reprovisioning
@@ -182,7 +171,7 @@ Clusters and Application Deployment
   See :doc:`troubleshooting guide </user_guide/troubleshooting/deploy_issue>`.
 * When using the "Create Single-host Clusters" option during host registration,
   host names must be in lowercase; otherwise, cluster creation will fail.
-  Deauthorizing a host does not automatically delete the associated cluster. To delete a deauthorized host,
+* Deauthorizing a host does not automatically delete the associated cluster. To delete a deauthorized host,
   the associated cluster must be deleted first. Note that deleting the cluster for a deauthorized host is
   always recommended to make it inaccessible through EMF.
 
@@ -206,7 +195,7 @@ User Experience
   login credentials screen.
 * Telemetry Orchestrator services (OpenTelemetry\* and Mimir\*) do not have
   role-based access authorization enabled in the southbound interfaces
-  towards the edge node. TODO: Check with Chris
+  towards the edge node. 
 * If the Product and Keycloak\* solution are restarted separately or if
   there is a Keycloak signing key rotation, the Product returns error 403.
   The workaround is to log out, close the browser, and wait approximately
@@ -216,7 +205,7 @@ User Experience
 * The querying capabilities of Mimir on orchestrator-observability and
   edgenode-observability may occasionally fail due to loss of communication
   between querier and query-frontend. The workaround is a restart of
-  querier pod through Argo CD tool. TODO: Check with Chris
+  querier pod through Argo CD tool.
 * A configurable toggle for FDE and secure boot (SB)
   is available during host configuration and is usable even if the edge
   node goes through zero-touch provisioning (ZTP). When provisioning
@@ -349,10 +338,7 @@ User Experience Limitations
 * Site name must be unique across all regions, that is, no two sites can
   have the same name in the Product deployment. Otherwise, the host
   allocated to one of the overlapping names might not appear in the user
-  interface. TODO: Check this Teos Comments
-* Remote access to the node is supported only at the virtual machine
-  console and the kube-shell level. It is not user-supported at the OS
-  level. TODO: We do support SSH, does this apply?
+  interface. 
 * The OpenTelemetry Collector service on the edge node host acts as the
   single gateway for forwarding all logs (host agents and cluster) and
   hardware metrics to the Product. If the Collector service fails, then
@@ -367,11 +353,11 @@ User Experience Limitations
   metric query is set for 5 the metrics for the host `down` will be
   present. Also, if you choose a time period in time where the host did
   exist, then the host will be displayed in the dropdown. Wait until the
-  proper refresh time. TODO:Check with Chris
+  proper refresh time.
 * Accessing more than one edge web application at a time in a browser through
   the Service Link feature (Application Service Proxy) is not supported.
   The workaround is to open a second application in an incognito window or a
-  different browser. TODO check with Scott
+  different browser.
 * Scheduling a recurring maintenance to happen on the last day of the month
   before midnight in a timezone that is behind GMT/UTC, when the schedule
   is after midnight in GMT/UTC causes the maintenance to be scheduled on
