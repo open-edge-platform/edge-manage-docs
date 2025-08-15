@@ -54,7 +54,8 @@ To update the BOM, you can either delete and re-install the deployment package i
 
 **Symptom:** trusted-workload POD status is not running.
 
-**Solution:** this issue could be caused by a failure in following components. please follow following steps to debug it.
+**Solution:** This issue could be caused by a failure in the following components. Please follow the steps below to debug it.
+
 1. Verify CRD installation: The operator creates the ccruntime CRD as can be observed in the following command:
 
    .. code-block:: bash
@@ -65,8 +66,7 @@ To update the BOM, you can either delete and re-install the deployment package i
    .. figure:: images/tc-wl-runtime-class-installation.png
       :align: left
       :width: 750px 
-
-      :alt: verify CRD installation
+      :alt: verify CRD installation 
 
 2. Verify Runtime class.
 
