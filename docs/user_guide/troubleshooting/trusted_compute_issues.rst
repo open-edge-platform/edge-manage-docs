@@ -21,12 +21,15 @@ For details on the pre-requisites see :doc:`/user_guide/set_up_edge_infra/edge_n
 
 .. figure:: images/Attestation_status_unknown.png
    :alt: Host Attestation Unknown
+   :width: 750px
 
 
 **Solution:**
 This issue may arise if the PCR banks on the TPM are not configured correctly. To resolve it, set the PCR bank of the TPM to SHA256 by changing the BIOS settings on the edge node.
-.. figure:: images/SHA256_sample_BIOS_Settings.png
+
+.. figure:: images/SHA256_sample_BIOS_Settings.png 
    :alt: TPM PCR bank settings
+   :width: 750px
 
 **Symptom:** Verifier and Attestation Manager PODs have cordoned the node, and attestation PODs failed to transition to the ready state.
 
@@ -61,7 +64,8 @@ To update the BOM, you can either delete and re-install the deployment package i
 
    .. figure:: images/tc-wl-runtime-class-installation.png
       :align: left
-      :width: 750px
+      :width: 750px 
+
       :alt: verify CRD installation
 
 2. Verify Runtime class.
@@ -73,7 +77,8 @@ To update the BOM, you can either delete and re-install the deployment package i
 
    .. figure:: images/tc-wl-crd-installation.png
       :align: left
-      :width: 750px
+      :width: 750px 
+
       :alt: verify Runtime class
     
 
@@ -85,7 +90,8 @@ To update the BOM, you can either delete and re-install the deployment package i
 
    .. figure:: images/tc-vm-debug.png
       :align: left
-      :width: 750px
+      :width: 750px 
+
       :alt: tc vm debug
 
 4. Enable debug console for trusted VM
