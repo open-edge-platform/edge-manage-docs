@@ -195,7 +195,7 @@ User Experience
   login credentials screen.
 * Telemetry Orchestrator services (OpenTelemetry\* and Mimir\*) do not have
   role-based access authorization enabled in the southbound interfaces
-  towards the edge node. 
+  towards the edge node.
 * If the Product and Keycloak\* solution are restarted separately or if
   there is a Keycloak signing key rotation, the Product returns error 403.
   The workaround is to log out, close the browser, and wait approximately
@@ -338,7 +338,7 @@ User Experience Limitations
 * Site name must be unique across all regions, that is, no two sites can
   have the same name in the Product deployment. Otherwise, the host
   allocated to one of the overlapping names might not appear in the user
-  interface. 
+  interface.
 * The OpenTelemetry Collector service on the edge node host acts as the
   single gateway for forwarding all logs (host agents and cluster) and
   hardware metrics to the Product. If the Collector service fails, then
