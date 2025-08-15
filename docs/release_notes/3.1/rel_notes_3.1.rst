@@ -29,12 +29,12 @@ You can review the general functionality of the system in the
 Key Highlights of the 3.1 release include, but are not limited to:
 
 * New: Support for Out-of-band management using `Intel AMT/vPRO <https://www.intel.com/content/www/us/en/architecture-and-technology/vpro/vpro-manageability/overview.html>`.
-  Integration of vPro Device Manageability services with EMF, allowing use of 
-  out-of-band management features. Functionality supported this release include 
+  Integration of vPro Device Manageability services with EMF, allowing use of
+  out-of-band management features. Functionality supported this release include
   Remote Device Power ON/OFF and Remote Device Reboot capabilities.
 * Enhanced Provisioning capabilites and improvements
-    * New: Scale provisioning of Standalone edge nodes that with Operating system and 
-      lightweight kubernetes - (OXM Profile). Support for PXE boot along with HTTPs 
+    * New: Scale provisioning of Standalone edge nodes that with Operating system and
+      lightweight kubernetes - (OXM Profile). Support for PXE boot along with HTTPs
       and USB boot.
     * New: Support New EMT Desktop virtualization image with advanced GPU SR-IOV and 
       Virtualization capabilites.
@@ -45,14 +45,14 @@ Key Highlights of the 3.1 release include, but are not limited to:
     * Update: HookOS has been replaced with a lightweight EMT, ensuring full control
       and optimization of the components used to provision an EN.
     * Update: Support for onboarding edge nodes without Serial number
-    * Update: Simplified host provisioning flow in the UI e.g User can choose the kubernetes cluster to be deployed 
+    * Update: Simplified host provisioning flow in the UI e.g User can choose the kubernetes cluster to be deployed
       during registration in UI.
-* New: Support for Discrete GPU from Intel Battlemage B580 and Nvidia P100 along with 
+* New: Support for Discrete GPU from Intel Battlemage B580 and Nvidia P100 along with
   Intel integrated GPU with GPU SR-IOV.
 * New: Security Compliance of an Edge Node is also now implemented through open CVE
   tracking for installed packages on EMT.
 * New: Kubernetes distribution on edge node is migrated from rke2 to k3s
-  achieving lightweight deployments in resource-constrained devices.  
+  achieving lightweight deployments in resource-constrained devices.
 * New: Vastly improved Application Onboarding
     * Ability to directly import helm charts, thus removing the need to write
       the deployment package for single helm chart applications.
@@ -60,11 +60,11 @@ Key Highlights of the 3.1 release include, but are not limited to:
       to help portability and debuggability.
     * Deployment packages can now be imported as tar.gz files,
       making them more portable and easy to share.
-* New: EMF can now be configured using - orch-cli a command line utility similar to kubectl.  
+* New: EMF can now be configured using - orch-cli a command line utility similar to kubectl.
 * New: Support for reference applications
-    * `Weld Porosity <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=weld-porosity-sample-application>` 
-    * `Smart Parking <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=smart-parking>` 
-    * `Loitering Detection <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=loitering-detection>` 
+    * `Weld Porosity <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=weld-porosity-sample-application>`
+    * `Smart Parking <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=smart-parking>`
+    * `Loitering Detection <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=loitering-detection>`
 * Update: Additionally, efforts have been focusing on Trusted Compute to enable
   customers, benchmark it and adapt to minimal common EMT as trusted OS. TODO: Update by Prakash needed
 
@@ -77,17 +77,17 @@ Upgrades from Previous Releases
 ----------------------------------
 
 Breaking Change Notice
-Upgrading from EMF 3.0 to 3.1 introduces a breaking change on 
+Upgrading from EMF 3.0 to 3.1 introduces a breaking change on
 edge nodes due to a shift in the Kubernetes distribution—from RKE2 to K3s.
-As a result, all edge nodes must be re-provisioned during the upgrade 
+As a result, all edge nodes must be re-provisioned during the upgrade
 process to ensure compatibility and stability.
 
-Edge Manageability Framework (EMF) version 3.1 supports direct 
+Edge Manageability Framework (EMF) version 3.1 supports direct
 upgrades from version 3.0 only. `onprem upgrade guide <https://github.com/open-edge-platform/edge-manage-docs/blob/main/docs/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.rst>` and `cloud upgrade guide <https://github.com/open-edge-platform/edge-manage-docs/blob/main/docs/deployment_guide/cloud_deployment/cloud_how_to/cloud_upgrade.rst>`.
 Versions earlier than 3.0 are not compatible with the 3.1 upgrade path.
 
 
-Known Issues 
+Known Issues
 ----------------------------------
 
 The following are known issues in the release. While several know issues
@@ -106,7 +106,7 @@ Provisioning
 * If there are network issues during initial provisioning of the edge node,
   see :doc:`/user_guide/troubleshooting/en_recover`.
 * If an edge node fails to boot properly during initial provisioning, see
-  :doc:`/user_guide/troubleshooting/hard_disk_boot`.  
+  :doc:`/user_guide/troubleshooting/hard_disk_boot`.
 * Occasionally, logging and metrics are not enabled during
   deployment. This might be because the Docker\* software pull
   limit is reached. First, delete the edge node (see
@@ -162,10 +162,10 @@ Clusters and Application Deployment
   the USB package for container-based applications do not have the same USB
   peripheral in their `usbList` configuration. This prevents a container
   and VM-based application from sharing the same USB peripheral,
-  simultaneously. TODO: Rephrase it 
-* Support for in-place upgrades of Edge Node Kubernetes cluster 
+  simultaneously. TODO: Rephrase it
+* Support for in-place upgrades of Edge Node Kubernetes cluster
   is currently not available. This is to be addressed in a future release.
-  Currently in 3.1, Cluster upgrade can done by deleting the cluster and reprovisioning 
+  Currently in 3.1, Cluster upgrade can done by deleting the cluster and reprovisioning
   the Edgne Nodes and recreating with a new cluster template version.
 * Mulit-Node Cluster Provision is not supported in this release. This is to be
   addressed in future releases.
@@ -182,7 +182,7 @@ Clusters and Application Deployment
   See :doc:`troubleshooting guide </user_guide/troubleshooting/deploy_issue>`.
 * When using the "Create Single-host Clusters" option during host registration,
   host names must be in lowercase; otherwise, cluster creation will fail.
-  Deauthorizing a host does not automatically delete the associated cluster. To delete a deauthorized host, 
+  Deauthorizing a host does not automatically delete the associated cluster. To delete a deauthorized host,
   the associated cluster must be deleted first. Note that deleting the cluster for a deauthorized host is
   always recommended to make it inaccessible through EMF.
 
@@ -324,8 +324,6 @@ Clusters and Application Deployment Limitations
   a new cluster is automatically created and remains in "provisioning" state
   until host onboarding. Enhanced state descriptions will be provided in a
   future release.
-
-  
 
 Multi-tenancy Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^
