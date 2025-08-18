@@ -141,12 +141,10 @@ Clusters and Application Deployment
 
 * Even though deployment profile override values are present, they do not
   appear in the deployment package application details pop-up screen.
-* Temporary inconsistent states in the user interface between deployments
-  and cluster can show incorrect information on the dashboard. TODO: Check in latest UI
 * When creating a cluster, you must select a region and a site but the
   region and site are not automatically added to the cluster's deployment
   metadata.  You must add them as deployment metadata manually if you
-  desire. TODO: Check in latest UI region is added, check site
+  desire. 
 * Any USB peripherals connected to the edge node can be connected to a
   VM-based application. However, although the USB peripheral(s) are
   detached from the edge node, the VM-based application will still have the
@@ -284,10 +282,6 @@ Clusters and Application Deployment Limitations
   the same name but with different versions. Do not include
   two applications with the same name in a single deployment project. You
   can modify the name of one of the applications if required.
-* Parameter template variable names do not support the underscore `_` char.
-  For example, `parameter_name=models_repository.image.tag` is not valid.
-  If revising the Helm\* chart for the application to remove `_` is not
-  viable, use multiple profiles for that application. TODO: Check in latest UI
 * Multiple "-" (for example, `1.0.0-dev-test`) characters are not allowed
   in an application's chart or version during creation.
 * The maximum number of unique deployments is limited to 300 per Product
