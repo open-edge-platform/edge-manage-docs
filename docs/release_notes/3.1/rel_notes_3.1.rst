@@ -65,8 +65,8 @@ Key Highlights of the 3.1 release include, but are not limited to:
       making them more portable and easy to share.
 * Test automation has been overhauled providing the foundation of testing
   platform capable of reaching 100% test automation over time. TODO add number of automation and such.
-* Additionally, efforts have been focusing on Trusted Compute to enable
-  customers, benchmark it and adapt to minimal common EMT as trusted OS.
+* Additionally, efforts have focused on Trusted Compute to enable customers, benchmark it, and enhance continuous monitoring and workload isolation use cases for robustness. The minimal common EMT has also been adapted as a trusted OS.
+  
 
 All of the codebase is Apache\* software version 2.0 licensed and available on Github.
 
