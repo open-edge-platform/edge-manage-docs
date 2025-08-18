@@ -70,7 +70,7 @@ periodic release process:
 * Dell\* PowerEdge R760, xR8000, XR12 (Xeon Processor), EGW 5200 
 * Lenovo\* SE360v2, SE450, SE350 (Xeon Processor)
 * ASRock\* iEP-7020E (Core Processor)
-* ASUS\* NUC 13, NUC 14, PE300G, NUC 14 Mini PC Pro: Ultra 5
+* ASUS\* NUC 13, NUC 14, PE3000G, NUC 14 Mini PC Pro: Ultra 5
 * AAEON\* Up Squared 7000 Series (Atom Processor)
 
 * GPU
