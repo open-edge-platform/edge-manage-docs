@@ -33,3 +33,4 @@ application's capabilities:
    oxm_pxe_provisioning
    pxe_provisioning_with_cloud_emf
    custom_config
+   vpro_power_mgt

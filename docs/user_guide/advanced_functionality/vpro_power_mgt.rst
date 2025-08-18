@@ -26,7 +26,7 @@ Enabling vpro while creating host
    :alt: Enable Vpro
 
 Assumptions & Recommendations
-----------------------------
+-----------------------------
 
 - **BIOS Enablement:** Ensure Intel® vPro® is enabled in the system BIOS. If vPro is not required, 
    it is recommended to disable it in the BIOS for security and compliance.
