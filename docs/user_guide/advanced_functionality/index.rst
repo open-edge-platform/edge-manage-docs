@@ -16,6 +16,7 @@ application's capabilities:
    * :doc:`/user_guide/advanced_functionality/oxm_pxe_provisioning`
    * :doc:`/user_guide/advanced_functionality/pxe_provisioning_with_cloud_emf`
    * :doc:`/user_guide/advanced_functionality/custom_config`
+   * :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
 
 
 .. toctree::
