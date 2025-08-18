@@ -214,6 +214,14 @@ Cluster Extensions
      - Helm/Container
      - https://github.com/kubernetes/dashboard/releases/tag/kubernetes-dashboard-7.13.0
      - 7.13.0
+   * - nvidia-gpu-operator
+     - Helm/Container
+     - https://helm.ngc.nvidia.com/nvidia/gpu-operator
+     - v25.3.0
+   * - intel-device-plugins-operator
+     - Helm/Container
+     - https://intel.github.io/helm-charts/intel-device-plugins-gpu
+     - 0.29.0
 
 Edge Infrastructure Manager
 ----------------------------
