@@ -132,6 +132,9 @@ Hosts and Infrastructure
   user is viewing the page, the maintenance status for the host in the
   table will not be updated until the user switches pages or refreshes the
   page.
+* Consecutive RESET/CYCLE operation needs explicit power status change to ON,
+  please change power status to ON from UI/orch-cli before performing 2nd
+  RESET/CYCLE operation.
 
 Clusters and Application Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
