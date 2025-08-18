@@ -204,7 +204,7 @@ System Health Check
 Service Validation
 ~~~~~~~~~~~~~~~~~~
 
-- - Watch ArgoCD applications until they are in `Synced`` and ``Healthy`` state, which will complete in ~5–10 minutes
+- - Watch ArgoCD applications until they are in `Synced`` and ``Healthy`` state.
 
 Web UI Access Verification
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
