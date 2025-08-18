@@ -91,7 +91,7 @@ Follow the steps below to provision multiple Edge Nodes at once.
    * Fill in the ``config-file`` as per the user guide in the in-line comments.
 
    * You can customize the custom-config section as per your use case. For example, see
-     `reference cloud-init for EMT image with Desktop Virtualization features <https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/tags/standalone-node/3.1.0/standalone-node/docs/user-guide/desktop-virtualization-cloud-init.md>`_
+     `reference config for EMT image with Desktop Virtualization features <https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/tags/standalone-node/3.1.0/standalone-node/docs/user-guide/desktop-virtualization-image-guide.md>`_
 
    * Use ``orch-cli`` to generate custom cloud-init configuration based on ``config-file``.
 
