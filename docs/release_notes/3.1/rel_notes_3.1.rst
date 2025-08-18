@@ -65,8 +65,7 @@ Key Highlights of the 3.1 release include, but are not limited to:
     * `Weld Porosity <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=weld-porosity-sample-application>`
     * `Smart Parking <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=smart-parking>`
     * `Loitering Detection <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=loitering-detection>`
-* Update: Additionally, efforts have been focusing on Trusted Compute to enable
-  customers, benchmark it and adapt to minimal common EMT as trusted OS. TODO: Update by Prakash needed
+* Update: Additionally, efforts have focused on Trusted Compute to enable customers, benchmark it, and enhance continuous monitoring and workload isolation use cases for robustness. The minimal common EMT has also been adapted as a trusted OS.
 
 All of the codebase is Apache\* software version 2.0 licensed and available on Github.
 
