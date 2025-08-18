@@ -10,9 +10,11 @@ guidance tailored to each deployment option.
 
 * :doc:`cloud_deployment/index`
 * :doc:`on_prem_deployment/index`
+* :doc:`virtual_edge_node_deployment/deployment`
 
 .. toctree::
    :hidden:
 
    cloud_deployment/index
    on_prem_deployment/index
+   virtual_edge_node_deployment/deployment
