@@ -47,8 +47,8 @@ Key Highlights of the 3.1 release include, but are not limited to:
     * Update: Support for onboarding edge nodes without Serial number
     * Update: Simplified host provisioning flow in the UI e.g User can choose the kubernetes cluster to be deployed
       during registration in UI.
-* New: Support for Discrete GPU from Intel Battlemage B580 and Nvidia P100 along with
-  Intel integrated GPU with GPU SR-IOV.
+* New: Support for Discrete GPU from Intel Battlemage B580(on EMT) and Nvidia P100(on Ubuntu 22.04) along with
+  Intel integrated GPU with GPU SR-IOV(with IDV profile in OXM deployment).
 * New: Security Compliance of an Edge Node is also now implemented through open CVE
   tracking for installed packages on EMT.
 * New: Kubernetes distribution on edge node is migrated from rke2 to k3s
