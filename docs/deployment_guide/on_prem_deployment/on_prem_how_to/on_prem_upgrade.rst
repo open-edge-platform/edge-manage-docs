@@ -201,6 +201,35 @@ Service Validation
 
 - Watch ArgoCD applications until they are in 'Healthy' state
 
+Step 8: Post-Upgrade Steps (API Change 3.0 → 3.1)
+
+- **Wait ~5–10 minutes**
+
+   Allow time for all applications to ``Synced`` and  ``Healthy`` state,
+   **except** for the following:
+   - ``root-app``
+   - ``tenancy-api-mapping``
+
+   These applications will remain out of sync until the dependent API changes
+   are applied.
+
+- **Run the after-upgrade restart script**
+
+   Execute the script:
+
+   .. code-block:: bash
+
+      ./after_upgrade_restart.sh
+
+   This script will:
+
+   - Restart the ``nexus-api-gw`` deployment in the ``orch-iam`` namespace
+     (to load API 3.1 changes).
+   - Patch ``root-app``, ``tenancy-api-mapping``, and ``tenancy-datamodel``
+     to align with the new API.
+   - Remove old ClusterTemplates that reference API 3.0
+     (all templates that do not contain ``k3s`` in their name).
+
 Web UI Access Verification
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
