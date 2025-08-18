@@ -1,6 +1,15 @@
 OXM Deployment Profile
 ======================
 
+The Edge Manageability Framework (EMF) serves a wide range of customers, including equipment manufacturers, system integrators,
+software vendors, and organizations managing edge deployments. To address scenarios where customers need to provision multiple
+edge nodes with both an operating system and Kubernetes, EMF offers support for the OXM profile.
+
+When operating in OXM profile mode, EMF acts as a dedicated provisioning solution stack—focusing exclusively on initial system
+deployment and intentionally omitting the activation of edge node agents for device lifecycle management.
+This approach provides a scalable provisioning solution,
+building upon the foundations of the `single standalone edge node <https://github.com/open-edge-platform/edge-microvisor-toolkit-standalone-node>`_ deployment model.
+
 The OXM deployment profile is an On-Premises Edge Orchestrator's profile that only deploys
 a subset of Edge Orchestrator to support Edge Nodes provisioning at scale in the OXM warehouse
 or any site where Edge Nodes are firstly prepared to be sent to target location and operate in the field.

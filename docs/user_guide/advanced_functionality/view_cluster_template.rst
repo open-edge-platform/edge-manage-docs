@@ -8,7 +8,7 @@ To view the details of the cluster template:
 2. Click the three-dot (...) icon in the **Actions** column and select **Details**. The
    cluster template details page appears.
 
-.. figure:: images/view_cluster_template.png
+.. figure:: images/view_cluster_template_details.png
    :width: 100 %
    :alt: View Cluster Template
 
