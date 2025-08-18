@@ -210,15 +210,6 @@ User Experience
   is available during host configuration and is usable even if the edge
   node goes through zero-touch provisioning (ZTP). When provisioning
   through the ZTP, you can disable the toggle because it has no effect.
-* When the License expires on an edge node, the status will show `No
-  License`. You will need to provide the license, then a `LaunchCheck` will
-  start to download a valid license every 60 seconds and will retry up to
-  10 times, for a total of 1 hour. If no license is obtained after 10
-  retries, the EN will be rebooted as part of the enforcement process.TODO: Check with Ram
-* If the expiration date of an edge node is pre-set to an earlier date than
-  its original expiration on the IRC portal, after the edge node is fully
-  provisioned, the edge node will not show a license error and will still
-  be able to run with a valid license. TODO: Check with Ram
 * Occasionally, a reboot of the Product makes the Argo CD tool's `root-app`
   and `secret-config` remain in the `provisioning` state, and prevented
   creation of application deployment. The only known workaround is to
