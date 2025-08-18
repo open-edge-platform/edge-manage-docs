@@ -29,6 +29,13 @@ Minimum hardware requirements for an edge node:
   * Priority order for provisioning is SSD, NVME, SATA. If multiple disk
     have the same name and type the smaller size one is selected.
 
+* GPU
+  
+  * Intel® Arc™ Graphics
+  * Intel® Arc™ B580 Graphics 
+  * NVIDIA RTX 3090 
+  * NVIDIA P100 (Validated Intel® Geti 2.10 with Ubuntu 22.04)  
+
 * Network interface Card Supported by inbox Linux kernel drivers (one of):
 
   * Intel® Ethernet Network Adapter
@@ -70,7 +77,7 @@ periodic release process:
 * Dell\* PowerEdge R760, xR8000, xR12, 5200 (Xeon Processor)
 * Lenovo\* SE360v2, SE450, SE350 (Xeon Processor)
 * ASRock\* iEP-7020E (Core Processor)
-* ASUS\* NUC 13, NUC 14, PE300G
+* ASUS\* NUC 13, NUC 14, PE300G, NUC 14 Mini PC Pro: Ultra 5
 * AAEON\* Up Squared 7000 Series (Atom Processor)
 
 This list is constantly expanded based on Intel roadmap and in collaboration
