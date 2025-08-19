@@ -221,12 +221,6 @@ User Experience
   one interface to another interface on the edge node, there will be a
   delay of approximately 15 minutes before all edge node agents reconnect
   to the Product.
-* After configuring an edge node and agreeing to create a cluster the user
-  is able to start populating fields within the Create Cluster screen.
-  However, if the nodes pass the "Secure Boot MATCH" stage of provisioning,
-  any inputs entered may be lost. The workaround is to confirm the cluster
-  creation inputs prior to this stage or to re-enter the values if they are
-  lost. TODO: Check with Validation
 * During host state transitions, briefly such as registered to onboarded or
   configured and also active to deleted, the user interface might briefly
   show an outdated and/or inconsistent state.
@@ -289,7 +283,7 @@ Clusters and Application Deployment Limitations
 * The maximum number of unique deployments is limited to 300 per Product
   instance. This limitation spawns from the AWS service used in the
   backend. Based on the number of edge nodes, each deployment can have
-  multiple running instances. TODO: Check with Platform Team
+  multiple running instances.
 * When you use "%GeneratedDockerCredential%" in the Application Profile,
   any updates made to the image registry in Catalog are not automatically
   applied to existing deployments. To update the image pull secret, you
@@ -298,7 +292,7 @@ Clusters and Application Deployment Limitations
 * Bundle-Deployments for Application/Extension Deployments in Automatic Mode
   of deployment are not cleaned-up on the Cluster Deletion. This results in
   showing any errors from these deployments in subsequent successful deployments.
-  Refer :ref:`deploymentpage_errors`. TODO? Check with Validation team
+  Refer :ref:`deploymentpage_errors`.
 * When using the "Create Single-host Clusters" option during host registration,
   a new cluster is automatically created and remains in "provisioning" state
   until host onboarding. Enhanced state descriptions will be provided in a
@@ -309,7 +303,7 @@ Multi-tenancy Limitations
 
 * If you add a user to many groups that provide project access, some Edge
   Orchestrator functionality may fail because of size limits for the
-  authorization token used in a web browser. TODO: Check with Validation
+  authorization token used in a web browser.
 
   As an example, as user added to more than five groups of type
   `group_projectid_edgemanagergroup` or `group_projectid_edgeoperatorgroup`
