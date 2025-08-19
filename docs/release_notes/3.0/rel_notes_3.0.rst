@@ -4,12 +4,12 @@ Version 3.0 Release Notes
 Version History/Revision History
 -------------------------------------------------------
 
-This is the Release Notes for \ |software_prod_name|\ version 3.0, released
+This is the Release Notes for \ |software_prod_name|\  version 3.0, released
 April 25th 2025.
 
 .. note::
 
-   This document refers to \ |software_prod_name|\ as the "Product".
+   This document refers to \ |software_prod_name|\  as the "Product".
 
 Release Highlights
 ---------------------------
