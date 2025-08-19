@@ -139,6 +139,8 @@ Hosts and Infrastructure
 * On the host page, the power status might appear as "unspecified" rather
   than displaying whether the system is powered ON or OFF. 
   It does not impact the actual power state or power operations of the host.
+  Refer to :doc:`/user_guide/troubleshooting/vpro_mgt.rst` for more information
+  on checking the power state.
 
 Clusters and Application Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
