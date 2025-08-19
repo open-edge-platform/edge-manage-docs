@@ -18,8 +18,7 @@ and/or does not work as indented, contact Intel engineering and support.
 * :doc:`/user_guide/troubleshooting/operate_issues`
 * :doc:`/user_guide/troubleshooting/management_issue`
 * :doc:`/user_guide/troubleshooting/trusted_compute_issues`
-
-
+* :doc:`/user_guide/troubleshooting/vpro_mgt`
 
 .. toctree::
    :hidden:
@@ -29,5 +28,6 @@ and/or does not work as indented, contact Intel engineering and support.
    operate_issues
    management_issue
    trusted_compute_issues
+   vpro_mgt
 
 
