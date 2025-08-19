@@ -1,6 +1,42 @@
 Continue with Edge Orchestrator Installation
 ===============================================================
 
+Installation Flow Overview
+--------------------------
+
+.. mermaid::
+
+   flowchart TD
+      A[Environment Setup Complete]
+      A --> B[Navigate to pod-configs directory]
+      B --> C{DNS Configuration: Which DNS service?}
+      C -->|Route53 Default| D["<b><u>Configure Provisioning with Route53</u></b><br/>./utils/provision.sh config with standard AWS settings"]
+      C -->|Custom DNS| E["<b><u>Configure Provisioning with --no-route53</u></b><br/>./utils/provision.sh config with custom DNS flag"]
+      D --> F{Certificate Method: Auto-generate or manual?}
+      E --> F
+      F -->|Auto-cert| G["<b><u>Add --auto-cert Flag</u></b><br/>Include parameter for automatic certificate generation"]
+      F -->|Manual certs| H[Configure Manual Certificates]
+      G --> I[Configure SMTP and SRE settings]
+      H --> I
+      I --> J[Save Configuration template]
+      J --> K["<b><u>Provision AWS Resources</u></b><br/>./utils/provision.sh install creates EKS cluster and infrastructure"]
+      K --> L["<b><u>Check Provisioning Output</u></b><br/>Look for 'Installation completed successfully' message"]
+      L --> M[Navigate to Home Directory]
+      M --> N["<b><u>Configure Cluster Definition</u></b><br/>./configure-cluster.sh creates default cluster configuration"]
+      N --> O{Enable Features: Auto-cert or nZTP needed?}
+      O -->|Enable auto-cert| P["<b><u>Uncomment Auto-cert Profile</u></b><br/>Enable profiles/profile-autocert.yaml in cluster definition"]
+      O -->|Enable nZTP| Q["<b><u>Include nZTP Profile</u></b><br/>Add profiles/enable-autoprovision.yaml for Zero-Touch Provisioning"]
+      O -->|Default config| R["<b><u>Deploy Edge Orchestrator</u></b><br/>make install deploys to EKS cluster"]
+      P --> R
+      Q --> R
+      R --> S{Deployment Successful?}
+      S -->|No - Failed| T["<b><u>Troubleshoot Deployment</u></b><br/>Check tunnel with ./start-tunnel.sh, refresh AWS credentials"]
+      S -->|Yes - Success| U["<b><u>Get Argo CD Credentials</u></b><br/>./get-argo-login.sh retrieves admin password"]
+      T --> R
+      U --> V["<b><u>Monitor Deployment</u></b><br/>Access Argo CD UI at the documented URL"]
+      V --> W["<b><u>Wait for Completion</u></b><br/>Monitor application deployment, can take up to 1 hour"]
+      W --> X[Installation Complete]
+
 Provisioning Prerequisites
 ----------------------------------
 

@@ -1,6 +1,35 @@
 Start Edge Orchestrator Installation Environment
 =================================================
 
+Installation Flow Overview
+--------------------------
+
+.. mermaid::
+
+   flowchart TD
+      A["<b><u>Verify Docker Version</u></b><br/>Check docker --version<br/>Must be ≥ stable release listed in Docker release notes"]
+      A --> B{<b><u>Check Docker Access</u></b><br/>Run 'groups' command<br/>Is 'docker' group listed?}
+      B -->|No - Add to group| C["<b><u>Add User to Docker Group</u></b><br/>sudo usermod -aG docker [username]<br/>Then log out & reconnect"]
+      B -->|Yes - Already in group| D{<b><u>Check ORAS CLI</u></b><br/>Run 'oras version'<br/>Is version ≥ 1.1.0 installed?}
+      C --> D
+      D -->|No - Install ORAS| E["<b><u>Install ORAS CLI</u></b><br/>Download and install ORAS CLI<br/>using curl and tar commands"]
+      D -->|Yes - Already installed| F{<b><u>Check jq Installation</u></b><br/>Run 'jq --version'<br/>Is version ≥ 1.6 installed?}
+      E --> F
+      F -->|No - Install jq| G["<b><u>Install jq</u></b><br/>sudo apt-get install -y jq"]
+      F -->|Yes - Already installed| H["<b><u>Download Installer Image</u></b><br/>oras pull cloud-orchestrator-installer<br/>Downloads to _build directory"]
+      G --> H
+      H --> I["<b><u>Extract Installer</u></b><br/>tar -xzf cloud-orchestrator-installer.tgz<br/>Extracts deployment scripts"]
+      I --> J{AWS Authentication Method?}
+      J -->|SSO| K["<b><u>Configure AWS SSO</u></b><br/>aws configure sso<br/>Follow SSO prompts"]
+      J -->|Access Keys| L["<b><u>Set AWS Credentials</u></b><br/>Export AWS_ACCESS_KEY_ID<br/>AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN"]
+      K --> M["<b><u>Set AWS Profile</u></b><br/>export AWS_PROFILE=profile_name<br/>Use profile from SSO login"]
+      L --> N["<b><u>Start Installation Environment</u></b><br/>./start-orchestrator-install.sh<br/>In cloud-orchestrator-installer dir"]
+      M --> N
+      N --> O["<b><u>Select Installation Type</u></b><br/>Type '1' and press Enter<br/>for full Edge Orchestrator"]
+      O --> P["<b><u>Enter Cluster Details</u></b><br/>Provide cluster name<br/>and AWS region"]
+      P --> Q["<b><u>Specify S3 Storage Location</u></b><br/>Set location for installer settings<br/>in AWS S3 bucket"]
+      Q --> R["<b><u>Verify Environment</u></b><br/>Check command prompt changed to orchestrator-admin:~$"]
+      R --> S[Environment Setup Complete. Ready for Installation]
 Before provisioning AWS\* cloud resources and installing the Edge Orchestrator, you must set up the installation environment.
 
 This includes downloading the installer container image, setting up the AWS cloud login, and starting the installation environment.
