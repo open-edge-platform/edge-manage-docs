@@ -26,7 +26,7 @@ To view the **Deployment Packages** page, click **Deployments** tab and then cli
  **Deployment Packages** on the left menu. In the **Deployment Packages** page, you can
  view the list of deployment packages available for deployment. Using the search bar at
  the top of the page, you can search for a deployment package. The other actions that you
- can perform from this page are create, edit, deploy, and delete a deployment package.
+ can perform from this page are create, edit, deploy, export, and delete a deployment package.
 
 Deployment packages are partitioned into 2 tabs:
 
