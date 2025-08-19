@@ -181,6 +181,11 @@ The upgrade process includes:
 Post-Upgrade Verification
 -------------------------
 
+Check the console output from the script.  
+The **last line** should read:
+
+``Upgrade completed! Wait for ArgoCD applications to be in 'Synced' and 'Healthy' state``
+
 System Health Check
 ~~~~~~~~~~~~~~~~~~~
 
@@ -199,7 +204,7 @@ System Health Check
 Service Validation
 ~~~~~~~~~~~~~~~~~~
 
-- Watch ArgoCD applications until they are in 'Healthy' state
+- - Watch ArgoCD applications until they are in `Synced`` and ``Healthy`` state.
 
 Web UI Access Verification
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -263,6 +268,7 @@ Troubleshooting
    # Patch the affected applications
    kubectl patch application APPLICATION1-NAME -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
    kubectl patch application APPLICATION2-NAME -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
+   kubectl patch application    root-app       -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
 
    # Patch the root-app
    kubectl patch application root-app -n onprem --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
@@ -329,11 +335,6 @@ To simplify post-upgrade recovery, the following script should be executed as pa
    .. code-block:: bash
 
       ./after_upgrade_restart.sh
-
-**EdgeNode local SSH connection error**
-**RPS pod Postgres DB query failure**
-**Host filter in the UI is not functioning correctly**
-**Docker rate limit encountered despite using valid credentials**
 
 Post-Upgrade Steps EdgeNode onboarding process
 ----------------------------------------------

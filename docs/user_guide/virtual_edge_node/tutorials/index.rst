@@ -146,6 +146,11 @@ Navigate to the vm-provisioning directory and install the required packages to p
 
 Follow the examples for IO and NIO flow using the Ubuntu and Edge Microvisor Toolkit OS profiles.
 
+* :doc:`example1_io_flow`
+* :doc:`example2_nio_default_serial_nums`
+* :doc:`example3_nio_custom_serial_nums`
+* :doc:`example4_auto_provision_false`
+
 .. toctree::
     :hidden:
     :maxdepth: 1

@@ -22,6 +22,9 @@ After onboarding your host(s), do the following to set up your edge infrastructu
 If you have access to your edge node’s UUID or serial number, you can :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration`
 to facilitate faster onboarding.
 
+Alternatively use the orch-cli to manage the process of registration and managing the orchestrator resources:
+#. :doc:`/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide`
+
 **Register Hosts**
 
 Registered hosts are hosts registered to the orchestrator but not yet connected or onboarded.
@@ -92,3 +95,4 @@ For more information, see :doc:`/user_guide/set_up_edge_infra/clusters/create_cl
    deauthorize_host
    reprovision_host
    clusters/index
+   orch_cli/orch_cli_guide

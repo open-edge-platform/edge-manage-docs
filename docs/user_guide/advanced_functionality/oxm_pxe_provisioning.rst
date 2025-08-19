@@ -1,11 +1,17 @@
 Provisioning Standalone Edge Nodes at Scale
 ===========================================
 
-This guide provides step-by-step instructions for customers wishing to provision both the operating system and Kubernetes across multiple edge nodes simultaneously. This solution is particularly relevant for OEM vendor customers who require efficient and scalable deployment capabilities. To enable this use case, we utilize the OXM deployment profile within the on-premises Edge Orchestrator.
+This guide provides step-by-step instructions for customers wishing to provision both the operating system and Kubernetes across multiple edge nodes simultaneously.
+This solution is particularly relevant for OEM vendor customers who require efficient and scalable deployment capabilities.
+To enable this use case, we utilize the OXM deployment profile within the on-premises Edge Orchestrator.
 
-When operating in OXM profile mode, the Edge Microvisor Framework (EMF) functions as a dedicated provisioning solution stack, focusing solely on initial system deployment and not enabling any edge node agents for device lifecycle management. This approach is designed specifically as a scalable provisioning solution, building upon the `single standalone edge node <https://github.com/open-edge-platform/edge-microvisor-toolkit-standalone-node>`.
+When operating in OXM profile mode, the Edge Microvisor Framework (EMF) functions as a dedicated provisioning solution stack,
+focusing solely on initial system deployment and not enabling any edge node agents for device lifecycle management.
+This approach is designed specifically as a scalable provisioning solution,
+building upon the `single standalone edge node <https://github.com/open-edge-platform/edge-microvisor-toolkit-standalone-node>`.
 
-Future releases will introduce the capability to add edge nodes to a complete device management EMF stack, allowing customers to leverage advanced lifecycle management features as their needs evolve.
+Future releases will introduce the capability to add edge nodes to a complete device management EMF stack,
+allowing customers to leverage advanced lifecycle management features as their needs evolve.
 
 Refer to the :doc:`OXM deployment profile documentation </deployment_guide/on_prem_deployment/on_prem_deployment_profiles/on_prem_oxm_profile>` for background information.
 
@@ -13,6 +19,8 @@ Set up environment
 ------------------
 
 #. Install Edge Orchestrator CLI (orch-cli) from Intel release service.
+
+:doc:`/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide`
 
 #. Login to the Edge Orchestrator.
 
@@ -83,7 +91,7 @@ Follow the steps below to provision multiple Edge Nodes at once.
    * Fill in the ``config-file`` as per the user guide in the in-line comments.
 
    * You can customize the custom-config section as per your use case. For example, see
-     `reference cloud-init for EMT image with Desktop Virtualization features <https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/tags/standalone-node/3.1.0/standalone-node/docs/user-guide/desktop-virtualization-cloud-init.md>`_
+     `reference config for EMT image with Desktop Virtualization features <https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/tags/standalone-node/3.1.0/standalone-node/docs/user-guide/desktop-virtualization-image-guide.md>`_
 
    * Use ``orch-cli`` to generate custom cloud-init configuration based on ``config-file``.
 

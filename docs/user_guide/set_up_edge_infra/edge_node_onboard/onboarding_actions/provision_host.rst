@@ -16,40 +16,60 @@ The **Provision Host** feature allows you to provision an OS profile onto a prev
    .. figure:: ../../images/provision_host_action.png
       :alt: Provision Host
 
-#. On the first page of the **Provision Set Up**, select the site the host is connected to and click **Next**.
-   Click on the **>** option to expand a region to view the sites under it:
+#. You will enter the Host Provisioning flow now. This flow has two steps - **Configure All Hosts** and **Review and Customize**.
+   Any configuration that you make in the **Configure All Hosts** step will be applied to all hosts. Individual host configurations can be
+   edited in the **Review and Customize** step.
 
-   .. figure:: ../../images/provision_site.png
-      :alt: Host Site
+   .. figure:: ../../images/provision_host_flow.png
+      :alt: Provision Host Stepper Flow
 
-#. On the next page, select the required **OS Profile** from the drop-down menu. You can enable **Secure Boot** and
-   **Full Disk Encryption** here if required, the default option is `disabled`. When finished, click **Next**.
+#. Search and select the **site** that the host is connected to.
 
-   .. figure:: ../../images/provision_os_profile.png
-      :alt: Host OS Profile
+   .. figure:: ../../images/provision_host_site_selection.png
+      :alt: Site Selection
 
-#. Add any optional host labels to the host or skip if no labels are required, by clicking **Next**:
+#. Select the required **OS Profile** from the drop-down menu.
 
-   .. figure:: ../../images/provision_host_labels.png
-      :alt: Host Labels
+   .. figure:: ../../images/provision_host_os_profile_selection.png
+      :alt: OS Profile Selection
 
-#. To enable SSH login using keys, select the required SSH public key from the drop-down menu and click **Next**.
-   It is optional to add an SSH key, however you must have submitted the public key to the web UI using the instructions
-   in :doc:`/user_guide/advanced_functionality/configure_ssh_public_keys`.
+#. If you came to this stepper flow from the :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration` page and you selected
+   **Create Single-host Clusters**, you can pick the required **Cluster Template** and **Version** now. Otherwise, these two dropdowns will not be shown.
 
-   .. figure:: ../../images/provision_os_public_ssh_key.png
-      :alt: Host public SSH key
+   .. figure:: ../../images/host_provision_cluster_template_selection.png
+      :alt: Cluster Template Selection
 
-#. On the final page, review the details of the host to be provisioned and confirm that it is correct. If there are any errors,
-   you can use the **Previous** option at the bottom of the page to navigate to the incorrect page. Click **Next** to accept
-   the configuration and to provision the host. If you are configuring one host, you have the option to create a cluster
-   for that host (the user must be a part of the :ref:`Project ID Edge Manager Group <shared/shared_iam_groups:<project-id>_edge-manager-group>`).
+#. Click **Advanced Options** to see more options that you can configure. This includes:
 
-   .. figure:: ../../images/default_cluster.png
-      :alt: Default Cluster
+   * **vPro**: Enable or disable vPro on the host. The default option is `disabled`.
+   * **Secure Boot and Full Disk Encryption**: Enable or disable secure boot and full disk encryption. The default option is `disabled`.
+   * **SSH Key Name**: Select an SSH public key for login. It is optional to add an SSH key. However, you must have submitted the public key to the
+     web UI using the instructions in :doc:`/user_guide/advanced_functionality/configure_ssh_public_keys`.
+   * **Host Labels**: Add any optional host labels to the host.
+
+   .. figure:: ../../images/provision_host_advanced_options.png
+      :alt: Advanced Options
+
+#. Click **Next** to proceed to the **Review and Customize** step. Here, you can review the configuration for all hosts and customize individual
+   host configurations. You can expand each host to see more details.
+
+   .. figure:: ../../images/provision_host_review_customize.png
+      :alt: Review and Customize
+
+#. If you want to customize the configuration for a specific host, click the three-dot icon next to the host, and then the **Edit** option.
+
+   .. figure:: ../../images/provision_host_edit_host.png
+      :alt: Edit Host
+
+#. This will open a drawer with the saved host configurations. You can edit individual configurations as needed and click **Save** to apply the changes.
+
+   .. figure:: ../../images/provision_host_edit_host_drawer.png
+      :alt: Edit Host Drawer
+
+#. Click **Provision** to finish the provisioning process.
 
 Once the host is provisioned, you can find it in the **Provisioned** tab.
-You can check the host details from this tab, using the drop-down menu for the host:
+You can check the host details from this tab by using the drop-down menu for the host:
 
 .. figure:: ../../images/provision_host_dropdown_menu.png
    :alt: Provision Host Drop Down menu
