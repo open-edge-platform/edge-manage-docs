@@ -66,7 +66,8 @@ Key Highlights of the 3.1 release include, but are not limited to:
     * `Smart Parking <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=smart-parking>`
     * `Loitering Detection <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=loitering-detection>`
 * Update: Additionally, efforts have been focusing on Trusted Compute to enable
-  customers, benchmark it and adapt to minimal common EMT as trusted OS. TODO: Update by Prakash needed
+  customers, benchmark it, continuous monitoring and workload isolation use case 
+  were enhance for robustness and adapt to minimal common EMT as trusted OS.
 
 All of the codebase is Apache\* software version 2.0 licensed and available on Github.
 
@@ -164,7 +165,8 @@ Clusters and Application Deployment
   such as the inability to manage or update clusters associated with the
   deleted template. A fix for this issue is planned for a future release.
 * AI applications from the earlier release - Intel® SceneScape version 2024.1.2,
-  Intel® Edge Insights System version 2.0 enhanced, and Intel® Geti™ solution version 2.6.0 do not work on the 3.1 release. These applications may
+  Intel® Edge Insights System version 2.0 enhanced, and Intel® Geti™ solution 
+  version 2.6.0 do not work on the 3.1 release. These applications may
   be available in future releases.
 * If an application containing CRDs is deployed and subsequently undeployed, it
   may leave behind orphaned CRDs and related cluster-level objects. This can
@@ -256,7 +258,7 @@ Provisioning Limitations
   Original Equipment Manufacturer (OEM) BIOS does not support HTTPs booting
   behind a proxy server. After you have installed the OS, you can boot
   behind a proxy server. Alternate is to use USB boot.
-* The embedded JSON Web Token (JWT) in the µOS are programmed to expire after a
+* The embedded JSON Web Token (JWT) in the EMT (Hook OS replacement) are programmed to expire after a
   maximum of 60 minutes. If there is a delay in supplying the login
   details, the OS provisioning process may fail, which is the expected
   behavior. In such cases, the user must initiate the re-provisioning of
@@ -356,13 +358,6 @@ User Experience Limitations
 * While using Safari as a browser, you may encounter some graphical
   inconsistencies, such as erroneous font characters. These are appearance
   issues and do not impede any functionality.
-* Until an Edge Node JWT token is valid, a provisioned Edge Node can reach
-  the Edge Orchestrator. If you issue a delete of the host, the host
-  is fully deleted from Edge Orchestrator, but still retains the
-  certificates, thus if it's re-registered with the correct information it
-  will immediately re-connect to the Edge Orchestrator
-  but it will be rejected by the Edge Orchestrator APIs. Upon token
-  expiry (at most 1 hour) the reconnection will not happen. TODO: Check on theuse case with Krishna of only deauthorize or only delete
 * The "Total Provisioning Time" metric is only available for approximately
   15 days since a node was provisioned.
 
