@@ -4,12 +4,12 @@ Version 3.1 Release Notes
 Version History/Revision History
 -------------------------------------------------------
 
-This is the Release Notes for \ |software_prod_name|\ version 3.1, released
+This is the Release Notes for \ |software_prod_name|\  version 3.1, released
 Aug 20 2025.
 
 .. note::
 
-   This document refers to \ |software_prod_name|\ as the "Product".
+   This document refers to \ |software_prod_name|\  as the "Product".
 
 Release Highlights
 ---------------------------
@@ -28,7 +28,7 @@ You can review the general functionality of the system in the
 
 Key Highlights of the 3.1 release include, but are not limited to:
 
-* New: Support for Out-of-band management using `Intel AMT/vPRO <https://www.intel.com/content/www/us/en/architecture-and-technology/vpro/vpro-manageability/overview.html>`.
+* New: Support for Out-of-band management using `Intel AMT/vPRO <https://www.intel.com/content/www/us/en/architecture-and-technology/vpro/vpro-manageability/overview.html>`_.
   Integration of vPro Device Manageability services with EMF, allowing use of
   out-of-band management features. Functionality supported this release include
   Remote Device Power ON/OFF and Remote Device Reboot capabilities.
@@ -62,9 +62,9 @@ Key Highlights of the 3.1 release include, but are not limited to:
       making them more portable and easy to share.
 * New: EMF can now be configured using - orch-cli a command line utility similar to kubectl.
 * New: Support for reference applications
-    * `Weld Porosity <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=weld-porosity-sample-application>`
-    * `Smart Parking <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=smart-parking>`
-    * `Loitering Detection <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=loitering-detection>`
+    * `Weld Porosity <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=weld-porosity-sample-application>`_
+    * `Smart Parking <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=smart-parking>`_
+    * `Loitering Detection <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=loitering-detection>`_
 * Update: Additionally, efforts have been focusing on Trusted Compute to enable
   customers, benchmark it, continuous monitoring and workload isolation use case 
   were enhance for robustness and adapt to minimal common EMT as trusted OS.
@@ -84,7 +84,7 @@ As a result, all edge nodes must be re-provisioned during the upgrade
 process to ensure compatibility and stability.
 
 Edge Manageability Framework (EMF) version 3.1 supports direct
-upgrades from version 3.0 only. `onprem upgrade guide <https://github.com/open-edge-platform/edge-manage-docs/blob/main/docs/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.rst>` and `cloud upgrade guide <https://github.com/open-edge-platform/edge-manage-docs/blob/main/docs/deployment_guide/cloud_deployment/cloud_how_to/cloud_upgrade.rst>`.
+upgrades from version 3.0 only using `onprem upgrade guide <https://github.com/open-edge-platform/edge-manage-docs/blob/main/docs/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.rst>`_ and `cloud upgrade guide <https://github.com/open-edge-platform/edge-manage-docs/blob/main/docs/deployment_guide/cloud_deployment/cloud_how_to/cloud_upgrade.rst>`_.
 Versions earlier than 3.0 are not compatible with the 3.1 upgrade path.
 
 
@@ -288,7 +288,6 @@ Clusters and Application Deployment Limitations
   any updates made to the image registry in Catalog are not automatically
   applied to existing deployments. To update the image pull secret, you
   must recreate the existing deployments.
-  <https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/#before-you-begin>`_)
 * Bundle-Deployments for Application/Extension Deployments in Automatic Mode
   of deployment are not cleaned-up on the Cluster Deletion. This results in
   showing any errors from these deployments in subsequent successful deployments.
