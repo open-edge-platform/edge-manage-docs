@@ -18,6 +18,7 @@ of the `Edge Manager Group <./../../shared/shared_iam_groups.html#project-id-hos
 #. Manual onboarding and provisioning.
 #. Automated onboarding and manual provisioning.
 #. Automated onboarding and provisioning.
+#. Automated onboarding and provisioning with single node cluster creation.
 
 .. note:: The first two registration options with manual provisioning assumes that Near Zero Touch Provisioning (nZTP) has been disabled. To confirm if nZTP is disabled, verify that nZTP has been disabled in the provider configuration.
    For details on nZTP, see :doc:`Near Zero Touch Provisioning </user_guide/concepts/nztp>`.
@@ -67,7 +68,7 @@ Automated Onboarding and Manual Provisioning
 
 #. On the **Hosts** page, click the **Register Hosts** option. The **Register Hosts** page appears.
 
-   .. figure:: ../images/register_host_automatic.png
+   .. figure:: ../images/register_host.png
       :alt: Register Host
 
 #. Enter in a user-friendly name in the **Host Name** field and either the serial number or UUID in their proper fields.
@@ -103,7 +104,7 @@ Automated Onboarding and Provisioning
 #. On the **Hosts** page, click the **Register Hosts** option. The **Register Hosts** page appears:
 
    .. figure:: ../images/register_host_automatic_provision.png
-      :alt: Register Host
+      :alt: Register Host Automatic Provisioning
 
 #. Enter in a user-friendly name in the **Host Name** field and either the serial number or UUID in the respective fields.
    You must provide either the serial number or the UUID.
@@ -115,6 +116,14 @@ Automated Onboarding and Provisioning
 
 #. Select **Provision Automatically** if appropriate for your usage. By selecting this field, the node will automatically go through
    the provisioning process when connected. By default, the option is `disabled`.
+
+#. If both **Onboard Automatically** and **Provision Automatically** are selected, the **Create Single Node Cluster** option becomes available and enabled by default.
+   This will allow you to automatically create a Kubernetes cluster and attach it to this node.
+
+   .. figure:: ../images/register_host_automatic_cluster.png
+      :alt: Register Host Automatic Cluster
+
+   .. note:: The **Create Single Node Cluster** option is only available when both automated onboarding and automated provisioning are enabled. This ensures the node is fully configured before before initiating cluster bootstrap. Note that the cluster may remain in the `provisioning` status until the host is completely onboarded and provisioned.
 
 #. If multiple edge nodes are to be registered, you can add additional fields by clicking the **+** option.
 

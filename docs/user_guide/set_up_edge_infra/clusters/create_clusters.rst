@@ -7,6 +7,11 @@ Create Cluster
    This limitation is expected to be resolved in a future release. For now, only single-node
    clusters can be created. We recommend factoring this in when making your future deployments.
 
+.. warning::
+   **DISRUPTIVE UPGRADE WARNING**
+   Upgrade from 3.0 to 3.1 requires edge node re-onboarding due to architecture changes (RKE2 → K3s).
+   Plan for edge nodes service downtime and manual data backup/restore procedures in edge nodes.
+
 In the **Create Cluster** feature, you can create a single-node cluster
 
 with customizable settings. Within this setup, You have the option to:
