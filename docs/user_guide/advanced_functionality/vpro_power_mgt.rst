@@ -41,13 +41,14 @@ These operations can be managed through the user interface (UI):
 
 **UI Power Operations Example:**
 
-Clicking 'Start' will power on the device, 'Stop' will power it off,
+.. note: Clicking 'Start' will power on the device, 'Stop' will power it off,
 
 .. figure:: images/vpro_power_mgt_start.png
    :width: 100 %
    :alt: Power On/Off operations UI
 
-'Restart' will Reset the device.
+
+.. note: Clicking 'Restart' will Reset the device.
 
 .. figure:: images/vpro_power_mgt_restart.png
    :width: 100 %
