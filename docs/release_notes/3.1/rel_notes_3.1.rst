@@ -136,6 +136,9 @@ Hosts and Infrastructure
 * Consecutive RESET/CYCLE operation needs explicit power status change to ON,
   please change power status to ON from UI/orch-cli before performing 2nd
   RESET/CYCLE operation.
+* On the host page, the power status might appear as "unspecified" rather
+  than displaying whether the system is powered ON or OFF. 
+  It does not impact the actual power state or power operations of the host.
 
 Clusters and Application Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
