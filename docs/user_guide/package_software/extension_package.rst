@@ -12,7 +12,6 @@ These extension deployment packages are:
 * :doc:`/user_guide/package_software/extensions/intel_gpu_package`
 * :doc:`/user_guide/package_software/extensions/kubernetes_dashboard`
 * :doc:`/user_guide/package_software/extensions/load_balancer`
-* :doc:`/user_guide/package_software/extensions/sriov_package`
 * :doc:`/user_guide/package_software/extensions/trusted_compute_package`
 * :doc:`/user_guide/package_software/extensions/usb_package`
 * :doc:`/user_guide/package_software/extensions/virtualization_package`
@@ -39,7 +38,6 @@ For more information, see :doc:`/user_guide/package_software/interconnect`.
    extensions/trusted_compute_package
    extensions/load_balancer
    extensions/kubernetes_dashboard
-   extensions/sriov_package
    extensions/usb_package
    extensions/virtualization_package
    interconnect

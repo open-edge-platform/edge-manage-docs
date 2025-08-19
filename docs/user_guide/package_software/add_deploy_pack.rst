@@ -27,10 +27,10 @@ You can select individual applications and create a deployment package.
 
 The following instructions describe how to create a deployment package.
 
-1. On the **Deployment Packages** page, click the **Add Deployment Package**
-   button. The **Create Deployment Package** appears.
+1. On the **Deployment Packages** page, click the **Deployment Package Actions**
+   and select **Create**. The **Create Deployment Package** appears.
 
-   .. figure:: images/create_deploy_pack.png
+   .. figure:: images/create_deploy.png
       :scale: 50 %
       :alt: Create Deployment Package
 
@@ -41,6 +41,10 @@ The following instructions describe how to create a deployment package.
     #.  In the **Version** field, enter the version number of the deployment package.
     #.  In the **Description** field, enter a brief description of the deployment package.
     #.  Click **Next**.
+
+   .. figure:: images/create_deploy_pack.png
+      :scale: 50 %
+      :alt: Create Deployment Package
 
 #.  On the **Select Applications** page, choose the applications that you want
     to include in the deployment package and click **Next**.
