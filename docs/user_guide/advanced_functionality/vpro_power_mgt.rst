@@ -39,16 +39,17 @@ Power Operations
 Once activated, you can perform various power operations such as power on, power off, reset, and cycle.
 These operations can be managed through the user interface (UI):
 
-**UI Power Operations Example:**
+**UI Power ON/OFF Operations Example:**
 
-.. note: Clicking 'Start' will power on the device, 'Stop' will power it off,
+Clicking 'Start' will power on the device, 'Stop' will power it off,
 
 .. figure:: images/vpro_power_mgt_start.png
    :width: 100 %
    :alt: Power On/Off operations UI
 
+**UI Power Reset Operations Example:**
 
-.. note: Clicking 'Restart' will Reset the device.
+Clicking 'Restart' will Reset the device.
 
 .. figure:: images/vpro_power_mgt_restart.png
    :width: 100 %
