@@ -72,15 +72,24 @@ Replace `<host_id>` and `<project_name>` with your actual host-id and project na
 
 **Check the current power status of the edge node:**
 
+To check the power state of a host using the DMT-specific API, use the following `curl` command:
+
 .. code-block:: bash
 
-   
+   curl -X "GET" "https://mps-wss.<orch-address>/api/v1/amt/power/state/<HOST_UUID>" \
+     -H "accept: application/json" \
+     -H "Authorization: Bearer ${JWT_TOKEN}"
+
+Replace `<HOST_UUID>` with the UUID of your host and ensure `${JWT_TOKEN}` 
+is set to a valid authentication token.
+
+This API will return the current power state of the specified.
 
 **Check the generalSettings vPro settings of the edge node:**
 
 .. code-block:: bash
 
-   
+
 
 Deactivation of vPro Power Management
 -------------------------------------

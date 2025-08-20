@@ -18,8 +18,9 @@ In orchestrator side we need to restart the rps service using the following comm
 
 .. code-block:: bash
 
-    kubectl delete pod -n orch-infra rps-<pod-name>
+    kubectl delete pod -n orch-infra rps-<pod-id>
 
+Replace `<pod-id>` with proper pod id.
 
 AMT activation didn't complete by the expected time(2~3minute)
 ----------------------------------------------------------------
