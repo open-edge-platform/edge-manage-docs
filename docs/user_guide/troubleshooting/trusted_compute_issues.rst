@@ -3,12 +3,14 @@ Trusted Compute Issues
 
 This section covers troubleshooting of Trusted Compute issues for EMF.
 
-* `Failure of the Trusted Compute plugin installation due to security pre-requisites compatibility. trusted-compute-compatible is not true on EMF UI>`__
-* `Host Attestation status is Unknown and all the pods are up and running>`__
-* `Verifier and Attestation Manager PODs have cordoned the node, and attestation PODs failed to transition to the ready state>`__ 
-* `Attestation failed and overall trust is showing as failed on the UI>`__ 
-* `trusted-workload POD status is not running>`__ 
+* :ref:`Failure of the Trusted Compute plugin installation due to security pre-requisites compatibility. trusted-compute-compatible is not true on EMF UI <tc_plugin_installation_failure>`
+* :ref:`Host Attestation status is Unknown and all the pods are up and running <tc_attestation_status_unknown>`
+* :ref:`Verifier and Attestation Manager PODs have cordoned the node, and attestation PODs failed to transition to the ready state <tc_pods_cordoned>`
+* :ref:`Attestation failed and overall trust is showing as failed on the UI <tc_attestation_failed>`
+* :ref:`trusted-workload POD status is not running <tc_workload_pod_not_running>` 
 
+
+.. _tc_plugin_installation_failure:
 
 **Symptom:** Failure of the Trusted Compute plugin installation due to security pre-requisites compatibility. trusted-compute-compatible is not true on EMF UI
 
@@ -16,6 +18,8 @@ This section covers troubleshooting of Trusted Compute issues for EMF.
 **Solution:** To resolve this issue, ensure that the prerequisites are met. Full Disk Encryption (FDE) and Secure Boot (SB) must be enabled on the platform. Once these features are activated on the edge-node platform, the onboarding profile should also enable FDE and SB.
 The fix needs to be implemented in two areas: first, enable the features on the platform (FDE, SB); second, ensure that the profile features are aligned. To recover from this condition, re-onboard your edge-node with the prerequisites enabled.
 For details on the pre-requisites see :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/index`.
+
+.. _tc_attestation_status_unknown:
 
 **Symptom:** Host Attestation status is Unknown and all the pods are up and running.
 
@@ -30,6 +34,8 @@ This issue may arise if the PCR banks on the TPM are not configured correctly. T
 .. figure:: images/SHA256_sample_BIOS_Settings.png 
    :alt: TPM PCR bank settings
    :width: 750px
+
+.. _tc_pods_cordoned:
 
 **Symptom:** Verifier and Attestation Manager PODs have cordoned the node, and attestation PODs failed to transition to the ready state.
 
@@ -47,10 +53,14 @@ Sample commands:
    # Uncordon the node
    kubectl uncordon <node_name>
 
+.. _tc_attestation_failed:
+
 **Symptom:** Attestation failed and overall trust is showing as failed on the UI.
 
 **Solution:** This issue could be caused by a failure in updated components or a change in the bill of material of the system. To mitigate and audit the full attestation report, the user can check the verifier POD log and details. To recover from this state, you can analyze the attestation report and update the BOM accordingly or revert the faulty component from the Bill Of Material (BOM) list.
 To update the BOM, you can either delete and re-install the deployment package in question from the EMF UI or re-provision the edge node with the desired OS profile.
+
+.. _tc_workload_pod_not_running:
 
 **Symptom:** trusted-workload POD status is not running.
 
@@ -78,7 +88,6 @@ To update the BOM, you can either delete and re-install the deployment package i
    .. figure:: images/tc-wl-crd-installation.png
       :align: left
       :width: 750px 
-
       :alt: verify Runtime class
     
 
@@ -91,7 +100,6 @@ To update the BOM, you can either delete and re-install the deployment package i
    .. figure:: images/tc-vm-debug.png
       :align: left
       :width: 750px 
-
       :alt: tc vm debug
 
 4. Enable debug console for trusted VM
