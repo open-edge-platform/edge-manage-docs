@@ -70,6 +70,18 @@ Clicking 'Restart' will Reset the device.
 
 Replace `<host_id>` and `<project_name>` with your actual host-id and project name.
 
+**Check the current power status of the edge node:**
+
+.. code-block:: bash
+
+   
+
+**Check the generalSettings vPro settings of the edge node:**
+
+.. code-block:: bash
+
+   
+
 Deactivation of vPro Power Management
 -------------------------------------
 
