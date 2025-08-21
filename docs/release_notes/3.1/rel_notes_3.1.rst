@@ -66,7 +66,7 @@ Key Highlights of the 3.1 release include, but are not limited to:
     * `Smart Parking <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=smart-parking>`_
     * `Loitering Detection <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=loitering-detection>`_
 * Update: Additionally, efforts have been focusing on Trusted Compute to enable
-  customers, benchmark it, continuous monitoring and workload isolation use case 
+  customers, benchmark it, continuous monitoring and workload isolation use case
   were enhance for robustness and adapt to minimal common EMT as trusted OS.
 
 All of the codebase is Apache\* software version 2.0 licensed and available on Github.
@@ -151,7 +151,7 @@ Clusters and Application Deployment
 * When creating a cluster, you must select a region and a site but the
   region and site are not automatically added to the cluster's deployment
   metadata.  You must add them as deployment metadata manually if you
-  desire. 
+  desire.
 * Any USB peripherals connected to the edge node can be connected to a
   VM-based application. However, although the USB peripheral(s) are
   detached from the edge node, the VM-based application will still have the
@@ -171,7 +171,7 @@ Clusters and Application Deployment
   such as the inability to manage or update clusters associated with the
   deleted template. A fix for this issue is planned for a future release.
 * AI applications from the earlier release - Intel® SceneScape version 2024.1.2,
-  Intel® Edge Insights System version 2.0 enhanced, and Intel® Geti™ solution 
+  Intel® Edge Insights System version 2.0 enhanced, and Intel® Geti™ solution
   version 2.6.0 do not work on the 3.1 release. These applications may
   be available in future releases.
 * If an application containing CRDs is deployed and subsequently undeployed, it

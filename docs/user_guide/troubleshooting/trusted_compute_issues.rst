@@ -7,7 +7,7 @@ This section covers troubleshooting of Trusted Compute issues for EMF.
 * :ref:`Host Attestation status is Unknown and all the pods are up and running <tc_attestation_status_unknown>`
 * :ref:`Verifier and Attestation Manager PODs have cordoned the node, and attestation PODs failed to transition to the ready state <tc_pods_cordoned>`
 * :ref:`Attestation failed and overall trust is showing as failed on the UI <tc_attestation_failed>`
-* :ref:`trusted-workload POD status is not running <tc_workload_pod_not_running>` 
+* :ref:`trusted-workload POD status is not running <tc_workload_pod_not_running>`
 
 
 .. _tc_plugin_installation_failure:
@@ -15,8 +15,11 @@ This section covers troubleshooting of Trusted Compute issues for EMF.
 **Symptom:** Failure of the Trusted Compute plugin installation due to security pre-requisites compatibility. trusted-compute-compatible is not true on EMF UI
 
 
-**Solution:** To resolve this issue, ensure that the prerequisites are met. Full Disk Encryption (FDE) and Secure Boot (SB) must be enabled on the platform. Once these features are activated on the edge-node platform, the onboarding profile should also enable FDE and SB.
-The fix needs to be implemented in two areas: first, enable the features on the platform (FDE, SB); second, ensure that the profile features are aligned. To recover from this condition, re-onboard your edge-node with the prerequisites enabled.
+**Solution:** To resolve this issue, ensure that the prerequisites are met. Full Disk Encryption (FDE) and Secure Boot (SB)
+must be enabled on the platform. Once these features are activated on the edge-node platform, the onboarding profile
+should also enable FDE and SB.
+The fix needs to be implemented in two areas: first, enable the features on the platform (FDE, SB); second, ensure that
+the profile features are aligned. To recover from this condition, re-onboard your edge-node with the prerequisites enabled.
 For details on the pre-requisites see :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/index`.
 
 .. _tc_attestation_status_unknown:
@@ -31,7 +34,7 @@ For details on the pre-requisites see :doc:`/user_guide/set_up_edge_infra/edge_n
 **Solution:**
 This issue may arise if the PCR banks on the TPM are not configured correctly. To resolve it, set the PCR bank of the TPM to SHA256 by changing the BIOS settings on the edge node.
 
-.. figure:: images/SHA256_sample_BIOS_Settings.png 
+.. figure:: images/SHA256_sample_BIOS_Settings.png
    :alt: TPM PCR bank settings
    :width: 750px
 
@@ -57,8 +60,11 @@ Sample commands:
 
 **Symptom:** Attestation failed and overall trust is showing as failed on the UI.
 
-**Solution:** This issue could be caused by a failure in updated components or a change in the bill of material of the system. To mitigate and audit the full attestation report, the user can check the verifier POD log and details. To recover from this state, you can analyze the attestation report and update the BOM accordingly or revert the faulty component from the Bill Of Material (BOM) list.
-To update the BOM, you can either delete and re-install the deployment package in question from the EMF UI or re-provision the edge node with the desired OS profile.
+**Solution:** This issue could be caused by a failure in updated components or a change in the bill of material of the system.
+To mitigate and audit the full attestation report, the user can check the verifier POD log and details. To recover from this state,
+you can analyze the attestation report and update the BOM accordingly or revert the faulty component from the Bill Of Material (BOM) list.
+To update the BOM, you can either delete and re-install the deployment package in question from the EMF UI or re-provision the
+edge node with the desired OS profile.
 
 .. _tc_workload_pod_not_running:
 
@@ -75,8 +81,8 @@ To update the BOM, you can either delete and re-install the deployment package i
 
    .. figure:: images/tc-wl-runtime-class-installation.png
       :align: left
-      :width: 750px 
-      :alt: verify CRD installation 
+      :width: 750px
+      :alt: verify CRD installation
 
 2. Verify Runtime class.
 
@@ -87,9 +93,9 @@ To update the BOM, you can either delete and re-install the deployment package i
 
    .. figure:: images/tc-wl-crd-installation.png
       :align: left
-      :width: 750px 
+      :width: 750px
       :alt: verify Runtime class
-    
+
 
 3. Verify TC VM launch after pod deployment: Once the pod gets deployed with the kata-qemu runtimeclass, verify the VM launch using the command below.
 
@@ -99,7 +105,7 @@ To update the BOM, you can either delete and re-install the deployment package i
 
    .. figure:: images/tc-vm-debug.png
       :align: left
-      :width: 750px 
+      :width: 750px
       :alt: tc vm debug
 
 4. Enable debug console for trusted VM
@@ -162,7 +168,7 @@ To update the BOM, you can either delete and re-install the deployment package i
    5. Follow the below mentioned steps:
 
       a. Edit the file:
-         
+
          /opt/kata/share/defaults/kata-containers/configuration-qemu.toml
 
       b. In the respective sections ("[hypervisor.qemu]", "[runtime]", and "[agent]"), enable the debug configuration parameters.

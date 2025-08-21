@@ -181,7 +181,7 @@ The upgrade process includes:
 Post-Upgrade Verification
 -------------------------
 
-Check the console output from the script.  
+Check the console output from the script.
 The **last line** should read:
 
 ``Upgrade completed! Wait for ArgoCD applications to be in 'Synced' and 'Healthy' state``
