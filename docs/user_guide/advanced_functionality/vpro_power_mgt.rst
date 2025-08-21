@@ -70,6 +70,33 @@ Clicking 'Restart' will Reset the device.
 
 Replace `<host_id>` and `<project_name>` with your actual host-id and project name.
 
+**Check the current power status of the edge node:**
+
+To check the power state of a host using the DMT-specific API, use the following `curl` command:
+
+.. code-block:: bash
+
+   curl -X "GET" "https://mps-wss.<orch-address>/api/v1/amt/power/state/<HOST_UUID>" \
+     -H "accept: application/json" \
+     -H "Authorization: Bearer ${JWT_TOKEN}"
+
+Replace `<cluster-name>` with your cluster domain name.
+Replace `<HOST_UUID>` with the UUID of your host and ensure `${JWT_TOKEN}` is set to a valid authentication token.
+
+This API will return the current power state of the specified.
+
+**Check the device vPro details of the edge node:**
+
+.. code-block:: bash
+
+curl -X "GET" "https://mps-wss.<cluster-name>/api/v1/devices/<HOST_UUID>" \
+-H "accept: application/json" \
+-H "Authorization: Bearer ${JWT_TOKEN}"
+
+Replace `<cluster-name>` with your cluster domain name.
+Replace `<HOST_UUID>` with the UUID of your host and ensure `${JWT_TOKEN}` is set to a valid authentication token.
+
+
 Deactivation of vPro Power Management
 -------------------------------------
 
