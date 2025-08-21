@@ -8,17 +8,17 @@ This guide describes how to use Intel® vPro® features for power management, in
 Activation of vPro Power Management
 -----------------------------------
 
-To use vPro power management features, the device must be provisioned and activated. Provisioning is a prerequisite for activation 
+To use vPro power management features, the device must be provisioned and activated. Provisioning is a prerequisite for activation
 and enables vPro management capabilities on the device.
 
 .. note::
    1. If the edge node is vPro-enabled, activation of vPro features occurs internally and automatically
-   during device onboarding. No explicit user action is required to trigger vPro activation for 
-   supported devices. 
+   during device onboarding. No explicit user action is required to trigger vPro activation for
+   supported devices.
 
-   2. vPro profiles are currently created using Client Control Mode (CCM). CCM mode support is planned for 
+   2. vPro profiles are currently created using Client Control Mode (CCM). CCM mode support is planned for
    version 3.1. Support for Admin Control Mode (ACM) is targeted as technical debt for version 3.2.
-   
+
 Enabling vpro while creating host
 
 .. figure:: images/vpro_enable.png
@@ -28,9 +28,9 @@ Enabling vpro while creating host
 Assumptions & Recommendations
 -----------------------------
 
-- **BIOS Enablement:** Ensure Intel® vPro® is enabled in the system BIOS. If vPro is not required, 
+- **BIOS Enablement:** Ensure Intel® vPro® is enabled in the system BIOS. If vPro is not required,
    it is recommended to disable it in the BIOS for security and compliance.
-- **MEBx Password:** For enhanced security, set a strong and unique Intel® MEBx password during initial setup. 
+- **MEBx Password:** For enhanced security, set a strong and unique Intel® MEBx password during initial setup.
    If the default password is still in use, change it immediately to prevent unauthorized access.
 
 Power Operations
@@ -89,9 +89,9 @@ This API will return the current power state of the specified.
 
 .. code-block:: bash
 
-curl -X "GET" "https://mps-wss.<cluster-name>/api/v1/devices/<HOST_UUID>" \
--H "accept: application/json" \
--H "Authorization: Bearer ${JWT_TOKEN}"
+   curl -X "GET" "https://mps-wss.<cluster-name>/api/v1/devices/<HOST_UUID>" \
+   -H "accept: application/json" \
+   -H "Authorization: Bearer ${JWT_TOKEN}"
 
 Replace `<cluster-name>` with your cluster domain name.
 Replace `<HOST_UUID>` with the UUID of your host and ensure `${JWT_TOKEN}` is set to a valid authentication token.
@@ -100,13 +100,13 @@ Replace `<HOST_UUID>` with the UUID of your host and ensure `${JWT_TOKEN}` is se
 Deactivation of vPro Power Management
 -------------------------------------
 
-To deactivate vPro management features, the device must be deauthorized. 
+To deactivate vPro management features, the device must be deauthorized.
 Deauthorizing will deactivate the device and prevent from further management via vPro.
 
 Troubleshooting
 ---------------
 
-If you encounter issues during activation, power operations, or deactivation, 
+If you encounter issues during activation, power operations, or deactivation,
 refer to the logs or use the `--verbose` flag with `orch-cli` for more details.
 
 For further assistance, consult the official documentation or contact support.
