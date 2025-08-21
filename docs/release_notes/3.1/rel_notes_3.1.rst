@@ -136,11 +136,11 @@ Hosts and Infrastructure
 * Consecutive RESET/CYCLE operation needs explicit power status change to Power ON state.
   First change power status to OFF and Power ON from UI before performing 2nd
   RESET/CYCLE operation. Change power status using orch-cli power commands
-  refer to the user documentation :doc:`/user_guide/advanced_functionality/vpro_power_mgt.rst`
+  refer to the user documentation :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
 * On the host page, the power status might appear as "unspecified" rather
   than displaying whether the system is powered ON or OFF.
   It does not impact the actual power state or power operations of the host.
-  Refer to :doc:`/user_guide/advanced_functionality/vpro_power_mgt.rst` for more information
+  Refer to :doc:`/user_guide/advanced_functionality/vpro_power_mgt` for more information
   on checking the power state.
 
 Clusters and Application Deployment
