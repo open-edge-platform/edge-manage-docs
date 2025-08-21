@@ -1,6 +1,5 @@
 Third Party Components
 ===========================
-TODO UPDATE after latest build is generated (this was manually mantained in excel repo)
 
 Following is a list of all the third party components that |software_prod_name|
 version 3.1 uses.
