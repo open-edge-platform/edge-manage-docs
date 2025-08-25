@@ -491,7 +491,7 @@ Helm Charts for User Interface components
      - "3000"
      - web-ui
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/charts
-     - 2.0.27
+     - 2.0.28
    * - 5
      - web-ui-infra
      - orch-ui-infra
@@ -499,7 +499,7 @@ Helm Charts for User Interface components
      - "3000"
      - web-ui
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/charts
-     - 1.0.27
+     - 1.0.31
    * - 6
      - web-ui-root
      - orch-ui-root
@@ -507,7 +507,7 @@ Helm Charts for User Interface components
      - "3000"
      - web-ui
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/charts
-     - 2.0.22
+     - 2.0.24
 
 Helm Charts for Platform services components
 ------------------------------------------------
