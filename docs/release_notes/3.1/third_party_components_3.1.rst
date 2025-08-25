@@ -737,7 +737,7 @@ User Interface
    * - golang
      - ContainerImage
      - https://hub.docker.com/_/golang
-     - 1.23.2
+     - 1.23.8
    * - bitnami/keycloak
      - Helm Chart
      - https://github.com/bitnami/charts/tree/main/bitnami/keycloak
@@ -746,6 +746,10 @@ User Interface
      - ContainerImage
      - https://hub.docker.com/r/openpolicyagent/opa/
      - 1.2.0
+   * - react
+     - ContainerImage
+     - https://www.npmjs.com/package/react
+     - 18.2.0
 
 Trusted Compute
 ---------------
