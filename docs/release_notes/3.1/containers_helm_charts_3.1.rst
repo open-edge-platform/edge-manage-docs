@@ -1382,6 +1382,10 @@ Docker Containers
      - postgres
      - 16.4
      - postgres:16.4
+   * - 23
+     - pxe-server
+     - 0.1.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/pxe-server:0.1.1
 
 .. list-table:: Observability Containers
    :widths: 5 25 20 55
