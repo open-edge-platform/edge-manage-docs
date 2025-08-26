@@ -10,7 +10,7 @@ fails to start with an error similar to the following:
 
   .. code-block:: bash
 
-    Error: failed to start SDS server: failed to start workload secret manager too many open files 
+    Error: failed to start SDS server: failed to start workload secret manager too many open files
 
 
 Cause
