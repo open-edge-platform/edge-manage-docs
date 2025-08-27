@@ -1,10 +1,31 @@
 Install Edge Orchestrator
 ===============================================
 
+This guide covers the Edge Orchestrator installation process. Choose your installation approach:
+
+**Standard Installation** (Most Users)
+---------------------------------------
+
+For basic deployments with direct internet access and default settings:
+
+1. :ref:`Download Installation Script <download_on_prem_installation_script>`
+2. :ref:`Run Standard Installation <run_standard_installer>`
+3. :ref:`Verify Installation <verify_installation>`
+
+**Advanced Installation** (Complex Environments)
+-------------------------------------------------
+
+For environments requiring custom configurations, proxy settings, or advanced features:
+
+1. :ref:`Download Installation Script <download_on_prem_installation_script>` (same as standard)
+2. :ref:`Configure Advanced Parameters <installation_parameters>`
+3. :ref:`Run Installer with Custom Settings <run_installer>`
+4. :ref:`Advanced Configuration Options <on_prem_custom_settings>`
+
 .. _download_on_prem_installation_script:
 
-Download the Installation Script
------------------------------------------------
+Step 1: Download Installation Script
+====================================
 
 .. note::
    EMF is released on a weekly basis. To use a weekly build, refer to the latest weekly tag available `here <https://github.com/open-edge-platform/edge-manageability-framework/discussions>`_. In the below script, replace v3.0.0 with the appropriate weekly tag. Weekly tags follow the format: v3.1.0-nYYYYMMDD.
@@ -66,13 +87,74 @@ Download the Installation Script
    * Installs the ``oras`` tool
    * Downloads the scripts to install and uninstall Edge Orchestrator
 
-Installation Parameters
----------------------------
+.. _run_standard_installer:
+
+Step 2: Standard Installation (Most Users)
+===========================================
+
+For basic installations with default settings:
+
+**Run the Installer**
+
+.. code-block:: shell
+
+   ./onprem_installer.sh
+
+**Follow the Installation Prompts**
+
+The installer will prompt you for:
+
+1. **Network Configuration**: Enter three unique IP addresses for:
+
+   - Argo CD UI endpoint
+   - Traefik application proxy
+   - NGINX web server
+
+   All IPs must be on the same subnet as your Edge Orchestrator node.
+
+2. **Domain Configuration**: The installer will use the default domain ``cluster.onprem`` unless you need a custom domain.
+
+3. **Confirmation**: Type ``yes`` to proceed with the installation.
+
+**Installation Process**
+
+The installer automatically:
+
+- Downloads required packages and repositories
+- Installs OS-level prerequisites
+- Installs RKE2 Kubernetes distribution
+- Installs ArgoCD and Gitea repository
+- Deploys Edge Orchestrator components
+
+.. _verify_installation:
+
+**Verify Installation**
+
+After installation completes, verify the deployment:
+
+.. code-block:: shell
+
+   # Check ArgoCD is running
+   kubectl get pods -n argocd
+
+   # Access the web interface at the Traefik IP you configured
+
+.. note::
+   **Installation Time**: Standard installation typically takes 30-45 minutes depending on internet connection speed.
+
+----
+
+**For Advanced Configurations, Continue Below**
+
+.. _installation_parameters:
+
+Advanced Installation Parameters
+================================
 
 Before running the installation script, you can provide some optional configuration parameters.
 
 Optional Parameters
-+++++++++++++++++++++++++++++++++++
+-------------------
 
 Some configuration parameters the installer uses have default values that you
 can set manually. See the following table for more information about each parameter.
@@ -110,7 +192,7 @@ can set manually. See the following table for more information about each parame
      - ``v3.0``
 
 Configure SMTP Variables for Notifications
-++++++++++++++++++++++++++++++++++++++++++
+--------------------------------------------
 
 To enable email notifications for alerts, set the following environmental variables
 for the external SMTP server. See
@@ -141,12 +223,20 @@ disable the SMTP server authentication when installing Edge Orchestrator.
      - Set the *default password* to access the SMTP server endpoint
      - ``T@123sfD``
 
-Run Installer
--------------
+.. _run_installer:
 
-.. note:: Add any optional configuration from previous sections if needed. Or check the following for optional arguments.
+Advanced Installation with Custom Settings
+-------------------------------------------
+
+**For users who need custom parameters from the sections above.**
+
+Set any required environment variables, then run the installer:
 
 .. code-block:: shell
+
+   # Example with custom parameters
+   export ORCH_INSTALLER_PROFILE=onprem-1k
+   export CLUSTER_DOMAIN=my-custom.domain
 
    ./onprem_installer.sh
 

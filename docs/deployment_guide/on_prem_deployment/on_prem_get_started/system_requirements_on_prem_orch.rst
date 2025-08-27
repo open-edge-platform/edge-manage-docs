@@ -1,42 +1,57 @@
-Open Edge Platform System Requirements
-============================================================
+System Requirements
+===================
 
-Edge Orchestrator On-Premises Resource Requirements
---------------------------------------------------------
+This page outlines the hardware and software requirements for installing Edge Orchestrator on-premises.
 
-* OS: Ubuntu 22.04.3 Server LTS.
+Quick Requirements Summary
+---------------------------
 
-* Storage: 1x Storage Device (SSD, HDD or NVMe) needed to install the OS to
-  and needs to be at least 256 Gb; Intel suggests 512 Gb.
+.. list-table:: Basic Requirements
+   :header-rows: 1
+   :widths: 20 40 40
 
-* Networking
+   * - Component
+     - Small Scale (up to 100 edge nodes)
+     - Large Scale (up to 1000 edge nodes)
+   * - **Operating System**
+     - Ubuntu 22.04.3 Server LTS
+     - Ubuntu 22.04.3 Server LTS
+   * - **CPU**
+     - 16 physical cores
+     - 128 physical cores
+   * - **Memory**
+     - 32 GiB RAM
+     - 475 GiB RAM
+   * - **Storage**
+     - 512 GiB SSD (minimum 256 GiB)
+     - 2 TiB SSD
+   * - **Network**
+     - 1 Gbps interface + internet access
+     - 1 Gbps interface + internet access
 
-  * 1-gigabit networking interface card capable of providing connection in the on-premises network.
-  * 1-gigabit upstream network connectivity for Edge Orchestrator component download.
-  * Connectivity outbound to the public internet.
+Detailed Requirements
+=====================
 
-* Compute resources
+Operating System
+----------------
 
-  * For small scale deployments (10 ENs), Intel recommends the following compute resources setups:
+* **Required**: Ubuntu 22.04.3 Server LTS
 
-     * RAM: 32 GiB
-     * CPU: 16 physical cores
-     * Disk: 512 GiB
+Storage
+-------
 
-  * For large scale deployments (1.000 ENs), Intel recommends the following compute resources setups:
+* **Minimum**: 256 GiB storage device (SSD, HDD or NVMe)
+* **Recommended**: 512 GiB or larger SSD for better performance
 
-     * RAM: 475 GiB
-     * CPU: 128 physical cores
-     * Disk: 2 TiB
+Network Requirements
+--------------------
 
-Storage consumption varies with environment-specific details, including user-specific telemetry collection policies and application log generation.
+* 1-gigabit networking interface card for on-premises network connection
+* 1-gigabit upstream connectivity for downloading Edge Orchestrator components
+* Outbound internet connectivity required for installation and updates
 
-With the specifications above, the system has been validated to support up to 1000 edge nodes concurrently connected, 100 of with a cluster deployed on it and one application.
-
-
-
-Edge Orchestrator Scalability and Observability Configuration
-------------------------------------------------------------------
+Deployment Sizing
+=================
 
 Depending on the number of edge nodes, you must include cluster-specific configuration:
 

@@ -25,7 +25,7 @@ Network Topology
 ----------------
 
 The OXM profile is intended to be deployed in environments where Edge Nodes do not have direct Internet access,
-as explained in :ref:`on_prem_network_topology_squid_proxy`.
+as explained in the :doc:`/deployment_guide/on_prem_deployment/on_prem_get_started/index` guide.
 
 A sample network topology is presented in the diagram below:
 
