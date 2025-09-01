@@ -1,6 +1,5 @@
 Third Party Components
 ===========================
-TODO UPDATE after latest build is generated (this was manually mantained in excel repo)
 
 Following is a list of all the third party components that |software_prod_name|
 version 3.1 uses.
@@ -19,7 +18,7 @@ Application Orchestration
    * - Open Policy Agent
      - Container
      - openpolicyagent/opa
-     - 1.5.0/1.5.1
+     - 1.5.0/1.5.1,1.6.0
    * - Fleet-Controller
      - Container
      - rancher/fleet
