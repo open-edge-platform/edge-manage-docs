@@ -91,7 +91,7 @@ Download the Installer Container Image
 
    .. code-block:: shell
 
-      oras pull registry-rs.edgeorchestration.intel.com/edge-orch/common/files/cloud-orchestrator-installer:v3.0.0
+      oras pull registry-rs.edgeorchestration.intel.com/edge-orch/common/files/cloud-orchestrator-installer:v3.1.0
 
    This will download the ``cloud-orchestrator-installer.tgz`` release artifact to the ``_build`` directory.
 
