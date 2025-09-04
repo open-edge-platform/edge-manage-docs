@@ -566,6 +566,7 @@ An example of the `dnsmasq` config file:
    address=/rps.[on.prem.domain.name]/[traefik-external-ip]
    address=/mps-wss.[on.prem.domain.name]/[traefik-external-ip]
    address=/rps-wss.[on.prem.domain.name]/[traefik-external-ip]
+   address=/device-manager-node.[on.prem.domain.name]/[traefik-external-ip]
 
 .. _on_prem_cert_exceptions:
 
