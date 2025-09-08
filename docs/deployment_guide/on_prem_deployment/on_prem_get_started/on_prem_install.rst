@@ -1,6 +1,36 @@
 Install Edge Orchestrator
 ===============================================
 
+Installation Flow Overview
+--------------------------
+
+.. mermaid::
+
+   flowchart TD
+      A["<b><u>Create access_script.sh</u></b><br/>Create the script file on the orchestrator node"]
+      A --> B["<b><u>Make Script Executable</u></b><br/>chmod +x access_script.sh"]
+      B --> C["<b><u>Run access_script.sh</u></b><br/>Downloads oras and installer scripts"]
+      C --> D["<b><u>Set Optional Parameters</u></b><br/>Export environment variables for SMTP, SRE, etc."]
+      D --> E["<b><u>Run onprem_installer.sh</u></b><br/>Start installer, use -s for SRE TLS, -d for SMTP disable"]
+      E --> F["<b><u>Enter Network IP Addresses</u></b><br/>Provide Argo, Traefik, and Nginx IPs"]
+      F --> G["<b><u>Configure Custom Settings</u></b><br/>Edit configs in a separate terminal"]
+      G --> H{Custom TLS Certificate?}
+      H -->|Yes| I["<b><u>Prepare TLS Certificate Secret</u></b><br/>Create tls-secret.yaml with cert bundle and key"]
+      H -->|No| J["<b><u>Confirm & Start Deployment</u></b><br/>Type 'yes' to begin"]
+      I --> J
+      J --> K{Using Custom Certificate?}
+      K -->|Yes| L["<b><u>Apply TLS Secret</u></b><br/>kubectl apply -f tls-secret.yaml<br/>immediately after deployment starts"]
+      K -->|No| M["<b><u>Monitor Deployment</u></b><br/>watch kubectl get applications -A<br/>Up to 1 hour for completion"]
+      L --> M
+      M --> N["<b><u>Configure DNS</u></b><br/>Set up domain name resolution"]
+      N --> O{Using Self-signed Cert?}
+      O -->|Yes| P["<b><u>Run generate_fqdn Command</u></b><br/>Copy output to /etc/hosts or DNS server"]
+      O -->|No| Q["<b><u>Get External IPs</u></b><br/>kubectl get services for argocd, traefik, nginx"]
+      P --> R["<b><u>Add Browser Exceptions</u></b><br/>Accept self-signed certificates for orchestrator domains"]
+      Q --> S["<b><u>Configure DNS Records</u></b><br/>Map external IPs to domain names in DNS"]
+      R --> T["<b><u>Limit Argo CD Endpoint Exposure</u></b><br/>Restrict Argo CD UI endpoint to a known subnet (optional)"]
+      S --> T
+      T --> U[Installation Complete]
 .. _download_on_prem_installation_script:
 
 Download the Installation Script
