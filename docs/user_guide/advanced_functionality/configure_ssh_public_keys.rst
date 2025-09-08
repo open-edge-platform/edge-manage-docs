@@ -62,5 +62,5 @@ Edge Manageability Framework allows you to add **public SSH keys** into a host d
       * **<key-name>** is the name provided when you add the SSH key.
       * **<host_ip_address>** is the IP address of the host. You can get the IP address through the **host** `View I/O Devices Details <./../set_up_edge_infra/provisioned_host_details.html#view-i-o-devices-details>`__ page of the web UI.
    
-   .. note::
+   .. warning::
       EMF does not support the lifecycle management (updating, deleting, rotate ssh keys) of the ssh keys installed on the edge node. If you need to rotate or remove the ssh keys, you will need to do it manually on the edge node before the key expires or is no longer needed. Same procedure can be followed to add more ssh keys to the edge node.
