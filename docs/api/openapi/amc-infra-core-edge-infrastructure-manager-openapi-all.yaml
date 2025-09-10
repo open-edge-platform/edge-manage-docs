@@ -123,12 +123,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListHostsResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListHosts
       tags:
         - HostService
@@ -155,12 +175,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/HostResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateHost
       tags:
         - HostService
@@ -190,12 +230,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteHostResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteHost
       tags:
         - HostService
@@ -224,12 +284,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/HostResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetHost
       tags:
         - HostService
@@ -264,12 +344,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/HostResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: PatchHost
       tags:
         - HostService
@@ -304,12 +404,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/HostResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: UpdateHost
       tags:
         - HostService
@@ -350,12 +470,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/InvalidateHostResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: InvalidateHost
       tags:
         - HostService
@@ -386,12 +526,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/OnboardHostResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: OnboardHost
       tags:
         - HostService
@@ -425,12 +585,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/HostResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: PatchRegisterHost
       tags:
         - HostService
@@ -457,12 +637,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/HostResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: RegisterHost
       tags:
         - HostService
@@ -497,12 +697,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetHostSummaryResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetHostsSummary
       tags:
         - HostService
@@ -571,12 +791,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListInstancesResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListInstances
       tags:
         - InstanceService
@@ -603,12 +843,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/InstanceResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateInstance
       tags:
         - InstanceService
@@ -638,12 +898,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteInstanceResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteInstance
       tags:
         - InstanceService
@@ -672,12 +952,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/InstanceResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetInstance
       tags:
         - InstanceService
@@ -712,12 +1012,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/InstanceResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: PatchInstance
       tags:
         - InstanceService
@@ -752,12 +1072,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/InstanceResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: UpdateInstance
       tags:
         - InstanceService
@@ -788,12 +1128,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/InvalidateInstanceResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: InvalidateInstance
       tags:
         - InstanceService
@@ -862,12 +1222,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListOperatingSystemsResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListOperatingSystems
       tags:
         - OperatingSystemService
@@ -894,12 +1274,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/OperatingSystemResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateOperatingSystem
       tags:
         - OperatingSystemService
@@ -929,12 +1329,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteOperatingSystemResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteOperatingSystem
       tags:
         - OperatingSystemService
@@ -963,12 +1383,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/OperatingSystemResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetOperatingSystem
       tags:
         - OperatingSystemService
@@ -1003,12 +1443,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/OperatingSystemResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: PatchOperatingSystem
       tags:
         - OperatingSystemService
@@ -1043,12 +1503,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/OperatingSystemResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: UpdateOperatingSystem
       tags:
         - OperatingSystemService
@@ -1149,12 +1629,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListSchedulesResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListSchedules
       tags:
         - ScheduleService
@@ -1223,12 +1723,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListWorkloadsResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListWorkloads
       tags:
         - WorkloadService
@@ -1255,12 +1775,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/WorkloadResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateWorkload
       tags:
         - WorkloadService
@@ -1290,12 +1830,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteWorkloadResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteWorkload
       tags:
         - WorkloadService
@@ -1324,12 +1884,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/WorkloadResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetWorkload
       tags:
         - WorkloadService
@@ -1364,12 +1944,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/WorkloadResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: PatchWorkload
       tags:
         - WorkloadService
@@ -1404,12 +2004,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/WorkloadResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: UpdateWorkload
       tags:
         - WorkloadService
@@ -1484,12 +2104,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListWorkloadMembersResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListWorkloadMembers
       tags:
         - WorkloadMemberService
@@ -1522,12 +2162,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/WorkloadMember'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateWorkloadMember
       tags:
         - WorkloadMemberService
@@ -1563,12 +2223,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteWorkloadMemberResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteWorkloadMember
       tags:
         - WorkloadMemberService
@@ -1603,12 +2283,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/WorkloadMember'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetWorkloadMember
       tags:
         - WorkloadMemberService
@@ -1677,12 +2377,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListCustomConfigsResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListCustomConfigs
       tags:
         - CustomConfigService
@@ -1709,12 +2429,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/CustomConfigResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateCustomConfig
       tags:
         - CustomConfigService
@@ -1744,12 +2484,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteCustomConfigResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteCustomConfig
       tags:
         - CustomConfigService
@@ -1778,12 +2538,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/CustomConfigResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetCustomConfig
       tags:
         - CustomConfigService
@@ -1852,12 +2632,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListLocalAccountsResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListLocalAccounts
       tags:
         - LocalAccountService
@@ -1884,12 +2684,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/LocalAccountResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateLocalAccount
       tags:
         - LocalAccountService
@@ -1919,12 +2739,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteLocalAccountResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteLocalAccount
       tags:
         - LocalAccountService
@@ -1953,12 +2793,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/LocalAccountResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetLocalAccount
       tags:
         - LocalAccountService
@@ -2003,12 +2863,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListLocationsResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListLocations
       tags:
         - LocationService
@@ -2077,12 +2957,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListOSUpdatePolicyResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListOSUpdatePolicy
       tags:
         - OSUpdatePolicy
@@ -2109,12 +3009,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/OSUpdatePolicy'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateOSUpdatePolicy
       tags:
         - OSUpdatePolicy
@@ -2144,12 +3064,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteOSUpdatePolicyResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteOSUpdatePolicy
       tags:
         - OSUpdatePolicy
@@ -2178,12 +3118,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/OSUpdatePolicy'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetOSUpdatePolicy
       tags:
         - OSUpdatePolicy
@@ -2252,12 +3212,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListOSUpdateRunResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListOSUpdateRun
       tags:
         - OSUpdateRun
@@ -2287,12 +3267,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteOSUpdateRunResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteOSUpdateRun
       tags:
         - OSUpdateRun
@@ -2321,12 +3321,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/OSUpdateRun'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetOSUpdateRun
       tags:
         - OSUpdateRun
@@ -2395,12 +3415,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListProvidersResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListProviders
       tags:
         - ProviderService
@@ -2427,12 +3467,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProviderResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateProvider
       tags:
         - ProviderService
@@ -2462,12 +3522,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteProviderResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteProvider
       tags:
         - ProviderService
@@ -2496,12 +3576,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProviderResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetProvider
       tags:
         - ProviderService
@@ -2577,12 +3677,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListRegionsResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListRegions
       tags:
         - RegionService
@@ -2609,12 +3729,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/RegionResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateRegion
       tags:
         - RegionService
@@ -2650,12 +3790,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteSiteResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteSite
       tags:
         - SiteService
@@ -2690,12 +3850,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/SiteResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetSite
       tags:
         - SiteService
@@ -2736,12 +3916,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/SiteResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: PatchSite
       tags:
         - SiteService
@@ -2782,12 +3982,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/SiteResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: UpdateSite
       tags:
         - SiteService
@@ -2817,12 +4037,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteRegionResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteRegion
       tags:
         - RegionService
@@ -2851,12 +4091,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/RegionResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetRegion
       tags:
         - RegionService
@@ -2891,12 +4151,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/RegionResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: PatchRegion
       tags:
         - RegionService
@@ -2931,12 +4211,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/RegionResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: UpdateRegion
       tags:
         - RegionService
@@ -3011,12 +4311,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListSitesResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListSites
       tags:
         - SiteService
@@ -3049,12 +4369,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/SiteResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateSite
       tags:
         - SiteService
@@ -3155,12 +4495,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListRepeatedSchedulesResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListRepeatedSchedules
       tags:
         - ScheduleService
@@ -3187,12 +4547,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/RepeatedScheduleResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateRepeatedSchedule
       tags:
         - ScheduleService
@@ -3222,12 +4602,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteRepeatedScheduleResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteRepeatedSchedule
       tags:
         - ScheduleService
@@ -3256,12 +4656,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/RepeatedScheduleResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetRepeatedSchedule
       tags:
         - ScheduleService
@@ -3296,12 +4716,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/RepeatedScheduleResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: PatchRepeatedSchedule
       tags:
         - ScheduleService
@@ -3336,12 +4776,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/RepeatedScheduleResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: UpdateRepeatedSchedule
       tags:
         - ScheduleService
@@ -3442,12 +4902,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListSingleSchedulesResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListSingleSchedules
       tags:
         - ScheduleService
@@ -3474,12 +4954,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/SingleScheduleResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateSingleSchedule
       tags:
         - ScheduleService
@@ -3509,12 +5009,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteSingleScheduleResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteSingleSchedule
       tags:
         - ScheduleService
@@ -3543,12 +5063,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/SingleScheduleResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetSingleSchedule
       tags:
         - ScheduleService
@@ -3583,12 +5123,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/SingleScheduleResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: PatchSingleSchedule
       tags:
         - ScheduleService
@@ -3623,12 +5183,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/SingleScheduleResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: UpdateSingleSchedule
       tags:
         - ScheduleService
@@ -3684,12 +5264,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListTelemetryLogsGroupsResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListTelemetryLogsGroups
       tags:
         - TelemetryLogsGroupService
@@ -3716,12 +5316,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/TelemetryLogsGroupResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateTelemetryLogsGroup
       tags:
         - TelemetryLogsGroupService
@@ -3757,12 +5377,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteTelemetryLogsProfileResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteTelemetryLogsProfile
       tags:
         - TelemetryLogsProfileService
@@ -3797,12 +5437,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/TelemetryLogsProfileResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetTelemetryLogsProfile
       tags:
         - TelemetryLogsProfileService
@@ -3843,12 +5503,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/TelemetryLogsProfileResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: PatchTelemetryLogsProfile
       tags:
         - TelemetryLogsProfileService
@@ -3889,12 +5569,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/TelemetryLogsProfileResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: UpdateTelemetryLogsProfile
       tags:
         - TelemetryLogsProfileService
@@ -3924,12 +5624,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteTelemetryLogsGroupResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteTelemetryLogsGroup
       tags:
         - TelemetryLogsGroupService
@@ -3958,12 +5678,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/TelemetryLogsGroupResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetTelemetryLogsGroup
       tags:
         - TelemetryLogsGroupService
@@ -4064,12 +5804,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListTelemetryLogsProfilesResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListTelemetryLogsProfiles
       tags:
         - TelemetryLogsProfileService
@@ -4102,12 +5862,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/TelemetryLogsProfileResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateTelemetryLogsProfile
       tags:
         - TelemetryLogsProfileService
@@ -4163,12 +5943,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListTelemetryMetricsGroupsResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListTelemetryMetricsGroups
       tags:
         - TelemetryMetricsGroupService
@@ -4195,12 +5995,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/TelemetryMetricsGroupResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateTelemetryMetricsGroup
       tags:
         - TelemetryMetricsGroupService
@@ -4236,12 +6056,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteTelemetryMetricsProfileResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteTelemetryMetricsProfile
       tags:
         - TelemetryMetricsProfileService
@@ -4276,12 +6116,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/TelemetryMetricsProfileResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetTelemetryMetricsProfile
       tags:
         - TelemetryMetricsProfileService
@@ -4322,12 +6182,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/TelemetryMetricsProfileResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: PatchTelemetryMetricsProfile
       tags:
         - TelemetryMetricsProfileService
@@ -4368,12 +6248,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/TelemetryMetricsProfileResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: UpdateTelemetryMetricsProfile
       tags:
         - TelemetryMetricsProfileService
@@ -4403,12 +6303,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteTelemetryMetricsGroupResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: DeleteTelemetryMetricsGroup
       tags:
         - TelemetryMetricsGroupService
@@ -4437,12 +6357,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/TelemetryMetricsGroupResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: GetTelemetryMetricsGroup
       tags:
         - TelemetryMetricsGroupService
@@ -4543,12 +6483,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListTelemetryMetricsProfilesResponse'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: ListTelemetryMetricsProfiles
       tags:
         - TelemetryMetricsProfileService
@@ -4581,16 +6541,122 @@ paths:
               schema:
                 $ref: '#/components/schemas/TelemetryMetricsProfileResource'
           description: Success
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect.error'
-          description: Error
+        "400":
+          $ref: '#/components/responses/400-BadRequest'
+        "401":
+          $ref: '#/components/responses/401-Unauthorized'
+        "403":
+          $ref: '#/components/responses/403-Forbidden'
+        "404":
+          $ref: '#/components/responses/404-NotFound'
+        "406":
+          $ref: '#/components/responses/406-NotAcceptable'
+        "408":
+          $ref: '#/components/responses/408-Timeout'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
+        "412":
+          $ref: '#/components/responses/412-PreconditionFailed'
+        "422":
+          $ref: '#/components/responses/422-UnprocessableEntity'
+        "429":
+          $ref: '#/components/responses/429-TooManyRequests'
+        "500":
+          $ref: '#/components/responses/500-InternalServerError'
+        "501":
+          $ref: '#/components/responses/501-Unimplemented'
+        "503":
+          $ref: '#/components/responses/503-ServiceUnavailable'
       summary: CreateTelemetryMetricsProfile
       tags:
         - TelemetryMetricsProfileService
 components:
+  responses:
+    400-BadRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: Object in payload is not properly formulated or not related to
+        the method.
+    401-Unauthorized:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: Request is not authenticated; it either does not contain a JSON
+        Web Token (JWT) in its header, or the JWT is not valid.
+    403-Forbidden:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: Request is not authorized; it does not contain valid roles to perform
+        a request.
+    404-NotFound:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: No resource is found at the URI.
+    406-NotAcceptable:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: Response content is not acceptable according to the request's accept
+        headers.
+    408-Timeout:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: Request timeout.
+    409-Conflict:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: Request could not be processed in the current state of the resource.
+    412-PreconditionFailed:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: The server does not meet one of the preconditions that the requester
+        put on the request header fields.
+    422-UnprocessableEntity:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: Unprocessable entity in parsing body request.
+    429-TooManyRequests:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: Too many requests have been sent in a given amount of time.
+    500-InternalServerError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: The provider is currently unable to handle the request because
+        of an internal error.
+    501-Unimplemented:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: The resource or method is not implemented.
+    503-ServiceUnavailable:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: The provider is currently unable to handle the request because
+        of a temporary overload.
   schemas:
     AmtState:
       description: The state of the AMT (Active Management Technology) component.
@@ -8069,6 +10135,15 @@ components:
       description: Response of a Host Register request.
       title: OnboardHostResponse
       type: object
+    ProblemDetails:
+      description: Carries a message in an HTTP error response.
+      properties:
+        message:
+          description: Contains detailed information about the problem, such as its
+            source data that can be used for debugging purposes.
+          readOnly: true
+          type: string
+      type: object  
     OperatingSystemResource:
       additionalProperties: false
       description: An OS resource.
