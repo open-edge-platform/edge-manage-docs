@@ -8,48 +8,45 @@ info:
   description: App Resource Manager service providing operations for resource management
   version: 1.0.0
 servers:
-- url: '{apiRoot}'
-  variables:
-    apiRoot:
-      default: https://<multitenancy-gateway-host>
+  - url: '{apiRoot}'
+    variables:
+      apiRoot:
+        default: https://<multitenancy-gateway-host>
 tags:
-- description: Provides API endpoints for listing and lifecycle management of workloads,
-    including virtual machines and container-based workloads.
-  name: AppWorkloadService
-- description: Provides API to list endpoints.
-  name: EndpointsService
-- description: Provides API to manage a pod workload such as deleting a pod.
-  name: PodService
-- description: Provides API to manage a virtual machine workload such as starting,
-    stopping, or restarting a virtual machine; and virtual machine console access.
-  name: VirtualMachineService
+  - description: Provides API endpoints for listing and lifecycle management of workloads, including virtual machines and container-based workloads.
+    name: AppWorkloadService
+  - description: Provides API to list endpoints.
+    name: EndpointsService
+  - description: Provides API to manage a pod workload such as deleting a pod.
+    name: PodService
+  - description: Provides API to manage a virtual machine workload such as starting, stopping, or restarting a virtual machine; and virtual machine console access.
+    name: VirtualMachineService
 security:
-- BearerAuth: []
+  - BearerAuth: []
 paths:
   /v1/projects/{projectName}/resource/endpoints/applications/{appId}/clusters/{clusterId}:
     get:
-      description: Gets a list of all endpoints for an application of a deployment
-        in a cluster.
+      description: Gets a list of all endpoints for an application of a deployment in a cluster.
       operationId: EndpointsService_ListAppEndpoints
       parameters:
-      - description: Application ID
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-      - description: Cluster ID
-        in: path
-        name: clusterId
-        required: true
-        schema:
-          type: string
-      - description: unique projectName for the resource
-        in: path
-        name: projectName
-        required: true
-        schema:
-          type: string
+        - description: Application ID
+          in: path
+          name: appId
+          required: true
+          schema:
+            type: string
+        - description: Cluster ID
+          in: path
+          name: clusterId
+          required: true
+          schema:
+            type: string
+        - description: unique projectName for the resource
+          in: path
+          name: projectName
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           content:
@@ -59,31 +56,30 @@ paths:
           description: OK
       summary: ListAppEndpoints
       tags:
-      - EndpointsService
+        - EndpointsService
   /v1/projects/{projectName}/resource/workloads/applications/{appId}/clusters/{clusterId}:
     get:
-      description: Gets a list of all workloads for an application of a deployment
-        in a cluster.
+      description: Gets a list of all workloads for an application of a deployment in a cluster.
       operationId: AppWorkloadService_ListAppWorkloads
       parameters:
-      - description: Application ID
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-      - description: Cluster ID
-        in: path
-        name: clusterId
-        required: true
-        schema:
-          type: string
-      - description: unique projectName for the resource
-        in: path
-        name: projectName
-        required: true
-        schema:
-          type: string
+        - description: Application ID
+          in: path
+          name: appId
+          required: true
+          schema:
+            type: string
+        - description: Cluster ID
+          in: path
+          name: clusterId
+          required: true
+          schema:
+            type: string
+        - description: unique projectName for the resource
+          in: path
+          name: projectName
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           content:
@@ -93,37 +89,36 @@ paths:
           description: OK
       summary: ListAppWorkloads
       tags:
-      - AppWorkloadService
+        - AppWorkloadService
   ? /v1/projects/{projectName}/resource/workloads/applications/{appId}/clusters/{clusterId}/virtual-machines/{virtualMachineId}/restart
   : put:
-      description: Restarts a virtual machine for an application of a deployment in
-        a cluster.
+      description: Restarts a virtual machine for an application of a deployment in a cluster.
       operationId: VirtualMachineService_RestartVirtualMachine
       parameters:
-      - description: Application ID
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-      - description: Cluster ID
-        in: path
-        name: clusterId
-        required: true
-        schema:
-          type: string
-      - description: Virtual machine ID
-        in: path
-        name: virtualMachineId
-        required: true
-        schema:
-          type: string
-      - description: unique projectName for the resource
-        in: path
-        name: projectName
-        required: true
-        schema:
-          type: string
+        - description: Application ID
+          in: path
+          name: appId
+          required: true
+          schema:
+            type: string
+        - description: Cluster ID
+          in: path
+          name: clusterId
+          required: true
+          schema:
+            type: string
+        - description: Virtual machine ID
+          in: path
+          name: virtualMachineId
+          required: true
+          schema:
+            type: string
+        - description: unique projectName for the resource
+          in: path
+          name: projectName
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           content:
@@ -133,37 +128,36 @@ paths:
           description: OK
       summary: RestartVirtualMachine
       tags:
-      - VirtualMachineService
+        - VirtualMachineService
   ? /v1/projects/{projectName}/resource/workloads/applications/{appId}/clusters/{clusterId}/virtual-machines/{virtualMachineId}/start
   : put:
-      description: Starts a virtual machine for an application of a deployment in
-        a cluster.
+      description: Starts a virtual machine for an application of a deployment in a cluster.
       operationId: VirtualMachineService_StartVirtualMachine
       parameters:
-      - description: Application ID
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-      - description: Cluster ID
-        in: path
-        name: clusterId
-        required: true
-        schema:
-          type: string
-      - description: Virtual machine ID
-        in: path
-        name: virtualMachineId
-        required: true
-        schema:
-          type: string
-      - description: unique projectName for the resource
-        in: path
-        name: projectName
-        required: true
-        schema:
-          type: string
+        - description: Application ID
+          in: path
+          name: appId
+          required: true
+          schema:
+            type: string
+        - description: Cluster ID
+          in: path
+          name: clusterId
+          required: true
+          schema:
+            type: string
+        - description: Virtual machine ID
+          in: path
+          name: virtualMachineId
+          required: true
+          schema:
+            type: string
+        - description: unique projectName for the resource
+          in: path
+          name: projectName
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           content:
@@ -173,37 +167,36 @@ paths:
           description: OK
       summary: StartVirtualMachine
       tags:
-      - VirtualMachineService
+        - VirtualMachineService
   /v1/projects/{projectName}/resource/workloads/applications/{appId}/clusters/{clusterId}/virtual-machines/{virtualMachineId}/stop:
     put:
-      description: Stops a virtual machine for an application of a deployment in a
-        cluster.
+      description: Stops a virtual machine for an application of a deployment in a cluster.
       operationId: VirtualMachineService_StopVirtualMachine
       parameters:
-      - description: Application ID
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-      - description: Cluster ID
-        in: path
-        name: clusterId
-        required: true
-        schema:
-          type: string
-      - description: Virtual machine ID
-        in: path
-        name: virtualMachineId
-        required: true
-        schema:
-          type: string
-      - description: unique projectName for the resource
-        in: path
-        name: projectName
-        required: true
-        schema:
-          type: string
+        - description: Application ID
+          in: path
+          name: appId
+          required: true
+          schema:
+            type: string
+        - description: Cluster ID
+          in: path
+          name: clusterId
+          required: true
+          schema:
+            type: string
+        - description: Virtual machine ID
+          in: path
+          name: virtualMachineId
+          required: true
+          schema:
+            type: string
+        - description: unique projectName for the resource
+          in: path
+          name: projectName
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           content:
@@ -213,36 +206,36 @@ paths:
           description: OK
       summary: StopVirtualMachine
       tags:
-      - VirtualMachineService
+        - VirtualMachineService
   /v1/projects/{projectName}/resource/workloads/applications/{appId}/clusters/{clusterId}/virtual-machines/{virtualMachineId}/vnc:
     get:
       description: Accesses the VNC console to access a virtual machine.
       operationId: VirtualMachineService_GetVNC
       parameters:
-      - description: Application ID
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-      - description: Cluster ID
-        in: path
-        name: clusterId
-        required: true
-        schema:
-          type: string
-      - description: Virtual machine ID
-        in: path
-        name: virtualMachineId
-        required: true
-        schema:
-          type: string
-      - description: unique projectName for the resource
-        in: path
-        name: projectName
-        required: true
-        schema:
-          type: string
+        - description: Application ID
+          in: path
+          name: appId
+          required: true
+          schema:
+            type: string
+        - description: Cluster ID
+          in: path
+          name: clusterId
+          required: true
+          schema:
+            type: string
+        - description: Virtual machine ID
+          in: path
+          name: virtualMachineId
+          required: true
+          schema:
+            type: string
+        - description: unique projectName for the resource
+          in: path
+          name: projectName
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           content:
@@ -252,36 +245,36 @@ paths:
           description: OK
       summary: GetVNC
       tags:
-      - VirtualMachineService
+        - VirtualMachineService
   /v1/projects/{projectName}/resource/workloads/pods/clusters/{clusterId}/namespaces/{namespace}/pods/{podName}/delete:
     put:
       description: Deletes the pod for an application in a cluster.
       operationId: PodService_DeletePod
       parameters:
-      - description: Cluster ID
-        in: path
-        name: clusterId
-        required: true
-        schema:
-          type: string
-      - description: Namespace that the pod is running on.
-        in: path
-        name: namespace
-        required: true
-        schema:
-          type: string
-      - description: Name of the pod.
-        in: path
-        name: podName
-        required: true
-        schema:
-          type: string
-      - description: unique projectName for the resource
-        in: path
-        name: projectName
-        required: true
-        schema:
-          type: string
+        - description: Cluster ID
+          in: path
+          name: clusterId
+          required: true
+          schema:
+            type: string
+        - description: Namespace that the pod is running on.
+          in: path
+          name: namespace
+          required: true
+          schema:
+            type: string
+        - description: Name of the pod.
+          in: path
+          name: podName
+          required: true
+          schema:
+            type: string
+        - description: unique projectName for the resource
+          in: path
+          name: projectName
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           content:
@@ -291,24 +284,22 @@ paths:
           description: OK
       summary: DeletePod
       tags:
-      - PodService
+        - PodService
 components:
   schemas:
     AdminStatus:
-      description: Represents the associated VirtualMachineInstance's state, either
-        created (up state) or not (down state).
+      description: Represents the associated VirtualMachineInstance's state, either created (up state) or not (down state).
       properties:
         state:
           description: State information
           enum:
-          - STATE_UP
-          - STATE_DOWN
+            - STATE_UP
+            - STATE_DOWN
           format: enum
           type: string
       type: object
     AppEndpoint:
-      description: Represents an endpoint for accessing the application outside of
-        a cluster.
+      description: Represents an endpoint for accessing the application outside of a cluster.
       properties:
         endpointStatus:
           $ref: '#/components/schemas/EndpointStatus'
@@ -316,6 +307,7 @@ components:
           description: Fully qualified domain name (FQDN) for external access.
           items:
             $ref: '#/components/schemas/Fqdn'
+          maxItems: 100
           readOnly: true
           type: array
         id:
@@ -334,13 +326,12 @@ components:
           description: List of ports exposed by a service for external access
           items:
             $ref: '#/components/schemas/Port'
+          maxItems: 100
           readOnly: true
           type: array
       type: object
     AppWorkload:
-      description: AppWorkload a high-level abstraction for representing different
-        types of application workloads. The application workloads can be virtual machine-based
-        or container-based.
+      description: AppWorkload a high-level abstraction for representing different types of application workloads. The application workloads can be virtual machine-based or container-based.
       properties:
         createTime:
           description: The time when the workload is created.
@@ -366,20 +357,19 @@ components:
         type:
           description: Application workload type, e.g. virtual machine and pod.
           enum:
-          - TYPE_VIRTUAL_MACHINE
-          - TYPE_POD
+            - TYPE_VIRTUAL_MACHINE
+            - TYPE_POD
           format: enum
           type: string
         virtualMachine:
           $ref: '#/components/schemas/VirtualMachine'
         workloadReady:
-          description: Ready status to determines if a workload is fully functional
-            or not.
+          description: Ready status to determines if a workload is fully functional or not.
           readOnly: true
           type: boolean
       required:
-      - id
-      - name
+        - id
+        - name
       type: object
     Container:
       description: Represents a container resource.
@@ -402,7 +392,7 @@ components:
         status:
           $ref: '#/components/schemas/ContainerStatus'
       required:
-      - name
+        - name
       type: object
     ContainerStateRunning:
       description: Running status of a container.
@@ -455,8 +445,8 @@ components:
         state:
           description: Endpoint state, either Ready or NotReady.
           enum:
-          - STATE_READY
-          - STATE_NOT_READY
+            - STATE_READY
+            - STATE_NOT_READY
           format: enum
           readOnly: true
           type: string
@@ -474,7 +464,7 @@ components:
         address:
           type: string
       required:
-      - address
+        - address
       type: object
     ListAppEndpointsResponse:
       description: Response message for the ListAppEndpoints method.
@@ -483,6 +473,7 @@ components:
           description: List of services.
           items:
             $ref: '#/components/schemas/AppEndpoint'
+          maxItems: 100
           readOnly: true
           type: array
       type: object
@@ -493,6 +484,7 @@ components:
           description: A list of virtual machines.
           items:
             $ref: '#/components/schemas/AppWorkload'
+          maxItems: 100
           type: array
       type: object
     Pod:
@@ -502,6 +494,7 @@ components:
           description: containers list of containers per pod
           items:
             $ref: '#/components/schemas/Container'
+          maxItems: 100
           type: array
         status:
           $ref: '#/components/schemas/PodStatus'
@@ -512,10 +505,10 @@ components:
         state:
           description: State information
           enum:
-          - STATE_PENDING
-          - STATE_RUNNING
-          - STATE_SUCCEEDED
-          - STATE_FAILED
+            - STATE_PENDING
+            - STATE_RUNNING
+            - STATE_SUCCEEDED
+            - STATE_FAILED
           format: enum
           type: string
       type: object
@@ -566,21 +559,21 @@ components:
         state:
           description: Virtual machine state
           enum:
-          - STATE_STOPPED
-          - STATE_PROVISIONING
-          - STATE_STARTING
-          - STATE_RUNNING
-          - STATE_PAUSED
-          - STATE_STOPPING
-          - STATE_TERMINATING
-          - STATE_CRASH_LOOP_BACKOFF
-          - STATE_MIGRATING
-          - STATE_ERROR_UNSCHEDULABLE
-          - STATE_ERROR_IMAGE_PULL
-          - STATE_ERROR_IMAGE_PULL_BACKOFF
-          - STATE_ERROR_PVC_NOT_FOUND
-          - STATE_ERROR_DATA_VOLUME
-          - STATE_WAITING_FOR_VOLUME_BINDING
+            - STATE_STOPPED
+            - STATE_PROVISIONING
+            - STATE_STARTING
+            - STATE_RUNNING
+            - STATE_PAUSED
+            - STATE_STOPPING
+            - STATE_TERMINATING
+            - STATE_CRASH_LOOP_BACKOFF
+            - STATE_MIGRATING
+            - STATE_ERROR_UNSCHEDULABLE
+            - STATE_ERROR_IMAGE_PULL
+            - STATE_ERROR_IMAGE_PULL_BACKOFF
+            - STATE_ERROR_PVC_NOT_FOUND
+            - STATE_ERROR_DATA_VOLUME
+            - STATE_WAITING_FOR_VOLUME_BINDING
           format: enum
           type: string
       type: object

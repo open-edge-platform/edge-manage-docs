@@ -6,80 +6,90 @@ openapi: 3.0.3
 info:
   title: Cluster Manager 2.0
   description: This document defines the schema for the Cluster Manager 2.0 REST API.
-  version: 2.0.0-dev
+  version: 2.1.1-dev
 servers:
-- url: '{apiRoot}'
-  variables:
-    apiRoot:
-      default: https://<multitenancy-gateway-host>
+  - url: '{apiRoot}'
+    variables:
+      apiRoot:
+        default: https://<multitenancy-gateway-host>
 tags:
-- description: Operations related to managing clusters
-  name: Clusters
-- description: Operations related to managing kubeconfig files of created clusters
-  name: Kubeconfigs
-- description: Operations related to managing cluster templates
-  name: Cluster Templates
-- description: Operations related to checking the health status of the CM REST API
-  name: Health Check
+  - description: Operations related to managing clusters
+    name: Clusters
+  - description: Operations related to managing kubeconfig files of created clusters
+    name: Kubeconfigs
+  - description: Operations related to managing cluster templates
+    name: Cluster Templates
+  - description: Operations related to checking the health status of the CM REST API
+    name: Health Check
 security:
-- HTTP: []
-- BearerAuth: []
+  - HTTP: []
+  - BearerAuth: []
 paths:
   /v2/projects/{projectName}/clusters:
     get:
       description: Gets all clusters' information.
       parameters:
-      - description: The maximum number of items to return.
-        example: /v2/clusters?pageSize=20
-        in: query
-        name: pageSize
-        schema:
-          default: 20
-          maximum: 100
-          minimum: 0
-          type: integer
-      - description: Index of the first item to return. It is almost always used in
-          conjunction with the 'pageSize' query.
-        example: /v2/clusters?pageSize=20&offset=10
-        in: query
-        name: offset
-        schema:
-          default: 0
-          minimum: 0
-          type: integer
-      - description: The ordering of the entries. "asc" and "desc" are valid values.
-          If none is specified, "asc" is used.
-        examples:
-          ascending:
-            description: sort the entries by name entry in ascending order
-            value: /v2/clusters?orderBy="name asc"
-          default:
-            description: Sorts the entries by name in ascending order as default when
-              no order is specified.
-            value: /v2/clusters?orderBy="name"
-          descending:
-            description: sort the entries by name entry in descending order
-            value: /v2/clusters?orderBy="name desc"
-        in: query
-        name: orderBy
-        schema:
-          type: string
-      - description: Filters the entries based on the filter provided.
-        examples:
-          multiple_filter:
-            description: filter by cluster name with the prefix "foo" or with Kubernetes
-              software v1.27.5.
-            value: /v2/clusters?filter="name=foo* OR kubernetes_version=v2.27.5"
-          single_filter_with_search_prefix:
-            description: filter clusters whose cluster prefix has foo
-            value: /v2/clusters?filter="name=foo*"
-          single_filter_without_search_prefix:
-            description: Filter by the cluster name "foo".
-            value: /v2/clusters?filter="name=foo"
-        in: query
-        name: filter
-        schema:
-          type: string
+        - description: The maximum number of items to return.
+          example: /v2/clusters?pageSize=20
+          in: query
+          name: pageSize
+          schema:
+            default: 20
+            maximum: 100
+            minimum: 0
+            type: integer
+        - description: Index of the first item to return. It is almost always used in conjunction with the 'pageSize' query.
+          example: /v2/clusters?pageSize=20&offset=10
+          in: query
+          name: offset
+          schema:
+            default: 0
+            minimum: 0
+            type: integer
+        - description: |
+            The ordering of the entries. "asc" and "desc" are valid values. If none is specified, "asc" is used.
+
+            Supported fields:
+            - name
+            - kubernetesVersion
+            - providerStatus
+            - lifecyclePhase
+          examples:
+            ascending:
+              description: sort the entries by name entry in ascending order
+              value: /v2/clusters?orderBy="name asc"
+            default:
+              description: Sorts the entries by name in ascending order as default when no order is specified.
+              value: /v2/clusters?orderBy="name"
+            descending:
+              description: sort the entries by name entry in descending order
+              value: /v2/clusters?orderBy="name desc"
+          in: query
+          name: orderBy
+          schema:
+            type: string
+        - description: |
+            Filters the entries based on the filter provided.
+
+            Supported fields:
+            - name
+            - kubernetesVersion
+            - providerStatus
+            - lifecyclePhase
+          examples:
+            multiple_filter:
+              description: filter by cluster name with the prefix "foo" or with Kubernetes software v1.27.5.
+              value: /v2/clusters?filter="name=foo* OR kubernetes_version=v2.27.5"
+            single_filter_with_search_prefix:
+              description: filter clusters whose cluster prefix has foo
+              value: /v2/clusters?filter="name=foo*"
+            single_filter_without_search_prefix:
+              description: Filter by the cluster name "foo".
+              value: /v2/clusters?filter="name=foo"
+          in: query
+          name: filter
+          schema:
+            type: string
       responses:
         "200":
           content:
@@ -89,14 +99,14 @@ paths:
                   clusters:
                     items:
                       $ref: '#/components/schemas/ClusterInfo'
+                    maxItems: 100
                     type: array
                   totalElements:
-                    description: The count of items in the entire list, regardless
-                      of pagination.
+                    description: The count of items in the entire list, regardless of pagination.
                     format: int32
                     type: integer
                 required:
-                - totalElements
+                  - totalElements
                 type: object
           description: OK
         "400":
@@ -104,14 +114,14 @@ paths:
         "500":
           $ref: '#/components/responses/500-InternalServerError'
       tags:
-      - Clusters
+        - Clusters
     parameters:
-    - description: unique projectName for the resource
-      in: path
-      name: projectName
-      required: true
-      schema:
-        type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
     post:
       description: Creates a cluster.
       requestBody:
@@ -131,7 +141,7 @@ paths:
         "500":
           $ref: '#/components/responses/500-InternalServerError'
       tags:
-      - Clusters
+        - Clusters
   /v2/projects/{projectName}/clusters/{name}:
     delete:
       description: Deletes the cluster {name}.
@@ -145,7 +155,7 @@ paths:
         "500":
           $ref: '#/components/responses/500-InternalServerError'
       tags:
-      - Clusters
+        - Clusters
     get:
       description: Gets the cluster {name} information.
       responses:
@@ -162,23 +172,23 @@ paths:
         "500":
           $ref: '#/components/responses/500-InternalServerError'
       tags:
-      - Clusters
+        - Clusters
     parameters:
-    - example: ""
-      in: path
-      name: name
-      required: true
-      schema:
-        maxLength: 63
-        minLength: 1
-        pattern: ^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
-        type: string
-    - description: unique projectName for the resource
-      in: path
-      name: projectName
-      required: true
-      schema:
-        type: string
+      - example: ""
+        in: path
+        name: name
+        required: true
+        schema:
+          maxLength: 63
+          minLength: 1
+          pattern: ^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
   /v2/projects/{projectName}/clusters/{name}/kubeconfigs:
     get:
       description: Gets the cluster's kubeconfig file by its name {name}.
@@ -198,40 +208,40 @@ paths:
         "500":
           $ref: '#/components/responses/500-InternalServerError'
       tags:
-      - Kubeconfigs
+        - Kubeconfigs
     parameters:
-    - example: ""
-      in: path
-      name: name
-      required: true
-      schema:
-        maxLength: 100
-        minLength: 1
-        pattern: ^[a-zA-Z-_0-9. ]+$
-        type: string
-    - description: unique projectName for the resource
-      in: path
-      name: projectName
-      required: true
-      schema:
-        type: string
+      - example: ""
+        in: path
+        name: name
+        required: true
+        schema:
+          maxLength: 100
+          minLength: 1
+          pattern: ^[a-zA-Z-_0-9. ]+$
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
   /v2/projects/{projectName}/clusters/{name}/labels:
     parameters:
-    - example: ""
-      in: path
-      name: name
-      required: true
-      schema:
-        maxLength: 63
-        minLength: 1
-        pattern: ^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
-        type: string
-    - description: unique projectName for the resource
-      in: path
-      name: projectName
-      required: true
-      schema:
-        type: string
+      - example: ""
+        in: path
+        name: name
+        required: true
+        schema:
+          maxLength: 63
+          minLength: 1
+          pattern: ^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
     put:
       description: Updates cluster {name} labels.
       requestBody:
@@ -250,24 +260,24 @@ paths:
         "500":
           $ref: '#/components/responses/500-InternalServerError'
       tags:
-      - Clusters
+        - Clusters
   /v2/projects/{projectName}/clusters/{name}/nodes:
     parameters:
-    - example: ""
-      in: path
-      name: name
-      required: true
-      schema:
-        maxLength: 63
-        minLength: 1
-        pattern: ^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
-        type: string
-    - description: unique projectName for the resource
-      in: path
-      name: projectName
-      required: true
-      schema:
-        type: string
+      - example: ""
+        in: path
+        name: name
+        required: true
+        schema:
+          maxLength: 63
+          minLength: 1
+          pattern: ^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
     put:
       description: Updates cluster {name} nodes.
       requestBody:
@@ -276,6 +286,7 @@ paths:
             schema:
               items:
                 $ref: '#/components/schemas/NodeSpec'
+              maxItems: 100
               type: array
       responses:
         "200":
@@ -287,7 +298,7 @@ paths:
         "500":
           $ref: '#/components/responses/500-InternalServerError'
       tags:
-      - Clusters
+        - Clusters
   /v2/projects/{projectName}/clusters/{name}/nodes/{nodeId}:
     delete:
       description: Deletes the cluster {name} node {nodeId}.
@@ -301,54 +312,54 @@ paths:
         "500":
           $ref: '#/components/responses/500-InternalServerError'
       tags:
-      - Clusters
+        - Clusters
     parameters:
-    - example: ""
-      in: path
-      name: name
-      required: true
-      schema:
-        maxLength: 63
-        minLength: 1
-        pattern: ^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
-        type: string
-    - example: 64e797f6-db22-445e-b606-4228d4f1c2bd
-      in: path
-      name: nodeId
-      required: true
-      schema:
-        pattern: ^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$
-        type: string
-    - description: When set to true, force deletes the edge node.
-      example: /v2/clusters/{name}/nodes/{nodeId}?force=true
-      in: query
-      name: force
-      schema:
-        default: false
-        type: boolean
-    - description: unique projectName for the resource
-      in: path
-      name: projectName
-      required: true
-      schema:
-        type: string
+      - example: ""
+        in: path
+        name: name
+        required: true
+        schema:
+          maxLength: 63
+          minLength: 1
+          pattern: ^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
+          type: string
+      - example: 64e797f6-db22-445e-b606-4228d4f1c2bd
+        in: path
+        name: nodeId
+        required: true
+        schema:
+          pattern: ^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$
+          type: string
+      - description: When set to true, force deletes the edge node.
+        example: /v2/clusters/{name}/nodes/{nodeId}?force=true
+        in: query
+        name: force
+        schema:
+          default: false
+          type: boolean
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
   /v2/projects/{projectName}/clusters/{name}/template:
     parameters:
-    - example: ""
-      in: path
-      name: name
-      required: true
-      schema:
-        maxLength: 63
-        minLength: 1
-        pattern: ^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
-        type: string
-    - description: unique projectName for the resource
-      in: path
-      name: projectName
-      required: true
-      schema:
-        type: string
+      - example: ""
+        in: path
+        name: name
+        required: true
+        schema:
+          maxLength: 63
+          minLength: 1
+          pattern: ^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
     put:
       description: Updates the cluster {name} template.
       requestBody:
@@ -368,7 +379,7 @@ paths:
         "501":
           $ref: '#/components/responses/501-NotImplemented'
       tags:
-      - Clusters
+        - Clusters
   /v2/projects/{projectName}/clusters/{nodeId}/clusterdetail:
     get:
       description: Gets cluster detailed information by {nodeId}.
@@ -384,21 +395,21 @@ paths:
         "404":
           $ref: '#/components/responses/404-NotFound'
       tags:
-      - Clusters
+        - Clusters
     parameters:
-    - example: 64e797f6-db22-445e-b606-4228d4f1c2bd
-      in: path
-      name: nodeId
-      required: true
-      schema:
-        pattern: ^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$
-        type: string
-    - description: unique projectName for the resource
-      in: path
-      name: projectName
-      required: true
-      schema:
-        type: string
+      - example: 64e797f6-db22-445e-b606-4228d4f1c2bd
+        in: path
+        name: nodeId
+        required: true
+        schema:
+          pattern: ^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
   /v2/projects/{projectName}/clusters/summary:
     get:
       description: Gets all clusters' summarized by their state.
@@ -414,76 +425,72 @@ paths:
         "500":
           $ref: '#/components/responses/500-InternalServerError'
       tags:
-      - Clusters
+        - Clusters
     parameters:
-    - description: unique projectName for the resource
-      in: path
-      name: projectName
-      required: true
-      schema:
-        type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
   /v2/projects/{projectName}/templates:
     get:
       description: Gets all templates' information
       parameters:
-      - description: When set to true, gets only the default template information
-        example: /v2/templates?default=true
-        in: query
-        name: default
-        schema:
-          default: false
-          type: boolean
-      - description: The maximum number of items to return.
-        example: /v2/templates?pageSize=20
-        in: query
-        name: pageSize
-        schema:
-          default: 20
-          maximum: 100
-          minimum: 0
-          type: integer
-      - description: Index of the first item to return. It is almost always used in
-          conjunction with the 'pageSize' query.
-        example: /v2/templates?pageSize=20&offset=10
-        in: query
-        name: offset
-        schema:
-          default: 0
-          minimum: 0
-          type: integer
-      - description: The ordering of the entries. "asc" and "desc" are valid values.
-          If none is specified, "asc" is used.
-        examples:
-          ascending:
-            description: sort the entries by name entry in ascending order
-            value: /v2/templates?orderBy="name asc"
-          default:
-            description: Sorts the entries by name in ascending order as default when
-              no order is specified.
-            value: /v2/templates?orderBy="name"
-          descending:
-            description: sort the entries by name entry in descending order
-            value: /v2/templates?orderBy="name desc"
-        in: query
-        name: orderBy
-        schema:
-          type: string
-      - description: Filters the entries based on the filter provided.
-        examples:
-          multiple_filter:
-            description: filter by template name with the prefix "foo" or with version
-              v0.0.23
-            value: /v2/templates?filter="name=foo* OR version=v0.0.23"
-          single_filter_with_search_prefix:
-            description: filter templates whose template prefix has foo
-            value: /v2/templates?filter="name=foo*"
-          single_filter_without_search_prefix:
-            description: Filter by the template name "foo".
-            value: /v2/templates?filter="name=foo"
-        in: query
-        name: filter
-        schema:
-          type: string
+        - description: When set to true, gets only the default template information
+          example: /v2/templates?default=true
+          in: query
+          name: default
+          schema:
+            default: false
+            type: boolean
+        - description: The maximum number of items to return.
+          example: /v2/templates?pageSize=20
+          in: query
+          name: pageSize
+          schema:
+            default: 20
+            maximum: 100
+            minimum: 0
+            type: integer
+        - description: Index of the first item to return. It is almost always used in conjunction with the 'pageSize' query.
+          example: /v2/templates?pageSize=20&offset=10
+          in: query
+          name: offset
+          schema:
+            default: 0
+            minimum: 0
+            type: integer
+        - description: The ordering of the entries. "asc" and "desc" are valid values. If none is specified, "asc" is used.
+          examples:
+            ascending:
+              description: sort the entries by name entry in ascending order
+              value: /v2/templates?orderBy="name asc"
+            default:
+              description: Sorts the entries by name in ascending order as default when no order is specified.
+              value: /v2/templates?orderBy="name"
+            descending:
+              description: sort the entries by name entry in descending order
+              value: /v2/templates?orderBy="name desc"
+          in: query
+          name: orderBy
+          schema:
+            type: string
+        - description: Filters the entries based on the filter provided.
+          examples:
+            multiple_filter:
+              description: filter by template name with the prefix "foo" or with version v0.0.23
+              value: /v2/templates?filter="name=foo* OR version=v0.0.23"
+            single_filter_with_search_prefix:
+              description: filter templates whose template prefix has foo
+              value: /v2/templates?filter="name=foo*"
+            single_filter_without_search_prefix:
+              description: Filter by the template name "foo".
+              value: /v2/templates?filter="name=foo"
+          in: query
+          name: filter
+          schema:
+            type: string
       responses:
         "200":
           content:
@@ -498,14 +505,14 @@ paths:
         "500":
           $ref: '#/components/responses/500-InternalServerError'
       tags:
-      - Cluster Templates
+        - Cluster Templates
     parameters:
-    - description: unique projectName for the resource
-      in: path
-      name: projectName
-      required: true
-      schema:
-        type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
     post:
       description: Import templates
       requestBody:
@@ -527,25 +534,25 @@ paths:
         "500":
           $ref: '#/components/responses/500-InternalServerError'
       tags:
-      - Cluster Templates
+        - Cluster Templates
   /v2/projects/{projectName}/templates/{name}/default:
     parameters:
-    - description: Name of the template
-      example: baseline
-      in: path
-      name: name
-      required: true
-      schema:
-        maxLength: 50
-        minLength: 1
-        pattern: ^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
-        type: string
-    - description: unique projectName for the resource
-      in: path
-      name: projectName
-      required: true
-      schema:
-        type: string
+      - description: Name of the template
+        example: baseline
+        in: path
+        name: name
+        required: true
+        schema:
+          maxLength: 50
+          minLength: 1
+          pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
     put:
       description: Updates this template as the default template
       requestBody:
@@ -563,7 +570,7 @@ paths:
         "500":
           $ref: '#/components/responses/500-InternalServerError'
       tags:
-      - Cluster Templates
+        - Cluster Templates
   /v2/projects/{projectName}/templates/{name}/versions:
     get:
       description: Gets all versions of templates matching a particular template name
@@ -581,24 +588,24 @@ paths:
         "500":
           $ref: '#/components/responses/500-InternalServerError'
       tags:
-      - Cluster Templates
+        - Cluster Templates
     parameters:
-    - description: Name of the template
-      example: baseline
-      in: path
-      name: name
-      required: true
-      schema:
-        maxLength: 50
-        minLength: 1
-        pattern: ^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
-        type: string
-    - description: unique projectName for the resource
-      in: path
-      name: projectName
-      required: true
-      schema:
-        type: string
+      - description: Name of the template
+        example: baseline
+        in: path
+        name: name
+        required: true
+        schema:
+          maxLength: 50
+          minLength: 1
+          pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
   /v2/projects/{projectName}/templates/{name}/versions/{version}:
     delete:
       description: Deletes a specific template
@@ -609,10 +616,12 @@ paths:
           $ref: '#/components/responses/400-BadRequest'
         "404":
           $ref: '#/components/responses/404-NotFound'
+        "409":
+          $ref: '#/components/responses/409-Conflict'
         "500":
           $ref: '#/components/responses/500-InternalServerError'
       tags:
-      - Cluster Templates
+        - Cluster Templates
     get:
       description: Gets a specific template information
       responses:
@@ -629,32 +638,32 @@ paths:
         "500":
           $ref: '#/components/responses/500-InternalServerError'
       tags:
-      - Cluster Templates
+        - Cluster Templates
     parameters:
-    - description: Name of the template
-      example: baseline
-      in: path
-      name: name
-      required: true
-      schema:
-        maxLength: 50
-        minLength: 1
-        pattern: ^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
-        type: string
-    - description: Version of the template in the format of 'vX.Y.Z'
-      example: v0.1.0
-      in: path
-      name: version
-      required: true
-      schema:
-        pattern: ^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$
-        type: string
-    - description: unique projectName for the resource
-      in: path
-      name: projectName
-      required: true
-      schema:
-        type: string
+      - description: Name of the template
+        example: baseline
+        in: path
+        name: name
+        required: true
+        schema:
+          maxLength: 50
+          minLength: 1
+          pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+          type: string
+      - description: Version of the template in the format of 'vX.Y.Z'
+        example: v0.1.0
+        in: path
+        name: version
+        required: true
+        schema:
+          pattern: ^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$
+          type: string
+      - description: unique projectName for the resource
+        in: path
+        name: projectName
+        required: true
+        schema:
+          type: string
 components:
   responses:
     400-BadRequest:
@@ -662,8 +671,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ProblemDetails'
-      description: Object in payload is not properly formulated or not related to
-        the method.
+      description: Object in payload is not properly formulated or not related to the method.
     401-Unauthorized:
       content:
         application/json:
@@ -687,8 +695,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ProblemDetails'
-      description: The provider is currently unable to handle the request due to an
-        internal error
+      description: The provider is currently unable to handle the request due to an internal error
     501-NotImplemented:
       content:
         application/json:
@@ -715,6 +722,7 @@ components:
         nodes:
           items:
             $ref: '#/components/schemas/NodeInfo'
+          maxItems: 100
           type: array
         providerStatus:
           $ref: '#/components/schemas/GenericStatus'
@@ -749,8 +757,7 @@ components:
       properties:
         labels:
           additionalProperties:
-            description: The pattern for the label values. Label key patterns are
-              validated as part of the request handler
+            description: The pattern for the label values. Label key patterns are validated as part of the request handler
             maxLength: 63
             pattern: ^$|^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
             type: string
@@ -763,8 +770,7 @@ components:
       properties:
         labels:
           additionalProperties:
-            description: The pattern for the label values. Label key patterns are
-              validated as part of the request handler.
+            description: The pattern for the label values. Label key patterns are validated as part of the request handler.
             maxLength: 63
             pattern: ^$|^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
             type: string
@@ -780,13 +786,14 @@ components:
         nodes:
           items:
             $ref: '#/components/schemas/NodeSpec'
+          maxItems: 100
           type: array
         template:
           maxLength: 63
-          pattern: ^$|^[A-Za-z0-9-_. ]+$
+          pattern: ^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
           type: string
       required:
-      - nodes
+        - nodes
       type: object
     ClusterSummary:
       properties:
@@ -795,7 +802,7 @@ components:
           format: int32
           type: integer
         inProgress:
-          description: The number of clusters that are in progress state (provisioning/deleting).
+          description: The number of clusters that are in progess state (provisioning/deleting).
           format: int32
           type: integer
         ready:
@@ -811,11 +818,11 @@ components:
           format: int32
           type: integer
       required:
-      - totalClusters
-      - ready
-      - error
-      - inProgress
-      - unknown
+        - totalClusters
+        - ready
+        - error
+        - inProgress
+        - unknown
       type: object
     ClusterTemplateInfo:
       properties:
@@ -824,38 +831,36 @@ components:
           example: baseline
           maxLength: 50
           minLength: 1
-          pattern: ^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
+          pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
           type: string
         version:
           description: Cluster template version in the format of 'vX.Y.Z'
           example: v0.1.0
           maxLength: 63
           minLength: 1
-          pattern: ^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$
+          pattern: ^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-dev)?$
           type: string
       required:
-      - name
-      - version
+        - name
+        - version
       type: object
     DefaultTemplateInfo:
       properties:
         name:
-          description: Name of the template. Not required when setting the default,
-            is available in GET /v1/templates.
+          description: Name of the template. Not required when setting the default, is available in GET /v1/templates.
           example: baseline
           maxLength: 50
           minLength: 1
           pattern: ^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
           type: string
         version:
-          description: Template version. If set to empty, the latest version will
-            be used as default.
+          description: Template version. If set to empty, the latest version will be used as default.
           example: v0.1.0
           maxLength: 63
           pattern: ^$|^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$
           type: string
       required:
-      - version
+        - version
       type: object
     GenericStatus:
       description: A generic status object.
@@ -875,9 +880,9 @@ components:
           type: integer
       readOnly: true
       required:
-      - message
-      - indicator
-      - timestamp
+        - message
+        - indicator
+        - timestamp
       type: object
     KubeconfigInfo:
       properties:
@@ -893,13 +898,15 @@ components:
           items:
             pattern: ^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/(?:[0-9]|[1-2][0-9]|3[0-2])$
             type: string
+          maxItems: 100
           type: array
       required:
-      - cidrBlocks
+        - cidrBlocks
     NodeInfo:
       properties:
         id:
-          description: The unique identifier of this host.
+          description: Host resource id
+          example: host-15efd22c
           type: string
         role:
           type: string
@@ -909,19 +916,20 @@ components:
     NodeSpec:
       properties:
         id:
-          description: The unique identifier of this host.
+          description: UUID of the host.
+          example: 6e6422c3-625e-507a-bc8a-bd2330e07e7e
           type: string
         role:
           default: all
           enum:
-          - all
-          - controlplane
-          - worker
+            - all
+            - controlplane
+            - worker
           format: enum
           type: string
       required:
-      - id
-      - role
+        - id
+        - role
       type: object
     ProblemDetails:
       properties:
@@ -932,10 +940,10 @@ components:
     StatusIndicator:
       description: The status indicator.
       enum:
-      - STATUS_INDICATION_UNSPECIFIED
-      - STATUS_INDICATION_ERROR
-      - STATUS_INDICATION_IN_PROGRESS
-      - STATUS_INDICATION_IDLE
+        - STATUS_INDICATION_UNSPECIFIED
+        - STATUS_INDICATION_ERROR
+        - STATUS_INDICATION_IN_PROGRESS
+        - STATUS_INDICATION_IDLE
       format: enum
       readOnly: true
       type: string
@@ -943,11 +951,11 @@ components:
       properties:
         condition:
           enum:
-          - STATUS_CONDITION_UNKNOWN
-          - STATUS_CONDITION_READY
-          - STATUS_CONDITION_NOTREADY
-          - STATUS_CONDITION_PROVISIONING
-          - STATUS_CONDITION_REMOVING
+            - STATUS_CONDITION_UNKNOWN
+            - STATUS_CONDITION_READY
+            - STATUS_CONDITION_NOTREADY
+            - STATUS_CONDITION_PROVISIONING
+            - STATUS_CONDITION_REMOVING
           format: enum
           type: string
         reason:
@@ -962,9 +970,7 @@ components:
             maxLength: 63
             pattern: ^$|^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$
             type: string
-          description: Allows users to specify a list of key/value pairs to be attached
-            to a cluster created with the template. These pairs need to conform to
-            https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set
+          description: Allows users to specify a list of key/value pairs to be attached to a cluster created with the template. These pairs need to conform to https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set
           example:
             default-extension: demo
             dns.sub.domain/key-2: value-2.with.dots
@@ -982,24 +988,24 @@ components:
               agentConfig:
                 kubelet:
                   extraArgs:
-                  - --topology-manager-policy=best-effort
-                  - --cpu-manager-policy=static
-                  - --reserved-cpus=1
-                  - --max-pods=250
-                  - --tls-cipher-suites=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+                    - --topology-manager-policy=best-effort
+                    - --cpu-manager-policy=static
+                    - --reserved-cpus=1
+                    - --max-pods=250
+                    - --tls-cipher-suites=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
               serverConfig:
                 cni: calico
                 disableComponents:
                   kubernetesComponents:
-                  - cloudController
+                    - cloudController
                 etcd:
                   backupConfig: {}
                   extraArgs:
-                  - --cipher-suites=[TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_AES_128_GCM_SHA256,TLS_CHACHA20_POLY1305_SHA256]
+                    - --cipher-suites=[TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_AES_128_GCM_SHA256,TLS_CHACHA20_POLY1305_SHA256]
                 kubeApiServer:
                   extraArgs:
-                  - --feature-gates=PortForwardWebsockets=true
-                  - --tls-cipher-suites=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+                    - --feature-gates=PortForwardWebsockets=true
+                    - --tls-cipher-suites=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
                 kubeControllerManager:
                   extraArg: null
                 kubeScheduler:
@@ -1009,8 +1015,9 @@ components:
         controlplaneprovidertype:
           default: rke2
           enum:
-          - kubeadm
-          - rke2
+            - kubeadm
+            - rke2
+            - k3s
           type: string
         description:
           maxLength: 4096
@@ -1019,8 +1026,8 @@ components:
         infraprovidertype:
           default: intel
           enum:
-          - docker
-          - intel
+            - docker
+            - intel
           type: string
         kubernetesVersion:
           maxLength: 63
@@ -1030,17 +1037,17 @@ components:
         name:
           maxLength: 63
           minLength: 1
-          pattern: ^[A-Za-z0-9-_. ]+$
+          pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
           type: string
         version:
           maxLength: 63
           minLength: 1
-          pattern: ^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$
+          pattern: ^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-dev)?$
           type: string
       required:
-      - name
-      - version
-      - kubernetesVersion
+        - name
+        - version
+        - kubernetesVersion
       type: object
     TemplateInfoList:
       properties:
@@ -1049,6 +1056,7 @@ components:
         templateInfoList:
           items:
             $ref: '#/components/schemas/TemplateInfo'
+          maxItems: 100
           type: array
         totalElements:
           description: The count of items in the entire list, regardless of pagination.
@@ -1062,6 +1070,7 @@ components:
             maxLength: 2048
             minLength: 1
             type: string
+          maxItems: 100
           type: array
       type: object
     clusterNetwork:

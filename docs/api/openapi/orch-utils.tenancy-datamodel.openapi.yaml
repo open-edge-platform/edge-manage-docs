@@ -4,6 +4,153 @@
 
 openapi: 3.0.0
 components:
+  requestBodies:
+    Createnetwork.Network:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/network.Network.Post'
+      description: Request used to create network.Network
+      required: true
+    Createnetwork.Network.Status:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/network.Network.Status'
+      description: Request used to create Status subresource of network.Network
+    Createorg.Org:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/org.Org.Post'
+      description: Request used to create org.Org
+      required: true
+    Createorg.Org.Status:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/org.Org.Status'
+      description: Request used to create Status subresource of org.Org
+    Createproject.Project:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/project.Project.Post'
+      description: Request used to create project.Project
+      required: true
+    Createproject.Project.Status:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/project.Project.Status'
+      description: Request used to create Status subresource of project.Project
+  responses:
+    DefaultResponse:
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+      description: Default response
+    Getnetwork.Network:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/network.Network.Get'
+      description: Response returned back after getting network.Network object
+    Getnetwork.Network.NamedLink:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/network.Network.NamedLink'
+      description: Response returned back after getting network.Network objects
+    Getnetwork.Network.SingleLink:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/network.Network.SingleLink'
+      description: Response returned back after getting network.Network objects
+    Getnetwork.Network.Status:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/network.Network.Status'
+      description: Response returned back after getting status subresource of network.Network object
+    Getorg.Org:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/org.Org.Get'
+      description: Response returned back after getting org.Org object
+    Getorg.Org.NamedLink:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/org.Org.NamedLink'
+      description: Response returned back after getting org.Org objects
+    Getorg.Org.SingleLink:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/org.Org.SingleLink'
+      description: Response returned back after getting org.Org objects
+    Getorg.Org.Status:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/org.Org.Status'
+      description: Response returned back after getting status subresource of org.Org object
+    Getproject.Project:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/project.Project.Get'
+      description: Response returned back after getting project.Project object
+    Getproject.Project.NamedLink:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/project.Project.NamedLink'
+      description: Response returned back after getting project.Project objects
+    Getproject.Project.SingleLink:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/project.Project.SingleLink'
+      description: Response returned back after getting project.Project objects
+    Getproject.Project.Status:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/project.Project.Status'
+      description: Response returned back after getting status subresource of project.Project object
+    Listnetwork.Network:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/network.Network.List'
+      description: Response returned back after getting network.Network objects
+    Listorg.Org:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/org.Org.List'
+      description: Response returned back after getting org.Org objects
+    Listproject.Project:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/project.Project.List'
+      description: Response returned back after getting project.Project objects
+    NotFoundResponse:
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+      description: Not Found
   schemas:
     network.Network.Get:
       properties:
@@ -209,153 +356,6 @@ components:
             uID:
               type: string
       type: object
-  requestBodies:
-    Createnetwork.Network:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/network.Network.Post'
-      description: Request used to create network.Network
-      required: true
-    Createnetwork.Network.Status:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/network.Network.Status'
-      description: Request used to create Status subresource of network.Network
-    Createorg.Org:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/org.Org.Post'
-      description: Request used to create org.Org
-      required: true
-    Createorg.Org.Status:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/org.Org.Status'
-      description: Request used to create Status subresource of org.Org
-    Createproject.Project:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/project.Project.Post'
-      description: Request used to create project.Project
-      required: true
-    Createproject.Project.Status:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/project.Project.Status'
-      description: Request used to create Status subresource of project.Project
-  responses:
-    DefaultResponse:
-      content:
-        application/json:
-          schema:
-            properties:
-              message:
-                type: string
-      description: Default response
-    Getnetwork.Network:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/network.Network.Get'
-      description: Response returned back after getting network.Network object
-    Getnetwork.Network.NamedLink:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/network.Network.NamedLink'
-      description: Response returned back after getting network.Network objects
-    Getnetwork.Network.SingleLink:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/network.Network.SingleLink'
-      description: Response returned back after getting network.Network objects
-    Getnetwork.Network.Status:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/network.Network.Status'
-      description: Response returned back after getting status subresource of network.Network object
-    Getorg.Org:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/org.Org.Get'
-      description: Response returned back after getting org.Org object
-    Getorg.Org.NamedLink:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/org.Org.NamedLink'
-      description: Response returned back after getting org.Org objects
-    Getorg.Org.SingleLink:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/org.Org.SingleLink'
-      description: Response returned back after getting org.Org objects
-    Getorg.Org.Status:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/org.Org.Status'
-      description: Response returned back after getting status subresource of org.Org object
-    Getproject.Project:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/project.Project.Get'
-      description: Response returned back after getting project.Project object
-    Getproject.Project.NamedLink:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/project.Project.NamedLink'
-      description: Response returned back after getting project.Project objects
-    Getproject.Project.SingleLink:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/project.Project.SingleLink'
-      description: Response returned back after getting project.Project objects
-    Getproject.Project.Status:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/project.Project.Status'
-      description: Response returned back after getting status subresource of project.Project object
-    Listnetwork.Network:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/network.Network.List'
-      description: Response returned back after getting network.Network objects
-    Listorg.Org:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/org.Org.List'
-      description: Response returned back after getting org.Org objects
-    Listproject.Project:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/project.Project.List'
-      description: Response returned back after getting project.Project objects
-    NotFoundResponse:
-      content:
-        application/json:
-          schema:
-            properties:
-              message:
-                type: string
-      description: Not Found
   securitySchemes:
     BearerAuth:
       type: http
@@ -451,22 +451,6 @@ paths:
       responses:
         "200":
           $ref: '#/components/responses/Getorg.Org.Status'
-      tags:
-        - Org
-    put:
-      operationId: PUT__v1_orgs_org_Org_status
-      parameters:
-        - description: Name of the org.Org node
-          in: path
-          name: org.Org
-          required: true
-          schema:
-            type: string
-      requestBody:
-        $ref: '#/components/requestBodies/Createorg.Org.Status'
-      responses:
-        "200":
-          $ref: '#/components/responses/DefaultResponse'
       tags:
         - Org
   /v1/projects:
@@ -646,28 +630,6 @@ paths:
           $ref: '#/components/responses/Getnetwork.Network.Status'
       tags:
         - Network
-    put:
-      operationId: PUT__v1_projects_project_Project_networks_network_Network_status
-      parameters:
-        - description: Name of the project.Project node
-          in: path
-          name: project.Project
-          required: true
-          schema:
-            type: string
-        - description: Name of the network.Network node
-          in: path
-          name: network.Network
-          required: true
-          schema:
-            type: string
-      requestBody:
-        $ref: '#/components/requestBodies/Createnetwork.Network.Status'
-      responses:
-        "200":
-          $ref: '#/components/responses/DefaultResponse'
-      tags:
-        - Network
   /v1/projects/{project.Project}/status:
     get:
       operationId: GET__v1_projects_project_Project_status
@@ -681,22 +643,6 @@ paths:
       responses:
         "200":
           $ref: '#/components/responses/Getproject.Project.Status'
-      tags:
-        - Project
-    put:
-      operationId: PUT__v1_projects_project_Project_status
-      parameters:
-        - description: Name of the project.Project node
-          in: path
-          name: project.Project
-          required: true
-          schema:
-            type: string
-      requestBody:
-        $ref: '#/components/requestBodies/Createproject.Project.Status'
-      responses:
-        "200":
-          $ref: '#/components/responses/DefaultResponse'
       tags:
         - Project
 servers:
