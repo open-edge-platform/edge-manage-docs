@@ -8,35 +8,34 @@ info:
   description: Store to share Metadata across orch sub-systems
   version: 0.0.1alpha
 servers:
-- url: '{apiRoot}'
-  variables:
-    apiRoot:
-      default: https://<multitenancy-gateway-host>
+  - url: '{apiRoot}'
+    variables:
+      apiRoot:
+        default: https://<multitenancy-gateway-host>
 tags:
-- name: MetadataService
+  - name: MetadataService
 security:
-- BearerAuth: []
+  - BearerAuth: []
 paths:
   /v1/projects/{projectName}/metadata:
     delete:
-      description: Delete deletes the specified metadata, returning the newly updated
-        set.
+      description: Delete deletes the specified metadata, returning the newly updated set.
       operationId: MetadataService_Delete
       parameters:
-      - in: query
-        name: key
-        schema:
-          type: string
-      - in: query
-        name: value
-        schema:
-          type: string
-      - description: unique projectName for the resource
-        in: path
-        name: projectName
-        required: true
-        schema:
-          type: string
+        - in: query
+          name: key
+          schema:
+            type: string
+        - in: query
+          name: value
+          schema:
+            type: string
+        - description: unique projectName for the resource
+          in: path
+          name: projectName
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           content:
@@ -45,17 +44,17 @@ paths:
                 $ref: '#/components/schemas/MetadataResponse'
           description: OK
       tags:
-      - MetadataService
+        - MetadataService
     get:
-      description: GetMetadata retrieves the most recently updates set.
+      description: GetMetadata retrieves the most recently udpates set.
       operationId: MetadataService_GetMetadata
       parameters:
-      - description: unique projectName for the resource
-        in: path
-        name: projectName
-        required: true
-        schema:
-          type: string
+        - description: unique projectName for the resource
+          in: path
+          name: projectName
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           content:
@@ -64,18 +63,17 @@ paths:
                 $ref: '#/components/schemas/MetadataResponse'
           description: OK
       tags:
-      - MetadataService
+        - MetadataService
     post:
-      description: CreateOrUpdateMetadata creates or updates the specified metadata,
-        returning the newly updates set.
+      description: CreateOrUpdateMetadata creates or updates the specified metadata, returning the newly updates set.
       operationId: MetadataService_CreateOrUpdateMetadata
       parameters:
-      - description: unique projectName for the resource
-        in: path
-        name: projectName
-        required: true
-        schema:
-          type: string
+        - description: unique projectName for the resource
+          in: path
+          name: projectName
+          required: true
+          schema:
+            type: string
       requestBody:
         content:
           application/json:
@@ -90,7 +88,7 @@ paths:
                 $ref: '#/components/schemas/MetadataResponse'
           description: OK
       tags:
-      - MetadataService
+        - MetadataService
 components:
   schemas:
     Metadata:
@@ -101,40 +99,42 @@ components:
         value:
           type: string
       required:
-      - key
-      - value
+        - key
+        - value
       type: object
     MetadataList:
       properties:
         metadata:
           items:
             $ref: '#/components/schemas/Metadata'
+          maxItems: 100
           type: array
       required:
-      - metadata
+        - metadata
       type: object
     MetadataResponse:
       properties:
         metadata:
           items:
             $ref: '#/components/schemas/StoredMetadata'
+          maxItems: 100
           type: array
       required:
-      - metadata
+        - metadata
       type: object
     StoredMetadata:
-      description: StoredMetadata represents all stored metadata values for a given
-        key.
+      description: StoredMetadata represents all stored metadata values for a given key.
       properties:
         key:
           type: string
         values:
           items:
             type: string
+          maxItems: 100
           type: array
       required:
-      - key
-      - values
+        - key
+        - values
       type: object
   securitySchemes:
     BearerAuth:
