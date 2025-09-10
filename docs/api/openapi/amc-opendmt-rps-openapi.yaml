@@ -1,0 +1,1182 @@
+# SPDX-FileCopyrightText: 2025 Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+openapi: 3.0.0
+info:
+  title: Remote Provisioning (RPS) API
+  description: |
+    Open AMT Cloud Toolkit supports RPS API methods for domains, CIRA configuration, wireless, profiles, and version information.
+
+    For direct connection to RPS:
+    * RPS Format of URI: `{{protocol}}://{{host}}:{{port}}/api/v1/admin/{{RPS API}}`
+
+    * Example URI for Domains: [https://example.site.com:8081/api/v1/admin/domains]()
+
+
+    When running behind the Kong API proxy, prepend the following prefixes to the URI:
+
+    Kong prefixes:
+    * `/rps` for all routes
+
+    For connection through Kong:
+
+    * RPS Format of URI: `{{protocol}}://{{host}}/rps/api/v1/admin/{{RPS API}}`
+
+    * Example URI for Authorize: [https://example.site.com/rps/api/v1/admin/domains]()
+  contact: {}
+  version: 2.22.0
+servers:
+  - url: '{apiRoot}'
+    variables:
+      apiRoot:
+        default: https://<multitenancy-gateway-host>
+tags:
+  - name: CIRA
+  - name: Domains
+  - name: Profiles
+  - name: Wireless
+  - name: IEEE802.1x
+  - name: Misc
+security:
+  - BearerAuth: []
+  - BearerAuth: []
+paths:
+  /v1/projects/{projectName}/dm/amt/admin/domains:
+    get:
+      description: Retrieves all of the domain configuration profiles stored in the database.  Will not return the provisioning certificate or certificate password to protect the privacy of these assets.
+      operationId: GetAllDomains
+      parameters:
+        - description: The number of items to skip before starting to collect the result set
+          in: query
+          name: $skip
+          schema:
+            type: integer
+        - description: The numbers of items to return
+          in: query
+          name: $top
+          schema:
+            type: integer
+        - description: The total number of domains
+          in: query
+          name: $count
+          schema:
+            type: boolean
+        - description: unique projectName for the resource
+          in: path
+          name: projectName
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - items:
+                      $ref: '#/components/schemas/DomainResponse'
+                    maxItems: 100
+                    type: array
+                  - $ref: '#/components/schemas/CountDomainResponse'
+          description: successful operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: internal server error
+      summary: Get All Domains
+      tags:
+        - Domains
+    patch:
+      description: |
+        Edits an existing domain configuration profile.
+
+        The profileName field can not be changed.
+
+        Version must be provided to ensure the correct profile is edited.
+
+        The provisioning certificate and certificate password are stored in a secrets manager and are only used when required during activation.  Provisioning certificate must be a base64 string of the Personal Information Exchange (PFX) certificate that includes the entire certificate chain and private key.
+      operationId: UpdateDomainSuffix
+      parameters:
+        - description: unique projectName for the resource
+          in: path
+          name: projectName
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainPATCH'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainResponse'
+          description: successful operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: bad request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: internal server error
+      summary: Update Domain Suffix
+      tags:
+        - Domains
+    post:
+      description: Creates a new domain configuration profile to the database.  The provisioning certificate and certificate password are stored in a secrets manager and are only used when required during activation.
+      operationId: CreateDomain
+      parameters:
+        - description: unique projectName for the resource
+          in: path
+          name: projectName
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainPOST'
+        description: |
+          **provisioningCert** must be a base64 string of the Personal Information Exchange (PFX) certificate that includes the entire certificate chain and private key.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainResponse'
+          description: successful operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: bad request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: internal server error
+      summary: Create Domain
+      tags:
+        - Domains
+  /v1/projects/{projectName}/dm/amt/admin/domains/{profileName}:
+    delete:
+      description: Removes the specific domain configuration profile
+      operationId: RemoveDomain
+      parameters:
+        - description: Name of domain profile to remove
+          in: path
+          name: profileName
+          required: true
+          schema:
+            type: string
+        - description: unique projectName for the resource
+          in: path
+          name: projectName
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: successful operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: internal server error
+      summary: Remove Domain
+      tags:
+        - Domains
+    get:
+      description: Retrieves the specific domain configuration profile.
+      operationId: GetDomain
+      parameters:
+        - description: Name of domain profile to return
+          in: path
+          name: profileName
+          required: true
+          schema:
+            type: string
+        - description: unique projectName for the resource
+          in: path
+          name: projectName
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainResponse'
+          description: successful operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: internal server error
+      summary: Get Domain
+      tags:
+        - Domains
+components:
+  schemas:
+    APIResponse:
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+      title: APIResponse
+      type: object
+    CIRAConfigPATCH:
+      example:
+        authMethod: 2
+        commonName: 192.168.8.50
+        configName: ciraconfig
+        mpsPort: 4433
+        mpsRootCertificate: U3dhZ2dlciByb2Nrcw==
+        mpsServerAddress: 192.168.8.50
+        password: G@ppm0ym
+        proxyDetails: ""
+        regeneratePassword: false
+        serverAddressFormat: 3
+        username: mpsuser
+        version: "3000"
+      properties:
+        authMethod:
+          format: int32
+          type: integer
+        commonName:
+          type: string
+        configName:
+          type: string
+        mpsPort:
+          format: int32
+          type: integer
+        mpsRootCertificate:
+          format: byte
+          type: string
+        mpsServerAddress:
+          type: string
+        password:
+          format: password
+          type: string
+        proxyDetails:
+          type: string
+        regeneratePassword:
+          type: boolean
+        serverAddressFormat:
+          format: int32
+          type: integer
+        username:
+          maxLength: 16
+          minLength: 5
+          type: string
+        version:
+          type: string
+      required:
+        - configName
+        - mpsServerAddress
+        - mpsPort
+        - username
+        - commonName
+        - serverAddressFormat
+        - authMethod
+        - mpsRootCertificate
+        - proxyDetails
+        - regeneratePassword
+        - version
+      title: CIRAConfigPATCH
+      type: object
+    CIRAConfigPOST:
+      example:
+        authMethod: 2
+        commonName: 192.168.8.50
+        configName: ciraconfig
+        mpsPort: 4433
+        mpsRootCertificate: MIIEOzCCAqOgAwIBAgIDAjVCMA0GCSqGSIb3DQEBDAUAMD0xFzAVBgNVBAMTDk1QU1Jvb3QtNmZhNMSDIWEdsqwe89dsNNJSOW2Db3duMRAwDgYDVQQGEwd1bmtub3duMCAXDTIyMDkwNTE4MTgwMloYDzIwNTMwOTA1MTgxODAyWjA9MRcwFQYDVQQDEw5NUFNSb290LTZmYTQ5NEQMA4GA1UEChMHdW5rbm93bjEQMA4GA1UEBhMHdW5rbm93bjCCAaIwDQYJKoZIhNMSDANdnSdsnmasSDWED8oCggGBAPiA+YEPjIlryv8PdJsfIwkqd/7wJriASiM3W5VePKtO5gXKCg3piuUAAIj8Lk36TK6Lvz5He818o1YMLposvTzZJHVPILye5aqp2Lgs079nESgoAt0/yxSMh53S8dzEf5CXBmlA5foEebVUKQoei/bqSkbIC3CvZ/NMIGHF0nUMoKeigzeJbADDQVIMCnqZoPq0pRLUTbCyogAaPQ+9N72XNPw3HYX7voH2EOJxHtZHH8LTJZXKc4ozt/JU9G0onfnSTCJAirbZSfY0bdxdaSEOJg4tGAFAseHikYP6hHGqjutUC7/WiT/3EBcQnO5OjckWDXVOiG6AmNsIqW2cfJnNjd0kOwbdyEC+Tmt3w9VR8491wFexfLodbbk5JUS99bBwf856y70zfmAiCSgQcIjU5Yra7eIkNtqBv1RG4tSBm0fD5YB/mArICoYF0zNWGrqqcbfuyARdEiNCjxIbSZt+l1onUfFWfjoBcE7AhL0EaZmUTbQKP9hl+1zffpa0wIDAQABo0IwQDAMBgNVHRMEBTADAQH/MBEGCWCGSAGG+EIBAQQEAwIABzAdBgNVHQ4EFgQUb6SWpSxsakc8AP/bm+gwt0qIsMEwDQYJKoZIhvcBHgfIJKLOpnmASfdHQaft0QROp4vl1J/hcAfPw0j+l3dMEpKbzJQhaRoRkIECpxhvaYgAUq7hA7MNNn4QV20BOiDfV8ZURFrEmnehP13I7jd7YDLxpfK17x5r6wlAYZ/pGb8u9lgexE14kERmmRZvuh7wxQy0rTcYKe9+jM5R8Ugv/8gWYdpp1gr8fGJJx/e2DfSs+ViXEOWwgWmidTwPgerwWR8AcvW8IXkylXO6+SlTXnv3cWcY3BEh9r0xXBa4lkFAse2+Zj/X9rudYGqOLYtIsef0Q5fOopHJ7JBXUbMQySAIdAbBb0X14rgEC2kwow1NCm0vzi8CAL/14D1csd0c1K8fRu//lQgj+gh7Tk4B7RMZOOwTMAUQj1LoYnjSDNJS87sAmkmNNJOS09PTi9RVW3nddcgMVSSa2wehS4ZpYkZOxLdgcV58dfW9wBKBWuqmnMGPjI5pjNCRK8foPePwuP1avckSdKsen5qT0tfthDV+2TrZuV07eKVrmTXq0GBNEIVQplV1yyA==
+        mpsServerAddress: 192.168.8.50
+        password: G@ppm0ym
+        proxyDetails: ""
+        serverAddressFormat: 3
+        username: mpsuser
+      properties:
+        authMethod:
+          format: int32
+          type: integer
+        commonName:
+          type: string
+        configName:
+          type: string
+        mpsPort:
+          format: int32
+          type: integer
+        mpsRootCertificate:
+          format: byte
+          type: string
+        mpsServerAddress:
+          type: string
+        password:
+          format: password
+          type: string
+        proxyDetails:
+          type: string
+        serverAddressFormat:
+          format: int32
+          type: integer
+        username:
+          maxLength: 16
+          minLength: 5
+          type: string
+      required:
+        - configName
+        - mpsServerAddress
+        - mpsPort
+        - username
+        - commonName
+        - serverAddressFormat
+        - authMethod
+        - mpsRootCertificate
+        - proxyDetails
+      title: CIRAConfigPOST
+      type: object
+    CIRAConfigResponse:
+      example:
+        authMethod: 2
+        commonName: 192.168.8.50
+        configName: ciraconfig
+        mpsPort: 4433
+        mpsRootCertificate: U3dhZ2dlciByb2Nrcw==
+        mpsServerAddress: 192.168.8.50
+        proxyDetails: ""
+        serverAddressFormat: 3
+        tenantId: ""
+        username: mps
+        version: "2000"
+      properties:
+        authMethod:
+          format: int32
+          type: integer
+        commonName:
+          type: string
+        configName:
+          type: string
+        mpsPort:
+          format: int32
+          type: integer
+        mpsRootCertificate:
+          format: byte
+          type: string
+        mpsServerAddress:
+          type: string
+        proxyDetails:
+          type: string
+        serverAddressFormat:
+          format: int32
+          type: integer
+        tenantId:
+          type: string
+        username:
+          type: string
+        version:
+          type: string
+      required:
+        - configName
+        - mpsServerAddress
+        - mpsPort
+        - username
+        - commonName
+        - serverAddressFormat
+        - authMethod
+        - mpsRootCertificate
+        - proxyDetails
+      title: CIRAConfigResponse
+      type: object
+    CountCIRAResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CIRAConfigResponse'
+          maxItems: 100
+          type: array
+        totalCount:
+          type: integer
+      title: CountCIRAResponse
+      type: object
+    CountDomainResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/DomainResponse'
+          maxItems: 100
+          type: array
+        totalCount:
+          type: integer
+      title: CountDomainResponse
+      type: object
+    CountIEEE8021xResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/IEEE8021xConfigResponse'
+          maxItems: 100
+          type: array
+        totalCount:
+          type: integer
+      title: CountIEEE8021xResponse
+      type: object
+    CountProfileResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ProfileResponse'
+          maxItems: 100
+          type: array
+        totalCount:
+          type: integer
+      title: CountProfileResponse
+      type: object
+    CountWirelessResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/WirelessConfigResponse'
+          maxItems: 100
+          type: array
+        totalCount:
+          type: integer
+      title: CountWirelessResponse
+      type: object
+    DomainPATCH:
+      example:
+        domainSuffix: NewDomain.com
+        profileName: NewDomain
+        provisioningCert: U3dhZ2dlciByb2Nrcw==
+        provisioningCertPassword: G@ppm0ym
+        provisioningCertStorageFormat: string
+        version: "3000"
+      properties:
+        domainSuffix:
+          type: string
+        profileName:
+          type: string
+        provisioningCert:
+          format: byte
+          type: string
+        provisioningCertPassword:
+          format: password
+          type: string
+        provisioningCertStorageFormat:
+          type: string
+        version:
+          type: string
+      required:
+        - profileName
+        - domainSuffix
+        - provisioningCertStorageFormat
+        - provisioningCert
+        - provisioningCertPassword
+        - version
+      title: DomainPATCH
+      type: object
+    DomainPOST:
+      example:
+        domainSuffix: NewDomain.com
+        profileName: NewDomain
+        provisioningCert: U3dhZ2dlciByb2Nrcw==
+        provisioningCertPassword: G@ppm0ym
+        provisioningCertStorageFormat: string
+      properties:
+        domainSuffix:
+          type: string
+        profileName:
+          type: string
+        provisioningCert:
+          format: byte
+          type: string
+        provisioningCertPassword:
+          format: password
+          type: string
+        provisioningCertStorageFormat:
+          type: string
+      required:
+        - profileName
+        - domainSuffix
+        - provisioningCertStorageFormat
+        - provisioningCert
+        - provisioningCertPassword
+      title: DomainPOST
+      type: object
+    DomainResponse:
+      example:
+        domainSuffix: NewDomain.com
+        expirationDate: "2024-12-31T23:59:00Z"
+        profileName: NewDomain
+        provisioningCertStorageFormat: string
+        tenantId: ""
+        version: "2000"
+      properties:
+        domainSuffix:
+          type: string
+        expirationDate:
+          format: date-time
+          type: string
+        profileName:
+          type: string
+        provisioningCertStorageFormat:
+          type: string
+        tenantId:
+          type: string
+        version:
+          type: string
+      required:
+        - profileName
+        - domainSuffix
+        - provisioningCertStorageFormat
+        - tenantId
+        - version
+        - expirationDate
+      title: DomainResponse
+      type: object
+    HealthcheckResponse:
+      example:
+        db:
+          name: POSTGRES
+          status: OK
+        secretStore:
+          name: VAULT
+          status:
+            cluster_id: 469ada72-d74b-4d1e-6e77-476bf9902b72
+            cluster_name: vault-cluster-3dc0c596
+            initialized: true
+            performance_standby: false
+            replication_dr_mode: disabled
+            replication_performance_mode: disabled
+            sealed: false
+            server_time_utc: 1.646337196e+09
+            standby: false
+            version: 1.9.3
+      properties:
+        db:
+          properties:
+            name:
+              type: string
+            status:
+              type: string
+          type: object
+        secretStore:
+          properties:
+            name:
+              type: string
+            status:
+              properties:
+                cluster_id:
+                  type: string
+                cluster_name:
+                  type: string
+                initialized:
+                  type: boolean
+                performance_standby:
+                  type: boolean
+                replication_dr_mode:
+                  type: string
+                replication_performance_mode:
+                  type: string
+                sealed:
+                  type: boolean
+                server_time_utc:
+                  type: integer
+                standby:
+                  type: boolean
+                version:
+                  type: string
+              type: object
+          type: object
+      title: HealthcheckResponse
+    IEEE8021xConfigPATCH:
+      example:
+        authenticationProtocol: 0
+        profileName: wired8021xConfig
+        pxeTimeout: 120
+        tenantId: ""
+        version: "5000"
+        wiredInterface: true
+      properties:
+        authenticationProtocol:
+          items:
+            enum:
+              - 0
+              - 3
+              - 5
+              - 10
+            type: integer
+          maxItems: 100
+          type: array
+        profileName:
+          type: string
+        pxeTimeout:
+          type: integer
+        tenantId:
+          type: string
+        version:
+          type: string
+        wiredInterface:
+          type: boolean
+      required:
+        - profileName
+        - authenticationProtocol
+        - wiredInterface
+        - version
+      title: IEEE8021xConfigPATCH
+      type: object
+    IEEE8021xConfigPOST:
+      example:
+        authenticationProtocol: 0
+        profileName: wired8021xConfig
+        pxeTimeout: 120
+        tenantId: ""
+        wiredInterface: true
+      properties:
+        authenticationProtocol:
+          items:
+            enum:
+              - 0
+              - 2
+              - 3
+              - 5
+              - 10
+            type: integer
+          maxItems: 100
+          type: array
+        profileName:
+          type: string
+        pxeTimeout:
+          type: integer
+        tenantId:
+          type: string
+        version:
+          type: string
+        wiredInterface:
+          type: boolean
+      required:
+        - profileName
+        - authenticationProtocol
+        - wiredInterface
+      title: IEEE8021xConfigPOST
+      type: object
+    IEEE8021xConfigResponse:
+      example:
+        authenticationProtocol: 0
+        profileName: wired8021xConfig
+        pxeTimeout: 120
+        tenantId: ""
+        version: "3000"
+        wiredInterface: true
+      properties:
+        authenticationProtocol:
+          items:
+            enum:
+              - 0
+              - 2
+              - 3
+              - 5
+              - 10
+            type: integer
+          maxItems: 100
+          type: array
+        profileName:
+          type: string
+        pxeTimeout:
+          type: integer
+        tenantId:
+          type: string
+        version:
+          type: string
+        wiredInterface:
+          type: boolean
+      required:
+        - profileName
+        - authenticationProtocol
+        - pxeTimeout
+        - wiredInterface
+        - tenantId
+        - version
+      title: IEEE8021xConfigResponse
+      type: object
+    ProfilePATCH:
+      example:
+        activation: acmactivate
+        amtPassword: G@ppm0ym
+        ciraConfigName: ciraconfig
+        dhcpEnabled: true
+        generateRandomMEBxPassword: false
+        generateRandomPassword: false
+        iderEnabled: false
+        ipSyncEnabled: false
+        kvmEnabled: true
+        localWifiSyncEnabled: true
+        mebxPassword: G@ppm0ym
+        profileName: profile1
+        solEnabled: true
+        tags:
+          - tag1
+          - tag2
+        tlsMode: null
+        tlsSigningAuthority: MicrosoftCA
+        userConsent: None
+        version: "3000"
+        wifiConfigs:
+          - priority: 1
+            profileName: home
+          - priority: 2
+            profileName: office
+      properties:
+        activation:
+          type: string
+        amtPassword:
+          format: password
+          type: string
+        ciraConfigName:
+          type: string
+        dhcpEnabled:
+          type: boolean
+        generateRandomMEBxPassword:
+          type: boolean
+        generateRandomPassword:
+          type: boolean
+        iderEnabled:
+          type: boolean
+        ieee8021xProfile:
+          type: string
+        ipSyncEnabled:
+          type: boolean
+        kvmEnabled:
+          type: boolean
+        localWifiSyncEnabled:
+          type: boolean
+        mebxPassword:
+          format: password
+          type: string
+        profileName:
+          type: string
+        solEnabled:
+          type: boolean
+        tags:
+          items:
+            type: string
+          maxItems: 100
+          type: array
+        tlsMode:
+          description: Server Authentication Only (1), Server and Non-TLS Authentication (2)
+          enum:
+            - 1
+            - 2
+          type: number
+        tlsSigningAuthority:
+          type: string
+        userConsent:
+          description: User Consent must be one of None, All, KVM. It should be 'All' in client control mode
+          enum:
+            - None
+            - All
+            - KVM
+          type: string
+        version:
+          type: string
+        wifiConfigs:
+          items:
+            type: object
+          maxItems: 100
+          type: array
+      required:
+        - profileName
+        - generateRandomPassword
+        - activation
+        - ciraConfigName
+        - generateRandomMEBxPassword
+        - tags
+        - dhcpEnabled
+        - wifiConfigs
+        - tlsMode
+        - userConsent
+        - iderEnabled
+        - kvmEnabled
+        - solEnabled
+        - version
+      title: ProfilePATCH
+      type: object
+    ProfilePOST:
+      example:
+        activation: acmactivate
+        amtPassword: G@ppm0ym
+        ciraConfigName: ciraconfig
+        dhcpEnabled: true
+        generateRandomMEBxPassword: false
+        generateRandomPassword: false
+        iderEnabled: false
+        ieee8021xProfile: wired8021xProfile
+        ipSyncEnabled: false
+        kvmEnabled: true
+        localWifiSyncEnabled: true
+        mebxPassword: G@ppm0ym
+        profileName: profile1
+        solEnabled: true
+        tags:
+          - tag1
+          - tag2
+        tlsMode: null
+        tlsSigningAuthority: MicrosoftCA
+        userConsent: None
+        wifiConfigs:
+          - priority: 1
+            profileName: home
+          - priority: 2
+            profileName: office
+      properties:
+        activation:
+          type: string
+        amtPassword:
+          format: password
+          type: string
+        ciraConfigName:
+          type: string
+        dhcpEnabled:
+          type: boolean
+        generateRandomMEBxPassword:
+          type: boolean
+        generateRandomPassword:
+          type: boolean
+        iderEnabled:
+          type: boolean
+        ieee8021xProfile:
+          type: string
+        ipSyncEnabled:
+          type: boolean
+        kvmEnabled:
+          type: boolean
+        localWifiSyncEnabled:
+          type: boolean
+        mebxPassword:
+          format: password
+          type: string
+        networkConfigName:
+          type: string
+        profileName:
+          type: string
+        solEnabled:
+          type: boolean
+        tags:
+          items:
+            type: string
+          maxItems: 100
+          type: array
+        tlsMode:
+          description: Server Authentication Only (1), Server and Non-TLS Authentication (2)
+          enum:
+            - 1
+            - 2
+          type: number
+        tlsSigningAuthority:
+          type: string
+        userConsent:
+          description: User Consent must be one of None, All, KVM. It should be 'All' in client control mode
+          enum:
+            - None
+            - All
+            - KVM
+          type: string
+        wifiConfigs:
+          items:
+            type: object
+          maxItems: 100
+          type: array
+      required:
+        - profileName
+        - generateRandomPassword
+        - activation
+        - generateRandomMEBxPassword
+        - tags
+        - dhcpEnabled
+        - tlsSigningAuthority
+      title: ProfilePOST
+      type: object
+    ProfileResponse:
+      example:
+        activation: acmactivate
+        ciraConfigName: ciraconfig
+        dhcpEnabled: true
+        generateRandomMEBxPassword: false
+        generateRandomPassword: false
+        iderEnabled: false
+        ieee8021xProfile: wired8021xProfile
+        ipSyncEnabled: false
+        kvmEnabled: true
+        localWifiSyncEnabled: true
+        profileName: profile1
+        solEnabled: true
+        tags:
+          - tag1
+          - tag2
+        tenantId: ""
+        tlsMode: null
+        tlsSigningAuthority: MicrosoftCA
+        userConsent: None
+        version: "2000"
+        wifiConfigs:
+          - priority: 1
+            profileName: home
+          - priority: 2
+            profileName: office
+      properties:
+        activation:
+          type: string
+        ciraConfigName:
+          type: string
+        dhcpEnabled:
+          type: boolean
+        generateRandomMEBxPassword:
+          type: boolean
+        generateRandomPassword:
+          type: boolean
+        iderEnabled:
+          type: boolean
+        ieee8021xProfile:
+          type: string
+        ipSyncEnabled:
+          type: boolean
+        kvmEnabled:
+          type: boolean
+        localWifiSyncEnabled:
+          type: boolean
+        profileName:
+          type: string
+        solEnabled:
+          type: boolean
+        tags:
+          items:
+            type: string
+          maxItems: 100
+          type: array
+        tenantId:
+          type: string
+        tlsMode:
+          description: Server Authentication Only(1), Server and Non-TLS Authentication (2), Mutual TLS only (3), Mutual and Non-TLS authentication (4)
+          type: number
+        tlsSigningAuthority:
+          type: string
+        userConsent:
+          description: User Consenst must be one of None, All, KVM. It must be 'All' in client control mode
+          type: string
+        version:
+          type: string
+        wifiConfigs:
+          items:
+            type: object
+          maxItems: 100
+          type: array
+      required:
+        - profileName
+        - activation
+        - ciraConfigName
+        - generateRandomPassword
+        - generateRandomMEBxPassword
+        - tags
+        - dhcpEnabled
+        - tlsMode
+        - userConsent
+        - iderEnabled
+        - kvmEnabled
+        - solEnabled
+        - wifiConfigs
+        - tlsSigningAuthority
+        - ieee8021xProfile
+      title: ProfileResponse
+      type: object
+    VersionResponse:
+      example:
+        protocolVersion: 4.0.0
+        serviceVersion: 2.9.0
+      properties:
+        protocolVersion:
+          type: string
+        serviceVersion:
+          type: string
+      required:
+        - serviceVersion
+        - protocolVersion
+      title: VersionResponse
+      type: object
+    WirelessConfigPATCH:
+      example:
+        authenticationMethod: 4
+        encryptionMethod: 4
+        ieee8021xProfile: wireless8021xconfig
+        linkPolicy:
+          - 14
+          - 16
+        profileName: homeWifiConfig
+        pskPassphrase: P@ssw0rd
+        ssid: home
+        version: "3000"
+      properties:
+        authenticationMethod:
+          type: integer
+        encryptionMethod:
+          type: integer
+        ieee8021xProfile:
+          type: string
+        linkPolicy:
+          items:
+            enum:
+              - 1
+              - 14
+              - 16
+              - 224
+            type: integer
+          maxItems: 100
+          type: array
+        profileName:
+          type: string
+        pskPassphrase:
+          type: string
+        ssid:
+          type: string
+        version:
+          type: string
+      required:
+        - profileName
+        - authenticationMethod
+        - encryptionMethod
+        - ssid
+        - linkPolicy
+        - version
+      title: WirelessConfigPATCH
+      type: object
+    WirelessConfigPOST:
+      example:
+        authenticationMethod: 4
+        encryptionMethod: 4
+        ieee8021xProfile: wireless8021xconfig
+        linkPolicy:
+          - 14
+          - 16
+        profileName: homeWifiConfig
+        pskPassphrase: P@ssw0rd
+        ssid: home
+      properties:
+        authenticationMethod:
+          type: integer
+        encryptionMethod:
+          type: integer
+        ieee8021xProfile:
+          type: string
+        linkPolicy:
+          items:
+            enum:
+              - 1
+              - 14
+              - 16
+              - 224
+            type: integer
+          maxItems: 100
+          type: array
+        profileName:
+          type: string
+        pskPassphrase:
+          type: string
+        ssid:
+          type: string
+      required:
+        - profileName
+        - authenticationMethod
+        - encryptionMethod
+        - ssid
+        - linkPolicy
+      title: WirelessConfigPOST
+      type: object
+    WirelessConfigResponse:
+      example:
+        authenticationMethod: 4
+        encryptionMethod: 4
+        ieee8021xProfile: wireless8021xconfig
+        linkPolicy:
+          - 14
+          - 16
+        profileName: homeWifiConfig
+        pskValue: "null"
+        ssid: home
+        tenantId: ""
+        version: "2000"
+      properties:
+        authenticationMethod:
+          type: integer
+        encryptionMethod:
+          type: integer
+        ieee8021xProfile:
+          type: string
+        linkPolicy:
+          items:
+            type: integer
+          maxItems: 100
+          type: array
+        profileName:
+          type: string
+        pskValue:
+          type: string
+        ssid:
+          type: string
+        tenantId:
+          type: string
+        total_count:
+          type: string
+        version:
+          type: string
+      required:
+        - profileName
+        - authenticationMethod
+        - encryptionMethod
+        - ssid
+        - pskValue
+        - linkPolicy
+      title: WirelessConfigResponse
+      type: object
+  securitySchemes:
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
