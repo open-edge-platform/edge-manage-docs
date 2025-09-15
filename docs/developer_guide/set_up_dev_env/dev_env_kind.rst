@@ -180,7 +180,7 @@ To set up your development environment, follow these steps:
         ORCH_USER_API=sample-project-api-user
         mage devUtils:deployEnic 1 dev
 
-   * ENiC Pod(s) wil be created and running. You can list ENiC Pods with:
+   * ENiC Pod(s) will be created and running. You can list ENiC Pods with:
 
      .. code-block:: bash
 

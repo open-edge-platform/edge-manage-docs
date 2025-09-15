@@ -88,9 +88,9 @@ Log in using the credentials specified in the `docker-compose.yaml`
 file (default is `admin` and `password`). On the MinIO dashboard, click on the "Create Bucket" bucket button
 and enter `velero-backups` as the bucket name. Click "Create" to create the bucket.
 
-3. **Install depedencies**
+3. **Install dependencies**
 
-Before preceeding with the backup and restore operations, you need to install the necessary dependencies.
+Before proceeding with the backup and restore operations, you need to install the necessary dependencies.
 
 Export the following environment variable to be able to connect to the MinIO bucket:
 
