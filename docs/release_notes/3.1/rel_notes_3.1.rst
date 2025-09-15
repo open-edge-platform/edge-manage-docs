@@ -32,12 +32,12 @@ Key Highlights of the 3.1 release include, but are not limited to:
   Integration of vPro Device Manageability services with EMF, allowing use of
   out-of-band management features. Functionality supported this release include
   Remote Device Power ON/OFF and Remote Device Reboot capabilities.
-* Enhanced Provisioning capabilites and improvements
+* Enhanced Provisioning capabilities and improvements
     * New: Scale provisioning of Standalone edge nodes that with Operating system and
       lightweight kubernetes - (OXM Profile). Support for PXE boot along with HTTPs
       and USB boot.
     * New: Support New EMT Desktop virtualization image with advanced GPU SR-IOV and
-      Virtualization capabilites.
+      Virtualization capabilities.
     * New: Per edge Edge Node configuration through custom cloud-init script,
       to provide fixed IP during provisioning, specific proxies, enabling
       Kubernetes right at the very installation of the nodes or finally
@@ -45,7 +45,7 @@ Key Highlights of the 3.1 release include, but are not limited to:
     * Update: HookOS has been replaced with a lightweight EMT, ensuring full control
       and optimization of the components used to provision an EN.
     * Update: Support for onboarding edge nodes without Serial number
-    * Update: Simplified host provisioning flow in the UI e.g User can choose the kubernetes cluster to be deployed
+    * Update: Simplified host provisioning flow in the UI e.g., user can choose the kubernetes cluster to be deployed
       during registration in UI.
 * New: Support for Discrete GPU from Intel Battlemage B580(on EMT) and Nvidia P100(on Ubuntu 22.04) along with
   Intel integrated GPU with GPU SR-IOV(with IDV profile in OXM deployment).
@@ -67,7 +67,7 @@ Key Highlights of the 3.1 release include, but are not limited to:
     * `Loitering Detection <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=loitering-detection>`_
 * Update: Additionally, efforts have been focusing on Trusted Compute to enable
   customers, benchmark it, continuous monitoring and workload isolation use case
-  were enhance for robustness and adapt to minimal common EMT as trusted OS.
+  were enhanced for robustness and adapt to minimal common EMT as trusted OS.
 
 All of the codebase is Apache\* software version 2.0 licensed and available on Github.
 
@@ -91,7 +91,7 @@ Versions earlier than 3.0 are not compatible with the 3.1 upgrade path.
 Known Issues
 ----------------------------------
 
-The following are known issues in the release. While several know issues
+The following are known issues in the release. While several known issues
 and limitations have been addressed during the 3.1 release cycle, some have
 been still carried over from past releases.
 
@@ -163,8 +163,8 @@ Clusters and Application Deployment
 * Support for in-place upgrades of Edge Node Kubernetes cluster
   is currently not available. This is to be addressed in a future release.
   Currently in 3.1, Cluster upgrade can done by deleting the cluster and reprovisioning
-  the Edgne Nodes and recreating with a new cluster template version.
-* Mulit-Node Cluster Provision is not supported in this release. This is to be
+  the Edge Nodes and recreating with a new cluster template version.
+* Multi-Node Cluster Provision is not supported in this release. This is to be
   addressed in future releases.
 * Cluster templates can be deleted even if they are actively being used by
   existing clusters. This issue may lead to unintended consequences,
@@ -258,7 +258,7 @@ Provisioning Limitations
   Original Equipment Manufacturer (OEM) BIOS does not support HTTPs booting
   behind a proxy server. After you have installed the OS, you can boot
   behind a proxy server. Alternate is to use USB boot.
-* The embedded JSON Web Token (JWT) in the EMT (Hook OS replacement) are programmed to expire after a
+* The embedded JSON Web Token (JWT) in the EMT (Hook OS replacement) is programmed to expire after a
   maximum of 60 minutes. If there is a delay in supplying the login
   details, the OS provisioning process may fail, which is the expected
   behavior. In such cases, the user must initiate the re-provisioning of

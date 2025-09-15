@@ -69,7 +69,7 @@ Further Customization of Deployment Package
 -------------------------------------------
 
 The Application object is automatically created with a default profile that contains
-a stub values.yaml. Should you wish to furhter customize the values.yaml, this can be done by find the imported
+a stub values.yaml. Should you wish to further customize the values.yaml, this can be done by find the imported
 application in the **Applications** page, clicking on the **Edit** button, and then editing the
 **Profile**. This will allow you to edit the values.yaml file that is used when deploying the package.
 You may also add additional profiles to the application, which will allow you deploy the profile in multiple
