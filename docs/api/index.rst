@@ -12,4 +12,6 @@ The following APIs are available for the Edge Orchestrator:
    cluster_manager
    edge_infra_manager
    metadata
+   opendmt_mps
+   opendmt_rps
    tenancy
