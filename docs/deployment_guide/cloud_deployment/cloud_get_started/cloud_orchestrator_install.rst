@@ -56,7 +56,7 @@ Create provisioning configuration
    .. note::
 
       The ``customer-state-prefix`` is a prefix for the S3 bucket name used to store
-      the state of the cluster. It can be arbitrary, but must be follow AWS bucket
+      the state of the cluster. It can be arbitrary, but must follow AWS bucket
       `naming rules <https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html>`_.
 
    The following is an example:
@@ -83,7 +83,7 @@ Create provisioning configuration
       required to access administration and management operations on the
       Edge Orchestrator cluster to the specified IP ranges.
       This must be as limited as possible to enable all necessary administration host addresses.
-      The ``--jumphost-ip-allow-list`` may also need include the IPs of the proxy services when systems are
+      The ``--jumphost-ip-allow-list`` may also need to include the IPs of the proxy services when systems are
       running behind a corporate proxy server.
 
 #. **(Optional)** If deploying Edge Orchestrator with ``auto-cert`` enabled, you can leave the following variables in the template blank because they will be automatically generated :
