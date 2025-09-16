@@ -44,7 +44,15 @@ extensions = [
 templates_path = ["_templates"]
 
 # exclude these files from processing
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+exclude_patterns = [
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+    "**/overview.md",
+    "**/Overview.md",
+    "**/overview.rst",
+    "**/Overview.rst",
+]
 
 # The suffix(es) of source filenames.
 source_suffix = {".rst": "restructuredtext"}
