@@ -46,7 +46,7 @@ paths:
       tags:
         - MetadataService
     get:
-      description: GetMetadata retrieves the most recently udpates set.
+      description: GetMetadata retrieves the most recently updates set.
       operationId: MetadataService_GetMetadata
       parameters:
         - description: unique projectName for the resource
