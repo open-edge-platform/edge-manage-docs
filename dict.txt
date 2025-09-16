@@ -43,7 +43,7 @@ buildable
 buildall
 Caddy
 cancelled
-capabilites
+capabilities
 cb
 Certbot
 ChatQ
@@ -308,7 +308,7 @@ PCIe
 PEM
 persistency
 persistent
-platfrom
+platform
 pollDuration
 postgres
 pre

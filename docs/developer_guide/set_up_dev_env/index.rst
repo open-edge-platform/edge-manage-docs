@@ -23,7 +23,7 @@ As a developer you have two options on how to set up your developer environment 
 
    * You have limited resources.
 
-   * You don't need to be consistent with the Continous Integration environments.
+   * You don't need to be consistent with the Continuous Integration environments.
 
 .. toctree::
    :hidden:

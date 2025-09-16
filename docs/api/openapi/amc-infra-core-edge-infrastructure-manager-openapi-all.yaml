@@ -7103,7 +7103,7 @@ components:
       type: object
     DeleteHostResponse:
       additionalProperties: false
-      description: Reponse message for DeleteHost.
+      description: Response message for DeleteHost.
       title: DeleteHostResponse
       type: object
     DeleteInstanceRequest:

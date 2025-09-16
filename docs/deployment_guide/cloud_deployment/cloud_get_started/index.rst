@@ -10,10 +10,10 @@ For specific service configurations, see the
 :doc:`install Edge Orchestrator manually </deployment_guide/cloud_deployment/cloud_advanced/cloud_man_prereq>`
 section.
 
-System Requirement
-------------------
+System Requirements
+-------------------
 
-For system requirement, see the
+For system requirements, see the
 :doc:`/deployment_guide/cloud_deployment/cloud_get_started/system_requirements_aws_orch`
 section.
 
@@ -41,14 +41,14 @@ See an example of the proxy settings below.
    export socks_proxy=proxy-dmz.mycorp.com:1080
    export no_proxy=.eks.amazonaws.com,.mycorp.com,.local,.internal,.controller.mycorp.corp,.kind-control-plane,.docker.internal,localhost
 
-Certificate requirements
+Certificate Requirements
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 See :doc:`/deployment_guide/cloud_deployment/cloud_get_started/cloud_certs`
 for certificate requirements in Edge Orchestrator.
 
 Supported AWS regions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 Edge Orchestrator must be installed to an AWS Region with at least **three**
 `Availability Zones* <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones>`_.

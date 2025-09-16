@@ -50,7 +50,7 @@ Key Highlights of the release include, but not limited to:
   deployment of modern AI workloads in containers or virtual machines.
 * Intel-GPU support built in, so that applications can easily take advantage
   of the computing power from integrated and discrete Intel® Arc™ graphics
-* An intuitive user interface to with a dashboard to have a simplified,
+* An intuitive user interface with a dashboard to have a simplified,
   central view into all the nodes, clusters, and applications running across
   the distributed edge infrastructure.
 * Deep observability and telemetry built in, along with pre-built Grafana\*
@@ -201,7 +201,7 @@ the guide and then proceeding with a fresh install of release 3.0.
 Known Issues
 ----------------------------------
 
-The following are known issues in the release. While several know issues
+The following are known issues in the release. While several known issues
 and limitations have been addressed during the 3.0 release cycle, some have
 been still carried over from past releases.
 

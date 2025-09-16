@@ -59,7 +59,7 @@ language = "en"
 master_doc = "index"
 
 # rst_epilog, added to the end of every rst doc
-# include substituions in base directory
+# include substitutions in base directory
 rst_epilog = """
 .. include:: /substitutions.txt
 """
