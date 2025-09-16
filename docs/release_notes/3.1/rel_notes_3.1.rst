@@ -142,6 +142,10 @@ Hosts and Infrastructure
   It does not impact the actual power state or power operations of the host.
   Refer to :doc:`/user_guide/advanced_functionality/vpro_power_mgt` for more information
   on checking the power state.
+* When a vPro-capable device is provisioned with vPro configuration disabled, the Host status
+  will display Error due to an unhealthy Platform Manageability Agent. This condition may affect
+  Edge Node observability metrics and log extraction only for the AWS/Cloud Orchestrator;
+  however, Edge Cluster creation and Application deployment remains unaffected.
 
 Clusters and Application Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
