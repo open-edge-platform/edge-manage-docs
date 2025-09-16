@@ -149,7 +149,7 @@ Post-installation steps
 
 #. Configure DNS settings as described in the :ref:`oxm_network_topology` guide.
 
-   * Make sure you run ``generate_fqdn`` and copy the output to ``/etc/hosts``.
+   * Make sure you run ``generate_fqdn`` and configure the output in the local DNS resolver settings of that node.
 
    * For the OXM profile it is enough to add the following DNS records to your local DNS server.
 
