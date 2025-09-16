@@ -90,7 +90,6 @@ Profiles under ``orch-configs/profiles/`` are small, composable fragments:
 * ``o11y-*.yaml`` / ``resource-*.yaml`` – Sizing, retention, tuning
 * ``artifact-*.yaml`` – Artifact service authentication modes
 * ``alerting-*.yaml`` – Email / notifications
-* Optional special modes (e.g. OSRM manual mode)
 
 Best practice: start with a base profile (e.g. ``profile-onprem.yaml``) then append site-specific overlays.
 
