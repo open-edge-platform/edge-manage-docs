@@ -165,7 +165,23 @@ The tool is made available in the public AWS* Elastic Container Registry. It can
 
    oras pull registry-rs.edgeorchestration.intel.com/edge-orch/files/orch-cli:3.1
 
-The package will be an archive which needs to be unpacked to access the binary.
+The package will be an archive which needs to be unpacked to access the binary named orch-cli. Together with the binary as part of the archive the source code and the package signatures are downloaded.
+
+.. code-block:: bash
+
+   tar xf orch-cli-package.tar.gz
+
+The orch-cli binary can be verified using the `cosign software <https://docs.sigstore.dev/cosign/system_config/installation/>`_ and the provided public key and signature files.
+
+.. code-block:: bash
+
+   cosign verify-blob --key orch-cli.pub --signature orch-cli.sig orch-cli
+
+To install the binary on Linux system copy the file to an install path (/usr/local/bin or equivalent):
+
+.. code-block:: bash
+
+   cp orch-cli /usr/local/bin
 
 For more information about the orch-cli tool and how to use it to create and view other Edge Orchestrator resources, refer to the:
 :doc:`/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide`
@@ -174,15 +190,20 @@ Login to the Edge Orchestrator
 ------------------------------
 
 Go to the directory where the downloaded orch-cli tool resides (for example, ~), to run the login command.
-The *username* must be provided as and argument followed by *--keycloak* flag pointing to the Keycloak service of the Edge Orchestrator.
+
+Configure the Edge Orchestrator API endpoint and project:
+
+.. code-block:: bash
+
+   ./orch-cli config set api-endpoint https://api.<CLUSTER_FQDN>
+   ./orch-cli config set project <PROJECT>
+
+The *username* must be provided as an argument.
 This is followed by the password prompt:
 
 .. code-block:: bash
 
-   cd ~
-   chmod +x orch-cli
-
-   orch-cli login <USER> --keycloak https://keycloak.<CLUSTER_FQDN>/realms/master
+   orch-cli login <USER>
    Enter Password:
 
 Generate a .csv File
@@ -194,7 +215,7 @@ Go to the directory where the downloaded orch-cli tool resides (for example, ~),
 
 .. code-block:: bash
 
-   ./orch-cli create host  --api-endpoint <CLUSTER_FQDN>  --project <PROJECT_NAME>  --generate-csv=<FILENAME>.csv
+   ./orch-cli create host --generate-csv=<FILENAME>.csv
 
 Now, you can populate the `.csv` file by appending details of systems.
 Do not change the first line `Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,AMTEnable,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill`
@@ -217,7 +238,7 @@ Check the CSV File
 You can now validate the CSV file that you have created yourself or through generation by attempting a dry run deployment.
 .. code-block:: bash
 
-   ./orch-cli create host  --api-endpoint <CLUSTER_FQDN>  --project <PROJECT_NAME>  --import-from-csv <FILENAME>.csv --dry-run
+   ./orch-cli create host --import-from-csv <FILENAME>.csv --dry-run
 
 orch-cli
 ~~~~~~~~
@@ -276,7 +297,7 @@ be provided via `K8sClusterTemplate` which expects the template name and version
             cd ~
             chmod +x orch-cli
 
-            orch-cli login <USER> --keycloak https://keycloak.<CLUSTER_FQDN>/realms/master
+            orch-cli login <USER>
             Enter Password:
 
       #. **Password argument** - Alternatively the password can be provided as a second command line argument - the recommended way is to use prompt based login above.
@@ -287,7 +308,7 @@ be provided via `K8sClusterTemplate` which expects the template name and version
             cd ~
             chmod +x orch-cli
 
-            orch-cli login <USER> <PASSWORD> --keycloak https://keycloak.<CLUSTER_FQDN>/realms/master
+            orch-cli login <USER> <PASSWORD>
 
 #. Run the bulk import tool. Go to the directory where you have downloaded the file (e.g. ~).
    The URL in the command is a mandatory argument that points the tool towards the Edge Orchestrator where the devices will be registered.
@@ -297,7 +318,7 @@ be provided via `K8sClusterTemplate` which expects the template name and version
 
       cd ~
       chmod +x orch-cli
-      ./orch-cli create host  --api-endpoint <CLUSTER_FQDN>  --project <PROJECT_NAME>  --import-from-csv test.csv
+      ./orch-cli create host --import-from-csv test.csv
 
 #. The orch-cli validates the input file again, similar to the dry-run tool, and generates an error report if validation fails.
    If validation passes, the bulk import tool proceeds to the registration phase.
@@ -316,7 +337,7 @@ Example of invocation and failure:
 
    .. code-block:: bash
 
-      ./orch-cli create host  --api-endpoint <CLUSTER_FQDN>  --project <PROJECT_NAME>  --import-from-csv test.csv
+      ./orch-cli create host  --import-from-csv test.csv
       Importing hosts from file: test.csv to server: https://api.CLUSTER_FQDN
       Onboarding is enabled
       Checking CSV file: test.csv
