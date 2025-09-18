@@ -263,6 +263,7 @@ To create a host run the create command with the --import-from-csv flag pointing
 .. code-block:: bash
 
     ./orch-cli create host --import-from-csv <PATH_TO_CSV_FILE>
+    
 To list all hosts run the list command.
 
 .. code-block:: bash
