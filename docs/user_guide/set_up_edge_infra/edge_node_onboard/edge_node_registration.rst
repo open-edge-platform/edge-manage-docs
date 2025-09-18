@@ -123,7 +123,10 @@ Automated Onboarding and Provisioning
    .. figure:: ../images/register_host_automatic_cluster.png
       :alt: Register Host Automatic Cluster
 
-   .. note:: The **Create Single Node Cluster** option is only available when both automated onboarding and automated provisioning are enabled. This ensures the node is fully configured before before initiating cluster bootstrap. Note that the cluster may remain in the `provisioning` status until the host is completely onboarded and provisioned.
+   .. note:: 
+
+      The **Create Single Node Cluster** option is only available when both automated onboarding and automated provisioning are enabled.
+      This ensures the node is fully configured before initiating cluster bootstrap. Note that the cluster may remain in the `provisioning` status until the host is completely onboarded and provisioned.
 
 #. If multiple edge nodes are to be registered, you can add additional fields by clicking the **+** option.
 
@@ -159,29 +162,7 @@ Ensure that you have ``oras`` available on your system or follow the instruction
 
 Download the tool  as follows:
 
-The tool is made available in the public AWS* Elastic Container Registry. It can be pulled without any credentials using commands like below:
-
-.. code-block:: bash
-
-   oras pull registry-rs.edgeorchestration.intel.com/edge-orch/files/orch-cli:3.1
-
-The package will be an archive which needs to be unpacked to access the binary named orch-cli. Together with the binary as part of the archive the source code and the package signatures are downloaded.
-
-.. code-block:: bash
-
-   tar xf orch-cli-package.tar.gz
-
-The orch-cli binary can be verified using the `cosign software <https://docs.sigstore.dev/cosign/system_config/installation/>`_ and the provided public key and signature files.
-
-.. code-block:: bash
-
-   cosign verify-blob --key orch-cli.pub --signature orch-cli.sig orch-cli
-
-To install the binary on Linux system copy the file to an install path (/usr/local/bin or equivalent):
-
-.. code-block:: bash
-
-   cp orch-cli /usr/local/bin
+For information on how to download the tool see the orch-cli documentation :ref:`cli-download` section.
 
 For more information about the orch-cli tool and how to use it to create and view other Edge Orchestrator resources, refer to the:
 :doc:`/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide`

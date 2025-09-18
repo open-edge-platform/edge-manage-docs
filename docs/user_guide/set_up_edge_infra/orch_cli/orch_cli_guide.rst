@@ -4,6 +4,8 @@ Orch CLI User Guide
 The orch-cli tool is a binary executable that provides a command-line interface for managing the orchestration of edge infrastructure.
 It allows users to perform various tasks related to the deployment and management of edge devices and services.
 
+.. _cli-download:
+
 Download
 ^^^^^^^^
 
@@ -16,7 +18,8 @@ The tool is made available in the public AWS* Elastic Container Registry. It can
 
     oras pull registry-rs.edgeorchestration.intel.com/edge-orch/files/orch-cli:3.1
 
-The package will be an archive which needs to be unpacked to access the binary named orch-cli. Together with the binary as part of the archive the source code and the package signatures are downloaded.
+The package will be an archive which needs to be unpacked to access the binary named orch-cli.
+Together with the binary as part of the archive the source code and the package signatures are downloaded.
 
 .. code-block:: bash
 
@@ -52,7 +55,7 @@ The binary will be available at **./build/_output/orch-cli**, it can be installe
 
 .. _endpoint-and-project-configuration:
 
-Endpoint and project configuration 
+Endpoint and project configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The orch-cli is expected to communicate with an edge orchestrator's exposed endpoints.
@@ -263,7 +266,7 @@ To create a host run the create command with the --import-from-csv flag pointing
 .. code-block:: bash
 
     ./orch-cli create host --import-from-csv <PATH_TO_CSV_FILE>
-    
+
 To list all hosts run the list command.
 
 .. code-block:: bash
