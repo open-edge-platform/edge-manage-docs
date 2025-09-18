@@ -460,7 +460,7 @@ To delete a package run the delete command.
         --api-endpoint https://api.<CLUSTER_FQDN> --project <PROJECT_NAME>
 
 .. note::
-   For deployment package profile management details, see the 
+   For deployment package profile management details, see the
    **Deployment Package Profile Management** section above.
 
 Deployment Management
@@ -481,7 +481,7 @@ Deployment Types:
   the `--application-label` parameter to define automatic deployment criteria.
 
 - **Custom cluster deployment**: Targets a custom set of clusters for
-  deployment by specifying explicit cluster IDs. Uses the 
+  deployment by specifying explicit cluster IDs. Uses the
   `--application-cluster-id` parameter to manually specify target clusters.
 
 To create a basic metadata-based deployment (automatic cluster selection):
