@@ -123,7 +123,7 @@ Automated Onboarding and Provisioning
    .. figure:: ../images/register_host_automatic_cluster.png
       :alt: Register Host Automatic Cluster
 
-   .. note:: 
+   .. note::
 
       The **Create Single Node Cluster** option is only available when both automated onboarding and automated provisioning are enabled.
       This ensures the node is fully configured before initiating cluster bootstrap. Note that the cluster may remain in the `provisioning` status until the host is completely onboarded and provisioned.
@@ -159,8 +159,6 @@ The tool ``orch-cli`` is publicly available for release in
 Open Container Initiative\* (OCI\*) compliant registries. Intel recommends using the ``oras`` client to interact with it.
 Ensure that you have ``oras`` available on your system or follow the instructions in the
 `public documentation <https://oras.land/docs/installation>`_ to install it.
-
-Download the tool  as follows:
 
 For information on how to download the tool see the orch-cli documentation :ref:`cli-download` section.
 
