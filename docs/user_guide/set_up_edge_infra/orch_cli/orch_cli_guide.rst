@@ -4,6 +4,8 @@ Orch CLI User Guide
 The orch-cli tool is a binary executable that provides a command-line interface for managing the orchestration of edge infrastructure.
 It allows users to perform various tasks related to the deployment and management of edge devices and services.
 
+.. _cli-download:
+
 Download
 ^^^^^^^^
 
@@ -16,9 +18,62 @@ The tool is made available in the public AWS* Elastic Container Registry. It can
 
     oras pull registry-rs.edgeorchestration.intel.com/edge-orch/files/orch-cli:3.1
 
-    chmod +x orch-cli
+The package will be an archive which needs to be unpacked to access the binary named orch-cli.
+Together with the binary as part of the archive the source code and the package signatures are downloaded.
 
-The package will be an archive which needs to be unpacked to access the binary.
+.. code-block:: bash
+
+    tar xf orch-cli-package.tar.gz
+
+The orch-cli binary can be verified using the `cosign software <https://docs.sigstore.dev/cosign/system_config/installation/>`_ and the provided public key and signature files.
+
+.. code-block:: bash
+
+    cosign verify-blob --key orch-cli.pub --signature orch-cli.sig orch-cli
+
+To install the binary on Linux system copy the file to an install path (/usr/local/bin or equivalent):
+
+.. code-block:: bash
+
+    cp orch-cli /usr/local/bin
+
+Building from source
+^^^^^^^^^^^^^^^^^^^^
+
+The orch-cli binary can be build from source. The source code is available in te `orch-cli GitHub repository <https://github.com/open-edge-platform/orch-cli>`_
+To build the binary from source run the make target from top level directory:
+
+.. code-block:: bash
+
+    make build
+
+The binary will be available at **./build/_output/orch-cli**, it can be installed on a Linux system using:
+
+.. code-block:: bash
+
+    make install
+
+.. _endpoint-and-project-configuration:
+
+Endpoint and project configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The orch-cli is expected to communicate with an edge orchestrator's exposed endpoints.
+The endpoints can be provided during each command run with --project and --api-endpoint flags or pre-set
+to be used seamlessly across command usage. To configure for project and endpoint to be used automatically with every command run the config command:
+
+.. code-block:: bash
+
+    ./orch-cli config set api-endpoint https://api.<CLUSTER_FQDN>
+    ./orch-cli config set project <PROJECT>
+
+The orch-cli configuration file can be found at **~/.orch-cli/orch-cli.yaml**
+
+User management
+^^^^^^^^^^^^^^^
+
+The CLI does not support user, project and organization creation. See:
+:doc:`/shared/shared_gs_iam`
 
 Authentication
 ^^^^^^^^^^^^^^
@@ -27,7 +82,8 @@ The orch-cli authenticates with the edge orchestrator by logging in to the orche
 The JWT token is cached locally after logging in and valid for one hour. The network communication happens over HTTPS using TLS v1.3 and JWT token.
 The token is removed on logout. User must logout and login after token expiry.
 
-The the keycloak service endpoint for containing the CLUSTER_FQDN of a given edge orchestrator must be provided during login.
+The keycloak service endpoint for containing the CLUSTER_FQDN of a given edge orchestrator must be provided during login - this is automatically
+done if the api-endpoint was provided as per :ref:`endpoint-and-project-configuration` - otherwise add **--keycloak https://keycloak.<CLUSTER_FQDN>/realms/master** to below commands.
 
 There is two login methods available:
 
@@ -35,7 +91,7 @@ There is two login methods available:
     The prompt will ask for password. This is the recommended way to log in.
     .. code-block:: bash
 
-        ./orch-cli login <USER> --keycloak https://keycloak.<CLUSTER_FQDN>/realms/master
+        ./orch-cli login <USER>
         Enter Password:
 
  #. **Password argument** - Alternatively the password can be provided as a second command line argument - the recommended way is to use prompt based login above.
@@ -43,7 +99,7 @@ There is two login methods available:
 
     .. code-block:: bash
 
-        ./orch-cli login <USER> <PASSWORD> --keycloak https://keycloak.<CLUSTER_FQDN>/realms/master
+        ./orch-cli login <USER> <PASSWORD>
 
 Running commands
 ^^^^^^^^^^^^^^^^
@@ -54,14 +110,15 @@ Generally the orch-cli commands follow this pattern for execution:
 
     ./orch-cli <verb> <noun> <subject(s)> --<options>
 
-The endpoint and the project must be specified for most commands.
+The endpoint and the project must be specified for most commands - this is automatically
+done if the api-endpoint and project was provided as per :ref:`endpoint-and-project-configuration` - otherwise add below to commands:
 
 .. code-block:: bash
 
     --api-endpoint https://api.<CLUSTER_FQDN>
     --project <PROJECT_NAME>
 
-For the *get* commands the --verbose flag can be used to include additional information in the output.
+For the *list* commands the --verbose flag can be used to include additional information in the output.
 
 Note that some of the *get* and *delete* commands require usage of resource ID instead of resource name due to the fact that some resources do not have unique names.
 
@@ -75,25 +132,25 @@ To create an OS profile run the create command with a path to a valid OS profile
 
 .. code-block:: bash
 
-    ./orch-cli create osprofile newosprofile.yaml  --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli create osprofile newosprofile.yaml
 
 To list OS profiles run the list command.
 
 .. code-block:: bash
 
-    ./orch-cli list osprofile --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli list osprofile
 
 To get individual OS profile details run the get command.
 
 .. code-block:: bash
 
-    ./orch-cli get osprofile <OS_PROFILE_NAME> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli get osprofile <OS_PROFILE_NAME>
 
 To delete OS profiles run the delete command.
 
 .. code-block:: bash
 
-    ./orch-cli delete osprofile <OS_PROFILE_NAME> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli delete osprofile <OS_PROFILE_NAME>
 
 Region Management
 ^^^^^^^^^^^^^^^^^
@@ -107,29 +164,29 @@ Accepted region types are country/state/county/region/city.
 
 .. code-block:: bash
 
-    ./orch-cli create region <NAME> --type <TYPE> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli create region <NAME> --type <TYPE>
 
 .. code-block:: bash
 
-    ./orch-cli create region <NAME> --type <TYPE> --parent-region <REGION_ID> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli create region <NAME> --type <TYPE> --parent-region <REGION_ID>
 
 To list all regions and their associated sites run list command. --region flag provides for listing specific region level.
 
 .. code-block:: bash
 
-    ./orch-cli list region --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli list region
 
 To get information about specific region run the get command.
 
 .. code-block:: bash
 
-    ./orch-cli get region <REGION_ID> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli get region <REGION_ID>
 
 To delete a region run the delete command.
 
 .. code-block:: bash
 
-    ./orch-cli delete region <REGION_ID> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli delete region <REGION_ID>
 
 Site Management
 ^^^^^^^^^^^^^^^
@@ -142,25 +199,25 @@ Optional --longitude and --latitude flags can be provided to specify the site's 
 
 .. code-block:: bash
 
-    ./orch-cli create site <NAME> --region <REGION_ID> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli create site <NAME> --region <REGION_ID>
 
 To list all sites and their associated regions run the list command.
 
 .. code-block:: bash
 
-    ./orch-cli list site --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli list site
 
 To get information about specific site run the get command.
 
 .. code-block:: bash
 
-    ./orch-cli get site <SITE_ID> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli get site <SITE_ID>
 
 To delete a site run the delete command.
 
 .. code-block:: bash
 
-    ./orch-cli delete site <SITE_ID> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli delete site <SITE_ID>
 
 Custom Cloud Init Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -175,25 +232,25 @@ To create this custom configuration run create command.
 
 .. code-block:: bash
 
-    ./orch-cli create customconfig <NAME> <PATH> --file <PATH_TO_CLOUD_INIT_YAML> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli create customconfig <NAME> <PATH> --file <PATH_TO_CLOUD_INIT_YAML>
 
 To list all custom configurations run the list command.
 
 .. code-block:: bash
 
-    ./orch-cli list customconfig --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli list customconfig
 
 To get information about specific custom configuration run the get command.
 
 .. code-block:: bash
 
-    ./orch-cli get customconfig <NAME> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli get customconfig <NAME>
 
 To delete a custom configuration run the delete command.
 
 .. code-block:: bash
 
-    ./orch-cli delete customconfig <NAME> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli delete customconfig <NAME>
 
 Host Management
 ^^^^^^^^^^^^^^^
@@ -208,25 +265,25 @@ To create a host run the create command with the --import-from-csv flag pointing
 
 .. code-block:: bash
 
-    ./orch-cli create host --import-from-csv <PATH_TO_CSV_FILE> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli create host --import-from-csv <PATH_TO_CSV_FILE>
 
 To list all hosts run the list command.
 
 .. code-block:: bash
 
-    ./orch-cli list host --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli list host
 
 To get a specific host run get command.
 
 .. code-block:: bash
 
-    ./orch-cli get host <HOST_ID> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli get host <HOST_ID>
 
 To delete a specific host run the delete command.
 
 .. code-block:: bash
 
-    ./orch-cli delete host <HOST_ID> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli delete host <HOST_ID>
 
 AMT Policy Management
 ^^^^^^^^^^^^^^^^^^^^^
@@ -237,25 +294,25 @@ To create an AMT domain profile run the create command. User will be prompted fo
 
 .. code-block:: bash
 
-    ./orch-cli create amtprofile <NAME> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME> --cert <PATH_TO_CERTIFICATE> --cert-format <CERT_FORMAT> --domain-suffix <DOMAIN>
+    ./orch-cli create amtprofile <NAME> --cert <PATH_TO_CERTIFICATE> --cert-format <CERT_FORMAT> --domain-suffix <DOMAIN>
 
 To list all AMT domain profiles run the list command.
 
 .. code-block:: bash
 
-    ./orch-cli list amtprofile --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli list amtprofile
 
 To get information about a specific AMT domain profile run the get command.
 
 .. code-block:: bash
 
-    ./orch-cli get amtprofile <NAME> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli get amtprofile <NAME>
 
 To delete an AMT domain profile run the delete command.
 
 .. code-block:: bash
 
-    ./orch-cli delete amtprofile <NAME> --api-endpoint https://api.<CLUSTER_FQDN>  --project <PROJECT_NAME>
+    ./orch-cli delete amtprofile <NAME>
 
 Help
 ^^^^
