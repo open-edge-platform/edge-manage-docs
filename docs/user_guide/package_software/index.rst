@@ -9,6 +9,8 @@ For a more detailed explanation of Application Orchestration see :doc:`/develope
 There is also a detailed tutorial on Application Orchestration that walks through the process developing an application
 and packaging and deploying it. See :doc:`/developer_guide/app_orch/tutorials/index`.
 
+Through command-line interface (CLI) management of applications, packages, and deployments, see :doc:`/user_guide/package_software/orch_cli/orch_cli_guide`.
+
 Preparing software for automated deployment involves these steps:
 
 1. Import applications
@@ -64,3 +66,4 @@ You can use pre-curated deployment packages that extend edge clusters to provide
    extension_package
    quick_start_guide
    import_helm_chart
+   orch_cli/orch_cli_guide
