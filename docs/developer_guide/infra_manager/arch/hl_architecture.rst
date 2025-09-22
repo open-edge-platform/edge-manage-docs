@@ -58,7 +58,8 @@ is a binary executable that provides a command-line interface for managing EMF. 
 perform various tasks related to the deployment and
 management of edge devices and services.
 
-`Device Management Toolkit <https://github.com/device-management-toolkit/docs>`_ Device Management Toolkit offers open-source microservices, applications 
+`Device Management Toolkit <https://github.com/device-management-toolkit/docs>`_ Device Management
+Toolkit offers open-source microservices, applications
 and libraries designed to simplify and accelerate the integration of Intel’s out-of-band management technology (vPro® AMT) into software solutions.
 
 .. note:: :doc:`/developer_guide/agents/index` are optional software that may be needed under a
