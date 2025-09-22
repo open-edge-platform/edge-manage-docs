@@ -61,3 +61,7 @@ From this page, you can do the following tasks:
    image_pull_secret
    edit_registry
 
+**Command Line Management**
+
+For programmatic access and automation, you can use the orch-cli tool to manage registries.
+For detailed command-line operations, see :doc:`/user_guide/package_software/orch_cli/orch_cli_guide`.

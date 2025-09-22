@@ -102,3 +102,8 @@ From this page, you can do the following tasks:
    export_deployment
    delete_deploy_pack
    clone_applications
+
+**Command Line Management**
+
+For programmatic access and automation, you can use the orch-cli tool to manage deployment packages.
+For detailed command-line operations, see :doc:`/user_guide/package_software/orch_cli/orch_cli_guide`.
