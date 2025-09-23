@@ -2,7 +2,6 @@
 Edge Infrastructure Manager
 ================================================================================
 
-
 Edge Infrastructure Manager is a policy based secure life cycle and centralized
 control plane of fleet of edge devices spread across distributed locations
 enabling local execution of applications.
@@ -11,6 +10,7 @@ Edge Infrastructure Manager domain is highlighted in green.
 
 .. figure:: ./arch/images/eim_stack.png
    :alt: High-Level functional domains of Edge Infrastructure Manager
+
 
 Highlights for Customers
 --------------------------------------------------------------------------------
