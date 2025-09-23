@@ -1,8 +1,8 @@
 Edge Infrastructure Manager
-===========================
+=============================
 
 Overview
----------
+---------------
 
 Edge Infrastructure Manager is a policy based secure life cycle and centralized
 control plane of fleet of edge devices spread across distributed locations
@@ -14,7 +14,7 @@ Edge Infrastructure Manager domain is highlighted in green.
    :alt: High-Level functional domains of Edge Infrastructure Manager
 
 Customers Highlights
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Organize edge devices into a hierarchical structure of organizations,
   regions, and sites, and enforce policies with multi-tenancy support.
@@ -30,7 +30,7 @@ Customers Highlights
 - Can be deployed on-cloud or on-premises.
 
 Developers Highlights
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Built with model-based design and cloud-native principles for scalability,
   maintenance, and extensibility.
@@ -41,7 +41,7 @@ Developers Highlights
   and application on fleet of devices.
 
 Key Performance Indicators
----------------------------
+----------------------------------
 
 - Onboard and OS provision edge device in under 7 minutes. Concurrent
   onboarding of up to 50 edge devices.
