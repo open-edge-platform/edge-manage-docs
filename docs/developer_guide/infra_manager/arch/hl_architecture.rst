@@ -53,7 +53,7 @@ scrape those metrics.
 `Tenant Controller <https://github.com/open-edge-platform/infra-core/tree/main/tenant-controller>`_ orchestrates tenant creation and deletion within the Edge
 Infrastructure Manager domain.
 
-`Orch CLI <https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide.html>`_ Tool (Similar to kubectl)
+`Orch CLI <https://docs.openedgeplatform.intel.com/edge-manage-docs/main/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide.html>`_ Tool (Similar to kubectl)
 is a binary executable that provides a command-line interface for managing EMF. It allows users to
 perform various tasks related to the deployment and
 management of edge devices and services.
