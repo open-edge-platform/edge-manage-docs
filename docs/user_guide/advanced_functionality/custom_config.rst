@@ -5,9 +5,8 @@ The custom config feature allows users to personalize the configuration of an ed
 process, this user-supplied cloud-init file is applied, enabling tailored setup and initialization of the edgenode to meet specific requirements. This
 approach offers flexibility and control over the environment, making it easier to automate and customize deployments.
 
-The custom config feature is available to use through CLI or Orchestrator API's. You can use the `orch-cli` to add a custom config file to the edgenode.
-:doc:`/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide`
-The custom config file is a cloud-init file that will be applied during the provisioning process.
+The custom config feature is available to use through CLI or Orchestrator API's. The :doc:`orch-cli </user_guide/set_up_edge_infra/orch_cli/orch_cli_guide>`
+commands can be used to add/delete a custom config file to the edgenode. The custom config file is a cloud-init file that will be applied during the provisioning process.
 
 
 #. To add your cloud-init through CLI, save the **cloud-init** file to your local machine and apply the below command.
@@ -98,3 +97,12 @@ The custom config file is a cloud-init file that will be applied during the prov
                     addresses:
                       - 8.8.8.8
                       - 8.8.4.4
+
+#. To associate a custom config with an edgenode during its configuration, use the following command:
+
+    .. code-block:: bash
+
+        orch-cli create host <host-name> --import-from-csv <host-list-csv-file> --cloud-init <custom-config-resource-id> --other-flags ...
+
+    This command links the specified custom config to the host, ensuring that the cloud-init file is applied during the provisioning process.
+    Refer :doc:`orch-cli documentation </user_guide/set_up_edge_infra/orch_cli/orch_cli_guide>` for more options to manage host.
