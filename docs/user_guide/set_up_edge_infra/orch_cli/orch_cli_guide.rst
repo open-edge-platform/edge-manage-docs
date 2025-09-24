@@ -101,6 +101,16 @@ There is two login methods available:
 
         ./orch-cli login <USER> <PASSWORD>
 
+Autocompletion
+^^^^^^^^^^^^^^^
+
+The orch-cli supports autocompletion for the CLI commands. To enable autocompletion in bash shell create the completion file and reload the terminal:
+
+    .. code-block:: bash
+
+        ./orch-cli completion bash | sudo tee /etc/bash_completion.d/orch-cli
+        source ~/.bashrc
+
 Running commands
 ^^^^^^^^^^^^^^^^
 
