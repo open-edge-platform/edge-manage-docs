@@ -15,7 +15,6 @@ Error: No Matching Route 53 Hosted Zone Found
 ::
 
     Error: no matching Route 53 Hosted Zone found
-
       with module.route53_orch.data.aws_route53_zone.parent_public[0],
       on ../../module/orch-route53/main.tf line 13, in data "aws_route53_zone" "parent_public":
       13: data "aws_route53_zone" "parent_public" {
@@ -24,10 +23,6 @@ Error: No Matching Route 53 Hosted Zone Found
 
 Error: Variable TF_VAR_tls_key is not set
 =========================================
-
-::
-
-    Error: Variable TF_VAR_tls_key is not set
 
 **Solution:** Add option ``--auto-cert``
 
