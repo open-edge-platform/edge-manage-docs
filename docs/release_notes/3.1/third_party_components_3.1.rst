@@ -354,11 +354,11 @@ Platform services
    * - keycloak
      - helm chart
      - https://github.com/bitnami/charts/tree/main/bitnami/keycloak
-     - 24.0.1
+     - 24.4.12
    * - keycloak
      - image
      - docker.io/bitnamilegacy/keycloak
-     - 26.0.1-debian-12-r0
+     - 26.1.3-debian-12-r0
    * - keycloak (config-cli)
      - image
      - docker.io/bitnamilegacy/keycloak-config-cli
