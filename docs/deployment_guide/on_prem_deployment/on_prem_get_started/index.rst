@@ -1,15 +1,46 @@
 Get Started with Edge Orchestrator
 ==================================
 
-Set up the following system and hardware configuration before installing
-Edge Orchestrator:
+This guide helps you install Edge Orchestrator on-premises. Choose your path based on your deployment needs:
 
+.. grid:: 2
 
-System Requirements
--------------------
+   .. grid-item-card:: Standard Installation
+      :link: standard-installation-path
+      :link-type: ref
 
-Domain
-------
+      **For most users:**
+
+      - Simple network setup
+      - Single domain
+      - Direct internet access
+
+   .. grid-item-card:: Advanced Configuration
+      :link: advanced-network-configurations
+      :link-type: ref
+
+      **For complex environments:**
+
+      - Corporate proxy setups
+      - Multiple network zones
+      - Custom network topologies
+      - Large scale deployments
+
+.. _standard-installation-path:
+
+Standard Installation Path
+==========================
+
+For most users, follow these steps in order:
+
+1. **Check System Requirements** - :doc:`system_requirements_on_prem_orch`
+2. **Prepare Certificates** - :doc:`on_prem_certs`
+3. **Install Edge Orchestrator** - :doc:`on_prem_install`
+
+Essential Requirements
+----------------------
+
+**Domain Name**
 
 A domain name is required for Edge Orchestrator installation.
 
@@ -20,46 +51,76 @@ The domain name must be unique and not used by any other service in the
 network. The domain name must be a fully qualified domain name (FQDN) and not
 an IP address.
 
-
-
-Edge Orchestrator Network Topology
-----------------------------------
-
-.. warning::
-   Ensure that there are no incorrect configurations while setting up your DNS server for Edge Orchestrator. Incorrect configurations can lead to deployment failures. Specifically, the RKE2 (the kubernetes distribution used for EMF on-prem cluster) might start using the 8.8.8.8 server for DNS resolution, if no other DNS server is configured correctly.
-
-  1. Avoid configuring `/etc/resolv.conf` and `/run/systemd/resolve/resolv.conf` to point exclusively to loopback or multicast nameservers. This can cause issues during deployment.
-
-  2. Ensure that the `service_cidr` subnet specified in the installation guide does not overlap with any existing subnets in your infrastructure. For example, if the k8s `service_cidr` includes the IP `10.43.0.10`, ensure this IP is not used as a DNS server in the OS or for any critical network communications in your environment.
+**Basic Network Setup**
 
 .. image:: ../images/on-prem-install-topology-config.png
    :alt: The network topology for Edge Orchestrator
    :width: 500px
    :align: center
 
+**Essential Firewall Ports**
 
-Edge Orchestrator Network Topology with Corporate Proxy
---------------------------------------------------------
+The following ports must be open for basic Edge Orchestrator operation:
+
+.. list-table:: Required Network Ports
+   :header-rows: 1
+   :widths: 20 20 60
+
+   * - Port
+     - Protocol
+     - Purpose
+   * - 443
+     - TCP
+     - Web UI and API access (main interface)
+   * - 443
+     - TCP
+     - Edge node communication
+
+.. note::
+   **For Standard Setup**: These are the essential ports. See the :ref:`advanced-network-configurations` section for complete port listings.
+
+.. _advanced-network-configurations:
+
+Advanced Network Configurations
+===============================
+
+The following sections cover complex network scenarios. **Most users can skip this section.**
+
+Corporate Proxy Environments
+-----------------------------
+
+**Network Topology with Corporate Proxy**
 
 .. image:: ../images/on-prem-install-topology-config-with-corporate-proxy.png
    :alt: The network topology for Edge Orchestrator
    :width: 500px
    :align: center
 
-.. _on_prem_network_topology_squid_proxy:
+**Edge Nodes without Direct Internet Access**
 
-Edge Orchestrator for Edge Nodes without Direct Internet Access
-----------------------------------------------------------------
+.. _on_prem_network_topology_squid_proxy:
 
 .. image:: ../images/on-prem-install-topology-config-with-squid-proxy.png
    :alt: The network topology for Edge Orchestrator
    :width: 500px
    :align: center
 
-.. _on_prem_lenovo_network_topology:
+Advanced DNS Configuration
+---------------------------
 
-Lenovo\* Open Cloud Automation (LOC-A) Network Topology (Optional)
-------------------------------------------------------------------
+.. warning::
+   **Important DNS Configuration Requirements**
+
+   Ensure that there are no incorrect configurations while setting up your DNS server for Edge Orchestrator. Incorrect configurations can lead to deployment failures. Specifically, the RKE2 (the kubernetes distribution used for EMF on-prem cluster) might start using the 8.8.8.8 server for DNS resolution, if no other DNS server is configured correctly.
+
+  1. Avoid configuring `/etc/resolv.conf` and `/run/systemd/resolve/resolv.conf` to point exclusively to loopback or multicast nameservers. This can cause issues during deployment.
+
+  2. Ensure that the `service_cidr` subnet specified in the installation guide does not overlap with any existing subnets in your infrastructure. For example, if the k8s `service_cidr` includes the IP `10.43.0.10`, ensure this IP is not used as a DNS server in the OS or for any critical network communications in your environment.
+
+Lenovo Open Cloud Automation (LOC-A) Integration
+-------------------------------------------------
+
+.. _on_prem_lenovo_network_topology:
 
 When integrating the Lenovo\* Open Cloud Automation (LOC-A) software, you can use the networking settings of your choice.
 
@@ -79,8 +140,8 @@ This Edge Orchestrator version is compatible with LOC-A version 3.2.
 .. note::
    Other configurations are possible, for example, having a separate network for BMC and OS management.
 
-Firewall Configuration
-----------------------
+Complete Firewall Configuration
+--------------------------------
 
 The following table lists the network endpoints for Edge Orchestrator and edge nodes, which you can use to configure firewall rules tailored to your network environment.
 
@@ -304,13 +365,23 @@ Intel recommends that only the edge node subnet is allowed to access the Squid p
      -  Squid proxy
 
 
+Installation Guide Navigation
+=============================
+
 .. toctree::
-   :hidden:
+   :maxdepth: 2
 
    system_requirements_on_prem_orch
    on_prem_certs
-   ../../../shared/shared_gs_preinstall
    on_prem_install
+
+Advanced Topics
+---------------
+
+.. toctree::
+   :maxdepth: 1
+
+   ../../../shared/shared_gs_preinstall
    ../../../shared/shared_gs_iam
    ../../../shared/shared_mt_overview
    ../../../shared/shared_next_steps
