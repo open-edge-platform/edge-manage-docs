@@ -29,8 +29,8 @@ It is **not** a single Helm chart values file. It orchestrates multiple Argo CD 
 3. Field Reference (Customer Relevant)
 --------------------------------------
 
-``root.useLocalValues``
-  Boolean. If true, uses only locally defined values (no extra remote layers).
+``root.useLocalValues``  
+  Boolean. If true, overwrites remote values with local ones.
 
 ``root.clusterValues``
   Ordered list of profile YAMLs. Order matters (last overrides previous).
