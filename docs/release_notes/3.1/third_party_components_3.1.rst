@@ -357,11 +357,11 @@ Platform services
      - 24.0.1
    * - keycloak
      - image
-     - docker.io/bitnami/keycloak
+     - docker.io/bitnamilegacy/keycloak
      - 26.0.1-debian-12-r0
    * - keycloak (config-cli)
      - image
-     - docker.io/bitnami/keycloak-config-cli
+     - docker.io/bitnamilegacy/keycloak-config-cli
      - 6.1.6-debian-12-r4
    * - curl-jq
      - Container (utility)
