@@ -36,6 +36,8 @@ The cluster profile (``cluster-name.yaml``) performs the following:
 +-----------------------------+-----------------------------------------------------+
 | Field                       | Description                                         |
 +=============================+=====================================================+
+| root.useLocalValues         | If true, overwrite locally defined values                  |
++-----------------------------+-----------------------------------------------------+
 | argo.project                | Argo CD project name (usually cluster-name)         |
 +-----------------------------+-----------------------------------------------------+
 | argo.namespace              | Namespace for core EMF components                   |
