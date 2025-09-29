@@ -53,8 +53,14 @@ scrape those metrics.
 `Tenant Controller <https://github.com/open-edge-platform/infra-core/tree/main/tenant-controller>`_ orchestrates tenant creation and deletion within the Edge
 Infrastructure Manager domain.
 
-`Bulk Import Tools (BIT) <https://github.com/open-edge-platform/infra-core/tree/main/bulk-import-tools>`_ are tools that automate the registration of
-multiple edge nodes in Edge Infrastructure Manager.
+`Orch CLI <https://docs.openedgeplatform.intel.com/edge-manage-docs/main/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide.html>`_ Tool (Similar to kubectl)
+is a binary executable that provides a command-line interface for managing EMF. It allows users to
+perform various tasks related to the deployment and
+management of edge devices and services.
+
+`Device Management Toolkit <https://github.com/device-management-toolkit/docs>`_ Device Management
+Toolkit offers open-source microservices, applications
+and libraries designed to simplify and accelerate the integration of Intel’s out-of-band management technology (vPro® AMT) into software solutions.
 
 .. note:: :doc:`/developer_guide/agents/index` are optional software that may be needed under a
    Resource Manager when the infrastructure component does not have an external
