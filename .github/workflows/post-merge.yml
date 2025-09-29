@@ -17,7 +17,7 @@ jobs:
       contents: read
       security-events: write
       id-token: write
-    uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@a389c296f4a6dd2ff9d976007fd386950ab99605  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@373a7096575cc51e80867d8014ece4e11de0553f  # yamllint disable-line rule:line-length
     with:
       run_version_check: true
       run_dep_version_check: false
@@ -41,7 +41,7 @@ jobs:
     uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@a389c296f4a6dd2ff9d976007fd386950ab99605  # yamllint disable-line rule:line-length
     with:
       simple_mode: false
-      branch_pattern: '^(main|release-[0-9]+\.[0-9]+*)$'
+      branch_pattern: '^(main|release-[0-9]+\.[0-9]+.*)$'
     secrets:
       SYS_ORCH_GITHUB: ${{ secrets.SYS_ORCH_GITHUB }}
       DOC_AWS_ACCESS_KEY_ID: ${{ secrets.DOC_AWS_ACCESS_KEY_ID }}
