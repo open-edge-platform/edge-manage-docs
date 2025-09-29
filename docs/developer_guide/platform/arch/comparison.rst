@@ -27,7 +27,6 @@ Load Balancers
   
   * NLB for raw TCP traffic nginx port 443 and mps port 4433
   * ALB for HTTPS traffic :443 reroutes to 8433 in eks
-  * ALB for HTTPS traffic :443 reroutes to 8433 in eks
 
 Kubernetes
 ==========
@@ -36,10 +35,10 @@ Kubernetes
 * **aws**: 3 node cluster (EC2) deployed in AWS with jumphost (EC2) instance to connect
 * **coder**: Docker kind container pulled and deployed.
 
-NodePorts Are Not Used
-======================
+NodePorts Are Not Used for AWS but are for onprem and coder
+===========================================================
 
-You need to kubectl describe to see the LB IP:
+You need to kubectl describe to see the LB IP in AWS:
 
 .. code-block:: bash
 
@@ -85,7 +84,7 @@ Load Balancer Architecture Diagram AWS
                      \                 \         /                  /
                       \                 \       /                  / 
        ┌───────────────│─────────────────│─────│──────────────────│────────────┐
-       │               │          Kubernetes Cluster              │            │
+       │               │               EKS Cluster                │            │
        │               │                 │     │                  │            │
        │               │                 │     │                  │            │
        │               ▼                 ▼     ▼                  ▼            │
@@ -94,6 +93,55 @@ Load Balancer Architecture Diagram AWS
        │         │Nginx        │   │Traefik       │   │Argocd        │         │
        │         │port:<IP1>443│   │port:<IP2>8433│   │port:<IP3>443 |         │
        │         │             │   │port:<IP2>4433│   │port:<IP3>80  |         │
+       │         └─────────────┘   └──────────────┘   └──────────────┘         │
+       │                 │               │               │                     │
+       │                 └───────────────┼───────────────┘                     │
+       │                                 │                                     │
+       │                       ┌─────────┴─────────┐                           │
+       │                       │                   │                           │
+       │                       ▼                   ▼                           │
+       │              ┌─────────┐  ┌─────────┐  ┌─────────┐                    │
+       │              │  Pod 1  │  │  Pod 2  │  │  Pod 3  │                    │
+       │              │         │  │         │  │         │                    │
+       │              └─────────┘  └─────────┘  └─────────┘                    │
+       │                                                                       │
+       │              ┌─────────┐  ┌─────────┐  ┌─────────┐                    │
+       │              │  Pod 4  │  │  Pod 5  │  │  Pod 6  │                    │
+       │              │         │  │         │  │         │                    │
+       │              └─────────┘  └─────────┘  └─────────┘                    │
+       └───────────────────────────────────────────────────────────────────────┘
+
+
+Load Balancer Architecture Diagram Coder
+========================================
+
+::
+
+                                         Edge Node
+                                              |
+                                              │
+                                              │
+                                              ▼
+                                ┌────────────────────────────┐
+                                │(Docker Traefik)            │
+                                │Load Balancer               │
+                                │port:  443,4433             │
+                                │Dport: 443,4433,443         │
+                                │SNI rules with * for nginx  │
+                                └────────────────────────────┘
+                                              │
+                       ┌──────────────────────┴───────────────────┐
+                       │                 │     │                  │
+       ┌───────────────│─────────────────│─────│──────────────────│────────────┐
+       │               │            Docker Kind Cluster           │            │
+       │               │                 │     │                  │            │
+       │               │                 │     │                  │            │
+       │               ▼                 ▼     ▼                  ▼            │
+       │         ┌─────────────┐   ┌──────────────┐   ┌──────────────┐         │
+       │         │K8s Service  │   │K8s Service   │   │K8s Service   │         │
+       │         │Nginx        │   │Traefik       │   │Argocd        │         │
+       │         │port:<ip1>443│   │port:<ip2>433 │   │port:<ip3>443 |         │
+       │         │             │   │port:<ip2>4433│   │port:<ip3>80  |         │
        │         └─────────────┘   └──────────────┘   └──────────────┘         │
        │                 │               │               │                     │
        │                 └───────────────┼───────────────┘                     │
