@@ -56,11 +56,11 @@ AWS EC2 Instances
     ----------------------------------------------------------------------------------------------------------------
     |                                               DescribeInstances                                              |
     +-----------------------------------+----------------------+-------------+-----------------+-------------------+
-    |  eks-nodegroup-john-1             |  <redacted> |  t3.2xlarge |  None           |  192.168.255.122  |
-    |  eks-nodegroup-john-1             |  <redacted> |  t3.2xlarge |  None           |  192.168.252.58   |
-    |  john-jump                        |  <redacted> |  t3.medium  |  <redacted>     |  192.168.248.39   |
-    |  eks-nodegroup-john-observability |  <redacted> |  t3.2xlarge |  None           |  192.168.250.164  |
-    |  eks-nodegroup-john-1             |  <redacted> |  t3.2xlarge |  None           |  192.168.250.206  |
+    |  eks-nodegroup-user-1             |  <redacted> |  t3.2xlarge |  None           |  192.168.255.122  |
+    |  eks-nodegroup-user-1             |  <redacted> |  t3.2xlarge |  None           |  192.168.252.58   |
+    |  user-jump                        |  <redacted> |  t3.medium  |  <redacted>     |  192.168.248.39   |
+    |  eks-nodegroup-user-observability |  <redacted> |  t3.2xlarge |  None           |  192.168.250.164  |
+    |  eks-nodegroup-user-1             |  <redacted> |  t3.2xlarge |  None           |  192.168.250.206  |
     +-----------------------------------+----------------------+-------------+-----------------+-------------------+
 
 
