@@ -11,10 +11,12 @@ These tarballs come from the release service after been built by the CI.
   It's installed as a .deb file after kubernetes install but before argo install
 * **aws**: gitea is deployed in the cloud environment before argo
 
-Postgres
+Database
 ========
 
-Postgres is for the onprem deployment only. It's deployed as a helm chart through ArgoCD. It's deployed within the kubernetes network boundary.
+* **onprem**: Postgres is deployed as a helm chart through ArgoCD. It's deployed within the kubernetes network boundary.
+* **coder**: Postgres is deployed as a helm chart through ArgoCD. It's deployed within the kubernetes network boundary.
+* **aws**: Arura is deployed using the terraform at preinstall time
 
 Load Balancers
 ==============
