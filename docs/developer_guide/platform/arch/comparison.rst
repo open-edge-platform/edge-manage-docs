@@ -16,7 +16,7 @@ Database
 
 * **onprem**: Postgres is deployed as a helm chart through ArgoCD. It's deployed within the kubernetes network boundary.
 * **coder**: Postgres is deployed as a helm chart through ArgoCD. It's deployed within the kubernetes network boundary.
-* **aws**: Arura is deployed using the terraform at preinstall time
+* **aws**: Aurora is deployed using the terraform at preinstall time
 
 Load Balancers
 ==============
