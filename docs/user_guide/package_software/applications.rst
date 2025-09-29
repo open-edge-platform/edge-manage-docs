@@ -91,3 +91,8 @@ From this page, you can do the following tasks:
    edit_application
    delete_application
    app_profile
+
+**Command Line Management**
+
+For programmatic access and automation, you can use the orch-cli tool to manage applications.
+For detailed command-line operations, see :doc:`/user_guide/package_software/orch_cli/orch_cli_guide`.

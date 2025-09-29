@@ -495,9 +495,9 @@ Name System (DNS) to access the applications in the browser.
 
 When using self-signed certificate:
 
-* To access the applications **only on a specific node**, run the
-  ``generate_fqdn`` command on Edge Orchestrator, and copy the output
-  to ``/etc/hosts`` on the node.
+* To access the applications only on a specific node, run the
+  ``generate_fqdn`` command on Edge Orchestrator, and configure the output
+  in the local DNS resolver settings of that node.
 
 * To access the applications from **multiple hosts in the network**,
   add the output of the ``generate_fqdn`` command

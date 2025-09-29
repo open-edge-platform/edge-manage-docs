@@ -123,7 +123,10 @@ Automated Onboarding and Provisioning
    .. figure:: ../images/register_host_automatic_cluster.png
       :alt: Register Host Automatic Cluster
 
-   .. note:: The **Create Single Node Cluster** option is only available when both automated onboarding and automated provisioning are enabled. This ensures the node is fully configured before before initiating cluster bootstrap. Note that the cluster may remain in the `provisioning` status until the host is completely onboarded and provisioned.
+   .. note::
+
+      The **Create Single Node Cluster** option is only available when both automated onboarding and automated provisioning are enabled.
+      This ensures the node is fully configured before initiating cluster bootstrap. Note that the cluster may remain in the `provisioning` status until the host is completely onboarded and provisioned.
 
 #. If multiple edge nodes are to be registered, you can add additional fields by clicking the **+** option.
 
@@ -157,15 +160,7 @@ Open Container Initiative\* (OCI\*) compliant registries. Intel recommends using
 Ensure that you have ``oras`` available on your system or follow the instructions in the
 `public documentation <https://oras.land/docs/installation>`_ to install it.
 
-Download the tool  as follows:
-
-The tool is made available in the public AWS* Elastic Container Registry. It can be pulled without any credentials using commands like below:
-
-.. code-block:: bash
-
-   oras pull registry-rs.edgeorchestration.intel.com/edge-orch/files/orch-cli:3.1
-
-The package will be an archive which needs to be unpacked to access the binary.
+For information on how to download the tool see the orch-cli documentation :ref:`cli-download` section.
 
 For more information about the orch-cli tool and how to use it to create and view other Edge Orchestrator resources, refer to the:
 :doc:`/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide`
@@ -174,15 +169,20 @@ Login to the Edge Orchestrator
 ------------------------------
 
 Go to the directory where the downloaded orch-cli tool resides (for example, ~), to run the login command.
-The *username* must be provided as and argument followed by *--keycloak* flag pointing to the Keycloak service of the Edge Orchestrator.
+
+Configure the Edge Orchestrator API endpoint and project:
+
+.. code-block:: bash
+
+   ./orch-cli config set api-endpoint https://api.<CLUSTER_FQDN>
+   ./orch-cli config set project <PROJECT>
+
+The *username* must be provided as an argument.
 This is followed by the password prompt:
 
 .. code-block:: bash
 
-   cd ~
-   chmod +x orch-cli
-
-   orch-cli login <USER> --keycloak https://keycloak.<CLUSTER_FQDN>/realms/master
+   orch-cli login <USER>
    Enter Password:
 
 Generate a .csv File
@@ -194,7 +194,7 @@ Go to the directory where the downloaded orch-cli tool resides (for example, ~),
 
 .. code-block:: bash
 
-   ./orch-cli create host  --api-endpoint <CLUSTER_FQDN>  --project <PROJECT_NAME>  --generate-csv=<FILENAME>.csv
+   ./orch-cli create host --generate-csv=<FILENAME>.csv
 
 Now, you can populate the `.csv` file by appending details of systems.
 Do not change the first line `Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,AMTEnable,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill`
@@ -217,7 +217,7 @@ Check the CSV File
 You can now validate the CSV file that you have created yourself or through generation by attempting a dry run deployment.
 .. code-block:: bash
 
-   ./orch-cli create host  --api-endpoint <CLUSTER_FQDN>  --project <PROJECT_NAME>  --import-from-csv <FILENAME>.csv --dry-run
+   ./orch-cli create host --import-from-csv <FILENAME>.csv --dry-run
 
 orch-cli
 ~~~~~~~~
@@ -276,7 +276,7 @@ be provided via `K8sClusterTemplate` which expects the template name and version
             cd ~
             chmod +x orch-cli
 
-            orch-cli login <USER> --keycloak https://keycloak.<CLUSTER_FQDN>/realms/master
+            orch-cli login <USER>
             Enter Password:
 
       #. **Password argument** - Alternatively the password can be provided as a second command line argument - the recommended way is to use prompt based login above.
@@ -287,7 +287,7 @@ be provided via `K8sClusterTemplate` which expects the template name and version
             cd ~
             chmod +x orch-cli
 
-            orch-cli login <USER> <PASSWORD> --keycloak https://keycloak.<CLUSTER_FQDN>/realms/master
+            orch-cli login <USER> <PASSWORD>
 
 #. Run the bulk import tool. Go to the directory where you have downloaded the file (e.g. ~).
    The URL in the command is a mandatory argument that points the tool towards the Edge Orchestrator where the devices will be registered.
@@ -297,7 +297,7 @@ be provided via `K8sClusterTemplate` which expects the template name and version
 
       cd ~
       chmod +x orch-cli
-      ./orch-cli create host  --api-endpoint <CLUSTER_FQDN>  --project <PROJECT_NAME>  --import-from-csv test.csv
+      ./orch-cli create host --import-from-csv test.csv
 
 #. The orch-cli validates the input file again, similar to the dry-run tool, and generates an error report if validation fails.
    If validation passes, the bulk import tool proceeds to the registration phase.
@@ -316,7 +316,7 @@ Example of invocation and failure:
 
    .. code-block:: bash
 
-      ./orch-cli create host  --api-endpoint <CLUSTER_FQDN>  --project <PROJECT_NAME>  --import-from-csv test.csv
+      ./orch-cli create host  --import-from-csv test.csv
       Importing hosts from file: test.csv to server: https://api.CLUSTER_FQDN
       Onboarding is enabled
       Checking CSV file: test.csv

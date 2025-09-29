@@ -63,3 +63,7 @@ From this page, you can do the following:
    vm_actions
    access_deploy
 
+**Command Line Management**
+
+For programmatic access and automation, you can use the orch-cli tool to manage deployments.
+For detailed command-line operations, see :doc:`/user_guide/package_software/orch_cli/orch_cli_guide`.

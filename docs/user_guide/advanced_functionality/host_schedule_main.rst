@@ -62,7 +62,7 @@ To schedule maintenance for a single Edge Node, do the following:
          This is supported only if the schedule does not repeat. If the schedule is open-ended, you need to remove the edge node manually from maintenance.
          Refer to `Delete Scheduled Maintenance or End Maintenance <#delete-scheduled-maintenance-or-end-maintenance>`__.
 
-   #. If the schedule has a known end date and time, update the **End Date** and **End Time** according to your needs.
+   #. If the schedule has a known end date and time, update the **End Date** and **End Time** according to your needs (the duration should be no less than 10 minutes which is sufficient for a system to exucute the updates and restart).
 
    If you have selected "Repeat by day of week" or "Repeat by day of month" as the schedule type:
 
