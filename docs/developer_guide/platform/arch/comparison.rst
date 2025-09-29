@@ -35,7 +35,7 @@ Kubernetes
 * **aws**: 3 node cluster (EC2) deployed in AWS with jumphost (EC2) instance to connect
 * **coder**: Docker kind container pulled and deployed.
 
-NodePorts Are Not Used for AWS but are for onprem and coder
+NodePorts are not used for AWS but are for OnPrem
 ===========================================================
 
 You need to kubectl describe to see the LB IP in AWS:
@@ -44,8 +44,8 @@ You need to kubectl describe to see the LB IP in AWS:
 
     orchestrator-admin:~$ kubectl get svc -A | grep -e "NodePort"
     argocd                 argocd-server                                                   NodePort    <redacted>   <none>        80:32080/TCP,443:32443/TCP                                         2d18h
-    orch-boots             ingress-nginx-controller                                        NodePort    <redacted>     <none>        443:31443/TCP                                                      2d18h
-    orch-gateway           traefik                                                         NodePort    <redacted>    <none>        4433:32299/TCP,443:30443/TCP                                       2d18h
+    orch-boots             ingress-nginx-controller                                        NodePort    <redacted>   <none>        443:31443/TCP                                                      2d18h
+    orch-gateway           traefik                                                         NodePort    <redacted>   <none>        4433:32299/TCP,443:30443/TCP                                       2d18h
 
 AWS EC2 Instances
 =================
