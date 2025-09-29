@@ -17,6 +17,7 @@ jobs:
     with:
       simple_mode: false
       branch_pattern: '^(main|release-[0-9]+\.[0-9]+.*)$'
+      switch_main_to_dev: true
     secrets:
       SYS_ORCH_GITHUB: ${{ secrets.SYS_ORCH_GITHUB }}
       DOC_AWS_ACCESS_KEY_ID: ${{ secrets.DOC_AWS_ACCESS_KEY_ID }}
