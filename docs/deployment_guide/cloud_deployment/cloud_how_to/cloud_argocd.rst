@@ -36,7 +36,7 @@ The cluster profile (``cluster-name.yaml``) performs the following:
 +-----------------------------+-----------------------------------------------------+
 | Field                       | Description                                         |
 +=============================+=====================================================+
-| root.useLocalValues         | If true, overwrite locally defined values                  |
+| root.useLocalValues         | If true, overwrite locally defined values           |
 +-----------------------------+-----------------------------------------------------+
 | argo.project                | Argo CD project name (usually cluster-name)         |
 +-----------------------------+-----------------------------------------------------+
@@ -99,10 +99,10 @@ Typical AWS layering order:
 5. AWS Dependencies Setup
 -------------------------
 
-- IAM Provider – for cluster authentication  
-- AWS Load Balancer Controller – to manage ALBs  
-- EFS CSI Driver – persistent storage  
-- Route53 DNS – domain resolution for services  
+- IAM Provider – for cluster authentication
+- AWS Load Balancer Controller – to manage ALBs
+- EFS CSI Driver – persistent storage
+- Route53 DNS – domain resolution for services
 
 6. Argo CD Installation
 -----------------------
