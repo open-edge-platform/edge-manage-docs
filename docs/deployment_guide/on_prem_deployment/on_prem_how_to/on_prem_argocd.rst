@@ -1,7 +1,8 @@
 EMF Argo CD Deployment Flow
 ===========================
 
-This document explains how Edge Manageability Framework (EMF) is deployed through Argo CD using the cluster profile file: ``orch-configs/clusters/cluster.yaml`` (e.g. ``onprem.yaml`` or site-specific copy).
+This document explains how Edge Manageability Framework (EMF) is deployed through Argo CD using the cluster profile file:
+   ``orch-configs/clusters/cluster.yaml`` (e.g. ``onprem.yaml`` or site-specific copy).
 
 1. What the Cluster Profile Is
 ------------------------------
@@ -29,7 +30,7 @@ It is **not** a single Helm chart values file. It orchestrates multiple Argo CD 
 3. Field Reference (Customer Relevant)
 --------------------------------------
 
-``root.useLocalValues``  
+``root.useLocalValues``
   Boolean. If true, overwrites remote values with local ones.
 
 ``root.clusterValues``
