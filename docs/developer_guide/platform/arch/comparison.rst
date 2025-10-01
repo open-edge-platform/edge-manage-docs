@@ -51,7 +51,7 @@ You need to kubectl describe to see the LB IP in AWS:
 
 AWS EIPs usage 
 ==============
-* 10 Eips used in total
+* 10 EIPs used in total
 * 1 for jumphost
 * 6 for the 2 NLBs which use 3 each, one for each sub region
 * 3 for NAT gateways, one ip each
