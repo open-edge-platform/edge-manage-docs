@@ -146,12 +146,61 @@ Run Installer
 
 .. note:: Add any optional configuration from previous sections if needed. Or check the following for optional arguments.
 
+The Edge Orchestrator installation has been split into two scripts for better modularity and control:
+
+1. **Pre-installer Script**: Sets up the basic infrastructure and components
+2. **Main Installer Script**: Installs the Edge Orchestrator software
+
+Step 1: Run the Pre-installer Script
++++++++++++++++++++++++++++++++++++++
+
+First, run the pre-installer script to set up the basic infrastructure:
+
 .. code-block:: shell
 
-   ./onprem_installer.sh
+   ./onprem_pre_installer.sh
 
+Pre-installer Script Options
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The script does the following:
+The pre-installer script supports several optional arguments:
+
+.. list-table:: Pre-installer Script Arguments
+   :widths: 20 50 30
+   :header-rows: 1
+
+   * - Argument
+     - Description
+     - Example
+   * - ``-s`` or ``--sre_tls``
+     - Enables TLS for SRE Exporter. Optionally, provide path to SRE destination CA certificate
+     - ``./onprem_pre_installer.sh -s [cert_path]``
+   * - ``-d`` or ``--notls``
+     - Disable TLS verification for SMTP endpoint
+     - ``./onprem_pre_installer.sh -d``
+   * - ``-o`` or ``--override``
+     - Override production values with dev values (sets profile to onprem-dev)
+     - ``./onprem_pre_installer.sh -o``
+   * - ``-u`` or ``--url``
+     - Set the Release Service URL
+     - ``./onprem_pre_installer.sh -u <url>``
+   * - ``-t`` or ``--trace``
+     - Enable tracing for debugging
+     - ``./onprem_pre_installer.sh -t``
+   * - ``-w`` or ``--write-config``
+     - Write configuration to disk and exit (for advanced users)
+     - ``./onprem_pre_installer.sh -w``
+   * - ``-y`` or ``--yes``
+     - Assume yes for using existing configuration if it exists
+     - ``./onprem_pre_installer.sh -y``
+   * - ``--skip-download``
+     - Skip downloading installer packages (use existing packages)
+     - ``./onprem_pre_installer.sh --skip-download``
+   * - ``-h`` or ``--help``
+     - Print help message and exit
+     - ``./onprem_pre_installer.sh -h``
+     
+The pre-installer script does the following:
 
 - Prompts to configure Argo\* CD tool, Traefik\* application proxy, and NGINX\* web server IP addresses, for details see
   `Installer Prompts and Deployment Configuration <#installer-prompts-and-deployment-configuration>`__
@@ -167,9 +216,22 @@ The script does the following:
 
 - Installs RKE2 and related components
 
+- Installs Gitea\* repository
+
 - Installs Argo CD tool
 
-- Installs a Gitea\* repository
+Step 2: Run the Main Installer Script
+++++++++++++++++++++++++++++++++++++++
+
+After the pre-installer completes successfully, run the main installer script:
+
+.. code-block:: shell
+
+   ./onprem_installer.sh
+
+The main installer script does the following:
+
+- Creates required namespaces and secrets
 
 - Installs Edge Orchestrator
 
@@ -177,6 +239,7 @@ The script does the following:
 
   - Starts Edge Orchestrator via Argo CD tool to populate the Gitea repositories
 
+- Automatically cleans up temporary configuration files
 
 See the following sections for details about the installation process and prompts.
 
@@ -374,7 +437,7 @@ exporter and SRE endpoint, use the ``-s`` flag:
 
 .. code-block:: shell
 
-   ./onprem_installer.sh -s
+   ./onprem_pre_installer.sh -s
 
 .. note::
    The ``-s`` flag is optional. If omitted, the SRE exporter will deploy with the TLS authentication option turned off.
@@ -384,7 +447,7 @@ path to the file containing the certificate after ``-s`` flag:
 
 .. code-block:: shell
 
-   ./onprem_installer.sh -s [path_to_SRE_Endpoint_TLS_CA_Cert]
+   ./onprem_pre_installer.sh -s [path_to_SRE_Endpoint_TLS_CA_Cert]
 
 If you want to disable SRE functionality fully, see the
 `Disable SRE <#disable-sre-optional>`__ section above.
@@ -393,11 +456,11 @@ If you want to disable SRE functionality fully, see the
 Disable SMTP Server Authentication (Optional)
 +++++++++++++++++++++++++++++++++++++++++++++
 
-Use the ``-d`` option to turn off the TLS authentication between the SMTP server and alert monitor:
+Use the ``-d`` option with the pre-installer to turn off the TLS authentication between the SMTP server and alert monitor:
 
 .. code-block:: shell
 
-   ./onprem_installer.sh -d
+   ./onprem_pre_installer.sh -d
 
 Prepare TLS Certificate Secret
 ------------------------------
