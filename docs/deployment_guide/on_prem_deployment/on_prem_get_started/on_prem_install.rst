@@ -199,7 +199,7 @@ The pre-installer script supports several optional arguments:
    * - ``-h`` or ``--help``
      - Print help message and exit
      - ``./onprem_pre_installer.sh -h``
-     
+
 The pre-installer script does the following:
 
 - Prompts to configure Argo\* CD tool, Traefik\* application proxy, and NGINX\* web server IP addresses, for details see
