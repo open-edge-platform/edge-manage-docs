@@ -88,7 +88,7 @@ Load Balancer Architecture Diagram AWS
               │  (NLB)      │   │  (NLB)      │   │  (ALB)      │   │  (ALB)      │
               │Load Balancer│   │Load Balancer│   │Load Balancer│   │Load Balancer│
               │port:  443   │   │port:  4433  │   │port:    443 │   │port:    443 │
-              │Dport: 443   │   │Dport: 4433  │   │desport: 8443│   │desport: 443 │
+              │DstPort: 443 │   │DstPort: 4433│   │DstPort: 8443│   │dstPort: 443 │
               └─────────────┘   └─────────────┘   └─────────────┘   └─────────────┘
                       │                 │           │                  |
                        \                 \         /                  /
@@ -175,7 +175,7 @@ Load Balancer Architecture Diagram Coder
 
 
 Load Balancer Architecture Diagram OnPrem
-========================================
+=========================================
 
 ::
  
