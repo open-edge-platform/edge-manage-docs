@@ -218,8 +218,6 @@ The pre-installer script does the following:
 
 - Installs Gitea\* repository
 
-- Installs Argo CD tool
-
 Step 2: Run the Main Installer Script
 ++++++++++++++++++++++++++++++++++++++
 
@@ -232,6 +230,8 @@ After the pre-installer completes successfully, run the main installer script:
 The main installer script does the following:
 
 - Creates required namespaces and secrets
+
+- Installs Argo CD tool
 
 - Installs Edge Orchestrator
 
