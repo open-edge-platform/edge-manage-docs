@@ -10,11 +10,11 @@ during registration of host using orch-cli.
 If user doesn't provide the LVM partition then default value is set to 0
 and EN shall get more space for rootfs and persistent volume(user applications)
 
-# How to configure the LVM size during registration of edge node.
+#. How to configure the LVM size during registration of edge node.
 
 Here are the steps to configure the LVM size using orch-cli during
 registration of host/edge node.
 
 
-# How to use the LVM partition of RKE cluster
+#. How to use the LVM partition of RKE cluster
 
