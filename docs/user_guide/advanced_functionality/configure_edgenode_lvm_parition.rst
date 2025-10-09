@@ -16,5 +16,5 @@ Here are the steps to configure the LVM size using orch-cli during
 registration of host/edge node.
 
 
-#. How to use the LVM partition of RKE cluster
+#. How to use the LVM partition for RKE cluster
 
