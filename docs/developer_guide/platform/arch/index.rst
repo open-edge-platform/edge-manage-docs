@@ -11,4 +11,5 @@ architecture for both cloud and on-premises environments.
 
    argocd
    cloud_orchestrator
+   comparison
    on_premise_orchestrator/index
