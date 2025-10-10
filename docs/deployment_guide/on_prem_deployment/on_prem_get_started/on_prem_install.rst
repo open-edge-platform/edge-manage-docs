@@ -216,8 +216,6 @@ The pre-installer script does the following:
 
 - Installs RKE2 and related components
 
-- Installs Gitea\* repository
-
 Step 2: Run the Main Installer Script
 ++++++++++++++++++++++++++++++++++++++
 
@@ -229,17 +227,17 @@ After the pre-installer completes successfully, run the main installer script:
 
 The main installer script does the following:
 
-- Creates required namespaces and secrets
+- Installs Gitea\* repository
 
 - Installs Argo CD tool
+
+- Creates required namespaces and secrets
 
 - Installs Edge Orchestrator
 
   - Creates and populates the Gitea repositories with downloaded archives
 
   - Starts Edge Orchestrator via Argo CD tool to populate the Gitea repositories
-
-- Automatically cleans up temporary configuration files
 
 See the following sections for details about the installation process and prompts.
 
