@@ -14,6 +14,7 @@ set up email notifications, uninstall Edge Orchestrator infrastructure, handle c
 * :doc:`/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_storage_backup`
 * :doc:`/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_argocd`
 * :doc:`/deployment_guide/on_prem_deployment/on_prem_how_to/onprem_ao_co_o11y`
+* :doc:`/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_openport.rst`
 
 .. toctree::
    :hidden:
