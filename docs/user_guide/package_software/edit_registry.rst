@@ -15,7 +15,7 @@ To edit a registry, perform the following steps:
 
 #. Edit the **Location**, **Inventory**, or **Type** fields as needed.
 
-#. To update registry credentials, click the **Reset Password** button and enter the new **Username** and **Password**. 
+#. To update registry credentials, click the **Reset Password** button and enter the new **Username** and **Password**.
    The **Password** may be the actual password or an authentication token.
 
 #. Click **Ok**.
