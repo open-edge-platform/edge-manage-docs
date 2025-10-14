@@ -10,6 +10,10 @@ pull secret is required for pulling images from a private registry.
 
 This section describes how to configure the secret for a private registry.
 
+.. note::
+   For detailed information about registry credential security including
+   transmission and storage, see :doc:`/user_guide/package_software/registry_security`.
+
 Pulling Images from Common Private Registry
 -----------------------------------------------
 

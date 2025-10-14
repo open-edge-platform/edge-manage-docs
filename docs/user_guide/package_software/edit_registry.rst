@@ -1,6 +1,6 @@
 Edit Registry
 =======================
-You can edit the location, type, and inventory using the **Edit Registry** feature.
+You can edit the location, type, inventory, and credentials using the **Edit Registry** feature.
 
 To edit a registry, perform the following steps:
 
@@ -13,11 +13,18 @@ To edit a registry, perform the following steps:
       :scale: 80 %
       :alt: Edit Registry
 
-#. Edit the **Location**, **Inventory**, or **Type** fields.
+#. Edit the **Location**, **Inventory**, or **Type** fields as needed.
+
+#. To update registry credentials, click the **Reset Password** button and enter the new **Username** and **Password**.
+   The **Password** may be the actual password or an authentication token.
 
 #. Click **Ok**.
 
 .. note:: You cannot edit the name of the registry.
+
+.. note::
+   For detailed information about registry credential security including
+   transmission and storage, see :doc:`/user_guide/package_software/registry_security`.
 
 Reference for Registry
 ------------------------
