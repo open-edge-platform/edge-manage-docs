@@ -6,6 +6,9 @@ application for use within |software_prod_name|. You can also add
 :doc:`application profiles </user_guide/package_software/app_profile>`
 to customize your application.
 
+Before adding an application, ensure it meets the required criteria. For detailed
+information about application requirements, see :doc:`/user_guide/package_software/app_requirements`.
+
 Perform the following steps to add an application:
 
 1. Click **Deployments** on the top menu, then click **Applications** on the left menu. The **Applications** page appears.
