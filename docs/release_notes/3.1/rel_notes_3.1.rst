@@ -125,6 +125,8 @@ Provisioning
   unauthorizing the request with 403. There is no workaround;
   utilize the base Ubuntu profile and install any additional drivers
   through Day 2 updates.
+* LVM configuration feature for the single disk is not fully functional
+  in EMT OS profile. so please use the default disk configuration for EMT OS profile.
 
 Hosts and Infrastructure
 ^^^^^^^^^^^^^^^^^^^^^^^^^
