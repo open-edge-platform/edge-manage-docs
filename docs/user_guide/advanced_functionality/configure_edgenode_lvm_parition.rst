@@ -1,16 +1,17 @@
 User configurable rootfs and LVM partition for persistent volume for applications
 =================================================================================
 
-Requirement: User should be able to configure the space allocated for ``rootfs`` 
-and LVM size in case of edge node has single disk. LVM partition here is assumed 
-to be used for persistent volume for user applications using kubernetes OpenEBS 
-CSI addon. This is not an issue if the edge node has 2 disks then one disk with
+Requirement: User should be able to configure the space allocated for ``rootfs``
+and LVM size in case of edge node has single disk. LVM partition is designed to enable flexible
+and efficient storage management for user workloads deployed through Kubernetes.
+This is not an issue if the edge node has 2 disks then one disk with
 lower disk size is used for OS partition and other disk is used for LVM partition.
 LVM size parameter is host (edge node) specific and user shall be able to configure
 during registration of host using orch-cli.
 
 If user doesn't provide the LVM partition then default value is set to 0
-and EN shall get more space for ``rootfs`` and persistent volume(user applications)
+and EN shall get more space for ``rootfs`` and dedicated persistent volume is allocated to host K3s data,
+mounted at /var/lib/rancher and /var/lib/kubelet for application usage.
 
 Following are the implementation details and assumptions:
 
@@ -20,17 +21,21 @@ Following are the implementation details and assumptions:
 #. The LVM size can be specified in gigabytes (GB) during the registration process.
 #. LVM partition will be created only if the specified size is greater than 0 on a single HDD.
 #. If the edge node has multiple disks, the LVM size configuration will not be applicable.
-#. Users will have to deploy the OpenEBS CSI addon to utilize the LVM partition for persistent volume.
+#. The LVM partition is intended to provide users with flexible and efficient storage management for
+#. applications deployed on Kubernetes.
 #. The LVM size parameter is specific to each host (edge node) and can be configured individually during registration.
 #. Kubernetes installed on the edge node will have a dedicated partition to store container images, manifest, logs etc.
-#. By default kubernetes partition will be used for persistence volume for user applications if CSI like OpenEBS 
-    is not installed, configured and requested. 
+#. By default kubernetes partition will be used for applications if CSI like OpenEBS is not installed, configured and requested.
 
-#. How to configure the LVM size during registration of edge node.
+How to configure the LVM size during registration of edge node.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can configure the LVM size for an edge node during registration by specifying the desired size using the `orch-cli` tool. This allows you to customize storage allocation according to your requirements at the time of host onboarding.
+You can configure the LVM size for an edge node during registration by specifying the desired size using
+the `orch-cli` tool. This allows you to customize storage allocation according to your requirements at
+the time of host onboarding.
 
-The orch-cli tool facilitates registration of a set of hardware devices as edge nodes through a comma-separated value (CSV) file:
+The orch-cli tool facilitates registration of a set of hardware devices as edge nodes through a comma-separated
+value (CSV) file:
 
 #. orch-cli supports the creation of an empty template, and/or tests the validity of a given CSV file for it to be used during creation the host resources.
 #. orch-cli facilitates the import of the edge nodes present in a CSV file to the Edge Orchestrator.
@@ -123,7 +128,7 @@ CSV file fields:
 The fields `OSProfile`, `Site`, `Secure`, `RemoteUser`, `CloudInitMeta`,  and `Metadata` are used for provisioning configuration of the Edge Node.
 The fields accept both name and resource IDs, with an exception of site which only accepts resource IDs.
 The `Secure` field is a boolean value that can be set to `true` or `false`. The `Metadata` field is a key-value pair separated by an `=` sign, and multiple key-value pairs are separated by an `&` sign.
-The `LVMSize` field is used to specify the size of the LVM partition in GB. If this field is left blank it defaults to 0, meaning no LVM partition will be created and all available disk space will be allocated to the root filesystem.
+The `LVMSize` field is used to specify the size of the LVM partition in GB. If this field is left blank it defaults to 0, meaning no LVM partition will be created and all available disk space will be partition into rootfs (50GB) and persistent volume for user apps.
 The `K8sEnable` enables the auto creation of single node K3s cluster and is by default a boolean `false`. When enabled additional configuration must
 be provided via `K8sClusterTemplate` which expects the template name and version in format `<name>:<version>`, and optional config `K8sConfig` in format
 `role:<roles>;name:<name>;labels:<name=value>&<name2=value2>`
@@ -143,8 +148,10 @@ be provided via `K8sClusterTemplate` which expects the template name and version
          FW908CX,4c4c4544-0946-5310-8052-cac04f515233,os-7d650dd1,site-08c1e377,true,myuser-key,key1=value1&key2=value2,80,,true,baseline:v1.0.0,role:all;name:mycluster;labels:sample-label=samplevalue&sample-label2=samplevalue2
 
 #. Run the bulk import tool. Go to the directory where you have downloaded the file (e.g. ~).
-   The URL in the command is a mandatory argument that points the tool towards the Edge Orchestrator where the devices will be registered.
-   Replace test.csv with your CSV filename, and CLUSTER_FQDN with the name of the domain used during installation, and the PROJECT_NAME with an actual project created in the Edge Orchestrator for a given user:
+   The URL in the command is a mandatory argument that points the tool towards the Edge Orchestrator where
+   the devices will be registered.
+   Replace test.csv with your CSV filename, and CLUSTER_FQDN with the name of the domain used during installation,
+   and the PROJECT_NAME with an actual project created in the Edge Orchestrator for a given user:
 
    .. code-block:: bash
 
@@ -191,16 +198,16 @@ Edge Node partition schema after provision
 After Successful Edge node provision,the Ubuntu partition schema contains mainly 3 partitions based on LVM size provided as input
 
 #. First partition is rootfs and its set to 50GB for all OS and other package related installations.
-#. Second partition is data partition where the /var/lib/rancher will be mounted for user application deployment
-#. Third partition is LVM ( logical volume) 
+#. Second partition is data partition where the /var/lib/rancher and /var/lib/kubelet will be mounted for user application deployment
+#. Third partition is LVM ( logical volume)
 
 #. For Secure boot enabled edge node partition schema looks as shown below picture
 
 .. figure:: images/Secure-boot-enabled-partion-schema.png
    :width: 100 %
-   :alt: Ubuntu partition schema for secureboot enabled 
+   :alt: Ubuntu partition schema for secureboot enabled
 
-Partition 6 for data persistent and mounted to /var/lib/rancher for user application deployment
+Partition 6 for data persistent and mounted to /var/lib/rancher and /var/lib/kubelet for user application deployment
 
 Partition 7 for LVM
 
@@ -210,7 +217,7 @@ Partition 7 for LVM
    :width: 100 %
    :alt: Ubuntu partition schema for secureboot disabled.
 
-#. Partition 2 for data persistent and mounted to /var/lib/rancher for user application deployment
+#. Partition 2 for data persistent and mounted to /var/lib/rancher and /var/lib/kubelet for user application deployment
 
 #. Partition 4 for LVM
 
