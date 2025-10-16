@@ -48,6 +48,7 @@ From this page, you can do the following tasks:
    * :doc:`/user_guide/package_software/image_pull_secret`
    * :doc:`/user_guide/package_software/edit_registry`
    * :doc:`/user_guide/package_software/package_create_helm`
+   * :doc:`/user_guide/package_software/registry_security`
 
 
 
@@ -60,6 +61,7 @@ From this page, you can do the following tasks:
    push_registry
    image_pull_secret
    edit_registry
+   registry_security
 
 **Command Line Management**
 
