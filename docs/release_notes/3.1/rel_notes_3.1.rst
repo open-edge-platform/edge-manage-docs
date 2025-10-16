@@ -239,6 +239,11 @@ User Experience
 * On ASRock platform the hardware resources are not displayed properly in
   the Infrastructure tab, this has no impact on functionality of the nodes
   for cluster or application installation.
+* Kyverno pods (i.e., kyverno-clean-reports) may temporarily show
+  ImagePullBackOff status due to legacy `bitnami` registry references.
+  This is expected during migration and can be safely ignored.
+  Pods will automatically resolve to Running state once the Kyverno
+  Charts v3.5.1 migration is completed.
 
 Limitations
 ---------------------------------------------------------------------
