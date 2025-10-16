@@ -2,19 +2,8 @@ Applications
 ============
 
 An application in |software_prod_name| is defined by a single Helm\* chart with predefined runtime configurations or profiles.
-The Helm chart must fulfill the following criteria, to be deployed and managed using |software_prod_name|\ :
 
-* Deployable on CNCF-certified Kubernetes\* version v1.27.
-* All Helm charts, including applications and dependencies, are stored in the Helm or OCI registry and can be downloaded through the network.
-* Deployable using Helm install.
-* Upgradable using Helm upgrade.
-* Removable using Helm delete.
-* Re-deployable using Helm install after delete; no manual cleanup is required.
-* Use the *helm lint* command to check if the chart is well-formed.
-* All Kubernetes resource creation and updates are done through the Helm chart. However, Intel does not recommend dynamic resource creation or update because this could lead to unexpected results.
-
-See :doc:`/developer_guide/application_developer_workflow/deployment-helm/index`
-for more Helm chart Best Practices.
+The Helm chart and Applications requirements that must be fulfilled for deployment and management using |software_prod_name|, see :doc:`/user_guide/package_software/app_requirements`.
 
 View Applications
 ~~~~~~~~~~~~~~~~~
@@ -76,6 +65,7 @@ for more details.
 From this page, you can do the following tasks:
 
     * :doc:`/user_guide/package_software/app_details`
+    * :doc:`/user_guide/package_software/app_requirements`
     * :doc:`/user_guide/package_software/add_applications`
     * :doc:`/user_guide/package_software/edit_application`
     * :doc:`/user_guide/package_software/delete_application`
@@ -87,6 +77,7 @@ From this page, you can do the following tasks:
    :hidden:
 
    app_details
+   app_requirements
    add_applications
    edit_application
    delete_application
