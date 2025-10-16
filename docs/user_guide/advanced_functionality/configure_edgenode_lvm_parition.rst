@@ -13,6 +13,7 @@ If user doesn't provide the LVM partition then default value is set to 0
 and EN shall get more space for ``rootfs`` and persistent volume(user applications)
 
 Following are the implementation details and assumptions:
+
 #. LVM configurability is supported only for edge node with single disk.
 #. The LVM size is configurable only during the registration process of the edge node.
 #. LVM size will be used to configure both LVM and ``rootfs`` partition.
