@@ -306,15 +306,15 @@ Clusters and Application Deployment Limitations
 Multi-tenancy Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* If you add a user to many groups that provide project access, some Edge
-  Orchestrator functionality may fail because of size limits for the
-  authorization token used in a web browser.
+* If a user is added to too many groups that provide project access, certain
+  Edge Orchestrator functionalities may fail due to authorization token size
+  limitations in the web browser. As a workaround, reduce the total number of
+  groups a user belongs to or create separate user accounts.
 
-  As an example, as user added to more than five groups of type
-  `group_projectid_edgemanagergroup` or `group_projectid_edgeoperatorgroup`
-  (combined), or 10 groups of type `group_projectid_hostmanagergroup` may
-  experience this failure.  As a workaround, reduce the total number of
-  groups that a single user is a member of or create separate users.
+* Each user can access a maximum of **40** projects. Exceeding this limit may cause
+  JWT token size issues, leading to authentication or API request failures. It is
+  recommended to keep project associations below this threshold to ensure stable
+  and reliable access.
 
 User Experience Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
