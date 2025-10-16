@@ -1,14 +1,29 @@
-Configure LVM size during provisioning the OS
-===============================================
+User configurable rootfs and LVM partition for persistent volume for applications
+=================================================================================
 
-User should be able to configure the LVM size in case of edge node has
-single disk. If edge node has 2 disks then one disk with lower disk size
-is used for OS partition and other disk is used for LVM partition.
-LVM size parameter is host specific and user shall be able to configure
+Requirement: User should be able to configure the space allocated for ``rootfs`` 
+and LVM size in case of edge node has single disk. LVM partition here is assumed 
+to be used for persistent volume for user applications using kubernetes OpenEBS 
+CSI addon. This is not an issue if the edge node has 2 disks then one disk with
+lower disk size is used for OS partition and other disk is used for LVM partition.
+LVM size parameter is host (edge node) specific and user shall be able to configure
 during registration of host using orch-cli.
 
 If user doesn't provide the LVM partition then default value is set to 0
-and EN shall get more space for rootfs and persistent volume(user applications)
+and EN shall get more space for ``rootfs`` and persistent volume(user applications)
+
+Following are the implementation details and assumptions:
+1. LVM configurability is supported only for edge node with single disk.
+2. The LVM size is configurable only during the registration process of the edge node.
+3. LVM size will be used to configure both LVM and ``rootfs`` partition.
+4. The LVM size can be specified in gigabytes (GB) during the registration process.
+5. LVM partition will be created only if the specified size is greater than 0 on a single HDD.
+6. If the edge node has multiple disks, the LVM size configuration will not be applicable.
+7. Users will have to deploy the OpenEBS CSI addon to utilize the LVM partition for persistent volume.
+8. The LVM size parameter is specific to each host (edge node) and can be configured individually during registration.
+9. Kubernetes installed on the edge node will have a dedicated partition to store container images, manifest, logs etc.
+10. By default kubernetes partition will be used for persistence volume for user applications if CSI like OpenEBS 
+    is not installed, configured and requested. 
 
 #. How to configure the LVM size during registration of edge node.
 
