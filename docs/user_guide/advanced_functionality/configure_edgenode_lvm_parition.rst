@@ -13,16 +13,16 @@ If user doesn't provide the LVM partition then default value is set to 0
 and EN shall get more space for ``rootfs`` and persistent volume(user applications)
 
 Following are the implementation details and assumptions:
-1. LVM configurability is supported only for edge node with single disk.
-2. The LVM size is configurable only during the registration process of the edge node.
-3. LVM size will be used to configure both LVM and ``rootfs`` partition.
-4. The LVM size can be specified in gigabytes (GB) during the registration process.
-5. LVM partition will be created only if the specified size is greater than 0 on a single HDD.
-6. If the edge node has multiple disks, the LVM size configuration will not be applicable.
-7. Users will have to deploy the OpenEBS CSI addon to utilize the LVM partition for persistent volume.
-8. The LVM size parameter is specific to each host (edge node) and can be configured individually during registration.
-9. Kubernetes installed on the edge node will have a dedicated partition to store container images, manifest, logs etc.
-10. By default kubernetes partition will be used for persistence volume for user applications if CSI like OpenEBS 
+#. LVM configurability is supported only for edge node with single disk.
+#. The LVM size is configurable only during the registration process of the edge node.
+#. LVM size will be used to configure both LVM and ``rootfs`` partition.
+#. The LVM size can be specified in gigabytes (GB) during the registration process.
+#. LVM partition will be created only if the specified size is greater than 0 on a single HDD.
+#. If the edge node has multiple disks, the LVM size configuration will not be applicable.
+#. Users will have to deploy the OpenEBS CSI addon to utilize the LVM partition for persistent volume.
+#. The LVM size parameter is specific to each host (edge node) and can be configured individually during registration.
+#. Kubernetes installed on the edge node will have a dedicated partition to store container images, manifest, logs etc.
+#. By default kubernetes partition will be used for persistence volume for user applications if CSI like OpenEBS 
     is not installed, configured and requested. 
 
 #. How to configure the LVM size during registration of edge node.
