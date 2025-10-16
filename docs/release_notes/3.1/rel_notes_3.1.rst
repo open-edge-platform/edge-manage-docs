@@ -243,7 +243,7 @@ User Experience
   ImagePullBackOff status due to legacy `bitnami` registry references.
   This is expected during migration and can be safely ignored.
   Pods will automatically resolve to Running state once the Kyverno
-  Charts v3.5.2 migration is completed.
+  Charts v3.5.1 migration is completed.
 
 Limitations
 ---------------------------------------------------------------------
