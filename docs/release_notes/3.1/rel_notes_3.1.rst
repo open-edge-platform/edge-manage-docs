@@ -125,8 +125,14 @@ Provisioning
   unauthorizing the request with 403. There is no workaround;
   utilize the base Ubuntu profile and install any additional drivers
   through Day 2 updates.
-* LVM configuration feature for the single disk is not fully functional
-  in EMT OS profile. so please use the default disk configuration for EMT OS profile.
+* The Logical Volume Management (LVM) configuration feature for a single-disk setup
+  is currently not fully functional in the EMT OS profile.
+  It is recommended to use the default disk configuration for the EMT OS profile until
+  this limitation is addressed.
+* The Ubuntu OS partitioning scheme is divided into two parts: a root filesystem (50 GB) and a persistent volume.
+  This design aims to provide flexible and efficient storage management for user workloads deployed
+  through Kubernetes. However, there is a limitation — user workloads may become scattered between the rootfs
+  and the persistent volume because the /var/lib/kubelet mount point was not included under the persistent volume.
 
 Hosts and Infrastructure
 ^^^^^^^^^^^^^^^^^^^^^^^^^
