@@ -133,6 +133,9 @@ Provisioning
   This design aims to provide flexible and efficient storage management for user workloads deployed
   through Kubernetes. However, there is a limitation — user workloads may become scattered between the rootfs
   and the persistent volume because the /var/lib/kubelet mount point was not included under the persistent volume.
+* When multiple Ubuntu OS profiles are available, the Orch-CLI tool may select the wrong profile during
+  edge node provisioning. As a workaround, use the UI to register the edge node with the desired Ubuntu OS profile,
+  or delete the unwanted Ubuntu OS profile and then use the Orch-CLI tool to provision the edge node.
 
 Hosts and Infrastructure
 ^^^^^^^^^^^^^^^^^^^^^^^^^
