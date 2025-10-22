@@ -27,7 +27,7 @@ for customer workloads:
 
 The common settings in the cluster templates include:
 
-* Kubernetes\* platform version v1.32.4+k3s1
+* Kubernetes\* platform version v1.32.9+k3s1
 * Minimal addons required for a single-node cluster operation, including CNI
   (Flannel) and CoreDNS
 * Pod Security Admission (PSA) policy level that defines the security

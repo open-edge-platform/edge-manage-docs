@@ -359,6 +359,11 @@ User Experience Limitations
   issues and do not impede any functionality.
 * The "Total Provisioning Time" metric is only available for approximately
   15 days since a node was provisioned.
+* When using the Edge Node Dashboard in the Grafana UI with a user that has
+  been mapped to multiple projects, a "Requests Header Field Too Large" may
+  appear on the Dashboard. To work around this issue, log into the dashboard
+  with a user that has been mapped to just the project of the edge node
+  being checked.
 
 Recommendations
 ---------------------
