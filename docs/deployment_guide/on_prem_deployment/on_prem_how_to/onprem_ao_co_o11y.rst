@@ -1,41 +1,41 @@
-====================================================
 AO / CO / Observability Composability & Edge Node Onboarding
-====================================================
+============================================================
 
-This document provides comprehensive guidance for:
+This document provides end-to-end guidance on:
 
 1. Deploying orchestration with **Application Orchestrator (AO)**,
-   **Cluster Orchestrator (CO)**, and **Observability (O11Y)** profiles —
-   including how to enable or disable them via composability flags.
-2. Onboarding edge nodes in **NIO mode** using a **custom CloudInit configuration**
+   **Cluster Orchestrator (CO)**, and **Observability (O11Y)** profiles,
+   including how to enable or disable them using composability flags.
+2. Onboarding edge nodes in **NIO mode** with a **custom CloudInit configuration**
    when **CO is disabled**.
 
 ----------------------------------------------------
 1. AO / CO / Observability Composability Overview
 ----------------------------------------------------
 
-By default, the following profiles are **enabled** during orchestration deployment:
+During orchestration deployment, the following profiles are **enabled by default**:
 
-- **Application Orchestrator (AO)** — manages edge application orchestration.
-- **Cluster Orchestrator (CO)** — manages cluster-level orchestration and scaling.
-- **Observability (O11Y)** — provides telemetry, metrics, and monitoring integration.
+- **Application Orchestrator (AO)** — handles application orchestration at the edge.
+- **Cluster Orchestrator (CO)** — manages cluster-level orchestration, scaling, and coordination.
+- **Observability (O11Y)** — integrates telemetry, metrics, and monitoring.
 
-This feature introduces **environment flags** that enable composability and
-granular control to include or exclude these profiles dynamically at deployment time.  
-The flags must be defined **before orchestration deployment starts** to ensure
-the desired profiles are configured correctly.
+Composability provides **flexibility and control**, allowing you to include or exclude specific profiles as needed.  
+These profiles are controlled through **environment flags** set before starting the orchestration deployment.
 
-During **upgrade operations**, the same flag settings must be retained to maintain
-a consistent orchestration state and ensure predictable composability behavior.
+.. important::
+
+   The flags must be defined **before** orchestration deployment begins.  
+   For upgrades, ensure the same flags are used to maintain consistent orchestration state
+   and avoid unexpected composability changes.
 
 ----------------------------------------------------
 2. Configuration Flags
 ----------------------------------------------------
 
-All profiles are **enabled by default** (flags unset or set to ``false``).
+By default, all profiles are enabled (flags unset or set to ``false``).
 
-Set the following environment variables **before starting orchestration deployment or upgrade**
-to control profile composability:
+To modify which components are deployed, export the following environment variables
+**before starting orchestration deployment or upgrade**:
 
 .. code-block:: bash
 
@@ -45,14 +45,14 @@ to control profile composability:
 
 .. note::
 
-   These flags must be exported to the environment **prior to both deployment and upgrade**
-   to ensure consistent composability behavior across lifecycle operations.
+   These flags must be exported to your environment **prior to both deployment and upgrade**
+   to ensure consistent composability across lifecycle operations.
 
 ----------------------------------------------------
 3. Verification After Deployment or Upgrade
 ----------------------------------------------------
 
-After orchestration deployment or upgrade, verify which profiles are enabled or disabled
+After orchestration deployment or upgrade, you can verify which profiles are enabled or disabled
 using the following one-liner command:
 
 .. code-block:: bash
@@ -71,33 +71,36 @@ using the following one-liner command:
    ✅ AO enabled
    ⛔ O11Y disabled   --> if observability disabled
 
-You can also verify the same status from the ArgoCD ``root-app`` application view.  
-For pre-deployment verification (before cluster creation), use the **orchestration clustername.yaml** file.
+You can also confirm the same from the ArgoCD ``root-app`` application view.  
+For pre-deployment verification (before cluster creation), review the **orchestration clustername.yaml** file.
 
 ----------------------------------------------------
 4. Custom CloudInit Configuration for Disabled CO
 ----------------------------------------------------
 
-When the **Cluster Orchestrator (CO)** is disabled, edge node registration must be
-performed using a **custom CloudInit configuration** via the ``orch-cli`` tool.
-This section provides detailed steps to onboard edge nodes in **NIO mode**.
+When **Cluster Orchestrator (CO)** is disabled, edge nodes must be registered manually using
+a **custom CloudInit configuration**.  
+This section walks through the complete process of onboarding edge nodes in **NIO mode**
+using the ``orch-cli`` tool.
 
 ----------------------------------------------------
 4.1 Prerequisites
 ----------------------------------------------------
 
-- ``orch-cli`` installed
-- Access to the cluster API and Keycloak
+- ``orch-cli`` installed on your system  
+- Access to the on-prem cluster API and Keycloak
 
 .. note::
 
-   The ``orch-cli`` binary and its dependencies are managed through the
+   The ``orch-cli`` binary and dependencies are managed through the
    `orch-utils <https://github.com/open-edge-platform/orch-utils>`_ repository.  
-   Ensure ``orch-cli`` is installed and configured properly.
+   Ensure ``orch-cli`` is available and configured correctly in your environment.
 
 ----------------------------------------------------
 4.2 Configure Environment Variables
 ----------------------------------------------------
+
+Set the following environment variables and authenticate with Keycloak:
 
 .. code-block:: bash
 
@@ -124,6 +127,8 @@ This section provides detailed steps to onboard edge nodes in **NIO mode**.
 4.3 Create Region and Site (if not available)
 ----------------------------------------------------
 
+Before registering hosts, ensure the required **region** and **site** are created.
+
 .. code-block:: bash
 
    # Create a region
@@ -138,8 +143,8 @@ This section provides detailed steps to onboard edge nodes in **NIO mode**.
 4.4 Create a Custom CloudInit Configuration
 ----------------------------------------------------
 
-When CO is disabled, create a **custom CloudInit file** to disable or modify
-the ``cluster-agent`` service and ensure successful node registration.
+When CO is disabled, a **custom CloudInit file** can be used to disable or modify
+the ``cluster-agent`` service for proper node registration.
 
 **Example Custom CloudInit (``ao-co-disable.yaml``):**
 
@@ -181,6 +186,8 @@ the ``cluster-agent`` service and ensure successful node registration.
 4.5 View Available OS Profiles
 ----------------------------------------------------
 
+To list all available OS profiles:
+
 .. code-block:: bash
 
    orch-cli list osprofile
@@ -189,7 +196,7 @@ the ``cluster-agent`` service and ensure successful node registration.
 4.6 Register Host in NIO Mode
 ----------------------------------------------------
 
-Hosts can be registered individually or in bulk using a CSV configuration file.
+Hosts can be registered individually or in bulk using a CSV file.
 
 .. code-block:: bash
 
@@ -206,11 +213,15 @@ Hosts can be registered individually or in bulk using a CSV configuration file.
 
 .. note::
 
-   Update the values as per your cluster configuration and OS profile.
+   Update values as needed for your specific environment.  
+   The ``CloudInitMeta`` field must reference your custom configuration (e.g., ``aoco-disable``)
+   to ensure it is applied during host registration.
 
 ----------------------------------------------------
 4.7 Create a Cluster (if CO is enabled)
 ----------------------------------------------------
+
+If the **Cluster Orchestrator** is enabled, create and verify the cluster using the commands below:
 
 .. code-block:: bash
 
