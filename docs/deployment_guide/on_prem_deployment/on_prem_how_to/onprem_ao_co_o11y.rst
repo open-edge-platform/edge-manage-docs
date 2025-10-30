@@ -67,9 +67,9 @@ using the following one-liner command:
 
 .. code-block:: text
 
-   ✅ CO enabled
-   ✅ AO enabled
-   ⛔ O11Y disabled   --> if observability disabled
+   ⛔ CO disabled     --> if CO disabled
+   ⛔ AO disabled     --> if AO disabled
+   ✅ O11Y enabled    --> if observability enabled
 
 You can also confirm the same from the ArgoCD ``root-app`` application view.  
 For pre-deployment verification (before cluster creation), review the **orchestration clustername.yaml** file.
