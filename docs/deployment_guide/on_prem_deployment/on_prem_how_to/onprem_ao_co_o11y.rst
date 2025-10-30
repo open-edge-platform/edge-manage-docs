@@ -225,5 +225,5 @@ If the **Cluster Orchestrator** is enabled, create and verify the cluster using 
 
 .. code-block:: bash
 
-   orch-cli create cluster cli-cluster --nodes cb0e877d-aac4-4852-5d4e-216de5e66027:all
+   orch-cli create cluster cli-cluster --nodes <EDGENODE-UUID>:all
    orch-cli list cluster
