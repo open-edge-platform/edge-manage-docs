@@ -88,7 +88,7 @@ using the ``orch-cli`` tool.
 ----------------------------------------------------
 
 - ``orch-cli`` installed on your system  
-- Access to the on-prem cluster API and Keycloak
+- Access to the cluster API and Keycloak
 
 .. note::
 
