@@ -1,5 +1,5 @@
 ====================================================
-README: AO / CO / Observability Composability & Edge Node Onboarding
+AO / CO / Observability Composability & Edge Node Onboarding
 ====================================================
 
 This document provides comprehensive guidance for:
