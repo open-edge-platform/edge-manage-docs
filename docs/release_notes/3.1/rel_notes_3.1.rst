@@ -95,6 +95,16 @@ The following are known issues in the release. While several known issues
 and limitations have been addressed during the 3.1 release cycle, some have
 been still carried over from past releases.
 
+Aurora PostgreSQL 14.9 Missing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Issue: The AWS ORCH installation may fail due to an external dependency — the Aurora PostgreSQL 14.9 version is missing.  
+- Workaround: Before initiating the ``utils/provision.sh`` installation, update the Terraform variable 
+  ``aurora_postgres_ver_minor`` from 9 to 17 in ``pod-configs/orchestrator/cluster/variable.tf``, 
+  or set the environment variable as shown below::
+
+    export TF_VAR_aurora_postgres_ver_minor=17
+
 Provisioning
 ^^^^^^^^^^^^^
 
