@@ -479,13 +479,13 @@ For detailed steps on how to effectively use the OS Update Policies see the Day 
 To create an OS Update Policy use the create command. A path to a policy definition must be provided.
 
 .. code-block:: bash
-    
+
     ./orch-cli create osupdatepolicy path/to/osupdatepolicy.yaml
 
 To list OS Update Policies run the list command:
 
 .. code-block:: bash
-    
+
     ./orch-cli list osupdatepolicy
 
 To get information about a specific OS Update Policy run the get command with the policy's resource ID as an input.
@@ -530,7 +530,7 @@ See --help on how to create other combinations for schedule.
 
 To list schedules run the list command.
 
-.. code-block:: bash    
+.. code-block:: bash
 
     ./orch-cli list schedules
 

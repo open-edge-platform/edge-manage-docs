@@ -1,13 +1,13 @@
 Configure IAM and multi tenancy using CLI (Optional)
 ====================================================
 
-This document provides a set of combined steps and instructions on how to configure the Identity and Access Management and the multi-tenancy 
+This document provides a set of combined steps and instructions on how to configure the Identity and Access Management and the multi-tenancy
 of the Edge Manageability Framework using commandline interfaces (CLIs) as an alternative to using UI.
 
 The concept of Identity and Access Management within the Edge Manageability Framework is covered in:
-:doc:`/shared/shared_gs_iam` 
+:doc:`/shared/shared_gs_iam`
 The concept of Multi-tenancy within the Edge Manageability Framework is covered in:
-:doc:`/shared/shared_mt_overview` 
+:doc:`/shared/shared_mt_overview`
 
 It is expected that the user gets familiar with the above documentation to understand the general IAM/Tenancy architecture and related concepts.
 
@@ -26,7 +26,7 @@ Install orch-cli
 ^^^^^^^^^^^^^^^^
 
 The orch-cli is used for managing resources within Edge Manageability Framework - in this tutorial it will be used to create organizations and projects.
-For information on how to install and use orch-cli go to :doc:`/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide` 
+For information on how to install and use orch-cli go to :doc:`/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide`
 
 Install Keycloak's kcadm Admin CLI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -39,11 +39,11 @@ To install kcadm on Linux host run following commands:
    # Install Java as a pre-requisite
    sudo apt update
    sudo apt install openjdk-17-jdk
-   
+
    # Download and unpack keycloak
    wget https://github.com/keycloak/keycloak/releases/download/26.1.3/keycloak-26.1.3.tar.gz
    tar -xzf keycloak-26.1.3.tar.gz
-   
+
    # Export path to keycloak
    export PATH=$PATH:$(pwd)/keycloak-26.1.3/bin
    echo 'export PATH=$PATH:$(pwd)/keycloak-26.1.3/bin' >> ~/.bashrc
@@ -73,7 +73,7 @@ Provide the Keycloak endpoint of the Edge Manageability Framework and the user n
 
    # Change the CLUSTER_FQDN to one of your own
    CLUSTER_FQDN="sample.cluster.fqdn.com"
-   
+
    # Use the default password for first time login
    kcadm.sh config credentials   --server https://keycloak.$CLUSTER_FQDN/   --realm master   --user admin
    Logging into https://keycloak.sample.cluster.fqdn.com/ as user admin of realm master
@@ -85,7 +85,7 @@ To change the default Admin password find the Admin User ID and set a new passwo
 
    # Find the User ID of the admin account
    ADMIN_ID=$(kcadm.sh get users -r master | jq -r '.[] | select(.username == "admin") | .id')
-   
+
    # Set new password for admin user
    kcadm.sh set-password --userid $ADMIN_ID
    Enter password:
@@ -104,7 +104,7 @@ Refer to Keycloak's own kcadm documentation or use --help command to apply and m
 
    # Find the User ID of the admin account
    USER_ID=$(kcadm.sh get users -r master | jq -r '.[] | select(.username == "sample-user") | .id')
-   
+
    # Set new password for sample-user
    kcadm.sh set-password --userid $USER_ID
    Enter password:
@@ -120,8 +120,8 @@ Add the user to **org-admin-group**.
    ORG_ADMIN_GROUP_ID=$(kcadm.sh get groups -r master | jq -r '.[] | select(.name == "org-admin-group") | .id')
 
    # Add user to the group
-   kcadm.sh update users/$USER_ID/groups/$ORG_ADMIN_GROUP_ID -r master -s realm=master -s userId=$USER_ID -s groupId=$ORG_ADMIN_GROUP_ID -n   
-   
+   kcadm.sh update users/$USER_ID/groups/$ORG_ADMIN_GROUP_ID -r master -s realm=master -s userId=$USER_ID -s groupId=$ORG_ADMIN_GROUP_ID -n
+
    # To list given user's groups
    kcadm.sh get users/$USER_ID/groups -r master | jq '.[] | .name'
 
