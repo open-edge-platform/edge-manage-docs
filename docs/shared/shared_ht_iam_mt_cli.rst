@@ -9,12 +9,12 @@ The concept of Identity and Access Management within the Edge Manageability Fram
 The concept of Multi-tenancy within the Edge Manageability Framework is covered in:
 :doc:`/shared/shared_mt_overview` 
 
-It is expected that the user get's familiar with the above documentation to understand the general IAM/Tenancy architecture and related concepts.
+It is expected that the user gets familiar with the above documentation to understand the general IAM/Tenancy architecture and related concepts.
 
 To manage the IAM and the tenancy two CLI tools are used.
 
-* `Keycloak's kcadm Admin CLI - <https://www.keycloak.org/docs/latest/server_admin/#admin-cli>`_
-* `Edge Manageability Framework's orch-cli - <https://github.com/open-edge-platform/orch-cli>`_
+* `Keycloak's kcadm Admin CLI <https://www.keycloak.org/docs/latest/server_admin/#admin-cli>`_
+* `Edge Manageability Framework's orch-cli <https://github.com/open-edge-platform/orch-cli>`_
 
 Prerequisites
 -------------
