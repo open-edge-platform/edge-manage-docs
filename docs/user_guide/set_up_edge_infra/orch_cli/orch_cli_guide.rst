@@ -79,6 +79,8 @@ The organization and project management is supported by the orch-cli.
 
 The Keycloak's `kcadm Admin CLI <https://www.keycloak.org/docs/latest/server_admin/index.html#admin-cli>`_ can be used to achieve terminal based user management along with the orch-cli's organization/project creation.
 
+The combined usage of kcadm and orch-cli to initially set up the IAM/tenancy can be found at:
+:doc:`/shared/shared_ht_iam_mt_cli`
 
 Authentication
 ^^^^^^^^^^^^^^
