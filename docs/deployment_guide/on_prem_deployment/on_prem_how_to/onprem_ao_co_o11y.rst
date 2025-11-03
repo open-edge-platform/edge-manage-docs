@@ -19,12 +19,12 @@ During orchestration deployment, the following profiles are **enabled by default
 - **Cluster Orchestrator (CO)** — manages cluster-level orchestration, scaling, and coordination.
 - **Observability (O11Y)** — integrates telemetry, metrics, and monitoring.
 
-Composability provides **flexibility and control**, allowing you to include or exclude specific profiles as needed.  
+Composability provides **flexibility and control**, allowing you to include or exclude specific profiles as needed.
 These profiles are controlled through **environment flags** set before starting the orchestration deployment.
 
 .. important::
 
-   The flags must be defined **before** orchestration deployment begins.  
+   The flags must be defined **before** orchestration deployment begins.
    For upgrades, ensure the same flags are used to maintain consistent orchestration state
    and avoid unexpected composability changes.
 
@@ -71,7 +71,7 @@ using the following one-liner command:
    ⛔ AO disabled     --> if AO disabled
    ✅ O11Y enabled    --> if observability enabled
 
-You can also confirm the same from the ArgoCD ``root-app`` application view.  
+You can also confirm the same from the ArgoCD ``root-app`` application view.
 For pre-deployment verification (before cluster creation), review the **orchestration clustername.yaml** file.
 
 ----------------------------------------------------
@@ -79,7 +79,7 @@ For pre-deployment verification (before cluster creation), review the **orchestr
 ----------------------------------------------------
 
 When **Cluster Orchestrator (CO)** is disabled, edge nodes must be registered manually using
-a **custom CloudInit configuration**.  
+a **custom CloudInit configuration**.
 This section walks through the complete process of onboarding edge nodes in **NIO mode**
 using the ``orch-cli`` tool.
 
@@ -87,13 +87,13 @@ using the ``orch-cli`` tool.
 4.1 Prerequisites
 ----------------------------------------------------
 
-- ``orch-cli`` installed on your system  
+- ``orch-cli`` installed on your system
 - Access to the cluster API and Keycloak
 
 .. note::
 
    The ``orch-cli`` binary and dependencies are managed through the
-   `orch-utils <https://github.com/open-edge-platform/orch-utils>`_ repository.  
+   `orch-utils <https://github.com/open-edge-platform/orch-utils>`_ repository.
    Ensure ``orch-cli`` is available and configured correctly in your environment.
 
 ----------------------------------------------------
@@ -206,14 +206,14 @@ Hosts can be registered individually or in bulk using a CSV file.
 
 **Sample Host CSV (``host-config.csv``):**
 
-.. code-block:: csv
+.. code-block:: bash
 
    Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,LVMSize,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill
    aocotest0001,,Edge Microvisor Toolkit 3.0.20250813,site-bcbbbbf8,FALSE,,,,aoco-disable,,,,,
 
 .. note::
 
-   Update values as needed for your specific environment.  
+   Update values as needed for your specific environment.
    The ``CloudInitMeta`` field must reference your custom configuration (e.g., ``aoco-disable``)
    to ensure it is applied during host registration.
 
