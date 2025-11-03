@@ -20,27 +20,27 @@ Encrypted Ports
 
    * - **Port**
      - **Description**
-   * - **22/tcp**
+   * - **22**
      - SSH access; ensure deployment uses a Virtual IP to reduce exposure.
-   * - **10250/tcp**
+   * - **10250**
      - RKE2 workload management port; Virtual IP recommended for secure exposure.
-   * - **2379/tcp**
+   * - **2379**
      - etcd client port with enforced client certificate authentication.
-   * - **2380/tcp**
+   * - **2380**
      - etcd server port secured by client certificates.
-   * - **30959/tcp**
+   * - **30959**
      - Load balancer NodePort; enforce Virtual IP use to limit access.
-   * - **31012/tcp**
+   * - **31012**
      - Load balancer NodePort; Virtual IP mitigates direct network exposure.
-   * - **31933/tcp**
+   * - **31933**
      - Load balancer NodePort; secure with Virtual IP configuration.
-   * - **443/tcp**
+   * - **443**
      - ArgoCD TLS ingress; JWT authentication enabled; Virtual IP recommended.
-   * - **5473/tcp**
+   * - **5473**
      - Calico managed port; use Virtual IP to enhance security.
-   * - **6443/tcp**
+   * - **6443**
      - Kubernetes API server; encrypted communication by default.
-   * - **9345/tcp**
+   * - **9345**
      - etcd port requiring client certificates; deployment should use Virtual IP.
 
 
@@ -53,24 +53,25 @@ Non-Encrypted Ports
 
    * - **Port**
      - **Description**
-   * - **80/tcp**
+   * - **80**
      - HTTP traffic is redirected to HTTPS by ArgoCD; deploy Virtual IP to reduce exposure.
-   * - **30443/tcp**
+   * - **30443**
      - MetalLB NodePort visible in scans; TLS protection via Traefik. Virtual IP advised.
-   * - **14250/tcp**
+   * - **14250**
      - OpenTelemetry observability port; requires secure user configuration.
-   * - **14268/tcp**
+   * - **14268**
      - OpenTelemetry observability port; secure setup mandated by the user.
-   * - **4317/tcp**
+   * - **4317**
      - OpenTelemetry observability port; users must configure securely.
-   * - **4318/tcp**
+   * - **4318**
      - Observability port on on-prem single-cluster; user-managed security required.
-   * - **7472/tcp**
+   * - **7472**
      - MetalLB Prometheus metrics endpoint; enable security or disable if unused.
-   * - **7946/tcp**
+   * - **7946**
      - MetalLB Speaker pods use secure internal protocol; Virtual IP recommended.
-   * - **9411/tcp**
+   * - **9411**
      - OpenTelemetry observability port; user-managed secure configuration necessary.
+
 
 
 Security Recommendations
