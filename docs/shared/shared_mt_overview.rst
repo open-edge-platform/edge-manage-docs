@@ -90,6 +90,9 @@ Before using with Edge Orchestrator, you must first create at least one
 organization that contains at least one project, which will contain a set of Edge Orchestrator resources. The following instructions describe how to
 complete this process.
 
+.. note::
+    Alternative guide to managing tenancy via CLI is available at: :doc:`/shared/shared_ht_iam_mt_cli`
+
 Create Organizations
 ~~~~~~~~~~~~~~~~~~~~
 

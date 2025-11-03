@@ -100,3 +100,25 @@ From this page, you can click the three-dot (...) icon in the **Actions** column
    export_cluster_template
    import_cluster_template
    delete_cluster_template
+
+.. note::
+
+   In applications deployments a Pull Rate Limit error may occur when pulling container
+   images from Docker Hub. To avoid this issue, consider using an authenticated Docker Hub
+   account or a private container registry. The Docker Hub account credentials can be configured
+   by customizing the cluster template before deploying a cluster. To create a cluster template
+   you can export the existing template, add the Docker Hub credentials in the containerd registry
+   configuration section within the config.toml.tmpl file content under clusterconfiguration.spec.
+   template.spec.kthreesConfigSpec.files of the JSON file, and then import the modified template.
+
+   Example:
+
+   .. code-block:: json
+
+      {
+          "content": "{{ template \\\"base\\\" . }}\n\n[plugins.\\\"io.containerd.grpc.v1.cri\\\".containerd.runtimes.kata-qemu]\n  runtime_type = \\\"io.containerd.kata-qemu.v2\\\"\n  runtime_path = \\\"/opt/kata/bin/containerd-shim-kata-v2\\\"\n  privileged_without_host_devices = true\n  pod_annotations = [\\\"io.katacontainers.*\\\"]\n\n[plugins.\\\"io.containerd.grpc.v1.cri\\\".containerd.runtimes.kata-qemu.options]\n  ConfigPath = \\\"/opt/kata/share/defaults/kata-containers/configuration-qemu.toml\\\"\n\n[plugins.\\\"io.containerd.grpc.v1.cri\\\".registry.configs.\\\"registry-1.docker.io\\\".auth]\n  username = \\\"<dockerhub-username>\\\"\n  password = \\\"<dockerhub-access-token>\\\"\n\n[plugins.\\\"io.containerd.nri.v1.nri\\\"]\n  disable = false\n  disable_connections = false\n  plugin_config_path = \\\"/etc/nri/conf.d\\\"\n  plugin_path = \\\"/opt/nri/plugins\\\"\n  plugin_registration_timeout = \\\"5s\\\"\n  plugin_request_timeout = \\\"2s\\\"\n  socket_path = \\\"/var/run/nri/nri.sock\\\"",
+          "path": "/var/lib/rancher/k3s/agent/etc/containerd/config.toml.tmpl"
+      }
+
+   In the above example, replace `<dockerhub-username>` and `<dockerhub-access-token>`
+   with your Docker Hub account username and access token respectively.
