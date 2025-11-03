@@ -31,6 +31,10 @@ To add a registry, do the following:
 #. Enter the **Username** and **Password** of the registry if required.
    The **Password** may be the actual password or an authentication token.
 
+   .. note::
+      For detailed information about registry credential security including
+      transmission and storage, see :doc:`/user_guide/package_software/registry_security`.
+
 #. Click **OK**.
 
 Reference for Registry

@@ -34,6 +34,9 @@ In a terminal with ``kubectl`` access, run the following command.
 Change the IdP Admin password
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. note::
+   Alternative guide to managing IdP and user creation via CLI is available at: :doc:`/shared/shared_ht_iam_mt_cli`
+
 1. Navigate to the Keycloak solution IdP login page. For example,
    ``https://keycloak.CLUSTER_FQDN``.
 
