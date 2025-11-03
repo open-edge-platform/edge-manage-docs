@@ -197,7 +197,7 @@ Go to the directory where the downloaded orch-cli tool resides (for example, ~),
    ./orch-cli create host --generate-csv=<FILENAME>.csv
 
 Now, you can populate the `.csv` file by appending details of systems.
-Do not change the first line `Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,AMTEnable,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill`
+Do not change the first line `Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,LVMSize,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill`
 because that is the expected format.
 The `Serial`, `UUID`, `OSProfile` and `Site` columns must be filled, with the serial number and UUID of the edge node(s) you want to register as well as the OSProfile
 name/resource ID, and the site resource ID.
@@ -206,10 +206,10 @@ The following is an example:
 
 .. code-block:: bash
 
-   Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,AMTEnable,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill
-   2500JF3,4c4c4544-2046-5310-8052-cac04f515233,"Edge Microvisor Toolkit 3.0.20250808",site-b05caf24
-   ICW814D,4c4c4544-4046-5310-8052-cac04f515233,"ubuntu-22.04-lts-generic",site-b05caf24
-   FW908CX,4c4c4544-0946-5310-8052-cac04f515233,"Edge Microvisor Toolkit 3.0.20250717",site-a053abcd
+   Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,LVMSize,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill
+   2500JF3,4c4c4544-2046-5310-8052-cac04f515233,"Edge Microvisor Toolkit 3.0.20250808",site-b05caf24,,,500
+   ICW814D,4c4c4544-4046-5310-8052-cac04f515233,"ubuntu-22.04-lts-generic",site-b05caf24,,,500
+   FW908CX,4c4c4544-0946-5310-8052-cac04f515233,"Edge Microvisor Toolkit 3.0.20250717",site-a053abcd,,,500
 
 Check the CSV File
 ------------------
@@ -228,7 +228,6 @@ the utility provides a set of override flags that can be used to globally overri
 .. code-block:: bash
 
    Flags:
-  -a, --amt                                Override the AMT feature configuration provided in CSV file for all hosts
   -j, --cloud-init string                  Override the cloud init metadata provided in CSV file for all hosts
   -f, --cluster-config string              Override the cluster configuration provided in CSV file for all hosts
   -c, --cluster-deploy string              Override the cluster deployment flag provided in CSV file for all hosts
@@ -242,12 +241,13 @@ the utility provides a set of override flags that can be used to globally overri
   -r, --remote-user string                 Override the metadata provided in CSV file for all hosts
   -x, --secure string                      Override the security feature configuration provided in CSV file for all hosts
   -s, --site string                        Override the site provided in CSV file for all hosts
+  -l, --lvm-size                           Override the size of the LVM to be configured for the host
 
 CSV file fields:
 The fields `OSProfile`, `Site`, `Secure`, `RemoteUser`, `CloudInitMeta`,  and `Metadata` are used for provisioning configuration of the Edge Node.
 The fields accept both name and resource IDs, with an exception of site which only accepts resource IDs.
 The `Secure` field is a boolean value that can be set to `true` or `false`. The `Metadata` field is a key-value pair separated by an `=` sign, and multiple key-value pairs are separated by an `&` sign.
-The `AMTEnable` enables the AMT feature in supported edge nodes and is by default a boolean value of `false`.
+The `LVMSize` Optional LVM size to be configured for the host
 The `K8sEnable` enables the auto creation of single node K3s cluster and is by default a boolean `false`. When enabled additional configuration must
 be provided via `K8sClusterTemplate` which expects the template name and version in format `<name>:<version>`, and optional config `K8sConfig` in format
 `role:<roles>;name:<name>;labels:<name=value>&<name2=value2>`
@@ -261,10 +261,10 @@ be provided via `K8sClusterTemplate` which expects the template name and version
 
       .. code-block:: bash
 
-         Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,AMTEnable,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill
-         2500JF3,4c4c4544-2046-5310-8052-cac04f515233,os-7d650dd1,site-08c1e377,true,localaccount-9dfb57cb,key1=value1&key2=value2,,custom-config
-         ICW814D,4c4c4544-4046-5310-8052-cac04f515233,ubuntu-22.04-lts-generic,site-08c1e377,true,myuser-key,key1=value1&key2=value2,
-         FW908CX,4c4c4544-0946-5310-8052-cac04f515233,os-7d650dd1,site-08c1e377,true,myuser-key,key1=value1&key2=value2,,,true,baseline:v1.0.0,role:all;name:mycluster;labels:sample-label=samplevalue&sample-label2=samplevalue2
+         Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,LVMSize,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill
+         2500JF3,4c4c4544-2046-5310-8052-cac04f515233,os-7d650dd1,site-08c1e377,true,localaccount-9dfb57cb,key1=value1&key2=value2,500,custom-config
+         ICW814D,4c4c4544-4046-5310-8052-cac04f515233,ubuntu-22.04-lts-generic,site-08c1e377,true,myuser-key,key1=value1&key2=value2,500
+         FW908CX,4c4c4544-0946-5310-8052-cac04f515233,os-7d650dd1,site-08c1e377,true,myuser-key,key1=value1&key2=value2,500,,true,baseline:v1.0.0,role:all;name:mycluster;labels:sample-label=samplevalue&sample-label2=samplevalue2
 
    #. Authenticate with Edge Orchestrator before importing hosts.
 
@@ -325,5 +325,5 @@ Example of invocation and failure:
 
 
       $ cat import_error_2025-08-15T18\:28\:44+05\:30_test.csv
-      Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,AMTEnable,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill
-      FW908CX,4c4c4544-0946-5310-8052-cac04f515233,os-7d650dd1,site-abcd1234,true,myuser-key,key1=value1&key2=value2,Host already registered
+      Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,LVMSize,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill
+      FW908CX,4c4c4544-0946-5310-8052-cac04f515233,os-7d650dd1,site-abcd1234,true,myuser-key,key1=value1&key2=value2,500,Host already registered
