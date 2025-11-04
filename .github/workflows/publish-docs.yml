@@ -3,9 +3,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 name: Publish Documentation
-on:   # yamllint disable-line rule:truthy
+on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
-
 
 jobs:
   publish-documentation:
