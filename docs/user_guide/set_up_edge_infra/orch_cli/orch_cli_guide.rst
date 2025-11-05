@@ -610,8 +610,9 @@ To generate a blank file for bulk update of hosts.
 
 To generate a file for bulk update of hosts which includes a number of existing hosts and their OS Update Policies based on a required filter.
 To establish available filters see:
- * `API-160 filtering <https://google.aip.dev/160>`_
- * `EIM API spec <https://github.com/open-edge-platform/orch-utils/blob/main/tenancy-api-mapping/openapispecs/generated/amc-infra-core-edge-infrastructure-manager-openapi-all.yaml>`_
+
+* `API-160 filtering <https://google.aip.dev/160>`_
+* `EIM API spec <https://github.com/open-edge-platform/orch-utils/blob/main/tenancy-api-mapping/openapispecs/generated/amc-infra-core-edge-infrastructure-manager-openapi-all.yaml>`_
 
 .. code-block:: bash
 
@@ -647,6 +648,7 @@ To execute bulk OS Update on multiple hosts
 To view existing OS Update schedules
 
 .. code-block:: bash
+
     orch-cli list schedules  -v
 
 Help
