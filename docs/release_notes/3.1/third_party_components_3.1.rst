@@ -18,7 +18,7 @@ Application Orchestration
    * - Open Policy Agent
      - Container
      - openpolicyagent/opa
-     - 1.5.0/1.5.1,1.6.0
+     - 1.5.0/1.5.1
    * - Fleet-Controller
      - Container
      - rancher/fleet
@@ -37,7 +37,7 @@ Application Orchestration
      - v0.12.2
    * - redis (gitea)
      - Container
-     - docker.io/bitnami/redis
+     - docker.io/bitnamilegacy/redis
      - 7.2.5-debian-12-r4
    * - Harbor-core
      - Container
@@ -354,14 +354,14 @@ Platform services
    * - keycloak
      - helm chart
      - https://github.com/bitnami/charts/tree/main/bitnami/keycloak
-     - 24.0.1
+     - 24.4.12
    * - keycloak
      - image
-     - docker.io/bitnami/keycloak
-     - 26.0.1-debian-12-r0
+     - docker.io/bitnamilegacy/keycloak
+     - 26.1.3-debian-12-r0
    * - keycloak (config-cli)
      - image
-     - docker.io/bitnami/keycloak-config-cli
+     - docker.io/bitnamilegacy/keycloak-config-cli
      - 6.1.6-debian-12-r4
    * - curl-jq
      - Container (utility)
@@ -369,7 +369,7 @@ Platform services
      - sha256:fe8a5ee49f613495df3b57afa86b39f081bd1b3b9ed61248f46c3d3d7df56092
    * - kubectl
      - image
-     - bitnami/kubectl
+     - bitnamilegacy/kubectl
      - latest
    * - kiali
      - helm chart
@@ -417,7 +417,7 @@ Platform services
      - 15.5.26
    * - postgresql
      - image
-     - docker.io/bitnami/postgresql
+     - docker.io/bitnamilegacy/postgresql
      - 16.4.0-debian-12-r4
    * - reloader
      - helm chart
@@ -445,7 +445,7 @@ Platform services
      - 3.18.2
    * - vault (postgres dep)
      - image
-     - bitnami/postgresql
+     - bitnamilegacy/postgresql
      - 14.5.0-debian-11-r2
    * - vault
      - image
@@ -481,11 +481,11 @@ Platform services
      - 1.22.3-rootless
    * - gitea (postgres dep)
      - image
-     - docker.io/bitnami/postgresql
+     - docker.io/bitnamilegacy/postgresql
      - 16.3.1-debian-12-r23
    * - gitea (redis dep)
      - image
-     - docker.io/bitnami/redis
+     - docker.io/bitnamilegacy/redis
      - 7.2.5-debian-12-r4
 
 Observabilty (O11y)
@@ -741,7 +741,7 @@ User Interface
    * - bitnami/keycloak
      - Helm Chart
      - https://github.com/bitnami/charts/tree/main/bitnami/keycloak
-     - 24.0.1
+     - 24.4.12
    * - openpolicyagent/opa
      - ContainerImage
      - https://hub.docker.com/r/openpolicyagent/opa/
@@ -810,4 +810,3 @@ Trusted Compute
    * - argcomplete, yq, xmltodict, ...
      - Containers and binaries
      - https://pypi.org/
-     -
