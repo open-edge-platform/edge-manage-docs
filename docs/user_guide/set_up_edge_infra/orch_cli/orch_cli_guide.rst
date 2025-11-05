@@ -583,6 +583,72 @@ To delete an OS Update Run run the delete command.
 
     ./orch-cli delete osupdaterun <RUN_ID>
 
+One-click Host Update
+^^^^^^^^^^^^^^^^^^^^^
+
+The orch-cli provides a simplified procedure for one off OS Updates of host OS to be run via a single command.
+Executing the **update-os** on a host will result in a near immediate schedule of a single, open ended OS Update for a host.
+The update can be performed on an single host or a bulk of host with .csv file as an input.
+
+To update a single host with an already assigned OS Update Policy.
+
+.. code-block:: bash
+
+    ./orch-cli update-os host <HOST_ID>
+
+To update a single host and assign a new OS Update Policy.
+
+.. code-block:: bash
+
+    ./orch-cli update-os host <HOST_ID> --osupdatepolicy <OSUPDATEPOLICY_ID>
+
+To generate a blank file for bulk update of hosts.
+
+.. code-block:: bash
+
+    ./orch-cli update-os host --generate-csv test.csv
+
+To generate a file for bulk update of hosts which includes a number of existing hosts and their OS Update Policies based on a required filter.
+To establish available filters see:
+ * `API-160 filtering <https://google.aip.dev/160>`_
+ * `EIM API spec <https://github.com/open-edge-platform/orch-utils/blob/main/tenancy-api-mapping/openapispecs/generated/amc-infra-core-edge-infrastructure-manager-openapi-all.yaml>`_
+
+.. code-block:: bash
+
+    orch-cli update-os host --generate-csv test.csv --filter=<filter>
+
+To generate a file for bulk update of hosts which includes a number of existing hosts and their OS Update Policies based on a required site or region.
+Note --site and --region flags are mutually exclusive, either can be used with conjunction of --filter flag.
+
+.. code-block:: bash
+
+    orch-cli update-os host --generate-csv test.csv --site <SITE_ID>
+    orch-cli update-os host --generate-csv test.csv --region <REGION_ID>
+
+The required input .csv file should be of following format to execute the update.
+
+.. code-block:: bash
+
+    Name - Name of the machine - mandatory field
+    ResourceID - Unique Identifier of host - mandatory field
+    OSUpdatePolicy - Desired update policy - optional field - currently set policy for the host will be used if not provided
+
+    Name,ResourceID,OSUpdatePolicy
+    host-1,host-1234abcd,osupdatepolicy-1234abcd
+    host-2,host-2234abcd
+    host-3,host-3234abcd,osupdatepolicy-1234abcd
+
+To execute bulk OS Update on multiple hosts
+
+.. code-block:: bash
+
+    orch-cli update-os host --import-from-csv test.csv
+
+To view existing OS Update schedules
+
+.. code-block:: bash
+    orch-cli list schedules  -v
+
 Help
 ^^^^
 
