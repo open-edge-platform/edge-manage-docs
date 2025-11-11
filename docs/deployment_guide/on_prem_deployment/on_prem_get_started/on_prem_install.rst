@@ -66,92 +66,316 @@ Download the Installation Script
    * Installs the ``oras`` tool
    * Downloads the scripts to install and uninstall Edge Orchestrator
 
-Installation Parameters
----------------------------
+Configure Installation Environment
+-----------------------------------
 
-Before running the installation script, you can provide some optional configuration parameters.
+The installation uses an ``onprem.env`` file for configuration. This file contains all environment variables used by the on-premise installer scripts and must be properly configured before running the installation.
 
-Optional Parameters
+.. important::
+   The ``onprem.env`` file is located in the same directory as the installer scripts (downloaded via ``access_script.sh``). You must edit this file and set the required values before proceeding with the installation.
+
+Configuration Workflow
++++++++++++++++++++++++
+
+#. Download the installer scripts using ``access_script.sh`` (see previous section)
+#. Locate the ``onprem.env`` file in the downloaded directory
+#. Edit ``onprem.env`` with your deployment-specific values
+#. Run ``./onprem_installer.sh`` to begin installation
+
+The ``onprem.env`` file contains several configuration sections described below.
+
+Core Deployment Configuration
+++++++++++++++++++++++++++++++++
+
+.. list-table:: Core Environment Variables (Required)
+   :widths: 30 40 30
+   :header-rows: 1
+
+   * - Variable
+     - Description
+     - Default Value
+   * - ``RELEASE_SERVICE_URL``
+     - Registry where packages and images are hosted
+     - ``registry-rs.edgeorchestration.intel.com``
+   * - ``DEPLOY_VERSION``
+     - Version of Edge Orchestrator to deploy
+     - ``v2025.2.0``
+   * - ``ORCH_INSTALLER_PROFILE``
+     - Deployment profile for Edge Orchestrator
+     - ``onprem``
+
+Authentication & Security
+++++++++++++++++++++++++++
+
+.. list-table:: Docker Hub Credentials (Required)
+   :widths: 30 40 30
+   :header-rows: 1
+
+   * - Variable
+     - Description
+     - Default Value
+   * - ``DOCKER_USERNAME``
+     - Docker Hub username for pulling images
+     - (empty)
+   * - ``DOCKER_PASSWORD``
+     - Docker Hub password or access token
+     - (empty)
+
+Network Configuration
+++++++++++++++++++++++++
+
+.. list-table:: Network Variables (Required)
+   :widths: 30 40 30
+   :header-rows: 1
+
+   * - Variable
+     - Description
+     - Default Value
+   * - ``CLUSTER_DOMAIN``
+     - Cluster domain name for internal services
+     - ``cluster.onprem``
+   * - ``ARGO_IP``
+     - MetalLB IP address for ArgoCD
+     - (empty)
+   * - ``TRAEFIK_IP``
+     - MetalLB IP address for Traefik
+     - (empty)
+   * - ``NGINX_IP``
+     - MetalLB IP address for NGINX
+     - (empty)
+
+Container Registry Configuration
 +++++++++++++++++++++++++++++++++++
 
-Some configuration parameters the installer uses have default values that you
-can set manually. See the following table for more information about each parameter.
-
-.. list-table:: Other Installation Parameters
+.. list-table:: Registry Variables
    :widths: 30 40 30
    :header-rows: 1
 
-   * - Installation Parameter
+   * - Variable
      - Description
      - Default Value
-   * - ``export ORCH_INSTALLER_PROFILE= <profile>``
-     - Sets the profile and artifacts to deploy Edge Orchestrator. This parameter allows the default ``onprem`` installation **or** ``onprem-explicit-proxy`` for edge nodes without direct internet access and support for 100 hosts. To scale up to 1000 hosts, use ``onprem-1k``.
-     - ``onprem``
-   * - ``export SRE_USERNAME=<username>``
-     - Sets the ``basic-auth`` user name of the SRE endpoint.
+   * - ``GITEA_IMAGE_REGISTRY``
+     - Image registry for Gitea container images
+     - ``docker.io``
+
+SRE and SMTP Configuration
+++++++++++++++++++++++++++++
+
+.. list-table:: SRE Configuration
+   :widths: 30 40 30
+   :header-rows: 1
+
+   * - Variable
+     - Description
+     - Default Value
+   * - ``SRE_USERNAME``
+     - Site Reliability Engineering username
      - ``sre``
-   * - ``export SRE_PASSWORD=<password>``
-     - Sets the ``basic-auth`` password.
+   * - ``SRE_PASSWORD``
+     - SRE password
      - ``123``
-   * - ``export SRE_DEST_URL=<https://sre-endpoint:port/location>``
-     - Sets the SRE endpoint URL.
-     - ``http://sre-exporter-destination:``
-       ``8428/api/v1/write``
-   * - ``export CLUSTER_DOMAIN=<cluster_domain>``
-     - Sets the cluster domain name for Edge Orchestrator services, which defines
-       the base for full-service domain names by adding subdomains
-       (not to be confused with the Kubernetes\* cluster domain).
-     - ``cluster.onprem``
-   * - ``export RELEASE_SERVICE_URL=<url>``
-     - Sets the URL to the Release Service.
-     - ``registry-rs.edgeorchestration.intel.com``
-   * - ``export DEPLOY_VERSION=<version>``
-     - Sets the version of the artifacts used to deploy Edge Orchestrator.
-     - ``v3.0``
+   * - ``SRE_DEST_URL``
+     - SRE exporter destination URL
+     - ``http://sre-exporter-destination.cluster.onprem:8428/api/v1/write``
 
-Configure SMTP Variables for Notifications
-++++++++++++++++++++++++++++++++++++++++++
-
-To enable email notifications for alerts, set the following environmental variables
-for the external SMTP server. See
-:doc:`/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_alerts`
-for more information. If not needed or if the SMTP server is not available, you can
-disable the SMTP server authentication when installing Edge Orchestrator.
-
-.. list-table:: Environmental Variables for External SMTP Server
+.. list-table:: SMTP Configuration for Email Notifications
    :widths: 30 40 30
    :header-rows: 1
 
-   * - SMTP Variable
+   * - Variable
      - Description
      - Default Value
-   * - ``export SMTP_ADDRESS= <https://smtp.server.url>``
-     - Sets the *endpoint URL* of the SMTP server endpoint.
+   * - ``SMTP_ADDRESS``
+     - SMTP server address
      - ``smtp.serveraddress.com``
-   * - ``export SMTP_PORT=<port-number>``
-     - Sets the *default port number* of the exposed SMTP server endpoint.
+   * - ``SMTP_PORT``
+     - SMTP server port
      - ``587``
-   * - ``export SMTP_HEADER=<foo@bar.com>``
-     - Sets the *default email header* for notifications
-     - ``foo@bar.com``
-   * - ``export SMTP_USERNAME=<username>``
-     - Sets the *default username* to access the SMTP server endpoint
+   * - ``SMTP_HEADER``
+     - Email sender information
+     - ``foo bar <foo@bar.com>``
+   * - ``SMTP_USERNAME``
+     - SMTP authentication username
      - ``uSeR``
-   * - ``export SMTP_PASSWORD=<password>``
-     - Set the *default password* to access the SMTP server endpoint
+   * - ``SMTP_PASSWORD``
+     - SMTP authentication password
      - ``T@123sfD``
+
+Advanced Configuration
++++++++++++++++++++++++
+
+.. list-table:: Advanced Variables
+   :widths: 30 40 30
+   :header-rows: 1
+
+   * - Variable
+     - Description
+     - Default Value
+   * - ``KUBECONFIG``
+     - Kubernetes configuration file path
+     - ``/home/$USER/.kube/config``
+
+OXM Network Configuration
++++++++++++++++++++++++++++
+
+.. list-table:: OXM PXE Server Variables
+   :widths: 30 40 30
+   :header-rows: 1
+
+   * - Variable
+     - Description
+     - Default Value
+   * - ``OXM_PXE_SERVER_INT``
+     - PXE server interface
+     - (empty)
+   * - ``OXM_PXE_SERVER_IP``
+     - PXE server IP address
+     - (empty)
+   * - ``OXM_PXE_SERVER_SUBNET``
+     - PXE server subnet
+     - (empty)
+
+Proxy Configuration
+++++++++++++++++++++
+
+.. list-table:: Proxy Variables
+   :widths: 30 40 30
+   :header-rows: 1
+
+   * - Variable
+     - Description
+     - Default Value
+   * - ``ENABLE_EXPLICIT_PROXY``
+     - Enable explicit proxy configuration
+     - ``false``
+   * - ``ORCH_HTTP_PROXY``
+     - HTTP proxy for Orchestrator
+     - (empty)
+   * - ``ORCH_HTTPS_PROXY``
+     - HTTPS proxy for Orchestrator
+     - (empty)
+   * - ``ORCH_NO_PROXY``
+     - No proxy list for Orchestrator
+     - (empty)
+   * - ``EN_HTTP_PROXY``
+     - HTTP proxy for Edge Nodes
+     - (empty)
+   * - ``EN_HTTPS_PROXY``
+     - HTTPS proxy for Edge Nodes
+     - (empty)
+   * - ``EN_FTP_PROXY``
+     - FTP proxy for Edge Nodes
+     - (empty)
+   * - ``EN_SOCKS_PROXY``
+     - SOCKS proxy for Edge Nodes
+     - (empty)
+   * - ``EN_NO_PROXY``
+     - No proxy list for Edge Nodes
+     - (empty)
 
 Run Installer
 -------------
 
-.. note:: Add any optional configuration from previous sections if needed. Or check the following for optional arguments.
+The Edge Orchestrator installation uses a two-phase approach orchestrated by the ``onprem_installer.sh`` wrapper script:
+
+**Phase 1: Pre-Installation** (``onprem_pre_install.sh``)
+   - Installs OS-level prerequisites
+   - Downloads installation packages from the registry
+   - Installs RKE2 Kubernetes cluster
+   - Prepares the system for Edge Orchestrator deployment
+
+**Phase 2: Main Installation** (``onprem_orch_install.sh``)
+   - Installs ArgoCD for GitOps deployment
+   - Sets up Gitea repository with Edge Orchestrator source code
+   - Deploys Edge Orchestrator components via ArgoCD
+   - Configures networking, load balancers, and services
+
+The ``onprem_installer.sh`` wrapper script runs both phases sequentially and allows you to pass options to each phase separately using the ``--`` separator.
+
+Installation Script Options
+++++++++++++++++++++++++++++
+
+The ``onprem_installer.sh`` script supports the following command-line options:
+
+.. note::
+   All configuration is read from the ``onprem.env`` file. Ensure this file is properly configured before running the installer.
+
+**Pre-Install Options** (before ``--``):
+
+.. code-block:: shell
+
+   -h, --help          Show help message
+   --skip-download     Skip downloading packages (use existing ones)
+   -y, --yes           Skip Docker credentials prompt and run non-interactively
+   -t, --trace         Enable debug tracing
+
+**Main Install Options** (after ``--``):
+
+.. code-block:: shell
+
+   -h, --help                 Show help message
+   -s, --sre [CA_CERT_PATH]   Enable TLS for SRE with optional CA certificate
+   -d, --notls                Disable TLS verification for SMTP endpoint
+   -y, --yes                  Assume 'yes' to all prompts and run non-interactively
+   --disable-co               Disable Cluster Orchestrator profile
+   --disable-ao               Disable Application Orchestrator profile
+   --disable-o11y             Disable Observability profile
+   -st, --single_tenancy      Enable single tenancy mode
+   -t, --trace                Enable bash debug tracing
+
+**Examples:**
+
+Basic installation with default settings:
 
 .. code-block:: shell
 
    ./onprem_installer.sh
 
+Skip package downloads (use existing packages):
 
-The script does the following:
+.. code-block:: shell
+
+   ./onprem_installer.sh --skip-download
+
+Fully non-interactive installation (skip all prompts in both phases):
+
+.. code-block:: shell
+
+   ./onprem_installer.sh -y -- -y
+
+Enable SRE with TLS using CA certificate:
+
+.. code-block:: shell
+
+   ./onprem_installer.sh -- -s /path/to/ca.crt
+
+Disable observability and application orchestrator profiles:
+
+.. code-block:: shell
+
+   ./onprem_installer.sh -- --disable-o11y --disable-ao
+
+Complete installation with SRE TLS, SMTP no-TLS, and debug tracing:
+
+.. code-block:: shell
+
+   ./onprem_installer.sh -t -- -s /path/to/ca.crt -d -t
+
+Single tenancy mode with tracing:
+
+.. code-block:: shell
+
+   ./onprem_installer.sh -- -st -t
+
+.. note:: 
+   - Options before ``--`` control the pre-install phase
+   - Options after ``--`` control the main install phase
+   - Ensure ``onprem.env`` is properly configured before running
+
+What the Installer Does
++++++++++++++++++++++++++
+
+The installation script performs the following actions:
 
 - Prompts to configure Argo\* CD tool, Traefik\* application proxy, and NGINX\* web server IP addresses, for details see
   `Installer Prompts and Deployment Configuration <#installer-prompts-and-deployment-configuration>`__
@@ -275,32 +499,9 @@ Configure Custom Settings
           generateOrchCert: false
 
 #. If Edge Orchestrator or the edge nodes requires a proxy to access the
-   Internet, update the proxy configuration in the
-   ``[path_to_untarred_repo]/orch-configs/profiles/proxy-none.yaml``
-   file, then rename the file to
-   ``[path_to_untarred_repo]/orch-configs/profiles/proxy.yaml``. If no proxy is required for a specific protocol, leave the field empty:
-
-   .. code-block:: shell
-
-      argo:
-        proxy:
-          httpProxy: [HTTP proxy URL]
-          httpsProxy: [HTTPS proxy URL]
-          noProxy: [Comma separated list of hosts and domains for which proxy settings should be bypassed]
-          enHttpProxy: [HTTP proxy URL for the Edge Node]
-          enHttpsProxy: [HTTPS proxy URL for the Edge Node]
-          enFtpProxy: [FTP proxy URL for the Edge Node]
-          enSocksProxy: [SOCKS proxy URL for the Edge Node]
-          enNoProxy: [Comma separated list of hosts and domains for which proxy settings should be bypassed in the Edge Node]
-        git:
-          gitProxy: [HTTPS proxy URL]
-
-   Then change the proxy profile in the ``[path_to_untarred_repo]/orch-configs/clusters/onprem.yaml`` file:
-
-   .. code-block:: shell
-
-       -    - profiles/proxy-none.yaml
-       +    - profiles/proxy.yaml
+   Internet, configure the proxy settings in the ``onprem.env`` file before running the installer.
+   The installer will automatically apply the proxy configuration. See the 
+   `Proxy Configuration <#proxy-configuration>`__ section for details on the available proxy variables.
 
 #. Edge Orchestrator detects the latest compatible versions of the Edge Microvisor Toolkit for update of edge nodes deployed with an immutable OS.
    By default, manual association of the Edge Microvisor Toolkit version with edge nodes is required. Alternatively,
@@ -370,11 +571,12 @@ Enable TLS for SRE Exporter endpoint (Optional)
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 To enable Transport Layer Security (TLS) authentication between an SRE
-exporter and SRE endpoint, use the ``-s`` flag:
+exporter and SRE endpoint, use the ``-s`` flag after the ``--`` separator
+to pass options to the main installer:
 
 .. code-block:: shell
 
-   ./onprem_installer.sh -s
+   ./onprem_installer.sh -- -s
 
 .. note::
    The ``-s`` flag is optional. If omitted, the SRE exporter will deploy with the TLS authentication option turned off.
@@ -384,7 +586,7 @@ path to the file containing the certificate after ``-s`` flag:
 
 .. code-block:: shell
 
-   ./onprem_installer.sh -s [path_to_SRE_Endpoint_TLS_CA_Cert]
+   ./onprem_installer.sh -- -s /path/to/SRE_Endpoint_TLS_CA_Cert
 
 If you want to disable SRE functionality fully, see the
 `Disable SRE <#disable-sre-optional>`__ section above.
@@ -393,11 +595,32 @@ If you want to disable SRE functionality fully, see the
 Disable SMTP Server Authentication (Optional)
 +++++++++++++++++++++++++++++++++++++++++++++
 
-Use the ``-d`` option to turn off the TLS authentication between the SMTP server and alert monitor:
+Use the ``-d`` option after the ``--`` separator to turn off the TLS authentication between the SMTP server and alert monitor:
 
 .. code-block:: shell
 
-   ./onprem_installer.sh -d
+   ./onprem_installer.sh -- -d
+
+Non-Interactive Installation
+++++++++++++++++++++++++++++++
+
+For automated or CI/CD deployments, you can skip all interactive prompts using the ``-y`` flag.
+This flag can be used for both the pre-install and main install phases:
+
+Skip Docker credentials prompt in pre-install:
+
+.. code-block:: shell
+
+   ./onprem_installer.sh -y
+
+Skip all prompts in both phases:
+
+.. code-block:: shell
+
+   ./onprem_installer.sh -y -- -y
+
+.. note::
+   When using ``-y`` flag, ensure that the ``onprem.env`` file is properly configured with all required parameters before running the installer.
 
 Prepare TLS Certificate Secret
 ------------------------------
