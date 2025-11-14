@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   call-scorecard:
-    uses: open-edge-platform/orch-ci/.github/workflows/post-merge-scorecard.yml@main
+    uses: open-edge-platform/orch-ci/.github/workflows/post-merge-scorecard.yml@main  # yamllint disable-line rule:line-length
     with:
       project_folder: "."
     secrets:
