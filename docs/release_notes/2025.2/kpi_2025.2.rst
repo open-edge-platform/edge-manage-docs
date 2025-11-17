@@ -1,7 +1,7 @@
 Version 3.1 Key Performance Indicators (KPIs)
 =======================================================
 
-For 3.1 release the following KPI goals were met that assured the quality
+For 2025.2 release the following KPI goals were met that assured the quality
 and proficiency of |software_prod_name|.
 
 Key Performance Indicators for Cloud Based Edge Orchestrator

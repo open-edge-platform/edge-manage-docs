@@ -1,11 +1,11 @@
-Version 3.1 Release Notes
+Version 2025.2 Release Notes
 ========================================
 
 Version History/Revision History
 -------------------------------------------------------
 
-This is the Release Notes for \ |software_prod_name|\  version 3.1, released
-Aug 20 2025.
+This is the Release Notes for \ |software_prod_name|\  version 2025.2, released
+Dec 11 2025.
 
 .. note::
 
@@ -22,11 +22,7 @@ applications across distributed edge, at scale. Edge Node software provides the
 profiles of infrastructure software configurations that get provisioned onto an
 onboarded node.
 
-The 3.1 release builds upon the first 3.0 open source release adding key functionality.
-You can review the general functionality of the system in the
-:doc:`3.0 release notes </release_notes/3.0/rel_notes_3.0>`.
-
-Key Highlights of the 3.1 release include, but are not limited to:
+Key Highlights of the 2025.2 release include, but are not limited to:
 
 * New: Support for Out-of-band management using `Intel AMT/vPRO <https://www.intel.com/content/www/us/en/architecture-and-technology/vpro/vpro-manageability/overview.html>`_.
   Integration of vPro Device Manageability services with EMF, allowing use of

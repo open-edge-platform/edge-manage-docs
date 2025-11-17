@@ -2,7 +2,7 @@ Containers and Helm\* Charts
 ============================
 
 Here is a list of all the Helm Charts and Containers that
-make up |software_prod_name| version 3.1.
+make up |software_prod_name| version 2025.2.
 
 Helm Charts for Observability (O11y)
 -------------------------------------
