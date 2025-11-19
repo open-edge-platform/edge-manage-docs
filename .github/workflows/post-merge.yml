@@ -37,7 +37,7 @@ jobs:
       contents: read
       pull-requests: read
       issues: write
-    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@da08a06e8aec70621e50ed4aec2fac5599839f45  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@57ae89489027070792089531710c450af3b66c26  # yamllint disable-line rule:line-length
     with:
       simple_mode: false
       branch_pattern: '^(main|release-[0-9]+\.[0-9]+.*)$'
