@@ -25,6 +25,7 @@ If all checks pass, maintainers merge the PR, and release workflows publish arti
 
 Advanced Features
 -----------------
+
 - Self-hosted runners for performance.
 - Container-based builds for reproducibility.
 - UI testing with Cypress for front-end components.
