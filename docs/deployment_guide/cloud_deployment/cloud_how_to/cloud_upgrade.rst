@@ -112,7 +112,7 @@ You need to follow the steps mentioned in `Prerequisites section <https://docs.o
 
       orchestrator-admin:~$ cd ~
 
-   Load the aws environment variables into the shell 
+   Load the aws environment variables into the shell
 
     .. code-block:: bash
 
