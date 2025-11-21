@@ -7,6 +7,9 @@ name: labeler
 on:  # yamllint disable-line rule:truthy
   pull_request:
 
+permissions:
+  contents: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
