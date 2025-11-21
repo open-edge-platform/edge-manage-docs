@@ -1585,15 +1585,15 @@ Docker Containers
    * - 2
      - kubectl
      - 1.28.4
-     - bitnami/kubectl:1.28.4
+     - bitnamilegacy/kubectl:1.28.4
    * - 3
      - kubectl
      - 1.31.3
-     - bitnami/kubectl:1.31.3
+     - bitnamilegacy/kubectl:1.31.3
    * - 4
      - kubectl
      - latest
-     - bitnami/kubectl
+     - bitnamilegacy/kubectl
    * - 5
      - busybox
      - 1.36.0
