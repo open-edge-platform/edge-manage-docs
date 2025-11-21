@@ -75,20 +75,29 @@ To set up your development environment, follow these steps:
 
       mage asdfPlugins
 
-#. Configure environment variables. ``ORCH_DEFAULT_PASSWORD`` will be your default password
-   for different Edge Orchestator services. ``GIT_USER`` and ``GIT_TOKEN`` are required to
-   download Git repositories, while ``DOCKERHUB_USERNAME`` and ``DOCKERHUB_TOKEN`` (DockerHub password)
-   are required to avoid image pull rate-limiting issues.
+#. Configure environment variables. ``ORCH_DEFAULT_PASSWORD`` sets the ArgoCD admin password.
+   ``GIT_USER`` and ``GIT_TOKEN`` are required to download Git repositories, while
+   ``DOCKERHUB_USERNAME`` and ``DOCKERHUB_TOKEN`` (DockerHub password) are required to avoid
+   image pull rate-limiting issues.
 
    .. note:: You can save these environment variables in your ``.bashrc``.
 
    .. code-block:: bash
 
-      export ORCH_DEFAULT_PASSWORD="ChangeMeOn1stLogin!"
+      export ORCH_DEFAULT_PASSWORD="<REPLACE_WITH_PASSWORD>"  # Set your ArgoCD admin password
       export GIT_USER="git"
       export GIT_TOKEN="" # provide your Git Personal Access Token
       export DOCKERHUB_USERNAME="" # provide your DockerHub username
       export DOCKERHUB_TOKEN="" # provide your DockerHub password
+
+   .. note::
+      ``ORCH_DEFAULT_PASSWORD`` is required and must meet the following requirements:
+
+      - Minimum 14 characters
+      - At least 1 digit
+      - At least 1 special character
+      - At least 1 uppercase letter
+      - At least 1 lowercase letter
 
 #. Decide on the orchestrator profile you want to deploy.
 
@@ -126,7 +135,7 @@ To set up your development environment, follow these steps:
    This command will block until the deployment is complete.
 
 #. You can also observe the deployment status by viewing the ArgoCD dashboard.
-   Use ``admin/ChangeMeOn1stLogin!`` credentials.
+   Use ``admin`` as the username and the password you set in ``ORCH_DEFAULT_PASSWORD``.
 
    .. code-block:: bash
 
@@ -211,17 +220,11 @@ To set up your development environment, follow these steps:
 
         mage devUtils:WaitForEnic
 
-#. To get the default admin password, run:
+#. To get the Keycloak admin password for accessing Edge Orchestrator services, run:
 
    .. code-block:: bash
 
-      kubectl get secret platform-keycloak -n orch-platform -o jsonpath='{.data.admin-password}' | base64 --decode
-
-#. To get the default admin password for Argo CD tool, run:
-
-   .. code-block:: bash
-
-      kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -decode
+      kubectl -n orch-platform get secret platform-keycloak -o jsonpath='{.data.admin-password}' | base64 -d
 
 #. To tear down the deployment run:
 
