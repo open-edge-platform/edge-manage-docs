@@ -9,22 +9,19 @@ Open Edge Platform Continuous Integration Logic
 - Versioning & Tagging: Scripts for consistent version control and Helm chart validation.
 - Release Automation: Publishing artifacts (e.g., container images, Helm charts) after successful builds.
 
-
 How It Works Across Repositories
 --------------------------------
 Each repo (e.g., edge-node-agents, edge-manageability-framework) includes workflow files that call reusable actions from orch-ci.
 When you open a Pull Request (PR):
 
-* Pre-Merge CI detects what's been modified and runs tests, linting, and security checks.
-* Post-Merge CI triggers additional validations, signing and artifact publishing.
-
+- Pre-Merge CI detects what's been modified and runs tests, linting, and security checks.
+- Post-Merge CI triggers additional validations, signing and artifact publishing.
 
 Developer Workflow
 ------------------
 Fork the repo → Create a branch → Make changes → Push and open a PR.
 CI validates the PR automatically.
 If all checks pass, maintainers merge the PR, and release workflows publish artifacts to registries.
-
 
 Advanced Features
 -----------------
