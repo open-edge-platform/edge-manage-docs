@@ -86,7 +86,7 @@ Follow the steps below to provision multiple Edge Nodes at once.
 
      .. code-block:: shell
 
-        curl https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/tags/standalone-node/3.1.0/standalone-node/installation_scripts/config-file -o config-file
+        curl https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/tags/standalone-node/3.1.18/standalone-node/installation_scripts/config-file -o config-file
 
    * Fill in the ``config-file`` as per the user guide in the in-line comments.
 
@@ -145,3 +145,90 @@ Follow the steps below to provision multiple Edge Nodes at once.
    .. code-block:: shell
 
       orch-cli list host --project local-admin --api-endpoint https://api.cluster.onprem
+
+Day-2 Operations: Upgrading Standalone Edge Nodes
+-------------------------------------------------
+
+After successfully provisioning your standalone Edge Nodes using the OXM profile, you can perform day-2 operations such as OS upgrades.
+The upgrade process for OXM-provisioned Edge Nodes follows similar steps to standard
+`standalone Edge Node upgrades <https://github.com/open-edge-platform/edge-microvisor-toolkit-standalone-node>`_,
+with the key difference being the use of the OXM mode flag (``-o``).
+
+Prerequisites
+~~~~~~~~~~~~~
+
+* Edge Nodes must be successfully provisioned and running
+* Access to the Edge Node via local console or USB transfer capability
+* USB storage device for transferring update files
+* Updated OS update script that supports OXM mode
+
+Preparing USB Update Media
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#. On a machine with internet access, download the updated OS update script that supports OXM mode:
+
+   .. code-block:: shell
+
+      curl https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/tags/standalone-node/3.1.18/standalone-node/provisioning_scripts/os-update.sh -o os-update.sh
+
+#. Download the required OS image and checksum files:
+
+   .. code-block:: shell
+
+      # Download the OS image (example URLs)
+      wget <IMAGE_URL>/edge-readonly-<VERSION>.<BUILD>-signed.raw.gz
+      wget <IMAGE_URL>/edge-readonly-<VERSION>.<BUILD>-signed.raw.gz.sha256
+
+#. Copy all required files to your USB device:
+
+   .. code-block:: shell
+
+      # Mount USB device (adjust device path as needed)
+      sudo mount /dev/sdX1 /mnt/usb
+
+      # Copy files to USB
+      cp os-update.sh /mnt/usb/
+      cp edge-readonly-*.raw.gz /mnt/usb/
+      cp *.sha256 /mnt/usb/
+
+      # Unmount USB device
+      sudo umount /mnt/usb
+
+Performing OS Updates on Edge Node
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#. Connect the USB device to the target Edge Node and mount it:
+
+   .. code-block:: shell
+
+      # Mount USB device on Edge Node
+      sudo mount /dev/sdX1 /mnt/usb
+
+#. Copy the update script and files to the home directory:
+
+   .. code-block:: shell
+
+      cp /mnt/usb/os-update.sh ~/
+      cp /mnt/usb/edge-readonly-*.raw.gz ~/
+      cp /mnt/usb/*.sha256 ~/
+      chmod +x ~/os-update.sh
+
+#. Run the OS update script with the OXM mode flag using local files:
+
+   .. code-block:: shell
+
+      cd ~
+      sudo ./os-update.sh -o -i edge-readonly-<VERSION>.<BUILD>-signed.raw.gz -c edge-readonly-<VERSION>.<BUILD>-signed.raw.gz.sha256
+
+   The ``-o`` flag enables OXM mode, which:
+
+   * Uses the correct configuration file location (``/etc/cloud/cloud.cfg.d/99_infra.cfg``) instead of the standard location
+   * Skips installer.cfg modifications that are not applicable to OXM-provisioned nodes
+   * Maintains compatibility with the OXM deployment profile
+
+#. Monitor the update process and verify successful completion after reboot:
+
+   .. code-block:: shell
+
+      # Check system version after reboot
+      cat /etc/image-id
