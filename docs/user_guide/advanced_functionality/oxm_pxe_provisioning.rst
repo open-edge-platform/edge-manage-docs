@@ -155,7 +155,7 @@ The upgrade process for OXM-provisioned Edge Nodes follows similar steps to stan
 with the key difference being the use of the OXM mode flag (``-o``).
 
 Prerequisites
-~~~~~~~~~~~~~
+-------------
 
 * Edge Nodes must be successfully provisioned and running
 * Access to the Edge Node via local console or USB transfer capability
@@ -163,7 +163,7 @@ Prerequisites
 * Updated OS update script that supports OXM mode
 
 Preparing USB Update Media
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 #. On a machine with internet access, download the updated OS update script that supports OXM mode:
 
@@ -195,7 +195,7 @@ Preparing USB Update Media
       sudo umount /mnt/usb
 
 Performing OS Updates on Edge Node
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------
 
 #. Connect the USB device to the target Edge Node and mount it:
 
