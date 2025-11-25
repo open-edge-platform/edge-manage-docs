@@ -13,18 +13,7 @@ In both scenarios, the Day 2 update of an Edge Node involves updates to the OS, 
 The four main entities involved in the Edge Node updates are:
 
 - `Inventory <https://github.com/open-edge-platform/infra-core/tree/main/inventory>`_ — Stores the Edge Node instances and the OS Resources related to each instance.
-  OS Resources include OS version information, whereas an Instance Resource contains the
-  current and desired OS versions, each linked to an OS Resource.
-
-  - The *current version* reflects the currently installed OS.
-  - The *desired version* indicates the OS version to be used during the next update.
-
-.. note::
-
-    For mutable Ubuntu OS systems, the current and desired versions are always linked to the
-    same OS Resource, as mutable OS Edge Nodes do not support upgrades from the current to the
-    desired OS version. This resource can only be patched and cannot be replaced by a new
-    OS Resource.
+  An OS Resource includes OS version information, whereas an Instance Resource contains a link to the inventory resource representing the currently installed OS Resource.
 
 - `Platform Update Agent (PUA) <https://github.com/open-edge-platform/edge-node-agents/tree/main/platform-update-agent>`_ — A Bare Metal Agent installed on the Edge Node, it is
   responsible for initiating communication with the Maintenance Manager (MM) on the
@@ -43,11 +32,6 @@ The four main entities involved in the Edge Node updates are:
   When the Edge Orchestrator is upgraded to a version with a new *osProfileRevision*, the OS Resource Manager discovers new OS profiles for the Edge Microvisor Toolkit
   corresponding to the updated tag and generates the appropriate OS Resources in the Inventory.
 
-  The OS Resource Manager supports two operational modes:
-
-  - *Manual (default)*: Linking of OS Resources to Instances must be performed manually by the user via an API call.
-  - *Automatic*: Newly discovered OS Resources are automatically linked to the desired OS version of each Instance.
-
 For more details on the communication between the Platform Update Agent and the Maintenance
 Manager, refer to the `Maintenance Manager documentation <https://github.com/open-edge-platform/infra-managers/blob/main/maintenance/docs/api/maintmgr.md>`_.
 
@@ -55,6 +39,15 @@ An Edge Node update can be scheduled through the Web UI, which creates a dedicat
 window for the update process. To learn more about scheduling updates for Edge Nodes, see the
 :ref:`guide on scheduling maintenance <user_guide/advanced_functionality/host_schedule_main:Schedule Maintenance for Configured and Active Hosts>`.
 
+Details of the future update should be specified in the OS Update Policy which needs to be created and linked with Edge Nodes before scheduling the update.
+To learn more about the OS Update Policy resource, see the
+:ref:`guide on scheduling maintenance <user_guide/advanced_functionality/host_schedule_main:Schedule Maintenance for Configured and Active Hosts>`.
+
+When an Edge Node update becomes available, the Web-UI notifies the administrator with an icon on the Host page
+and "Update available" prompt. Then, inside the "Updates" tab, the available updates are displayed. In case of EMT OS, the latest available version is displayed, whereas for mutable OS, the list of available Ubuntu packages is listed.
+
+Once the update is finished (successful or failed), the administrator can check the latest update status
+in the "Status" tab of the Host page in the Web UI.  The history of Edge Node updates is also available for review in the "Updates" tab. Each record includes the update status, start and end time, duration and link to the applied OS Update Plicy
 
 EN Update Flow
 --------------
@@ -96,9 +89,9 @@ High Level Day2 Flow
             osrm->>reg: download Curated OS Profile manifests as per osProfileRevision
             reg-->>osrm: return
             osrm->>osrm: parse the manifests
-            alt osProfileRevision has changed (Edge Orchestrator was upgraded)
+            alt osProfileRevision has changed (Edge Orchestrator was upgraded) or patched image version is abvailable
                 osrm->>inv: update existing OS resource and create OS Resources for new immutable OS Profiles
-            else osProfileRevision has not changed (Edge Orchestrator was not upgraded)
+            else osProfileRevision has not changed (Edge Orchestrator was not upgraded) and no patched image version is available
                 osrm->>inv: update existing OS Resources with latest OS profile information
             end
             opt OSRM manualMode=false and osProfileRevision has changed (Edge Orchestrator was upgraded)
@@ -106,20 +99,23 @@ High Level Day2 Flow
             end
         end
         loop periodically
-            pua->>mm: PlatformUpdateStatusRequest(guid, update_status)
-            mm->>inv: set Instance updateStatus
+            pua->>mm: PlatformUpdateStatusRequest(guid, update_status, cves, osUpdateAvailable)
+            mm->>inv: get Instance and linked OS Update Policy details
+            inv->>mm: return
             mm->>inv: get Schedule Resources for Instance
             inv->>mm: return
+            mm->>inv: get Latest OS Resource for Instance OS type (checking for update availability)
+            inv->>mm: return
+            mm->>inv: set Instance updateStatus, osUpdateAvailable and new CVEs if different from current
+            mm->>inv: set OS Update Run if needed
             mm->>pua: PlatformUpdateStatusResponce (os_type, os_image_source, update_source, update_schedule)
             pua->>pua: write the update metadata to file
         end
-        opt OSRM manualMode=true and osProfileRevision has changed (Edge Orchestrator was upgraded)
-            a->>inv: update desired_os to a selected OS Resource in chosen immutable OS Instances
+        opt OS update available and new OS Update Policy needed
+            a->>ui: create an OS Update Policy and link it to Host(s)
+            ui->>inv: create an OS Update Policy Resource and link it to Edge Node Instance Resource
         end
-        opt mutable OS needs updates
-            a->>inv: patch mutable OS Resource
-        end
-        opt EN update needed
+        opt EN update needed and scheduling a new maintenance window needed
             a->>ui: create an update schedule per EN
             ui->>inv: create a Schedule Resource
         end
@@ -128,9 +124,8 @@ High Level Day2 Flow
 Mutable OS Update
 -----------------
 
-The update process for the mutable Ubuntu OS is performed by the Platform Update Agent using
-Intel® In-Band Manageability (INBM) software. Ultimately, the agent invokes the ``apt`` tool via
-an INBM command to fetch and update packages from remote ``apt`` repositories.
+The update process for the mutable Ubuntu OS is performed by the Platform Update Agent.
+Ultimately, the agent invokes the ``apt`` tool to fetch and update packages from remote ``apt`` repositories.
 
 When the scheduled update start time is reached, PUA initiates the following updates:
 
@@ -160,7 +155,8 @@ Mutable OS Update Flow
     end
     participant rs as Release Service (RS)
 
-    note over pua, na: EN OS is installed on partition A and all EN components are up
+    note over pua: EN OS is installed on partition A and all EN components are up
+    note over inv: Edge Node Instance Resource has linked OS Update Policy Resource with update details
     note over  pua, mm: reach maintenance schedule start time
         pua-->>mm: PlatformUpdateStatusRequest(guid, STARTED)
     mm->>inv: UpdateStatus=STARTED
@@ -203,7 +199,7 @@ Mutable OS Update Flow
     pua->>apt: update OS and Agents: apt-upgrade --no-download --reboot yes
     apt->>pua: success
 
-    note over pua: INBM REBOOTS THE NODE
+    note over pua: REBOOT THE NODE
     pua->>pua: verify OS/Agents update
     Note over mm, pua: update done/failed
     pua->>pua: change status to 'DONE'/'FAILED' and update metadata
@@ -226,16 +222,13 @@ second partition (B). Depending on the success of the installation of
 updated OS, the OS is booted from the new partition (B) or rolled
 back to the original partition (A) in case of failure.
 
-By default the OS Resource manager only discovers updated and new OS profiles. It does not link the OS resources to instances.
-This allows for use cases where the latest available Edge Microvisor Toolkit version may not be desirable,
-and an update within the fleet of Edge Nodes should only install a specific available version of the OS.
+OS Resource manager discovers new OS profiles that represent compatible versions of EMT compatible with the running Edge Orchestrator and creates new OS Resources in the inventory.
+The Administrator is responsible for creating and applying an OS Update Policy per Hosts that need to be updated. The OS Update Policy can be one of two types:
+- Update to the latest available EMT version.
+- Update to a specific EMT version, with the version provided.
+Whenever an update is triggered, it will follow instructions given by the OS Update Policy: update to the latest EMT version found in the inventory, or update to the version specified in the OS Update Policy.  If a new version of the Edge Microvisor Toolkit is discovered,
 
-It is possible to disable the manual mode and enable OS Resource linkage inside the OS Resource Manager.
-In this mode the OS Resource manager will automatically link the new OS Resource
-containing the information about the latest Edge Microvisor Toolkit image,
-to the desired OS within the Edge Node instances associated with this type of OS.
-This means that whenever a newer version of the Edge Microvisor Toolkit is discovered,
-a subsequent scheduled update of the Edge Node will result in the latest Edge Microvisor Toolkit being installed.
+NOTE: If no OS Update Policy is linked to the Host, or the new version is not more recent, the update will not be triggered. The OS Update Policy can be modified at any time by the Administrator, and any changes will be applied to the next scheduled update.
 
 Immutable OS Update Flow
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -255,13 +248,15 @@ Immutable OS Update Flow
         participant na as Node Agent
     end
 
-    note over pua, na: EN OS is installed on partition A and all EN components are up
-
+    note over pua: EN OS is installed on partition A and all EN components are up
+    note over inv: OS Update Poolicy is linked to the Edge Node Instance
     note over  pua, mm: OS image update start time reached
         pua->>mm: PlatformUpdateStatusRequest(guid, STARTED)
         mm->>inv: Update Instance UpdateStatus (inst_id, UPDATE_IN_PROGRESS)
         pua->>pua: read metadata
-    note over  pua, mm: UPDATE OF IMMUTABLE OS IMAGE
+    note over pua, mm: UPDATE OF IMMUTABLE OS IMAGE
+    pua->>apt: Get list of APT packages that need to be updated into OSUpdateAvailable
+    apt->>pua: return
     pua->>pua: read metadata
     pua->>pua: compare sha and version of the installed image to the sha and version in the metadata
     alt versions are the same
@@ -278,7 +273,7 @@ Immutable OS Update Flow
             pua->>pua: install OS on partition B
             pua->>pua: verify installation before reboot
             alt installation fail
-                pua->>mm: UpdateStatus=FAILED StatusDetail.Status=Failed FailureReason=InstallationFail
+                pua->>mm: UpdateStatus=FAILED StatusDetail.Status=Failed FailureReason=InstallationFail OSUpdateAvailable
                 mm->>inv: UpdateStatus=FAIL
             else installation success
                 pua->>mm: UpdateStatus=STARTED
