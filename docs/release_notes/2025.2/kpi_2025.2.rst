@@ -1,4 +1,4 @@
-Version 3.1 Key Performance Indicators (KPIs)
+Version 2025.2 Key Performance Indicators (KPIs)
 =======================================================
 
 For 2025.2 release the following KPI goals were met that assured the quality
