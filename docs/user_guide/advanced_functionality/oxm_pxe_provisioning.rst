@@ -163,7 +163,7 @@ Prerequisites
 * Updated OS update script that supports OXM mode
 
 Preparing USB Update Media
-~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. On a machine with internet access, download the updated OS update script that supports OXM mode:
 
@@ -195,7 +195,7 @@ Preparing USB Update Media
       sudo umount /mnt/usb
 
 Performing OS Updates on Edge Node
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Connect the USB device to the target Edge Node and mount it:
 
