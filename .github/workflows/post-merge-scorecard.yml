@@ -1,0 +1,29 @@
+---
+# SPDX-FileCopyrightText: (C) 2025 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+# yamllint disable rule:line-length
+
+name: Post-Merge Scorecard CI
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  call-scorecard:
+    permissions:
+      security-events: write   # required for SARIF upload
+      id-token: write
+      contents: read
+
+    uses: open-edge-platform/orch-ci/.github/workflows/post-merge-scorecard.yml@490a8651344e504bba68a208b1104254046dacd5  # v0.1.65
+    with:
+      project_folder: "."
+    secrets:
+      SYS_ORCH_GITHUB: ${{ secrets.SYS_ORCH_GITHUB }}
