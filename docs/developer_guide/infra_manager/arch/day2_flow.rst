@@ -43,7 +43,9 @@ Details of the future update should be specified in the OS Update Policy which m
 To learn more about the OS Update Policy resource, see the
 :ref:`TBD guide on OS Update Policy <user_guide/advanced_functionality/host_schedule_main:Schedule Maintenance for Configured and Active Hosts>`. TBD
 
-When an OS update becomes available for a Host, the Web-UI notifies the administrator with an icon "OS update available" appearing on the Hosts page.. Then, inside the Host's **Updates** tab, the available updates are displayed. In case of EMT OS, the latest available version is displayed, whereas for mutable OS, the list of available Ubuntu packages is listed.
+When an OS update becomes available for a Host, the Web-UI notifies the administrator with an icon "OS update available" appearing on the Hosts page.
+Then, inside the Host's **Updates** tab, the available updates are displayed.
+In case of immuatable OS, it is the latest available EMT image version, whereas in case of mutable OS, it is a list of available Ubuntu packages.
 
 Once the update is finished (successful or failed), the administrator can check the latest update status in the **Status Details** tab of the Host's page. 
 The history of Host's updates is also available for review in the **Update History**" tab.
@@ -210,16 +212,12 @@ Mutable OS Update Flow
 Immutable OS Update
 -------------------
 
-In the case of the immutable Edge Microvisor Toolkit, the OS packages
-are part of the OS image and the only way to update the OS packages is by
-providing a new OS image with new package versions. To achieve this, two
-read-only partitions are created. The A and B partitions are used to persist
-original OS installation (A), and install a new OS in
-second partition (B). Depending on the success of the installation of
-updated OS, the OS is booted from the new partition (B) or rolled
-back to the original partition (A) in case of failure.
+In the case of the immutable Edge Microvisor Toolkit, the OS packages are part of the OS image and the only way to update the OS packages is by
+providing a new OS image with new package versions. To achieve this, two read-only partitions are created. The A and B partitions are used to persist
+original OS installation (A), and install a new OS in second partition (B). Depending on the success of the installation of
+updated OS, the OS is booted from the new partition (B) or rolled back to the original partition (A) in case of failure.
 
-OS Resource manager discovers new OS profiles that represent compatible versions of EMT compatible with the running Edge Orchestrator and creates new OS Resources in the inventory.
+OS Resource manager discovers new OS profiles that represent versions of EMT compatible with the running Edge Orchestrator and creates new OS Resources in the inventory.
 The Administrator is responsible for creating and applying an OS Update Policy per Hosts that need to be updated. The OS Update Policy can be one of two types:
 - Update to the latest available EMT version.
 - Update to a specific EMT version, with the version provided.
@@ -227,7 +225,7 @@ Whenever an update is triggered, it will follow instructions given by the OS Upd
 
 ..note::
 
-    If no OS Update Policy is linked to the Host, or the specified image version is not more recent than the currently installed version, the update will not be triggered. The new OS Update Policy can be linked to the Host at any time by the Administrator, and any changes will be applied to the next scheduled update.
+    If no OS Update Policy is linked to the Host, or the specified image version is not newer than the currently installed version, no update is triggered. An administrator can link a new OS Update Policy to the Host at any time - changes take effect during the next scheduled update.
 
 Immutable OS Update Flow
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -293,7 +291,7 @@ Immutable OS Update Flow
                         mm->>inv: UpdateStatus=FAIL
                     else update success
                         pua->>mm: UpdateStatus=UPDATED StatusDetail.Status=SUCCESS FailureReason=NoFailure, sends installed profile_name, profile_version
-                        mm->>inv: Filter OSResources by profile_name and profile_version=x, get one (A)
+                        mm->>inv: Filter OS Resources by profile_name and profile_version=x, get one (A)
                         inv-->>mm: return
                         mm->>inv: Set Instance UpdateStatus=DONE, current_os=A
                         pua->>mm: UpdateStatus=UP_TO_DATE
