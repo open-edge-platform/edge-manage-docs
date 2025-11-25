@@ -25,7 +25,7 @@ this results in MPS losing its CIRA connection with the edge node.
 - Once CIRA is disconnected, MPS returns 404 "Device not found/connected"
   errors for subsequent power operation requests
 - The orchestrator UI may continue showing the last known power status
-  (e.g., "Powered on") even though the device is disconnected. 
+  (e.g., "Powered on") even though the device is disconnected.
 - Power operations initiated from the orchestrator UI will fail with "Device not
   found/connected" errors
 
