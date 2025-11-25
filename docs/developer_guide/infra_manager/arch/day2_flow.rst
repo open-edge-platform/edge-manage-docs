@@ -39,22 +39,21 @@ An Edge Node update can be scheduled through the Web UI, which creates a dedicat
 window for the update process. To learn more about scheduling updates for Edge Nodes, see the
 :ref:`guide on scheduling maintenance <user_guide/advanced_functionality/host_schedule_main:Schedule Maintenance for Configured and Active Hosts>`.
 
-Details of the future update should be specified in the OS Update Policy which needs to be created and linked with Edge Nodes before scheduling the update.
+Details of the future update should be specified in the OS Update Policy which must be created and linked with Hosts before scheduling the update.
 To learn more about the OS Update Policy resource, see the
-:ref:`guide on scheduling maintenance <user_guide/advanced_functionality/host_schedule_main:Schedule Maintenance for Configured and Active Hosts>`.
+:ref:`TBD guide on OS Update Policy <user_guide/advanced_functionality/host_schedule_main:Schedule Maintenance for Configured and Active Hosts>`. TBD
 
-When an Edge Node update becomes available, the Web-UI notifies the administrator with an icon on the Host page
-and "Update available" prompt. Then, inside the "Updates" tab, the available updates are displayed. In case of EMT OS, the latest available version is displayed, whereas for mutable OS, the list of available Ubuntu packages is listed.
+When an OS update becomes available for a Host, the Web-UI notifies the administrator with an icon "OS update available" appearing on the Hosts page.. Then, inside the Host's **Updates** tab, the available updates are displayed. In case of EMT OS, the latest available version is displayed, whereas for mutable OS, the list of available Ubuntu packages is listed.
 
-Once the update is finished (successful or failed), the administrator can check the latest update status
-in the "Status" tab of the Host page in the Web UI.  The history of Edge Node updates is also available for review in the "Updates" tab. Each record includes the update status, start and end time, duration and link to the applied OS Update Plicy
+Once the update is finished (successful or failed), the administrator can check the latest update status in the **Status Details** tab of the Host's page. 
+The history of Host's updates is also available for review in the **Update History**" tab.
+Each record includes the update status, start and end time, duration and name of the applied OS Update Policy.
 
 EN Update Flow
 --------------
 
-The first diagram presents a high-level update flow, highlighting
-the exchange of information between the Platform Update Agent and the Maintenance Manager, as
-well as the actions performed by the OS Resource Manager.
+The first diagram presents a high-level update flow, highlighting the exchange of information between the Platform Update Agent and the Maintenance Manager,
+as well as the actions performed by the OS Resource Manager.
 The diagram also shows the creation of a maintenance window when an Edge Node update is required.
 
 Although the OS update flow remains consistent for mutable and immutable OSes from the Web-UI and CLI user perspective, the update process triggered by the user and performed by EIM is specific to each OS type (mutable/immutable).
