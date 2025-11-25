@@ -61,7 +61,7 @@ Follow the steps below to provision multiple Edge Nodes at once.
 
      .. code-block:: shell
 
-        curl https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/tags/standalone-node/3.1.0/standalone-node/installation_scripts/download_images.sh -o download_images.sh
+        curl https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/heads/main/standalone-node/installation_scripts/download_images.sh -o download_images.sh
         chmod +x download_images.sh
         ./download_images.sh NON-RT # or DV
 
@@ -73,7 +73,7 @@ Follow the steps below to provision multiple Edge Nodes at once.
      to ``/opt/user-apps`` after EN is provisioned.
 
      .. note::
-        See the document on `pre-loading user apps in the USB installer <https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/tags/standalone-node/3.1.0/standalone-node/docs/user-guide/pre-loading-user-apps.md>`_ for more details.
+        See the document on `pre-loading user apps in the USB installer <https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/heads/main/standalone-node/docs/user-guide/pre-loading-user-apps.md>`_ for more details.
 
      .. code-block:: shell
 
@@ -86,12 +86,12 @@ Follow the steps below to provision multiple Edge Nodes at once.
 
      .. code-block:: shell
 
-        curl https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/tags/standalone-node/3.1.18/standalone-node/installation_scripts/config-file -o config-file
+        curl https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/heads/main/standalone-node/installation_scripts/config-file -o config-file
 
    * Fill in the ``config-file`` as per the user guide in the in-line comments.
 
    * You can customize the custom-config section as per your use case. For example, see
-     `reference config for EMT image with Desktop Virtualization features <https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/tags/standalone-node/3.1.0/standalone-node/docs/user-guide/desktop-virtualization-image-guide.md>`_
+     `reference config for EMT image with Desktop Virtualization features <https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/heads/main/standalone-node/docs/user-guide/desktop-virtualization-image-guide.md>`_
 
    * Use ``orch-cli`` to generate custom cloud-init configuration based on ``config-file``.
 
@@ -169,7 +169,7 @@ Preparing USB Update Media
 
    .. code-block:: shell
 
-      curl https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/tags/standalone-node/3.1.18/standalone-node/provisioning_scripts/os-update.sh -o os-update.sh
+      curl https://raw.githubusercontent.com/open-edge-platform/edge-microvisor-toolkit-standalone-node/refs/heads/main/standalone-node/provisioning_scripts/os-update.sh -o os-update.sh
 
 #. Download the required OS image and checksum files:
 
