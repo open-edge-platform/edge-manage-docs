@@ -54,12 +54,10 @@ EN Update Flow
 
 The first diagram presents a high-level update flow, highlighting
 the exchange of information between the Platform Update Agent and the Maintenance Manager, as
-well as the actions performed by the OS Resource Manager in both manual and automatic modes.
+well as the actions performed by the OS Resource Manager.
 The diagram also shows the creation of a maintenance window when an Edge Node update is required.
 
-The actual update procedure for the Edge Microvisor Toolkit—delivered as a full OS image—differs
-from the process used for the mutable Ubuntu OS. Subsequent sections describe detailed update
-procedures specific to each system type.
+Although the OS update flow remains consistent for mutable and immutable OSes from the Web-UI and CLI user perspective, the update process triggered by the user and performed by EIM is specific to each OS type (mutable/immutable).
 
 High Level Day2 Flow
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -89,26 +87,26 @@ High Level Day2 Flow
             osrm->>reg: download Curated OS Profile manifests as per osProfileRevision
             reg-->>osrm: return
             osrm->>osrm: parse the manifests
-            alt osProfileRevision has changed (Edge Orchestrator was upgraded) or patched image version is abvailable
-                osrm->>inv: update existing OS resource and create OS Resources for new immutable OS Profiles
-            else osProfileRevision has not changed (Edge Orchestrator was not upgraded) and no patched image version is available
-                osrm->>inv: update existing OS Resources with latest OS profile information
+            opt osProfileRevision has changed (Edge Orchestrator was upgraded) or patched image version is abvailable
+                osrm->>inv: create OS Resources for new OS profiles
             end
             opt OSRM manualMode=false and osProfileRevision has changed (Edge Orchestrator was upgraded)
                 osrm->>inv: update desired_os of immutable OS instances with latest OS
             end
         end
         loop periodically
-            pua->>mm: PlatformUpdateStatusRequest(guid, update_status, cves, osUpdateAvailable)
-            mm->>inv: get Instance and linked OS Update Policy details
+            pua->>mm: PlatformUpdateStatusRequest(guid, update_status, osUpdateAvailable with mutable OS update availability)
+            mm->>inv: get Instance and linked OS Update Policy
             inv->>mm: return
             mm->>inv: get Schedule Resources for Instance
             inv->>mm: return
-            mm->>inv: get Latest OS Resource for Instance OS type (checking for update availability)
-            inv->>mm: return
-            mm->>inv: set Instance updateStatus, osUpdateAvailable and new CVEs if different from current
+            opt EN with an immutable OS 
+                mm->>inv: get Latest OS Resource for Instance OS type (checking for immutable OS update availability)
+                inv->>mm: return
+            end
+            mm->>inv: set Instance updateStatus, osUpdateAvailable if different from current
             mm->>inv: set OS Update Run if needed
-            mm->>pua: PlatformUpdateStatusResponce (os_type, os_image_source, update_source, update_schedule)
+            mm->>pua: PlatformUpdateStatusResponse (os_type, os_image_source, update_source, update_schedule)
             pua->>pua: write the update metadata to file
         end
         opt OS update available and new OS Update Policy needed
@@ -226,9 +224,11 @@ OS Resource manager discovers new OS profiles that represent compatible versions
 The Administrator is responsible for creating and applying an OS Update Policy per Hosts that need to be updated. The OS Update Policy can be one of two types:
 - Update to the latest available EMT version.
 - Update to a specific EMT version, with the version provided.
-Whenever an update is triggered, it will follow instructions given by the OS Update Policy: update to the latest EMT version found in the inventory, or update to the version specified in the OS Update Policy.  If a new version of the Edge Microvisor Toolkit is discovered,
+Whenever an update is triggered, it will follow instructions given by the OS Update Policy: update to the latest EMT version found in the inventory, or update to the version specified in the OS Update Policy.
 
-NOTE: If no OS Update Policy is linked to the Host, or the new version is not more recent, the update will not be triggered. The OS Update Policy can be modified at any time by the Administrator, and any changes will be applied to the next scheduled update.
+..note::
+
+    If no OS Update Policy is linked to the Host, or the specified image version is not more recent than the currently installed version, the update will not be triggered. The new OS Update Policy can be linked to the Host at any time by the Administrator, and any changes will be applied to the next scheduled update.
 
 Immutable OS Update Flow
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -249,7 +249,7 @@ Immutable OS Update Flow
     end
 
     note over pua: EN OS is installed on partition A and all EN components are up
-    note over inv: OS Update Poolicy is linked to the Edge Node Instance
+    note over inv: OS Update Policy is linked to the Edge Node Instance
     note over  pua, mm: OS image update start time reached
         pua->>mm: PlatformUpdateStatusRequest(guid, STARTED)
         mm->>inv: Update Instance UpdateStatus (inst_id, UPDATE_IN_PROGRESS)
