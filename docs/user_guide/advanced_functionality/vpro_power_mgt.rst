@@ -16,8 +16,7 @@ and enables vPro management capabilities on the device.
    during device onboarding. No explicit user action is required to trigger vPro activation for
    supported devices.
 
-   2. vPro profiles are currently created using Client Control Mode (CCM). CCM mode support is planned for
-   version 3.1. Support for Admin Control Mode (ACM) is targeted as technical debt for version 3.2.
+   2. vPro profiles are currently created using Client Control Mode (CCM).
 
 Enabling vpro while creating host
 
