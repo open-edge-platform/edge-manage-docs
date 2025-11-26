@@ -15,94 +15,30 @@ Update an Edge Node with the Immutable OS
 
 Updates to the Edge Microvisor Toolkit come in the form of new OS images available in the **Release Service**.
 A component called **OS Resource Manager** periodically queries the **Release Service** for the latest changes to the Edge Microvisor Toolkit profiles.
-When the Edge Orchestrator is upgraded, the OS Resource Manager detects new OS Profiles for
+When the Edge Orchestrator is upgraded or a patched version is available in the **Release Service**, the OS Resource Manager detects new OS Profiles for
 the Edge Microvisor Toolkit images that are compatible with the current Edge Orchestrator version.
 The latest Edge Microvisor Toolkit profile contains information about the latest compatible Edge Microvisor Toolkit image.
 
 .. figure:: images/update_profiles.png
       :alt: Edge Microvisor Toolkit new profile
 
-OS Resource Manager Default Operation (Manual Mode)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OS Resource Manager Operation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, the OS Resource Manager operates in manual mode. In this mode, it discovers and fetches OS Resources containing information about the latest Edge Microvisor Toolkit image,
+The OS Resource Manager discovers and fetches OS profiles containing information about the latest Edge Microvisor Toolkit image, creates the corresponding OS Resources,
 but does not automatically link them to edge node instances. You must manually associate the desired OS Resource with each edge node instance.
 Only instances that have been manually linked to a specific OS Resource will receive that OS version during a subsequent scheduled update.
 
-Manual OS Resource Linkage
+OS Resource Linkage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Manual mode allows for use cases where the latest-available Edge Microvisor Toolkit version may not be desirable,
-and an update within the fleet of edge nodes will only install a specific available version of the OS.
-To link an OS Resource to the desired OS within the edge-node instances, follow the steps below:
+OS Resource linkage is done by creating an **OS Update Policy** and associating it with the desired edge node instance. The policy specifies whether to update to a specific target OS version or to the latest compatible version.
 
-.. note::
+For details on creating an OS Update Policy and linking it to an edge node for Edge Microvisor Toolkit updates, see:
+:doc:`/user_guide/advanced_functionality/apply_new_os_update_policy`
 
-      The steps are only valid when the OS Resource Manager is deployed in manual mode (default).
-
-1. Obtain access to API and discover the available OS Resources:
-
-    .. code-block::
-
-          CLUSTER_FQDN=<example.domain>
-          ADMIN_USERNAME=<example_admin>
-          ADMIN_PASSWORD=<example_password>
-          CLIENT_ID=<example_clientID>
-          PROJECT=<example_project>
-
-          JWT_TOKEN=$(curl -s --location --request POST "https://keycloak.${CLUSTER_FQDN}/realms/master/protocol/openid-connect/token" \
-          --header 'Content-Type: application/x-www-form-urlencoded' \
-          --data-urlencode "grant_type=password" \
-          --data-urlencode "client_id=${CLIENT_ID}" \
-          --data-urlencode "username=${ADMIN_USERNAME}" \
-          --data-urlencode "password=${ADMIN_PASSWORD}" \
-          --data-urlencode "scope=openid profile email groups" | jq -r .access_token)
-
-          export MI_API_URL=https://api.${CLUSTER_FQDN}/v1/projects/${PROJECT}
-
-          curl -X GET "$MI_API_URL/compute/os" -H "accept:application/json" -H "Authorization: Bearer ${JWT_TOKEN}"  | jq
-
-#. Identify **resourceId** field value of the instance you want to update:
-
-      .. code-block::
-
-        # Find the Instance
-        curl -X GET "$MI_API_URL/compute/instances" -H "accept:application/json" -H "Authorization: Bearer ${JWT_TOKEN}"  | jq
-
-#. Identify **resourceId** field value of the OS resource you want to link to your instance:
-
-      .. code-block::
-
-        # Find the OS Resource
-        curl -X GET "$MI_API_URL/compute/os" -H "accept:application/json" -H "Authorization: Bearer ${JWT_TOKEN}"  | jq
-
-#. Update the desired OS field of the instance in the inventory, where **<OSRESOURCE_ID>** is the **resourceId** of the OS Resource you want to link to your instance,
-   and **<INSTANCE_ID>** is the **resourceId** of the instance you want to update:
-
-    .. code-block::
-
-        # Update the instance with selected OS Resource containing desired OS version. Replace **<OSRESOURCE_ID>** and **<INSTANCE_ID>** with desired IDs.
-        curl -X PATCH -H 'Accept: application/json' -H "Authorization: Bearer ${JWT_TOKEN}" --data '{"osID": "<OSRESOURCE_ID>"}' --header "Content-Type: application/json" $MI_API_URL/compute/instances/<INSTANCE_ID>
-
-
-#. After linking the OS Resource, any scheduled update will attempt to upgrade the Edge Microvisor Toolkit to the specified version.
-   To verify, check the **desiredOs** field in your instance - it should reference the OS Resource you linked:
-
-      .. code-block::
-
-        curl -X GET "$MI_API_URL/compute/instances" -H "accept:application/json" -H "Authorization: Bearer ${JWT_TOKEN}" | jq
-
-Enable OS Resource Manager in Automatic Mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-It is possible to disable the manual mode of the OS Resource Manager to introduce the automatic OS Resource linkage to instances.
-It will not only discover and fetch the updated and new, compatible OS profiles but also automatically link the new OS Resource containing information about the latest Edge Microvisor Toolkit image,
-to the desired OS within the edge node instances associated with this type of OS.
-This means that whenever a newer version of the the Edge Microvisor Toolkit is discovered, a subsequent scheduled update of the edge node will result in the latest OS being installed.
-To disable the manual mode for the Edge Orchestrator deployment, set the **os-resource-manager-manual-mode** option to **false**,
-in the `enable-osrm-manual-mode.yaml <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/orch-configs/profiles/enable-osrm-manual-mode.yaml>`_
-profile file of the Edge Orchestrator's edge-manageability-framework repository. Then, deploy the Edge Orchestrator with this profile.
-For more information on how to deploy and configure Edge Orchestrator, refer to the relevant installation guide for either the cloud or on-premises.
+#. After linking the OS Update Policy with the desired edge node instance, any scheduled update will attempt to upgrade the Edge Microvisor Toolkit according to the update details provided in the policy.
+Depending on the chosen policy type ( **UPDATE_POLICY_TARGET** or **UPDATE_POLICY_LATEST**) it will upgrade to the specified version or to the latest compatible version.
 
 Display Available Updates on UI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
