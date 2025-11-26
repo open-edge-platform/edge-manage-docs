@@ -4,14 +4,14 @@ Install a New Debian\* Package on Mutable OS
 This section assumes that you have provisioned and configured an edge node with an OS profile containing a mutable image, such as Ubuntu* OS version 22.04.
 The procedure described here does not work for edge nodes provisioned and configured with immutable operating systems, such as the Edge Microvisor Toolkit OS.
 
-You can install new Debian\* packages on edge nodes with mutable OSes using the :doc:`/api/edge_infra_manager`.
+You can install new Debian\* packages on edge nodes with mutable OSes using the :doc:`/api/edge_infra_manager`, Web-UI, or Orch CLI. This section describes how to install new packages using the Web UI.
 
 .. note:: Verify the source reliability, integrity, and security-related aspects of the Debian package before installing the package.
 
 .. note:: Intel does not support installing out of tree drivers and kernel when the secure boot feature is enabled on the edge node.
 
 Create an Advanced Packaging Tool (APT) Source
------------------------------------------------------------
+----------------------------------------------
 
 If the desired Debian packages are not included in the default Ubuntu\* APT repository or in any of the repositories (`updateSources` field) already set in the OS Resource,
 you must provide a new APT source using the DEB822 Source Format.
@@ -65,6 +65,9 @@ you must provide a new APT source using the DEB822 Source Format.
 Create OS Update Policy
 ------------------------
 
+**OS Update Policy** allows you to specify new Debian packages to be installed on the edge nodes as part of the update process, and to add new APT sources from which the new packages will be installed. For more information on **OS Update Policy** see :doc:`/user_guide/advanced_functionality/apply_new_os_update_policy`.
+Follow these steps to create an OS Update Policy that installs new packages on edge nodes with mutable OSes:
+
 i. Within the Web UI navigate to configuration section and open the **OS Update Policy** page.
 
 .. figure:: images/os-update-policy_screen_empty.png
@@ -89,7 +92,7 @@ The newly added packages will be installed on all the edge nodes that are config
         :alt: OS Update Policy - update packages example  
 
 Scheduling Ubuntu OS Update
-------------------------------------
+---------------------------
 
 To schedule an update of an edge node's Ubuntu OS, follow the steps for **OS Update** maintenance type described in the
 :doc:`/user_guide/advanced_functionality/host_schedule_main` section.
@@ -103,7 +106,7 @@ In case of an update failure, the Platform Update Agent will return a relevant f
       :alt: Ubuntu\* OS update in progress
 
 Successful Ubuntu OS Update
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Upon successful completion of the update procedure, the relevant status will be displayed in the UI for the updated host.
 Note that the update status will change to "No new updates available" shortly after completion.
@@ -112,6 +115,6 @@ Note that the update status will change to "No new updates available" shortly af
       :alt: Ubuntu OS update complete
 
 Update Considerations
----------------------------
+---------------------
 
 Updating an OS will reboot the edge node.
