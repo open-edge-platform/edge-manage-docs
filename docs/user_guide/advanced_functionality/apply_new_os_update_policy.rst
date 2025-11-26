@@ -7,13 +7,17 @@ Based on the selected OS Type, the relevant options will be enabled for update c
 
 OS Update Policy Types
 ----------------------
+
 Two kinds of OS Update Policies are available:
+
 - a policy that updates to the latest available OS image version (Update to Latest) - supported only for the immutable OS.
 - a policy that updates to a specific OS image version (Update to Target) - supported for both mutable and immutable OSes.
 
 OS Update Policy Fields
 ^^^^^^^^^^^^^^^^^^^^^
+
 The OS Update Policy contains the following fields:
+
 - **Name** - The name of the OS Update Policy.
 - **Description** - A description of the OS Update Policy.
 - **OS Type** - The type of operating system (**mutable** or **immutable**).
@@ -23,29 +27,28 @@ The OS Update Policy contains the following fields:
 - **APT Sources** - (Optional, mutable OS only) New APT sources from which the new packages will be installed.
 - **Target OS** - (Immutable OS only, target update policy) The target OS image version to which the edge nodes will be updated.
   
-.. note::
-        For immutable OS, updating the OS cannot be performed together with updating the kernel command; these require separate OS Update Policies and separately scheduled updates.
+.. note:: For immutable OS, updating the OS cannot be performed together with updating the kernel command; these require separate OS Update Policies and separately scheduled updates.
 
 Update to Target
 ^^^^^^^^^^^^^^^^
 
 For mutable OS updates the target OS Update Policy allows for:
+
 - updating only current installed packages to their latest available versions.
 - specifying new Debian packages to be installed on the edge nodes as part of the update process.
 - adding new APT sources from which the new packages will be installed.
 - updating kernel command-line parameters.
 
-.. note::
-        For more information on how to install new packages and configure APT sources, see :doc:`/user_guide/advanced_functionality/install_new_packages`.
+.. note:: For more information on how to install new packages and configure APT sources, see :doc:`/user_guide/advanced_functionality/install_new_packages`.
 
 For immutable OS updates the target OS Update Policy allows for:
 - specifying the target OS image version to which the edge nodes will be updated
 - updating kernel command-line parameters.
 
-.. note::
-        For immutable OS, updating the OS cannot be performed together with updating the kernel command; these require separate OS Update Policies and separately scheduled updates.
+.. note:: For immutable OS, updating the OS cannot be performed together with updating the kernel command; these require separate OS Update Policies and separately scheduled updates.
 
 For immutable OS updates, the latest OS Update Policy allows for:
+
 - updating to the latest available OS image version.
 
 Create OS Update Policy and Link it to Host Using Orch CLI
@@ -172,10 +175,12 @@ Immutable OS - update to the latest OS version.
 
 
 ..note::
+
         For immutable OS, updating the OS cannot be performed together with updating the kernel command; these require separate OS Update Policies and separately scheduled updates.
 
 Associate the OS Update Policy with Hosts
 -----------------------------------------
+
 Within the Web UI, navigate to the **Hosts** page, open the desired Host details page, and select **Updates** tab. Here, set applied policy by selecting the created OS Update Policy from the **OS Update Policy** drop-down list.
 The newly added packages will be installed on all the edge nodes that are configured with the given OS Update Policy if a maintenance window is scheduled for that edge node.
 
