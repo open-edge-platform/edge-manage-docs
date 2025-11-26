@@ -14,7 +14,7 @@ Two kinds of OS Update Policies are available:
 - a policy that updates to a specific OS image version (Update to Target) - supported for both mutable and immutable OSes.
 
 OS Update Policy Fields
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 The OS Update Policy contains the following fields:
 
@@ -29,27 +29,29 @@ The OS Update Policy contains the following fields:
   
 .. note:: For immutable OS, updating the OS cannot be performed together with updating the kernel command; these require separate OS Update Policies and separately scheduled updates.
 
-Update to Target
-^^^^^^^^^^^^^^^^
+OS Update Policy Types Details
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For mutable OS updates the target OS Update Policy allows for:
+For mutable OS updates the **UPDATE_POLICY_TARGET** OS Update Policy allows for:
 
 - updating only current installed packages to their latest available versions.
 - specifying new Debian packages to be installed on the edge nodes as part of the update process.
 - adding new APT sources from which the new packages will be installed.
 - updating kernel command-line parameters.
 
-.. note:: For more information on how to install new packages and configure APT sources, see :doc:`/user_guide/advanced_functionality/install_new_packages`.
+        .. note:: For more information on how to install new packages and configure APT sources, see :doc:`/user_guide/advanced_functionality/install_new_packages`.
 
-For immutable OS updates the target OS Update Policy allows for:
+For immutable OS updates the **UPDATE_POLICY_TARGET** OS Update Policy allows for:
 - specifying the target OS image version to which the edge nodes will be updated
 - updating kernel command-line parameters.
 
-.. note:: For immutable OS, updating the OS cannot be performed together with updating the kernel command; these require separate OS Update Policies and separately scheduled updates.
+        .. note:: For immutable OS, updating the OS cannot be performed together with updating the kernel command; these require separate OS Update Policies and separately scheduled updates.
 
-For immutable OS updates, the latest OS Update Policy allows for:
+For immutable OS updates, the **UPDATE_POLICY_LATEST** OS Update Policy allows for:
 
 - updating to the latest available OS image version.
+
+.. note:: The **UPDATE_POLICY_LATEST** OS Update Policy is supported only for the immutable OS.
 
 Create OS Update Policy and Link it to Host Using Orch CLI
 ----------------------------------------------------------
