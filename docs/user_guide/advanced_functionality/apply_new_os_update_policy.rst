@@ -15,6 +15,7 @@ Update to Target
 ^^^^^^^^^^^^^^^^
 
 For mutable OS updates the target OS Update Policy allows for:
+- updating only current installed packages to their latest available versions.
 - specifying new Debian packages to be installed on the edge nodes as part of the update process.
 - adding new APT sources from which the new packages will be installed.
 - updating kernel command-line parameters.
@@ -46,7 +47,7 @@ ii. Click on the **Create OS Update Policy** button to open the **Create OS Upda
     OS Update Policy contains fields specific to mutable OS update and Immutable OS update. Choose the OS type accordingly.
 
 .. figure:: images/os-update-policy_type.png
-        :alt: OS Update Policy - OS types 
+        :alt: OS Update Policy - OS types
 
 iii. If selected OS type is immutable, choose the OS Update Policy type: **Update To Target** or **Update To Latest**.
 
@@ -69,7 +70,7 @@ Once the relevant fields are filled, hit the **Create** button to create the OS 
 .. figure:: images/os-update-policy_mutable_kernel_and_packages.png
         :alt: OS Update Policy - Target OS update per mutable OS - new packages and kernel command update
 
-.. figure:: images/os-update-policy_mu_OS.png
+.. figure:: images/os-update-policy_immutable_target_os.png
         :alt: OS Update Policy - Target OS update example per immutable OS
 
 .. figure:: images/os-update-policy_immutable_kernel.png
@@ -88,15 +89,15 @@ The newly added packages will be installed on all the edge nodes that are config
         :alt: OS Update Policy Association with Host
 
 Scheduling an OS Update
-------------------------------------
+-----------------------
 
 Upon successful creation and assignment of an OS Update Policy, a new update can be scheduled following the steps described in the
 :doc:`/user_guide/advanced_functionality/host_schedule_main` section.
-Note that no OS Update Policy is assingned to the host before the update is expected to start - the edge node update will not start, and no status change will be reported.
+Note that if no OS Update Policy is assigned to the host before the update is expected to start - the edge node update will not start, and no status change will be reported.
 
 
 OS Update Policy Assignment Considerations
--------------------------------------------
+------------------------------------------
 
 An OS Update Policy assigned to a host, or used in a historical update of an existing host cannot be deleted. Web UI does not allow for modifying OS Update Policies.
-In case a change is required to an OS Update Policy, create a new OS Update Policy with the desired configuration and assign it to the host.     
+In case a change is required to an OS Update Policy, create a new OS Update Policy with the desired configuration and assign it to the host.
