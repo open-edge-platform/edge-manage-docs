@@ -6,6 +6,9 @@ name: Publish Documentation
 on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   publish-documentation:
     permissions:
