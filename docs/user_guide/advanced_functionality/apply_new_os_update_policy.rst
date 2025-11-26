@@ -1,7 +1,11 @@
 Apply an OS Update Policy
 ============================================
 
-This section assumes that you have provisioned and configured an edge node with an OS profile containing a mutable or immutable image, such as Ubuntu* OS version 22.04 or the Edge Microvisor Toolkit OS.
+**OS Update Policy** is an invntory resource that allows you to manage OS updates for edge nodes running either mutable or immutable operating systems.
+
+.. note:: It must be associated with edge node instances to enable OS updates during scheduled maintenance windows, except when only updating existing mutable OS packages to their latest available versions listed in host details view - the **Updates** tab.
+
+This section assumes you have provisioned and configured an edge node with an OS profile using a mutable or immutable image, such as Ubuntu OS 22.04 or the Edge Microvisor Toolkit OS.
 The procedure described here works for edge nodes provisioned and configured with both mutable and immutable operating systems, however during creation of the OS Update Policy, ensure to select the appropriate OS Type. 
 Based on the selected OS Type, the relevant options will be enabled for update configuration.
 

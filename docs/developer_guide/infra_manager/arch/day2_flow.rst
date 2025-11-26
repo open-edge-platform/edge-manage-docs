@@ -39,9 +39,9 @@ An Edge Node update can be scheduled through the Web UI, which creates a dedicat
 window for the update process. To learn more about scheduling updates for Edge Nodes, see the
 :ref:`guide on scheduling maintenance <user_guide/advanced_functionality/host_schedule_main:Schedule Maintenance for Configured and Active Hosts>`.
 
-Details of the future update should be specified in the OS Update Policy which must be created and linked with Hosts before scheduling the update.
-To learn more about the OS Update Policy resource, see the
-:ref:`TBD guide on OS Update Policy <user_guide/advanced_functionality/host_schedule_main:Schedule Maintenance for Configured and Active Hosts>`. TBD
+Define the intended update in an OS Update Policy and link it to the target Hosts before scheduling the maintenance window. 
+An OS Update Policy is not required for routine updates of mutable Ubuntu OS packages; administrators can apply the latest available packages directly from the Web UI under the Host’s **Updates** tab.
+To learn more about the OS Update Policy resource, see the :doc:`/user_guide/advanced_functionality/apply_new_os_update_policy`. 
 
 When an OS update becomes available for a Host, the Web-UI notifies the administrator with an icon "OS update available" appearing on the Hosts page.
 Then, inside the Host's **Updates** tab, the available updates are displayed.
