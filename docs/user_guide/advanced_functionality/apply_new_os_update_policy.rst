@@ -60,25 +60,57 @@ Provide Update Details
 Following the selection of OS Update Policy type, provide the relevant update details as described below. The following are examples of available configurations of OS Update Policies.
 Once the relevant fields are filled, hit the **Create** button to create the OS Update Policy.
 
+Example 1
+_________
+
+Mutable OS - OS update, no kernel command update and no new packages installation.
 
 .. figure:: images/os-update-policy_mutable_only_os.png
-        :alt: OS Update Policy - Target OS update example per mutable OS - no kernel command update and no new packages
+        :alt: OS Update Policy - OS update example per mutable OS - no kernel command update and no new packages
+
+Example 2
+_________
+
+Mutable OS - OS update and new packages installation.
 
 .. figure:: images/os-update-policy_update_packages.png
-        :alt: OS Update Policy - Target OS update per mutable OS - new packages example
+        :alt: OS Update Policy - OS update per mutable OS - new packages example
+
+Example 3
+_________
+
+Mutable OS - OS update, new packages and kernel command update.
 
 .. figure:: images/os-update-policy_mutable_kernel_and_packages.png
-        :alt: OS Update Policy - Target OS update per mutable OS - new packages and kernel command update
+        :alt: OS Update Policy - OS update per mutable OS - new packages and kernel command update
+
+Example 4
+_________
+
+Immutable OS - update to a specific OS version.
 
 .. figure:: images/os-update-policy_immutable_target_os.png
-        :alt: OS Update Policy - Target OS update example per immutable OS
+        :alt: OS Update Policy - OS update example per immutable OS
+
+Example 5
+_________
+
+Immutable OS - kernel command update.   
 
 .. figure:: images/os-update-policy_immutable_kernel.png
-        :alt: OS Update Policy - Target Kernel Command update example per immutable OS (TBD)
+        :alt: OS Update Policy - OS update example per immutable OS - kernel command update (TBD)
+
+Example 6
+_________
+
+Immutable OS - update to the latest OS version.
 
 .. figure:: images/os-update-policy_immutable_latest.png
         :alt: OS Update Policy - Latest OS update example per immutable OS
 
+
+..note::
+        For immutable OS, updating the OS cannot be performed together with updating the kernel command; these require separate OS Update Policies and separately scheduled updates.
 
 Associate the OS Update Policy with Hosts
 -----------------------------------------
