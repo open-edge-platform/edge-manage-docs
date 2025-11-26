@@ -99,5 +99,5 @@ Note that if no OS Update Policy is assigned to the host before the update is ex
 OS Update Policy Assignment Considerations
 ------------------------------------------
 
-An OS Update Policy assigned to a host, or used in a historical update of an existing host cannot be deleted. Web UI does not allow for modifying OS Update Policies.
-In case a change is required to an OS Update Policy, create a new OS Update Policy with the desired configuration and assign it to the host.
+An OS Update Policy that is assigned to a host, or has been used in any past update for an existing host, cannot be deleted.
+The Web UI does not support editing OS Update Policies. To change a policy, create a new OS Update Policy with the desired configuration and assign it to the host.
