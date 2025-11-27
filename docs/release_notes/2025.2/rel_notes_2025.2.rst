@@ -24,46 +24,27 @@ onboarded node.
 
 Key Highlights of the 2025.2 release include, but are not limited to:
 
-* New: Support for Out-of-band management using `Intel AMT/vPRO <https://www.intel.com/content/www/us/en/architecture-and-technology/vpro/vpro-manageability/overview.html>`_.
+* New: Ubuntu 24.04 LTS support with 6.11.0-17 kernel 
+* New: Custom OS profile
+* New: Bitnamilegacy registry updated with alternative sources
+* New: Security Compliance of an Edge Node is also now implemented through fixed CVE tracking for installed packages on EMT.
+* New: Security Compliance of an Edge Node is also now implemented through open and fixed CVE tracking for installed packages on Ubuntu.
+* New: ISM integration
+* New: Command line parameter 
+* Update: Orch-cli updated with features on par with GUI
+* Update: Architecture changes to improve the stability of Out-of-band management using `Intel AMT/vPRO <https://www.intel.com/content/www/us/en/architecture-and-technology/vpro/vpro-manageability/overview.html>`_.
   Integration of vPro Device Manageability services with EMF, allowing use of
-  out-of-band management features. Functionality supported this release include
-  Remote Device Power ON/OFF and Remote Device Reboot capabilities.
-* Enhanced Provisioning capabilities and improvements
-    * New: Scale provisioning of Standalone edge nodes that with Operating system and
-      lightweight kubernetes - (OXM Profile). Support for PXE boot along with HTTPs
-      and USB boot.
-    * New: Support New EMT Desktop virtualization image with advanced GPU SR-IOV and
-      Virtualization capabilities.
-    * New: Per edge Edge Node configuration through custom cloud-init script,
-      to provide fixed IP during provisioning, specific proxies, enabling
-      Kubernetes right at the very installation of the nodes or finally
-      configuring GPU SRIOV or X11.
-    * Update: HookOS has been replaced with a lightweight EMT, ensuring full control
-      and optimization of the components used to provision an EN.
-    * Update: Support for onboarding edge nodes without Serial number
-    * Update: Simplified host provisioning flow in the UI e.g., user can choose the kubernetes cluster to be deployed
-      during registration in UI.
-* New: Support for Discrete GPU from Intel Battlemage B580(on EMT) and Nvidia P100(on Ubuntu 22.04) along with
-  Intel integrated GPU with GPU SR-IOV(with IDV profile in OXM deployment).
-* New: Security Compliance of an Edge Node is also now implemented through open CVE
-  tracking for installed packages on EMT.
-* New: Kubernetes distribution on edge node is migrated from rke2 to k3s
-  achieving lightweight deployments in resource-constrained devices.
-* New: Vastly improved Application Onboarding
-    * Ability to directly import helm charts, thus removing the need to write
-      the deployment package for single helm chart applications.
-    * Deployment Packages are now directly exportable from the user interface,
-      to help portability and debuggability.
-    * Deployment packages can now be imported as tar.gz files,
-      making them more portable and easy to share.
-* New: EMF can now be configured using - orch-cli a command line utility similar to kubectl.
+  out-of-band management features. 
 * New: Support for reference applications
-    * `Weld Porosity <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=weld-porosity-sample-application>`_
-    * `Smart Parking <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=smart-parking>`_
-    * `Loitering Detection <https://edge-services-catalog-prod-qa.apps1-bg-int.icloud.intel.com/details/?microserviceType=recipe&microserviceNameForUrl=loitering-detection>`_
-* Update: Additionally, efforts have been focusing on Trusted Compute to enable
-  customers, benchmark it, continuous monitoring and workload isolation use case
-  were enhanced for robustness and adapt to minimal common EMT as trusted OS.
+    * Pallet Defect Detection v2.5.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
+    * Weld Porosity Detection v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.m>`__.
+    * Worker Safety Gear Detection v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
+    * PCB Anomaly Detection v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.m>`__.
+    * Image-Based Video Search v1.1.0  <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/image-based-video-search/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
+    * Smart Parking v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/metro-vision-ai-app-recipe/smart-parking/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
+    * Loitering Detection v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/metro-vision-ai-app-recipe/smart-parking/docs/user-guide/how-to-deploy-with-edge-orchestrator.mdd>`__.
+    * Chat Q&A Sample Application v2.0.1 <https://github.com/open-edge-platform/edge-ai-libraries/blob/release-2025.2.0/sample-applications/chat-question-and-answer/docs/user-guide/deploy-with-edge-orchestrator.md>`__.
+
 
 All of the codebase is Apache\* software version 2.0 licensed and available on Github.
 
@@ -73,15 +54,8 @@ and the `Edge Manageability Framework README file <https://github.com/open-edge-
 Upgrades from Previous Releases
 ----------------------------------
 
-Breaking Change Notice
-Upgrading from EMF 3.0 to 3.1 introduces a breaking change on
-edge nodes due to a shift in the Kubernetes distribution—from RKE2 to K3s.
-As a result, all edge nodes must be re-provisioned during the upgrade
-process to ensure compatibility and stability.
-
 Edge Manageability Framework (EMF) version 3.1 supports direct
-upgrades from version 3.0 only using `onprem upgrade guide <https://github.com/open-edge-platform/edge-manage-docs/blob/main/docs/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.rst>`_ and `cloud upgrade guide <https://github.com/open-edge-platform/edge-manage-docs/blob/main/docs/deployment_guide/cloud_deployment/cloud_how_to/cloud_upgrade.rst>`_.
-Versions earlier than 3.0 are not compatible with the 3.1 upgrade path.
+upgrades from version 3.1 to 2025.2 both for on-prem <guide> and AWS deployments <guide>
 
 
 Known Issues
