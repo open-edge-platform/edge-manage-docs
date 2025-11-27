@@ -4,7 +4,7 @@ Deploy Intel Solutions
 This section guides you through the deployment of several Intel® solutions for the edge, including AI-Suites, and
 real-time applications on top of Intel® Open Edge Platform AI.
 
-1. `Open Edge Intel Platform Software Catalog - Pallete Defect Detection Sample Application v2.5.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
+1. `Open Edge Intel Platform Software Catalog - Pallet Defect Detection Sample Application v2.5.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
 2. `Open Edge Intel Platform Software Catalog - Weld Porosity Detection Sample Application v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/weld-porosity/how-to-deploy-with-edge-orchestrator.md>`__.
 3. `Open Edge Intel Platform Software Catalog - Worker Safety Gear Detection Sample Application v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/worker-safety-gear-detection/how-to-deploy-with-edge-orchestrator.md>`__.
 4. `Open Edge Intel Platform Software Catalog - PCB Anomaly Detection Sample Application v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pcb-anomaly-detection/how-to-deploy-with-edge-orchestrator.md>`__.
