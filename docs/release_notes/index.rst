@@ -22,9 +22,19 @@ Version 3.1
 - :doc:`/release_notes/3.1/containers_helm_charts_3.1`
 
 
+Version 2025.2
+------------------
+
+- :doc:`/release_notes/2025.2/rel_notes_2025.2`
+- :doc:`/release_notes/3.1/kpi_2025.2`
+- :doc:`/release_notes/3.1/third_party_components_2025.2`
+- :doc:`/release_notes/3.1/containers_helm_charts_2025.2`
+
+
 .. toctree::
    :hidden:
 
    3.0/version_3.0
    3.1/version_3.1
+   2025.2/version_2025.2
 
