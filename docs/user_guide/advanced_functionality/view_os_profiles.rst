@@ -29,6 +29,8 @@ By clicking on the action menu you can get more details about a specific OS Prof
 
 * **Update Sources:** The list of OS resource update sources
 * **Repository URL:** The URL repository of the OS update sources
+* **Existing CVEs URL:** The URL from where existing CVEs information is obtained
+* **Fixed CVEs URL:** The URL from where fixed CVEs information is obtained
 * **sha256:** SHA256 checksum of the OS resource in hexadecimal
 * **Kernel Command:** The OS resource kernel command
 
@@ -43,10 +45,13 @@ Click the **Installed Packages** tab to view information about list of installed
 View CVEs Details
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Click the **Cves** tab to view the information about list of existing CVEs on the OS resource (only for immutable OS):
+Click the **Existing Cves** and **Fixed Cves** tab to view the information about list of existing CVEs and fixed CVEson the OS resource:
 
 .. figure:: images/os_profile_drawer_cves.png
-   :alt: View CVEs Details
+   :alt: View Existing CVEs Details
+
+.. figure:: images/os_profile_drawer_cves.png
+   :alt: View Fixed CVEs Details
 
 Available OS Resources during the Host Configuration
 ----------------------------------------------------
