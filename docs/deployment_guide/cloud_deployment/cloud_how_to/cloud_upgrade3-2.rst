@@ -8,7 +8,7 @@ Overview
 --------
 
 This document provides step-by-step instructions to upgrade Cloud Edge
-Manageability Framework (EMF) from version **3.0** to **3.1**.
+Manageability Framework (EMF) from version **3.1** to **3.2**.
 
 Prerequisites
 -------------
@@ -238,4 +238,14 @@ If apps remain out-of-sync:
 
    kubectl patch -n <NAMESPACE> application <APP NAME> \
      --patch-file /tmp/argo-cd/sync-patch.yaml --type merge
+
+Step 3: Verification
+~~~~~~~~~~~~~~~~~~~~
+
+Log into web UI of the orchestrator. Go to Settings->OS profiles. There you should see the any of the toolkit version upgraded to latest.
+
+Post-Upgrade Steps Edgenode onboarding process
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+After a successful upgrade, follow the EN onboarding process as outlined in the official documentation:
+`Set Up Edge Infrastructure – Intel Open Edge Platform <https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/set_up_edge_infra/index.html>`_
 
