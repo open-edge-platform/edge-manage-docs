@@ -119,17 +119,13 @@ Configure cluster deployment options:
 .. code-block:: bash
 
    orchestrator-admin:~$ ./configure-cluster.sh
+   orchestrator-admin:~$ make upgrade
 
-This redeploys upgraded apps starting with **root-app**.
-
-You will notice **infra-external** app failing due to
-`orch-infra-rps` and `orch-infra-mps` database inconsistencies.
-
-Proceed to **patch External Secrets and Vault**.
 
 Step 2: Patch External Secrets and Vault
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Once the upgrade step is completed, all the apps won't be coming up.
 Follow the steps below to clean up old External Secrets resources, remove
 finalizers, reinstall CRDs, and recover ArgoCD applications.
 
