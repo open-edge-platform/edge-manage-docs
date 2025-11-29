@@ -66,3 +66,29 @@ Recommended Workflow (On-Prem Upgrade)
    - Special case: For namespace-label, wait-istio-job, tenancy-api-mapping, try Sync first; if it does not work, delete the application and resync root-app.
    - postgresql-secret missing: Sync the main application first, then apply Sync -> Delete CRD/Job if Degraded -> Resync.
 5. Verify the application is Healthy and Synced before moving on.
+
+
+Known Issues
+============
+
+- **Cluster deletion hangs** for clusters originally installed on **3.1.3** (ITEP-82277).
+
+- **Manual datamodel deletion** may be required if the latest OS profile is not fetched after the upgrade:
+
+  .. code-block:: bash
+
+     kubectl delete application tenancy-api-mapping -n onprem
+     kubectl delete application tenancy-datamodel -n onprem
+     kubectl delete deployment -n orch-infra os-resource-manager
+     next sync root-app
+
+- For **PXE boot certificate issues**, restart the certificate and dkam pods, then wait for the updated certificate to propagate:
+
+  .. code-block:: bash
+
+     kubectl delete secret tls-boots -n orch-boots
+     kubectl delete secret boots-ca-cert -n orch-gateway
+     kubectl delete secret boots-ca-cert -n orch-infra
+     kubectl delete pod -n orch-infra -l app.kubernetes.io/name=dkam 2>/dev/null
+
+After completing the above steps, **wait approximately 5 minutes** for dkam to update the latest certificates and dependent packages.
