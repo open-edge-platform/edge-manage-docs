@@ -3,41 +3,38 @@ AMT Issues
 
 This section covers troubleshooting AMT issues for Edge Orchestrator.
 
-Failure while activating the AMT from platform-managability-agent
--------------------------------------------------------------------
+External Power Off on vPro Edge Nodes
+---------------------------------------
 
-**Symptom:** Failure in AMT activation stage with an error incorrect user name or password or user account temporarily locked
+**Important:** External power operations should **NOT** be performed on
+vPro-initiated edge nodes.
 
-**Solution:** For the 3.0 release, login to the edge node and then deactivate amt using below command
+**Background:** When an external power off is performed (e.g., physically
+pressing the power button or using APC/KVM/BMC to power off the device), it
+completely shuts down the edge node at the CSME level.
+From the Device Management Toolkit (DMT) perspective,
+this results in MPS losing its CIRA connection with the edge node.
 
-.. code-block:: bash
+**Expected Behavior:**
 
-    sudo rpc deactivate -local
+- When a vPro edge node is powered off externally, the CIRA connection to MPS
+  is immediately lost
+- MPS will attempt to communicate with the device and receive timeout errors
+- After multiple timeout failures, MPS will disconnect the CIRA connection and
+  update the device status in the database
+- Once CIRA is disconnected, MPS returns 404 "Device not found/connected"
+  errors for subsequent power operation requests
+- The orchestrator UI may continue showing the last known power status
+  (e.g., "Powered on") even though the device is disconnected.
+- Power operations initiated from the orchestrator UI will fail with "Device not
+  found/connected" errors
 
-In orchestrator side we need to restart the rps service using the following command
+**Recommendation:** Always use the orchestrator UI or orch-cli to perform power
+operations (Power On, Power Off, Restart) rather than external methods to
+maintain proper device state management and CIRA connectivity.
 
-.. code-block:: bash
+**Reference:**
 
-    kubectl delete pod -n orch-infra rps-<pod-id>
-
-Replace `<pod-id>` with proper pod id.
-
-AMT activation didn't complete by the expected time(2~3minute)
-----------------------------------------------------------------
-
-**Symptom:** AMT activation status is not completed or failed
-
-**Solution:** For the 3.0 release, It is recommended to login to the edge node and then check the amtinfo logs for any errors or issues.
-
-.. code-block:: bash
-
-    sudo rpc amtinfo
-
-If the above command gives "RAS Remote Status" as "connecting" then do following steps
-to recover from the error.
-
-.. code-block:: bash
-
-    sudo rpc deactivate -local
-    sudo systemctl restart platform-managability-agent.service
+- `Architecture Overview <https://device-management-toolkit.github.io/docs/2.27/Reference/architectureOverview/>`_
+- `DMT Troubleshooting Guide <https://device-management-toolkit.github.io/docs/2.27/Reference/troubleshooting/>`_
 
