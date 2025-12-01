@@ -209,11 +209,15 @@ The following is an example:
 
 Default Tenancy
 -----------------
+
 If you wish to use Edge Orchestrator with a single tenant deployment, a default organization
 and project can be created during Edge Orchestrator installation by enabling the single tenancy flag.
+See :doc:`/deployment_guide/on_prem_how_to/onprem_single_tenancy` for details on enabling this flag.
 In this case, a default organization and a default project is created named "default".  
 Upon enabling this flag and successful installation of the Edge Orchestrator, a user called `tenant-admin`` is created in Keycloak solution, and added to the
-`Org Admin Group <./shared_iam_groups.html#org-admin-group>`__ and `default_Project-Manager-Group <./shared_iam_groups.html#default-project-manager-group>`__.
+`Org Admin Group <./shared_iam_groups.html#org-admin-group>`__ , `Project-Manager-Group <./shared_iam_groups.html#org-id-project-manager-group>`__, 
+`Edge-Manager-Group <./shared_iam_groups.html#project-id-edge-manager-group>`__, `Edge-Onboarding-Group <./shared_iam_groups.html#project-id-edge-onboarding-group>`__,
+`Edge-Operator-Group <./shared_iam_groups.html#edge-operator-group>`__ and `Host-Manager-Group <./shared_iam_groups.html#project-id-host-manager-group>`__.
 The password for this user is set during installation.
 
 Retrieve Password for tenant-admin user
@@ -231,9 +235,9 @@ You can also view the secret details including labels:
   .. code-block:: shell
 
     kubectl describe secret tenant-admin-password -n orch-iam
-```
 
-**Note**: The password is base64 encoded in the secret and must be decoded for use.
+.. note::
+  The password is base64 encoded in the secret and must be decoded for use.
 
 Delete Tenants
 --------------
