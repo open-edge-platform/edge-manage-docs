@@ -104,7 +104,7 @@ html_context = {
     "color_scheme": "tb",
 }
 html_theme_options = {
-    "navigation_depth": 3,
+    "navigation_depth": 5,
     "show_toc_level": 1,
     "show_nav_level": 1,
     # "collapse_navigation": False,
