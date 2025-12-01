@@ -131,7 +131,6 @@ In the next section, you will learn how to modify the charts for this tutorial.
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
 
    deployment-helm-tutorial-server
    deployment-helm-tutorial-web-ui

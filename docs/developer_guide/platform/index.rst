@@ -3,11 +3,6 @@ Platform Services
 
 Learn more about how the Edge Orchestrator is deployed:
 
-.. toctree::
-   :maxdepth: 2
-
-   arch/index
-   buildall
 
 Key Components
 --------------
@@ -27,3 +22,9 @@ Platform Services components include:
   Kubernetes\* jobs, Helm charts, Dockerfiles, and Go\* code for tasks such as
   namespace creation, policy management, Traefik route configuration, IAM and
   multitenancy.
+
+
+.. toctree::
+
+   arch/index
+   buildall
