@@ -207,6 +207,34 @@ The following is an example:
 
 #. After creating a project, the administrator must add users to the project using Keycloak solution.  Obtain the project ID in the UI or through API, then go to Keycloak solution to add a user to the `group <https://www.keycloak.org/docs/latest/server_admin/index.html#proc-managing-groups_server_administration_guide>`_ associated to the project ID.
 
+Default Tenancy
+-----------------
+If you wish to use Edge Orchestrator with a single tenant deployment, a default organization
+and project can be created during Edge Orchestrator installation by enabling the single tenancy flag.
+In this case, a default organization and a default project is created named "default".  
+Upon enabling this flag and successful installation of the Edge Orchestrator, a user called `tenant-admin`` is created in Keycloak solution, and added to the
+`Org Admin Group <./shared_iam_groups.html#org-admin-group>`__ and `default_Project-Manager-Group <./shared_iam_groups.html#default-project-manager-group>`__.
+The password for this user is set during installation.
+
+Retrieve Password for tenant-admin user
+~~~~~~~~~~~~~~~
+
+To retrieve the tenant-admin password after tenant initialization, use the following command:
+
+  .. code-block:: shell
+
+    kubectl get secret tenant-admin-password -n orch-iam -o jsonpath='{.data.admin-password}' | base64 -d
+
+
+You can also view the secret details including labels:
+
+  .. code-block:: shell
+
+    kubectl describe secret tenant-admin-password -n orch-iam
+```
+
+**Note**: The password is base64 encoded in the secret and must be decoded for use.
+
 Delete Tenants
 --------------
 
