@@ -57,6 +57,18 @@ Upgrades from Previous Releases
 Edge Manageability Framework (EMF) version 3.1 supports direct
 upgrades from version 3.1 to 2025.2 both for on-prem <guide> and AWS deployments <guide>
 
+* Clusters created with 3.1 release and deleted in 2025.2 require a manual step to be re-used for creating new clusters in the 2025.2 release.
+  Two options:
+
+  1. Re-provision the edge node and recreate the clusters.
+  2. Run the following command inside the edge node to clean up the previous cluster data:
+
+     .. code-block:: shell
+
+        sudo /var/lib/rancher/k3s/bin/k3s-uninstall.sh
+
+     After running the command, you can create new clusters using the edge nodes without re-provisioning them.
+
 
 Known Issues
 ----------------------------------
@@ -132,14 +144,10 @@ Clusters and Application Deployment
   connected to the different types of applications.
 * Support for in-place upgrades of Edge Node Kubernetes cluster
   is currently not available. This is to be addressed in a future release.
-  Currently in 3.1, Cluster upgrade can done by deleting the cluster and reprovisioning
+  Currently in 2025.2, Cluster upgrade can done by deleting the cluster and reprovisioning
   the Edge Nodes and recreating with a new cluster template version.
 * Multi-Node Cluster Provision is not supported in this release. This is to be
   addressed in future releases.
-* Cluster templates can be deleted even if they are actively being used by
-  existing clusters. This issue may lead to unintended consequences,
-  such as the inability to manage or update clusters associated with the
-  deleted template. A fix for this issue is planned for a future release.
 * AI applications from the earlier release - Intel® SceneScape version 2024.1.2,
   Intel® Edge Insights System version 2.0 enhanced, and Intel® Geti™ solution
   version 2.6.0 do not work on the 3.1 release. These applications may
@@ -148,11 +156,6 @@ Clusters and Application Deployment
   may leave behind orphaned CRDs and related cluster-level objects. This can
   lead to an `annotation validation` error when attempting to redeploy on the cluster.
   See :doc:`troubleshooting guide </user_guide/troubleshooting/deploy_issue>`.
-* When using the "Create Single-host Clusters" option during host registration,
-  host names must be in lowercase; otherwise, cluster creation will fail.
-* Deauthorizing a host does not automatically delete the associated cluster. To delete a deauthorized host,
-  the associated cluster must be deleted first. Note that deleting the cluster for a deauthorized host is
-  always recommended to make it inaccessible through EMF.
 
 User Experience
 ^^^^^^^^^^^^^^^^^
@@ -268,10 +271,6 @@ Clusters and Application Deployment Limitations
   of deployment are not cleaned-up on the Cluster Deletion. This results in
   showing any errors from these deployments in subsequent successful deployments.
   Refer :ref:`deploymentpage_errors`.
-* When using the "Create Single-host Clusters" option during host registration,
-  a new cluster is automatically created and remains in "provisioning" state
-  until host onboarding. Enhanced state descriptions will be provided in a
-  future release.
 
 Multi-tenancy Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^
