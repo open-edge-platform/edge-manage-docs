@@ -16,7 +16,6 @@ If an operation fails, you can generally rerun the operation to complete the ins
 - :doc:`/shared/shared_ts_sriov_webhook`
 
 .. toctree::
-   :maxdepth: 2
    :hidden:
 
    ../../../shared/shared_on_prem_ts_vault_unseal
