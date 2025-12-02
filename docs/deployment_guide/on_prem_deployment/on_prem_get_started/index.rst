@@ -264,6 +264,9 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
 
 .. _on_prem_lenovo_firewall_configuration:
 
+Firewall Configuration for Edge Orchestrator and Edge Node
+----------------------------------------------------------
+
 To install Edge Orchestrator and Edge Node, the following Egress rules are required:
 
 .. list-table:: Network Egress for Edge Orchestrator and Edge Nodes
