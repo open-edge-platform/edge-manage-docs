@@ -264,6 +264,165 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
 
 .. _on_prem_lenovo_firewall_configuration:
 
+To install Edge Orchestrator and Edge Node, the following Egress rules are required:
+
+.. list-table:: Network Egress for Edge Orchestrator and Edge Nodes
+  :header-rows: 1
+
+  * -  Source
+    -  Destination
+    -  Description
+  * -  Edge Orchestrator
+    -  https://docker.io
+    -  Container images
+  * -  Edge Orchestrator
+    -  https://ghcr.io
+    -  Container images
+  * -  Edge Orchestrator
+    -  https://registry.k8s.io
+    -  Container images
+  * -  Edge Orchestrator
+    -  https://quay.io
+    -  Container images
+  * -  Edge Orchestrator
+    -  https://k8s.gcr.io
+    -  Container images
+  * -  Edge Orchestrator
+    -  https://registry-rs.edgeorchestration.intel.com
+    -  Container images
+  * -  Edge Orchestrator
+    -  https://github.com/
+    -  Container images
+  * -  Edge Orchestrator
+    -  https://kubernetes.github.io/
+    -  Helm Chart
+  * -  Edge Orchestrator
+    -  https://charts.external-secrets.io/
+    -  Helm Chart
+  * -  Edge Orchestrator
+    -  https://rancher.github.io/
+    -  Helm Chart
+  * -  Edge Orchestrator
+    -  https://helm.goharbor.io
+    -  Helm Chart
+  * -  Edge Orchestrator
+    -  https://istio-release.storage.googleapis.com/
+    -  Helm Chart
+  * -  Edge Orchestrator
+    -  https://kiali.org/
+    -  Helm Chart
+  * -  Edge Orchestrator
+    -  https://kyverno.github.io/
+    -  Helm Chart
+  * -  Edge Orchestrator
+    -  https://metallb.github.io/
+    -  Helm Chart
+  * -  Edge Orchestrator
+    -  https://prometheus-community.github.io/
+    -  Helm Chart
+  * -  Edge Orchestrator
+    -  https://charts.bitnami.com/
+    -  Helm Chart
+  * -  Edge Orchestrator
+    -  https://stakater.github.io/
+    -  Helm Chart
+  * -  Edge Orchestrator
+    -  https://helm.traefik.io/
+    -  Helm Chart
+  * -  Edge Orchestrator
+    -  https://helm.releases.hashicorp.com
+    -  Helm Chart
+  * -  Edge Node
+    -  https://\*.github.io
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.github.com
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.githubusercontent.com
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.intel.com
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.infra-host.com
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.docker.io
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.docker.com
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.quay.io
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.fluentbit.io
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.k8s.io
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.pkg.dev
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.public.ecr.aws
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.cloudfront.net
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.api.snapcraft.io
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.snapcraftcontent.com
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.rke2.io
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.archive.ubuntu.com
+    -  Onboarding
+  * -  Edge Node
+    -  https://ppa.launchpad.net
+    -  Onboarding
+  * -  Edge Node
+    -  https://esm.ubuntu.com
+    -  Onboarding
+  * -  Edge Node
+    -  https://ports.ubuntu.com
+    -  Onboarding
+  * -  Edge Node
+    -  https://security.ubuntu.com
+    -  Onboarding
+  * -  Edge Node
+    -  https://ddebs.ubuntu.com
+    -  Onboarding
+  * -  Edge Node
+    -  https://mirrors.ubuntu.com
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.archive.canonical.com
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.extras.ubuntu.com
+    -  Onboarding
+  * -  Edge Node
+    -  https://changelogs.ubuntu.com
+    -  Onboarding
+  * -  Edge Node
+    -  https://cloud-images.ubuntu.com
+    -  Onboarding
+  * -  Edge Node
+    -  https://\*.debian.org
+    -  Onboarding
+  * -  Edge Node
+    -  http://cdn.debian.net
+    -  Onboarding
+  * -  Edge Node
+    -  http://http.debian.net
+    -  Onboarding
+
 LOC-A Firewall Configuration (Optional)
 ---------------------------------------
 
