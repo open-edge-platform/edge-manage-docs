@@ -216,7 +216,7 @@ User Experience
 Limitations
 ---------------------------------------------------------------------
 
-The following are known issues in the release. While several know issues
+The following are known issues in the release. While several known issues
 and limitations have been addressed during the 3.1 release cycle, some have
 been carried over from past releases.
 
