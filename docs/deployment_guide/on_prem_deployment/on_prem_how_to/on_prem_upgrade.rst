@@ -1,22 +1,14 @@
 On-Prem Upgrade Guide
 =========================
 
-**Upgrade Path:** EMF On-Prem v3.0 → v3.1
+**Upgrade Path:** EMF On-Prem v3.1.3 → v2025.2
 **Document Version:** 1.0
 
 Overview
 --------
 
 This document provides step-by-step instructions to upgrade
-On-Prem Edge Manageability Framework (EMF) from version 3.0 to 3.1.
-
-Important Notes
----------------
-
-.. warning::
-   **DISRUPTIVE UPGRADE WARNING**
-   This upgrade requires edge node re-onboarding due to architecture changes (RKE2 → K3s).
-   Plan for edge nodes service downtime and manual data backup/restore procedures in edge nodes.
+On-Prem Edge Manageability Framework (EMF) from version v3.1.3 to v2025.2 .
 
 Prerequisites
 -------------
@@ -24,7 +16,7 @@ Prerequisites
 System Requirements
 ~~~~~~~~~~~~~~~~~~~
 
-- Current EMF On-Prem installation version 3.0
+- Current EMF On-Prem installation version 3.1.3 or later
 - Root/sudo privileges on orchestrator node
 - PostgreSQL service running and accessible
 - Sufficient disk space for backups ~200+GB
@@ -35,10 +27,7 @@ Pre-Upgrade Checklist
 
 - [ ] Back up critical application data from edge nodes
 - [ ] Document current edge node configurations
-- [ ] Remove all edge clusters and hosts:
-  - `Delete clusters <https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/set_up_edge_infra/clusters/delete_clusters.html>`_
-  - `De-authorize hosts <https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/set_up_edge_infra/deauthorize_host.html>`_
-  - `Delete hosts <https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/set_up_edge_infra/delete_host.html>`_
+- [ ] Ensure network connectivity between orchestrator and edge nodes
 
 Upgrade Procedure
 -----------------
@@ -51,7 +40,7 @@ On the orchestrator deployed node, copy the latest upgrade script:
 .. code-block:: bash
 
    cd
-   cp edge-manageability-framework/on-prem-installers/onprem/*.sh ~/
+   cp edge-manageability-framework/on-prem-installers/onprem/* ~/
    chmod +x onprem_upgrade.sh
 
 Step 2: Open Two Terminals
@@ -60,41 +49,60 @@ Step 2: Open Two Terminals
 You will need two terminals for this upgrade process:
 
 - **Terminal 1:** To run the upgrade script
-- **Terminal 2:** To update proxy and load balancer configurations when prompted
+- **Terminal 2:** To update proxy and load balancer configurations , if needed
 
 Step 3: Terminal 1 - Set Environment Variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In **Terminal 1**, set the required environment variables:
+In **Terminal 1**, set all required environment variables. You can either:
+
+**Option A: Update onprem.env file directly**
+
+Edit the onprem.env file with all required values:
 
 .. code-block:: bash
 
-   # get LB IP
+   nano onprem.env
+
+Update the following sections:
+
+- **CORE DEPLOYMENT CONFIGURATION:**
+  - RELEASE_SERVICE_URL
+  - DEPLOY_VERSION
+  - ORCH_INSTALLER_PROFILE
+
+- **AUTHENTICATION & SECURITY:**
+  - DOCKER_USERNAME
+  - DOCKER_PASSWORD
+
+- **NETWORK CONFIGURATION:**
+  - CLUSTER_DOMAIN
+  - ARGO_IP, TRAEFIK_IP, NGINX_IP
+
+- **CONTAINER REGISTRY:**
+  - GITEA_IMAGE_REGISTRY
+
+- **PROXY CONFIGURATION (if applicable):**
+  - ENABLE_EXPLICIT_PROXY
+  - ORCH_HTTP_PROXY, ORCH_HTTPS_PROXY, ORCH_NO_PROXY
+  - EN_HTTP_PROXY, EN_HTTPS_PROXY, EN_FTP_PROXY, EN_SOCKS_PROXY, EN_NO_PROXY
+  - GIT_PROXY
+
+- **SRE and SMTP Configuration:**
+  - All SRE_* variables (SRE_USERNAME, SRE_PASSWORD, SRE_DEST_URL)
+  - All SMTP_* variables (SMTP_ADDRESS, SMTP_PORT, SMTP_HEADER, SMTP_USERNAME, SMTP_PASSWORD)
+
+**Important:** Ensure ALL variables in onprem.env are correctly set according to your environment. Some default values are provided, but you must update them to match your deployment:
+
+.. code-block:: bash
+
+   # Get Load Balancer IPs
    kubectl get svc argocd-server -n argocd
    kubectl get svc traefik -n orch-gateway
    kubectl get svc ingress-nginx-controller -n orch-boots
 
-   # Set Environment
-
-   export RELEASE_SERVICE_URL=registry-rs.edgeorchestration.intel.com
-   export ORCH_INSTALLER_PROFILE=onprem
-   export CLUSTER_DOMAIN=cluster.onprem
-   export GITEA_IMAGE_REGISTRY='docker.io'
-   export DOCKER_USERNAME=<docker-username>
-   export DOCKER_PASSWORD=<docker-password>
-   export ARGO_IP=<ARGO_LodeBalanceIP>
-   export TRAEFIK_IP=<TRAEFIK_LodeBalanceIP>
-   export NGINX_IP=<NGINX_LodeBalanceIP>
-
-Note: if any docker limit hit issue user should set docker login credential as env
-
-.. code-block:: bash
-
-   # Unset PROCEED to allow manual confirmation
-   unset PROCEED
-
    # Set deployment version (replace with your actual upgrade version tag)
-   export DEPLOY_VERSION=v3.1.0
+   export DEPLOY_VERSION=v2025.2
 
 Step 4: Terminal 1 - Run OnPrem Upgrade Script
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -123,11 +131,11 @@ Step 5: Terminal 2 - Update Configuration
 
 Before confirming in Terminal 1, open **Terminal 2** and update configurations:
 
-1. **Update proxy settings (if applicable):**
+1. **Verify proxy configuration (if applicable):**
 
    .. code-block:: bash
 
-      file:repo_archives/tmp/edge-manageability-framework/orch-configs/profiles/proxy-none.yaml
+      file:repo_archives/tmp/edge-manageability-framework/orch-configs/clusters/onprem.yaml
 
       argo:
        proxy:
@@ -172,10 +180,12 @@ Step 7: Monitor Upgrade Progress
 
 The upgrade process includes:
 
+- Upgrade RKE2 to 1.34.1 versions
 - OS Configuration upgrade
 - Gitea upgrade
 - ArgoCD upgrade
 - Edge Orchestrator upgrade
+- PostgreSQL Migrate
 - Unseal Vault
 
 Post-Upgrade Verification
@@ -275,69 +285,27 @@ Troubleshooting
 
 After applying the patch, the ``root-app`` should sync cleanly **once** its dependencies have become healthy.
 
+2. **PXE Boot Certificate Issues**
 
-During the `onprem_upgrade`, if Vault appears **sealed** or becomes **unavailable**, manual intervention may be required.
+**Description:** After upgrade, PXE boot or certificate-related issues may occur, preventing edge nodes from onboarding or communicating properly.
 
-**Symptom:**
+**Resolution:**
 
-- **Vault Unseal Problem**
+   Delete the certificate secrets and DKAM pods to force regeneration and propagation of updated certificates:
 
-  Vault pod status shows sealed, causing issues with secret access or platform services.
-  After running the on-prem upgrade script, if you see the following vault waiting output: then further vault unseal require
+.. code-block:: bash
 
-  .. code-block:: bash
+   # Delete PXE boot certificate secrets
+   kubectl delete secret tls-boots -n orch-boots
+   kubectl delete secret boots-ca-cert -n orch-gateway
+   kubectl delete secret boots-ca-cert -n orch-infra
 
-     Deleting Vault pod: vault-0 in namespace: orch-platform
-     pod "vault-0" deleted
-     Waiting for pod 'vault-0' in namespace 'orch-platform' to be in Running state...
-
-- **Check Vault status**
-
-  .. code-block:: bash
-
-     kubectl get pod -A | grep vault-0
-     kubectl -n orch-platform exec -i vault-0 -- vault status
-
-- **Vault Unseal Procedure**
-
-  .. code-block:: bash
-
-     # Run the Vault unseal script
-     source ./vault_unseal.sh
-     vault_unseal
+   # Delete DKAM pods to force reconnection with new certificates
+   kubectl delete pod -n orch-infra -l app.kubernetes.io/name=dkam 2>/dev/null
 
 Open Issues:
 ------------
 
-**API Gateway does not reflect API changes from v1 to v2 automatically**
-*Workaround:* Manually delete the `nexus-api-gw` pod to recover API changes.
-
-**After upgrade, both RKE2 and K3s Cluster Templates are labeled as default**
-*Workaround:* Manually delete all old cluster templates related to 3.0 release RKE2 base.
-
-**Deployment package extensions are not updated after upgrade**
-*Workaround:* Manually delete the `app-orch-tenant-controller` pod.
-
-Automation Script for Workarounds
----------------------------------
-
-To simplify post-upgrade recovery, the following script should be executed as part of the upgrade validation steps:
-
-**Script Name:** `after_upgrade_restart.sh`
-**Purpose:** Automates the following workaround actions:
-- Restarts the `nexus-api-gw` pod to reflect API changes from v1 to v2
-- Deletes outdated RKE2-based cluster templates from the 3.0 release
-- Restarts the `app-orch-tenant-controller` pod to trigger deployment extension updates
-
-.. note::
-   Run the script after the on-prem upgrade using:
-
-   .. code-block:: bash
-
-      ./after_upgrade_restart.sh
-
-Post-Upgrade Steps EdgeNode onboarding process
-----------------------------------------------
-
-After a successful upgrade, follow the EN onboarding process as outlined in the official documentation:
-`Set Up Edge Infrastructure – Intel Open Edge Platform <https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/set_up_edge_infra/index.html>`_
+**Issue 1: Cluster Deletion Stuck After EMF Upgrade**
+**Description:** Cluster deletion hangs indefinitely for clusters that were originally installed on EMF v3.1.3 before upgrading to v2025.2 (ITEP-82277).
+**Workaround:** Currently, there is no workaround available.
