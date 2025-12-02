@@ -12,7 +12,6 @@ details on how to do this.
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
 
    import-dp
    pushing_charts_and_images

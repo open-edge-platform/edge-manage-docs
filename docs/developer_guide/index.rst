@@ -72,7 +72,6 @@ Helm\*-based applications compatible with |software_prod_name|.
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
 
    contributor_guide/index
    set_up_dev_env/index

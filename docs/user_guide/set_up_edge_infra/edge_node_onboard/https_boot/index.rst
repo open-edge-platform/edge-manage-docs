@@ -26,7 +26,6 @@ HTTPS-assisted boot flow
 #. Manage boot order to boot from UEFI HTTP as the fist option and reboot Edge Nodes.
 
 .. toctree::
-   :maxdepth: 6
    :hidden:
 
    https_boot_dell

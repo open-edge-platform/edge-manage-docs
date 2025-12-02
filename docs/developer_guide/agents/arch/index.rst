@@ -5,7 +5,6 @@ Architecture
 
 .. toctree::
    :hidden:
-   :maxdepth: 3
 
    hl_architecture
    cluster

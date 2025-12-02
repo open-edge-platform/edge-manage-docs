@@ -9,7 +9,6 @@ create a Docker (container) image that can be deployed to the Application Orches
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
 
    packaging-tutorial-server
    packaging-tutorial-web-ui

@@ -8,7 +8,6 @@ See the following documents for more detail on steps a developer would take to
 contribute:
 
 .. toctree::
-   :maxdepth: 1
 
    code_contribution
    make_workflow
