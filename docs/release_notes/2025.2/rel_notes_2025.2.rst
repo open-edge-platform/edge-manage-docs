@@ -193,7 +193,7 @@ User Experience
   node goes through zero-touch provisioning (ZTP). When provisioning
   through the ZTP, you can disable the toggle because it has no effect.
 * Occasionally, a reboot of the Product makes the Argo CD tool's `root-app`
-  and `secret-config` remain in the `provisioning` state, and prevented
+  and `secret-config` remain in the `provisioning` state, and prevents
   creation of application deployment. The only known workaround is to
   reinstall the Product.
 * When the edge node is running, if the network connection is moved from
