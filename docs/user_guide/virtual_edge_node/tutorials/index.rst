@@ -153,7 +153,6 @@ Follow the examples for IO and NIO flow using the Ubuntu and Edge Microvisor Too
 
 .. toctree::
     :hidden:
-    :maxdepth: 1
 
     example1_io_flow.rst
     example2_nio_default_serial_nums.rst

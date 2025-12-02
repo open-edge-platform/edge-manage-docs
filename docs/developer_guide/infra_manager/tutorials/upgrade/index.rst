@@ -5,6 +5,5 @@ This tutorial guides you through upgrading Infrastructure Manager v3.0, verifyin
 
 .. toctree::
    :hidden:
-   :maxdepth: 3
 
    orch_upgrade

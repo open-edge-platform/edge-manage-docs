@@ -8,7 +8,6 @@ Get familiar with the platform-specific prerequisites before starting to onboard
 - :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/asus_prerequisites`
 
 .. toctree::
-   :maxdepth: 6
    :hidden:
 
    asus_prerequisites
