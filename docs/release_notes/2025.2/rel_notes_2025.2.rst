@@ -57,18 +57,17 @@ Upgrades from Previous Releases
 Edge Manageability Framework (EMF) version 3.1 supports direct
 upgrades from version 3.1 to 2025.2 both for on-prem <guide> and AWS deployments <guide>
 
-* Clusters created with 3.1 release and deleted in 2025.2 require a manual step to be re-used for creating new clusters in the 2025.2 release.
-  Two options:
+* Clusters created with release 3.1 and deleted in release 2025.2 require
+  additional cleanup steps before the edge nodes can be reused for new clusters.
+  Choose one of the following cleanup methods:
 
-  1. Re-provision the edge node and recreate the clusters.
-  2. Run the following command inside the edge node to clean up the previous cluster data:
+  1. Delete and re-provision the edge node.
+  2. Clean up the previous cluster data by running the K3s uninstall script on
+     the edge node:
 
      .. code-block:: shell
 
         sudo /var/lib/rancher/k3s/bin/k3s-uninstall.sh
-
-     After running the command, you can create new clusters using the edge nodes without re-provisioning them.
-
 
 Known Issues
 ----------------------------------
