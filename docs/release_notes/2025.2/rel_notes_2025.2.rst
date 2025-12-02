@@ -26,7 +26,7 @@ Key Highlights of the 2025.2 release include, but are not limited to:
 
 * New: Ubuntu 24.04 LTS support with 6.11.0-17 kernel 
 * New: Custom OS profile
-* New: Bitnamilegacy registry updated with alternative sources
+* New: Bitnami legacy registry updated with alternative sources
 * New: Security Compliance of an Edge Node is also now implemented through fixed CVE tracking for installed packages on EMT.
 * New: Security Compliance of an Edge Node is also now implemented through open and fixed CVE tracking for installed packages on Ubuntu.
 * New: ISM integration
