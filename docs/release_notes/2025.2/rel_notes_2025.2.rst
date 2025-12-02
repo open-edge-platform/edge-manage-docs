@@ -230,7 +230,7 @@ Provisioning Limitations
 * You cannot perform an initial boot behind a proxy server because the
   Original Equipment Manufacturer (OEM) BIOS does not support HTTPs booting
   behind a proxy server. After you have installed the OS, you can boot
-  behind a proxy server. Alternate is to use USB boot.
+  behind a proxy server. Alternatively, use USB boot.
 * The embedded JSON Web Token (JWT) in the EMT (Hook OS replacement) is programmed to expire after a
   maximum of 60 minutes. If there is a delay in supplying the login
   details, the OS provisioning process may fail, which is the expected
