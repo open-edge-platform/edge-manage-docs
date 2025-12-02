@@ -9,7 +9,6 @@ moves to the API where the resources are exposed and presented to the users.
 
 .. toctree::
    :hidden:
-   :maxdepth: 3
 
    inventory
    api

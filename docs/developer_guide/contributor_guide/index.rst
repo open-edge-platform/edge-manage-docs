@@ -13,6 +13,7 @@ contribute:
    code_contribution
    make_workflow
    versioning
+   continuous_integration_logic
    conduct
    security
 

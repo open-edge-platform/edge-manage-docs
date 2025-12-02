@@ -5,7 +5,6 @@ This tutorial guides you through the process of contributing new OS profiles tha
 
 .. toctree::
    :hidden:
-   :maxdepth: 3
 
    adding_os_profiles
    testing_custom_os_resource
