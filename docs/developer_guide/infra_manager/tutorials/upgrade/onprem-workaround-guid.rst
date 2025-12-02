@@ -10,17 +10,18 @@ Applications and Actions
 +-----------------------+----------------------------------------------------------------------------------------------------------+
 | Application           | Action Required                                                                                          |
 +=======================+==========================================================================================================+
-| external-secrets      | Sync: Sync from ArgoCD UI. If any CRD or Job is Degraded, delete the CRD/Job and resync.                |
+| external-secrets      | Sync: Sync from ArgoCD UI. If any CRD or Job is Degraded, delete the CRD/Job and resync.                 |
 +-----------------------+----------------------------------------------------------------------------------------------------------+
-| platform-keycloak     | Sync: Sync from ArgoCD UI. If any CRD or Job is Degraded, delete the CRD/Job and resync.                |
+| platform-keycloak     | Sync: Sync from ArgoCD UI. If any CRD or Job is Degraded, delete the CRD/Job and resync.                 |
 +-----------------------+----------------------------------------------------------------------------------------------------------+
-| cluster-manager       | Dependency Check: First check that all platform-keycloak applications are Healthy and Synced.           |
-|                       | If not, sync platform-keycloak first. Then, if any cluster-manager Job is OutOfSync or Degraded,       |
+| cluster-manager       | Dependency Check: First check that all platform-keycloak applications are Healthy and Synced.            |
+|                       | If not, sync platform-keycloak first. Then, if any cluster-manager Job is OutOfSync or Degraded,         |
 |                       | delete the job and resync cluster-manager.                                                               |
 +-----------------------+----------------------------------------------------------------------------------------------------------+
 | postgresql-secret     | If Missing during upgrade deployment: Sync the root-app application first. Then, restart upgrade deploy script. |
 +-----------------------+----------------------------------------------------------------------------------------------------------+
-| infra-external        | Ensure it is synced; if Degraded, delete affected resources and resync.                                  |
+| infra-external        | Ensure it is synced; if Degraded, delete affected resources and resync. If not, sync from AggoCD UI      |
+|                       | selecting force and replace option.                                                                      |
 +-----------------------+----------------------------------------------------------------------------------------------------------+
 | namespace-label       | Sync first. If Sync does not work, delete the application and resync root-app.                           |
 +-----------------------+----------------------------------------------------------------------------------------------------------+
@@ -30,7 +31,7 @@ Applications and Actions
 +-----------------------+----------------------------------------------------------------------------------------------------------+
 | tenancy-datamodel     | Sync first. If Sync does not work, delete the application and resync root-app.                           |
 +-----------------------+----------------------------------------------------------------------------------------------------------+
-| secrets-config        | Sync secrets-config and resync root-app.                           |
+| secrets-config        | Sync secrets-config and resync root-app.                                                                 |
 +-----------------------+----------------------------------------------------------------------------------------------------------+
 
 
