@@ -22,21 +22,18 @@ This profile is controlled through **environment flag** set before starting the 
 2. Configuration Flags
 ----------------------------------------------------
 
-By default, all profiles are enabled (flags unset or set to ``false``).
+By default, the profile are enabled (flag unset or set to ``false``).
 
-To modify which components are deployed, export the following environment variables
+To enable Single Tenancy, export the below environment variable
 **before starting orchestration deployment or upgrade**:
 
 .. code-block:: bash
 
-   export DISABLE_AO_PROFILE=true      # Disable Application Orchestrator
-   export DISABLE_CO_PROFILE=true      # Disable Cluster Orchestrator
-   export DISABLE_O11Y_PROFILE=true    # Disable Observability
+   export SINGLE_TENANCY=true      # Enable Single Tenancy
 
 .. note::
 
-   These flags must be exported to your environment **prior to both deployment and upgrade**
-   to ensure consistent composability across lifecycle operations.
+   This flag must be exported to your environment **prior to both deployment and upgrade**.
 
 ----------------------------------------------------
 3. Verification After Deployment or Upgrade
@@ -49,17 +46,60 @@ using the following one-liner command:
 
    root_app_ns=$(kubectl get application -A | grep root-app | awk '{print $1}')
    VALUE_FILES=$(kubectl get application root-app -n $root_app_ns -o yaml)
-   echo "$VALUE_FILES" | grep -q "enable-cluster-orch.yaml" && echo "✅ CO enabled" || echo "⛔ CO disabled"
-   echo "$VALUE_FILES" | grep -q "enable-app-orch.yaml" && echo "✅ AO enabled" || echo "⛔ AO disabled"
-   echo "$VALUE_FILES" | grep -qE "(enable-o11y)" && echo "✅ O11Y enabled" || echo "⛔ O11Y disabled"
+   echo "$VALUE_FILES" | grep -q "enable-singleTenancy.yaml" && echo "✅ Single Tenancy enabled" || echo "⛔ Single Tenancy disabled"
 
 **Example Output:**
 
 .. code-block:: text
 
-   ⛔ CO disabled     --> if CO disabled
-   ⛔ AO disabled     --> if AO disabled
-   ✅ O11Y enabled    --> if observability enabled
+   ⛔ Single Tenancy disabled     --> if Single Tenancy disabled
+   ✅ Single Tenancy enabled    --> if Single Tenancy enabled
 
 You can also confirm the same from the ArgoCD ``root-app`` application view.
 For pre-deployment verification (before cluster creation), review the **orchestration clustername.yaml** file.
+
+----------------------------------------------------
+4. Tenant Admin Password Management 
+----------------------------------------------------
+
+Tenant Admin Password Management
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Upon enabling Single Tenancy, the Tenant Initializer automatically generates a secure password 
+for the `tenant-admin` user during the single tenant creation process. The password is generated 
+with the following characteristics:
+
+- 16 characters in length
+- Contains at least one uppercase letter, lowercase letter, digit, and special character
+- Uses cryptographically secure random generation
+- Characters are shuffled for additional security
+
+Password Storage
+~~~~~~~~~~~~~~~~~
+
+The generated password is automatically stored as a Kubernetes secret in the same namespace
+where the Tenant Initializer job runs (typically `orch-iam`). The secret is named 
+`tenant-admin-password` and includes labels for easy identification:
+
+- `app: tenant-init`
+- `org: <organization-name>`
+- `username: tenant-admin`
+
+Retrieving the Password
+~~~~~~~~~~~~~~~~~~~~~~~
+
+To retrieve the tenant-admin password after tenant initialization, use the following command:
+
+  .. code-block:: shell
+
+    kubectl get secret tenant-admin-password -n orch-iam -o jsonpath='{.data.admin-password}' | base64 -d
+
+
+You can also view the secret details including labels:
+
+  .. code-block:: shell
+
+    kubectl describe secret tenant-admin-password -n orch-iam
+
+.. note::
+  The password is base64 encoded in the secret and must be decoded for use.
