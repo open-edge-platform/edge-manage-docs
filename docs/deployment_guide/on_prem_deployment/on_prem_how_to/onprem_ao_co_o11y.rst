@@ -224,6 +224,12 @@ After logging in to the edge node, you can collect logs from various edge servic
 
    sudo journalctl -u cluster-agent -f
 
+**Check Other Service Logs:**
+
+.. code-block:: bash
+
+   sudo journalctl -u <service-name> -f
+
 ----------------------------------------------------
 4.6.3 View Edge Node Configuration Files
 ----------------------------------------------------
