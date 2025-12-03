@@ -232,6 +232,3 @@ Using Alerts API
     * Has access in UI to alerts (firing) and alert definitions (read only) via
       ``<project-id>_alrt-r``.
 
-.. toctree::
-   :hidden:
-   :maxdepth: 3

@@ -134,7 +134,6 @@ Reference
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
 
    reference-placeholders
    application-yaml-reference

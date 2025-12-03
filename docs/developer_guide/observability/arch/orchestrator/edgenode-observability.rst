@@ -61,5 +61,4 @@ Storage
 * **AWS S3** for cloud-based deployments
 * S3-compatible storage (**MinIO**) for on-prem deployments
 
-.. toctree::
-   :maxdepth: 3
+
