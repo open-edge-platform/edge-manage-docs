@@ -217,36 +217,20 @@ After logging in to the edge node, you can collect logs from various edge servic
 .. code-block:: bash
 
    sudo journalctl -u node-agent -f
+   sudo systemctl status node-agent
 
 **Check Cluster Agent Logs (if CO is enabled):**
 
 .. code-block:: bash
 
    sudo journalctl -u cluster-agent -f
+  sudo systemctl status cluster-agent
 
 **Check Other Service Logs:**
 
 .. code-block:: bash
 
    sudo journalctl -u <service-name> -f
-
-----------------------------------------------------
-4.6.3 View Edge Node Configuration Files
-----------------------------------------------------
-
-You can also inspect configuration files on the edge node to troubleshoot issues.
-
-.. code-block:: bash
-
-   # Node agent configuration
-   sudo cat /etc/edge-node/node/confs/node-agent.yaml
-
-   # Cluster agent configuration (if applicable)
-   sudo cat /etc/edge-node/node/confs/cluster-agent.yaml
-
-   # Check running services
-   sudo systemctl status node-agent
-   sudo systemctl status cluster-agent
 
 ----------------------------------------------------
 4.7 Create a Cluster (if CO is enabled)
