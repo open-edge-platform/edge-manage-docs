@@ -9,6 +9,8 @@ How To
 - :doc:`/deployment_guide/cloud_deployment/cloud_how_to/cloud_uninstall`
 - :doc:`/deployment_guide/cloud_deployment/cloud_how_to/cloud_scale_orch`
 - :doc:`/deployment_guide/cloud_deployment/cloud_how_to/cloud_upgrade`
+- :doc:`/deployment_guide/cloud_deployment/cloud_how_to/cloud_argocd`
+- :doc:`/deployment_guide/cloud_deployment/cloud_how_to/cloud_installer`
 
 .. toctree::
    :hidden:
@@ -21,3 +23,5 @@ How To
    cloud_uninstall
    cloud_scale_orch
    cloud_upgrade
+   cloud_argocd
+   cloud_installer

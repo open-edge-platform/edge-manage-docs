@@ -99,3 +99,20 @@ Check Edge Orchestrator Observability Grafana dashboard in Explore tab.
 If the data is being sent and not rejected, it can be viewed there:
 
 .. image:: ./images/o11y/observability-explore-edgenode-system.png
+
+Grafana Dashboard shows no log or metric data for edge node
+===========================================================
+
+**Symptom:**
+User does not see any metrics or logs for an edge node when viewed in Grafana dashboard.
+
+**Cause:**
+This issue can occur on edge nodes that have been running for some time and whose time
+has become desynchronized from the Orchestrator. This is due to the edge node using a
+token it believes to be valid but that the Orchestrator sees as invalid.
+
+**Solution:**
+Resynchronize the edge node's time with the Orchestrator's time to trigger the
+edge node to refresh the token. This refreshed token will then allow metrics and
+logs from the edge node to be sent to the Orchestrator and be viewable in the
+Grafana dashboards.

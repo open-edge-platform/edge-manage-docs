@@ -72,8 +72,15 @@ The orch-cli configuration file can be found at **~/.orch-cli/orch-cli.yaml**
 User management
 ^^^^^^^^^^^^^^^
 
-The CLI does not support user, project and organization creation. See:
+The orch-cli does not support Identity and Access Management at Keycloak level. To manage Keycloak users and assign roles/groups See:
 :doc:`/shared/shared_gs_iam`
+
+The organization and project management is supported by the orch-cli.
+
+The Keycloak's `kcadm Admin CLI <https://www.keycloak.org/docs/latest/server_admin/index.html#admin-cli>`_ can be used to achieve terminal based user management along with the orch-cli's organization/project creation.
+
+The combined usage of kcadm and orch-cli to initially set up the IAM/tenancy can be found at:
+:doc:`/shared/shared_ht_iam_mt_cli`
 
 Authentication
 ^^^^^^^^^^^^^^
@@ -131,6 +138,94 @@ done if the api-endpoint and project was provided as per :ref:`endpoint-and-proj
 For the *list* commands the --verbose flag can be used to include additional information in the output.
 
 Note that some of the *get* and *delete* commands require usage of resource ID instead of resource name due to the fact that some resources do not have unique names.
+
+Organization Management
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Edge Orchestrator offers a two-level tenancy structure, with organizations that can contain one or more projects.
+To create an organization the orch-cli user must part of the "Org Admin Group". See :doc:`/shared/shared_mt_overview`
+
+To create an organization run the create command, --description is an optional field.
+
+.. code-block:: bash
+
+    ./orch-cli create organization myorg --description "myorg"
+
+To list organizations run the list command.
+
+.. code-block:: bash
+
+    ./orch-cli list organizations
+
+To get information about specific organization run the get command.
+
+.. code-block:: bash
+
+    ./orch-cli get organization myorg
+
+To delete an organization run the delete command.
+
+.. code-block:: bash
+
+    ./orch-cli delete organization myorg
+
+Project Management
+^^^^^^^^^^^^^^^^^^
+
+To create a project the orch-cli user must associated with the organization group. See :doc:`/shared/shared_mt_overview`
+
+To create an project run the create command, --description is an optional field.
+
+.. code-block:: bash
+
+    ./orch-cli create project myproject --description "myproject"
+
+To list project run the list command.
+
+.. code-block:: bash
+
+    ./orch-cli list project
+
+To get information about specific project run the get command.
+
+.. code-block:: bash
+
+    ./orch-cli get project myproject
+
+To delete a project run the delete command.
+
+.. code-block:: bash
+
+    ./orch-cli delete project myproject
+
+Local SSH Account Management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The orch-cli supports adding public SSH keys that can be later used for accessing EN.
+
+To create a local account containing the key run the create command, specify the name of the user/key and the path to the key.
+
+.. code-block:: bash
+
+    ./orch-cli create sshkey mysshkey /path/to/publickey.pub
+
+To list the local SSH accounts run the list command.
+
+.. code-block:: bash
+
+    ./orch-cli list sshkey
+
+To get specific information about local SSH keys run the get command.
+
+.. code-block:: bash
+
+    ./orch-cli get sshkey mysshkey
+
+To delete a local SSH key run the delete command.
+
+.. code-block:: bash
+
+    ./orch-cli delete sshkey mysshkey
 
 OS Profile Management
 ^^^^^^^^^^^^^^^^^^^^^
@@ -324,6 +419,238 @@ To delete an AMT domain profile run the delete command.
 
     ./orch-cli delete amtprofile <NAME>
 
+Cluster Template Management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The orch-cli can be used to list available cluster templates.
+To list the templates use the list command.
+
+.. code-block:: bash
+
+    ./orch-cli list clustertemplates
+
+To get more detailed view and content of the template in JSON format run the list command with verbose option.
+
+.. code-block:: bash
+
+    ./orch-cli list clustertemplates -v
+
+Cluster Management
+^^^^^^^^^^^^^^^^^^
+
+A single node K3s cluster can be deployed to an onboarded/provisioned host using the orch-cli.
+
+To create a cluster with a default template and all roles run the create command --nodes <nodeUUID>:<role> flag requires the ENs UUID and the expected roles (all = etcd,control plane,worker roles).
+
+.. code-block:: bash
+
+    ./orch-cli create cluster cli-cluster --nodes d7911144-3010-11f0-a1c2-370d26b04195:all
+
+To create a cluster with specific template and specific labels use the following create command:
+
+.. code-block:: bash
+
+    ./orch-cli create cluster cli-cluster --nodes d7911144-3010-11f0-a1c2-370d26b04195:all --labels sample-label=samplevalue,another-label=another-value
+
+To list clusters use the list command.
+
+.. code-block:: bash
+
+    ./orch-cli list clusters
+
+To get information about a specific cluster use the get command.
+
+.. code-block:: bash
+
+    ./orch-cli get cluster mycluster
+
+To delete a specific cluster use the delete command.
+
+.. code-block:: bash
+
+    ./orch-cli delete cluster mycluster
+
+OS Update Policy Management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+OS Update Policies are used to define how an update should be performed on an Edge Node.
+For detailed steps on how to effectively use the OS Update Policies see the Day 2 updates document.
+
+To create an OS Update Policy use the create command. A path to a policy definition must be provided.
+
+.. code-block:: bash
+
+    ./orch-cli create osupdatepolicy path/to/osupdatepolicy.yaml
+
+To list OS Update Policies run the list command:
+
+.. code-block:: bash
+
+    ./orch-cli list osupdatepolicy
+
+To get information about a specific OS Update Policy run the get command with the policy's resource ID as an input.
+
+.. code-block:: bash
+
+    ./orch-cli get osupdatepolicy <POLICY_ID>
+
+To delete an OS Update Policy run the delete command.
+
+.. code-block:: bash
+
+    ./orch-cli get osupdatepolicy <POLICY_ID>
+
+To associate a policy with an Edge Node to be used during a scheduled update run the "set host <host-id>" command.
+
+.. code-block:: bash
+
+    ./orch-cli set host host-1234abcd --osupdatepolicy <resourceID>
+
+Schedule Management
+^^^^^^^^^^^^^^^^^^^
+
+The orch-cli supports schedule of maintenance window for either general maintenance or OS Update of the Edge Nodes.
+The schedules can be a one off or repeated cron jobs either by day of a week or day of a month for specified months.
+The schedules can target a specific Edge Node, a whole Site, or a whole Region.
+
+To create a repeated OS Update schedule use the create command.
+
+.. code-block:: bash
+
+    ./orch-cli create schedules my-schedule --timezone GMT --frequency-type repeated --maintenance-type osupdate --target site-532d1d07 --frequency weekly --start-time "10:10" --day-of-week "1-3,5" --months "2,4,7-8" --duration 3600
+
+To create a single maintenance schedule use the create command.
+
+.. code-block:: bash
+
+    ./orch-cli create schedules my-schedule --timezone GMT --frequency-type single --maintenance-type maintenance --target region-65c0d433 --start-time "2026-12-01 20:20" --end-time "2027-12-01 20:20"
+
+
+See --help on how to create other combinations for schedule.
+
+To list schedules run the list command.
+
+.. code-block:: bash
+
+    ./orch-cli list schedules
+
+To get details of a specific schedule run the get command.
+
+.. code-block:: bash
+
+    ./orch-cli get schedule <schedule ID>
+
+To edit an existing single schedule run the set command.
+
+.. code-block:: bash
+
+    ./orch-cli set schedules singleschedule-abcd1234 --timezone GMT --maintenance-type osupdate --start-time "2026-02-02 10:10" --end-time "2026-02-02 10:10"
+
+To edit an existing repeated schedule run the set command.
+
+.. code-block:: bash
+
+    ./orch-cli set schedules repeatedschedule-abcd1234 --timezone GMT --maintenance-type osupdate --frequency weekly --start-time "10:10" --day-of-week "1-3,5" --months "2,4,7-8" --duration 3600
+
+See --help on how to set other combinations for schedule.
+
+To  delete a schedule run the delete command.
+
+.. code-block:: bash
+
+    ./orch-cli delete schedule <schedule ID>
+
+OS Update Run Management
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+After a scheduled maintenance window is completed an OS Update Run resource is created.
+
+To list OS Update Runs run the list command.
+
+.. code-block:: bash
+
+    ./orch-cli list osupdaterun
+
+To get specific OS Update Run information run the get command.
+
+.. code-block:: bash
+
+    ./orch-cli get osupdaterun <RUN_ID>
+
+To delete an OS Update Run run the delete command.
+
+.. code-block:: bash
+
+    ./orch-cli delete osupdaterun <RUN_ID>
+
+One-click Host Update
+^^^^^^^^^^^^^^^^^^^^^
+
+The orch-cli provides a simplified procedure for one off OS Updates of host OS to be run via a single command.
+Executing the **update-os** on a host will result in a near immediate schedule of a single, open ended OS Update for a host.
+The update can be performed on an single host or a bulk of host with .csv file as an input.
+
+To update a single host with an already assigned OS Update Policy.
+
+.. code-block:: bash
+
+    ./orch-cli update-os host <HOST_ID>
+
+To update a single host and assign a new OS Update Policy.
+
+.. code-block:: bash
+
+    ./orch-cli update-os host <HOST_ID> --osupdatepolicy <OSUPDATEPOLICY_ID>
+
+To generate a blank file for bulk update of hosts.
+
+.. code-block:: bash
+
+    ./orch-cli update-os host --generate-csv test.csv
+
+To generate a file for bulk update of hosts which includes a number of existing hosts and their OS Update Policies based on a required filter.
+To establish available filters see:
+
+* `API-160 filtering <https://google.aip.dev/160>`_
+* `EIM API spec <https://github.com/open-edge-platform/orch-utils/blob/main/tenancy-api-mapping/openapispecs/generated/amc-infra-core-edge-infrastructure-manager-openapi-all.yaml>`_
+
+.. code-block:: bash
+
+    orch-cli update-os host --generate-csv test.csv --filter=<filter>
+
+To generate a file for bulk update of hosts which includes a number of existing hosts and their OS Update Policies based on a required site or region.
+Note --site and --region flags are mutually exclusive, either can be used with conjunction of --filter flag.
+
+.. code-block:: bash
+
+    orch-cli update-os host --generate-csv test.csv --site <SITE_ID>
+    orch-cli update-os host --generate-csv test.csv --region <REGION_ID>
+
+The required input .csv file should be of following format to execute the update.
+
+.. code-block:: bash
+
+    Name - Name of the machine - mandatory field
+    ResourceID - Unique Identifier of host - mandatory field
+    OSUpdatePolicy - Desired update policy - optional field - currently set policy for the host will be used if not provided
+
+    Name,ResourceID,OSUpdatePolicy
+    host-1,host-1234abcd,osupdatepolicy-1234abcd
+    host-2,host-2234abcd
+    host-3,host-3234abcd,osupdatepolicy-1234abcd
+
+To execute bulk OS Update on multiple hosts
+
+.. code-block:: bash
+
+    orch-cli update-os host --import-from-csv test.csv
+
+To view existing OS Update schedules
+
+.. code-block:: bash
+
+    orch-cli list schedules  -v
+
 Help
 ^^^^
 
@@ -332,5 +659,6 @@ For help with any of the commands run the command with `--help`.
 Additional commands:
 ^^^^^^^^^^^^^^^^^^^^
 
-Additional commands are currently in place but in experimental stages.
+The application level CLI commands are covered under the :doc:`/user_guide/package_software/orch_cli/orch_cli_guide`
+
 See "./orch-cli <verb> <noun> --help" for current usage and capabilities of these commands.

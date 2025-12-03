@@ -35,6 +35,3 @@ the following guides:
 * :doc:`/deployment_guide/cloud_deployment/index`
 * :doc:`/deployment_guide/on_prem_deployment/index`
 
-.. toctree::
-   :hidden:
-   :maxdepth: 3

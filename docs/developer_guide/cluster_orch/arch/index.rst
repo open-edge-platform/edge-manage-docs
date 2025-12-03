@@ -29,7 +29,6 @@ Features
 
 .. toctree::
    :hidden:
-   :maxdepth: 3
 
    architecture
    workflows

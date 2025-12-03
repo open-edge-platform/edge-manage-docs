@@ -9,7 +9,6 @@ Learn more about the possible Edge Nodes states:
 - :doc:`/user_guide/set_up_edge_infra/edge_node_states/provisioned_hosts`
 
 .. toctree::
-   :maxdepth: 6
    :hidden:
 
    registered_hosts

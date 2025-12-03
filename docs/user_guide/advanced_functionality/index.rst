@@ -34,3 +34,4 @@ application's capabilities:
    pxe_provisioning_with_cloud_emf
    custom_config
    vpro_power_mgt
+   configure_edgenode_lvm_parition.rst

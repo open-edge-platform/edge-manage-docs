@@ -3,9 +3,11 @@
 # SPDX-License-Identifier: Apache-2.0
 
 name: Publish Documentation
-on:   # yamllint disable-line rule:truthy
+on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
 
+permissions:
+  contents: read
 
 jobs:
   publish-documentation:
@@ -13,7 +15,7 @@ jobs:
       contents: read          # needed for actions/checkout
       pull-requests: read     # needed for gh pr list
       issues: write           # needed to post PR comment
-    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@a389c296f4a6dd2ff9d976007fd386950ab99605  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@d3fe218ea585fb390b73c87f9e482cbe1424829c  # yamllint disable-line rule:line-length
     with:
       simple_mode: false
       branch_pattern: '^(main|release-[0-9]+\.[0-9]+.*)$'
