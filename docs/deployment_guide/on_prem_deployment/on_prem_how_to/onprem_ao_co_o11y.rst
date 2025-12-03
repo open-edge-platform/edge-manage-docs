@@ -218,7 +218,66 @@ Hosts can be registered individually or in bulk using a CSV file.
    to ensure it is applied during host registration.
 
 ----------------------------------------------------
-4.7 Create a Cluster (if CO is enabled)
+4.7 Collecting Edge Node Logs When Observability is Disabled
+----------------------------------------------------
+
+When **Observability (O11Y)** is disabled, the centralized log collection and monitoring
+capabilities are not available. In this scenario, you must collect logs directly from
+each edge node by connecting via SSH.
+
+.. important::
+
+   To access edge nodes when observability is disabled, the edge node must be onboarded
+   with **SSH enabled** in the configuration.
+
+----------------------------------------------------
+4.7.1 SSH Login to Edge Node
+----------------------------------------------------
+
+Once the edge node is onboarded with SSH enabled, you can log in to collect logs.
+
+.. code-block:: bash
+
+   ssh <username>@<edge-node-ip>
+
+----------------------------------------------------
+4.7.2 Collect Edge Node Logs
+----------------------------------------------------
+
+After logging in to the edge node, you can collect logs from various edge services.
+
+**Check Node Agent Logs:**
+
+.. code-block:: bash
+
+   sudo journalctl -u node-agent -f
+
+**Check Cluster Agent Logs (if CO is enabled):**
+
+.. code-block:: bash
+
+   sudo journalctl -u cluster-agent -f
+
+----------------------------------------------------
+4.7.3 View Edge Node Configuration Files
+----------------------------------------------------
+
+You can also inspect configuration files on the edge node to troubleshoot issues.
+
+.. code-block:: bash
+
+   # Node agent configuration
+   sudo cat /etc/edge-node/node/confs/node-agent.yaml
+
+   # Cluster agent configuration (if applicable)
+   sudo cat /etc/edge-node/node/confs/cluster-agent.yaml
+
+   # Check running services
+   sudo systemctl status node-agent
+   sudo systemctl status cluster-agent
+
+----------------------------------------------------
+4.8 Create a Cluster (if CO is enabled)
 ----------------------------------------------------
 
 If the **Cluster Orchestrator** is enabled, create and verify the cluster using the commands below:
