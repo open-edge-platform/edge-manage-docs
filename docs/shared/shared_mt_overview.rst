@@ -221,7 +221,7 @@ Upon enabling this flag and successful installation of the Edge Orchestrator, a 
 The password for this user is set during installation.
 
 Retrieve Password for tenant-admin user
-~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To retrieve the tenant-admin password after tenant initialization, use the following command:
 
