@@ -13,6 +13,5 @@ Trusted Compute is a key aspect of |software_prod_name| that provides workload p
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
 
    arch/architecture

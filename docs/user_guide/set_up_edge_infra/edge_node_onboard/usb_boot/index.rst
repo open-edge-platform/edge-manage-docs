@@ -28,7 +28,6 @@ USB-assisted boot flow
 #. Manage boot order to boot from USB as the fist option and reboot Edge Nodes.
 
 .. toctree::
-   :maxdepth: 6
    :hidden:
 
    usb_boot_dell
