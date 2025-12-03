@@ -120,7 +120,7 @@ Set the following environment variables and authenticate with Keycloak:
 
 .. note::
 
-   Replace ``PROJECT_NAME``, ``ORCH_DEFAULT_USER``, and ``ORCH_DEFAULT_PASSWORD``
+   Replace ``CLUSTER_FQDN``, ``PROJECT_NAME``, ``ORCH_DEFAULT_USER``, and ``ORCH_DEFAULT_PASSWORD``
    with valid credentials for your deployment.
 
 ----------------------------------------------------
