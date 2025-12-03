@@ -157,5 +157,4 @@ It also provides a view of the alerts that have been reported by the system.
    :width: 100%
 
 
-.. toctree::
-   :maxdepth: 3
+
