@@ -9,7 +9,7 @@ This document provides end-to-end guidance on Deploying orchestration with Defau
 1. Single Tenancy Overview
 ----------------------------------------------------
 
-During orchestration deployment, the Single Tenancy profile is **disabled by default**. 
+During orchestration deployment, the Single Tenancy profile is **disabled by default**.
 This profile is controlled through **environment flag** set before starting the orchestration deployment.
 
 .. important::
@@ -59,14 +59,14 @@ You can also confirm the same from the ArgoCD ``root-app`` application view.
 For pre-deployment verification (before cluster creation), review the **orchestration clustername.yaml** file.
 
 ----------------------------------------------------
-4. Tenant Admin Password Management 
+4. Tenant Admin Password Management
 ----------------------------------------------------
 
 Tenant Admin Password Management
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Upon enabling Single Tenancy, the Tenant Initializer automatically generates a secure password 
-for the `tenant-admin` user during the single tenant creation process. The password is generated 
+Upon enabling Single Tenancy, the Tenant Initializer automatically generates a secure password
+for the `tenant-admin` user during the single tenant creation process. The password is generated
 with the following characteristics:
 
 - 16 characters in length
@@ -78,7 +78,7 @@ Password Storage
 ~~~~~~~~~~~~~~~~~
 
 The generated password is automatically stored as a Kubernetes secret in the same namespace
-where the Tenant Initializer job runs (typically `orch-iam`). The secret is named 
+where the Tenant Initializer job runs (typically `orch-iam`). The secret is named
 `tenant-admin-password` and includes labels for easy identification:
 
 - `app: tenant-init`
