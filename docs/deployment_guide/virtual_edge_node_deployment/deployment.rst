@@ -10,7 +10,6 @@ specific needs and preferences. This tool provides scripts and instructions to s
 To get started, refer to the following sections for detailed instructions and guidance tailored to each deployment option:
 
 .. toctree::
-    :maxdepth: 1
 
     baremetal_deployment
     cloud_deployment

@@ -13,7 +13,6 @@ The code examples given in this section are available at `<https://github.com/op
 
 .. toctree::
    :hidden:
-   :maxdepth: 3
 
    developing-applications/index
    packaging-applications/index

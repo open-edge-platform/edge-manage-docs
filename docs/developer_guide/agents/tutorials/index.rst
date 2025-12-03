@@ -10,6 +10,5 @@ Agents software.
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
 
    developing/index
