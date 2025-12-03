@@ -140,50 +140,7 @@ Before registering hosts, ensure the required **region** and **site** are create
    orch-cli list site
 
 ----------------------------------------------------
-4.4 Create a Custom CloudInit Configuration
-----------------------------------------------------
-
-When CO is disabled, a **custom CloudInit file** can be used to disable or modify
-the ``cluster-agent`` service for proper node registration.
-
-**Example Custom CloudInit (``ao-co-disable.yaml``):**
-
-.. code-block:: yaml
-
-   #cloud-config
-   merge_how: 'dict(recurse_array,no_replace)+list(append)'
-   runcmd:
-     - |
-        # Wait until node-agent configuration file is present
-        while [ ! -f /etc/edge-node/node/confs/node-agent.yaml ]; do
-          sleep 10
-        done
-
-        # Wait for cluster-agent service to appear
-        until systemctl list-units --type=service | grep -q cluster-agent; do
-          sleep 10
-        done
-
-        # Disable and stop cluster-agent service
-        systemctl stop cluster-agent
-        systemctl disable cluster-agent
-
-        # Remove cluster-agent from serviceClients
-        sed -i '/serviceClients:/ s/,\s*cluster-agent//; /serviceClients:/ s/cluster-agent,\s*//; /serviceClients:/ s/cluster-agent//' /etc/edge-node/node/confs/node-agent.yaml
-
-        # Restart node-agent service to apply the change
-        systemctl restart node-agent
-
-**Create and Verify the Custom Config:**
-
-.. code-block:: bash
-
-   orch-cli create customconfig aoco-disable ./ao-co-disable.yaml
-   orch-cli list customconfig
-   orch-cli get customconfig aoco-disable
-
-----------------------------------------------------
-4.5 View Available OS Profiles
+4.4 View Available OS Profiles
 ----------------------------------------------------
 
 To list all available OS profiles:
@@ -193,7 +150,7 @@ To list all available OS profiles:
    orch-cli list osprofile
 
 ----------------------------------------------------
-4.6 Register Host in NIO Mode
+4.5 Register Host in NIO Mode
 ----------------------------------------------------
 
 Hosts can be registered individually or in bulk using a CSV file.
@@ -209,16 +166,14 @@ Hosts can be registered individually or in bulk using a CSV file.
 .. code-block:: bash
 
    Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,LVMSize,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill
-   aocotest0001,,Edge Microvisor Toolkit 3.0.20250813,site-bcbbbbf8,FALSE,,,,aoco-disable,,,,,
+   aocotest0001,,Edge Microvisor Toolkit 3.0.20250813,site-bcbbbbf8,FALSE,,,,,,,,,
 
 .. note::
 
    Update values as needed for your specific environment.
-   The ``CloudInitMeta`` field must reference your custom configuration (e.g., ``aoco-disable``)
-   to ensure it is applied during host registration.
 
 ----------------------------------------------------
-4.7 Collecting Edge Node Logs When Observability is Disabled
+4.6 Collecting Edge Node Logs When Observability is Disabled
 ----------------------------------------------------
 
 When **Observability (O11Y)** is disabled, the centralized log collection and monitoring
@@ -231,7 +186,7 @@ each edge node by connecting via SSH.
    with **SSH enabled** in the configuration.
 
 ----------------------------------------------------
-4.7.1 SSH Login to Edge Node
+4.6.1 SSH Login to Edge Node
 ----------------------------------------------------
 
 Once the edge node is onboarded with SSH enabled, you can log in to collect logs.
@@ -241,7 +196,7 @@ Once the edge node is onboarded with SSH enabled, you can log in to collect logs
    ssh <username>@<edge-node-ip>
 
 ----------------------------------------------------
-4.7.2 Collect Edge Node Logs
+4.6.2 Collect Edge Node Logs
 ----------------------------------------------------
 
 After logging in to the edge node, you can collect logs from various edge services.
@@ -259,7 +214,7 @@ After logging in to the edge node, you can collect logs from various edge servic
    sudo journalctl -u cluster-agent -f
 
 ----------------------------------------------------
-4.7.3 View Edge Node Configuration Files
+4.6.3 View Edge Node Configuration Files
 ----------------------------------------------------
 
 You can also inspect configuration files on the edge node to troubleshoot issues.
@@ -277,7 +232,7 @@ You can also inspect configuration files on the edge node to troubleshoot issues
    sudo systemctl status cluster-agent
 
 ----------------------------------------------------
-4.8 Create a Cluster (if CO is enabled)
+4.7 Create a Cluster (if CO is enabled)
 ----------------------------------------------------
 
 If the **Cluster Orchestrator** is enabled, create and verify the cluster using the commands below:
