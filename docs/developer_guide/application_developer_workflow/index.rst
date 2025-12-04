@@ -52,7 +52,6 @@ available in the :doc:`../app_orch/arch/index` section.
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
 
    developing-applications/index
    packaging-applications/index

@@ -7,15 +7,15 @@
 # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
 # default owners - covers lint/config/build tooling in repo root
-* @achamuah @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @rranjan3
+* @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @rranjan3 @open-edge-platform/open-edge-platform-docs-write
 
 # documentation content
-docs/ @achamuah @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @rranjan3 @pchand20
-docs/developer_guide @achamuah @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @rranjan3
-README.md @achamuah @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @rranjan3
+docs/ @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @rranjan3 @pchand20 @open-edge-platform/open-edge-platform-docs-write
+docs/developer_guide @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @rranjan3 @open-edge-platform/open-edge-platform-docs-write
+README.md @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @rranjan3 @open-edge-platform/open-edge-platform-docs-write
 
 # CI files
-.github/ @achamuah @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @rranjan3 @jouillet @adimoft @daveroge @shanedonohue @manilk1x
+.github/ @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @rranjan3 @jouillet @adimoft @daveroge @shanedonohue @manilk1x @open-edge-platform/open-edge-platform-docs-write
 
 # shared doc config
-docconf/ @achamuah @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @rranjan3 @jouillet
+docconf/ @soniabha-intc @scottmbaker @hyunsun @krishnajs @Ram-srini @rranjan3 @jouillet @open-edge-platform/open-edge-platform-docs-write

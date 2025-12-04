@@ -24,7 +24,6 @@ Architecture Diagram
 
 .. toctree::
    :hidden:
-   :maxdepth: 3
 
    data_flow
    deployment

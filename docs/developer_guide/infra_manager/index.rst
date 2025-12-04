@@ -51,7 +51,6 @@ Key Performance Indicators
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
 
    arch/index
    tutorials/index
