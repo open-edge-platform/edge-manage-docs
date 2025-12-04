@@ -169,7 +169,7 @@ _________
 Immutable OS - kernel command update.   
 
 .. figure:: images/os-update-policy_immutable_kernel.png
-        :alt: OS Update Policy - OS update example per immutable OS - kernel command update (TBD)
+        :alt: OS Update Policy - OS update example per immutable OS - kernel command update
 
 Example 6
 _________
@@ -190,7 +190,7 @@ Associate the OS Update Policy with Hosts
 Within the Web UI, navigate to the **Hosts** page, open the desired Host details page, and select **Updates** tab. Here, set applied policy by selecting the created OS Update Policy from the **OS Update Policy** drop-down list.
 The newly added packages will be installed on all the edge nodes that are configured with the given OS Update Policy if a maintenance window is scheduled for that edge node.
 
-.. figure:: images/os-update-policy_update_packages.png TODO
+.. figure:: images/os-update-policy_link-to-host.png
         :alt: OS Update Policy Association with Host
 
 Scheduling an OS Update
