@@ -19,7 +19,6 @@ is available as a CLI application that is also a part of the immutable OS distri
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
 
    arch/index
    tutorials/index

@@ -72,7 +72,6 @@ details.
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
 
    edgenode/hosts
    edgenode/clusters

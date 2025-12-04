@@ -64,7 +64,6 @@ Once Edge Nodes are booted, you can observe their status via |software_prod_name
 See :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/common`.
 
 .. toctree::
-   :maxdepth: 6
    :hidden:
 
    prerequisites/index

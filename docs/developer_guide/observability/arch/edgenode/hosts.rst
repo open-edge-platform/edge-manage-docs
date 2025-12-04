@@ -43,8 +43,6 @@ additional details, refer to:
     project (tenant). Refer to :doc:`../concepts/multitenancy` section for more
     details on how multitenancy in observability is handled.
 
-.. toctree::
-   :hidden:
-   :maxdepth: 3
+
 
 

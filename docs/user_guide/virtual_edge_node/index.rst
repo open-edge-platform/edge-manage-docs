@@ -11,7 +11,6 @@ of different scenarios to enhance your understanding and skills.
 
 .. toctree::
      :hidden:
-     :maxdepth: 1
 
      usage/index.rst
      tutorials/index.rst
