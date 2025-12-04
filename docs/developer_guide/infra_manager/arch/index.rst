@@ -7,7 +7,6 @@ allowing onboarding, provisioning, inventory management, upgrades and more.
 
 .. toctree::
    :hidden:
-   :maxdepth: 3
 
    background
    overview

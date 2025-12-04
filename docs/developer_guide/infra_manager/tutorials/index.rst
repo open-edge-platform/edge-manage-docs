@@ -11,7 +11,6 @@ Manager software.
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
 
    new_resource/index
    os_profiles/index

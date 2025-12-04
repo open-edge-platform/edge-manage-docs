@@ -7,7 +7,6 @@ Start by preparing your server environment and following the provided instructio
 
 
 .. toctree::
-    :maxdepth: 1
 
     ../../user_guide/virtual_edge_node/usage/how_it_works_content
     ../../user_guide/virtual_edge_node/usage/getting_started

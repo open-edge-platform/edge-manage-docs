@@ -18,7 +18,6 @@ the Observability features in |software_prod_name|.
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
 
    arch/index
    tutorials/index

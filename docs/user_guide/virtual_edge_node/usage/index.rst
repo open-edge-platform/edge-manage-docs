@@ -51,7 +51,6 @@ Features
 
 .. toctree::
      :hidden:
-     :maxdepth: 1
 
      how_it_works_content
      getting_started
