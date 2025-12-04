@@ -1,12 +1,17 @@
 Apply an OS Update Policy
 ============================================
 
-**OS Update Policy** is an invntory resource that allows you to manage OS updates for edge nodes running either mutable or immutable operating systems.
+**OS Update Policy** is an invntory resource that allows you to manage OS updates for edge nodes running either
+mutable or immutable operating systems.
 
-.. note:: It must be associated with edge node instances to enable OS updates during scheduled maintenance windows, except when only updating existing mutable OS packages to their latest available versions listed in host details view - the **Updates** tab.
+.. note:: It must be associated with edge node instances to enable OS updates during scheduled maintenance windows,
+   except when only updating existing mutable OS packages to their latest available versions listed in host details
+   view - the **Updates** tab.
 
-This section assumes you have provisioned and configured an edge node with an OS profile using a mutable or immutable image, such as Ubuntu OS 22.04 or the Edge Microvisor Toolkit OS.
-The procedure described here works for edge nodes provisioned and configured with both mutable and immutable operating systems, however during creation of the OS Update Policy, ensure to select the appropriate OS Type. 
+This section assumes you have provisioned and configured an edge node with an OS profile using a mutable or immutable image,
+such as Ubuntu OS 22.04 or the Edge Microvisor Toolkit OS.
+The procedure described here works for edge nodes provisioned and configured with both mutable and immutable operating systems,
+however during creation of the OS Update Policy, ensure to select the appropriate OS Type.
 Based on the selected OS Type, the relevant options will be enabled for update configuration.
 
 OS Update Policy Types
@@ -30,8 +35,9 @@ The OS Update Policy contains the following fields:
 - **Update Packages** - (Optional, mutable OS only) New Debian packages to be installed on the edge nodes as part of the update process.
 - **APT Sources** - (Optional, mutable OS only) New APT sources from which the new packages will be installed.
 - **Target OS** - (Immutable OS only, target update policy) The target OS image version to which the edge nodes will be updated.
-  
-.. note:: For immutable OS, updating the OS cannot be performed together with updating the kernel command; these require separate OS Update Policies and separately scheduled updates.
+
+.. note:: For immutable OS, updating the OS cannot be performed together with updating the kernel command; these require
+   separate OS Update Policies and separately scheduled updates.
 
 OS Update Policy Types Details
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -43,13 +49,16 @@ For mutable OS updates the **UPDATE_POLICY_TARGET** OS Update Policy allows for:
 - adding new APT sources from which the new packages will be installed.
 - updating kernel command-line parameters.
 
-        .. note:: For more information on how to install new packages and configure APT sources, see :doc:`/user_guide/advanced_functionality/install_new_packages`.
+        .. note:: For more information on how to install new packages and configure APT sources, see
+           :doc:`/user_guide/advanced_functionality/install_new_packages`.
 
 For immutable OS updates the **UPDATE_POLICY_TARGET** OS Update Policy allows for:
+
 - specifying the target OS image version to which the edge nodes will be updated
 - updating kernel command-line parameters.
 
-        .. note:: For immutable OS, updating the OS cannot be performed together with updating the kernel command; these require separate OS Update Policies and separately scheduled updates.
+        .. note:: For immutable OS, updating the OS cannot be performed together with updating the kernel command;
+           these require separate OS Update Policies and separately scheduled updates.
 
 For immutable OS updates, the **UPDATE_POLICY_LATEST** OS Update Policy allows for:
 
@@ -64,40 +73,46 @@ i. Set up the Orch CLI tool as in :doc:`/user_guide/set_up_edge_infra/orch_cli/o
 
 ii. Create a yaml file with the OS Update Policy configuration.
 
-        See the following examples of OS Update Policy configuration for mutable and immutable OS:
-        .. code-block:: yaml
-            appVersion: apps/v1
-            spec:
-                name: "policy1"
-                description: "mutable OS update"
-                updatePolicy: "UPDATE_POLICY_TARGET"
-                updateKernelCommand: "hugepages=2"
-                updatePackages: "tree"
+    See the following examples of OS Update Policy configuration for mutable and immutable OS:
 
-        .. code-block:: yaml
-            appVersion: apps/v1
-            spec:
-                name: "policy2"
-                description: "immutable OS update- target OS"
-                updatePolicy: "UPDATE_POLICY_TARGET"
-                targetOs: "os-aef16d62"
+    .. code-block:: yaml
 
-        .. code-block:: yaml
-            appVersion: apps/v1
-            spec:
-                name: "policy3"
-                description: "immutable OS update - latest OS"
-                updatePolicy: "UPDATE_POLICY_LATEST"
+        appVersion: apps/v1
+        spec:
+            name: "policy1"
+            description: "mutable OS update"
+            updatePolicy: "UPDATE_POLICY_TARGET"
+            updateKernelCommand: "hugepages=2"
+            updatePackages: "tree"
+
+    .. code-block:: yaml
+
+        appVersion: apps/v1
+        spec:
+            name: "policy2"
+            description: "immutable OS update- target OS"
+            updatePolicy: "UPDATE_POLICY_TARGET"
+            targetOs: "os-aef16d62"
+
+    .. code-block:: yaml
+
+        appVersion: apps/v1
+        spec:
+            name: "policy3"
+            description: "immutable OS update - latest OS"
+            updatePolicy: "UPDATE_POLICY_LATEST"
 
 iii. Create the OS Update Policy using the crated yaml file, and locate its resource ID.
 
-    .. code_block:: bash
+    .. code-block:: bash
+
         orch-cli create osupdatepolicy ./policy1.yaml
         orch-cli list osupdatepolicy
 
 iv. Locate the resource ID of your host and link your OS Update Policy with it.
 
-    .. code_block:: bash
+    .. code-block:: bash
+
         orch-cli list host
         orch-cli set host <host-resource-id> -u <os-update-policy-resource-id>
 
@@ -111,7 +126,7 @@ Select the OS Update Policy Type
 i. Within the Web UI navigate to configuration section and open the **OS Update Policy** page.
 
 .. figure:: images/os-update-policy_screen_empty.png
-        :alt: OS Update Policy - empty list 
+        :alt: OS Update Policy - empty list
 
 ii. Click on the **Create OS Update Policy** button to open the **Create OS Update Policy** form.
 
@@ -166,7 +181,7 @@ Immutable OS - update to a specific OS version.
 Example 5
 _________
 
-Immutable OS - kernel command update.   
+Immutable OS - kernel command update.
 
 .. figure:: images/os-update-policy_immutable_kernel.png
         :alt: OS Update Policy - OS update example per immutable OS - kernel command update
@@ -180,17 +195,20 @@ Immutable OS - update to the latest OS version.
         :alt: OS Update Policy - Latest OS update example per immutable OS
 
 
-..note::
+.. note::
 
-        For immutable OS, updating the OS cannot be performed together with updating the kernel command; these require separate OS Update Policies and separately scheduled updates.
+        For immutable OS, updating the OS cannot be performed together with updating the kernel command; these require
+        separate OS Update Policies and separately scheduled updates.
 
 Associate the OS Update Policy with Hosts
 -----------------------------------------
 
-Within the Web UI, navigate to the **Hosts** page, open the desired Host details page, and select **Updates** tab. Here, set applied policy by selecting the created OS Update Policy from the **OS Update Policy** drop-down list.
-The newly added packages will be installed on all the edge nodes that are configured with the given OS Update Policy if a maintenance window is scheduled for that edge node.
+Within the Web UI, navigate to the **Hosts** page, open the desired Host details page, and select **Updates** tab.
+Here, set applied policy by selecting the created OS Update Policy from the **OS Update Policy** drop-down list.
+The newly added packages will be installed on all the edge nodes that are configured with the given OS Update Policy
+if a maintenance window is scheduled for that edge node.
 
-.. figure:: images/os-update-policy_link-to-host.png
+.. figure:: images/os-update-policy_link_to_host.png
         :alt: OS Update Policy Association with Host
 
 Scheduling an OS Update

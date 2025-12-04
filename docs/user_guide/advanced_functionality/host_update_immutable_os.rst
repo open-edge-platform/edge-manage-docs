@@ -32,13 +32,16 @@ Only instances that have been manually linked to a specific OS Resource will rec
 OS Resource Linkage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-OS Resource linkage is done by creating an **OS Update Policy** and associating it with the desired edge node instance. The policy specifies whether to update to a specific target OS version or to the latest compatible version.
+OS Resource linkage is done by creating an **OS Update Policy** and associating it with the desired edge node instance.
+The policy specifies whether to update to a specific target OS version or to the latest compatible version.
 
 For details on creating an OS Update Policy and linking it to an edge node for Edge Microvisor Toolkit updates, see:
 :doc:`/user_guide/advanced_functionality/apply_new_os_update_policy`
 
-#. After linking the OS Update Policy with the desired edge node instance, any scheduled update will attempt to upgrade the Edge Microvisor Toolkit according to the update details provided in the policy.
-Depending on the chosen policy type ( **UPDATE_POLICY_TARGET** or **UPDATE_POLICY_LATEST**) it will upgrade to the specified version or to the latest compatible version.
+#. After linking the OS Update Policy with the desired edge node instance, any scheduled update will attempt to upgrade
+   the Edge Microvisor Toolkit according to the update details provided in the policy.
+   Depending on the chosen policy type ( **UPDATE_POLICY_TARGET** or **UPDATE_POLICY_LATEST**) it will upgrade to the
+   specified version or to the latest compatible version.
 
 Display Available Updates on UI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -1,10 +1,13 @@
 Install a New Debian\* Package on Mutable OS
 ============================================
 
-This section assumes that you have provisioned and configured an edge node with an OS profile containing a mutable image, such as Ubuntu* OS version 22.04.
-The procedure described here does not work for edge nodes provisioned and configured with immutable operating systems, such as the Edge Microvisor Toolkit OS.
+This section assumes that you have provisioned and configured an edge node with an OS profile containing a mutable image,
+such as Ubuntu* OS version 22.04.
+The procedure described here does not work for edge nodes provisioned and configured with immutable operating systems,
+such as the Edge Microvisor Toolkit OS.
 
-You can install new Debian\* packages on edge nodes with mutable OSes using the :doc:`/api/edge_infra_manager`, Web-UI, or Orch CLI. This section describes how to install new packages using the Web UI.
+You can install new Debian\* packages on edge nodes with mutable OSes using the :doc:`/api/edge_infra_manager`,
+Web-UI, or Orch CLI. This section describes how to install new packages using the Web UI.
 
 .. note:: Verify the source reliability, integrity, and security-related aspects of the Debian package before installing the package.
 
@@ -65,31 +68,36 @@ you must provide a new APT source using the DEB822 Source Format.
 Create OS Update Policy
 ------------------------
 
-**OS Update Policy** allows you to specify new Debian packages to be installed on the edge nodes as part of the update process, and to add new APT sources from which the new packages will be installed. For more information on **OS Update Policy** see :doc:`/user_guide/advanced_functionality/apply_new_os_update_policy`.
+**OS Update Policy** allows you to specify new Debian packages to be installed on the edge nodes as part of the update process,
+and to add new APT sources from which the new packages will be installed.
+For more information on **OS Update Policy** see :doc:`/user_guide/advanced_functionality/apply_new_os_update_policy`.
 Follow these steps to create an OS Update Policy that installs new packages on edge nodes with mutable OSes:
 
 i. Within the Web UI navigate to configuration section and open the **OS Update Policy** page.
 
 .. figure:: images/os-update-policy_screen_empty.png
-        :alt: OS Update Policy - empty list 
+        :alt: OS Update Policy - empty list
 
 ii. Click on the **Create OS Update Policy** button to open the **Create OS Update Policy** form.
 
     OS Update Policy contains fields specific to mutable OS update and Immutable OS update.
-    To install new Debian packages on edge nodes with mutable OSes, select OS Type **Mutable OS** and OS Update Policy Type **Update To Target**. This will enable only fields applicable to mutable OS updates.
+    To install new Debian packages on edge nodes with mutable OSes, select OS Type **Mutable OS** and OS Update Policy Type
+    **Update To Target**. This will enable only fields applicable to mutable OS updates.
 
 iii. Provide the Update Sources and Update Packages following this example, and hit **Create** button:
 
 .. figure:: images/os-update-policy_update_packages.png
-        :alt: OS Update Policy - update packages example 
+        :alt: OS Update Policy - update packages example
 
 Associate the OS Update Policy with Hosts
 -----------------------------------------
-Within the Web UI, navigate to the **Hosts** page, open the desired Host details page, and select **Updates** tab. Here, set applied policy by selecting the created OS Update Policy from the **OS Update Policy** drop-down list.
-The newly added packages will be installed on all the edge nodes that are configured with the given OS Update Policy if a maintenance window is scheduled for that edge node.
+Within the Web UI, navigate to the **Hosts** page, open the desired Host details page, and select **Updates** tab.
+Here, set applied policy by selecting the created OS Update Policy from the **OS Update Policy** drop-down list.
+The newly added packages will be installed on all the edge nodes that are configured with the given OS Update Policy
+if a maintenance window is scheduled for that edge node.
 
-.. figure:: images/os-update-policy_link-to-host.png
-        :alt: OS Update Policy - update packages example  
+.. figure:: images/os-update-policy_link_to_host.png
+        :alt: OS Update Policy - update packages example
 
 Scheduling Ubuntu OS Update
 ---------------------------

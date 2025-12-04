@@ -39,15 +39,19 @@ An Edge Node update can be scheduled through the Web UI, which creates a dedicat
 window for the update process. To learn more about scheduling updates for Edge Nodes, see the
 :ref:`guide on scheduling maintenance <user_guide/advanced_functionality/host_schedule_main:Schedule Maintenance for Configured and Active Hosts>`.
 
-Define the intended update in an OS Update Policy and link it to the target Hosts before scheduling the maintenance window. 
-An OS Update Policy is not required for routine updates of mutable Ubuntu OS packages; administrators can apply the latest available packages directly from the Web UI under the Host’s **Updates** tab.
-To learn more about the OS Update Policy resource, see the :doc:`/user_guide/advanced_functionality/apply_new_os_update_policy`. 
+Define the intended update in an OS Update Policy and link it to the target Hosts before scheduling the maintenance window.
+An OS Update Policy is not required for routine updates of mutable Ubuntu OS packages; administrators can apply the latest
+available packages directly from the Web UI under the Host's **Updates** tab.
+To learn more about the OS Update Policy resource, see the :doc:`/user_guide/advanced_functionality/apply_new_os_update_policy`.
 
-When an OS update becomes available for a Host, the Web-UI notifies the administrator with an icon "OS update available" appearing on the Hosts page.
+When an OS update becomes available for a Host, the Web-UI notifies the administrator with an icon "OS update available"
+appearing on the Hosts page.
 Then, inside the Host's **Updates** tab, the available updates are displayed.
-In case of immuatable OS, it is the latest available EMT image version, whereas in case of mutable OS, it is a list of available Ubuntu packages.
+In case of immuatable OS, it is the latest available EMT image version, whereas in case of mutable OS, it is a list of
+available Ubuntu packages.
 
-Once the update is finished (successful or failed), the administrator can check the latest update status in the **Status Details** tab of the Host's page. 
+Once the update is finished (successful or failed), the administrator can check the latest update status in the **Status Details**
+tab of the Host's page.
 The history of Host's updates is also available for review in the **Update History**" tab.
 Each record includes the update status, start and end time, duration and name of the applied OS Update Policy.
 
@@ -58,7 +62,8 @@ The first diagram presents a high-level update flow, highlighting the exchange o
 as well as the actions performed by the OS Resource Manager.
 The diagram also shows the creation of a maintenance window when an Edge Node update is required.
 
-Although the OS update flow remains consistent for mutable and immutable OSes from the Web-UI and CLI user perspective, the update process triggered by the user and performed by EIM is specific to each OS type (mutable/immutable).
+Although the OS update flow remains consistent for mutable and immutable OSes from the Web-UI and CLI user perspective,
+the update process triggered by the user and performed by EIM is specific to each OS type (mutable/immutable).
 
 High Level Day2 Flow
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -101,7 +106,7 @@ High Level Day2 Flow
             inv->>mm: return
             mm->>inv: get Schedule Resources for Instance
             inv->>mm: return
-            opt EN with an immutable OS 
+            opt EN with an immutable OS
                 mm->>inv: get Latest OS Resource for Instance OS type (checking for immutable OS update availability)
                 inv->>mm: return
             end
@@ -217,15 +222,22 @@ providing a new OS image with new package versions. To achieve this, two read-on
 original OS installation (A), and install a new OS in second partition (B). Depending on the success of the installation of
 updated OS, the OS is booted from the new partition (B) or rolled back to the original partition (A) in case of failure.
 
-OS Resource manager discovers new OS profiles that represent versions of EMT compatible with the running Edge Orchestrator and creates new OS Resources in the inventory.
-The Administrator is responsible for creating and applying an OS Update Policy per Hosts that need to be updated. The OS Update Policy can be one of two types:
+OS Resource manager discovers new OS profiles that represent versions of EMT compatible with the running Edge Orchestrator
+and creates new OS Resources in the inventory.
+The Administrator is responsible for creating and applying an OS Update Policy per Hosts that need to be updated.
+The OS Update Policy can be one of two types:
+
 - Update to the latest available EMT version.
 - Update to a specific EMT version, with the version provided.
-Whenever an update is triggered, it will follow instructions given by the OS Update Policy: update to the latest EMT version found in the inventory, or update to the version specified in the OS Update Policy.
 
-..note::
+Whenever an update is triggered, it will follow instructions given by the OS Update Policy: update to the latest EMT version
+found in the inventory, or update to the version specified in the OS Update Policy.
 
-    If no OS Update Policy is linked to the Host, or the specified image version is not newer than the currently installed version, no update is triggered. An administrator can link a new OS Update Policy to the Host at any time - changes take effect during the next scheduled update.
+.. note::
+
+    If no OS Update Policy is linked to the Host, or the specified image version is not newer than the currently installed
+    version, no update is triggered. An administrator can link a new OS Update Policy to the Host at any time - changes take
+    effect during the next scheduled update.
 
 Immutable OS Update Flow
 ~~~~~~~~~~~~~~~~~~~~~~~~
