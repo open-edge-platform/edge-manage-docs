@@ -45,7 +45,7 @@ Click the **Installed Packages** tab to view information about list of installed
 View CVEs Details
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Click the **Existing Cves** and **Fixed Cves** tab to view the information about list of existing CVEs and fixed CVEson the OS resource:
+Click the **Existing Cves** and **Fixed Cves** tab to view the information about list of existing CVEs and fixed CVEs on the OS resource:
 
 .. figure:: images/os_profile_drawer_existing_cves.png
    :alt: View Existing CVEs Details
