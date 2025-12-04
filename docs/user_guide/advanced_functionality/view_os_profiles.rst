@@ -47,10 +47,10 @@ View CVEs Details
 
 Click the **Existing Cves** and **Fixed Cves** tab to view the information about list of existing CVEs and fixed CVEson the OS resource:
 
-.. figure:: images/os_profile_drawer_cves.png
+.. figure:: images/os_profile_drawer_existing_cves.png
    :alt: View Existing CVEs Details
 
-.. figure:: images/os_profile_drawer_cves.png
+.. figure:: images/os_profile_drawer_fixed_cves.png
    :alt: View Fixed CVEs Details
 
 Available OS Resources during the Host Configuration
