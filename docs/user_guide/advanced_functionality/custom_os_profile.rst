@@ -6,11 +6,12 @@ of edgenodes. By defining a custom OS profile, users can specify custom built OS
 and Edge Microvisor Toolkit(EMT) as an edgenode's operating system. This enables a more tailored and efficient deployment process
 for edgenodes, allowing users to leverage their own OS images that are optimized for their specific use cases.
 
-Here are the prerequisites to use the custom OS profile feature:
+Here are the prerequisites to use the custom OS profile feature
+
 - OS images must be built and hosted on a web server that is accessible during the edgenode provisioning process.
 - Supported OS image formats include QCOW2, and RAW with or without compression.
-- OS image including kernel must be signed with a trusted certificate to support Secure Boot, and corresponding
-  certificate must be enrolled in the edgenode's firmware.
+- OS image including kernel must be signed with a trusted certificate to support Secure Boot,
+and corresponding certificate must be enrolled in the edgenode's firmware.
 - OS images must include necessary drivers and configurations to support the target edgenode hardware.
 - OS image partition layout must be labeled using GPT.
   - UEFI/EFI system partition and rootfs partition for Ubuntu
@@ -26,7 +27,8 @@ Here are the prerequisites to use the custom OS profile feature:
 - If Edge node is behind a proxy server, make sure the OS image URL is accessible during the provisioning process.
 - OS image URL must use HTTPS protocol to ensure secure transmission during hosting the OS image in the web server.
 
-Default OS profiles available after the EMF orchestrator installation are:
+Default OS profiles available after the EMF orchestrator installation are
+
 - Ubuntu 22.04 LTS 
 - Ubuntu 24.04 LTS
 - Ubuntu 24.04 LTS with OOT GPU drivers
@@ -67,9 +69,10 @@ spec:
   description: "<description_of_custom_os_profile>"
   metadata: ""
   tlsCert: "<TLS_CERT>"
-
 ```
-Replace the placeholders with appropriate values:
+
+Replace the placeholders with appropriate values
+
 - `<custom_os_profile_name>`: A unique name for the custom OS profile.
 - `<IMMUTABLE/MUTABLE>`: Specify whether the OS profile is immutable or mutable.
 - `<url_to_os_image>`: The URL where the OS image is hosted.
@@ -90,8 +93,8 @@ spec:
 ```
 
 Optional: If you want to install specific version of canonical kernel during the edgenode provisioning,
-you can add to metadata field in the yaml file as below:
-<canonical_kernel_version> should be replaced with the desired kernel version with the format like "linux-image-5.15.0-1035-generic"
+you can add to metadata field in the yaml file as below
+- <canonical_kernel_version> should be replaced with the desired kernel version with the format like "linux-image-5.15.0-1035-generic"
 and it should be present in canonical repo
 
 
@@ -108,42 +111,45 @@ Then run the following command to create the custom OS profile:
 Login to orch-cli first:
 Change `<EMF_KEYSTONE_URL>`, `<USERNAME>`, and `<PASSWORD>` with your EMF orchestrator details.
 
-  ```bash
+```bash
   orch-cli login <EMF_KEYSTONE_URL> --username <USERNAME> --password <PASSWORD>
   orch-cli config set project <PROJECT_NAME>
   orch-cli config set api-endpoint <EMF_API_ENDPOINT>
-  ```
+```
 Replace `<PROJECT_NAME>` and `<EMF_API_ENDPOINT>` with your project name and EMF API endpoint(https://api.<cluster_domain>) respectively.
 
 Create the custom OS profile:
 
-  ```bash
+```bash
   orch-cli create osprofile custom_os_profile.yaml
-  ```
+```
 Register the edge node with the created custom OS profile:
 
-  ```bash
+```bash
   orch-cli create host --generate-csv
-  ```
-  It will generate a CSV file test.csv with the necessary details to register the edge node.
-  Use the generated test.csv file to register the edge node with the custom OS profile:
-  OSProfile field in the CSV file should have the custom OS profile name created earlier.
+```
+It will generate a CSV file test.csv with the necessary details to register the edge node.
+Use the generated test.csv file to register the edge node with the custom OS profile:
+OSProfile field in the CSV file should have the custom OS profile name created earlier.
 
-  ```bash
+```bash
   orch-cli create host --import-from-csv test.csv
-  ```
+```
+
 - Monitor the provisioning status of the edge node using the orch-cli or EMF web console.
 
-  ```bash
+```bash
   orch-cli get host <host_response_id>
-  ```
+```
+
 Replace `<host_response_id>` with the ID of the edge node obtained during registration.
 - Once the provisioning is complete, verify that the edge node is running the custom OS profile by checking the OS version and configurations on the edge node.
 - Clean up the created custom OS profile if no longer needed:
 
-  ```bash
+```bash
   orch-cli delete osprofile <custom_os_profile_name>
-  ```
+```
+
 Replace `<custom_os_profile_name>` with the name of the custom OS profile created earlier.
 - For more details on using the orch-cli, refer to the [orch-cli user guide](../package_software/orch_cli/orch_cli_guide.rst).
 - For more details on edge node provisioning, refer to the [edge node provisioning guide](../set_up_edge_infra/edge_node_onboard/index.rst).
