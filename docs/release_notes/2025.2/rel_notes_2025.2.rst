@@ -20,18 +20,25 @@ applications across distributed edge, at scale. Edge Node software provides the
 profiles of infrastructure software configurations that get provisioned onto an
 onboarded node.
 
+EMF release versioning has been changed to align with the year and release number. 
+
 Key highlights of the 2025.2 release include:
 
 **Infrastructure and Edge Node Software**
 
-* **New:** Support for Ubuntu 24.04 LTS with kernel 6.11.0-17.
-* **New:** Custom OS profiles based on Ubuntu 24.04 LTS or the Edge Microvisor Toolkit (EMT).
-* **New:** Alpha support for Intel® Core™ Ultra Series 3 processors (formerly code-named Panther Lake).
-* **New:** Support for edge nodes utilizing Intel vPro® ISM in conjunction with vPro® AMT.
-* **New:** Capability to customize operating system kernel command-line parameters.
-* **New:** Security compliance verification through tracking of open and fixed CVEs for packages installed on Ubuntu 24.04 LTS and EMT.
-* **Update:** Architectural enhancements to improve the stability of out-of-band management using Intel AMT/vPro® and ISM/vPro®.
-* **Update:** Migration of Intel vPro® device activation to Day 1 (post-device onboarding and provisioning).
+* **New:** Support for Ubuntu 24.04 LTS with kernel 6.11.0-17. Official support for Ubuntu 22.04 LTS continues.
+* **New:** Users can create custom OS profiles based on Ubuntu 24.04 LTS or the Edge Microvisor Toolkit (EMT).
+* **New:** Alpha support for Intel® Core™ Ultra Series 3 processors (formerly code-named Panther Lake) supporting 
+  integrated GPU and NPU.
+* **New:** Users can now use Intel vPRO based out-of-band management for Intel vPro® ISM in conjunction with vPro® AMT 
+  devices <https://www.intel.com/content/www/us/en/support/articles/000090499/technologies/intel-active-management-technology-intel-amt.html>`__..
+* **New:** Expanding the device customization capabilities, users can now customize operating system kernel 
+  command-line parameters.
+* **New:** Security compliance verification through tracking of open and fixed CVEs for packages installed on 
+  Ubuntu 24.04 LTS and EMT.
+* **Update:** Architectural enhancements to improve the reliability of supported operations of out-of-band management 
+  using Intel AMT/vPro® and ISM/vPro®.
+* **Update:** Users can activate Intel vPro® AMT or ISM post device device onboarding and provisioning.  
 
 **Advanced Clusters and Application Management**
 
@@ -63,7 +70,7 @@ and the `Edge Manageability Framework README file <https://github.com/open-edge-
 Upgrades from Previous Releases
 ----------------------------------
 
-Edge Manageability Framework (EMF) version 3.1 supports direct
+Edge Manageability Framework (EMF) version 2025.2 supports direct
 upgrades from version 3.1 to 2025.2 both for on-prem <guide> and AWS deployments <guide>
 
 * Clusters created with release 3.1 and deleted in release 2025.2 require
