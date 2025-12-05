@@ -69,6 +69,9 @@ Recommended Workflow (On-Prem Upgrade)
      3. Then apply the same logic to cluster-manager: delete any Degraded Jobs and resync.
    - Special case: For namespace-label, wait-istio-job, tenancy-api-mapping, try Sync first; if it does not work, delete the application and resync root-app.
    - postgresql-secret missing: Sync the main application first, then apply Sync -> Delete CRD/Job if Degraded -> Resync.
+   - cluster-manager is staying in progress: Sync the platform-keycloak application and
+     ensure the keycloak-config-cli-job succeeds, then navigate back to the cluster-manager
+     and sync the application.
 5. Verify the application is Healthy and Synced before moving on.
 
 
@@ -96,3 +99,11 @@ Known Issues
      kubectl delete pod -n orch-infra -l app.kubernetes.io/name=dkam 2>/dev/null
 
 After completing the above steps, **wait approximately 5 minutes** for dkam to update the latest certificates and dependent packages.
+
+Troubleshooting
+===============
+
+If applications are not synced and healthy after running the steps described in the
+previous sections, then manual intervention may be required. Open ArgoCD in a web
+browser and login as an admin. Navigate to the out of sync or unheathy application
+and try to sync the application by pressing on the Sync button.
