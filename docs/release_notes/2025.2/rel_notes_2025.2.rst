@@ -14,8 +14,6 @@ Dec 11 2025.
 Release Highlights
 ---------------------------
 
-Edge Orchestrator is the primary product within the Edge Manageability Framework.
-
 Edge Manageability Framework enables you to securely onboard and provision remote
 edge devices to a central management plane, orchestrate Kubernetes\* clusters and
 applications across distributed edge, at scale. Edge Node software provides the
@@ -24,17 +22,28 @@ onboarded node.
 
 Key Highlights of the 2025.2 release include, but are not limited to:
 
-* New: Ubuntu 24.04 LTS support with 6.11.0-17 kernel 
-* New: Custom OS profile
-* New: Bitnami legacy registry updated with alternative sources
-* New: Security Compliance of an Edge Node is also now implemented through fixed CVE tracking for installed packages on EMT.
-* New: Security Compliance of an Edge Node is also now implemented through open and fixed CVE tracking for installed packages on Ubuntu.
-* New: ISM integration
-* New: Command line parameter 
-* Update: Orch-cli updated with features on par with GUI
-* Update: Architecture changes to improve the stability of Out-of-band management using `Intel AMT/vPRO <https://www.intel.com/content/www/us/en/architecture-and-technology/vpro/vpro-manageability/overview.html>`_.
-  Integration of vPro Device Manageability services with EMF, allowing use of
-  out-of-band management features. 
+Infrastructure and Edge Node Software
+
+* New: Support for Ubuntu 24.04 LTS support with 6.11.0-17 kernel. 
+* New: Custom OS profile based on Ubuntu 24.04 LTS or Edge Microvisor toolkit (EMT).
+* New: Alpha support for Intel® Core™ Ultra series 3 processors, (code-named Panther Lake).
+* New: Support for Edge nodes with Intel vPRO ISM along with vPRO AMT.
+* New: Support for ability to change/customize Operating system kernel commandline parameters.
+* New: Security Compliance verification via open and fixed CVE tracking for installed packages on Ubuntu 24.04 LTS 
+  and EMT.
+* Update: Architecture changes to improve the stability of Out-of-band management using Intel AMT/vPRO and ISM/vPRO.
+* Update: Migrated the Intel vPRO device activation to Day 1 - post device onboarding and provisioning. 
+
+Advanced Clusters and Application management
+* TBD 
+  
+Edge Manageability Framework platform enhancements
+
+* New: Support for modular deployment of EMF for advanced users.
+* New: Mitigation from Bitnami legacy registry updated with alternative sources.
+* Update: Orch-cli updated to support all the capabilities available in EMF UI.
+
+
 * New: Support for reference applications
     * Pallet Defect Detection v2.5.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
     * Weld Porosity Detection v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
