@@ -66,12 +66,10 @@ Recommended Workflow (On-Prem Upgrade)
    - Cluster-manager special logic:
      1. Check platform-keycloak is Healthy and Synced.
      2. If not, sync platform-keycloak first. Delete any Degraded Jobs in platform-keycloak and resync.
+        Ensure the keycloak-config-cli-job succeeds.
      3. Then apply the same logic to cluster-manager: delete any Degraded Jobs and resync.
-   - Special case: For namespace-label, wait-istio-job, tenancy-api-mapping, try Sync first; if it does not work, delete the application and resync root-app.
+   - namespace-label, wait-istio-job, tenancy-api-mapping: try Sync first; if it does not work, delete the application and resync root-app.
    - postgresql-secret missing: Sync the main application first, then apply Sync -> Delete CRD/Job if Degraded -> Resync.
-   - cluster-manager is staying in progress: Sync the platform-keycloak application and
-     ensure the keycloak-config-cli-job succeeds, then navigate back to the cluster-manager
-     and sync the application.
 5. Verify the application is Healthy and Synced before moving on.
 
 
@@ -114,14 +112,14 @@ Filter the application set to see which applications are OutOfSync.
 
       Figure 1: Overview of OutOfSync applications in ArgoCD UI
 
-From here, navigate to an out of sync or unheathy application
+From here, navigate to an out of sync or unhealthy application
 and try to sync the application by pressing on the Sync button.
 
-.. figure:: ./images/out-of-sync-2.png
+   .. figure:: ./images/out-of-sync-2.png
       :alt: How to Sync an OutOfSync application in ArgoCD UI.
 
       Figure 2: How to Sync an OutOfSync application in ArgoCD UI
 
-Certain applications such as the ones dependent on the external-secrets aplication,
-may need the check-boxes force-replace ServerSideApply=true set in ArgoCD (due to A
+Certain applications such as the ones dependent on the external-secrets application,
+may need the check-boxes force-replace ServerSideApply=true set in ArgoCD (due to a
 known issue in ArgoCD).
