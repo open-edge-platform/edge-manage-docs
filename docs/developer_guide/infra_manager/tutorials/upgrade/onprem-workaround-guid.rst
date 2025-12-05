@@ -66,8 +66,9 @@ Recommended Workflow (On-Prem Upgrade)
    - Cluster-manager special logic:
      1. Check platform-keycloak is Healthy and Synced.
      2. If not, sync platform-keycloak first. Delete any Degraded Jobs in platform-keycloak and resync.
+        Ensure the keycloak-config-cli-job succeeds.
      3. Then apply the same logic to cluster-manager: delete any Degraded Jobs and resync.
-   - Special case: For namespace-label, wait-istio-job, tenancy-api-mapping, try Sync first; if it does not work, delete the application and resync root-app.
+   - namespace-label, wait-istio-job, tenancy-api-mapping: try Sync first; if it does not work, delete the application and resync root-app.
    - postgresql-secret missing: Sync the main application first, then apply Sync -> Delete CRD/Job if Degraded -> Resync.
 5. Verify the application is Healthy and Synced before moving on.
 
@@ -96,3 +97,29 @@ Known Issues
      kubectl delete pod -n orch-infra -l app.kubernetes.io/name=dkam 2>/dev/null
 
 After completing the above steps, **wait approximately 5 minutes** for dkam to update the latest certificates and dependent packages.
+
+Troubleshooting
+===============
+
+If applications are not synced and healthy after running the steps described in the
+previous sections, then manual intervention may be required. Open ArgoCD in a web
+browser and login as an admin. 
+
+Filter the application set to see which applications are OutOfSync.
+
+   .. figure:: ./images/out-of-sync-1.png
+      :alt: Overview of OutOfSync applications in ArgoCD UI.
+
+      Figure 1: Overview of OutOfSync applications in ArgoCD UI
+
+From here, navigate to an out of sync or unhealthy application
+and try to sync the application by pressing on the Sync button.
+
+   .. figure:: ./images/out-of-sync-2.png
+      :alt: How to Sync an OutOfSync application in ArgoCD UI.
+
+      Figure 2: How to Sync an OutOfSync application in ArgoCD UI
+
+Certain applications such as the ones dependent on the external-secrets application,
+may need the check-boxes force-replace ServerSideApply=true set in ArgoCD (due to a
+known issue in ArgoCD).
