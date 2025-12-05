@@ -105,5 +105,23 @@ Troubleshooting
 
 If applications are not synced and healthy after running the steps described in the
 previous sections, then manual intervention may be required. Open ArgoCD in a web
-browser and login as an admin. Navigate to the out of sync or unheathy application
+browser and login as an admin. 
+
+Filter the application set to see which applications are OutOfSync.
+
+   .. figure:: ./images/out-of-sync-1.png
+      :alt: Overview of OutOfSync applications in ArgoCD UI.
+
+      Figure 1: Overview of OutOfSync applications in ArgoCD UI
+
+From here, navigate to an out of sync or unheathy application
 and try to sync the application by pressing on the Sync button.
+
+.. figure:: ./images/out-of-sync-2.png
+      :alt: How to Sync an OutOfSync application in ArgoCD UI.
+
+      Figure 2: How to Sync an OutOfSync application in ArgoCD UI
+
+Certain applications such as the ones dependent on the external-secrets aplication,
+may need the check-boxes force-replace ServerSideApply=true set in ArgoCD (due to A
+known issue in ArgoCD).
