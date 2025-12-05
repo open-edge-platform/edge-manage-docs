@@ -237,8 +237,10 @@ Click the **OS Profile** tab to view the OS profile details:
      - Description
    * - Installed Packages
      - The list of installed packages on the installed OS.
-   * - Cves
+   * - Existing Cves
      - The list of existing CVEs on the installed OS.
+   * - Fixed Cves
+     - The list of fixed CVEs on the installed OS.
 
 View Host Label
 ^^^^^^^^^^^^^^^^^^^^^^^^^
