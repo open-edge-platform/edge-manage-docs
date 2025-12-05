@@ -20,28 +20,28 @@ applications across distributed edge, at scale. Edge Node software provides the
 profiles of infrastructure software configurations that get provisioned onto an
 onboarded node.
 
-Key Highlights of the 2025.2 release include, but are not limited to:
+Key highlights of the 2025.2 release include:
 
-Infrastructure and Edge Node Software
+**Infrastructure and Edge Node Software**
 
-* New: Support for Ubuntu 24.04 LTS support with 6.11.0-17 kernel. 
-* New: Custom OS profile based on Ubuntu 24.04 LTS or Edge Microvisor toolkit (EMT).
-* New: Alpha support for Intel® Core™ Ultra series 3 processors, (code-named Panther Lake).
-* New: Support for Edge nodes with Intel vPRO ISM along with vPRO AMT.
-* New: Support for ability to change/customize Operating system kernel commandline parameters.
-* New: Security Compliance verification via open and fixed CVE tracking for installed packages on Ubuntu 24.04 LTS 
-  and EMT.
-* Update: Architecture changes to improve the stability of Out-of-band management using Intel AMT/vPRO and ISM/vPRO.
-* Update: Migrated the Intel vPRO device activation to Day 1 - post device onboarding and provisioning. 
+* **New:** Support for Ubuntu 24.04 LTS with kernel 6.11.0-17.
+* **New:** Custom OS profiles based on Ubuntu 24.04 LTS or the Edge Microvisor Toolkit (EMT).
+* **New:** Alpha support for Intel® Core™ Ultra Series 3 processors (formerly code-named Panther Lake).
+* **New:** Support for edge nodes utilizing Intel vPro® ISM in conjunction with vPro® AMT.
+* **New:** Capability to customize operating system kernel command-line parameters.
+* **New:** Security compliance verification through tracking of open and fixed CVEs for packages installed on Ubuntu 24.04 LTS and EMT.
+* **Update:** Architectural enhancements to improve the stability of out-of-band management using Intel AMT/vPro® and ISM/vPro®.
+* **Update:** Migration of Intel vPro® device activation to Day 1 (post-device onboarding and provisioning).
 
-Advanced Clusters and Application management
-* TBD 
-  
-Edge Manageability Framework platform enhancements
+**Advanced Clusters and Application Management**
 
-* New: Support for modular deployment of EMF for advanced users.
-* New: Mitigation from Bitnami legacy registry updated with alternative sources.
-* Update: Orch-cli updated to support all the capabilities available in EMF UI.
+* TBD
+
+**Edge Manageability Framework Platform Enhancements**
+
+* **New:** Support for modular deployment of EMF for advanced users.
+* **New:** Updates to mitigate reliance on the legacy Bitnami registry by utilizing alternative sources.
+* **Update:** Updates to the ``orch-cli`` tool to support all capabilities currently available in the EMF UI.
 
 
 * New: Support for reference applications
