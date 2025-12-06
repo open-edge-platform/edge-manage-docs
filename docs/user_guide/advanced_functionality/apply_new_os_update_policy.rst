@@ -101,6 +101,15 @@ ii. Create a yaml file with the OS Update Policy configuration.
             name: "policy3"
             description: "immutable OS update - latest OS"
             updatePolicy: "UPDATE_POLICY_LATEST"
+    .. code-block:: yaml
+
+        appVersion: apps/v1
+        spec:
+            name: "policy4"
+            description: "immutable OS kernel command update"
+            updatePolicy: "UPDATE_POLICY_TARGET"
+            updateKernelCommand: "hugepages=2"
+
 
 iii. Create the OS Update Policy using the crated yaml file, and locate its resource ID.
 
