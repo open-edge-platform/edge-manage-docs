@@ -195,6 +195,9 @@ Immutable OS - kernel command update.
 .. figure:: images/os-update-policy_immutable_kernel.png
         :alt: OS Update Policy - OS update example per immutable OS - kernel command update
 
+.. note::
+        For immutable OS, kernel command updates can only be applied when Secure Boot is disabled.
+
 Example 6
 _________
 
