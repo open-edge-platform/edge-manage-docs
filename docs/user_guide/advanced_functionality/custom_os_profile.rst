@@ -17,6 +17,7 @@ Here are the prerequisites to use the custom OS profile feature:
 - OS images must be built and hosted on a web server that is accessible during the edge node
   provisioning process.
 - Supported OS image formats include QCOW2 and RAW with or without compression.
+  Supported compression formats are bzip2, bz2, gz, xz, and xs
 - OS image including kernel must be signed with a trusted certificate to support Secure Boot,
   and the corresponding certificate must be enrolled in the edge node's firmware.
 - OS images must include necessary drivers and configurations to support the target edge node
@@ -152,6 +153,8 @@ provisioning, add the following to the ``metadata`` field in the YAML file:
 
    Replace ``<canonical_kernel_version>`` with the desired kernel version in the format
    ``linux-image-5.15.0-1035-generic``. The kernel must be present in the Canonical repository.
+
+   Refer to the Ubuntu canonical package [repository](https://packages.ubuntu.com/noble/linux-image) for available kernel versions.
 
 .. code-block:: yaml
 
