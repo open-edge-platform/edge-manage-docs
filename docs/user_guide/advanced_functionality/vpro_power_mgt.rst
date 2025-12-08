@@ -34,7 +34,9 @@ Assumptions & Recommendations
    it is recommended to disable it in the BIOS for security and compliance.
 - **MEBx Password:** For enhanced security, set a strong and unique Intel® MEBx password during initial setup.
    If the default password is still in use, change it immediately to prevent unauthorized access.
-
+- **Port Enablement:** Ensure that the 4433 network ports for Intel® AMT communication are open 
+   and not blocked by firewalls.
+   
 Power Operations
 ----------------------------
 
