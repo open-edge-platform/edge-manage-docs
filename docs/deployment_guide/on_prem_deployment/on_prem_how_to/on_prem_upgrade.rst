@@ -533,9 +533,12 @@ Workaround 1: Root-App Sync and Certificate Refresh After Upgrade
 
 - Some applications  show as **OutOfSync**, **Degraded**, or missing
 - After running ``onprem_upgrade.sh``:
+
   - **Wait 5–10 minutes** for ``root-app`` and dependent applications to sync
-- Run the resync script::
+  - Run the resync script::
+
       ./after_upgrade_restart.sh
+
   - This script continuously syncs applications
   - Performs **root-app sync**
   - Restarts **tls-boots** and **dkam** pods
@@ -574,11 +577,17 @@ Workaround 3: Unsupported Workflow
 ------------------------------------
 If an Edge Node (EN) was onboarded before the EMF upgrade but the cluster installation was not completed, running the cluster installation after the upgrade using the latest cluster template will not work.
 This fails because the EN still uses old OS profiles and pre-upgrade settings.
-What You Need to Do
-To continue successfully after the upgrade, choose one of these
 
-Option 1: De-authorize and Re-Onboard the EN.
-	• De-authorize the existing EN.
-	• Onboard the EN again so it gets the correct post-upgrade templates and configs.
-Option 2: Update the OS Profile using day2 upgrade process flow.
-	• Update the EN to the latest available OS profile and next install cluster 
+What You Need to Do
+~~~~~~~~~~~~~~~~~~~
+
+To continue successfully after the upgrade, choose one of these:
+
+**Option 1: De-authorize and Re-Onboard the EN**
+
+- De-authorize the existing EN.
+- Onboard the EN again so it gets the correct post-upgrade templates and configs.
+
+**Option 2: Update the OS Profile using day2 upgrade process flow.**
+
+- Update the EN to the latest available OS profile and next install cluster
