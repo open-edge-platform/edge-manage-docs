@@ -7,7 +7,7 @@ Download the Installation Script
 -----------------------------------------------
 
 .. note::
-   EMF is released on a weekly basis. To use a weekly build, refer to the latest weekly tag available `here <https://github.com/open-edge-platform/edge-manageability-framework/discussions>`_. In the below script, replace v3.1.0 with the appropriate weekly tag. Weekly tags follow the format: v3.1.0-nYYYYMMDD.
+   EMF is released on a weekly basis. To use a weekly build, refer to the latest weekly tag available `here <https://github.com/open-edge-platform/edge-manageability-framework/discussions>`_. In the below script, replace v2025.2.0 with the appropriate weekly tag. Weekly tags follow the format: v2025.2.0-nYYYYMMDD.
 
 #. Create the script file on the Edge Orchestrator node using the following command:
 
@@ -23,7 +23,7 @@ Download the Installation Script
     REGISTRY_URL='registry-rs.edgeorchestration.intel.com'
     RS_PATH='edge-orch/common/files/on-prem'
     ORAS_VERSION='1.1.0'
-    ORCH_VERSION='v3.1.0'
+    ORCH_VERSION='v2025.2.0'
 
     # Install oras if not already installed
     if ! command -v oras &> /dev/null; then
