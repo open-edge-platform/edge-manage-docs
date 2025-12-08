@@ -431,7 +431,7 @@ Before confirming in Terminal 1, open **Terminal 2** and update configurations:
 3. **Ensure all configurations are correct.**
 
 Step 6: Terminal 1 - Confirm and Continue
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 if Interactive mode is enabled, wait for user confirmation.
 Once proxy and load balancer configurations are updated in Terminal 2, switch back to **Terminal 1** and enter:
@@ -443,7 +443,7 @@ Once proxy and load balancer configurations are updated in Terminal 2, switch ba
 The upgrade will then proceed automatically through all components.
 
 Step 7: Monitor Upgrade Progress
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The upgrade process includes:
 
@@ -456,7 +456,7 @@ The upgrade process includes:
 - Unseal Vault
 
 Post-Upgrade Verification
--------------------------
+---------------------------
 
 Check the console output from the script.
 The **last line** should read:
@@ -464,7 +464,7 @@ The **last line** should read:
 ``Upgrade completed! Wait for ArgoCD applications to be in 'Synced' and 'Healthy' state``
 
 System Health Check
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 
@@ -479,17 +479,17 @@ System Health Check
    kubectl get applications -A
 
 Service Validation
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 - - Watch ArgoCD applications until they are in `Synced`` and ``Healthy`` state.
 
 Web UI Access Verification
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After successful EMF upgrade, verify you can access the web UI with the same project/user/credentials used in before upgrade.
 
 ArgoCD
-~~~~~~
+~~~~~~~~
 
 - **Username:** `admin`
 - **Retrieve argocd password:**
@@ -499,7 +499,7 @@ ArgoCD
      kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 
 Gitea
-~~~~~
+~~~~~~~
 
 - **Retrieve Gitea username:**
 
@@ -526,7 +526,7 @@ Gitea
      # Then open https://localhost:3000 in your browser and use the above credentials.
 
 Workarounds
-===========
+=============
 
 Workaround 1: Root-App Sync and Certificate Refresh After Upgrade
 --------------------------------------------------------------------
@@ -557,7 +557,7 @@ Workaround 1: Root-App Sync and Certificate Refresh After Upgrade
   Once the above steps are successful, the orchestrator (Orch) is ready for onboarding new Edge Nodes (EN).
 
 Workaround 2: Handling Gitea Pod Crashes During Upgrade
------------------------------------
+---------------------------------------------------------
 - Some time onprem_upgrade.sh may fail with::
       Error: UPGRADE FAILED: context deadline exceeded
       dpkg: error processing package onprem-gitea-installer
@@ -571,7 +571,7 @@ Workaround 2: Handling Gitea Pod Crashes During Upgrade
 After gitea pod restart restart onprem_upgrade.sh script 
 
 Workaround 3: Unsupported Workflow
-----------------------------------
+------------------------------------
 If an Edge Node (EN) was onboarded before the EMF upgrade but the cluster installation was not completed, running the cluster installation after the upgrade using the latest cluster template will not work.
 This fails because the EN still uses old OS profiles and pre-upgrade settings.
 What You Need to Do
