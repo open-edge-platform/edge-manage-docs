@@ -69,7 +69,9 @@ Download the Installation Script
 Configure Installation Environment
 -----------------------------------
 
-The installation uses an ``onprem.env`` file for configuration. This file contains all environment variables used by the on-premise installer scripts and must be properly configured before running the installation.
+The installation uses an ``onprem.env`` file for configuration. This file contains all
+environment variables used by the on-premise installer scripts and must be properly
+configured before running the installation.
 
 .. important::
    The ``onprem.env`` file is located in the same directory as the installer scripts (downloaded via ``access_script.sh``). You must edit this file and set the required values before proceeding with the installation.
@@ -369,7 +371,7 @@ Single tenancy mode with tracing:
 
    ./onprem_installer.sh -- -st -t
 
-.. note:: 
+.. note::
    - Options before ``--`` control the pre-install phase
    - Options after ``--`` control the main install phase
    - Ensure ``onprem.env`` is properly configured before running
@@ -502,7 +504,7 @@ Configure Custom Settings
 
 #. If Edge Orchestrator or the edge nodes requires a proxy to access the
    Internet, configure the proxy settings in the ``onprem.env`` file before running the installer.
-   The installer will automatically apply the proxy configuration. See the 
+   The installer will automatically apply the proxy configuration. See the
    `Proxy Configuration <#proxy-configuration>`__ section for details on the available proxy variables.
 
 #. Edge Orchestrator detects the latest compatible versions of the Edge Microvisor Toolkit for update of edge nodes deployed with an immutable OS.

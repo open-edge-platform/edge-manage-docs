@@ -99,10 +99,14 @@ Step 1: Download the Latest On-Prem Upgrade Script
 Configure Upgrade Environment
 ------------------------------
 
-The upgrade uses an ``onprem.env`` file for configuration. This file contains all environment variables used by the on-premise upgrade scripts and must be properly configured before running the upgrade.
+The upgrade uses an ``onprem.env`` file for configuration. This file contains all
+environment variables used by the on-premise upgrade scripts and must be properly
+configured before running the upgrade.
 
 .. important::
-   The ``onprem.env`` file is located in the same directory as the upgrade scripts (downloaded via ``access_script.sh``). You must edit this file and set the required values before proceeding with the upgrade.
+   The ``onprem.env`` file is located in the same directory as the upgrade scripts
+   (downloaded via ``access_script.sh``). You must edit this file and set the required
+   values before proceeding with the upgrade.
    If you re-run the upgrade script, ensure the ``onprem.env`` file is correctly configured.
    Runtime arguments will have higher precedence over the environment variables set in ``onprem.env``.
 
@@ -546,17 +550,19 @@ Workaround 1: Root-App Sync and Certificate Refresh After Upgrade
 - If applications still fail to sync:
   - Log in to ArgoCD UI
   - Delete error-state CRDs/jobs
-  - Re-sync ``root-app`` and restart the ./after_upgrade_restart.sh script 
+  - Re-sync ``root-app`` and restart the ./after_upgrade_restart.sh script
 
-- After running ./after_upgrade_restart.sh successfully and once all root-apps are in sync and in a healthy state, wait approximately **5 minutes** to allow DKAM to fetch all dependent applications.  
-  Verify that the signed_ipxe.efi image is downloaded using the freshly downloaded Full_server.crt, or monitor until signed_ipxe.efi is available.
+- After running ./after_upgrade_restart.sh successfully and once all root-apps are in sync and in a healthy state, wait approximately **5 minutes** to allow DKAM to fetch all dependent applications.
+  and in a healthy state, wait approximately **5 minutes** to allow DKAM to fetch all
+  dependent applications. Verify that the signed_ipxe.efi image is downloaded using
+  the freshly downloaded Full_server.crt, or monitor until signed_ipxe.efi is available.
 - Download the latest certificates::
 
       rm -rf Full_server.crt signed_ipxe.efi  # Delete both files before downloading
       export CLUSTER_DOMAIN=cluster.onprem
       wget https://tinkerbell-nginx.$CLUSTER_DOMAIN/tink-stack/keys/Full_server.crt --no-check-certificate --no-proxy -q -O Full_server.crt
       wget --ca-certificate=Full_server.crt https://tinkerbell-nginx.$CLUSTER_DOMAIN/tink-stack/signed_ipxe.efi -q -O signed_ipxe.efi
-      
+
   Once the above steps are successful, the orchestrator (Orch) is ready for onboarding new Edge Nodes (EN).
 
 Workaround 2: Handling Gitea Pod Crashes During Upgrade
@@ -571,12 +577,14 @@ Workaround 2: Handling Gitea Pod Crashes During Upgrade
       kubectl delete pod gitea-postgresql-0 -n gitea
       kubectl delete pod gitea-78d6db5997-c6969 -n gitea
 
-After gitea pod restart restart onprem_upgrade.sh script 
+After gitea pod restart restart onprem_upgrade.sh script
 
 Workaround 3: Unsupported Workflow
 ------------------------------------
-If an Edge Node (EN) was onboarded before the EMF upgrade but the cluster installation was not completed, running the cluster installation after the upgrade using the latest cluster template will not work.
-This fails because the EN still uses old OS profiles and pre-upgrade settings.
+If an Edge Node (EN) was onboarded before the EMF upgrade but the cluster installation
+was not completed, running the cluster installation after the upgrade using the latest
+cluster template will not work. This fails because the EN still uses old OS profiles
+and pre-upgrade settings.
 
 What You Need to Do
 ~~~~~~~~~~~~~~~~~~~
