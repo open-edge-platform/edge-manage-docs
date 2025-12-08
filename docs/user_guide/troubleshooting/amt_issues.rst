@@ -228,3 +228,34 @@ Before moving an edge node to a new EMF orchestrator:
 
 **Note:** Skipping deauthorization/deletion steps will result in orphaned
 CIRA connections and require manual deactivation using rpc commands
+
+
+vPro Enabled Without BIOS Configuration Option on OnLogic K804
+----------------------------------------------------------------
+
+**Important:** OnLogic K804 systems do not provide BIOS options to
+enable or disable Intel® vPro/AMT.
+
+**Background:** OnLogic K804 ships with vPro/AMT permanently enabled at
+the firmware level. The BIOS does not expose any controls to manage
+vPro/AMT features.
+
+**Observed Behavior:**
+
+- No vPro or AMT configuration options in BIOS
+- vPro/AMT features work correctly
+- Users cannot disable vPro/AMT through BIOS settings
+
+**Recommendation:**
+
+If BIOS control over vPro enablement is required for your security
+policies, consider alternative hardware platforms. For OnLogic K804,
+document this as a platform-specific exception in security compliance
+reports.
+
+**Reference:**
+
+- See `vPro Power Management Guide
+  <../advanced_functionality/vpro_power_mgt.html>`_ for general BIOS
+  enablement recommendations
+- This limitation is specific to OnLogic K804 hardware
