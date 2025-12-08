@@ -107,7 +107,7 @@ The upgrade uses an ``onprem.env`` file for configuration. This file contains al
    Runtime arguments will have higher precedence over the environment variables set in ``onprem.env``.
 
 Configuration Workflow
-+++++++++++++++++++++++
++~~~~~~~~~~~~~~~~~~~~~~
 
 #. Download the installer scripts using ``access_script.sh`` (see previous section)
 #. Locate the ``onprem.env`` file in the downloaded directory
@@ -117,7 +117,7 @@ Configuration Workflow
 The ``onprem.env`` file contains several configuration sections described below.
 
 Core Deployment Configuration
-++++++++++++++++++++++++++++++++
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table:: Core Environment Variables (Required)
    :widths: 30 40 30
@@ -137,7 +137,7 @@ Core Deployment Configuration
      - ``onprem``
 
 Authentication & Security
-++++++++++++++++++++++++++
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table:: Docker Hub Credentials (Required)
    :widths: 30 40 30
@@ -154,7 +154,7 @@ Authentication & Security
      - (empty)
 
 Network Configuration
-++++++++++++++++++++++++
+~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table:: Network Variables (Required)
    :widths: 30 40 30
@@ -177,7 +177,7 @@ Network Configuration
      - (empty)
 
 Container Registry Configuration
-+++++++++++++++++++++++++++++++++++
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table:: Registry Variables
    :widths: 30 40 30
@@ -191,7 +191,7 @@ Container Registry Configuration
      - ``docker.io``
 
 SRE and SMTP Configuration
-++++++++++++++++++++++++++++
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table:: SRE Configuration
    :widths: 30 40 30
@@ -234,7 +234,7 @@ SRE and SMTP Configuration
      - ``T@123sfD``
 
 Advanced Configuration
-+++++++++++++++++++++++
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table:: Advanced Variables
    :widths: 30 40 30
@@ -248,7 +248,7 @@ Advanced Configuration
      - ``/home/$USER/.kube/config``
 
 OXM Network Configuration
-+++++++++++++++++++++++++++
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table:: OXM PXE Server Variables
    :widths: 30 40 30
@@ -268,7 +268,7 @@ OXM Network Configuration
      - (empty)
 
 Proxy Configuration
-++++++++++++++++++++
+~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table:: Proxy Variables
    :widths: 30 40 30
@@ -581,5 +581,3 @@ Option 1: De-authorize and Re-Onboard the EN
 	• Onboard the EN again so it gets the correct post-upgrade templates and configs.
 Option 2: Update the OS Profile using day2 upgrade process flow.
 	• Update the EN to the latest available OS profile and next install cluster 
-
-
