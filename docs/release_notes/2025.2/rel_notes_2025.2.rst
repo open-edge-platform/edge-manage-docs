@@ -130,15 +130,9 @@ Hosts and Infrastructure
   user is viewing the page, the maintenance status for the host in the
   table will not be updated until the user switches pages or refreshes the
   page.
-* Consecutive RESET/CYCLE operation needs explicit power status change to Power ON state.
-  First change power status to OFF and Power ON from UI before performing 2nd
-  RESET/CYCLE operation. Change power status using orch-cli power commands
-  as described in :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
-* On the host page, the power status might appear as "unspecified" rather
-  than displaying whether the system is powered ON or OFF.
-  It does not impact the actual power state or power operations of the host.
-  Refer to :doc:`/user_guide/advanced_functionality/vpro_power_mgt` for more information
-  on checking the power state.
+* If Vpro Activation exceeds 2-3 minutes, the host will start displaying an error state. 
+  However, it will subsequently recover to a healthy status once activation completed.  
+  Refer to :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
 
 Clusters and Application Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
