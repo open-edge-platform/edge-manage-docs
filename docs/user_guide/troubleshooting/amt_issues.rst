@@ -87,7 +87,7 @@ through the MPS API.
 For CIRA connection to persist during S5 (soft-off) state and enable
 remote power-on, the following BIOS setting **must** be configured:
 
-**Setting:** Advanced → Power → ME Configuration → Power Control → 
+**Setting:** Advanced → Power → ME Configuration → Power Control →
 ME on in Host Sleep Status
 
 **Required Value:** ``Mobile ON in S0, ME wake in S3, S4-S5 (AC only)``
@@ -103,7 +103,93 @@ device cannot be remotely powered on
 **BIOS Verification Steps:**
 
 1. Access BIOS setup during boot (typically F2 key)
-2. Navigate to: Advanced → Power → ME Configuration → Power Control → 
+2. Navigate to: Advanced → Power → ME Configuration → Power Control →
    ME on in Host Sleep Status
 3. Verify setting is: ``Mobile ON in S0, ME wake in S3, S4-S5 (AC only)``
 4. Save and exit if changes are needed
+
+
+SMBIOS UUID and ME UUID Mismatch on ASRock Platforms
+------------------------------------------------------
+
+**Important:** On ASRock platforms, UUID mismatch between SMBIOS and
+AMT firmware causes power operations to fail with 404 "Device not found"
+errors.
+
+**Background:** ASRock devices may have different UUIDs stored in SMBIOS
+(read by PMA during initialization) versus AMT firmware (used by
+CIRA/MPS connections). This mismatch prevents the orchestrator from
+executing power operations on the device.
+
+**Root Cause:**
+
+During device initialization:
+
+- PMA reads SMBIOS UUID: ``5b006b9c-09bf-0000-0000-000000000000``
+- dm-manager stores this UUID as ``hostID`` in inventory
+- AMT activation configures CIRA with firmware UUID:
+  ``03000200-0400-0500-0006-000700080009``
+
+When power operations are attempted:
+
+- Orchestrator UI sends power command for SMBIOS UUID
+  (``5b006b9c-09bf-0000-0000-000000000000``)
+- MPS only recognizes devices by their AMT firmware UUID
+  (``03000200-0400-0500-0006-000700080009``)
+- Result: 404 "Device not found" error
+
+**Expected Behavior:**
+
+- PMA initialization fails to register device with correct UUID
+- Device appears in orchestrator UI but power operations (Power On,
+  Power Off, Restart) fail with "Device not found" errors
+- CIRA connection may establish but operations fail due to UUID mismatch
+
+**Solution:**
+
+ME firmware must be re-flashed in manufacturing mode on ASRock platforms
+to synchronize SMBIOS UUID with AMT firmware UUID.
+
+**Steps to Resolve UUID Mismatch:**
+
+1. **Verify UUID Mismatch:**
+
+   .. code-block:: bash
+
+      # Check SMBIOS UUID
+      sudo dmidecode -s system-uuid
+
+      # Check AMT firmware UUID from MPS CIRA connection logs
+      kubectl logs -n <namespace> <mps-pod> | grep -i "cira\|uuid"
+
+   Compare SMBIOS UUID with the UUID shown in MPS CIRA connection logs.
+   If they differ, proceed to next step.
+
+2. **Contact ASRock Support:**
+
+   Request ME firmware update tools and procedures for your specific
+   platform model.
+
+3. **Update ME Firmware:**
+
+   - Boot to manufacturing/service mode (ASRock-specific procedure)
+   - Use ASRock ME tools to update firmware UUID to match SMBIOS UUID
+   - Verify flash operation completed successfully
+
+4. **Re-provision and Test:**
+
+   - Clear AMT configuration and re-provision
+   - Re-register device with orchestrator
+   - Test power operations to confirm resolution
+
+**Reference:**
+
+- `Intel® Endpoint Management Assistant (EMA)
+  <https://www.intel.com/content/www/us/en/support/articles/000055648/software/manageability-products.html>`_
+  - Remotely manage Intel® AMT devices beyond the firewall via cloud
+  - Cloud-based platform with in-band and out-of-band management
+  - Agent-based for Microsoft Windows 10 and 11 platforms
+- Contact ASRock technical support for platform-specific ME firmware
+  reflashing procedures
+- SMBIOS UUID and AMT firmware UUID must match for proper device
+  management
