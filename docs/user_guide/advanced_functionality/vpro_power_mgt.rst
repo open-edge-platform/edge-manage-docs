@@ -8,15 +8,16 @@ This guide describes how to use Intel® vPro® features for power management, in
 Activation of vPro Power Management
 -----------------------------------
 
-To use vPro power management features, the device must be provisioned and activated. Provisioning is a prerequisite for activation
-and enables vPro management capabilities on the device.
+To use vPro power management features, the device must be provisioned and activated. Vpro activation Changed to opt-in feature 
+instead of a mandatory feature Vpro activation moved to day 2 Operations as part of Host actions.
+
 
 .. note::
-   1. If the edge node is vPro-enabled, activation of vPro features occurs internally and automatically
-   during device onboarding. No explicit user action is required to trigger vPro activation for
-   supported devices.
+   1. If the edge node is AMT/ISM-enabled, then only Vpro activation is enabled as part of Host actions.
 
-   2. vPro profiles are currently created using Client Control Mode (CCM). CCM mode support is planned for
+   2. Vpro activation and deactivation will be triggered via Host actions.
+
+   3. vPro profiles are currently created using Client Control Mode (CCM). CCM mode support is planned for
    version 3.1. Support for Admin Control Mode (ACM) is targeted as technical debt for version 3.2.
 
 Enabling vpro while creating host
