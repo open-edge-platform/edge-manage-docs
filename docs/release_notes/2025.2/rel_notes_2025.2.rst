@@ -20,7 +20,7 @@ applications across distributed edge, at scale. Edge Node software provides the
 profiles of infrastructure software configurations that get provisioned onto an
 onboarded node.
 
-EMF release versioning has been changed to align with the year and release number. 
+EMF release versioning has been changed to align with the year and release number.
 
 Key highlights of the 2025.2 release include:
 
@@ -28,40 +28,52 @@ Key highlights of the 2025.2 release include:
 
 * **New:** Support for Ubuntu 24.04 LTS with kernel 6.11.0-17. Official support for Ubuntu 22.04 LTS continues.
 * **New:** Users can create custom OS profiles based on Ubuntu 24.04 LTS or the Edge Microvisor Toolkit (EMT).
-* **New:** Alpha support for Intel® Core™ Ultra Series 3 processors (formerly code-named Panther Lake) supporting 
+* **New:** Alpha support for Intel® Core™ Ultra Series 3 processors (formerly code-named Panther Lake) supporting
   integrated GPU and NPU.
-* **New:** Users can now use Intel vPRO based out-of-band management for Intel vPro® ISM in conjunction with vPro® AMT 
+* **New:** Users can now use Intel vPRO based out-of-band management for Intel vPro® ISM in conjunction with vPro® AMT
   devices <https://www.intel.com/content/www/us/en/support/articles/000090499/technologies/intel-active-management-technology-intel-amt.html>`__..
-* **New:** Expanding the device customization capabilities, users can now customize operating system kernel 
+* **New:** Expanding the device customization capabilities, users can now customize operating system kernel
   command-line parameters.
-* **New:** Security compliance verification through tracking of open and fixed CVEs for packages installed on 
-  Ubuntu 24.04 LTS and EMT.
-* **Update:** Architectural enhancements to improve the reliability of supported operations of out-of-band management 
+* **New:** Security compliance verification through tracking of open and fixed CVEs for packages installed on
+  Ubuntu 24.04 LTS and EMT.* Any USB peripherals connected to the edge node can be connected to a
+  VM-based application. However, although the USB peripheral(s) are
+  detached from the edge node, the VM-based application will still have the
+  USB peripherals connected. In this situation, when you run applications
+  requiring USB peripherals, it will fail.
+* The same USB peripheral cannot be shared between the same type of
+  applications, while the same USB peripheral can be simultaneously
+  connected to the different types of applications.
+* **Update:** Architectural enhancements to improve the reliability of supported operations of out-of-band management
   using Intel AMT/vPro® and ISM/vPro®.
 * **Update:** Users can activate Intel vPro® AMT or ISM post device device onboarding and provisioning.
-* **New:** In-Band Manageability (INBM) agents provide OS and package update capabilities on edge nodes. The Platform 
-  Update Agent (PUA) coordinates with INBM daemon (inbd) to execute system updates triggered through Edge Orchestrator's 
-  maintenance windows. Users can manage package updates and APT repository sources through OS Update Policies in the UI. 
-  For implementation details, see the `INBM Architecture 
+* **New:** In-Band Manageability (INBM) agents provide OS and package update capabilities on edge nodes. The Platform
+  Update Agent (PUA) coordinates with INBM daemon (inbd) to execute system updates triggered through Edge Orchestrator's
+  maintenance windows. Users can manage package updates and APT repository sources through OS Update Policies in the UI.
+  For implementation details, see the `INBM Architecture
   <https://github.com/open-edge-platform/edge-node-agents/blob/main/in-band-manageability/README.md>`__.
 
-**Advanced Clusters and Application Management**
+**Advanced Cluster and Application Management**
 
-* TBD
+* There are no new Application Management features for this release, though some internal improvements to the generative toolchain and the tenant controller were made.
 
 **Edge Manageability Framework Platform Enhancements**
 
-* **New:** Support for modular deployment of EMF for advanced users.
+* **New:** Support for modular deployment of EMF for advanced users. EMF may now be deployed in the following configurations:
+
+  * **Device Management (only)**. This allows the onboarding, provisioning, and management of edge nodes. This is the minimum configuration of EMF.
+  * **Device Management with Advanced Cluster Management**. This adds the automatic creation and lifecycle management of clusters.
+  * **Device Management with Advanced Cluster Management and Advanced Application Management**.
+    This adds the automatic deployment and lifecycle management of applications. This is the default configuration of EMF.
+
+* **New:** For each supported configuration, the observability stack may be enabled or disabled.
+  The default configuratation is observability enabled.
 * **New:** Updates to mitigate reliance on the legacy Bitnami registry by utilizing alternative sources.
 * **Update:** Updates to the ``orch-cli`` tool to support all capabilities currently available in the EMF UI.
 
 
 * New: Support for new reference applications in EMF 2025.2
-    
-
     * Worker Safety Gear Detection v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
     * PCB Anomaly Detection v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
-
 
 * Update: Support for new versions of 3.1 reference applications
     * Weld Porosity Detection v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
@@ -108,11 +120,11 @@ EMF deployment
   before installing the EMF on the cloud, to allow for 13 EIPs
   to be provisioned for the EMF on Cloud.
 * Current release still uses legacy Bitnami container image for keycloak.
-  This image is being deprecated by Bitnami. Intel is working to replace 
-  this image with alternatives in future releases.  
+  This image is being deprecated by Bitnami. Intel is working to replace
+  this image with alternatives in future releases.
 
 Device Provisioning
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 * If Out-of-Tree (OOT) driver installation with secure boot option enabled
   fails because of secure boot password request on the edge node hardware,
@@ -132,17 +144,20 @@ Device Provisioning
 * If several edge nodes are provisioned at the same time from a non-premium
   Docker\* account, there is a limit of 100 pulls per IP over a four-hour
   window. In this case, upgrade to the premium account or wait to
-  provision more edge nodes. 
+  provision more edge nodes.
 
-Clusters and Application Deployment
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Cluster and Application Management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Even though deployment profile override values are present, they do not
-  appear in the deployment package application details pop-up screen.
 * When creating a cluster, you must select a region and a site but the
   region and site are not automatically added to the cluster's deployment
   metadata.  You must add them as deployment metadata manually if you
   desire.
+* Support for in-place upgrades of Edge Node Kubernetes cluster
+  is currently not available. This is to be addressed in a future release.
+  Currently in 2025.2, Cluster upgrade can done by deleting the cluster and recreating with a new cluster template version.
+* Multi-Node Cluster Provision is not supported in this release. This is to be
+  addressed in future releases.
 * Any USB peripherals connected to the edge node can be connected to a
   VM-based application. However, although the USB peripheral(s) are
   detached from the edge node, the VM-based application will still have the
@@ -151,19 +166,8 @@ Clusters and Application Deployment
 * The same USB peripheral cannot be shared between the same type of
   applications, while the same USB peripheral can be simultaneously
   connected to the different types of applications.
-* Support for in-place upgrades of Edge Node Kubernetes cluster
-  is currently not available. This is to be addressed in a future release.
-  Currently in 2025.2, Cluster upgrade can done by deleting the cluster and recreating with a new cluster template version.
-* Multi-Node Cluster Provision is not supported in this release. This is to be
-  addressed in future releases.
-* AI applications from the earlier release - Intel® SceneScape version 2024.1.2,
-  Intel® Edge Insights System version 2.0 enhanced, and Intel® Geti™ solution
-  version 2.6.0 do not work on the 3.1 release. These applications may
-  be available in future releases.
-* If an application containing CRDs is deployed and subsequently undeployed, it
-  may leave behind orphaned CRDs and related cluster-level objects. This can
-  lead to an `annotation validation` error when attempting to redeploy on the cluster.
-  See :doc:`troubleshooting guide </user_guide/troubleshooting/deploy_issue>`.
+* If a targeted deployment is edited and one of the clusters is removed, then
+  the deployment may not actually be removed from the clusters.
 
 User Experience
 ^^^^^^^^^^^^^^^^^
@@ -188,7 +192,7 @@ User Experience
   querier pod through Argo CD tool.
 * Occasionally, a reboot of the On-prem EMF makes the Argo CD tool's `root-app`
   and `secret-config` remain in the `provisioning` state, and prevents
-  creation of application deployment. The workaround is to unseal the vault 
+  creation of application deployment. The workaround is to unseal the vault
   using the provided script.
 * Users created in Keycloak must have email address set up to properly
   perform authentication to Grafana Observability Dashboards. Users without
@@ -226,8 +230,8 @@ Hosts and Infrastructure Limitations
   although this does not cause the nodes to be present when creating
   clusters. Intel recommends that sites have unique, non-overlapping names.
 
-Clusters and Application Deployment Limitations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Cluster and Application Management Limitations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * A deployment package cannot be created by including two applications with
   the same name but with different versions. Do not include
@@ -239,23 +243,20 @@ Clusters and Application Deployment Limitations
   any updates made to the image registry in Catalog are not automatically
   applied to existing deployments. To update the image pull secret, you
   must recreate the existing deployments.
-* Bundle-Deployments for Application/Extension Deployments in Automatic Mode
-  of deployment are not cleaned-up on the Cluster Deletion. This results in
-  showing any errors from these deployments in subsequent successful deployments.
-  Refer :ref:`deploymentpage_errors`.
+* If an application containing CRDs is deployed and subsequently undeployed, it
+  may leave behind orphaned CRDs and related cluster-level objects. This is a
+  deliberate design choice made by the Helm tool. This can
+  lead to an `annotation validation` error when attempting to redeploy on the cluster.
+  See :doc:`troubleshooting guide </user_guide/troubleshooting/deploy_issue>`.
 
 Multi-tenancy Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* If you add a user to many groups that provide project access, some Edge
-  Orchestrator functionality may fail because of size limits for the
-  authorization token used in a web browser.
-
-  As an example, as user added to more than five groups of type
-  `group_projectid_edgemanagergroup` or `group_projectid_edgeoperatorgroup`
-  (combined), or 10 groups of type `group_projectid_hostmanagergroup` may
-  experience this failure.  As a workaround, reduce the total number of
-  groups that a single user is a member of or create separate users.
+* Users should be added to no more than 20 projects. If the observability features
+  are not used, then this limit may be raised to 40 projects. Exceeding these limits
+  may lead to errors with tokens or headers being too large. These limits may be
+  mitigated by creating multiple users and partitioning the projects across them
+  such that no user has more than 20 projects.
 
 User Experience Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -280,14 +281,9 @@ User Experience Limitations
   scheduling, be aware of the time zone.
 * The "Total Provisioning Time" metric is only available for approximately
   15 days since a node was provisioned.
-* When using the Edge Node Dashboard in the Grafana UI with a user that has
-  been mapped to 20 or more projects, a "Requests Header Field Too Large" may
-  appear on the Dashboard. To work around this issue, log into the dashboard
-  with a user that has been mapped to just the project of the edge node
-  being checked.
-* When adding/editing a deployment with the autoscaling option, the UI will 
-  show an error message when duplicate metadata keys are entered. However, it 
-  will still allow the user to proceed to the next step. Only the last 
+* When adding/editing a deployment with the autoscaling option, the UI will
+  show an error message when duplicate metadata keys are entered. However, it
+  will still allow the user to proceed to the next step. Only the last
   duplicate key/value pair will be considered in the end.
 
 Recommendations
