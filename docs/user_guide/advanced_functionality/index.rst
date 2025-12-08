@@ -18,6 +18,7 @@ application's capabilities:
    * :doc:`/user_guide/advanced_functionality/pxe_provisioning_with_cloud_emf`
    * :doc:`/user_guide/advanced_functionality/custom_config`
    * :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
+   * :doc:`/user_guide/advanced_functionality/in_band_manageability`
 
 
 .. toctree::
@@ -36,4 +37,5 @@ application's capabilities:
    pxe_provisioning_with_cloud_emf
    custom_config
    vpro_power_mgt
+   in_band_manageability
    configure_edgenode_lvm_parition.rst

@@ -32,6 +32,13 @@ Key Highlights of the 3.1 release include, but are not limited to:
   Integration of vPro Device Manageability services with EMF, allowing use of
   out-of-band management features. Functionality supported this release include
   Remote Device Power ON/OFF and Remote Device Reboot capabilities.
+* New: In-Band Manageability agents (inbd/inbc) provide comprehensive device
+  management capabilities including FOTA (Firmware Over The Air), SOTA
+  (Software Over The Air), configuration management, and power operations.
+  The Go-based implementation offers improved performance and reliability
+  with gRPC-based client-server architecture. See
+  :doc:`In-Band Manageability Guide
+  </user_guide/advanced_functionality/in_band_manageability>` for details.
 * Enhanced Provisioning capabilities and improvements
     * New: Scale provisioning of Standalone edge nodes that with Operating system and
       lightweight kubernetes - (OXM Profile). Support for PXE boot along with HTTPs
