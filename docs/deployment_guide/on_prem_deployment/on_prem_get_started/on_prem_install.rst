@@ -73,6 +73,8 @@ The installation uses an ``onprem.env`` file for configuration. This file contai
 
 .. important::
    The ``onprem.env`` file is located in the same directory as the installer scripts (downloaded via ``access_script.sh``). You must edit this file and set the required values before proceeding with the installation.
+   If you re-run the installer script, ensure the ``onprem.env`` file is correctly configured.
+   Runtime arguments will have higher precedence over the environment variables set in ``onprem.env``.
 
 Configuration Workflow
 +++++++++++++++++++++++
