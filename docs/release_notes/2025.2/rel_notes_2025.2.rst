@@ -98,9 +98,10 @@ been still carried over from past releases.
 
 EMF deployment
 ^^^^^^^^^^^^^^
+
 * The default Elastic IP (EIP) Service Quota must be increased
-  before installing the Product on the cloud, to allow for 13 EIPs
-  to be provisioned for the Product on Cloud.
+  before installing the EMF on the cloud, to allow for 13 EIPs
+  to be provisioned for the EMF on Cloud.
 * Current release still uses legacy Bitnami container image for keycloak.
   This image is being deprecated by Bitnami. Intel is working to replace 
   this image with alternatives in future releases.  
@@ -165,19 +166,9 @@ User Experience
 
 * `Let's Encrypt` certificates and Certificate Authority (CA) are deployed
   by default. `Let's Encrypt` poses an issue where if the Certificate
-  Authority is changed, the edge nodes will not trust the Product anymore.
+  Authority is changed, the edge nodes will not trust the EMF anymore.
   In such a case, you must reinstall the edge nodes. Advanced users can use
   their different CAs, therefore avoiding this issue.
-* For users without write permissions, the user interface may show some
-  controls that require write permissions as enabled but this is only a
-  user interface issue. The actions taken by the user will result in an
-  error. In some cases, the error may just state that the operation has
-  failed, without citing permission as the reason.
-* Users are not redirected to the login credentials screen when the
-  authorization token expires in the Infrastructure tab. Instead, the user
-  interface informs them that "Additional Permissions are Needed". As a
-  workaround, click a different tab on the header bar to redirect to the
-  login credentials screen.
 * Telemetry Orchestrator services (OpenTelemetry\* and Mimir\*) do not have
   role-based access authorization enabled in the southbound interfaces
   towards the edge node.
@@ -191,30 +182,13 @@ User Experience
   edgenode-observability may occasionally fail due to loss of communication
   between querier and query-frontend. The workaround is a restart of
   querier pod through Argo CD tool.
-* A configurable toggle for FDE and secure boot (SB)
-  is available during host configuration and is usable even if the edge
-  node goes through zero-touch provisioning (ZTP). When provisioning
-  through the ZTP, you can disable the toggle because it has no effect.
-* Occasionally, a reboot of the Product makes the Argo CD tool's `root-app`
+* Occasionally, a reboot of the On-prem EMF makes the Argo CD tool's `root-app`
   and `secret-config` remain in the `provisioning` state, and prevents
-  creation of application deployment. The only known workaround is to
-  reinstall the Product.
-* When the edge node is running, if the network connection is moved from
-  one interface to another interface on the edge node, there will be a
-  delay of approximately 15 minutes before all edge node agents reconnect
-  to the Product.
-* During host state transitions, briefly such as registered to onboarded or
-  configured and also active to deleted, the user interface might briefly
-  show an outdated and/or inconsistent state.
-* On the rare event that the Org-Admin-Group is not created in keycloak,
-  restarting the keycloak-tenant-controller pod via the Argo CD UI will
-  force the initial roles and groups to be recreated.
+  creation of application deployment. The workaround is to unseal the vault 
+  using the provided script.
 * Users created in Keycloak must have email address set up to properly
   perform authentication to Grafana Observability Dashboards. Users without
   email set won't be able to access metrics and logs via Grafana UI.
-* On ASRock platform the hardware resources are not displayed properly in
-  the Infrastructure tab, this has no impact on functionality of the nodes
-  for cluster or application installation.
 
 Limitations
 ---------------------------------------------------------------------
@@ -244,11 +218,6 @@ Hosts and Infrastructure Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * GPU support: GPU metrics collection is not supported yet.
-* The Dell\* EMC PowerEdge XR12 server with PCIe\* storage controller
-  (`HBA355i
-  <https://www.dell.com/en-us/shop/dell-hba355i-controller-front/apd/405-aaxv/storage-drives-media#overview_section>`_)
-  is not supported by the cloud-based provisioning process. Remove this
-  RAID controller from your node.
 * You can create two sites with the same name under two different regions,
   although this does not cause the nodes to be present when creating
   clusters. Intel recommends that sites have unique, non-overlapping names.
@@ -262,10 +231,6 @@ Clusters and Application Deployment Limitations
   can modify the name of one of the applications if required.
 * Multiple "-" (for example, `1.0.0-dev-test`) characters are not allowed
   in an application's chart or version during creation.
-* The maximum number of unique deployments is limited to 300 per Product
-  instance. This limitation spawns from the AWS service used in the
-  backend. Based on the number of edge nodes, each deployment can have
-  multiple running instances.
 * When you use "%GeneratedDockerCredential%" in the Application Profile,
   any updates made to the image registry in Catalog are not automatically
   applied to existing deployments. To update the image pull secret, you
@@ -296,25 +261,9 @@ User Experience Limitations
   flags these fields as an error but does not block the user from
   continuing and saving the cluster with mixed-case cluster label values
   assigned.
-* Site name must be unique across all regions, that is, no two sites can
-  have the same name in the Product deployment. Otherwise, the host
-  allocated to one of the overlapping names might not appear in the user
-  interface.
-* The OpenTelemetry Collector service on the edge node host acts as the
-  single gateway for forwarding all logs (host agents and cluster) and
-  hardware metrics to the Product. If the Collector service fails, then
-  these logs and metrics will not be sent to the Product until the service
-  is restored.
 * The `Show All` page size for hosts does not work for lists over 100. If
   you have a list of more than 100 hosts in a view, do not set the page
   size to larger than 100.
-* In the Observability Dashboard, hosts are present and can be selected in
-  the drop-down for a query that spans a period where a node was at least
-  partially there. For example, if the node went down 4 minutes ago and the
-  metric query is set for 5 the metrics for the host `down` will be
-  present. Also, if you choose a time period in time where the host did
-  exist, then the host will be displayed in the dropdown. Wait until the
-  proper refresh time.
 * Accessing more than one edge web application at a time in a browser through
   the Service Link feature (Application Service Proxy) is not supported.
   The workaround is to open a second application in an incognito window or a
@@ -326,20 +275,17 @@ User Experience Limitations
   you schedule a maintenance to repeat every May 31st at 9 pm PDT, the
   maintenance will repeat on May 1st at 9 pm instead of on June 31st. When
   scheduling, be aware of the time zone.
-* While using Safari as a browser, you may encounter some graphical
-  inconsistencies, such as erroneous font characters. These are appearance
-  issues and do not impede any functionality.
 * The "Total Provisioning Time" metric is only available for approximately
   15 days since a node was provisioned.
 * When using the Edge Node Dashboard in the Grafana UI with a user that has
-  been mapped to multiple projects, a "Requests Header Field Too Large" may
+  been mapped to 20 or more projects, a "Requests Header Field Too Large" may
   appear on the Dashboard. To work around this issue, log into the dashboard
   with a user that has been mapped to just the project of the edge node
   being checked.
-* When adding/editing a deployment with the autoscaling option, the UI will show an error
-  message when duplicate metadata keys are entered. However, it will still allow the user
-  to proceed to the next step. Only the last duplicate key/value pair will be considered
-  in the end.
+* When adding/editing a deployment with the autoscaling option, the UI will 
+  show an error message when duplicate metadata keys are entered. However, it 
+  will still allow the user to proceed to the next step. Only the last 
+  duplicate key/value pair will be considered in the end.
 
 Recommendations
 ---------------------
@@ -351,8 +297,8 @@ Recommendations
   the current Product version on Ubuntu\* OS 24.04 LTS.
 * Wait for some time after the initial Product installation or a full
   restart before provisioning nodes because there are a few components
-  (for example, DKAM and Tinkerbell pods) that take about 15 minutes to get to the
-  ready state.
+  (for example, DKAM and Tinkerbell pods) that take about 15 minutes to get to
+  the ready state.
 * Wait for some time after the initial Product installation or a complete
   system reboot before provisioning nodes. This is because certain
   components, such as DKAM and Tinkerbell pods, need approximately 15
