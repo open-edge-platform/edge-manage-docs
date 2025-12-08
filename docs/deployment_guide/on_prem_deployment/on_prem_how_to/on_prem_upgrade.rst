@@ -264,12 +264,12 @@ Workarounds
 Workaround 1: Root-App Sync and Certificate Refresh After Upgrade
 --------------------------------------------------------------------
 
-- Some applications may temporarily show as **OutOfSync**, **Degraded**, or missing
+- Some applications  show as **OutOfSync**, **Degraded**, or missing
 - After running ``onprem_upgrade.sh``:
   - **Wait 5–10 minutes** for ``root-app`` and dependent applications to sync
 - Run the resync script::
       ./after_upgrade_restart.sh
-  - Continuously syncs applications
+  - This script continuously syncs applications
   - Performs **root-app sync**
   - Restarts **tls-boots** and **dkam** pods
 
@@ -278,17 +278,18 @@ Workaround 1: Root-App Sync and Certificate Refresh After Upgrade
   - Delete error-state CRDs/jobs
   - Re-sync ``root-app`` and restart the ./after_upgrade_restart.sh script 
 
-- after after_upgrade_restart.sh complete verify signed_ipxe.efi image download using latest Full_server.cr
+- After running ./after_upgrade_restart.sh successfully and once all root-apps are in sync and in a healthy state, wait approximately **5 minutes** to allow DKAM to fetch all dependent applications.  
+  Verify that the signed_ipxe.efi image is downloaded using the freshly downloaded Full_server.crt, or monitor until signed_ipxe.efi is available.
 - Download the latest certificates::
 
-      rm -rf Full_server.crt signed_ipxe.efi (delete both file then start both file downlad)
+      rm -rf Full_server.crt signed_ipxe.efi  # Delete both files before downloading
       export CLUSTER_DOMAIN=cluster.onprem
       wget https://tinkerbell-nginx.$CLUSTER_DOMAIN/tink-stack/keys/Full_server.crt --no-check-certificate --no-proxy -q -O Full_server.crt
       wget --ca-certificate=Full_server.crt https://tinkerbell-nginx.$CLUSTER_DOMAIN/tink-stack/signed_ipxe.efi -q -O signed_ipxe.efi
       
   Once the above steps are successful, the orchestrator (Orch) is ready for onboarding new Edge Nodes (EN).
 
-Workaround 2: Gitea Upgrade Failure
+Workaround 2: Handling Gitea Pod Crashes During Upgrade
 -----------------------------------
 - Some time onprem_upgrade.sh may fail with::
       Error: UPGRADE FAILED: context deadline exceeded
@@ -299,6 +300,8 @@ Workaround 2: Gitea Upgrade Failure
 - Restart dependent pods in order::
       kubectl delete pod gitea-postgresql-0 -n gitea
       kubectl delete pod gitea-78d6db5997-c6969 -n gitea
+
+After gitea pod restart restart onprem_upgrade.sh script 
 
 Workaround 3: Unsupported Workflow
 ----------------------------------
