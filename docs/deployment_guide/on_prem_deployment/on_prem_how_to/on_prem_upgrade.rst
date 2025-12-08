@@ -575,8 +575,9 @@ Workaround 3: Unsupported Workflow
 If an Edge Node (EN) was onboarded before the EMF upgrade but the cluster installation was not completed, running the cluster installation after the upgrade using the latest cluster template will not work.
 This fails because the EN still uses old OS profiles and pre-upgrade settings.
 What You Need to Do
-To continue successfully after the upgrade, choose one of these:
-Option 1: De-authorize and Re-Onboard the EN
+To continue successfully after the upgrade, choose one of these
+
+Option 1: De-authorize and Re-Onboard the EN.
 	• De-authorize the existing EN.
 	• Onboard the EN again so it gets the correct post-upgrade templates and configs.
 Option 2: Update the OS Profile using day2 upgrade process flow.
