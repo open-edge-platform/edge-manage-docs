@@ -153,8 +153,7 @@ Clusters and Application Deployment
   connected to the different types of applications.
 * Support for in-place upgrades of Edge Node Kubernetes cluster
   is currently not available. This is to be addressed in a future release.
-  Currently in 2025.2, Cluster upgrade can done by deleting the cluster and reprovisioning
-  the Edge Nodes and recreating with a new cluster template version.
+  Currently in 2025.2, Cluster upgrade can done by deleting the cluster and recreating with a new cluster template version.
 * Multi-Node Cluster Provision is not supported in this release. This is to be
   addressed in future releases.
 * AI applications from the earlier release - Intel® SceneScape version 2024.1.2,
