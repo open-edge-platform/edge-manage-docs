@@ -9,7 +9,8 @@ Activation of vPro Power Management
 -----------------------------------
 
 To use vPro power management features, the device must be provisioned and activated. Vpro activation Changed to opt-in feature 
-instead of a mandatory feature Vpro activation moved to day 2 Operations as part of Host actions.
+instead of a mandatory feature Vpro activation moved to day 2 Operations as part of Host actions. Now Vpro can be activated
+for both Active Management Technology (AMT-Vpro Enterprise) and Intel Standard Manageability (ISM-Vpro Essential) devices.
 
 
 .. note::
@@ -20,7 +21,7 @@ instead of a mandatory feature Vpro activation moved to day 2 Operations as part
    3. vPro profiles are currently created using Client Control Mode (CCM). CCM mode support is planned for
    version 3.1. Support for Admin Control Mode (ACM) is targeted as technical debt for version 3.2.
 
-Enabling vpro while creating host
+Enabling vpro from Host Actions:
 
 .. figure:: images/vpro_enable.png
    :width: 100 %
