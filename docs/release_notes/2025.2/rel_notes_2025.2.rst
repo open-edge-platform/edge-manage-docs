@@ -14,27 +14,43 @@ Dec 11 2025.
 Release Highlights
 ---------------------------
 
-Edge Orchestrator is the primary product within the Edge Manageability Framework.
-
 Edge Manageability Framework enables you to securely onboard and provision remote
 edge devices to a central management plane, orchestrate Kubernetes\* clusters and
 applications across distributed edge, at scale. Edge Node software provides the
 profiles of infrastructure software configurations that get provisioned onto an
 onboarded node.
 
-Key Highlights of the 2025.2 release include, but are not limited to:
+EMF release versioning has been changed to align with the year and release number. 
 
-* New: Ubuntu 24.04 LTS support with 6.11.0-17 kernel 
-* New: Custom OS profile
-* New: Bitnami legacy registry updated with alternative sources
-* New: Security Compliance of an Edge Node is also now implemented through fixed CVE tracking for installed packages on EMT.
-* New: Security Compliance of an Edge Node is also now implemented through open and fixed CVE tracking for installed packages on Ubuntu.
-* New: ISM integration
-* New: Command line parameter 
-* Update: Orch-cli updated with features on par with GUI
-* Update: Architecture changes to improve the stability of Out-of-band management using `Intel AMT/vPRO <https://www.intel.com/content/www/us/en/architecture-and-technology/vpro/vpro-manageability/overview.html>`_.
-  Integration of vPro Device Manageability services with EMF, allowing use of
-  out-of-band management features. 
+Key highlights of the 2025.2 release include:
+
+**Infrastructure and Edge Node Software**
+
+* **New:** Support for Ubuntu 24.04 LTS with kernel 6.11.0-17. Official support for Ubuntu 22.04 LTS continues.
+* **New:** Users can create custom OS profiles based on Ubuntu 24.04 LTS or the Edge Microvisor Toolkit (EMT).
+* **New:** Alpha support for Intel® Core™ Ultra Series 3 processors (formerly code-named Panther Lake) supporting 
+  integrated GPU and NPU.
+* **New:** Users can now use Intel vPRO based out-of-band management for Intel vPro® ISM in conjunction with vPro® AMT 
+  devices <https://www.intel.com/content/www/us/en/support/articles/000090499/technologies/intel-active-management-technology-intel-amt.html>`__..
+* **New:** Expanding the device customization capabilities, users can now customize operating system kernel 
+  command-line parameters.
+* **New:** Security compliance verification through tracking of open and fixed CVEs for packages installed on 
+  Ubuntu 24.04 LTS and EMT.
+* **Update:** Architectural enhancements to improve the reliability of supported operations of out-of-band management 
+  using Intel AMT/vPro® and ISM/vPro®.
+* **Update:** Users can activate Intel vPro® AMT or ISM post device device onboarding and provisioning.  
+
+**Advanced Clusters and Application Management**
+
+* TBD
+
+**Edge Manageability Framework Platform Enhancements**
+
+* **New:** Support for modular deployment of EMF for advanced users.
+* **New:** Updates to mitigate reliance on the legacy Bitnami registry by utilizing alternative sources.
+* **Update:** Updates to the ``orch-cli`` tool to support all capabilities currently available in the EMF UI.
+
+
 * New: Support for reference applications
     * Pallet Defect Detection v2.5.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
     * Weld Porosity Detection v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
@@ -54,7 +70,7 @@ and the `Edge Manageability Framework README file <https://github.com/open-edge-
 Upgrades from Previous Releases
 ----------------------------------
 
-Edge Manageability Framework (EMF) version 3.1 supports direct
+Edge Manageability Framework (EMF) version 2025.2 supports direct
 upgrades from version 3.1 to 2025.2 both for on-prem <guide> and AWS deployments <guide>
 
 * Clusters created with release 3.1 and deleted in release 2025.2 require
@@ -114,15 +130,9 @@ Hosts and Infrastructure
   user is viewing the page, the maintenance status for the host in the
   table will not be updated until the user switches pages or refreshes the
   page.
-* Consecutive RESET/CYCLE operation needs explicit power status change to Power ON state.
-  First change power status to OFF and Power ON from UI before performing 2nd
-  RESET/CYCLE operation. Change power status using orch-cli power commands
-  as described in :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
-* On the host page, the power status might appear as "unspecified" rather
-  than displaying whether the system is powered ON or OFF.
-  It does not impact the actual power state or power operations of the host.
-  Refer to :doc:`/user_guide/advanced_functionality/vpro_power_mgt` for more information
-  on checking the power state.
+* If Vpro Activation exceeds 2-3 minutes, the host will start displaying an error state. 
+  However, it will subsequently recover to a healthy status once activation completed.  
+  Refer to :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
 
 Clusters and Application Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
