@@ -260,11 +260,10 @@ Multi-tenancy Limitations
 User Experience Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Cluster labels (metadata) for both names and values fields must be in
-  lowercase; otherwise, the system becomes inconsistent. The user interface
-  flags these fields as an error but does not block the user from
-  continuing and saving the cluster with mixed-case cluster label values
-  assigned.
+* Cluster labels (metadata) for both names and values fields must
+  follow Kubernetes label syntax requirements, including using lowercase
+  alphanumeric characters, dashes, underscores, and dots only. For complete
+  label syntax requirements, see the [Kubernetes documentation][1].
 * The `Show All` page size for hosts does not work for lists over 100. If
   you have a list of more than 100 hosts in a view, do not set the page
   size to larger than 100.
@@ -328,3 +327,5 @@ Where to Find the Release
 Each customer of the release will get a public web link to their Product
 deployment. Contact your System Integrator (SI) or Intel representative for
 access.
+
+[1]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set
