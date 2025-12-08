@@ -92,8 +92,14 @@ The following are known issues in the release. While several known issues
 and limitations have been addressed during the 3.1 release cycle, some have
 been still carried over from past releases.
 
-Provisioning
-^^^^^^^^^^^^^
+EMF deployment
+^^^^^^^^^^^^^^
+* The default Elastic IP (EIP) Service Quota must be increased
+  before installing the Product on the cloud, to allow for 13 EIPs
+  to be provisioned for the Product on Cloud.
+
+Device Provisioning
+^^^^^^^^^^^^^^^^^^
 
 * If Out-of-Tree (OOT) driver installation with secure boot option enabled
   fails because of secure boot password request on the edge node hardware,
@@ -110,35 +116,10 @@ Provisioning
   limit is reached. First, delete the edge node (see
   :doc:`/user_guide/set_up_edge_infra/delete_host`) and then
   re-provision it with a different IP address.
-* The default Elastic IP (EIP) Service Quota must be increased
-  before installing the Product on the cloud, to allow for 13 EIPs
-  to be provisioned for the Product on Cloud.
 * If several edge nodes are provisioned at the same time from a non-premium
   Docker\* account, there is a limit of 100 pulls per IP over a four-hour
   window. In this case, upgrade to the premium account or wait to
-  provision more edge nodes.
-* Provisioning a node with Ubuntu-ext OS profile through an on-premises
-  Edge Orchestrator in an OT network will cause a failure due to squid proxy
-  unauthorizing the request with 403. There is no workaround;
-  utilize the base Ubuntu profile and install any additional drivers
-  through Day 2 updates.
-
-Hosts and Infrastructure
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-* On the host pages, if a host ends its `Under Maintenance` period when a
-  user is viewing the page, the maintenance status for the host in the
-  table will not be updated until the user switches pages or refreshes the
-  page.
-* Consecutive RESET/CYCLE operation needs explicit power status change to Power ON state.
-  First change power status to OFF and Power ON from UI before performing 2nd
-  RESET/CYCLE operation. Change power status using orch-cli power commands
-  as described in :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
-* On the host page, the power status might appear as "unspecified" rather
-  than displaying whether the system is powered ON or OFF.
-  It does not impact the actual power state or power operations of the host.
-  Refer to :doc:`/user_guide/advanced_functionality/vpro_power_mgt` for more information
-  on checking the power state.
+  provision more edge nodes. 
 
 Clusters and Application Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -356,7 +337,7 @@ Recommendations
   address-to-MAC mapping in their DHCP server for stable functioning of the
   edge node cluster.
 * Intel advises against scheduling a major OS upgrade. Intel only supports
-  the current Product version on Ubuntu\* OS 22.04 LTS.
+  the current Product version on Ubuntu\* OS 24.04 LTS.
 * Wait for some time after the initial Product installation or a full
   restart before provisioning nodes because there are a few components
   (for example, DKAM and Tinkerbell pods) that take about 15 minutes to get to the
