@@ -565,9 +565,9 @@ Workaround 2: Handling Gitea Pod Crashes During Upgrade
       Error: UPGRADE FAILED: context deadline exceeded
       dpkg: error processing package onprem-gitea-installer
       E: Sub-process /usr/bin/dpkg returned an error code (1)
-- Check Gitea pod status::
+- Check Gitea pod error status.
       kubectl get pod -n gitea
-- Restart dependent pods in order::
+- Restart dependent pods in order.
       kubectl delete pod gitea-postgresql-0 -n gitea
       kubectl delete pod gitea-78d6db5997-c6969 -n gitea
 
