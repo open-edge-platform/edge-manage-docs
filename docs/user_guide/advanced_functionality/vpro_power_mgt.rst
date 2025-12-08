@@ -102,8 +102,8 @@ Replace `<HOST_UUID>` with the UUID of your host and ensure `${JWT_TOKEN}` is se
 Deactivation of vPro Power Management
 -------------------------------------
 
-To deactivate vPro management features, the device must be deauthorized.
-Deauthorizing will deactivate the device and prevent from further management via vPro.
+To deactivate vPro management features, the device can be deauthorized or deactivated from host-actions.
+**Deauthorize host** and **Deactivate Vpro** will deactivate the device and prevent from further management via vPro.
 
 Troubleshooting
 ---------------
