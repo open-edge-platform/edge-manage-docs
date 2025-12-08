@@ -17,9 +17,9 @@ for both Active Management Technology (AMT-Vpro Enterprise) and Intel Standard M
    1. If the edge node is AMT/ISM-enabled, then only Vpro activation is enabled as part of Host actions.
 
    2. Vpro activation and deactivation will be triggered via Host actions.
-
+   
    3. vPro profiles are currently created using Client Control Mode (CCM). CCM mode support is planned for
-   version 3.1. Support for Admin Control Mode (ACM) is targeted as technical debt for version 3.2.
+      version 3.1. Support for Admin Control Mode (ACM) is targeted as technical debt for version 3.2.
 
 Enabling vpro from Host Actions:
 
