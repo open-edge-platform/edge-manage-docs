@@ -185,7 +185,8 @@ to synchronize SMBIOS UUID with AMT firmware UUID.
 **Reference:**
 
 - `Intel® Endpoint Management Assistant (EMA)
-  <https://www.intel.com/content/www/us/en/support/articles/000055648/software/manageability-products.html>`_
+  <https://www.intel.com/content/www/us/en/support/articles/
+  000055648/software/manageability-products.html>`_
   - Remotely manage Intel® AMT devices beyond the firewall via cloud
   - Cloud-based platform with in-band and out-of-band management
   - Agent-based for Microsoft Windows 10 and 11 platforms
@@ -193,3 +194,37 @@ to synchronize SMBIOS UUID with AMT firmware UUID.
   reflashing procedures
 - SMBIOS UUID and AMT firmware UUID must match for proper device
   management
+
+
+CIRA Connection and Edge Node Reuse Between EMF Orchestrator
+------------------------------------------------------------
+
+**Important:** Moving an edge node from one EMF orchestrator to another
+without proper deauthorization causes stale CIRA connections
+
+**Background:** When an edge node is activated for vPro to an EMF
+orchestrator, it establishes a CIRA connection with that edge node. If
+the node is moved to a different EMF orchestrator without proper
+cleanup, the original CIRA connection persists with the first EMF
+orchestrator with RPS status "connected"
+
+**Issue:**
+
+- Edge node moves from EMF orchestrator1 to EMF orchestrator2 without
+  proper vPro deactivation or host deauthorization
+- Stale CIRA connection remains active on EMF orchestrator 1
+- New CIRA connection on EMF orchestrator 2 may fail
+- Power operations and management commands fail due to connection state
+  mismatch
+
+**Recommended Clean Flow:**
+
+Before moving an edge node to a new EMF orchestrator:
+
+1. **Deactivate vPro from Host Action** or **Deauthorize Host** in the
+   current EMF orchestrator
+
+2. **Delete the Host** from the EMF orchestrator inventory
+
+**Note:** Skipping deauthorization/deletion steps will result in orphaned
+CIRA connections and require manual deactivation using rpc commands
