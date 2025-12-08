@@ -1,4 +1,7 @@
-.. filepath: /home/seu/EMF/edge-manage-docs/docs/user_guide/advanced_functionality/custom_os_profile.rst
+.. SPDX-FileCopyrightText: (C) 2025 Intel Corporation
+.. SPDX-License-Identifier: Apache-2.0
+
+.. _custom_os_profile:
 
 Usage of Custom OS Profile to Provision Edge Nodes
 ==================================================
@@ -16,31 +19,42 @@ Here are the prerequisites to use the custom OS profile feature:
 
 - OS images must be built and hosted on a web server that is accessible during the edge node
   provisioning process.
+
 - Supported OS image formats include QCOW2 and RAW with or without compression.
-  Supported compression formats are bzip2, bz2, gz, xz, and xs
+  Supported compression formats are ``bzip2``, ``bz2``, ``gz``, ``xz``, and ``zst``.
+
 - OS image including kernel must be signed with a trusted certificate to support Secure Boot,
   and the corresponding certificate must be enrolled in the edge node's firmware.
+
 - OS images must include necessary drivers and configurations to support the target edge node
   hardware.
+
 - OS image partition layout must be labeled using GPT.
 
-  - UEFI/EFI system partition and rootfs partition for Ubuntu
-  - Refer to the `partition scheme`_ for EMT OS
+  - UEFI/EFI system partition and rootfs partition for Ubuntu.
+  - Refer to the `partition scheme`_ for EMT OS.
 
 - OS image must have SHA256 checksum generated for verification during the provisioning process.
+
 - Ubuntu custom OS profiles must be mutable to allow for post-deployment configurations, updates,
   and installation of edge node agents.
+
 - EMT custom OS profiles must be immutable to ensure consistency and reliability across
   deployments. They should have edge node agents pre-installed to facilitate management and
   monitoring.
+
 - EMT custom OS profiles must have cloud-init package installed and configured to support
   automated initial setup during the provisioning process.
+
 - EMT custom OS profile must have EMF compatible version installed to ensure seamless integration
   with the EMF orchestrator.
+
 - EMT custom OS profiles must be based on the official EMT OS images provided by the Edge
   Microvisor Toolkit.
+
 - If an edge node is behind a proxy server, make sure the OS image URL is accessible during the
   provisioning process.
+
 - OS image URL must use HTTPS protocol to ensure secure transmission when hosting the OS image
   on the web server.
 
@@ -106,28 +120,28 @@ Create the OS profile YAML file ``custom_os_profile.yaml`` with the following co
 Replace the placeholders with appropriate values:
 
 ``<custom_os_profile_name>``
-   A unique name for the custom OS profile.
+    A unique name for the custom OS profile.
 
 ``<IMMUTABLE/MUTABLE>``
-   Specify whether the OS profile is immutable or mutable.
+    Specify whether the OS profile is immutable or mutable.
 
 ``<url_to_os_image>``
-   The URL where the OS image is hosted.
+    The URL where the OS image is hosted.
 
 ``<sha256_checksum_of_os_image>``
-   The SHA256 checksum of the OS image for verification.
+    The SHA256 checksum of the OS image for verification.
 
 ``<os_image_version>``
-   The version of the OS image.
+    The version of the OS image.
 
 ``<SECURITY_FEATURE_NONE/SECURITY_FEATURE_SECURE_BOOT_AND_FULL_DISK_ENCRYPTION>``
-   Specify the security features enabled for the OS profile.
+    Specify the security features enabled for the OS profile.
 
 ``<description_of_custom_os_profile>``
-   A brief description of the custom OS profile.
+    A brief description of the custom OS profile.
 
 ``<TLS_CERT>``
-   The base64 encoded TLS certificate obtained in the previous step.
+    The base64 encoded TLS certificate obtained in the previous step.
 
 Optional: Skip Kernel Upgrade
 """""""""""""""""""""""""""""
@@ -137,11 +151,15 @@ the ``metadata`` field in the YAML file:
 
 .. code-block:: yaml
 
-   # ...existing code...
+   appVersion: apps/v1
+   metadata:
+     release: 0.0.0-dev
+     version: 0.2.0
    spec:
+     name: <custom_os_profile_name>
+     # ... other fields ...
      metadata: |
        skip_kernel_upgrade: "true"
-   # ...existing code...
 
 Optional: Specify Kernel Version
 """"""""""""""""""""""""""""""""
@@ -154,15 +172,21 @@ provisioning, add the following to the ``metadata`` field in the YAML file:
    Replace ``<canonical_kernel_version>`` with the desired kernel version in the format
    ``linux-image-5.15.0-1035-generic``. The kernel must be present in the Canonical repository.
 
-   Refer to the Ubuntu canonical package [repository](https://packages.ubuntu.com/noble/linux-image) for available kernel versions.
+   Refer to the `Ubuntu canonical package repository`_ for available kernel versions.
+
+.. _Ubuntu canonical package repository: https://packages.ubuntu.com/noble/linux-image
 
 .. code-block:: yaml
 
-   # ...existing code...
+   appVersion: apps/v1
+   metadata:
+     release: 0.0.0-dev
+     version: 0.2.0
    spec:
+     name: <custom_os_profile_name>
+     # ... other fields ...
      metadata: |
        kernelVersion: "<canonical_kernel_version>"
-   # ...existing code...
 
 Step 3: Login to orch-cli
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -178,8 +202,8 @@ with your EMF orchestrator details:
 
 Replace the following placeholders:
 
-- ``<PROJECT_NAME>``: Your project name
-- ``<EMF_API_ENDPOINT>``: Your EMF API endpoint (e.g., ``https://api.<cluster_domain>``)
+- ``<PROJECT_NAME>``: Your project name.
+- ``<EMF_API_ENDPOINT>``: Your EMF API endpoint (for example, ``https://api.<cluster_domain>``).
 
 Step 4: Create the Custom OS Profile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -241,6 +265,7 @@ Related Documentation
 ---------------------
 
 - For more details on using the orch-cli, refer to the
-  :doc:`orch-cli user guide <../package_software/orch_cli/orch_cli_guide>`.
+  :doc:`orch-cli user guide </user_guide/package_software/orch_cli/orch_cli_guide>`.
+
 - For more details on edge node provisioning, refer to the
-  :doc:`edge node provisioning guide <../set_up_edge_infra/edge_node_onboard/index>`.
+  :doc:`edge node provisioning guide </user_guide/set_up_edge_infra/edge_node_onboard/index>`.
