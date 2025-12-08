@@ -258,6 +258,58 @@ Gitea
      kubectl -n gitea port-forward svc/gitea-http 3000:443 --address 0.0.0.0
      # Then open https://localhost:3000 in your browser and use the above credentials.
 
-Troubleshooting
----------------
+Workarounds
+===========
+
+Workaround 1: Root-App Sync and Certificate Refresh After Upgrade
+--------------------------------------------------------------------
+
+- Some applications may temporarily show as **OutOfSync**, **Degraded**, or missing
+- After running ``onprem_upgrade.sh``:
+  - **Wait 5–10 minutes** for ``root-app`` and dependent applications to sync
+- Run the resync script::
+      ./after_upgrade_restart.sh
+  - Continuously syncs applications
+  - Performs **root-app sync**
+  - Restarts **tls-boots** and **dkam** pods
+
+- If applications still fail to sync:
+  - Log in to ArgoCD UI
+  - Delete error-state CRDs/jobs
+  - Re-sync ``root-app`` and restart the ./after_upgrade_restart.sh script 
+
+- after after_upgrade_restart.sh complete verify signed_ipxe.efi image download using latest Full_server.cr
+- Download the latest certificates::
+
+      rm -rf Full_server.crt signed_ipxe.efi (delete both file then start both file downlad)
+      export CLUSTER_DOMAIN=cluster.onprem
+      wget https://tinkerbell-nginx.$CLUSTER_DOMAIN/tink-stack/keys/Full_server.crt --no-check-certificate --no-proxy -q -O Full_server.crt
+      wget --ca-certificate=Full_server.crt https://tinkerbell-nginx.$CLUSTER_DOMAIN/tink-stack/signed_ipxe.efi -q -O signed_ipxe.efi
+      
+  Once the above steps are successful, the orchestrator (Orch) is ready for onboarding new Edge Nodes (EN).
+
+Workaround 2: Gitea Upgrade Failure
+-----------------------------------
+- Some time onprem_upgrade.sh may fail with::
+      Error: UPGRADE FAILED: context deadline exceeded
+      dpkg: error processing package onprem-gitea-installer
+      E: Sub-process /usr/bin/dpkg returned an error code (1)
+- Check Gitea pod status::
+      kubectl get pod -n gitea
+- Restart dependent pods in order::
+      kubectl delete pod gitea-postgresql-0 -n gitea
+      kubectl delete pod gitea-78d6db5997-c6969 -n gitea
+
+Workaround 3: Unsupported Workflow
+----------------------------------
+If an Edge Node (EN) was onboarded before the EMF upgrade but the cluster installation was not completed, running the cluster installation after the upgrade using the latest cluster template will not work.
+This fails because the EN still uses old OS profiles and pre-upgrade settings.
+What You Need to Do
+To continue successfully after the upgrade, choose one of these:
+Option 1: De-authorize and Re-Onboard the EN
+	• De-authorize the existing EN.
+	• Onboard the EN again so it gets the correct post-upgrade templates and configs.
+Option 2: Update the OS Profile using day2 upgrade process flow.
+	• Update the EN to the latest available OS profile and next install cluster 
+
 
