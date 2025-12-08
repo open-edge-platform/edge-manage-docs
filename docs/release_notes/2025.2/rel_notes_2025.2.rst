@@ -97,6 +97,9 @@ EMF deployment
 * The default Elastic IP (EIP) Service Quota must be increased
   before installing the Product on the cloud, to allow for 13 EIPs
   to be provisioned for the Product on Cloud.
+* Current release still uses legacy Bitnami container image for keycloak.
+  This image is being deprecated by Bitnami. Intel is working to replace 
+  this image with alternatives in future releases.  
 
 Device Provisioning
 ^^^^^^^^^^^^^^^^^^
