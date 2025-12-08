@@ -342,6 +342,10 @@ User Experience Limitations
   appear on the Dashboard. To work around this issue, log into the dashboard
   with a user that has been mapped to just the project of the edge node
   being checked.
+* When adding/editing a deployment with the autoscaling option, the UI will show an error
+  message when duplicate metadata keys are entered. However, it will still allow the user
+  to proceed to the next step. Only the last duplicate key/value pair will be considered
+  in the end.
 
 Recommendations
 ---------------------
