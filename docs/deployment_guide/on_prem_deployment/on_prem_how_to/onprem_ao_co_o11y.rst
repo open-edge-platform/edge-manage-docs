@@ -172,9 +172,9 @@ Hosts can be registered individually or in bulk using a CSV file.
 
    Update values as needed for your specific environment.
 
-----------------------------------------------------
+--------------------------------------------------------------
 4.6 Collecting Edge Node Logs When Observability is Disabled
-----------------------------------------------------
+--------------------------------------------------------------
 
 When **Observability (O11Y)** is disabled, the centralized log collection and monitoring
 capabilities are not available. In this scenario, you must collect logs directly from
