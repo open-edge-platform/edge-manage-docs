@@ -243,7 +243,7 @@ vPro/AMT features.
 **Observed Behavior:**
 
 - No vPro or AMT configuration options in BIOS
-- vPro/AMT features work correctly
+- vPro/AMT features works correctly
 - Users cannot disable vPro/AMT through BIOS settings
 
 **Recommendation:**
