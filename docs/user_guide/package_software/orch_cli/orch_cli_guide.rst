@@ -440,6 +440,29 @@ For more information about YAML file structure and schema validation, see:
 - :doc:`/developer_guide/application_developer_workflow/deployment-packages/application-yaml-reference`
 - :doc:`/developer_guide/application_developer_workflow/deployment-packages/deployment-package-yaml-reference`
 
+Exporting Deployment Packages
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can export a deployment package to share it with other orchestrators or
+for backup purposes. The export command creates a tarball containing all the
+YAML definitions:
+
+.. code-block:: bash
+
+    # Export the deployment package
+    ./orch-cli export deployment-package <PACKAGE_NAME> <VERSION>
+
+
+The exported tarball contains:
+
+- Application YAML definitions
+- Profile configurations
+- Deployment package definition
+
+This tarball can be extracted and the YAML files can be uploaded to another
+orchestrator instance using the ``upload`` command, making it easy to share
+configurations across environments.
+
 Deployment Management
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -726,29 +749,6 @@ Monitor the deployment status and verify it's running:
 
 The deployment status will transition from "Deploying" to "Running" once the
 application is successfully deployed to the cluster.
-
-**Exporting Deployment Packages**
-
-You can export a deployment package to share it with other orchestrators or
-for backup purposes. The export command creates a tarball containing all the
-YAML definitions:
-
-.. code-block:: bash
-
-    # Export the deployment package
-    ./orch-cli export deployment-package hello-world 0.1.0
-
-    # This creates a file: hello-world-0.1.0.tar.gz
-
-The exported tarball contains:
-
-- Application YAML definitions
-- Profile configurations
-- Deployment package definition
-
-This tarball can be extracted and the YAML files can be uploaded to another
-orchestrator instance using the ``upload`` command, making it easy to share
-configurations across environments.
 
 **Using YAML Files for Deployment**
 
