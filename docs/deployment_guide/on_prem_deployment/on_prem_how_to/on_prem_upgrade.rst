@@ -532,7 +532,7 @@ Gitea
 Workarounds
 =============
 
-Workaround 1: Root-App Sync and Certificate Refresh After Upgrade
+Workaround#1: Root-App Sync and Certificate Refresh After Upgrade
 --------------------------------------------------------------------
 
 - Some applications  show as **OutOfSync**, **Degraded**, or missing
@@ -550,7 +550,11 @@ Workaround 1: Root-App Sync and Certificate Refresh After Upgrade
 - If applications still fail to sync:
   - Log in to ArgoCD UI
   - Delete error-state CRDs/jobs
-  - Re-sync ``root-app`` and restart the ./after_upgrade_restart.sh script
+  - Re-sync ``root-app`` and rerun the ./after_upgrade_restart.sh script
+
+.. note::
+   **external-secrets** and **copy-ca\*** specific pods remain in **OutOfSync**, **Missing**, or **processing** state for an extended period.  
+   First delete the associated **Jobs** and **CRDs**. If the issue persists, delete the affected applications from the ArgoCD UI and then resync the **root-app**.
 
 - After running ./after_upgrade_restart.sh successfully and once all root-apps are in sync and in a healthy state, wait approximately **5 minutes** to allow DKAM to fetch all dependent applications.
   and in a healthy state, wait approximately **5 minutes** to allow DKAM to fetch all
@@ -565,7 +569,7 @@ Workaround 1: Root-App Sync and Certificate Refresh After Upgrade
 
   Once the above steps are successful, the orchestrator (Orch) is ready for onboarding new Edge Nodes (EN).
 
-Workaround 2: Handling Gitea Pod Crashes During Upgrade
+Workaround#2: Handling Gitea Pod Crashes During Upgrade
 ---------------------------------------------------------
 - Some time onprem_upgrade.sh may fail with::
       Error: UPGRADE FAILED: context deadline exceeded
@@ -579,7 +583,7 @@ Workaround 2: Handling Gitea Pod Crashes During Upgrade
 
 After gitea pod restart restart onprem_upgrade.sh script
 
-Workaround 3: Unsupported Workflow
+Workaround#3: Unsupported Workflow
 ------------------------------------
 If an Edge Node (EN) was onboarded before the EMF upgrade but the cluster installation
 was not completed, running the cluster installation after the upgrade using the latest
