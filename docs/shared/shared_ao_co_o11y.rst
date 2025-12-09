@@ -1,13 +1,12 @@
-AO / CO / Observability Composability & Edge Node Onboarding
-============================================================
+AO / CO / Observability Composability
+=====================================
 
 This document provides end-to-end guidance on:
 
 1. Deploying orchestration with **Application Orchestrator (AO)**,
    **Cluster Orchestrator (CO)**, and **Observability (O11Y)** profiles,
    including how to enable or disable them using composability flags.
-2. Onboarding edge nodes in **NIO mode** with a **custom CloudInit configuration**
-   when **CO is disabled**.
+2. Onboarding edge nodes in **NIO mode** using ``orch-cli``.
 
 ----------------------------------------------------
 1. AO / CO / Observability Composability Overview
@@ -75,11 +74,11 @@ You can also confirm the same from the ArgoCD ``root-app`` application view.
 For pre-deployment verification (before cluster creation), review the **orchestration clustername.yaml** file.
 
 ----------------------------------------------------
-4. Custom CloudInit Configuration for Disabled CO
+4. Edge Node Onboarding in NIO Mode
 ----------------------------------------------------
 
-When **Cluster Orchestrator (CO)** is disabled, edge nodes must be registered manually using
-a **custom CloudInit configuration**.
+Edge nodes can be onboarded in **NIO mode** using the ``orch-cli`` tool.
+
 This section walks through the complete process of onboarding edge nodes in **NIO mode**
 using the ``orch-cli`` tool.
 
@@ -165,8 +164,8 @@ Hosts can be registered individually or in bulk using a CSV file.
 
 .. code-block:: bash
 
-   Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,LVMSize,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill
-   aocotest0001,,Edge Microvisor Toolkit 3.0.20250813,site-bcbbbbf8,FALSE,,,,,,,,,
+   Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,LVMSize,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill
+   aocotest0001,,Edge Microvisor Toolkit 3.0.20251204,site-bcbbbbf8,FALSE,,,,,,
 
 .. note::
 
