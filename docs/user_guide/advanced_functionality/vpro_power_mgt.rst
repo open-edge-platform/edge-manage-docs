@@ -8,18 +8,20 @@ This guide describes how to use Intel® vPro® features for power management, in
 Activation of vPro Power Management
 -----------------------------------
 
-To use vPro power management features, the device must be provisioned and activated. Provisioning is a prerequisite for activation
-and enables vPro management capabilities on the device.
+To use vPro power management features, the device must be provisioned and activated. Vpro activation Changed to opt-in feature
+instead of a mandatory feature Vpro activation moved to day 2 Operations as part of Host actions. Now Vpro can be activated
+for both Active Management Technology (AMT-Vpro Enterprise) and Intel Standard Manageability (ISM-Vpro Essential) devices.
+
 
 .. note::
-   1. If the edge node is vPro-enabled, activation of vPro features occurs internally and automatically
-   during device onboarding. No explicit user action is required to trigger vPro activation for
-   supported devices.
+   1. If the edge node is AMT/ISM-enabled, then only Vpro activation is enabled as part of Host actions.
 
-   2. vPro profiles are currently created using Client Control Mode (CCM). CCM mode support is planned for
-   version 3.1. Support for Admin Control Mode (ACM) is targeted as technical debt for version 3.2.
+   2. Vpro activation and deactivation will be triggered via Host actions.
 
-Enabling vpro while creating host
+   3. vPro profiles are currently created using Client Control Mode (CCM). CCM mode support is planned for
+      version 3.1. Support for Admin Control Mode (ACM) is targeted as technical debt for version 3.2.
+
+Enabling vpro from Host Actions:
 
 .. figure:: images/vpro_enable.png
    :width: 100 %
@@ -36,6 +38,8 @@ Assumptions & Recommendations
    for platform-specific limitations.
 - **MEBx Password:** For enhanced security, set a strong and unique Intel® MEBx password during initial setup.
    If the default password is still in use, change it immediately to prevent unauthorized access.
+- **Port Enablement:** Ensure that the 4433 network ports for Intel® AMT communication are open
+   and not blocked by firewalls.
 
 Power Operations
 ----------------------------
@@ -104,8 +108,8 @@ Replace `<HOST_UUID>` with the UUID of your host and ensure `${JWT_TOKEN}` is se
 Deactivation of vPro Power Management
 -------------------------------------
 
-To deactivate vPro management features, the device must be deauthorized.
-Deauthorizing will deactivate the device and prevent from further management via vPro.
+To deactivate vPro management features, the device can be deauthorized or deactivated from host-actions.
+**Deauthorize host** and **Deactivate Vpro** will deactivate the device and prevent from further management via vPro.
 
 Troubleshooting
 ---------------
