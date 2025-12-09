@@ -561,7 +561,7 @@ Workaround#1: Root-App Sync and Certificate Refresh After Upgrade
   dependent applications. Verify that the signed_ipxe.efi image is downloaded using
   the freshly downloaded Full_server.crt, or monitor until signed_ipxe.efi is available.
 - Download the latest certificates::
-
+ .. code-block:: shell
       rm -rf Full_server.crt signed_ipxe.efi  # Delete both files before downloading
       export CLUSTER_DOMAIN=cluster.onprem
       wget https://tinkerbell-nginx.$CLUSTER_DOMAIN/tink-stack/keys/Full_server.crt --no-check-certificate --no-proxy -q -O Full_server.crt
@@ -576,8 +576,10 @@ Workaround#2: Handling Gitea Pod Crashes During Upgrade
       dpkg: error processing package onprem-gitea-installer
       E: Sub-process /usr/bin/dpkg returned an error code (1)
 - Check Gitea pod error status.
+ .. code-block:: shell
       kubectl get pod -n gitea
 - Restart dependent pods in order.
+ .. code-block:: shell
       kubectl delete pod gitea-postgresql-0 -n gitea
       kubectl delete pod gitea-78d6db5997-c6969 -n gitea
 
