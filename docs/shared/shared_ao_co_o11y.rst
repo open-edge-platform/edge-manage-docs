@@ -93,7 +93,7 @@ using the ``orch-cli`` tool.
 .. note::
 
    The ``orch-cli`` binary and dependencies are managed through the
-   `orch-utils <https://github.com/open-edge-platform/orch-utils>`_ repository.
+   `orch-cli <https://github.com/open-edge-platform/orch-cli>`_ repository.
    Ensure ``orch-cli`` is available and configured correctly in your environment.
 
 ----------------------------------------------------
@@ -120,7 +120,7 @@ Set the following environment variables and authenticate with Keycloak:
 
 .. note::
 
-   Replace ``PROJECT_NAME``, ``ORCH_DEFAULT_USER``, and ``ORCH_DEFAULT_PASSWORD``
+   Replace ``CLUSTER_FQDN``, ``PROJECT_NAME``, ``ORCH_DEFAULT_USER``, and ``ORCH_DEFAULT_PASSWORD``
    with valid credentials for your deployment.
 
 ----------------------------------------------------
@@ -140,50 +140,7 @@ Before registering hosts, ensure the required **region** and **site** are create
    orch-cli list site
 
 ----------------------------------------------------
-4.4 Create a Custom CloudInit Configuration
-----------------------------------------------------
-
-When CO is disabled, a **custom CloudInit file** can be used to disable or modify
-the ``cluster-agent`` service for proper node registration.
-
-**Example Custom CloudInit (``ao-co-disable.yaml``):**
-
-.. code-block:: yaml
-
-   #cloud-config
-   merge_how: 'dict(recurse_array,no_replace)+list(append)'
-   runcmd:
-     - |
-        # Wait until node-agent configuration file is present
-        while [ ! -f /etc/edge-node/node/confs/node-agent.yaml ]; do
-          sleep 10
-        done
-
-        # Wait for cluster-agent service to appear
-        until systemctl list-units --type=service | grep -q cluster-agent; do
-          sleep 10
-        done
-
-        # Disable and stop cluster-agent service
-        systemctl stop cluster-agent
-        systemctl disable cluster-agent
-
-        # Remove cluster-agent from serviceClients
-        sed -i '/serviceClients:/ s/,\s*cluster-agent//; /serviceClients:/ s/cluster-agent,\s*//; /serviceClients:/ s/cluster-agent//' /etc/edge-node/node/confs/node-agent.yaml
-
-        # Restart node-agent service to apply the change
-        systemctl restart node-agent
-
-**Create and Verify the Custom Config:**
-
-.. code-block:: bash
-
-   orch-cli create customconfig aoco-disable ./ao-co-disable.yaml
-   orch-cli list customconfig
-   orch-cli get customconfig aoco-disable
-
-----------------------------------------------------
-4.5 View Available OS Profiles
+4.4 View Available OS Profiles
 ----------------------------------------------------
 
 To list all available OS profiles:
@@ -193,7 +150,7 @@ To list all available OS profiles:
    orch-cli list osprofile
 
 ----------------------------------------------------
-4.6 Register Host in NIO Mode
+4.5 Register Host in NIO Mode
 ----------------------------------------------------
 
 Hosts can be registered individually or in bulk using a CSV file.
@@ -209,13 +166,71 @@ Hosts can be registered individually or in bulk using a CSV file.
 .. code-block:: bash
 
    Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,LVMSize,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill
-   aocotest0001,,Edge Microvisor Toolkit 3.0.20250813,site-bcbbbbf8,FALSE,,,,aoco-disable,,,,,
+   aocotest0001,,Edge Microvisor Toolkit 3.0.20250813,site-bcbbbbf8,FALSE,,,,,,,,,
 
 .. note::
 
    Update values as needed for your specific environment.
-   The ``CloudInitMeta`` field must reference your custom configuration (e.g., ``aoco-disable``)
-   to ensure it is applied during host registration.
+
+--------------------------------------------------------------
+4.6 Collecting Edge Node Logs When Observability is Disabled
+--------------------------------------------------------------
+
+When **Observability (O11Y)** is disabled, the centralized log collection and monitoring
+capabilities are not available. In this scenario, you must collect logs directly from
+each edge node by connecting via SSH.
+
+.. important::
+
+   To access edge nodes when observability is disabled, the edge node must be onboarded
+   with **SSH enabled** in the configuration.
+
+   For details on how to add SSH users, refer to the `Local SSH Account Management <../user_guide/set_up_edge_infra/orch_cli/orch_cli_guide.rst#local-ssh-account-management>`_ section in the orch-cli guide.
+
+----------------------------------------------------
+4.6.1 SSH Login to Edge Node
+----------------------------------------------------
+
+Once the edge node is onboarded successfully with SSH enabled, you can log in to collect logs.
+
+Get the edge node IP address after onboarding:
+
+.. code-block:: bash
+
+   orch-cli list host
+   orch-cli get host <host-id> | grep NIC
+
+Login to the edge node:
+
+.. code-block:: bash
+
+   ssh <ssh-enabled-username>@<edge-node-ip>
+
+----------------------------------------------------
+4.6.2 Collect Edge Node Logs
+----------------------------------------------------
+
+After logging in to the edge node, you can collect logs from various edge services.
+
+**Check Node Agent Logs:**
+
+.. code-block:: bash
+
+   sudo journalctl -u node-agent -f
+   sudo systemctl status node-agent
+
+**Check Cluster Agent Logs (if CO is enabled):**
+
+.. code-block:: bash
+
+  sudo journalctl -u cluster-agent -f
+  sudo systemctl status cluster-agent
+
+**Check Other Service Logs:**
+
+.. code-block:: bash
+
+   sudo journalctl -u <service-name> -f
 
 ----------------------------------------------------
 4.7 Create a Cluster (if CO is enabled)
