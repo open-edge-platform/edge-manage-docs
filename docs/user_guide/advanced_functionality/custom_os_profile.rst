@@ -261,6 +261,17 @@ Clean up the created custom OS profile if no longer needed:
 
 Replace ``<custom_os_profile_name>`` with the name of the custom OS profile created earlier.
 
+Limitations
+^^^^^^^^^^^
+
+1. Custom OS profile can used for only Day0 operation like edge node provisioning.
+Whereas Custom OS profile cannot be used for Day2 operations like OS upgrade using maintenance manager.
+
+2. Operating system resource manager doesn't manage the custom OS profiles hence it does not get the CVEs information
+of the operating systems
+
+
+
 Related Documentation
 ---------------------
 
