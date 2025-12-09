@@ -8,9 +8,7 @@ Installation of Intel Out of Tree (OOT) GPU Drivers During Provisioning
 
 Here are the supported GPU drivers for Intel platforms:
 
-#. Intel iGPU - ADL, RPL platforms.
-
-#. Intel Battle Mage 580 GPU - Xeon platforms (Dell XR12 Icelake).
+#. Intel Battle Mage 580 GPU - Xeon platforms
 
 Follow the steps below to install Intel Out of Tree (OOT) GPU Drivers for Ubuntu 24.04 LTS
 OS profile.
@@ -36,48 +34,69 @@ Step 2: Create Custom Cloud-Init Resource to Install Intel OOT GPU Drivers
 Create a custom cloud-init YAML file called ``gpu_driver_installation.yaml`` with the content
 below.
 
-Replace ``<PLATFORM_TYPE>`` with the proper platform type:
-
-- ``ADL``: Alderlake iGPU installation.
-- ``RPL``: Raptorlake iGPU installation.
-- ``BMG``: Battlemage discrete GPU installation on Xeon platforms.
-
 .. code-block:: yaml
 
    #cloud-config
    merge_how: 'dict(recurse_array,no_replace)+list(append)'
    runcmd:
      - |
-       wget https://af01p-png.devtools.intel.com/artifactory/hspe-edge-png-local/ubuntu/daily/panther-lake/20251106-1458/installer.sh --no-check-certificate --no-proxy -O /tmp/installer.sh
-       chmod +x /tmp/installer.sh
+       wait_until_base_pkg_install_done() {
+       while [ true ]; do
+           if [ -f "/home/postinstall/Setup/.base_pkg_install_done" ]; then
+               echo "Base package installation completed. Proceeding...";
+               break;
+           else
+               echo "Waiting for base package installation to complete...";
+               sleep 2;
+           fi
+       done
+       }
+       wait_until_base_pkg_install_done
+       export DEBIAN_FRONTEND=noninteractive
+       echo "Install GPU Drivers......."
+       os_version=$(grep 'VERSION_ID' /etc/os-release | cut -d '"' -f 2)
+       processor_type=$(lscpu | grep 'Model name:' | awk '{for(i=3;i<=NF;i++) if(tolower($i) ~ /(core|xeon|genuine|atom|celeron|n97|n95|n150|n355)/) print $i}')
+       ORIGINAL_NO_PROXY=$no_proxy
+       no_proxy=$(echo "$no_proxy" | sed 's/,intel\.com//g' | sed 's/intel\.com,//g' | sed 's/intel\.com//g')
+       if [[ "${processor_type,,}" == *"xeon"* ]]; then
+         echo -e "\nProcessor: $processor_type, Installing the unified driver for Intel® Data Center GPU Flex/Max Series on Ubuntu Server......."
+         sudo apt update
+         sudo apt install -y gpg-agent wget
+         wget -qO - https://repositories.intel.com/gpu/intel-graphics.key | \
+         sudo gpg --yes --dearmor --output /usr/share/keyrings/intel-graphics.gpg
+         source /etc/os-release
+         if [[ ! " jammy noble " =~ " ${VERSION_CODENAME} " ]]; then
+            echo "Ubuntu version ${VERSION_CODENAME} not supported"
+            exit 1
+         else
+            wget https://repositories.intel.com/gpu/ubuntu/dists/${VERSION_CODENAME}/lts/2523/intel-gpu-ubuntu-${VERSION_CODENAME}-2523.run
+            chmod +x intel-gpu-ubuntu-${VERSION_CODENAME}-2523.run
+            sudo ./intel-gpu-ubuntu-${VERSION_CODENAME}-2523.run
+         fi
+         sudo apt install -y \
+         linux-headers-$(uname -r) \
+         linux-modules-extra-$(uname -r) \
+         flex bison \
+         intel-fw-gpu intel-i915-dkms xpu-smi
 
-       sed -i '/parition_extention/i export DEBIAN_FRONTEND=noninteractive' /tmp/installer.sh
-       sed -i '/export DEBIAN_FRONTEND=noninteractive/a \
-       wait_until_base_pkg_install_done() { \
-       while [ true ]; do \
-           if [ -f "/home/postinstall/Setup/.base_pkg_install_done" ]; then \
-               echo "Base package installation completed. Proceeding..."; \
-               break; \
-           else \
-               echo "Waiting for base package installation to complete..."; \
-               sleep 2; \
-           fi; \
-       done \
-       }' /tmp/installer.sh
-       sed -i '/parition_extention/i wait_until_base_pkg_install_done' /tmp/installer.sh
+         sudo apt install -y \
+         intel-opencl-icd libze-intel-gpu1 libze1 \
+         intel-media-va-driver-non-free libmfx-gen1 libvpl2 \
+         libegl-mesa0 libegl1-mesa-dev libgbm1 libgl1-mesa-dev libgl1-mesa-dri \
+         libglapi-mesa libgles2-mesa-dev libglx-mesa0 libigdgmm12 libxatracker2 mesa-va-drivers \
+         mesa-vdpau-drivers mesa-vulkan-drivers va-driver-all vainfo hwinfo clinfo
 
-       sed -i '/ProxySetUp/a source /etc/apt/apt.conf.d/99proxy.conf\
-       source /etc/environment' installer.sh
-       sed -i '/^[[:space:]]*parition_extention\([[:space:]]\|$\)/ s/^/#/' /tmp/installer.sh
-       sed -i '/^[[:space:]]*reconfigureGrub\([[:space:]]\|$\)/ s/^/#/' /tmp/installer.sh
-       sed -i '/^[[:space:]]*InstallPackage\([[:space:]]\|$\)/ s/^/#/' /tmp/installer.sh
-       sed -i '/^[[:space:]]*InternalConfigSetup\([[:space:]]\|$\)/ s/^/#/' /tmp/installer.sh
-       sed -i '/^[[:space:]]*ValidatePackages\([[:space:]]\|$\)/ s/^/#/' /tmp/installer.sh
-       sed -i '/reboot/i touch /home/postinstall/Setup/.custom_update_done' /tmp/installer.sh
-       sed -i '/reboot/i apt-get install ubuntu-desktop -y' /tmp/installer.sh
-       if [ ! -f /home/postinstall/Setup/.custom_update_done ]; then
-           /tmp/installer.sh <PLATFORM_TYPE> default
-       fi
+         sudo apt install -y \
+         libigc-dev intel-igc-cm libigdfcl-dev libigfxcmrt-dev libze-dev
+
+         echo "GPU driver installation for Ubuntu server image done"
+         sudo reboot
+       else
+         echo -e "\nProcessor: $processor_type is not supported exiting\n"
+         exit 1
+      fi
+
+
 
 Step 3: Create Custom Cloud-Init Config
 ---------------------------------------
