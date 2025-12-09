@@ -93,7 +93,7 @@ using the ``orch-cli`` tool.
 .. note::
 
    The ``orch-cli`` binary and dependencies are managed through the
-   `orch-utils <https://github.com/open-edge-platform/orch-utils>`_ repository.
+   `orch-cli <https://github.com/open-edge-platform/orch-cli>`_ repository.
    Ensure ``orch-cli`` is available and configured correctly in your environment.
 
 ----------------------------------------------------
@@ -223,7 +223,7 @@ After logging in to the edge node, you can collect logs from various edge servic
 
 .. code-block:: bash
 
-   sudo journalctl -u cluster-agent -f
+  sudo journalctl -u cluster-agent -f
   sudo systemctl status cluster-agent
 
 **Check Other Service Logs:**
