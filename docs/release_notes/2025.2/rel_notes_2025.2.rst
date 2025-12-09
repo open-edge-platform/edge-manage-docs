@@ -115,6 +115,8 @@ EMF deployment
 * Current release still uses legacy Bitnami container image for Keycloak solution.
   This image is being deprecated by Bitnami. Intel is working to replace
   this image with alternatives in future releases.
+* For on-premises EMF deployment and upgrade issues and workarounds, see
+  :doc:`/user_guide/troubleshooting/emf_installation`.  
 
 Device Provisioning
 ^^^^^^^^^^^^^^^^^^^
