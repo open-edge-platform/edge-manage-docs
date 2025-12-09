@@ -67,7 +67,7 @@ Key highlights of the 2025.2 release include:
     This adds the automatic deployment and lifecycle management of applications. This is the default configuration of EMF.
 
 * **New:** For each supported configuration, the observability stack may be enabled or disabled.
-  The default configuratation is observability enabled.
+  The default configuration is observability enabled.
 * **New:** Updates to mitigate reliance on the legacy Bitnami registry by utilizing alternative sources.
 * **Update:** Updates to the ``orch-cli`` tool to support all capabilities currently available in the EMF UI.
 
