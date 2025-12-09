@@ -15,7 +15,7 @@ Release Highlights
 ---------------------------
 
 Edge Manageability Framework enables you to securely onboard and provision remote
-edge devices to a central management plane, orchestrate Kubernetes\* clusters and
+edge devices to a central management plane, orchestrate Kubernetes clusters and
 applications across distributed edge, at scale. Edge Node software provides the
 profiles of infrastructure software configurations that get provisioned onto an
 onboarded node.
@@ -26,16 +26,17 @@ Key highlights of the 2025.2 release include:
 
 **Infrastructure and Edge Node Software**
 
-* **New:** Support for Ubuntu 24.04 LTS with kernel 6.11.0-17. Official support for Ubuntu 22.04 LTS continues.
-* **New:** Users can create custom OS profiles based on Ubuntu 24.04 LTS or the Edge Microvisor Toolkit (EMT).
+* **New:** Support for Ubuntu 24.04 LTS OS with kernel 6.11.0-17. Official support for Ubuntu 22.04 LTS OS continues.
+* **New:** Users can create custom OS profiles based on Ubuntu 24.04 LTS or the Edge Microvisor Toolkit.
 * **New:** Alpha support for Intel® Core™ Ultra Series 3 processors (formerly code-named Panther Lake) supporting
   integrated GPU and NPU.
-* **New:** Users can now use Intel vPRO based out-of-band management for Intel vPro® ISM in conjunction with vPro® AMT
+* **New:** You can now use Intel vPro® platform-based out-of-band management for
+  Intel® Standard Manageability in conjunction with Intel® Active Management Technology (Intel® AMT)
   devices <https://www.intel.com/content/www/us/en/support/articles/000090499/technologies/intel-active-management-technology-intel-amt.html>`__..
-* **New:** Expanding the device customization capabilities, users can now customize operating system kernel
+* **New:** Expanding the device customization capabilities, you can now customize operating system kernel
   command-line parameters.
 * **New:** Security compliance verification through tracking of open and fixed CVEs for packages installed on
-  Ubuntu 24.04 LTS and EMT.* Any USB peripherals connected to the edge node can be connected to a
+  Ubuntu 24.04 LTS OS and Edge Microvisor Toolkit. Any USB peripherals connected to the edge node can be connected to a
   VM-based application. However, although the USB peripheral(s) are
   detached from the edge node, the VM-based application will still have the
   USB peripherals connected. In this situation, when you run applications
@@ -44,8 +45,8 @@ Key highlights of the 2025.2 release include:
   applications, while the same USB peripheral can be simultaneously
   connected to the different types of applications.
 * **Update:** Architectural enhancements to improve the reliability of supported operations of out-of-band management
-  using Intel AMT/vPro® and ISM/vPro®.
-* **Update:** Users can activate Intel vPro® AMT or ISM post device device onboarding and provisioning.
+  using Intel® AMT and Intel® Standard Manageability.
+* **Update:** Users can activate Intel® AMT or Intel® Standard Manageability post device onboarding and provisioning.
 * **New:** In-Band Manageability (INBM) agents provide OS and package update capabilities on edge nodes. The Platform
   Update Agent (PUA) coordinates with INBM daemon (inbd) to execute system updates triggered through Edge Orchestrator's
   maintenance windows. Users can manage package updates and APT repository sources through OS Update Policies in the UI.
@@ -58,9 +59,9 @@ Key highlights of the 2025.2 release include:
 
 **Edge Manageability Framework Platform Enhancements**
 
-* **New:** Support for modular deployment of EMF for advanced users. EMF may now be deployed in the following configurations:
+* **New:** Support for modular deployment of Edge Manageability Framework for advanced users. EMF may now be deployed in the following configurations:
 
-  * **Device Management (only)**. This allows the onboarding, provisioning, and management of edge nodes. This is the minimum configuration of EMF.
+  * **Device Management (only)**. This allows the onboarding, provisioning, and management of edge nodes. This is the minimum configuration of Edge Manageability Framework.
   * **Device Management with Advanced Cluster Management**. This adds the automatic creation and lifecycle management of clusters.
   * **Device Management with Advanced Cluster Management and Advanced Application Management**.
     This adds the automatic deployment and lifecycle management of applications. This is the default configuration of EMF.
@@ -71,7 +72,7 @@ Key highlights of the 2025.2 release include:
 * **Update:** Updates to the ``orch-cli`` tool to support all capabilities currently available in the EMF UI.
 
 
-* New: Support for new reference applications in EMF 2025.2
+* New: Support for new reference applications in Edge Manageability Framework 2025.2
     * Worker Safety Gear Detection v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
     * PCB Anomaly Detection v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
 
@@ -83,7 +84,7 @@ Key highlights of the 2025.2 release include:
     * Smart Parking v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/metro-vision-ai-app-recipe/smart-parking/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
     * Loitering Detection v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/metro-vision-ai-app-recipe/smart-parking/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
 
-All of the codebase is Apache\* software version 2.0 licensed and available on Github.
+The codebase is Apache software version 2.0 licensed and available on the Github repository.
 
 For a detailed list of features, see the :doc:`Overview page </user_guide/index>`
 and the `Edge Manageability Framework README file <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/README.md>`_.
@@ -91,7 +92,7 @@ and the `Edge Manageability Framework README file <https://github.com/open-edge-
 Upgrades from Previous Releases
 ----------------------------------
 
-Edge Manageability Framework (EMF) version 2025.2 supports direct
+Edge Manageability Framework version 2025.2 supports direct
 upgrades from version 3.1 to 2025.2 both for on-prem <guide> and AWS deployments <guide>
 
 * Clusters created with release 3.1 and deleted in release 2025.2 require
@@ -119,7 +120,7 @@ EMF deployment
 * The default Elastic IP (EIP) Service Quota must be increased
   before installing the EMF on the cloud, to allow for 13 EIPs
   to be provisioned for the EMF on Cloud.
-* Current release still uses legacy Bitnami container image for keycloak.
+* Current release still uses legacy Bitnami container image for Keycloak solution.
   This image is being deprecated by Bitnami. Intel is working to replace
   this image with alternatives in future releases.
 
@@ -131,18 +132,19 @@ Device Provisioning
   reboot the edge node hardware.
 * If the edge node reboots during the full-disk encryption (FDE) stage, the
   edge node will try and boot to disk but will then fail because of partial
-  encryption. The workaround is to delete the host from EMF UI/cli and then re-provision.
+  encryption. The workaround is to delete the host from Edge Manageability Framework
+  UI and CLI and then re-provision.
 * If there are network issues during initial provisioning of the edge node,
   see :doc:`/user_guide/troubleshooting/en_recover`.
 * If an edge node fails to boot properly during initial provisioning, see
   :doc:`/user_guide/troubleshooting/hard_disk_boot`.
 * Occasionally, logging and metrics are not enabled during
-  deployment. This might be because the Docker\* software pull
+  deployment. This might be because the Docker software pull
   limit is reached. First, delete the edge node (see
   :doc:`/user_guide/set_up_edge_infra/delete_host`) and then
   re-provision it with a different IP address.
 * If several edge nodes are provisioned at the same time from a non-premium
-  Docker\* account, there is a limit of 100 pulls per IP over a four-hour
+  Docker account, there is a limit of 100 pulls per IP over a four-hour
   window. In this case, upgrade to the premium account or wait to
   provision more edge nodes.
 
@@ -151,7 +153,7 @@ Cluster and Application Management
 
 * When creating a cluster, you must select a region and a site but the
   region and site are not automatically added to the cluster's deployment
-  metadata.  You must add them as deployment metadata manually if you
+  metadata. You must add them as deployment metadata manually if you
   desire.
 * Support for in-place upgrades of Edge Node Kubernetes cluster
   is currently not available. This is to be addressed in a future release.
@@ -174,13 +176,14 @@ User Experience
 
 * `Let's Encrypt` certificates and Certificate Authority (CA) are deployed
   by default. `Let's Encrypt` poses an issue where if the Certificate
-  Authority is changed, the edge nodes will not trust the EMF anymore.
+  Authority is changed, the edge nodes will not trust the Edge Manageability
+  Framework anymore.
   In such a case, you must reinstall the edge nodes. Advanced users can use
   their different CAs, therefore avoiding this issue.
-* Telemetry Orchestrator services (OpenTelemetry\* and Mimir\*) do not have
+* Telemetry Orchestrator services (OpenTelemetry and Mimir) do not have
   role-based access authorization enabled in the southbound interfaces
   towards the edge node.
-* If the Product and Keycloak\* solution are restarted separately or if
+* If the Product and Keycloak solution are restarted separately or if
   there is a Keycloak signing key rotation, the Product returns error 403.
   The workaround is to log out, close the browser, and wait approximately
   15 minutes and then log back in and retry; the request should succeed as
@@ -190,11 +193,12 @@ User Experience
   edgenode-observability may occasionally fail due to loss of communication
   between querier and query-frontend. The workaround is a restart of
   querier pod through Argo CD tool.
-* Occasionally, a reboot of the On-prem EMF makes the Argo CD tool's `root-app`
+* Occasionally, a reboot of the On-prem Edge Manageability Framework
+  makes the Argo CD tool's `root-app`
   and `secret-config` remain in the `provisioning` state, and prevents
   creation of application deployment. The workaround is to unseal the vault
   using the provided script.
-* Users created in Keycloak must have email address set up to properly
+* Users created in Keycloak solution must have email address set up to properly
   perform authentication to Grafana Observability Dashboards. Users without
   email set won't be able to access metrics and logs via Grafana UI.
 
@@ -293,7 +297,7 @@ Recommendations
   address-to-MAC mapping in their DHCP server for stable functioning of the
   edge node cluster.
 * Intel advises against scheduling a major OS upgrade. Intel only supports
-  the current Product version on Ubuntu\* OS 24.04 LTS.
+  the current Product version on Ubuntu OS 24.04 LTS.
 * Wait for some time after the initial Product installation or a full
   restart before provisioning nodes because there are a few components
   (for example, DKAM and Tinkerbell pods) that take about 15 minutes to get to
