@@ -32,7 +32,6 @@ The Virtual Edge Node provisioning tool streamlines VM setup on bare metal serve
 Start by preparing your server environment and following the provided instructions for efficient deployment.
 
 .. toctree::
-    :maxdepth: 1
 
     ../../user_guide/virtual_edge_node/usage/how_it_works_content
     ../../user_guide/virtual_edge_node/usage/getting_started

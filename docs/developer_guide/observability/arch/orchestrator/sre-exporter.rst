@@ -159,5 +159,3 @@ Appendix: Exported Metrics
      - Gauge
      - The current status of vault instance ready:0, sealed:1, standby:2
 
-.. toctree::
-   :maxdepth: 3

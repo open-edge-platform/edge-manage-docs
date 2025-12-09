@@ -63,7 +63,6 @@ Virtual Edge Node leverages the existing system components:
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
 
    workflows
    technology_stack

@@ -5,7 +5,6 @@ This section contains developer-oriented troubleshooting and complements
 the User Guide :doc:`/user_guide/troubleshooting/index` doc.
 
 .. toctree::
-   :maxdepth: 1
 
    eks_node_issues
    capture_logs

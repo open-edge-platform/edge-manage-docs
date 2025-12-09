@@ -65,7 +65,6 @@ help route the traffic to the Tutorial Server application.
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
 
    developing-tutorial-server
    developing-tutorial-web-ui
