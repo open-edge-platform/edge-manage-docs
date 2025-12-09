@@ -371,10 +371,8 @@ Single tenancy mode with tracing:
 
    ./onprem_installer.sh -- -st -t
 
-.. note::
-   - Options before ``--`` control the pre-install phase
-   - Options after ``--`` control the main install phase
-   - Ensure ``onprem.env`` is properly configured before running
+Note:
+When running onprem_installer.sh, onprem.env may retain previously set flags (e.g., AO, CO, ST, o11y) if the installer is rerun without them. This can cause configuration drift. Always review and update onprem.env before running the installer to ensure it reflects the desired settings.
 
 What the Installer Does
 +++++++++++++++++++++++++
