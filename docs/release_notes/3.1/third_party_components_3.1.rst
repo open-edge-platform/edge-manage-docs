@@ -99,7 +99,7 @@ Cluster Orchestration
    * - open-policy-agent
      - Container
      - openpolicyagent/opa
-     - 
+     -
    * - CAPI k3s controlplane/bootstrap provider
      - Container
      - https://github.com/k3s-io/cluster-api-k3s/releases/tag/v0.3.0
