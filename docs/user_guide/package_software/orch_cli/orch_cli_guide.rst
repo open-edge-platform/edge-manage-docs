@@ -597,9 +597,27 @@ Create a Helm chart for your application:
     helm push hello-world-0.1.0.tgz \
         oci://registry-oci.${CLUSTER_FQDN}/catalog-apps-${ORG_NAME}-${PROJECT_NAME}
 
-.. note:: Generally it is a bad practice to hardcode annotations into a Helm chart, but for this example it is acceptable.
+.. note::
+   Generally it is a bad practice to hardcode orchestrator-specific values
+   (like annotations or image repository URLs) directly into a Helm chart.
+   For production deployments, it is recommended to:
+
+   * Define service annotations in the Application Profile's chart values instead
+     of the chart's ``templates/service.yaml`` file
+   * Use substitution variables like ``%ImageRegistryURL%`` for image repositories
+     instead of hardcoding registry URLs
+
+   For details on available substitution variables (``%GeneratedDockerCredential%``,
+   ``%PreHookCredential%``, ``%ImageRegistryURL%``, ``%OrgName%``, ``%ProjectName%``),
+   see :doc:`/developer_guide/application_developer_workflow/deployment-packages/reference-placeholders`.
 
 **Step 3: Register Harbor Registries with the Catalog**
+
+.. note::
+   In most deployments, the ``harbor-helm-oci`` and ``harbor-docker-oci`` registries
+   are already created during platform setup and shared across projects. The commands
+   below are provided for reference. If these registries already exist in your
+   environment, you can skip this step and proceed directly to creating the application.
 
 Register both the Helm and Docker registries:
 
@@ -709,6 +727,29 @@ Monitor the deployment status and verify it's running:
 The deployment status will transition from "Deploying" to "Running" once the
 application is successfully deployed to the cluster.
 
+**Exporting Deployment Packages**
+
+You can export a deployment package to share it with other orchestrators or
+for backup purposes. The export command creates a tarball containing all the
+YAML definitions:
+
+.. code-block:: bash
+
+    # Export the deployment package
+    ./orch-cli export deployment-package hello-world 0.1.0
+
+    # This creates a file: hello-world-0.1.0.tar.gz
+
+The exported tarball contains:
+
+- Application YAML definitions
+- Profile configurations
+- Deployment package definition
+
+This tarball can be extracted and the YAML files can be uploaded to another
+orchestrator instance using the ``upload`` command, making it easy to share
+configurations across environments.
+
 **Using YAML Files for Deployment**
 
 Alternatively, you can define applications and deployment packages using YAML
@@ -720,10 +761,15 @@ files and use the upload command:
     # Then upload them all at once
     ./orch-cli upload /path/to/yaml/files/
 
+    # Or upload an exported deployment package
+    tar xzf hello-world-0.1.0.tar.gz
+    ./orch-cli upload hello-world-0.1.0/
+
 For YAML file structure, see:
 
 - :doc:`/developer_guide/application_developer_workflow/deployment-packages/application-yaml-reference`
 - :doc:`/developer_guide/application_developer_workflow/deployment-packages/deployment-package-yaml-reference`
+- :doc:`/developer_guide/application_developer_workflow/deployment-packages/reference-placeholders`
 
 Help
 ^^^^
