@@ -8,7 +8,7 @@ This guide describes how to use Intel® vPro® features for power management, in
 Activation of vPro Power Management
 -----------------------------------
 
-To use vPro power management features, the device must be provisioned and activated. Vpro activation Changed to opt-in feature 
+To use vPro power management features, the device must be provisioned and activated. Vpro activation Changed to opt-in feature
 instead of a mandatory feature Vpro activation moved to day 2 Operations as part of Host actions. Now Vpro can be activated
 for both Active Management Technology (AMT-Vpro Enterprise) and Intel Standard Manageability (ISM-Vpro Essential) devices.
 
@@ -17,7 +17,7 @@ for both Active Management Technology (AMT-Vpro Enterprise) and Intel Standard M
    1. If the edge node is AMT/ISM-enabled, then only Vpro activation is enabled as part of Host actions.
 
    2. Vpro activation and deactivation will be triggered via Host actions.
-   
+
    3. vPro profiles are currently created using Client Control Mode (CCM). CCM mode support is planned for
       version 3.1. Support for Admin Control Mode (ACM) is targeted as technical debt for version 3.2.
 
@@ -34,9 +34,9 @@ Assumptions & Recommendations
    it is recommended to disable it in the BIOS for security and compliance.
 - **MEBx Password:** For enhanced security, set a strong and unique Intel® MEBx password during initial setup.
    If the default password is still in use, change it immediately to prevent unauthorized access.
-- **Port Enablement:** Ensure that the 4433 network ports for Intel® AMT communication are open 
+- **Port Enablement:** Ensure that the 4433 network ports for Intel® AMT communication are open
    and not blocked by firewalls.
-   
+
 Power Operations
 ----------------------------
 
