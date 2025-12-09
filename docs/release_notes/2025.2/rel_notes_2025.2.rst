@@ -71,12 +71,11 @@ Key highlights of the 2025.2 release include:
 * **New:** Updates to mitigate reliance on the legacy Bitnami registry by utilizing alternative sources.
 * **Update:** Updates to the ``orch-cli`` tool to support all capabilities currently available in the EMF UI.
 
-
-* New: Support for new reference applications in Edge Manageability Framework 2025.2
+* **New:**: Support for new reference applications in Edge Manageability Framework 2025.2
     * Worker Safety Gear Detection v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
     * PCB Anomaly Detection v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
 
-* Update: Support for new versions of 3.1 reference applications
+* **Update:**: Support for new versions of 3.1 reference applications
     * Weld Porosity Detection v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
     * Pallet Defect Detection v2.5.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
     * Image-Based Video Search v1.1.0  <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/image-based-video-search/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
