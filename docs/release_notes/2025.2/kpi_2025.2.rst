@@ -14,18 +14,18 @@ Key Performance Indicators for Cloud Based Edge Orchestrator
    * - Indicator
      - Target
      - Measurement
-   * - AWS* Infrastructure preparation
+   * - AWS Cloud Infrastructure preparation
      - 60 minutes
      - ~47 minutes
    * - Edge Orchestrator deployment
      - 30 minutes
      - ~25 minutes
-   * - Edge Node Onboarding and Provisioning (Ubuntu)
+   * - Edge Node Onboarding and Provisioning (Ubuntu OS)
      - 15 minutes
-     - ~11 minutes (Xeon)
+     - ~11 minutes (Intel® Xeon® processor)
    * - Edge Node Onboarding and Provisioning (Edge Microvisor Toolkit)
      - 10 minutes
-     - ~8 minutes (Xeon), ~5 minutes (Core)
+     - ~8 minutes (Intel Xeon processor), ~5 minutes ( Intel® Core™ processor)
    * - Edge Cluster Creation
      - 10 minutes
      - ~1.30 minutes
@@ -66,10 +66,10 @@ Key Performance Indicators for On-premises Edge Orchestrator
      - ~35 minutes
    * - Edge Node Onboarding and Provisioning (Ubuntu)
      - 15 minutes
-     - ~12 minutes (Xeon)
+     - ~12 minutes (Intel Xeon processor)
    * - Edge Node Onboarding and Provisioning (Edge Microvisor Toolkit)
      - 10 minutes
-     - ~7 minutes (Xeon), ~4 minutes (Core)
+     - ~7 minutes (Intel Xeon processor), ~4 minutes (Intel Core processor)
    * - Edge Cluster Creation
      - 10 minutes
      - ~1.30 minutes
