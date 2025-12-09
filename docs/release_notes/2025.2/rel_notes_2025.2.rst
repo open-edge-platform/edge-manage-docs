@@ -36,14 +36,7 @@ Key highlights of the 2025.2 release include:
 * **New:** Expanding the device customization capabilities, you can now customize operating system kernel
   command-line parameters.
 * **New:** Security compliance verification through tracking of open and fixed CVEs for packages installed on
-  Ubuntu 24.04 LTS OS and Edge Microvisor Toolkit. Any USB peripherals connected to the edge node can be connected to a
-  VM-based application. However, although the USB peripheral(s) are
-  detached from the edge node, the VM-based application will still have the
-  USB peripherals connected. In this situation, when you run applications
-  requiring USB peripherals, it will fail.
-* The same USB peripheral cannot be shared between the same type of
-  applications, while the same USB peripheral can be simultaneously
-  connected to the different types of applications.
+  Ubuntu 24.04 LTS OS and Edge Microvisor Toolkit. 
 * **Update:** Architectural enhancements to improve the reliability of supported operations of out-of-band management
   using Intel® AMT and Intel® Standard Manageability.
 * **Update:** Users can activate Intel® AMT or Intel® Standard Manageability post device onboarding and provisioning.
@@ -146,6 +139,11 @@ Device Provisioning
   Docker account, there is a limit of 100 pulls per IP over a four-hour
   window. In this case, upgrade to the premium account or wait to
   provision more edge nodes.
+
+Out-of-band device management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* For Intel® AMT or Intel® Standard Manageability issues see 
+  :doc:`/user_guide/troubleshooting/vpro_activation`.
 
 Cluster and Application Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
