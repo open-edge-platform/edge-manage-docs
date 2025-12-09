@@ -28,8 +28,6 @@ Key highlights of the 2025.2 release include:
 
 * **New:** Support for Ubuntu 24.04 LTS OS with kernel 6.11.0-17. Official support for Ubuntu 22.04 LTS OS continues.
 * **New:** Users can create custom OS profiles based on Ubuntu 24.04 LTS or the Edge Microvisor Toolkit.
-* **New:** Alpha support for Intel® Core™ Ultra Series 3 processors (formerly code-named Panther Lake) supporting
-  integrated GPU and NPU.
 * **New:** You can now use Intel vPro® platform-based out-of-band management for
   Intel® Standard Manageability in conjunction with Intel® Active Management Technology (Intel® AMT)
   devices <https://www.intel.com/content/www/us/en/support/articles/000090499/technologies/intel-active-management-technology-intel-amt.html>`__..
