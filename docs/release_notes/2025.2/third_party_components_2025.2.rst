@@ -2,7 +2,7 @@ Third Party Components
 ===========================
 
 Following is a list of all the third party components that |software_prod_name|
-version 3.1 uses.
+version 2025.2 uses.
 
 Application Orchestration
 --------------------------
