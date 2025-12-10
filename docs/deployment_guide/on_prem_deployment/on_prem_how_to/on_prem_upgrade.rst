@@ -529,10 +529,10 @@ Gitea
      kubectl -n gitea port-forward svc/gitea-http 3000:443 --address 0.0.0.0
      # Then open https://localhost:3000 in your browser and use the above credentials.
 
-Workarounds
-=============
+Troubleshooting
+===============
 
-Workaround#1: Root-App Sync and Certificate Refresh After Upgrade
+Issue#1: Root-App Sync and Certificate Refresh After Upgrade
 --------------------------------------------------------------------
 
 **Symptoms:**
@@ -580,7 +580,7 @@ Verify that the ``signed_ipxe.efi`` image is downloaded using the freshly downlo
 
    Once the above steps are successful, the orchestrator (Orch) is ready for onboarding new Edge Nodes (EN).
 
-Workaround#2: Handling Gitea Pod Crashes During Upgrade
+Issue#2: Handling Gitea Pod Crashes During Upgrade
 ---------------------------------------------------------
 
 **Symptoms:**
@@ -617,7 +617,7 @@ Sometimes ``onprem_upgrade.sh`` may fail with the following error:
 
       ./onprem_upgrade.sh
 
-Workaround#3: Unsupported Workflow for Pre-Upgrade Onboarded Edge Nodes
+Issue#3: Unsupported Workflow for Pre-Upgrade Onboarded Edge Nodes
 -------------------------------------------------------------------------
 
 **Issue:**
@@ -638,3 +638,22 @@ To continue successfully after the upgrade, choose one of the following options:
 
 #. Update the EN to the latest available OS profile using the day-2 upgrade process
 #. After the OS profile upgrade is complete, proceed with cluster installation
+
+
+Issue#4: Kyverno Pod in ImagePullBackOff State
+-------------------------------------------------------------------------
+
+**Issue:**
+
+After the upgrade, the Kyverno pod may be stuck in an ``ImagePullBackOff`` state due to image pull errors.
+
+**Resolution:**
+
+To resolve this issue, run the following commands to clean up and reset the Kyverno clean-reports job:
+
+.. code-block:: bash
+
+   kubectl delete job kyverno-clean-reports -n kyverno &
+   kubectl delete pods -l job-name="kyverno-clean-reports" -n kyverno &
+   kubectl patch job kyverno-clean-reports -n kyverno --type=merge -p='{"metadata":{"finalizers":[]}}'
+
