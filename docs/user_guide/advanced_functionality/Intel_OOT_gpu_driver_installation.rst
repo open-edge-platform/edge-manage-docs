@@ -40,25 +40,25 @@ below.
    merge_how: 'dict(recurse_array,no_replace)+list(append)'
    runcmd:
      - |
-       wait_until_base_pkg_install_done() {
-       while [ true ]; do
-           if [ -f "/home/postinstall/Setup/.base_pkg_install_done" ]; then
-               echo "Base package installation completed. Proceeding...";
-               break;
-           else
-               echo "Waiting for base package installation to complete...";
-               sleep 2;
-           fi
-       done
-       }
-       wait_until_base_pkg_install_done
-       export DEBIAN_FRONTEND=noninteractive
-       echo "Install GPU Drivers......."
-       os_version=$(grep 'VERSION_ID' /etc/os-release | cut -d '"' -f 2)
-       processor_type=$(lscpu | grep 'Model name:' | awk '{for(i=3;i<=NF;i++) if(tolower($i) ~ /(core|xeon|genuine|atom|celeron|n97|n95|n150|n355)/) print $i}')
-       ORIGINAL_NO_PROXY=$no_proxy
-       no_proxy=$(echo "$no_proxy" | sed 's/,intel\.com//g' | sed 's/intel\.com,//g' | sed 's/intel\.com//g')
-       if [[ "${processor_type,,}" == *"xeon"* ]]; then
+      wait_until_base_pkg_install_done() {
+      while [ true ]; do
+         if [ -f "/home/postinstall/Setup/.base_pkg_install_done" ]; then
+            echo "Base package installation completed. Proceeding...";
+            break;
+         else
+            echo "Waiting for base package installation to complete...";
+            sleep 2;
+         fi
+      done
+      }
+      wait_until_base_pkg_install_done
+      export DEBIAN_FRONTEND=noninteractive
+      echo "Install GPU Drivers......."
+      os_version=$(grep 'VERSION_ID' /etc/os-release | cut -d '"' -f 2)
+      processor_type=$(lscpu | grep 'Model name:' | awk '{for(i=3;i<=NF;i++) if(tolower($i) ~ /(core|xeon|genuine|atom|celeron|n97|n95|n150|n355)/) print $i}')
+      ORIGINAL_NO_PROXY=$no_proxy
+      no_proxy=$(echo "$no_proxy" | sed 's/,intel\.com//g' | sed 's/intel\.com,//g' | sed 's/intel\.com//g')
+      if [[ "${processor_type,,}" == *"xeon"* ]]; then
          echo -e "\nProcessor: $processor_type, Installing the unified driver for Intel® Data Center GPU Flex/Max Series on Ubuntu Server......."
          sudo apt update
          sudo apt install -y gpg-agent wget
@@ -91,7 +91,7 @@ below.
 
          echo "GPU driver installation for Ubuntu server image done"
          sudo reboot
-       else
+      else
          echo -e "\nProcessor: $processor_type is not supported exiting\n"
          exit 1
       fi
