@@ -78,22 +78,34 @@ For a detailed list of features, see the :doc:`Overview page </user_guide/index>
 and the `Edge Manageability Framework README file <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/README.md>`_.
 
 Upgrades from Previous Releases
-----------------------------------
+-------------------------------
 
-Edge Manageability Framework version 2025.2 supports direct
-upgrades from version 3.1 to 2025.2 both for on-prem <guide> and AWS deployments <guide>
+Edge Manageability Framework version 2025.2 supports direct upgrades from
+version **v3.1.3** to **v2025.2** for both on-prem and AWS deployments.
 
-* Clusters created with release 3.1 and deleted in release 2025.2 require
-  additional cleanup steps before the edge nodes can be reused for new clusters.
-  Choose one of the following cleanup methods:
+Refer to the following guides for detailed upgrade steps:
 
-  1. Delete and re-provision the edge node.
-  2. Clean up the previous cluster data by running the K3s uninstall script on
-     the edge node:
+- `Cloud Upgrade Guide <https://github.com/open-edge-platform/edge-manage-docs/blob/release-2025.2/docs/deployment_guide/cloud_deployment/cloud_how_to/cloud_upgrade.rst>`_
+- `On-Prem Upgrade Guide <https://github.com/open-edge-platform/edge-manage-docs/blob/release-2025.2/docs/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.rst>`_
 
-     .. code-block:: shell
+Upgrade Behavior
+----------------
 
-        sudo /var/lib/rancher/k3s/bin/k3s-uninstall.sh
+After the upgrade, all previously onboarded Edge Nodes and their associated
+configuration data are expected to persist without requiring re-onboarding or
+additional configuration.
+
+On-Prem Upgrade – Known Issues
+------------------------------
+
+During the on-prem upgrade process, the following stability issues are observed:
+
+* Some applications appear as **OutOfSync**, **Degraded**, or in a missing state after the upgrade.
+  Refer to Issue#1 in the On-Prem Upgrade Guide troubleshooting section.
+* Gitea pod crashes result in the ``onprem_upgrade.sh`` script failing.
+  Refer to Issue#2 in the On-Prem Upgrade Guide troubleshooting section.
+* Edge Node onboarding fails when an EN was partially installed before the upgrade.
+  Refer to Issue#3 in the On-Prem Upgrade Guide troubleshooting section.
 
 Known Issues
 ----------------------------------
