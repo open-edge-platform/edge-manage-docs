@@ -38,8 +38,7 @@ Key highlights of the 2025.2 release include:
   command-line parameters.
 * **New:** Security compliance verification through tracking of open and fixed CVEs for packages installed on
   Ubuntu 24.04 LTS OS and Edge Microvisor Toolkit. 
-* **Update:** Architectural enhancements to improve the reliability of supported operations of out-of-band management
-  using Intel® AMT and Intel® Standard Manageability.
+* **Update:** Architectural enhancements to improve the reliability of operations of out-of-band management using Intel® AMT and ISM.
 * **Update:** Users can activate Intel® AMT or Intel® Standard Manageability post device onboarding and provisioning.
 * **Update:** New implementation of In-Band Manageability (INBM) agents that provide OS and package update capabilities 
  on edge nodes. For implementation details, see the `INBM Architecture
@@ -144,7 +143,7 @@ Device Provisioning
 Out-of-band device management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 * For Intel® AMT or Intel® Standard Manageability issues see 
-  :doc:`/user_guide/troubleshooting/vpro_activation`.
+  :doc:`/user_guide/advanced_functionality/vpro_power_mgt`.
 
 Cluster and Application Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
