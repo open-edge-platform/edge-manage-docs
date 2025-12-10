@@ -89,7 +89,7 @@ For a detailed list of features, see the :doc:`Overview page </user_guide/index>
 and the `Edge Manageability Framework README file <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/README.md>`_.
 
 Upgrades from Previous Releases
-------------------------------
+-------------------------------
 
 Edge Manageability Framework version 2025.2 supports direct upgrades from
 version **v3.1.3** to **v2025.2** for both on-prem and AWS deployments.

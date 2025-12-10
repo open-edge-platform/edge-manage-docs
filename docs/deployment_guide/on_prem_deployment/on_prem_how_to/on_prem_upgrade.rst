@@ -551,7 +551,7 @@ Workaround#1: Root-App Sync and Certificate Refresh After Upgrade
       ./after_upgrade_restart.sh
 
    This script:
-   
+
    - Continuously syncs applications
    - Performs **root-app sync**
    - Restarts **tls-boots** and **dkam** pods
@@ -565,7 +565,8 @@ Workaround#1: Root-App Sync and Certificate Refresh After Upgrade
    .. note::
       If **external-secrets** and **copy-ca\*** specific pods remain in problematic state for an extended period, first delete the associated **Jobs** and **CRDs**. If the issue persists, delete the affected applications from the ArgoCD UI and then resync the **root-app**.
 
-#. After running ``./after_upgrade_restart.sh`` successfully and once all root-apps are in sync and healthy state, wait approximately **5 minutes** to allow DKAM to fetch all dependent applications. Verify that the ``signed_ipxe.efi`` image is downloaded using the freshly downloaded ``Full_server.crt``, or monitor until ``signed_ipxe.efi`` is available.
+#. After running ``./after_upgrade_restart.sh`` successfully and once all root-apps are in sync and healthy state, wait approximately **5 minutes** to allow DKAM to fetch all dependent applications.
+Verify that the ``signed_ipxe.efi`` image is downloaded using the freshly downloaded ``Full_server.crt``, or monitor until ``signed_ipxe.efi`` is available.
 
 #. Download the latest certificates:
 
@@ -621,7 +622,8 @@ Workaround#3: Unsupported Workflow for Pre-Upgrade Onboarded Edge Nodes
 
 **Issue:**
 
-If an Edge Node (EN) was onboarded before the EMF upgrade but the cluster installation was not completed, running the cluster installation after the upgrade using the latest cluster template will not work. This fails because the EN still uses old OS profiles and pre-upgrade settings.
+If an Edge Node (EN) was onboarded before the EMF upgrade but the cluster installation was not completed,
+running the cluster installation after the upgrade using the latest cluster template will not work. This fails because the EN still uses old OS profiles and pre-upgrade settings.
 
 **Resolution:**
 
