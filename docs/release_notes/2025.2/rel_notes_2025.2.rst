@@ -112,11 +112,11 @@ On-Prem Upgrade – Known Issues
 During the on-prem upgrade process, the following stability issues are observed:
 
 * Some applications appear as **OutOfSync**, **Degraded**, or in a missing state after the upgrade.
-  See **Workaround 1**, available in the On-Prem Upgrade Deployment Guide.
-* Gitea pod crashes result in the `onprem_upgrade.sh` script failing.
-  Refer to **Workaround 2** in the On-Prem Upgrade Deployment Guide.
+  Refer to Issue#1 in the On-Prem Upgrade Guide troubleshooting section.
+* Gitea pod crashes result in the ``onprem_upgrade.sh`` script failing.
+  Refer to Issue#2 in the On-Prem Upgrade Guide troubleshooting section.
 * Edge Node onboarding fails when an EN was partially installed before the upgrade.
-  Refer to **Workaround 3** in the On-Prem Upgrade Deployment Guide.
+  Refer to Issue#3 in the On-Prem Upgrade Guide troubleshooting section.
 
 Known Issues
 ----------------------------------
