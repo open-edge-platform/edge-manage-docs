@@ -24,7 +24,7 @@ EMF release versioning has been changed to align with the year and release numbe
 
 Key highlights of the 2025.2 release include:
 
-.. figure:: images/release-notes-20252.png
+.. figure:: release-notes-20252.png
       :alt: 2025.2 Release Highlights
 
 **Infrastructure and Edge Node Software**
@@ -40,7 +40,7 @@ Key highlights of the 2025.2 release include:
   Ubuntu 24.04 LTS OS and Edge Microvisor Toolkit. 
 * **Update:** Architectural enhancements to improve the reliability of operations of out-of-band management using Intel® AMT and ISM.
 * **Update:** Users can activate Intel® AMT or Intel® Standard Manageability post device onboarding and provisioning.
-* **Update:** New implementation of In-Band Manageability (INBM) agents that provide OS and package update capabilities 
+* **Update:** New implementation of In-Band Manageability (INBM) agents that provide OS and package update capabilities
  on edge nodes. For implementation details, see the `INBM Architecture
   <https://github.com/open-edge-platform/edge-node-agents/blob/main/in-band-manageability/README.md>`__.
 
