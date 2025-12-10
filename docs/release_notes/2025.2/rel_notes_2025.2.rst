@@ -167,6 +167,8 @@ Cluster and Application Management
   connected to the different types of applications.
 * If a targeted deployment is edited and one of the clusters is removed, then
   the deployment may not actually be removed from the clusters.
+* Deployment Instance Status Down alert is not automatically cleared after
+  deletion of the deployed application instance, The alert will remain active.
 
 User Experience
 ^^^^^^^^^^^^^^^^^
