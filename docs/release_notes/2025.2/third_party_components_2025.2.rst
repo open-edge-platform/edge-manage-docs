@@ -206,30 +206,30 @@ Edge Infrastructure Manager
      - Container
      - https://github.com/tinkerbell/smee
      - v0.9.0
-   * - tinkerbell - tink, controller, worker
+   * - tinkerbell - tink
      - Container
-     - https://github.com/tinkerbell/
-     - v0.10.0
+     - https://github.com/tinkerbell/tink
+     - v0.12.2
    * - tinkerbell - kube-vip
      - Container (load balancer)
      - https://github.com/kube-vip/kube-vip
      - v0.7.2
    * - curl-jq
      - Container (utility)
-     - https://github.com/badouralix/dockerfiles/tree/main/curl-jq
+     - https://github.com/badouralix/dockerfiles
      - sha256:fe8a5ee49f613495df3b57afa86b39f081bd1b3b9ed61248f46c3d3d7df56092
    * - busybox
      - Container (utility)
-     - https://hub.docker.com//busybox/
-     - 1.36.1
+     - https://hub.docker.com/_/busybox/
+     - v1.36.0
    * - mps
      - Container
      - docker.io/intel/oact-mps:v2.14.2
      - v2.14.2
    * - rps
      - Container
-     - docker.io/intel/oact-rps:v2.24.0
-     - v2.24.0
+     - docker.io/intel/oact-rps:v2.26.0
+     - v2.26.0
 
 Platform services
 ----------------------
