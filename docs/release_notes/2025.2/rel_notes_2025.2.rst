@@ -24,6 +24,9 @@ EMF release versioning has been changed to align with the year and release numbe
 
 Key highlights of the 2025.2 release include:
 
+.. figure:: images/release-notes-20252.png
+      :alt: 2025.2 Release Highlights
+
 **Infrastructure and Edge Node Software**
 
 * **New:** Support for Ubuntu 24.04 LTS OS with kernel 6.11.0-17. Official support for Ubuntu 22.04 LTS OS continues.
