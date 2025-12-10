@@ -37,7 +37,7 @@ Key highlights of the 2025.2 release include:
 * **New:** Expanding the device customization capabilities, you can now customize operating system kernel
   command-line parameters.
 * **New:** Security compliance verification through tracking of open and fixed CVEs for packages installed on
-  Ubuntu 24.04 LTS OS and Edge Microvisor Toolkit. 
+  Ubuntu 24.04 LTS OS and Edge Microvisor Toolkit.
 * **Update:** Architectural enhancements to improve the reliability of operations of out-of-band management using Intel® AMT and ISM.
 * **Update:** Users can activate Intel® AMT or Intel® Standard Manageability post device onboarding and provisioning.
 * **Update:** New implementation of In-Band Manageability (INBM) agents that provide OS and package update capabilities on edge nodes. For implementation details, see the `INBM Architecture <https://github.com/open-edge-platform/edge-node-agents/blob/main/in-band-manageability/README.md>`__.
@@ -112,7 +112,7 @@ EMF deployment
   This image is being deprecated by Bitnami. Intel is working to replace
   this image with alternatives in future releases.
 * For on-premises EMF deployment and upgrade issues and workarounds, `see
-  <https://docs.openedgeplatform.intel.com/edge-manage-docs/release-2025.2/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.html>`_.  
+  <https://docs.openedgeplatform.intel.com/edge-manage-docs/release-2025.2/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.html>`_.
 
 Device Provisioning
 ^^^^^^^^^^^^^^^^^^^
@@ -140,7 +140,7 @@ Device Provisioning
 
 Out-of-band device management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-* For Intel® AMT or Intel® Standard Manageability issues see 
+* For Intel® AMT or Intel® Standard Manageability issues see
   :doc:`/user_guide/advanced_functionality/vpro_power_mgt`.
 
 Cluster and Application Management
