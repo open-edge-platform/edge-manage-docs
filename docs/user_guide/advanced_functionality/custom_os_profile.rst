@@ -37,7 +37,7 @@ Here are the prerequisites to use the custom OS profile feature:
 - OS image must have SHA256 checksum generated for verification during the provisioning process.
 
 - Users adding new OS profile to the EMF inventory using CLI must ensure there are no duplicate 
-  OS profile names and OS profile version. Duplicate OS profile names and OS profile versions 
+  OS profile names and OS image version. Duplicate OS profile names and OS image versions 
   can cause inconsistency during day 2 upgrade. 
 
 - Ubuntu custom OS profiles must be mutable to allow for post-deployment configurations, updates,
