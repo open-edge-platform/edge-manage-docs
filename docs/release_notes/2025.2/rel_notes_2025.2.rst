@@ -183,6 +183,10 @@ Cluster and Application Management
   the deployment may not actually be removed from the clusters.
 * Deployment Instance Status Down alert is not automatically cleared after
   deletion of the deployed application instance, The alert will remain active.
+* After upgrading the orchestrator, if a newer version of a deployed application
+  becomes available, then upon upgrading the deployed application, the application may
+  fail to update and become stuck in an "Updating" state when using the upgrade functionality.
+  As a workaround, delete the existing deployment and create a fresh deployment with the new version of the application.
 
 User Experience
 ^^^^^^^^^^^^^^^^^
