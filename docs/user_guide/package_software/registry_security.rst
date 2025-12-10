@@ -9,10 +9,10 @@ Credential Transmission
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 **CLI Transmission**
-  * Credentials are transmitted as plain text over HTTPS to the API endpoints
+  * Credentials are transmitted over HTTPS to the API endpoints without additional encryption
+  * The CLI relies on HTTPS transport layer encryption for security during transmission
   * No client-side encryption occurs in the CLI layer
   * The CLI does not store credentials locally
-  * All security relies on HTTPS transport encryption and server-side storage
 
 **UI Transmission**
   * Credentials are transmitted over HTTPS through the web interface
