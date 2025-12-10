@@ -36,6 +36,10 @@ Here are the prerequisites to use the custom OS profile feature:
 
 - OS image must have SHA256 checksum generated for verification during the provisioning process.
 
+- Users adding new OS profile to the EMF inventory using CLI must ensure there are no duplicate 
+  OS profile names and OS profile version. Duplicate OS profile names and OS profile versions 
+  can cause inconsistency during day 2 upgrade. 
+
 - Ubuntu custom OS profiles must be mutable to allow for post-deployment configurations, updates,
   and installation of edge node agents.
 
@@ -267,7 +271,7 @@ Limitations
 1. Custom OS profile can used for only Day0 operation like edge node provisioning.
 Whereas Custom OS profile cannot be used for Day2 operations like OS upgrade using maintenance manager.
 
-2. Operating system resource manager doesn't manage the custom OS profiles hence it does not get the CVEs information
+1. Operating system resource manager doesn't manage the custom OS profiles hence it does not get the CVEs information
 of the operating systems
 
 
