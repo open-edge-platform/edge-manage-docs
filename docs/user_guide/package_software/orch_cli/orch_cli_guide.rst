@@ -399,6 +399,70 @@ To delete a package run the delete command.
    For deployment package profile management details, see the
    **Deployment Package Profile Management** section above.
 
+Uploading Catalog Resources
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The upload command provides a convenient way to create catalog resources by
+uploading YAML files. This command can be used to import registries,
+applications, deployment packages, and their profiles from YAML definitions.
+
+.. code-block:: bash
+
+    ./orch-cli upload {<file-path>|<dir-path>}
+
+The upload command (also available as ``load``) accepts either a single YAML
+file path or a directory path. When a directory is provided, all YAML files
+in the directory will be processed.
+
+**Examples:**
+
+Upload a single resource file:
+
+.. code-block:: bash
+
+    ./orch-cli upload /path/to/resource.yaml
+
+Upload all YAML files from a directory:
+
+.. code-block:: bash
+
+    ./orch-cli upload /path/to/resources/
+
+The upload command can handle various resource types including:
+
+- Registry definitions (``registry.yaml``)
+- Application definitions (``application.yaml``)
+- Deployment packages (``deployment-package.yaml``)
+
+For more information about YAML file structure and schema validation, see:
+
+- :doc:`/developer_guide/application_developer_workflow/deployment-packages/registry-yaml-reference`
+- :doc:`/developer_guide/application_developer_workflow/deployment-packages/application-yaml-reference`
+- :doc:`/developer_guide/application_developer_workflow/deployment-packages/deployment-package-yaml-reference`
+
+Exporting Deployment Packages
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can export a deployment package to share it with other orchestrators or
+for backup purposes. The export command creates a tarball containing all the
+YAML definitions:
+
+.. code-block:: bash
+
+    # Export the deployment package
+    ./orch-cli export deployment-package <PACKAGE_NAME> <VERSION>
+
+
+The exported tarball contains:
+
+- Application YAML definitions
+- Profile configurations
+- Deployment package definition
+
+This tarball can be extracted and the YAML files can be uploaded to another
+orchestrator instance using the ``upload`` command, making it easy to share
+configurations across environments.
+
 Deployment Management
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -497,6 +561,215 @@ To delete a deployment run the delete command.
 .. code-block:: bash
 
     ./orch-cli delete deployment <DEPLOYMENT_ID>
+
+Complete Example: Deploying an Application with CLI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This section demonstrates a complete end-to-end workflow for deploying an
+application using the orch-cli tool. The example deploys an NGINX web server
+to an edge cluster.
+
+**Prerequisites**
+
+- orch-cli tool downloaded and configured with API endpoint and project
+- Docker and Helm installed on your local machine
+- Access to Harbor registry credentials
+- At least one edge cluster available for deployment
+
+For orch-cli setup instructions, see :doc:`/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide`.
+
+**Step 1: Prepare the Docker Image**
+
+Upload your application's Docker image to the Harbor registry:
+
+.. code-block:: bash
+
+    # Set environment variables
+    export CLUSTER_FQDN=<your-cluster-domain>
+    export ORG_NAME=<your-org>
+    export PROJECT_NAME=<your-project>
+
+    # Pull and push the NGINX image
+    docker login registry-oci.${CLUSTER_FQDN}
+    docker pull nginx:1.27.0-alpine
+    docker tag nginx:1.27.0-alpine \
+        registry-oci.${CLUSTER_FQDN}/catalog-apps-${ORG_NAME}-${PROJECT_NAME}/nginx:1.27.0-alpine
+    docker push registry-oci.${CLUSTER_FQDN}/catalog-apps-${ORG_NAME}-${PROJECT_NAME}/nginx:1.27.0-alpine
+
+**Step 2: Create and Upload the Helm Chart**
+
+Create a Helm chart for your application:
+
+.. code-block:: bash
+
+    # Create the Helm chart
+    helm create hello-world
+
+    # Update the image repository in hello-world/values.yaml
+    # Change: repository: registry-oci.<CLUSTER_FQDN>/catalog-apps-<ORG>-<PROJECT>/nginx
+
+    # Update appVersion in hello-world/Chart.yaml to "1.27.0-alpine"
+
+    # Add service annotation in hello-world/templates/service.yaml:
+    # annotations:
+    #   service-proxy.app.orchestrator.io/ports: "80"
+
+    # Package and push the Helm chart
+    helm package hello-world
+    helm registry login registry-oci.${CLUSTER_FQDN}
+    helm push hello-world-0.1.0.tgz \
+        oci://registry-oci.${CLUSTER_FQDN}/catalog-apps-${ORG_NAME}-${PROJECT_NAME}
+
+.. note::
+   Generally it is a bad practice to hardcode orchestrator-specific values
+   (like annotations or image repository URLs) directly into a Helm chart.
+   For production deployments, it is recommended to:
+
+   * Define service annotations in the Application Profile's chart values instead
+     of the chart's ``templates/service.yaml`` file
+   * Use substitution variables like ``%ImageRegistryURL%`` for image repositories
+     instead of hardcoding registry URLs
+
+   For details on available substitution variables (``%GeneratedDockerCredential%``,
+   ``%PreHookCredential%``, ``%ImageRegistryURL%``, ``%OrgName%``, ``%ProjectName%``),
+   see :doc:`/developer_guide/application_developer_workflow/deployment-packages/reference-placeholders`.
+
+**Step 3: Register Harbor Registries with the Catalog**
+
+.. note::
+   In most deployments, the ``harbor-helm-oci`` and ``harbor-docker-oci`` registries
+   are already created during platform setup and shared across projects. The commands
+   below are provided for reference. If these registries already exist in your
+   environment, you can skip this step and proceed directly to creating the application.
+
+Register both the Helm and Docker registries:
+
+.. code-block:: bash
+
+    # Register Helm registry
+    ./orch-cli create registry harbor-helm-oci \
+        --root-url oci://registry-oci.${CLUSTER_FQDN}/catalog-apps-${ORG_NAME}-${PROJECT_NAME} \
+        --registry-type helm
+
+    # Register Docker registry
+    ./orch-cli create registry harbor-docker-oci \
+        --root-url https://registry-oci.${CLUSTER_FQDN} \
+        --registry-type image
+
+**Step 4: Create an Application**
+
+Create the application referencing the Helm chart:
+
+.. code-block:: bash
+
+    ./orch-cli create application hello-world 0.1.0 \
+        --chart-name hello-world \
+        --chart-version 0.1.0 \
+        --chart-registry harbor-helm-oci
+
+    # Verify the application was created
+    ./orch-cli get application hello-world
+
+**Step 5: Create an Application Profile**
+
+Create a profile with default configuration values:
+
+.. code-block:: bash
+
+    # Create a values file for the profile
+    cat > profile-values.yaml <<EOF
+    service:
+      type: ClusterIP
+    replicaCount: 1
+    imagePullSecrets:
+      - name: '%GeneratedDockerCredential%'
+    EOF
+
+    # Create the profile
+    ./orch-cli create profile hello-world 0.1.0 default-profile \
+        --display-name "Default Profile" \
+        --description "Default configuration profile" \
+        --chart-values profile-values.yaml
+
+**Step 6: Create a Deployment Package**
+
+Bundle the application into a deployment package:
+
+.. code-block:: bash
+
+    ./orch-cli create deployment-package hello-world 0.1.0 \
+        --description "Hello World NGINX application" \
+        --application-reference hello-world:0.1.0
+
+    # Verify the deployment package
+    ./orch-cli get deployment-package hello-world
+
+**Step 7: Deploy to a Cluster**
+
+Deploy the application to a specific cluster:
+
+.. code-block:: bash
+
+    # List available clusters to get the cluster ID
+    ./orch-cli list clusters
+
+    # Create a manual deployment targeting a specific cluster
+    ./orch-cli create deployment hello-world 0.1.0 \
+        --display-name my-first-deployment \
+        --application-cluster-id "hello-world=<CLUSTER_ID>"
+
+    # List deployments to get the deployment ID
+    ./orch-cli list deployments
+
+    # Check deployment status
+    ./orch-cli get deployment <DEPLOYMENT_ID>
+
+**Alternative: Automatic Deployment Using Metadata**
+
+Instead of manual cluster selection, you can use metadata-based targeting:
+
+.. code-block:: bash
+
+    # Deploy to all clusters with a specific label
+    ./orch-cli create deployment hello-world 0.1.0 \
+        --display-name auto-deployment \
+        --application-label "hello-world.<label>=<label-value>"
+
+**Step 8: Verify Deployment**
+
+Monitor the deployment status and verify it's running:
+
+.. code-block:: bash
+
+    # Check deployment status
+    ./orch-cli get deployment <DEPLOYMENT_ID>
+
+    # For detailed information with verbose output
+    ./orch-cli get deployment <DEPLOYMENT_ID> --verbose
+
+The deployment status will transition from "Deploying" to "Running" once the
+application is successfully deployed to the cluster.
+
+**Using YAML Files for Deployment**
+
+Alternatively, you can define applications and deployment packages using YAML
+files and use the upload command:
+
+.. code-block:: bash
+
+    # Create application.yaml, profile.yaml, and deployment-package.yaml files
+    # Then upload them all at once
+    ./orch-cli upload /path/to/yaml/files/
+
+    # Or upload an exported deployment package
+    tar xzf hello-world-0.1.0.tar.gz
+    ./orch-cli upload hello-world-0.1.0/
+
+For YAML file structure, see:
+
+- :doc:`/developer_guide/application_developer_workflow/deployment-packages/application-yaml-reference`
+- :doc:`/developer_guide/application_developer_workflow/deployment-packages/deployment-package-yaml-reference`
+- :doc:`/developer_guide/application_developer_workflow/deployment-packages/reference-placeholders`
 
 Help
 ^^^^
