@@ -32,7 +32,7 @@ Key highlights of the 2025.2 release include:
 * **New:** Support for Ubuntu 24.04 LTS OS with kernel 6.11.0-17. Official support for Ubuntu 22.04 LTS OS continues.
 * **New:** Users can create custom OS profiles based on Ubuntu 24.04 LTS or the Edge Microvisor Toolkit.
 * **New:** You can now use Intel vPro® platform-based out-of-band management for
-  Intel® Standard Manageability in conjunction with Intel® Active Management Technology (Intel® AMT)
+  `Intel® Standard Manageability in conjunction with Intel® Active Management Technology (Intel® AMT)
   devices <https://www.intel.com/content/www/us/en/support/articles/000090499/technologies/intel-active-management-technology-intel-amt.html>`__..
 * **New:** Expanding the device customization capabilities, you can now customize operating system kernel
   command-line parameters.
@@ -61,16 +61,16 @@ Key highlights of the 2025.2 release include:
 * **Update:** Updates to the ``orch-cli`` tool to support all capabilities currently available in the EMF UI.
 
 * **New:**: Support for new reference applications in Edge Manageability Framework 2025.2
-    * Worker Safety Gear Detection v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
-    * PCB Anomaly Detection v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
+    * `Worker Safety Gear Detection v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
+    * `PCB Anomaly Detection v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
 
 * **Update:**: Support for new versions of 3.1 reference applications
-    * Weld Porosity Detection v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
-    * Pallet Defect Detection v2.5.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
-    * Image-Based Video Search v1.1.0  <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/image-based-video-search/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
-    * Chat Q&A Sample Application v2.0.1 <https://github.com/open-edge-platform/edge-ai-libraries/blob/release-2025.2.0/sample-applications/chat-question-and-answer/docs/user-guide/deploy-with-edge-orchestrator.md>`__.
-    * Smart Parking v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/metro-vision-ai-app-recipe/smart-parking/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
-    * Loitering Detection v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/metro-vision-ai-app-recipe/smart-parking/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
+    * `Weld Porosity Detection v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
+    * `Pallet Defect Detection v2.5.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
+    * `Image-Based Video Search v1.1.0  <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/image-based-video-search/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
+    * `Chat Q&A Sample Application v2.0.1 <https://github.com/open-edge-platform/edge-ai-libraries/blob/release-2025.2.0/sample-applications/chat-question-and-answer/docs/user-guide/deploy-with-edge-orchestrator.md>`__.
+    * `Smart Parking v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/metro-vision-ai-app-recipe/smart-parking/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
+    * `Loitering Detection v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/metro-vision-ai-app-recipe/smart-parking/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
 
 The codebase is Apache software version 2.0 licensed and available on the Github repository.
 
