@@ -38,10 +38,8 @@ Key highlights of the 2025.2 release include:
 * **Update:** Architectural enhancements to improve the reliability of supported operations of out-of-band management
   using Intel® AMT and Intel® Standard Manageability.
 * **Update:** Users can activate Intel® AMT or Intel® Standard Manageability post device onboarding and provisioning.
-* **New:** In-Band Manageability (INBM) agents provide OS and package update capabilities on edge nodes. The Platform
-  Update Agent (PUA) coordinates with INBM daemon (inbd) to execute system updates triggered through Edge Orchestrator's
-  maintenance windows. Users can manage package updates and APT repository sources through OS Update Policies in the UI.
-  For implementation details, see the `INBM Architecture
+* **Update:** New implementation of In-Band Manageability (INBM) agents that provide OS and package update capabilities 
+ on edge nodes. For implementation details, see the `INBM Architecture
   <https://github.com/open-edge-platform/edge-node-agents/blob/main/in-band-manageability/README.md>`__.
 
 **Advanced Cluster and Application Management**
