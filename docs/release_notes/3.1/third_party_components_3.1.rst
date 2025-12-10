@@ -18,63 +18,63 @@ Application Orchestration
    * - Open Policy Agent
      - Container
      - openpolicyagent/opa
-     - 1.10.1-static
+     - 1.5.0/1.5.1,1.6.0
    * - Fleet-Controller
      - Container
-     - rancher/fleet:v0.12.8
-     - v0.12.8
+     - rancher/fleet
+     - 0.12.1
    * - Fleet-Controller
-     - Helm
-     - https://rancher.github.io/fleet-helm-charts/flleet:0.12.8
-     - 0.12.8
+     - Helm*
+     - https://rancher.github.io/fleet-helm-charts/fleet
+     - 0.12.2
    * - Fleet-CRD
      - Helm
-     - https://rancher.github.io/fleet-helm-charts/fleet-crd:0.12.8
-     - 0.12.8
+     - https://rancher.github.io/fleet-helm-charts/fleet-crd
+     - 0.12.2
    * - Fleet-Agent
      - Container
-     - rancher/fleet-agent:v0.12.8
-     - v0.12.8
+     - rancher/fleet-agent
+     - v0.12.2
    * - redis (gitea)
      - Container
-     - docker.io/library/redis:7.2.11
-     - 7.2.11
+     - docker.io/bitnami/redis
+     - 7.2.5-debian-12-r4
    * - Harbor-core
      - Container
-     - goharbor/harbor-core:v2.13.2
-     - v2.13.2
+     - goharbor/harbor-core
+     - v2.13.0
    * - Harbor-database
      - Container
-     - goharbor/harbor-db:v2.13.2
-     - v2.13.2
+     - goharbor/harbor-db
+     - v2.13.0
    * - Harbor-jobservice
      - Container
-     - goharbor/harbor-jobservice:v2.13.2
-     - v2.13.2
+     - goharbor/harbor-jobservice
+     - v2.13.0
    * - Harbor-nginx
      - Container
-     - goharbor/nginx-photon:v2.13.2
-     - v2.13.2
+     - goharbor/nginx-photon
+     - v2.13.0
    * - Harbor-portal
      - Container
-     - goharbor/harbor-portal:v2.13.2
-     - v2.13.2
+     - goharbor/harbor-portal
+     - v2.13.0
    * - Harbor-redis
      - Container
-     - goharbor/redis-photon:v2.13.2
-     - v2.13.2
+     - goharbor/redis-photon
+     - v2.13.0
    * - Harbor-registry
      - Container
-     - goharbor/registry-photon:v2.13.2, goharbor/harbor-registryctl:v2.13.2
-     - v2.13.2
+     - goharbor/registry-photon, goharbor/harbor-registryctl
+     - v2.13.0
    * - Harbor-trivy
      - Container
-     - goharbor/trivy-adapter-photon:v2.13.2
-     - v2.13.2
+     - goharbor/trivy-adapter-photon
+     - v2.13.0
    * - Harbor
      - Helm
-     - https://helm.goharbor.io/harbor:1.17.2
-     - 1.17.2
+     - https://helm.goharbor.io/harbor
+     - 1.17.0
 
 Cluster Orchestration
 ---------------------
@@ -89,17 +89,21 @@ Cluster Orchestration
      - Link
      - Version
    * - cluster-api-operator
-     - Helm/Container
-     - https://github.com/kubernetes-sigs/cluster-api-operator/tree/release-0.23/hack/charts/cluster-api-operator
-     - 0.23
+     - Helm*/Container
+     - https://github.com/kubernetes-sigs/cluster-api-operator/tree/release-0.15/hack/charts/cluster-api-operator
+     - 0.15.1
    * - cluster-api core provider
      - Container
-     - https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.7
-     - 1.10.7
+     - https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.7
+     - 1.9.7
+   * - CAPI rke2 controlplane/bootstrap provider
+     - Container
+     - https://github.com/rancher/cluster-api-provider-rke2/releases/tag/v0.16.2
+     - 0.16.2
    * - open-policy-agent
      - Container
      - openpolicyagent/opa
-     -
+     - 1.2.0
    * - CAPI k3s controlplane/bootstrap provider
      - Container
      - https://github.com/k3s-io/cluster-api-k3s/releases/tag/v0.3.0
@@ -117,74 +121,106 @@ Cluster Extensions
      - Type
      - Link
      - Version
+   * - Skupper Router
+     - Container
+     - quay.io/skupper/skupper-router
+     - 0.2.1
+   * - Skupper Config Sync
+     - Container
+     - quay.io/skupper/config-sync
+     -
+   * - Skupper Service Controller
+     - Container
+     - quay.io/skupper/service-controller
+     -
    * - Skupper Site Controller
      - Container
      - quay.io/skupper/site-controller
-     - 1.9.4
+     - 1.8.3
    * - MetalLB Controller
      - Container
      - quay.io/metallb/controller
-     - v0.15.2
+     - v0.14.8
    * - MetalLB Speaker
      - Container
      - quay.io/metallb/speaker
-     - v0.15.2
-   * - Nginx Ingress
+     - v0.14.8
+   * - Nginx Ingress Controller
      - Container
      - ingress-nginx-controller
-     - v1.13.3
-   * - Kube-Rbac-Proxy
+     - v1.9.6
+   * - Kube-Rbac-Proxy(GPU Ext)
      - Container
-     - quay.io/brancz/kube-rbac-proxy
-     - v0.20.0
+     - gcr.io/kubebuilder/kube-rbac-proxy
+     - v0.19.0
    * - macvtap-cni (Kubevirt)
      - Container
      - quay.io/kubevirt/macvtap-cni
-     - v0.13.0
+     - v0.11.1
    * - virt-controller (Kubevirt)
      - Container
      - quay.io/kubevirt/virt-controller
-     - v1.6.3
+     - v1.4.0
    * - virt-launcher (Kubevirt)
      - Container
      - quay.io/kubevirt/virt-launcher
-     - v1.6.3
+     - v1.4.0
    * - virt-handler (Kubevirt)
      - Container
      - quay.io/kubevirt/virt-handler
-     - v1.6.3
+     - v1.4.0
    * - virt-operator (Kubevirt)
      - Container
      - quay.io/kubevirt/virt-operator
-     - v1.6.3
-   * - cert-manager
-     - Helm/Container
-     - https://artifacthub.io/packages/helm/cert-manager/cert-manager
-     - 1.19.1
+     - v1.4.0
+   * - akri-agent
+     - Container
+     - akri-agent-daemonset-vgxwn
+     - v0.12.20
+   * - akri-discovery
+     - Container
+     - ghcr.io/project-akri/akri/udev-discovery
+     - v0.12.20
+   * - akri-webhook-configuration
+     - Container
+     - ghcr.io/project-akri/akri/webhook-configuration
+     - v0.12.20
    * - fluent-bit
      - Helm/Container
      - https://github.com/fluent/helm-charts/tree/main/charts/fluent-bit
-     - 0.54.0
-   * - nfd
+     - 0.48.9
+   * - nfd (node-feature-discovery)
      - Helm/Container
-     - https://github.com/kubernetes-sigs/node-feature-discovery/tree/0706c7a5607ec260a024a36c22697f054fac3e77/deployment/helm/node-feature-discovery
-     - 0.18.3
+     - https://github.com/kubernetes-sigs/node-feature-discovery
+     - 0.17.0
    * - node-exporter
      - Helm/Container
      - https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-node-exporter
-     - 4.49.1
+     - 4.45.0
    * - prometheus
      - Helm/Container
      - https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
-     - 77.3.0
+     - 70.3.0
    * - telegraf
      - Helm/Container
      - https://github.com/influxdata/helm-charts/tree/master/charts/telegraf
-     - 1.8.64
+     - 1.8.55
+   * - cert-manager
+     - Helm/Container
+     - https://artifacthub.io/packages/helm/cert-manager/cert-manager/1.16.3
+     - 1.16.3
    * - kubernetes-dashboard
      - Helm/Container
      - https://github.com/kubernetes/dashboard/releases/tag/kubernetes-dashboard-7.13.0
-     - 7.14.0
+     - 7.13.0
+   * - nvidia-gpu-operator
+     - Helm/Container
+     - https://helm.ngc.nvidia.com/nvidia/gpu-operator
+     - v25.3.0
+   * - intel-device-plugins-operator
+     - Helm/Container
+     - https://intel.github.io/helm-charts/intel-device-plugins-gpu
+     - 0.29.0
 
 Edge Infrastructure Manager
 ----------------------------
@@ -262,19 +298,23 @@ Platform services
    * - cert-manager
      - helm chart
      - https://charts.jetstack.io
-     - 1.17.4
-   * - cert-manager
+     - 1.13.6
+   * - cert-manager (controller)
      - image
      - quay.io/jetstack/cert-manager-controller
-     - v1.17.4
-   * - cert-manager
+     - v1.13.6
+   * - cert-manager (cainjector)
      - image
      - quay.io/jetstack/cert-manager-cainjector
-     - v1.17.4
-   * - cert-manager
+     - v1.13.6
+   * - cert-manager (ctl)
+     - image
+     - quay.io/jetstack/cert-manager-ctl
+     - v1.13.6
+   * - cert-manager (webhook)
      - image
      - quay.io/jetstack/cert-manager-webhook
-     - v1.17.4
+     - v1.13.6
    * - cluster-autoscaler
      - helm chart
      - https://kubernetes.github.io/autoscaler
@@ -282,179 +322,171 @@ Platform services
    * - external-secrets
      - helm chart
      - https://charts.external-secrets.io
-     - 0.20.4
+     - 0.9.11
    * - external-secrets
      - image
      - ghcr.io/external-secrets/external-secrets
-     - v0.20.4
+     - v0.9.11
    * - ingress-nginx
      - helm chart
      - https://kubernetes.github.io/ingress-nginx
-     - 4.13.3
-   * - ingress-nginx
+     - 4.9.1
+   * - ingress-nginx (webhook)
      - image
      - registry.k8s.io/ingress-nginx/kube-webhook-certgen
-     - v1.6.3
-   * - ingress-nginx
+     - v20231226-1a7112e06
+   * - ingress-nginx (controller)
      - image
      - registry.k8s.io/ingress-nginx/controller
-     - v1.13.3
-   * - istio base
+     - v1.9.6
+   * - istio-base
      - helm chart
      - https://istio-release.storage.googleapis.com/charts
-     - 1.28.0
+     - 1.18.0
    * - istiod
      - helm chart
      - https://istio-release.storage.googleapis.com/charts
-     - 1.28.0
-   * - istiod
+     - 1.18.0
+   * - istiod (pilot)
      - image
      - docker.io/istio/pilot
-     - 1.28.0
+     - 1.18.0
    * - keycloak
      - helm chart
      - https://github.com/bitnami/charts/tree/main/bitnami/keycloak
-     - 24.4.12
+     - 24.0.1
    * - keycloak
      - image
      - docker.io/bitnami/keycloak
-     - 26.1.3-debian-12-r0
-   * - keycloak
+     - 26.0.1-debian-12-r0
+   * - keycloak (config-cli)
      - image
      - docker.io/bitnami/keycloak-config-cli
-     - 6.4.0-debian-12-r0
-   * - keycloak-tenant-controller
-     - image
+     - 6.1.6-debian-12-r4
+   * - curl-jq
+     - Container (utility)
      - badouralix/curl-jq
-     - sha256:8ee002ae4452b23a3c70750c5c081e95334cfe9f7968fb4d67a90d4001c29d0b
-   * - keycloak-tenant-controller
+     - sha256:fe8a5ee49f613495df3b57afa86b39f081bd1b3b9ed61248f46c3d3d7df56092
+   * - kubectl
      - image
-     - alpine/kubectl
-     - 1.34.1
+     - bitnami/kubectl
+     - latest
    * - kiali
      - helm chart
      - https://kiali.org/helm-charts
-     - 2.18.0
+     - 1.69.0
    * - kiali
      - image
      - quay.io/kiali/kiali
-     - v2.18.0
+     - v1.69.0
    * - kyverno
      - helm chart
      - https://kyverno.github.io/kyverno
-     - 3.5.1
-   * - kyverno
+     - 3.2.5
+   * - kyverno (kyvernopre)
      - image
      - ghcr.io/kyverno/kyvernopre
-     - v1.15.1
-   * - kyverno
+     - v1.12.4
+   * - kyverno (kyverno)
      - image
      - ghcr.io/kyverno/kyverno
-     - v1.15.1
-   * - kyverno
+     - v1.12.4
+   * - kyverno (background-controller)
      - image
      - ghcr.io/kyverno/background-controller
-     - v1.15.1
+     - v1.12.4
    * - metalLB
      - helm chart
      - https://metallb.github.io/metallb
-     - 0.15.2
-   * - metalLB
+     - 0.14.3
+   * - metalLB (controller)
      - image
      - quay.io/metallb/controller
-     - v0.15.2
-   * - metalLB
+     - v0.13.11
+   * - metalLB (frr)
      - image
      - quay.io/frrouting/frr
-     - v0.15.2
-   * - metalLB
+     - 8.5.2
+   * - metalLB (speaker)
      - image
      - quay.io/metallb/speaker
-     - v0.15.2
-   * - postgresql-cluster
+     - v0.13.11
+   * - postgresql
      - helm chart
-     - ghcr.io/cloudnative-pg/charts/cluster
-     - 0.3.1
-   * - postgresql-cluster
+     - https://github.com/bitnami/charts/tree/main/bitnami/postgresql
+     - 15.5.26
+   * - postgresql
      - image
-     - ghcr.io/cloudnative-pg/postgresql
-     - 17
-   * - postgresql-operator
-     - helm chart
-     - ghcr.io/cloudnative-pg/charts/cloudnative-pg
-     - 0.26.0
-   * - postgresql-operator
-     - image
-     - ghcr.io/cloudnative-pg/cloudnative-pg
-     - 1.27.0
+     - docker.io/bitnami/postgresql
+     - 16.4.0-debian-12-r4
    * - reloader
      - helm chart
      - https://stakater.github.io/stakater-charts
-     - 2.2.3
+     - 1.0.54
    * - reloader
      - image
      - ghcr.io/stakater/reloader
-     - v1.4.8
+     - v1.0.54
    * - traefik
      - helm chart
      - https://helm.traefik.io/traefik
-     - 37.2.0
+     - 25.0.0
    * - traefik
      - image
      - docker.io/traefik
-     - v3.5.3
+     - v2.10.5
    * - vault
      - helm chart
      - https://helm.releases.hashicorp.com/
-     - 0.31.0
-   * - vault
+     - 0.28.1
+   * - vault (alpine dep)
      - image
      - alpine
-     - 3.22.2
-   * - vault
+     - 3.18.2
+   * - vault (postgres dep)
      - image
-     - postgres
-     - 16.10-bookworm
+     - bitnami/postgresql
+     - 14.5.0-debian-11-r2
    * - vault
      - image
      - hashicorp/vault
-     - 1.20.4
-   * - vault
+     - 1.14.9
+   * - vault (k8s)
      - image
      - hashicorp/vault-k8s
-     - 1.7.0
+     - 1.4.2
+   * - metalLB
+     - helm chart
+     - https://metallb.github.io/metallb
+     - 0.13.11
    * - argocd
      - helm chart
      - https://argoproj.github.io/argo-helm
-     - 8.2.7
-   * - argocd
+     - 7.4.4
+   * - argocd (redis dep)
      - image
      - public.ecr.aws/docker/library/redis
-     - 7.2.8-alpine
+     - 7.2.4-alpine
    * - argocd
      - image
      - quay.io/argoproj/argocd
-     - v3.0.12
+     - v2.12.1
    * - gitea
      - helm chart
-     - registry-1.docker.io/giteacharts/gitea
+     - oci://registry-1.docker.io/giteacharts/gitea
      - 10.6.0
    * - gitea
      - image
      - gitea/gitea
-     - 1.25.1-rootless
-   * - gitea
+     - 1.22.3-rootless
+   * - gitea (postgres dep)
      - image
-     - postgres
-     - 16.10-bookworm
-   * - gitea
+     - docker.io/bitnami/postgresql
+     - 16.3.1-debian-12-r23
+   * - gitea (redis dep)
      - image
-     - redis
-     - 7.2.11
-   * - openebs
-     - image
-     - openebs/provisioner-localpv
-     - 4.3.0
+     - docker.io/bitnami/redis
+     - 7.2.5-debian-12-r4
 
 Observabilty (O11y)
 -------------------
@@ -471,23 +503,23 @@ Observabilty (O11y)
    * - alertmanager
      - Helm Chart
      - https://prometheus-community.github.io/helm-charts/
-     - 1.29.0
+     - 1.14.0
    * - grafana
      - Helm Chart
      - https://grafana.github.io/helm-charts
-     - 10.1.4
+     - 9.2.2
    * - kube-prometheus-stack
      - Helm Chart
      - https://prometheus-community.github.io/helm-charts
-     - 79.7.1
+     - 69.3.2
    * - loki
      - Helm Chart
      - https://grafana.github.io/helm-charts
-     - 6.46.0
+     - 6.30.1
    * - mimir-distributed
      - Helm Chart
      - https://grafana.github.io/helm-charts
-     - 6.0.3
+     - 5.7.0
    * - minio
      - Helm Chart
      - https://charts.min.io/
@@ -495,7 +527,7 @@ Observabilty (O11y)
    * - opentelemetry-collector
      - Helm Chart
      - https://open-telemetry.github.io/opentelemetry-helm-charts
-     - 0.136.1
+     - 0.115.0
    * - opentelemetry-operator
      - Helm Chart
      - https://open-telemetry.github.io/opentelemetry-helm-charts
@@ -545,7 +577,7 @@ Edge Node Agents
      - Debian pkg
      - Source
      - https://www.openssl.org/
-     - 3.0.2
+     - 3.1.2
      - 3.3.3
    * - dmidecode
      - Debian pkg
@@ -570,7 +602,7 @@ Edge Node Agents
      - Source
      - https://ezix.org/project/wiki/HardwareLiSter
      - B.02.19
-     - B.02.20
+     - B.02.21
    * - pciutils
      - Debian pkg
      - Source
@@ -582,7 +614,7 @@ Edge Node Agents
      - Source
      - https://github.com/systemd/systemd
      - 249.11
-     - 238
+     - 252
    * - usbutils
      - Debian pkg
      - Source
@@ -596,10 +628,10 @@ Edge Node Agents
      - 5.1
      - 5.2.15
    * - zlib
-     - Debian pkg
+     -
      - Source
      - https://zlib.net/
-     - 1.2.11
+     -
      - 1.3.1
    * - mosquitto
      - Debian pkg
@@ -627,9 +659,9 @@ Edge Node Agents
      - 3.0.0
    * - apparmor
      - Debian pkg
-     - Source
+     -
      - https://gitlab.com/apparmor/apparmor
-     - 3.0.4
+     - 3.1.4
      -
    * - lxc
      - Debian pkg
@@ -732,19 +764,19 @@ Trusted Compute
      - Link
      - Version
    * - confidentail containers
-     - Containers, scripts, dockerfiles and binaries
-     - https://github.com/confidential-containers/containerd, https://github.com/containerd/nydus-snapshotter
+     - Containers, scripts, ...
+     - https://github.com/confidential-containers/containerd
      -
    * - kata
-     - Containers, scripts, dockerfiles and binaries
-     - https://github.com/kata-containers/kata-containers/releases/download/3.13.0/kata-static-3.13.0-amd64.tar.xz, https://github.com/kata-containers/kata-containers
+     - Containers, scripts, ...
+     - https://github.com/kata-containers/kata-containers/releases/download/3.13.1/kata-static-3.13.1-amd64.tar.xz
      -
    * - Debian Bookworm
      - Containers and binaries
-     - https://hub.docker.com/_/debian, docker.io, https://www.debian.org/
+     - https://hub.docker.com/_/debian, docker.io, ...
      -
    * - curlimages/curl
-     - Containers, scripts, dockerfiles and binaries
+     - Containers, scripts, ...
      - https://hub.docker.com/r/curlimages/curl
      -
    * - Alpine Linux
@@ -757,7 +789,7 @@ Trusted Compute
      - 1.23.2
    * - NATS
      - Containers and binaries
-     - http://pkg.cfssl.org
+     -
      -
    * - kubectl
      - Binaries
@@ -775,7 +807,7 @@ Trusted Compute
      - Containers and binaries
      - https://github.com/jqlang/jq
      -
-   * - argcomplete, yq, xmltodict, xz-libs, tomlkit, PyYAML
+   * - argcomplete, yq, xmltodict, ...
      - Containers and binaries
      - https://pypi.org/
      -
