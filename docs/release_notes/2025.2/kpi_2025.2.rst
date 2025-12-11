@@ -1,0 +1,72 @@
+Version 2025.2 Key Performance Indicators (KPIs)
+=======================================================
+
+For 2025.2 release the following KPI goals were met that assured the quality
+and proficiency of |software_prod_name|.
+
+Key Performance Indicators for Cloud Based Edge Orchestrator
+------------------------------------------------------------------
+
+.. list-table:: Cloud Orchestrator KPIs
+   :widths: 25 25 50
+   :header-rows: 1
+
+   * - Indicator
+     - Target
+     - Measurement
+   * - AWS Cloud Infrastructure preparation
+     - 60 minutes
+     - ~48 minutes
+   * - Edge Orchestrator deployment
+     - 30 minutes
+     - ~29 minutes
+   * - Edge Node Onboarding and Provisioning (Ubuntu OS)
+     - 15 minutes
+     - ~11 minutes (Intel® Core™ processor)
+   * - Edge Node Onboarding and Provisioning (Edge Microvisor Toolkit)
+     - 10 minutes
+     - ~5 minutes ( Intel® Core™ processor)
+   * - Edge Cluster Creation
+     - 10 minutes
+     - ~1.40 minutes
+   * - Edge Cluster Deletion
+     - 5 minutes
+     - ~35 seconds
+   * - Creating a Deployment Package
+     - 5 minutes
+     - ~90 seconds
+   * - Deploying Application to Edge Node
+     - 15 minutes
+     - ~5 minutes
+
+Key Performance Indicators for On-premises Edge Orchestrator
+---------------------------------------------------------------
+
+.. list-table:: Title
+   :widths: 25 25 50
+   :header-rows: 1
+
+   * - Indicator
+     - Target
+     - Measurement
+   * - Edge Orchestrator Installation
+     - 90 minutes
+     - ~40 minutes
+   * - Edge Node Onboarding and Provisioning (Ubuntu)
+     - 15 minutes
+     - ~10 minutes (Intel® Core™ processor)
+   * - Edge Node Onboarding and Provisioning (Edge Microvisor Toolkit)
+     - 10 minutes
+     - ~4 minutes (Intel® Core™ processor)
+   * - Edge Cluster Creation
+     - 10 minutes
+     - ~1.35 minutes
+   * - Edge Cluster Deletion
+     - 5 minutes
+     - ~26 seconds
+   * - Creating a Deployment Package
+     - 5 minutes
+     - ~90 seconds
+   * - Deploying Application to Edge Node
+     - 15 minutes
+     - ~5 minutes

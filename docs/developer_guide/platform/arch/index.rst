@@ -7,7 +7,6 @@ environments. Following you can find details on how Argo* CD is used and
 architecture for both cloud and on-premises environments.
 
 .. toctree::
-   :maxdepth: 1
 
    argocd
    cloud_orchestrator
