@@ -24,34 +24,23 @@ EMF release versioning has been changed to align with the year and release numbe
 
 Key highlights of the 2025.2 release include:
 
+.. figure:: release-notes-20252.png
+      :alt: 2025.2 Release Highlights
+
 **Infrastructure and Edge Node Software**
 
 * **New:** Support for Ubuntu 24.04 LTS OS with kernel 6.11.0-17. Official support for Ubuntu 22.04 LTS OS continues.
 * **New:** Users can create custom OS profiles based on Ubuntu 24.04 LTS or the Edge Microvisor Toolkit.
-* **New:** Alpha support for Intel® Core™ Ultra Series 3 processors (formerly code-named Panther Lake) supporting
-  integrated GPU and NPU.
 * **New:** You can now use Intel vPro® platform-based out-of-band management for
-  Intel® Standard Manageability in conjunction with Intel® Active Management Technology (Intel® AMT)
+  `Intel® Standard Manageability in conjunction with Intel® Active Management Technology (Intel® AMT)
   devices <https://www.intel.com/content/www/us/en/support/articles/000090499/technologies/intel-active-management-technology-intel-amt.html>`__..
 * **New:** Expanding the device customization capabilities, you can now customize operating system kernel
   command-line parameters.
 * **New:** Security compliance verification through tracking of open and fixed CVEs for packages installed on
-  Ubuntu 24.04 LTS OS and Edge Microvisor Toolkit. Any USB peripherals connected to the edge node can be connected to a
-  VM-based application. However, although the USB peripheral(s) are
-  detached from the edge node, the VM-based application will still have the
-  USB peripherals connected. In this situation, when you run applications
-  requiring USB peripherals, it will fail.
-* The same USB peripheral cannot be shared between the same type of
-  applications, while the same USB peripheral can be simultaneously
-  connected to the different types of applications.
-* **Update:** Architectural enhancements to improve the reliability of supported operations of out-of-band management
-  using Intel® AMT and Intel® Standard Manageability.
+  Ubuntu 24.04 LTS OS and Edge Microvisor Toolkit.
+* **Update:** Architectural enhancements to improve the reliability of operations of out-of-band management using Intel® AMT and ISM.
 * **Update:** Users can activate Intel® AMT or Intel® Standard Manageability post device onboarding and provisioning.
-* **New:** In-Band Manageability (INBM) agents provide OS and package update capabilities on edge nodes. The Platform
-  Update Agent (PUA) coordinates with INBM daemon (inbd) to execute system updates triggered through Edge Orchestrator's
-  maintenance windows. Users can manage package updates and APT repository sources through OS Update Policies in the UI.
-  For implementation details, see the `INBM Architecture
-  <https://github.com/open-edge-platform/edge-node-agents/blob/main/in-band-manageability/README.md>`__.
+* **Update:** New implementation of In-Band Manageability (INBM) agents that provide OS and package update capabilities on edge nodes. For implementation details, see the `INBM Architecture <https://github.com/open-edge-platform/edge-node-agents/blob/main/in-band-manageability/README.md>`__.
 
 **Advanced Cluster and Application Management**
 
@@ -67,21 +56,21 @@ Key highlights of the 2025.2 release include:
     This adds the automatic deployment and lifecycle management of applications. This is the default configuration of EMF.
 
 * **New:** For each supported configuration, the observability stack may be enabled or disabled.
-  The default configuratation is observability enabled.
+  The default configuration is observability enabled.
 * **New:** Updates to mitigate reliance on the legacy Bitnami registry by utilizing alternative sources.
 * **Update:** Updates to the ``orch-cli`` tool to support all capabilities currently available in the EMF UI.
 
 * **New:**: Support for new reference applications in Edge Manageability Framework 2025.2
-    * Worker Safety Gear Detection v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
-    * PCB Anomaly Detection v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
+    * `Worker Safety Gear Detection v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
+    * `PCB Anomaly Detection v1.1.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
 
 * **Update:**: Support for new versions of 3.1 reference applications
-    * Weld Porosity Detection v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
-    * Pallet Defect Detection v2.5.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
-    * Image-Based Video Search v1.1.0  <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/image-based-video-search/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
-    * Chat Q&A Sample Application v2.0.1 <https://github.com/open-edge-platform/edge-ai-libraries/blob/release-2025.2.0/sample-applications/chat-question-and-answer/docs/user-guide/deploy-with-edge-orchestrator.md>`__.
-    * Smart Parking v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/metro-vision-ai-app-recipe/smart-parking/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
-    * Loitering Detection v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/metro-vision-ai-app-recipe/smart-parking/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
+    * `Weld Porosity Detection v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
+    * `Pallet Defect Detection v2.5.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/how-to-deploy-with-edge-orchestrator.md>`__.
+    * `Image-Based Video Search v1.1.0  <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/image-based-video-search/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
+    * `Chat Q&A Sample Application v2.0.1 <https://github.com/open-edge-platform/edge-ai-libraries/blob/release-2025.2.0/sample-applications/chat-question-and-answer/docs/user-guide/deploy-with-edge-orchestrator.md>`__.
+    * `Smart Parking v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/metro-vision-ai-app-recipe/smart-parking/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
+    * `Loitering Detection v1.3.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2025.2.0/metro-ai-suite/metro-vision-ai-app-recipe/smart-parking/docs/user-guide/how-to-deploy-with-edge-orchestrator.md>`__.
 
 The codebase is Apache software version 2.0 licensed and available on the Github repository.
 
@@ -134,6 +123,8 @@ EMF deployment
 * Current release still uses legacy Bitnami container image for Keycloak solution.
   This image is being deprecated by Bitnami. Intel is working to replace
   this image with alternatives in future releases.
+* For on-premises EMF deployment and upgrade issues and workarounds, `see
+  <https://docs.openedgeplatform.intel.com/edge-manage-docs/release-2025.2/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.html>`_.
 
 Device Provisioning
 ^^^^^^^^^^^^^^^^^^^
@@ -158,6 +149,11 @@ Device Provisioning
   Docker account, there is a limit of 100 pulls per IP over a four-hour
   window. In this case, upgrade to the premium account or wait to
   provision more edge nodes.
+
+Out-of-band device management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* For Intel® AMT or Intel® Standard Manageability issues see
+  :doc:`/user_guide/advanced_functionality/vpro_power_mgt`.
 
 Cluster and Application Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
