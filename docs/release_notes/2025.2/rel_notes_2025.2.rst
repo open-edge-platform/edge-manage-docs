@@ -112,11 +112,11 @@ On-Prem Upgrade – Known Issues
 During the on-prem upgrade process, the following stability issues are observed:
 
 * Some applications appear as **OutOfSync**, **Degraded**, or in a missing state after the upgrade.
-  See **Workaround 1**, available in the On-Prem Upgrade Deployment Guide.
-* Gitea pod crashes result in the `onprem_upgrade.sh` script failing.
-  Refer to **Workaround 2** in the On-Prem Upgrade Deployment Guide.
+  Refer to Issue#1 in the On-Prem Upgrade Guide troubleshooting section.
+* Gitea pod crashes result in the ``onprem_upgrade.sh`` script failing.
+  Refer to Issue#2 in the On-Prem Upgrade Guide troubleshooting section.
 * Edge Node onboarding fails when an EN was partially installed before the upgrade.
-  Refer to **Workaround 3** in the On-Prem Upgrade Deployment Guide.
+  Refer to Issue#3 in the On-Prem Upgrade Guide troubleshooting section.
 
 Known Issues
 ----------------------------------
@@ -183,6 +183,10 @@ Cluster and Application Management
   the deployment may not actually be removed from the clusters.
 * Deployment Instance Status Down alert is not automatically cleared after
   deletion of the deployed application instance, The alert will remain active.
+* After upgrading the orchestrator, if a newer version of a deployed application
+  becomes available, then upon upgrading the deployed application, the application may
+  fail to update and become stuck in an "Updating" state when using the upgrade functionality.
+  As a workaround, delete the existing deployment and create a fresh deployment with the new version of the application.
 
 User Experience
 ^^^^^^^^^^^^^^^^^
@@ -246,6 +250,9 @@ Hosts and Infrastructure Limitations
 * You can create two sites with the same name under two different regions,
   although this does not cause the nodes to be present when creating
   clusters. Intel recommends that sites have unique, non-overlapping names.
+* If Vpro Activation exceeds 2-3 minutes, the host will start displaying an error state.
+  However, it will subsequently recover to a healthy status once activation completed.
+  Refer to :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
 
 Cluster and Application Management Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
