@@ -5,8 +5,8 @@ Intel® vPro® Power Management
 
 This guide describes how to use Intel® vPro® features for power management, including activation, performing power operations, and deactivation.
 
-Activation of vPro Power Management
------------------------------------
+Activation of Intel® vPro® Power Management
+-------------------------------------------
 
 To use Intel® vPro® power management features, the device must be provisioned and activated. Intel® vPro® activation changed to opt-in feature
 instead of a mandatory feature. Intel® vPro® activation moved to day 2 Operations as part of Host actions. Now Intel® vPro® can be activated
@@ -105,8 +105,8 @@ Replace `<cluster-name>` with your cluster domain name.
 Replace `<HOST_UUID>` with the UUID of your host and ensure `${JWT_TOKEN}` is set to a valid authentication token.
 
 
-Deactivation of vPro Power Management
--------------------------------------
+Deactivation of Intel® vPro® Power Management
+---------------------------------------------
 
 To deactivate Intel® vPro® management features, the device can be deauthorized or deactivated from host-actions.
 **Deauthorize host** and **Deactivate Intel® vPro®** will deactivate the device and prevent from further management via Intel® vPro®.
