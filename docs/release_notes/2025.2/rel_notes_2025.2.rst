@@ -246,6 +246,9 @@ Hosts and Infrastructure Limitations
 * You can create two sites with the same name under two different regions,
   although this does not cause the nodes to be present when creating
   clusters. Intel recommends that sites have unique, non-overlapping names.
+* If Vpro Activation exceeds 2-3 minutes, the host will start displaying an error state.
+  However, it will subsequently recover to a healthy status once activation completed.
+  Refer to :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
 
 Cluster and Application Management Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
