@@ -18,8 +18,7 @@ for both Active Management Technology (AMT-Intel® vPro® Enterprise) and Intel 
 
    2. Intel® vPro® activation and deactivation will be triggered via Host actions.
 
-   3. Intel® vPro® profiles are currently created using Client Control Mode (CCM). CCM mode is supported in the current
-      release 3.2v. Support for Admin Control Mode (ACM) will be available in an upcoming release.
+   3. Intel® vPro® profiles are currently created using Client Control Mode (CCM).
 
 Enabling Intel® vPro® from Host Actions:
 
