@@ -119,10 +119,11 @@ you can find details about the high-level design and submit patches of your own.
 .. toctree::
    :hidden:
 
+   release_notes/index
    deployment_guide/index
    user_guide/index
    developer_guide/index
    api/index
    system_requirements/index
-   release_notes/index
+
 
