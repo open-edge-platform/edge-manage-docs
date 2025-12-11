@@ -183,6 +183,10 @@ Cluster and Application Management
   the deployment may not actually be removed from the clusters.
 * Deployment Instance Status Down alert is not automatically cleared after
   deletion of the deployed application instance, The alert will remain active.
+* After upgrading the orchestrator, if a newer version of a deployed application
+  becomes available, then upon upgrading the deployed application, the application may
+  fail to update and become stuck in an "Updating" state when using the upgrade functionality.
+  As a workaround, delete the existing deployment and create a fresh deployment with the new version of the application.
 
 User Experience
 ^^^^^^^^^^^^^^^^^
@@ -246,6 +250,9 @@ Hosts and Infrastructure Limitations
 * You can create two sites with the same name under two different regions,
   although this does not cause the nodes to be present when creating
   clusters. Intel recommends that sites have unique, non-overlapping names.
+* If Vpro Activation exceeds 2-3 minutes, the host will start displaying an error state.
+  However, it will subsequently recover to a healthy status once activation completed.
+  Refer to :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
 
 Cluster and Application Management Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
