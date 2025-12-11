@@ -529,73 +529,131 @@ Gitea
      kubectl -n gitea port-forward svc/gitea-http 3000:443 --address 0.0.0.0
      # Then open https://localhost:3000 in your browser and use the above credentials.
 
-Workarounds
-=============
+Troubleshooting
+===============
 
-Workaround 1: Root-App Sync and Certificate Refresh After Upgrade
+Issue#1: Root-App Sync and Certificate Refresh After Upgrade
 --------------------------------------------------------------------
 
-- Some applications  show as **OutOfSync**, **Degraded**, or missing
-- After running ``onprem_upgrade.sh``:
+**Symptoms:**
 
-  - **Wait 5–10 minutes** for ``root-app`` and dependent applications to sync
-  - Run the resync script::
+- Some applications show as **OutOfSync**, **Degraded**, or **Missing**
+- **external-secrets** and **copy-ca\*** specific pods remain in **OutOfSync**, **Missing**, or **Processing** state
+
+**Resolution:**
+
+#. After running ``onprem_upgrade.sh``, **wait 5–10 minutes** for ``root-app`` and dependent applications to sync.
+
+#. Run the resync script:
+
+   .. code-block:: bash
 
       ./after_upgrade_restart.sh
 
-  - This script continuously syncs applications
-  - Performs **root-app sync**
-  - Restarts **tls-boots** and **dkam** pods
+   This script:
 
-- If applications still fail to sync:
-  - Log in to ArgoCD UI
-  - Delete error-state CRDs/jobs
-  - Re-sync ``root-app`` and restart the ./after_upgrade_restart.sh script
+   - Continuously syncs applications
+   - Performs **root-app sync**
+   - Restarts **tls-boots** and **dkam** pods
 
-- After running ./after_upgrade_restart.sh successfully and once all root-apps are in sync and in a healthy state, wait approximately **5 minutes** to allow DKAM to fetch all dependent applications.
-  and in a healthy state, wait approximately **5 minutes** to allow DKAM to fetch all
-  dependent applications. Verify that the signed_ipxe.efi image is downloaded using
-  the freshly downloaded Full_server.crt, or monitor until signed_ipxe.efi is available.
-- Download the latest certificates::
+#. If applications still fail to sync:
 
-      rm -rf Full_server.crt signed_ipxe.efi  # Delete both files before downloading
+   - Log in to ArgoCD UI
+   - Delete error-state CRDs/jobs
+   - Re-sync ``root-app`` and rerun the ``./after_upgrade_restart.sh`` script
+
+   .. note::
+      If **external-secrets** and **copy-ca\*** specific pods remain in problematic state for an extended period, first delete the associated **Jobs** and **CRDs**. If the issue persists, delete the affected applications from the ArgoCD UI and then resync the **root-app**.
+
+#. After running ``./after_upgrade_restart.sh`` successfully and once all root-apps are in sync and healthy state, wait approximately **5 minutes** to allow DKAM to fetch all dependent applications.
+Verify that the ``signed_ipxe.efi`` image is downloaded using the freshly downloaded ``Full_server.crt``, or monitor until ``signed_ipxe.efi`` is available.
+
+#. Download the latest certificates:
+
+   .. code-block:: bash
+
+      # Delete both files before downloading
+      rm -rf Full_server.crt signed_ipxe.efi
       export CLUSTER_DOMAIN=cluster.onprem
       wget https://tinkerbell-nginx.$CLUSTER_DOMAIN/tink-stack/keys/Full_server.crt --no-check-certificate --no-proxy -q -O Full_server.crt
       wget --ca-certificate=Full_server.crt https://tinkerbell-nginx.$CLUSTER_DOMAIN/tink-stack/signed_ipxe.efi -q -O signed_ipxe.efi
 
-  Once the above steps are successful, the orchestrator (Orch) is ready for onboarding new Edge Nodes (EN).
+   Once the above steps are successful, the orchestrator (Orch) is ready for onboarding new Edge Nodes (EN).
 
-Workaround 2: Handling Gitea Pod Crashes During Upgrade
+Issue#2: Handling Gitea Pod Crashes During Upgrade
 ---------------------------------------------------------
-- Some time onprem_upgrade.sh may fail with::
-      Error: UPGRADE FAILED: context deadline exceeded
-      dpkg: error processing package onprem-gitea-installer
-      E: Sub-process /usr/bin/dpkg returned an error code (1)
-- Check Gitea pod error status.
+
+**Symptoms:**
+
+Sometimes ``onprem_upgrade.sh`` may fail with the following error:
+
+.. code-block:: text
+
+   Error: UPGRADE FAILED: context deadline exceeded
+   dpkg: error processing package onprem-gitea-installer
+   E: Sub-process /usr/bin/dpkg returned an error code (1)
+
+**Resolution:**
+
+#. Check Gitea pod status:
+
+   .. code-block:: bash
+
       kubectl get pod -n gitea
-- Restart dependent pods in order.
+
+#. Restart dependent pods in order:
+
+   .. code-block:: bash
+
       kubectl delete pod gitea-postgresql-0 -n gitea
-      kubectl delete pod gitea-78d6db5997-c6969 -n gitea
+      kubectl delete pod gitea-<pod-id> -n gitea
 
-After gitea pod restart restart onprem_upgrade.sh script
+   .. note::
+      Replace ``<pod-id>`` with the actual Gitea pod ID from the output of the previous command.
 
-Workaround 3: Unsupported Workflow
-------------------------------------
-If an Edge Node (EN) was onboarded before the EMF upgrade but the cluster installation
-was not completed, running the cluster installation after the upgrade using the latest
-cluster template will not work. This fails because the EN still uses old OS profiles
-and pre-upgrade settings.
+#. After the Gitea pod restarts successfully, re-run the upgrade script:
 
-What You Need to Do
-~~~~~~~~~~~~~~~~~~~
+   .. code-block:: bash
 
-To continue successfully after the upgrade, choose one of these:
+      ./onprem_upgrade.sh
+
+Issue#3: Unsupported Workflow for Pre-Upgrade Onboarded Edge Nodes
+-------------------------------------------------------------------------
+
+**Issue:**
+
+If an Edge Node (EN) was onboarded before the EMF upgrade but the cluster installation was not completed,
+running the cluster installation after the upgrade using the latest cluster template will not work. This fails because the EN still uses old OS profiles and pre-upgrade settings.
+
+**Resolution:**
+
+To continue successfully after the upgrade, choose one of the following options:
 
 **Option 1: De-authorize and Re-Onboard the EN**
 
-- De-authorize the existing EN.
-- Onboard the EN again so it gets the correct post-upgrade templates and configs.
+#. De-authorize the existing EN from the orchestrator
+#. Re-onboard the EN to ensure it gets the correct post-upgrade templates and configurations
 
-**Option 2: Update the OS Profile using day2 upgrade process flow.**
+**Option 2: Update the OS Profile Using Day-2 Upgrade Process**
 
-- Update the EN to the latest available OS profile and next install cluster
+#. Update the EN to the latest available OS profile using the day-2 upgrade process
+#. After the OS profile upgrade is complete, proceed with cluster installation
+
+
+Issue#4: Kyverno Pod in ImagePullBackOff State
+-------------------------------------------------------------------------
+
+**Issue:**
+
+After the upgrade, the Kyverno pod may be stuck in an ``ImagePullBackOff`` state due to image pull errors.
+
+**Resolution:**
+
+To resolve this issue, run the following commands to clean up and reset the Kyverno clean-reports job:
+
+.. code-block:: bash
+
+   kubectl delete job kyverno-clean-reports -n kyverno &
+   kubectl delete pods -l job-name="kyverno-clean-reports" -n kyverno &
+   kubectl patch job kyverno-clean-reports -n kyverno --type=merge -p='{"metadata":{"finalizers":[]}}'
+
