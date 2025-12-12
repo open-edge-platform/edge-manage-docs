@@ -65,3 +65,16 @@ Can't Start SSH Tunnel
 
 1. If you have your public IP address before install, add it to the ``--jumphost-ip-allow-list`` option of the ``provision.sh``
 2. **Alternative:** Get public IP address, and through the AWS web UI, add it to the inbound security rules of your jumphost with ``/32`` (e.g., ``134.x.x.x/32``) allow SSH
+
+Error: Invalid multi-line string
+================================
+**Solution:**
+::
+    tls_key=$(cat <<EOF
+    multi
+    line
+    string
+    EOF
+    )
+
+
