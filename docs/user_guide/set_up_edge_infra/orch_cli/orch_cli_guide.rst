@@ -16,7 +16,7 @@ The tool is made available in the public AWS* Elastic Container Registry. It can
 
 .. code-block:: bash
 
-    oras pull registry-rs.edgeorchestration.intel.com/edge-orch/files/orch-cli:3.1
+    oras pull registry-rs.edgeorchestration.intel.com/edge-orch/files/orch-cli:v2025.2.0
 
 The package will be an archive which needs to be unpacked to access the binary named orch-cli.
 Together with the binary as part of the archive the source code and the package signatures are downloaded.

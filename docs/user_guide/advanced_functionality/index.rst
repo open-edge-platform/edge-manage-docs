@@ -10,6 +10,7 @@ application's capabilities:
    * :doc:`/user_guide/advanced_functionality/view_os_profiles`
    * :doc:`/user_guide/advanced_functionality/alerts_config`
    * :doc:`/user_guide/advanced_functionality/host_schedule_main`
+   * :doc:`/user_guide/advanced_functionality/apply_new_os_update_policy`
    * :doc:`/user_guide/advanced_functionality/install_new_packages`
    * :doc:`/user_guide/advanced_functionality/host_update_immutable_os`
    * :doc:`/user_guide/advanced_functionality/configure_ssh_public_keys`
@@ -17,6 +18,7 @@ application's capabilities:
    * :doc:`/user_guide/advanced_functionality/pxe_provisioning_with_cloud_emf`
    * :doc:`/user_guide/advanced_functionality/custom_config`
    * :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
+   * :doc:`/user_guide/advanced_functionality/custom_os_profile`
 
 
 .. toctree::
@@ -26,6 +28,7 @@ application's capabilities:
    view_os_profiles
    alerts_config
    host_schedule_main
+   apply_new_os_update_policy
    install_new_packages
    host_update_immutable_os
    automated_deployment
@@ -35,3 +38,4 @@ application's capabilities:
    custom_config
    vpro_power_mgt
    configure_edgenode_lvm_parition.rst
+   custom_os_profile

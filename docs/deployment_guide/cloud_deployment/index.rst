@@ -11,6 +11,7 @@ Edge Orchestrator Deployment Guide for AWS\* Cloud
 - :doc:`/shared/shared_gs_iam`
 - :doc:`/shared/shared_mt_overview`
 - :doc:`/shared/shared_next_steps`
+- :doc:`/shared/shared_ao_co_o11y`
 
 .. toctree::
    :hidden:

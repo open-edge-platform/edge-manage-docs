@@ -41,9 +41,6 @@ Toolkit:
   image (e.g,.
   ``files-edge-orch/repository/microvisor/non_rt/*.raw.gz.sha256sum``).
 
-- ``updateSources`` is mandatory and must be provided, but should be kept
-  empty.
-
 - ``osProvider`` must be set to ``OPERATING_SYSTEM_PROVIDER_INFRA`` and
   **``osType`` to ``OPERATING_SYSTEM_TYPE_IMMUTABLE`` (since EMT is
   immutable)**.
@@ -63,7 +60,7 @@ An example of a command to create a custom EMT OS Profile:
 .. code-block:: bash
 
     curl  --insecure -X POST  -H 'Accept: application/json' -H "Authorization: Bearer ${JWT_TOKEN}" -H "Accept: application/json" \
-        -d '{"securityFeature": "SECURITY_FEATURE_SECURE_BOOT_AND_FULL_DISK_ENCRYPTION", "updateSources": [], "sha256":"989151e612cde6876b0ef9fbc8051c0e22c32c59dd51cbac2b8691fbb79c399a", "osProvider": "OPERATING_SYSTEM_PROVIDER_INFRA", "osType": "OPERATING_SYSTEM_TYPE_MUTABLE", "profileName": "ubuntu-22.04-lts-generic", "name": "Your OS name to show in UI", "imageId": "22.04.5", "imageUrl": "https://cloud-images.ubuntu.com/releases/jammy/release-20250327/ubuntu-22.04-server-cloudimg-amd64.img"  }' \
+        -d '{"securityFeature": "SECURITY_FEATURE_SECURE_BOOT_AND_FULL_DISK_ENCRYPTION", "sha256":"989151e612cde6876b0ef9fbc8051c0e22c32c59dd51cbac2b8691fbb79c399a", "osProvider": "OPERATING_SYSTEM_PROVIDER_INFRA", "osType": "OPERATING_SYSTEM_TYPE_MUTABLE", "profileName": "ubuntu-22.04-lts-generic", "name": "Your OS name to show in UI", "imageId": "22.04.5", "imageUrl": "https://cloud-images.ubuntu.com/releases/jammy/release-20250327/ubuntu-22.04-server-cloudimg-amd64.img"  }' \
         -H 'Content-Type: application/json'  https://api.${CLUSTER_FQDN}/v1/projects/{PROJECT_NAME}/compute/os
 
 Testing custom Ubuntu\* image
@@ -77,10 +74,6 @@ Testing custom Ubuntu\* image
 
 - ``imageId`` must correspond to the OS image version. For this Ubuntu release
   it will be 22.04.X.
-
-- ``updateSources`` is mandatory and must be provided (even if empty). You
-  should only populate ``updateSources`` (along with ``installedPackages``)
-  only if you plan to install any additional OS packages in Day2.
 
 - ``osProvider`` must be set to ``OPERATING_SYSTEM_PROVIDER_INFRA`` and
   **``osType`` to ``OPERATING_SYSTEM_TYPE_MUTABLE`` (since Ubuntu OS is
@@ -99,5 +92,5 @@ An example of a command to create a custom Ubuntu OS Profile:
 .. code-block:: bash
 
     curl  --insecure -X POST  -H 'Accept: application/json' -H "Authorization: Bearer ${JWT_TOKEN}" -H "Accept: application/json" \
-        -d '{"securityFeature": "SECURITY_FEATURE_SECURE_BOOT_AND_FULL_DISK_ENCRYPTION", "updateSources": [], "sha256":"989151e612cde6876b0ef9fbc8051c0e22c32c59dd51cbac2b8691fbb79c399a", "osProvider": "OPERATING_SYSTEM_PROVIDER_INFRA", "osType": "OPERATING_SYSTEM_TYPE_MUTABLE", "profileName": "ubuntu-22.04-lts-generic", "name": "Your OS name to show in UI", "imageId": "22.04.5", "imageUrl": "https://cloud-images.ubuntu.com/releases/jammy/release-20250327/ubuntu-22.04-server-cloudimg-amd64.img"  }' \
+        -d '{"securityFeature": "SECURITY_FEATURE_SECURE_BOOT_AND_FULL_DISK_ENCRYPTION", "sha256":"989151e612cde6876b0ef9fbc8051c0e22c32c59dd51cbac2b8691fbb79c399a", "osProvider": "OPERATING_SYSTEM_PROVIDER_INFRA", "osType": "OPERATING_SYSTEM_TYPE_MUTABLE", "profileName": "ubuntu-22.04-lts-generic", "name": "Your OS name to show in UI", "imageId": "22.04.5", "imageUrl": "https://cloud-images.ubuntu.com/releases/jammy/release-20250327/ubuntu-22.04-server-cloudimg-amd64.img"  }' \
         -H 'Content-Type: application/json'  https://api.${CLUSTER_FQDN}/v1/projects/{PROJECT_NAME}/compute/os
