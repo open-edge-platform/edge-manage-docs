@@ -187,6 +187,8 @@ Cluster and Application Management
   becomes available, then upon upgrading the deployed application, the application may
   fail to update and become stuck in an "Updating" state when using the upgrade functionality.
   As a workaround, delete the existing deployment and create a fresh deployment with the new version of the application.
+* Trusted Compute package deployment fails when using the default automatic single node cluster creation option.
+  See :doc:`troubleshooting guide </user_guide/troubleshooting/trusted_compute_issues>`.
 
 User Experience
 ^^^^^^^^^^^^^^^^^
