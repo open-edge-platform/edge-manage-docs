@@ -33,7 +33,8 @@ Assumptions & Recommendations
    BIOS. If Intel® vPro® is not required, it is recommended to disable it in
    the BIOS for security and compliance. **Note:** Some platforms (e.g.,
    OnLogic K804) do not provide BIOS options to enable/disable Intel® vPro®. See
-   :doc:`AMT Issues </user_guide/troubleshooting/amt_issues>`
+   `AMT Issues
+   <../troubleshooting/amt_issues.html#vpro-enabled-without-bios-configuration-option-on-onlogic-k804>`_
    for platform-specific limitations.
 - **MEBx Password:** For enhanced security, set a strong and unique Intel® MEBx password during initial setup.
    If the default password is still in use, change it immediately to prevent unauthorized access.
