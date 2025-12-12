@@ -4,6 +4,7 @@ Trusted Compute Issues
 This section covers troubleshooting of Trusted Compute issues for EMF.
 
 * :ref:`Failure of the Trusted Compute plugin installation due to security pre-requisites compatibility. trusted-compute-compatible is not true on EMF UI <tc_plugin_installation_failure>`
+* :ref:`Trusted Compute package deployment failure with automatic single node cluster creation <tc_package_deployment_failure>`
 * :ref:`Host Attestation status is Unknown and all the pods are up and running <tc_attestation_status_unknown>`
 * :ref:`Verifier and Attestation Manager PODs have cordoned the node, and attestation PODs failed to transition to the ready state <tc_pods_cordoned>`
 * :ref:`Attestation failed and overall trust is showing as failed on the UI <tc_attestation_failed>`
@@ -21,6 +22,16 @@ should also enable FDE and SB.
 The fix needs to be implemented in two areas: first, enable the features on the platform (FDE, SB); second, ensure that
 the profile features are aligned. To recover from this condition, re-onboard your edge-node with the prerequisites enabled.
 For details on the pre-requisites see :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/prerequisites/index`.
+
+.. _tc_package_deployment_failure:
+
+**Symptom:** Trusted Compute package deployment failure with automatic single node cluster creation.
+
+**Solution:** To resolve the Trusted Compute package deployment failure with automatic single node cluster creation, apply the following manual workaround:
+
+1. Delete the automatically created cluster
+2. Create the cluster manually
+3. Deploy the Trusted Compute package
 
 .. _tc_attestation_status_unknown:
 
