@@ -6,7 +6,7 @@ By default, Edge Orchestrator creates a set of OS profiles (see
 
 However, it is sometimes desirable to test a custom OS Profile that is under
 development, before officially releasing it as described in
-:doc:`/docs/user_guide/advanced_functionaloty/custom_os_profile`.
+:doc:`/user_guide/advanced_functionaloty/custom_os_profile`.
 
 This guide shows how to create an OS resource with a custom OS image on a live
 instance of Edge Orchestrator.
