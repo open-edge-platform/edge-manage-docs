@@ -5,35 +5,34 @@ Intel® vPro® Power Management
 
 This guide describes how to use Intel® vPro® features for power management, including activation, performing power operations, and deactivation.
 
-Activation of vPro Power Management
------------------------------------
+Activation of Intel® vPro® Power Management
+-------------------------------------------
 
-To use vPro power management features, the device must be provisioned and activated. Vpro activation Changed to opt-in feature
-instead of a mandatory feature Vpro activation moved to day 2 Operations as part of Host actions. Now Vpro can be activated
-for both Active Management Technology (AMT-Vpro Enterprise) and Intel Standard Manageability (ISM-Vpro Essential) devices.
+To use Intel® vPro® power management features, the device must be provisioned and activated. Intel® vPro® activation changed to opt-in feature
+instead of a mandatory feature. Intel® vPro® activation moved to day 2 Operations as part of Host actions. Now Intel® vPro® can be activated
+for both Active Management Technology (AMT-Intel® vPro® Enterprise) and Intel Standard Manageability (ISM-Intel® vPro® Essential) devices.
 
 
 .. note::
-   1. If the edge node is AMT/ISM-enabled, then only Vpro activation is enabled as part of Host actions.
+   1. If the edge node is AMT/ISM-enabled, then only Intel® vPro® activation is enabled as part of Host actions.
 
-   2. Vpro activation and deactivation will be triggered via Host actions.
+   2. Intel® vPro® activation and deactivation will be triggered via Host actions.
 
-   3. vPro profiles are currently created using Client Control Mode (CCM). CCM mode support is planned for
-      version 3.1. Support for Admin Control Mode (ACM) is targeted as technical debt for version 3.2.
+   3. Intel® vPro® profiles are currently created using Client Control Mode (CCM).
 
-Enabling vpro from Host Actions:
+Enabling Intel® vPro® from Host Actions:
 
 .. figure:: images/vpro_enable.png
    :width: 100 %
-   :alt: Enable Vpro
+   :alt: Enable Intel® vPro®
 
 Assumptions & Recommendations
 -----------------------------
 
 - **BIOS Enablement:** Ensure Intel® vPro® is enabled in the system
-   BIOS. If vPro is not required, it is recommended to disable it in
+   BIOS. If Intel® vPro® is not required, it is recommended to disable it in
    the BIOS for security and compliance. **Note:** Some platforms (e.g.,
-   OnLogic K804) do not provide BIOS options to enable/disable vPro. See
+   OnLogic K804) do not provide BIOS options to enable/disable Intel® vPro®. See
    `AMT Issues <../troubleshooting/amt_issues.html#vpro-enabled-without-bios-configuration-option-on-onlogic-k804>`_
    for platform-specific limitations.
 - **MEBx Password:** For enhanced security, set a strong and unique Intel® MEBx password during initial setup.
@@ -93,7 +92,7 @@ Replace `<HOST_UUID>` with the UUID of your host and ensure `${JWT_TOKEN}` is se
 
 This API will return the current power state of the specified.
 
-**Check the device vPro details of the edge node:**
+**Check the device Intel® vPro® details of the edge node:**
 
 .. code-block:: bash
 
@@ -105,11 +104,11 @@ Replace `<cluster-name>` with your cluster domain name.
 Replace `<HOST_UUID>` with the UUID of your host and ensure `${JWT_TOKEN}` is set to a valid authentication token.
 
 
-Deactivation of vPro Power Management
--------------------------------------
+Deactivation of Intel® vPro® Power Management
+---------------------------------------------
 
-To deactivate vPro management features, the device can be deauthorized or deactivated from host-actions.
-**Deauthorize host** and **Deactivate Vpro** will deactivate the device and prevent from further management via vPro.
+To deactivate Intel® vPro® management features, the device can be deauthorized or deactivated from host-actions.
+**Deauthorize host** and **Deactivate Intel® vPro®** will deactivate the device and prevent from further management via Intel® vPro®.
 
 Troubleshooting
 ---------------
