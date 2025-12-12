@@ -76,5 +76,3 @@ Error: Invalid multi-line string
     string
     EOF
     )
-
-
