@@ -29,7 +29,11 @@ The orch-cli binary can be verified using the `cosign software <https://docs.sig
 
 .. code-block:: bash
 
-    cosign verify-blob --key orch-cli.pub --signature orch-cli.sig orch-cli
+    cosign verify-blob \
+            --bundle "cosign.bundle.json" \
+            --certificate-identity-regexp "https://github.com/open-edge-platform/.*/.*/.*\\.yml@.*" \
+            --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
+            orch-cli
 
 To install the binary on Linux system copy the file to an install path (/usr/local/bin or equivalent):
 
