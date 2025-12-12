@@ -229,7 +229,6 @@ Before moving an edge node to a new EMF orchestrator:
 **Note:** Skipping deauthorization/deletion steps will result in orphaned
 CIRA connections and require manual deactivation using rpc commands
 
-.. _vpro_onlogic_k804:
 
 vPro Enabled Without BIOS Configuration Option on OnLogic K804
 ----------------------------------------------------------------
