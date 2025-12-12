@@ -70,3 +70,56 @@ Key Performance Indicators for On-premises Edge Orchestrator
    * - Deploying Application to Edge Node
      - 15 minutes
      - ~5 minutes
+
+Key Performance Indicators for Edge AI Application Deployment Times
+--------------------------------------------------------------------
+
+.. list-table:: Edge AI Application Deployment Times
+   :header-rows: 1
+   :widths: 25 25 15 15 15
+
+   * - Application
+     - Metric
+     - KPI Threshold
+     - Ubuntu OS
+     - Edge Microvisor Toolkit
+   * - Pallet Defect Detection (PDD)
+     - Application Deployment to Edge Node
+     - < 10mins
+     - ~2 mins 10 secs
+     - ~2 min 15 secs
+   * - Image Based Video Search (IBVS)
+     - Application Deployment to Edge Node
+     - < 10mins
+     - ~4 min 10 secs
+     - ~3 min 55 secs
+   * - Chat Question And Answer (ChatQ&A)
+     - Application Deployment to Edge Node
+     - < 10mins
+     - ~9 mins 55 secs
+     - ~9 mins 10 secs
+   * - Weld Porosity (WP)
+     - Application Deployment to Edge Node
+     - < 10mins
+     - ~2 mins 10 secs
+     - ~1 mins 55 secs
+   * - Smart Parking (SP)
+     - Application Deployment to Edge Node
+     - < 10mins
+     - ~5 mins 20 secs
+     - ~5 mins 56 secs
+   * - Loitering Detection (LD)
+     - Application Deployment to Edge Node
+     - < 10mins
+     - ~5 min 10 sec
+     - ~5 min 30 secs
+   * - PCB Defect Detection (PCB)
+     - Application Deployment to Edge Node
+     - < 10mins
+     - ~2 mins 15 secs
+     - ~1 mins 55 secs
+   * - Worker Safety Gear Detection (WSGD)
+     - Application Deployment to Edge Node
+     - < 10mins
+     - ~2 min 5 sec
+     - ~1 min 45 secs
