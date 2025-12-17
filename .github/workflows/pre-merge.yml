@@ -26,7 +26,7 @@ jobs:
         with:
           persist-credentials: false
       - name: "Verify Branch Name"
-        uses: open-edge-platform/orch-ci/verify-branch-name@93183bfab99c3bfd19f2a2f36adce36fc5bebe87  # yamllint disable-line rule:line-length
+        uses: open-edge-platform/orch-ci/verify-branch-name@1677715bf8b1cbfa4da2b5df2552048ac3403651  # yamllint disable-line rule:line-length
 
   pre-merge-pipeline:
     permissions:
