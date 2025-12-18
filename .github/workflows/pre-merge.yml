@@ -27,7 +27,7 @@ jobs:
           persist-credentials: false
       - name: "Verify Branch Name"
         uses: open-edge-platform/orch-ci/verify-branch-name@20b640842e63420b06b3ff4247e608228e14c74a  # 2026.0.1
-        
+
   pre-merge-pipeline:
     permissions:
       contents: read
