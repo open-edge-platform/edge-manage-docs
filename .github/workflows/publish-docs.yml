@@ -15,12 +15,12 @@ jobs:
       contents: read          # needed for actions/checkout
       pull-requests: read     # needed for gh pr list
       issues: write           # needed to post PR comment
-    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@0b7aa6e77ea8fefda2c090489ced52ac2b903c55  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@20b640842e63420b06b3ff4247e608228e14c74a  # yamllint disable-line rule:line-length
     with:
       simple_mode: false
       branch_pattern: '^(main|release-[0-9]+\.[0-9]+.*)$'
       switch_main_to_dev: true
     secrets:
-      SYS_ORCH_GITHUB: ${{ secrets.SYS_ORCH_GITHUB }}
+      SYS_EMF_GH_TOKEN: ${{ secrets.SYS_EMF_GH_TOKEN }}
       DOC_AWS_ACCESS_KEY_ID: ${{ secrets.DOC_AWS_ACCESS_KEY_ID }}
       DOC_AWS_SECRET_ACCESS_KEY: ${{ secrets.DOC_AWS_SECRET_ACCESS_KEY }}
