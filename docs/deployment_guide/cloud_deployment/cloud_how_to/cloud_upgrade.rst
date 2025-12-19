@@ -1,14 +1,14 @@
 EMF Cloud Upgrade Guide
 =========================
 
-**Upgrade Path:** EMF Cloud v3.0 → v3.1
+**Upgrade Path:** EMF Cloud v3.1 → v25.2
 **Document Version:** 1.0
 
 Overview
 --------
 
 This document provides step-by-step instructions to upgrade
-Cloud Edge Manageability Framework (EMF) from version 3.0 to 3.1.
+Cloud Edge Manageability Framework (EMF) from version 3.1 to 25.2.
 
 Important Notes
 ---------------
@@ -47,12 +47,12 @@ Step 1: Prepare Edge Orchestrator Upgrade Environment
 
 You need to follow the steps mentioned in `Prerequisites section <https://docs.openedgeplatform.intel.com/edge-manage-docs/3.0/deployment_guide/cloud_deployment/cloud_get_started/cloud_start_installer.html#prerequisites>`_ with some changes as listed below.
 
-1. **Pull the intended 3.1 cloud installer image and extract it**
+1. **Pull the intended 25.2 cloud installer image and extract it**
 
    .. code-block:: bash
 
-      # Replace <3.1-TAG> with actual tag
-      oras pull registry-rs.edgeorchestration.intel.com/edge-orch/common/files/cloud-orchestrator-installer:<3.1-TAG>
+      # Replace <25.2-TAG> with actual tag
+      oras pull registry-rs.edgeorchestration.intel.com/edge-orch/common/files/cloud-orchestrator-installer:<25.2-TAG>
       tar -xzf _build/cloud-orchestrator-installer.tgz
 
 2. **Start the installation Environment**
@@ -112,6 +112,12 @@ You need to follow the steps mentioned in `Prerequisites section <https://docs.o
 
       orchestrator-admin:~$ cd ~
 
+   Load the aws environment variables into the shell
+
+    .. code-block:: bash
+
+      source ./reconnect-aws-cluster.sh
+
    Configure the cluster deployment options. From the ~ directory in the orchestrator-admin container,
    run the following command:
 
@@ -120,106 +126,9 @@ You need to follow the steps mentioned in `Prerequisites section <https://docs.o
       orchestrator-admin:~$ ./configure-cluster.sh
 
    This process will start redeploying the upgraded applications in the cluster starting with root-app.
-   Let it continue and you would observe "infra-external" app is failing due to orch-infra-rps and orch-infra-mps databases.
-   In order to fix the above problem, you need to follow below steps.
 
-Step 2: Create orch-infra-rps DB
 
-1. **Login to aurora postgres DB cluster running in AWS**
-
-   .. code-block:: bash
-
-      PGPASSWORD='[PWD]' psql -h [HostEndpoint] -U postgres -d postgres
-
-   .. Note::
-      [PWD] can be obtained from AWS Secret Manager for this specific cluster DB
-      [HostEndpoint] This is the cluster DB endpoint and can be obtained from Aurora and RDS service in AWS
-
-   This will take you to postgres prompt where you need to execute DB and user creation commands as given in next steps
-
-   .. code-block:: bash
-
-      postgres=>
-
-2. **Create orch-infra-rps DB and user**
-
-   .. code-block:: sql
-
-      CREATE DATABASE "orch-infra-rps";
-      REVOKE CREATE ON SCHEMA public FROM PUBLIC;
-      REVOKE ALL ON DATABASE "orch-infra-rps" FROM PUBLIC;
-      CREATE USER "orch-infra-rps-user" WITH PASSWORD '<USER_DEFINED_PASSWORD>';
-      GRANT CONNECT ON DATABASE "orch-infra-rps" TO "orch-infra-rps-user";
-      GRANT ALL PRIVILEGES ON DATABASE "orch-infra-rps" TO "orch-infra-rps-user";
-      ALTER DATABASE "orch-infra-rps" OWNER TO "orch-infra-rps-user";
-
-3. **Create orch-infra-mps DB and user**
-
-   .. code-block:: sql
-
-      CREATE DATABASE "orch-infra-mps";
-      REVOKE CREATE ON SCHEMA public FROM PUBLIC;
-      REVOKE ALL ON DATABASE "orch-infra-mps" FROM PUBLIC;
-      CREATE USER "orch-infra-mps-user" WITH PASSWORD '<USER_DEFINED_PASSWORD>';
-      GRANT CONNECT ON DATABASE "orch-infra-mps" TO "orch-infra-mps-user";
-      GRANT ALL PRIVILEGES ON DATABASE "orch-infra-mps" TO "orch-infra-mps-user";
-      ALTER DATABASE "orch-infra-mps" OWNER TO "orch-infra-mps-user";
-
-   .. Note::
-      <USER_DEFINED_PASSWORD> This is the password of your choice. Use the same password everywhere where this appears.
-
-4. **Exit the postgres prompt**
-
-   .. code-block:: bash
-
-      postgres=> \q
-
-5. **Create kubernetes secrets for DB users created above**
-
-   .. code-block:: bash
-
-      kubectl create secret generic mps-aurora-postgresql \
-      --from-literal=PGDATABASE=orch-infra-mps \
-      --from-literal=PGHOST=<host-endpoint-url> \
-      --from-literal=PGPASSWORD=<USER_DEFINED_PASSWORD> \
-      --from-literal=PGPORT=5432 \
-      --from-literal=PGUSER=orch-infra-mps-user \
-      --from-literal=password=<USER_DEFINED_PASSWORD> \
-      -n orch-infra
-
-      kubectl create secret generic mps-reader-aurora-postgresql \
-      --from-literal=PGDATABASE=orch-infra-mps \
-      --from-literal=PGHOST=<host-endpoint-url> \
-      --from-literal=PGPASSWORD=<USER_DEFINED_PASSWORD> \
-      --from-literal=PGPORT=5432 \
-      --from-literal=PGUSER=orch-infra-mps-user \
-      --from-literal=password=<USER_DEFINED_PASSWORD> \
-      -n orch-infra
-
-      kubectl create secret generic rps-aurora-postgresql \
-      --from-literal=PGDATABASE=orch-infra-rps \
-      --from-literal=PGHOST=<host-endpoint-url> \
-      --from-literal=PGPASSWORD=<USER_DEFINED_PASSWORD> \
-      --from-literal=PGPORT=5432 \
-      --from-literal=PGUSER=orch-infra-rps-user \
-      --from-literal=password=<USER_DEFINED_PASSWORD> \
-      -n orch-infra
-
-      kubectl create secret generic rps-reader-aurora-postgresql \
-      --from-literal=PGDATABASE=orch-infra-rps \
-      --from-literal=PGHOST=<host-endpoint-url> \
-      --from-literal=PGPASSWORD=<USER_DEFINED_PASSWORD> \
-      --from-literal=PGPORT=5432 \
-      --from-literal=PGUSER=orch-infra-rps-user \
-      --from-literal=password=<USER_DEFINED_PASSWORD> \
-      -n orch-infra
-
-Step 3: Delete/resync amt-dbpassword-secret-job pod in infra-extermal app
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Once DB, user and secrets creation is done, you need to delete/resync amt-dbpassword-secret-job pod and it should make infra-external app healthy.
-
-Step 4: Verification
+Step 2: Verification
 ~~~~~~~~~~~~~~~~~~~~
 
 Log into web UI of the orchestrator. Go to Settings->OS profiles. There you should see the any of the toolkit version upgraded to latest.

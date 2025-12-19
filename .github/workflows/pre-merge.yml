@@ -13,7 +13,8 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-permissions: {}
+permissions:
+  contents: read
 
 jobs:
   pre-checks:
@@ -21,16 +22,17 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
       - name: "Verify Branch Name"
-        uses: open-edge-platform/orch-ci/verify-branch-name@a389c296f4a6dd2ff9d976007fd386950ab99605  # yamllint disable-line rule:line-length
+        uses: open-edge-platform/orch-ci/verify-branch-name@20b640842e63420b06b3ff4247e608228e14c74a  # yamllint disable-line rule:line-length
+
   pre-merge-pipeline:
     permissions:
       contents: read
     needs: pre-checks
-    uses: open-edge-platform/orch-ci/.github/workflows/pre-merge.yml@a389c296f4a6dd2ff9d976007fd386950ab99605  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/pre-merge.yml@20b640842e63420b06b3ff4247e608228e14c74a  # yamllint disable-line rule:line-length
     with:
       run_security_scans: false
       run_version_check: true

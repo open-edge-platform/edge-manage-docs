@@ -41,10 +41,10 @@ Perform the following steps to use the Interconnect feature:
       * - Annotation
         - Description
 
-      * - **network.app.orchestrator.io/expose-service**
+      * - **network.app.edge-orchestrator.intel.com/expose-service**
         - Set to "true" to expose the service to the router.
 
-      * - **network.app.orchestrator.io/expose-port**
+      * - **network.app.edge-orchestrator.intel.com/expose-port**
         - The port number to expose.
 
 
@@ -59,8 +59,8 @@ Perform the following steps to use the Interconnect feature:
      metadata:
        name: my-backend
        annotations:
-         network.app.orchestrator.io/expose-service: "true"
-         network.app.orchestrator.io/expose-port: "8080"
+         network.app.edge-orchestrator.intel.com/expose-service: "true"
+         network.app.edge-orchestrator.intel.com/expose-port: "8080"
     spec:
         ports:
         - port: 8080
@@ -229,21 +229,21 @@ To see a list of the clusters participating in the Interconnect Hub and Spoke pa
 
    .. code:: bash
 
-      kubectl get clusters.interconnect.app.orchestrator.io
+      kubectl get clusters.interconnect.app.edge-orchestrator.intel.com
 
 
 To see a list of the links participating in the Interconnect Hub and Spoke pattern, use the following:
 
    .. code:: bash
 
-      kubectl get links.interconnect.app.orchestrator.io
+      kubectl get links.interconnect.app.edge-orchestrator.intel.com
 
 
 To see a list of the services exposed on the Interconnect, use the following:
 
     .. code:: bash
 
-        kubectl get services.interconnect.app.orchestrator.io.
+        kubectl get services.interconnect.app.edge-orchestrator.intel.com
 
 
 Pods on the Hub or Spoke Edge Node Cluster
@@ -257,6 +257,13 @@ To see a list of the pods in the `interconnect` namespace (where the router is r
 
 
 There should be two pods `skupper-service-controller` and `skupper-router`.
+
+- The `skupper-router` pod will only be present if you have deployed an
+  application that uses the Interconnect.
+
+- The `skupper-service-controller` pod will always be present whenever the `skupper`
+  extension is deployed, regardless of whether or not any applications use the
+  Interconnect.
 
 There should be a service for each annotated service(s) in your server application.
 

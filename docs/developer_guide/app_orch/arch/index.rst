@@ -69,7 +69,6 @@ multi-tenant Projects.
 
 .. toctree::
    :hidden:
-   :maxdepth: 3
 
    key_components
    data_model

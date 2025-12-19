@@ -40,6 +40,4 @@ on the Edge Node Cluster and must be installed by the user.
     single project (tenant). Refer to :doc:`../concepts/multitenancy` section
     for more details on how multitenancy in observability is handled.
 
-.. toctree::
-   :hidden:
-   :maxdepth: 3
+

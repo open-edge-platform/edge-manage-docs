@@ -104,7 +104,7 @@ html_context = {
     "color_scheme": "tb",
 }
 html_theme_options = {
-    "navigation_depth": 3,
+    "navigation_depth": 6,
     "show_toc_level": 1,
     "show_nav_level": 1,
     # "collapse_navigation": False,
@@ -113,7 +113,7 @@ html_theme_options = {
     # "navbar_start": [],  # Logo on the left
     "navbar_center": ["navbar-nav"],  # Main navigation in the center
     # "navbar_end": ["search-field"],  # Search + Theme Switcher on the right
-    "header_links_before_dropdown": 4,
+    "header_links_before_dropdown": 6,
     "logo": {
         "text": "Edge Orchestrator",
         # "image_dark": "_static/logo-dark.svg",
