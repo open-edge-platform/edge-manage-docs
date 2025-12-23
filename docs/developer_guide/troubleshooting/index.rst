@@ -21,3 +21,4 @@ the User Guide :doc:`/user_guide/troubleshooting/index` doc.
    hook_os
    ui
    sre_exporter
+   istio_proxy
