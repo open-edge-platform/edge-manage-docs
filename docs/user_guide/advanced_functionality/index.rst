@@ -19,7 +19,6 @@ application's capabilities:
    * :doc:`/user_guide/advanced_functionality/custom_config`
    * :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
    * :doc:`/user_guide/advanced_functionality/custom_os_profile`
-   * :doc:`/user_guide/advanced_functionality/Intel_OOT_gpu_driver_installation`
 
 
 .. toctree::
@@ -40,4 +39,3 @@ application's capabilities:
    vpro_power_mgt
    configure_edgenode_lvm_parition.rst
    custom_os_profile
-   Intel_OOT_gpu_driver_installation
