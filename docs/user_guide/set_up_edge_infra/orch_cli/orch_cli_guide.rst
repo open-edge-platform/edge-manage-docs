@@ -751,7 +751,7 @@ To override and unlock or lock the execution of commands and their subsequent AP
     # To lock the EIM OOB commands
     orch-cli config set orchestrator.features.edge-infrastructure-manager.oob.installed false
 
-The overridden configuration will persist until a `login`or a `logout` command is run - which will reset the configuration to the dynamically detected features or defaults.
+The overridden configuration will persist until a *login* or a *logout* command is run - which will reset the configuration to the dynamically detected features or defaults.
 Note that overriding the features in this way does not change the actual capabilities of the connected Edge Orchestrator - attempting to run commands that are not supported
 by the Edge Orchestrator will result in error responses.
 

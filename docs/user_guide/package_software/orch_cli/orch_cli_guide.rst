@@ -18,6 +18,8 @@ For detailed instructions on downloading and authenticating with the orch-cli to
 .. note::
    The same orch-cli binary is used for both infrastructure management and application packaging operations.
 
+   The application management commands are only enabled in the CLI if the Edge Orchestrator supports the feature.
+
 Running commands
 ^^^^^^^^^^^^^^^^
 
