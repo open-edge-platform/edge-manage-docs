@@ -429,6 +429,11 @@ It allows for registration of edge node in bulk.
 For details on how to prepare the input .csv file and advanced options to create the hosts see:
 :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration`
 
+.. note::
+    
+     In EMF deployments where the EIM's provisioning feature is disabled the host creation command will allow for registration and onboarding of
+     the edge nodes without an association to the OS Profile and Site.
+
 To create a host run the create command with the --import-from-csv flag pointing to .csv filepath.
 
 .. code-block:: bash
