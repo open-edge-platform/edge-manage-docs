@@ -32,7 +32,7 @@ jobs:
     permissions:
       contents: read
     needs: pre-checks
-    uses: open-edge-platform/orch-ci/.github/workflows/pre-merge.yml@c6a01b803d3c045de1b1b2f788a47eaaefed3f07  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/pre-merge.yml@8fc2349c02d438e1707f99343069963fb49d3eba  # yamllint disable-line rule:line-length
     with:
       run_security_scans: false
       run_version_check: true
