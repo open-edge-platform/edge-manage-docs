@@ -86,6 +86,11 @@ The Keycloak's `kcadm Admin CLI <https://www.keycloak.org/docs/latest/server_adm
 The combined usage of kcadm and orch-cli to initially set up the IAM/tenancy can be found at:
 :doc:`/shared/shared_ht_iam_mt_cli`
 
+.. note::
+    
+     Certain modular deployments/workflows of Edge Manageability Framework or it's components may not include support for 
+     multitenancy - in those cases a default user/tenant is created and configuring user management may not be needed.
+
 Authentication
 ^^^^^^^^^^^^^^
 
@@ -143,6 +148,50 @@ For the *list* commands the --verbose flag can be used to include additional inf
 
 Note that some of the *get* and *delete* commands require usage of resource ID instead of resource name due to the fact that some resources do not have unique names.
 
+Dynamic EMF feature support within CLI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The orch-cli tool supports dynamic feature detection based on the connected Edge Orchestrator's capabilities exposed by the Edge Orchestrator's "Component Status" service.
+When a command is executed the tool queries the orchestrator for supported features and only presents the commands that are supported.
+This allows the same tool to be used across different versions and deployments of Edge Orchestrator without compatibility issues.
+
+.. note::
+    
+     For the dynamic feature detection to work the Edge Orchestrator must have the "Component Status" service enabled and accessible.
+     Previous versions of Edge Orchestrator may not have this service available - in those cases the tool will assume all features are supported.
+
+Currently the CLI dynamically enables/disables groups of commands based on the following features criteria:
+
+- Multitenancy support - organization and project management commands.
+- Host onboarding support - host onboarding commands.
+- Host provisioning support - host provisioning commands and management of resources related to provisioning.
+- Out-of-band (OOB) support - AMT profile management commands and AMT/vPRO related features.
+- Day 2 OS Update support - day 2 OS update commands.
+- Cluster management support - cluster management commands.
+- Application management support - application management commands.
+
+To get the current version of the CLI and the connected Edge Orchestrator run the following command:
+
+.. code-block:: bash
+
+    ./orch-cli version
+
+To get the list of supported features of the connected Edge Orchestrator run the following command:
+
+.. code-block:: bash
+
+    ./orch-cli list features
+
+To get information about which specific commands are enabled/disabled based on the connected Edge Orchestrator's capabilities run the following command:
+
+.. code-block:: bash
+
+    ./orch-cli list features --show-disabled --show-enabled
+
+.. note::
+    
+     It is possible to override the dynamic feature detection for debugging or experimental purposes - for more information see: `Overriding dynamic feature detection`_
+
 Organization Management
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -173,6 +222,11 @@ To delete an organization run the delete command.
 
     ./orch-cli delete organization myorg
 
+.. note::
+    
+     Certain modular deployments/workflows of Edge Manageability Framework or it's components may not include support for 
+     multitenancy - in those cases a default organization is created and configuring it is not needed.
+
 Project Management
 ^^^^^^^^^^^^^^^^^^
 
@@ -201,6 +255,11 @@ To delete a project run the delete command.
 .. code-block:: bash
 
     ./orch-cli delete project myproject
+
+.. note::
+    
+     Certain modular deployments/workflows of Edge Manageability Framework or it's components may not include support for 
+     multitenancy - in those cases a default organization is created and configuring it is not needed.
 
 Local SSH Account Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -660,9 +719,39 @@ Help
 
 For help with any of the commands run the command with `--help`.
 
-Additional commands:
-^^^^^^^^^^^^^^^^^^^^
+Additional commands
+^^^^^^^^^^^^^^^^^^^
 
 The application level CLI commands are covered under the :doc:`/user_guide/package_software/orch_cli/orch_cli_guide`
 
 See "./orch-cli <verb> <noun> --help" for current usage and capabilities of these commands.
+
+Overriding dynamic feature detection
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The dynamic feature detection can be overridden temporarily for debug or experimental purposes by overriding the viper configuration which stores the detected features.
+The viper configuration file is located at **~/.orch-cli/orch-cli.yaml**
+
+To override and unlock or lock the execution of commands and their subsequent API calls edit the file directly or run the following commands and set the feature to `true` or `false` as an example:
+
+.. code-block:: bash
+
+    # To unlock application orchestration commands
+    orch-cli config set orchestrator.features.application-orchestration.installed true
+    # To lock cluster orchestration commands
+    orch-cli config set orchestrator.features.cluster-orchestration.installed false
+    # To lock multitenancy commands
+    orch-cli config set orchestrator.features.multitenancy.installed false
+    # To unlock the EIM onboarding commands
+    orch-cli config set orchestrator.features.edge-infrastructure-manager.onboarding.installed true
+    # To unlock the EIM provisioning commands
+    orch-cli config set orchestrator.features.edge-infrastructure-manager.provisioning.installed true
+    # To unlock the EIM Day2 updates commands
+    orch-cli config set orchestrator.features.edge-infrastructure-manager.day2.installed true
+    # To lock the EIM OOB commands
+    orch-cli config set orchestrator.features.edge-infrastructure-manager.oob.installed false
+
+The overridden configuration will persist until a `login`or a `logout` command is run - which will reset the configuration to the dynamically detected features or defaults.
+Note that overriding the features in this way does not change the actual capabilities of the connected Edge Orchestrator - attempting to run commands that are not supported
+by the Edge Orchestrator will result in error responses.
+
