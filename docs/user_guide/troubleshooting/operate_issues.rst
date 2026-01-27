@@ -19,7 +19,6 @@ hardware, or applications of Edge Orchestrator.
 * `VM is not responding <#vm-is-not-responding>`__
 * `Cannot connect to VM through VNC console or through SSH <#cannot-connect-to-vm-through-vnc-console-or-through-ssh>`__
 * `Ingress of VMs does not work <#ingress-of-vms-does-not-work>`__
-* :ref:`user_guide/package_software/interconnect:troubleshooting interconnect`
 * `Docker\* Hub returns a 429 Too Many Requests error <#docker-hub-returns-a-429-too-many-requests-error>`__
 * `Host has error status immediately after provisioning <#host-error-status-after-provision>`__
 * `Application VM can't connect to it's cloud counterpart (Exceeded MTU) <#application-vm-can-t-connect-to-it-s-cloud-counterpart-exceeded-mtu>`__

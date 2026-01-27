@@ -27,11 +27,6 @@ Preparing software for automated deployment involves these steps:
 
    Create a deployment package for each set of applications you want to deploy as a group. If your applications use multiple profiles, specify the profiles to use with this package.
 
-#. Optionally configure a Network to connect multiple applications
-
-   Networks are an advanced feature that allows multiple applications deployed on separate clusters to communicate with each other. Networks are created using the Interconnect feature and
-   are described in :doc:`/user_guide/package_software/interconnect`.
-
 #. Configure the package for automated deployment
 
    Next, set up a deployment for the package. |software_prod_name| offers two methods of automated deployment:

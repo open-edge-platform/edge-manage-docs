@@ -12,8 +12,8 @@ Scalability Support
 The Application Catalog component is designed to be scalable and can be
 deployed currently in a single-node configuration.
 
-Application Deployment Manager, Application Resource Manager,
-and Interconnect are all designed using the Kubernetes\* operator
+Application Deployment Manager and Application Resource Manager
+are designed using the Kubernetes\* operator
 pattern and can be scaled horizontally by deploying multiple
 instances.
 
