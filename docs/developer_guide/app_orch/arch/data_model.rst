@@ -81,13 +81,6 @@ managed, and can be created, deleted, or upgraded. Deployments are runtime
 instances of Deployment Packages (and therefore Applications) with a chosen
 Profile and optionally value overrides (parameter templates).
 
-Networks
---------
-
-Network objects are a CRD that can be used to drive the
-:doc:`Interconnect service <key_components>` to connect
-services in deployed Applications across Edge Node Clusters.
-
 Multi-Tenant Projects
 ---------------------
 

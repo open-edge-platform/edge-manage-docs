@@ -31,8 +31,6 @@ Workflow Stages
      deploy to and the profile to use and any possible overrides.
    - The Application Deployment Manager will deploy the Deployment Package suitable Edge
      Node clusters using the Fleet Agent running on the Edge Node clusters.
-   - Network objects can be created using the Interconnect service to allow applications
-     deployed on separate Edge Node clusters to communicate with each other.
 
 3. **Day 2: Output**:
 
