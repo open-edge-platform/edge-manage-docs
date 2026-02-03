@@ -29,10 +29,10 @@ Edge Orchestrator On-Premises Resource Requirements
      * CPU: 128 physical cores
      * Disk: 2 TiB
 
-  * For small-scale deployments (5 ENs), Intel recommends the following compute resource setup when AO/CO and Observability are disabled:
+  * For small-scale deployments (10 ENs), Intel recommends the following compute resource setup when AO/CO and Observability are disabled:
 
      * RAM: 16 GiB
-     * CPU: 8 physical cores
+     * CPU: 6 physical cores
      * Disk: 256 GiB
 
 Storage consumption varies with environment-specific details, including user-specific telemetry collection policies and application log generation.
