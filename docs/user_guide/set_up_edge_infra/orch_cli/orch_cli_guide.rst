@@ -169,6 +169,7 @@ Currently the CLI dynamically enables/disables groups of commands based on the f
 - Day 2 OS Update support - day 2 OS update commands.
 - Cluster management support - cluster management commands.
 - Application management support - application management commands.
+- OXM support - standalone Edge Node config commands.
 
 To get the current version of the CLI and the connected Edge Orchestrator run the following command:
 
@@ -181,12 +182,6 @@ To get the list of supported features of the connected Edge Orchestrator run the
 .. code-block:: bash
 
     ./orch-cli list features
-
-To get information about which specific commands are enabled/disabled based on the connected Edge Orchestrator's capabilities run the following command:
-
-.. code-block:: bash
-
-    ./orch-cli list features --show-disabled --show-enabled
 
 .. note::
     
@@ -755,6 +750,8 @@ To override and unlock or lock the execution of commands and their subsequent AP
     orch-cli config set orchestrator.features.edge-infrastructure-manager.day2.installed true
     # To lock the EIM OOB commands
     orch-cli config set orchestrator.features.edge-infrastructure-manager.oob.installed false
+    # To lock the EIM OXM commands
+    orch-cli config set orchestrator.features.edge-infrastructure-manager.oxm-profile.installed false
 
 The overridden configuration will persist until a *login* or a *logout* command is run - which will reset the configuration to the dynamically detected features or defaults.
 Note that overriding the features in this way does not change the actual capabilities of the connected Edge Orchestrator - attempting to run commands that are not supported
