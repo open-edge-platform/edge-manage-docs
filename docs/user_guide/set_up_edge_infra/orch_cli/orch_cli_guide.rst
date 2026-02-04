@@ -87,8 +87,8 @@ The combined usage of kcadm and orch-cli to initially set up the IAM/tenancy can
 :doc:`/shared/shared_ht_iam_mt_cli`
 
 .. note::
-    
-     Certain modular deployments/workflows of Edge Manageability Framework or it's components may not include support for 
+
+     Certain modular deployments/workflows of Edge Manageability Framework or it's components may not include support for
      multitenancy - in those cases a default user/tenant is created and configuring user management may not be needed.
 
 Authentication
@@ -156,7 +156,7 @@ When a command is executed the tool queries the orchestrator for supported featu
 This allows the same tool to be used across different versions and deployments of Edge Orchestrator without compatibility issues.
 
 .. note::
-    
+
      For the dynamic feature detection to work the Edge Orchestrator must have the "Component Status" service enabled and accessible.
      Previous versions of Edge Orchestrator may not have this service available - in those cases the tool will assume all features are supported.
 
@@ -184,7 +184,7 @@ To get the list of supported features of the connected Edge Orchestrator run the
     ./orch-cli list features
 
 .. note::
-    
+
      It is possible to override the dynamic feature detection for debugging or experimental purposes - for more information see: `Overriding dynamic feature detection`_
 
 Organization Management
@@ -218,8 +218,8 @@ To delete an organization run the delete command.
     ./orch-cli delete organization myorg
 
 .. note::
-    
-     Certain modular deployments/workflows of Edge Manageability Framework or it's components may not include support for 
+
+     Certain modular deployments/workflows of Edge Manageability Framework or it's components may not include support for
      multitenancy - in those cases a default organization is created and configuring it is not needed.
 
 Project Management
@@ -252,8 +252,8 @@ To delete a project run the delete command.
     ./orch-cli delete project myproject
 
 .. note::
-    
-     Certain modular deployments/workflows of Edge Manageability Framework or it's components may not include support for 
+
+     Certain modular deployments/workflows of Edge Manageability Framework or it's components may not include support for
      multitenancy - in those cases a default organization is created and configuring it is not needed.
 
 Local SSH Account Management
@@ -425,7 +425,7 @@ For details on how to prepare the input .csv file and advanced options to create
 :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration`
 
 .. note::
-    
+
      In EMF deployments where the EIM's provisioning feature is disabled the host creation command will allow for registration and onboarding of
      the edge nodes without an association to the OS Profile and Site.
 
