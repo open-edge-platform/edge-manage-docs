@@ -160,7 +160,7 @@ To install Edge Orchestrator and Edge Node, the following Egress rules are requi
     -  https://aws.github.io/
     -  Helm Chart
   * -  Edge Orchestrator
-    -  https://kubernetes-sigs.github.io/
+    -  https://github.com/kubernetes-sigs
     -  Helm Chart
   * -  Edge Orchestrator
     -  https://charts.jetstack.io

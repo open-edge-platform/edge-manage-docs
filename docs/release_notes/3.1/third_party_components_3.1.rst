@@ -215,11 +215,11 @@ Cluster Extensions
      - 7.13.0
    * - nvidia-gpu-operator
      - Helm/Container
-     - https://helm.ngc.nvidia.com/nvidia/gpu-operator
+     - https://catalog.ngc.nvidia.com/orgs/nvidia/containers/gpu-operator?version=v25.3.0
      - v25.3.0
    * - intel-device-plugins-operator
      - Helm/Container
-     - https://intel.github.io/helm-charts/intel-device-plugins-gpu
+     - https://github.com/intel/helm-charts/tree/main/charts/gpu-device-plugin
      - 0.29.0
 
 Edge Infrastructure Manager
@@ -769,7 +769,7 @@ Trusted Compute
      -
    * - kata
      - Containers, scripts, ...
-     - https://github.com/kata-containers/kata-containers/releases/download/3.13.1/kata-static-3.13.1-amd64.tar.xz
+     - https://github.com/kata-containers/kata-containers/releases/tag/3.13.0
      -
    * - Debian Bookworm
      - Containers and binaries
