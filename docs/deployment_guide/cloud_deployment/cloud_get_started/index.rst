@@ -59,7 +59,7 @@ that the AWS Region you plan to install to has a minimum of three Availability Z
 The Edge Orchestrator installer will verify that the selected AWS Region has at least three Availability Zones and error out if the requirement is not met.
 
 For Firewall configuration, see
-`Firewall Configuration </../../shared/shared_gs_iam>`__
+`Firewall Configuration <../../../shared/shared_gs_firewall_config.html>`__
 
 .. toctree::
    :hidden:

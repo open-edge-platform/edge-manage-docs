@@ -142,7 +142,7 @@ To install Edge Orchestrator and Edge Node, the following Egress rules are requi
     -  https://quay.io
     -  Container images
   * -  Edge Orchestrator
-    -  https://cr.fluentbit.io
+    -  https://fluentbit.io
     -  Container images
   * -  Edge Orchestrator
     -  https://k8s.gcr.io

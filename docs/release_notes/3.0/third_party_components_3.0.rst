@@ -271,7 +271,7 @@ Edge Infrastructure Manager
      - sha256:fe8a5ee49f613495df3b57afa86b39f081bd1b3b9ed61248f46c3d3d7df56092
    * - busybox
      - Container (utility)
-     - https://hub.docker.com//busybox/
+     - https://hub.docker.com/_/busybox/
      - 1.36.1
 
 Platform services
