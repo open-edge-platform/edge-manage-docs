@@ -169,7 +169,7 @@ Update Cluster Scale Settings
 .. note::
    Scaling Edge Orchestrator cluster may require changing of observability profile.
    For details on observability profiles, see
-   `Observability Configuration <../../cloud_deployment/cloud_get_started/system_requirements_aws_orch#edge-orchestrator-observability-configuration>`__.
+   `Observability Configuration <../../cloud_deployment/cloud_get_started/system_requirements_aws_orch.html#edge-orchestrator-observability-configuration>`__.
 
 .. note::
    When updating the cluster scale, you also need to provide flags from the installation step;

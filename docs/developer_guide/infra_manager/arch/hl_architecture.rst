@@ -19,7 +19,7 @@ manage, monitor, control and perform overall lifecycle management of physical
 equipment inventory deployed at the edge locations. It is made up of the
 following key components and services:
 
-`API <https://github.com/open-edge-platform/infra-core/tree/main/api>`_ provides a northbound REST API that can be accessed by users and other
+`API <https://github.com/open-edge-platform/infra-core/tree/main/apiv2>`_ provides a northbound REST API that can be accessed by users and other
 Open Edge Platform services. It is a horizontally scalable stateless
 service.
 
