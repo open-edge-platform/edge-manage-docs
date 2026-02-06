@@ -315,7 +315,7 @@ To install Edge Orchestrator and Edge Node, the following Egress rules are requi
     -  https://kiali.org/
     -  Helm Chart
   * -  Edge Orchestrator
-    -  https://kyverno.io/
+    -  https://kyverno.github.io/kyverno/
     -  Helm Chart
   * -  Edge Orchestrator
     -  https://metallb.io/

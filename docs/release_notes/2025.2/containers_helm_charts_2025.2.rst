@@ -692,7 +692,7 @@ Helm Charts for Platform services components
      - istio-system
      - "110"
      - istiod
-     - https://istio-release.storage.googleapis.com/charts
+     - https://istio-release.storage.googleapis.com
      - 1.28.0
    * - 4
      - kiali

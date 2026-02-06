@@ -166,7 +166,7 @@ To install Edge Orchestrator and Edge Node, the following Egress rules are requi
     -  https://charts.jetstack.io
     -  Helm Chart
   * -  Edge Orchestrator
-    -  https://kubernetes.github.io/
+    -  https://kubernetes.io/
     -  Helm Chart
   * -  Edge Orchestrator
     -  https://charts.external-secrets.io
@@ -184,22 +184,22 @@ To install Edge Orchestrator and Edge Node, the following Egress rules are requi
     -  https://kiali.org/
     -  Helm Chart
   * -  Edge Orchestrator
-    -  https://kyverno.github.io/
+    -  https://kyverno.github.io/kyverno/
     -  Helm Chart
   * -  Edge Orchestrator
-    -  https://metallb.github.io/
+    -  https://metallb.io/
     -  Helm Chart
   * -  Edge Orchestrator
-    -  https://prometheus-community.github.io/
+    -  https://prometheus-community.github.io/helm-charts
     -  Helm Chart
   * -  Edge Orchestrator
     -  https://charts.bitnami.com/
     -  Helm Chart
   * -  Edge Orchestrator
-    -  https://stakater.github.io/
+    -  https://stakater.github.io/stakater-charts
     -  Helm Chart
   * -  Edge Orchestrator
-    -  https://helm.traefik.io/
+    -  https://helm.traefik.io/traefik
     -  Helm Chart
   * -  Edge Orchestrator
     -  https://helm.releases.hashicorp.com
@@ -268,7 +268,7 @@ To install Edge Orchestrator and Edge Node, the following Egress rules are requi
     -  https://\*.archive.ubuntu.com
     -  Onboarding
   * -  Edge Node
-    -  https://ppa.launchpad.net
+    -  https://launchpad.net/+tour/ppa
     -  Onboarding
   * -  Edge Node
     -  https://esm.ubuntu.com

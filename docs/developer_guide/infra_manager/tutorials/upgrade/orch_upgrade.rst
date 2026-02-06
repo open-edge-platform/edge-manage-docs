@@ -24,7 +24,7 @@ Full Upgrade of the Edge Orchestrator Platform in Production Environment
 
 Starting with version 3.1, operators running an earlier version of Edge Orchestrator are expected
 to be able to perform a seamless upgrade of the entire platform to the latest release.
-The  `Orchestrator upgrade guide <TODO link>`_  provides the instructions for the operator to perform this upgrade.
+The  `Orchestrator upgrade guide (under development) <TODO link>`_  provides the instructions for the operator to perform this upgrade.
 
 .. note::
 
@@ -47,10 +47,10 @@ To do so, users can modify the chart revision of the following applications:
 - infra-external
 - infra-onboarding
 
-Using the platform’s web UI, developers can then verify the upgraded Orchestrator by:
+Using the platform's web UI, developers can then verify the upgraded Orchestrator by:
 
 - Onboarding an Edge Node (EN)
-- Monitoring the EN’s status
+- Monitoring the EN status
 - Performing an EN upgrade
 
 The following section provides step-by-step instructions for developers to upgrade the Edge Manageability applications and to verify
