@@ -13,12 +13,12 @@ View Status of Deployments
 
 The **Deployment Status** section presents an at-a-glance view across all of your deployments. You can view the following statuses of the deployments:
 
--	**Total**: Shows the total count of deployments.
--	**Error**: Shows the total count of deployments that are not running and has encountered some error.
--	**Running**: Shows the total count of deployments that are running.
+-	**Total**: Shows the total count of deployment on clusters.
+-	**Error**: Shows the total count of deployment on clusters that are not running and have encountered some error.
+-	**Running**: Shows the total count of deployment on clusters that are running.
 
 For example, in the following deployment status, there are a total of 40
-deployments and the 40 deployments are running.
+deployment on clusters and the 40 deployment on clusters are running.
 
 .. figure:: images/deploy_status1.png
    :scale: 70 %
