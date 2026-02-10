@@ -24,7 +24,7 @@ Full Upgrade of the Edge Orchestrator Platform in Production Environment
 
 Starting with version 3.1, operators running an earlier version of Edge Orchestrator are expected
 to be able to perform a seamless upgrade of the entire platform to the latest release.
-The  `Orchestrator upgrade guide (under development) <TODO link>`_  provides the instructions for the operator to perform this upgrade.
+The  `Orchestrator upgrade guide <https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/deployment_guide/cloud_deployment/cloud_how_to/cloud_upgrade.html>`_  provides the instructions for the operator to perform this upgrade.
 
 .. note::
 
