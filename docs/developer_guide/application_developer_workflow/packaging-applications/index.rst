@@ -111,7 +111,7 @@ integrity of containerized applications. Some key practices include:
 
 There are many online guides with more details on these practices.
 
-The `Trivy\* <https://trivy.dev/latest/>`_ tool can be used to scan images for
+The `Trivy\* <https://trivy.dev/docs/latest/getting-started/>`_ tool can be used to scan images for
 vulnerabilities. It can be installed locally or added to a CI check. The following
 command will scan the image:
 

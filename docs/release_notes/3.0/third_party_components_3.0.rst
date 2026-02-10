@@ -24,11 +24,11 @@ Application Orchestration
      -
    * - Fleet-Controller
      - Helm*
-     - https://rancher.github.io/fleet-helm-charts/fleet
+     - https://rancher.github.io/fleet-helm-charts/
      - 0.10.2
    * - Fleet-CRD
      - Helm
-     - https://rancher.github.io/fleet-helm-charts/fleet-crd
+     - https://fleet.rancher.io/
      - 0.10.2
    * - Fleet-Agent
      - Container
@@ -72,7 +72,7 @@ Application Orchestration
      - v2.12.2
    * - Harbor
      - Helm
-     - https://helm.goharbor.io/harbor
+     - https://goharbor.io/docs/1.10/install-config/harbor-ha-helm/
      - 1.16.2
 
 Cluster Orchestration
@@ -271,7 +271,7 @@ Edge Infrastructure Manager
      - sha256:fe8a5ee49f613495df3b57afa86b39f081bd1b3b9ed61248f46c3d3d7df56092
    * - busybox
      - Container (utility)
-     - https://hub.docker.com//busybox/
+     - https://hub.docker.com/_/busybox/
      - 1.36.1
 
 Platform services

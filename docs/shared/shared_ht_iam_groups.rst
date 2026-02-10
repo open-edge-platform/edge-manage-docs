@@ -4,15 +4,16 @@ Configure External IAM Security Groups (Optional)
 If a connection is made between Keycloak solution and an external IAM, you can manage groups
 in Keycloak solution or in the external IAM.
 
-See `Configuring Users and Groups in Keycloak IdP <configuring-users-and-groups-in-keycloak-idp>`__ for additional information on
-configuring users and groups in Keycloak solution.
+See `Configuring Users and Groups in Keycloak IdP <./shared_gs_iam.html#configuring-users-and-groups-in-keycloak-idp>`__
+for additional information on configuring users and groups in Keycloak solution.
 
 .. note:: This setup is optional and not required for use with Keycloak solution.
 
 Supported User Groups
 ---------------------
 
-See `Configuring Users and Groups in Keycloak IdP <configuring-users-and-groups-in-keycloak-idp>`__ for additional information on :doc:`./shared_iam_groups` for a list of Edge Orchestrator groups.
+See `Configuring Users and Groups in Keycloak IdP <./shared_gs_iam.html#configuring-users-and-groups-in-keycloak-idp>`__
+for additional information on :doc:`./shared_iam_groups` for a list of Edge Orchestrator groups.
 
 Assign Users to Groups in Microsoft Azure\* AD
 ----------------------------------------------
