@@ -43,7 +43,6 @@ jobs:
       run_validate_clean_folder: false
       run_docker_build: false
       run_artifact: false
-      orch_ci_repo_ref: "main"
     secrets:
       NO_AUTH_ECR_PUSH_USERNAME: ${{ secrets.NO_AUTH_ECR_PUSH_USERNAME }}
       NO_AUTH_ECR_PUSH_PASSWD: ${{ secrets.NO_AUTH_ECR_PUSH_PASSWD }}
