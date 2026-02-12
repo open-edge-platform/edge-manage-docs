@@ -72,7 +72,7 @@ details.
     ./orch-cli create registry <REGISTRY_NAME> --root-url <REGISTRY_URL> \
         --registry-type <REGISTRY_TYPE>
 
-Where ``<REGISTRY_TYPE>`` can be ``HELM`` for Helm charts or ``IMAGE`` for
+Where ``<REGISTRY_TYPE>`` can be ``helm`` for Helm charts or ``image`` for
 Docker images.
 
 For Helm registries, you can optionally specify an inventory URL:
@@ -152,15 +152,6 @@ Applications can be created using two approaches:
 2. **Direct CLI Parameters** - Specifying application details directly in
    the command line for quick creation of simple applications.
 
-To create an application run the create command with an application
-manifest file. For more information about application requirements and manifest
-structure, see the
-:doc:`/developer_guide/application_developer_workflow/deployment-packages/application-yaml-reference`.
-
-.. code-block:: bash
-
-    ./orch-cli create application <APPLICATION_YAML_FILE>
-
 To create an application from a Helm chart run the create command with chart
 details.
 
@@ -169,6 +160,9 @@ details.
     ./orch-cli create application <APPLICATION_NAME> <VERSION> \
         --chart-name <CHART_NAME> --chart-version <CHART_VERSION> \
         --chart-registry <REGISTRY_NAME>
+
+To create an application from a manifest file use the upload command with an
+application manifest file.
 
 To list all applications run the list command.
 
@@ -347,14 +341,8 @@ specifications.
         --application-reference <APPLICATION1_NAME>:<VERSION> \
         --application-reference <APPLICATION2_NAME>:<VERSION>
 
-To create a package from a package manifest file run the create command with
-the manifest path. For more information about deployment package requirements and manifest
-structure, see the
-:doc:`/developer_guide/application_developer_workflow/deployment-packages/deployment-package-yaml-reference`.
-
-.. code-block:: bash
-
-    ./orch-cli create deployment-package <PACKAGE_YAML_FILE>
+To create a package from a package manifest file use the upload command with
+the manifest path.
 
 To list all packages run the list command.
 

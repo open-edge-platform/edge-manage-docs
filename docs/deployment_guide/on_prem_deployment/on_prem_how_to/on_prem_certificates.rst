@@ -51,7 +51,7 @@ Create an Amazon Certificate
 If you use the AWS DNS service, see `Requesting a public certificate <https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html>`_.
 
 Verify that your Amazon certificate matches the
-`Certificate Requirements <../../cloud_deployment/cloud_how_to/cloud_certificates#new-certificate-requirements>`__
+`Certificate Requirements <../../cloud_deployment/cloud_how_to/cloud_certificates.html#new-certificate-requirements>`__
 before completing it.
 
 Generate a New Certificate with CSR Generator

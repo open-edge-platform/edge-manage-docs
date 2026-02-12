@@ -25,11 +25,11 @@ Application Orchestration
      - 0.12.1
    * - Fleet-Controller
      - Helm*
-     - https://rancher.github.io/fleet-helm-charts/fleet
+     - https://rancher.github.io/fleet-helm-charts/
      - 0.12.2
    * - Fleet-CRD
      - Helm
-     - https://rancher.github.io/fleet-helm-charts/fleet-crd
+     - https://rancher.github.io/fleet-helm-charts/
      - 0.12.2
    * - Fleet-Agent
      - Container
@@ -73,7 +73,7 @@ Application Orchestration
      - v2.13.0
    * - Harbor
      - Helm
-     - https://helm.goharbor.io/harbor
+     - https://goharbor.io/docs/1.10/install-config/harbor-ha-helm/
      - 1.17.0
 
 Cluster Orchestration
@@ -215,11 +215,11 @@ Cluster Extensions
      - 7.13.0
    * - nvidia-gpu-operator
      - Helm/Container
-     - https://helm.ngc.nvidia.com/nvidia/gpu-operator
+     - https://catalog.ngc.nvidia.com/orgs/nvidia/containers/gpu-operator?version=v25.3.0
      - v25.3.0
    * - intel-device-plugins-operator
      - Helm/Container
-     - https://intel.github.io/helm-charts/intel-device-plugins-gpu
+     - https://github.com/intel/helm-charts/tree/main/charts/gpu-device-plugin
      - 0.29.0
 
 Edge Infrastructure Manager
@@ -256,7 +256,7 @@ Edge Infrastructure Manager
      - sha256:fe8a5ee49f613495df3b57afa86b39f081bd1b3b9ed61248f46c3d3d7df56092
    * - busybox
      - Container (utility)
-     - https://hub.docker.com//busybox/
+     - https://hub.docker.com/_/busybox/
      - 1.36.1
    * - mps
      - Container
@@ -769,7 +769,7 @@ Trusted Compute
      -
    * - kata
      - Containers, scripts, ...
-     - https://github.com/kata-containers/kata-containers/releases/download/3.13.1/kata-static-3.13.1-amd64.tar.xz
+     - https://github.com/kata-containers/kata-containers/releases/tag/3.13.0
      -
    * - Debian Bookworm
      - Containers and binaries

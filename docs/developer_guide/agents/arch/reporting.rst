@@ -193,11 +193,11 @@ which must be provided in the ``/etc/edge-node/metrics/token`` file in the forma
 
 TLS version 1.3 is used for backend communication if supported by the server; otherwise, TLS 1.2 is used.
 
-The user running the application should be added to the `sudoers file <https://github.com/open-edge-platform/edge-node-agents/blob/main/config/sudoers.d/reporting-agent>`_,
+The user running the application should be added to the `sudoers file <https://github.com/open-edge-platform/edge-node-agents/blob/main/reporting-agent/config/sudoers.d/reporting-agent>`_,
 as the ``dmidecode`` and ``lshw`` applications require such privileges.
 
 The same user must also have execute access to the ``kubectl`` binary and read access to the ``kubeconfig`` file.
-The paths to these files are specified in the ``reporting-agent.yaml`` `configuration file <https://github.com/open-edge-platform/edge-node-agents/blob/main/config/reporting-agent.yaml>`_.
+The paths to these files are specified in the ``reporting-agent.yaml`` `configuration file <https://github.com/open-edge-platform/edge-node-agents/blob/main/reporting-agent/config/reporting-agent.yaml>`_.
 
 Auditing
 ~~~~~~~~
