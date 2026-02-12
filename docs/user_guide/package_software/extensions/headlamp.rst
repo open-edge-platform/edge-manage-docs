@@ -1,12 +1,12 @@
-Headlamp Kubernetes Dashboard Package
+Headlamp Package
 =============================================================
 
-The Headlamp Kubernetes Dashboard cluster extension is a diagnostic tool that may be deployed to the edge.
-The Headlamp Kubernetes Dashboard allows you to see the full set of Kubernetes resources that are deployed to the edge it is deployed
+The Headlamp cluster extension is a diagnostic tool that may be deployed to the edge.
+Headlamp allows you to see the full set of Kubernetes resources that are deployed to the edge it is deployed
 on. It may also be used to deploy applications directly, though doing so will cause those applications to not be managed
 by the Edge Orchestrator and is therefore not recommended.
 
-Documentation for the Headlamp Kubernetes Dashboard itself may be found at
+Documentation for Headlamp itself may be found at
 `Headlamp <https://headlamp.dev/docs/latest/>`_.
 
 .. note::
