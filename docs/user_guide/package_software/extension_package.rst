@@ -9,7 +9,7 @@ operational capabilities or support various edge use cases.
 These extension deployment packages are:
 
 * :doc:`/user_guide/package_software/extensions/intel_gpu_package`
-* :doc:`/user_guide/package_software/extensions/kubernetes_dashboard`
+* :doc:`/user_guide/package_software/extensions/headlamp`
 * :doc:`/user_guide/package_software/extensions/load_balancer`
 * :doc:`/user_guide/package_software/extensions/trusted_compute_package`
 * :doc:`/user_guide/package_software/extensions/usb_package`
@@ -29,6 +29,6 @@ automatically, based on your requirements. For more information, see
    extensions/intel_gpu_package
    extensions/trusted_compute_package
    extensions/load_balancer
-   extensions/kubernetes_dashboard
+   extensions/headlamp
    extensions/usb_package
    extensions/virtualization_package
