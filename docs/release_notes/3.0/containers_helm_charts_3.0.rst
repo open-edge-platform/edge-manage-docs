@@ -938,7 +938,7 @@ Helm Charts for Platform services components
      - orch-database
      - "140"
      - postgresql
-     - https://charts.bitnami.com/bitnami
+     - https://charts.bitnami.com
      - 15.5.26
    * - 2
      - postgresql-secrets

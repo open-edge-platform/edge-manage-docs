@@ -1,7 +1,7 @@
 REST APIs
 =========
 
-This section covers the process of generating `REST APIs <https://github.com/open-edge-platform/infra-core/tree/main/api>`_ for a new resource.
+This section covers the process of generating `REST APIs <https://github.com/open-edge-platform/infra-core/tree/main/apiv2>`_ for a new resource.
 Let's continue with the example of the ``localaccount`` resource.
 
 OAPI Definitions

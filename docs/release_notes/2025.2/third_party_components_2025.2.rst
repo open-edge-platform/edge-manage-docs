@@ -25,11 +25,11 @@ Application Orchestration
      - v0.12.8
    * - Fleet-Controller
      - Helm
-     - https://rancher.github.io/fleet-helm-charts/flleet:0.12.8
+     - https://github.com/rancher/fleet/releases/tag/v0.12.8
      - 0.12.8
    * - Fleet-CRD
      - Helm
-     - https://rancher.github.io/fleet-helm-charts/fleet-crd:0.12.8
+     - https://github.com/rancher/fleet/releases/download/v0.12.8/fleet-crd-0.12.8.tgz
      - 0.12.8
    * - Fleet-Agent
      - Container
@@ -73,7 +73,7 @@ Application Orchestration
      - v2.13.2
    * - Harbor
      - Helm
-     - https://helm.goharbor.io/harbor:1.17.2
+     - https://github.com/goharbor/harbor-helm/releases/tag/v1.17.2
      - 1.17.2
 
 Cluster Orchestration

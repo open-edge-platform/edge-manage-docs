@@ -154,7 +154,7 @@ The next step is to create a Helm chart for the application:
       helm registry login registry-oci.${CLUSTER_FQDN}
       helm push hello-world-0.1.0.tgz oci://registry-oci.${CLUSTER_FQDN}/catalog-apps-${ORG_NAME}-${PROJECT_NAME}
 
-For details on packaging your own Helm charts, see `Create a Helm Chart for an Application <create-a-helm-chart-for-an-application>`__.
+For details on packaging your own Helm charts, see `Create a Helm Chart for an Application <./package_create_helm.html#create-a-helm-chart-for-an-application>`__.
 
 Create and Upload the Deployment Package
 -------------------------------------------------------------

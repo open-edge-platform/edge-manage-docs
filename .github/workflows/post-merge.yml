@@ -18,7 +18,7 @@ jobs:
       contents: read
       security-events: write
       id-token: write
-    uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@c6a01b803d3c045de1b1b2f788a47eaaefed3f07  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@467367d6f859a4654f2645ca78efd60035cf390c  # yamllint disable-line rule:line-length
     with:
       run_version_check: true
       run_dep_version_check: false
@@ -26,7 +26,6 @@ jobs:
       run_docker_build: false
       run_docker_push: false
       run_version_tag: true
-      orch_ci_repo_ref: "main"
     secrets:
       SYS_EMF_GH_TOKEN: ${{ secrets.SYS_EMF_GH_TOKEN }}
       NO_AUTH_ECR_PUSH_USERNAME: ${{ secrets.NO_AUTH_ECR_PUSH_USERNAME }}
@@ -38,7 +37,7 @@ jobs:
       contents: read
       pull-requests: read
       issues: write
-    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@c6a01b803d3c045de1b1b2f788a47eaaefed3f07  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@467367d6f859a4654f2645ca78efd60035cf390c  # yamllint disable-line rule:line-length
     with:
       simple_mode: false
       branch_pattern: '^(main|release-[0-9]+\.[0-9]+.*)$'

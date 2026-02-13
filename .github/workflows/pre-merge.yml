@@ -26,13 +26,13 @@ jobs:
         with:
           persist-credentials: false
       - name: "Verify Branch Name"
-        uses: open-edge-platform/orch-ci/verify-branch-name@c6a01b803d3c045de1b1b2f788a47eaaefed3f07  # yamllint disable-line rule:line-length
+        uses: open-edge-platform/orch-ci/verify-branch-name@467367d6f859a4654f2645ca78efd60035cf390c  # yamllint disable-line rule:line-length
 
   pre-merge-pipeline:
     permissions:
       contents: read
     needs: pre-checks
-    uses: open-edge-platform/orch-ci/.github/workflows/pre-merge.yml@c6a01b803d3c045de1b1b2f788a47eaaefed3f07  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/pre-merge.yml@467367d6f859a4654f2645ca78efd60035cf390c  # yamllint disable-line rule:line-length
     with:
       run_security_scans: false
       run_version_check: true
@@ -43,7 +43,6 @@ jobs:
       run_validate_clean_folder: false
       run_docker_build: false
       run_artifact: false
-      orch_ci_repo_ref: "main"
     secrets:
       NO_AUTH_ECR_PUSH_USERNAME: ${{ secrets.NO_AUTH_ECR_PUSH_USERNAME }}
       NO_AUTH_ECR_PUSH_PASSWD: ${{ secrets.NO_AUTH_ECR_PUSH_PASSWD }}

@@ -75,4 +75,4 @@ To update the release service token for on-prem deployment, follow these steps:
       $ kubectl get externalsecret.external-secrets.io -n orch-secret token-refresh
 
 #. You can also verify the token stored in the secret by redoing the
-   `Identify the Release Service Token Issue <identify-the-release-service-token-issue>`__ step.
+   `Identify the Release Service Token Issue <./shared_ts_rs_token.html#identify-the-release-service-token-issue>`__ step.

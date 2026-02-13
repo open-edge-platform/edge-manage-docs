@@ -45,4 +45,4 @@ Uninstall Edge Orchestrator with no load balancer installed
 
 
 For a full list of flags available, see
-`flag examples <../cloud_examples/cloud_flags#flag-examples>`__.
+`flag examples <../cloud_examples/cloud_flags.html>`__.
