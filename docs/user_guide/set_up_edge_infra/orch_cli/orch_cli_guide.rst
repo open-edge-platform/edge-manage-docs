@@ -86,6 +86,11 @@ The Keycloak's `kcadm Admin CLI <https://www.keycloak.org/docs/latest/server_adm
 The combined usage of kcadm and orch-cli to initially set up the IAM/tenancy can be found at:
 :doc:`/shared/shared_ht_iam_mt_cli`
 
+.. note::
+
+     Certain modular deployments/workflows of Edge Manageability Framework or it's components may not include support for
+     multitenancy - in those cases a default user/tenant is created and configuring user management may not be needed.
+
 Authentication
 ^^^^^^^^^^^^^^
 
@@ -143,6 +148,46 @@ For the *list* commands the --verbose flag can be used to include additional inf
 
 Note that some of the *get* and *delete* commands require usage of resource ID instead of resource name due to the fact that some resources do not have unique names.
 
+Dynamic EMF feature support within CLI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The orch-cli tool supports dynamic feature detection based on the connected Edge Orchestrator's capabilities exposed by the Edge Orchestrator's
+`Component Status <https://github.com/open-edge-platform/orch-utils/tree/main/component-status>`_ service.
+When a command is executed the tool queries the orchestrator for supported features and only presents the commands that are supported.
+This allows the same tool to be used across different versions and deployments of Edge Orchestrator without compatibility issues.
+
+.. note::
+
+     For the dynamic feature detection to work the Edge Orchestrator must have the "Component Status" service enabled and accessible.
+     Previous versions of Edge Orchestrator may not have this service available - in those cases the tool will assume all features are supported.
+
+Currently the CLI dynamically enables/disables groups of commands based on the following features criteria:
+
+- Multitenancy support - organization and project management commands.
+- Host onboarding support - host onboarding commands.
+- Host provisioning support - commands for management of resources related to provisioned Edge Nodes and creation of an instance during provisioning.
+- Out-of-band (OOB) support - AMT profile management commands and AMT/vPRO related features for host management.
+- Day 2 OS Update support - day 2 OS update commands and commands for creating associated resources.
+- Cluster management support - cluster management commands.
+- Application management support - application management commands.
+- OXM support - standalone Edge Node config commands.
+
+To get the current version of the CLI and the connected Edge Orchestrator run the following command:
+
+.. code-block:: bash
+
+    ./orch-cli version
+
+To get the list of supported features of the connected Edge Orchestrator run the following command:
+
+.. code-block:: bash
+
+    ./orch-cli list features
+
+.. note::
+
+     It is possible to override the dynamic feature detection for debugging or experimental purposes - for more information see: `Overriding dynamic feature detection`_
+
 Organization Management
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -173,6 +218,11 @@ To delete an organization run the delete command.
 
     ./orch-cli delete organization myorg
 
+.. note::
+
+     Certain modular deployments/workflows of Edge Manageability Framework or it's components may not include support for
+     multitenancy - in those cases a default organization is created and configuring it is not needed.
+
 Project Management
 ^^^^^^^^^^^^^^^^^^
 
@@ -201,6 +251,11 @@ To delete a project run the delete command.
 .. code-block:: bash
 
     ./orch-cli delete project myproject
+
+.. note::
+
+     Certain modular deployments/workflows of Edge Manageability Framework or it's components may not include support for
+     multitenancy - in those cases a default organization is created and configuring it is not needed.
 
 Local SSH Account Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -364,11 +419,17 @@ To delete a custom configuration run the delete command.
 Host Management
 ^^^^^^^^^^^^^^^
 
-The host management functionality of the orch-cli allows for provisioning and managing host machines.
+The host management functionality of the orch-cli allows for onboarding, provisioning and managing host machines.
 The creation of a host takes care of registering and associating the host with the appropriate resource automatically.
-It allows for registration of edge node in bulk.
+It allows for registration of edge nodes in bulk.
 For details on how to prepare the input .csv file and advanced options to create the hosts see:
 :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/edge_node_registration`
+
+.. note::
+
+     In EMF deployments where the EIM's provisioning feature is disabled the host creation command will allow for registration and onboarding of
+     the edge nodes without an association to the OS Profile and Site.
+     Provisioning of an OS will not happen and it is expected that the OS on the Edge Node and deployment of necessary agents is done by the user.
 
 To create a host run the create command with the --import-from-csv flag pointing to .csv filepath.
 
@@ -388,11 +449,69 @@ To get a specific host run get command.
 
     ./orch-cli get host <HOST_ID>
 
+.. note::
+
+     In EMF deployments where the EIM's provisioning feature is disabled the "list" and "get" commands will print a simplified output.
+
 To delete a specific host run the delete command.
 
 .. code-block:: bash
 
     ./orch-cli delete host <HOST_ID>
+
+AMT/vPRO Management on a Host
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For more information on AMT/vPRO management features see:
+:doc:`/user_guide/advanced_functionality/vpro_power_mgt`
+
+The orch-cli provides a set of commands for managing AMT/vPRO-enabled devices. These commands allow users to perform various operations such as powering on/off, restarting, and configuring AMT settings on the devices.
+
+To activate/deactivate AMT on a host run the activation command.
+
+.. code-block:: bash
+
+    ./orch-cli set host host-1234abcd --amt-state activate|deactivate
+
+The actvation/deactivation can also be done in bulk with a .csv file as an input.
+To generate file, with current AMT state of hosts for bulk activation/deactivation run the following command.
+
+.. code-block:: bash
+
+    ./orch-cli set host --generate-csv test.csv
+
+Once the file is generated edit the "AMTState" column to the desired state (activate or deactivate) and then run the command to execute the changes.
+
+.. code-block:: bash
+
+    ./orch-cli set host --import-from-csv test.csv
+
+To power on/off or restart an AMT-enabled host run the power command.
+Note that power policy commands will not take effect on hosts with deactivated AMT.
+
+.. code-block:: bash
+
+    ./orch-cli set host host-1234abcd --power on|off|restart
+
+To change the power policy of an AMT-enabled host run the power-policy command.
+
+.. code-block:: bash
+
+    ./orch-cli set host host-1234abcd --power-policy immediate|ordered
+
+To set a desired DNS suffix for AMT Admin Mode run the dns-suffix command.
+
+.. code-block:: bash
+
+    ./orch-cli set host host-1234abcd --dns-suffix example.com
+
+To set a desired control mode for AMT run the control mode command.
+
+.. code-block:: bash
+
+    ./orch-cli set host host-1234abcd --control-mode admin|client
+
+Note that the dns-suffix and control mode changes can also be done in bulk with a .csv file as an input, similar to/along the AMT activation/deactivation process described above.
 
 AMT Policy Management
 ^^^^^^^^^^^^^^^^^^^^^
@@ -444,7 +563,7 @@ Cluster Management
 
 A single node K3s cluster can be deployed to an onboarded/provisioned host using the orch-cli.
 
-To create a cluster with a default template and all roles run the create command --nodes <nodeUUID>:<role> flag requires the ENs UUID and the expected roles (all = etcd,control plane,worker roles).
+To create a cluster with a default template and all roles run the create command --nodes <hostID or UUID>:<role> flag requires the ENs UUID or the host resource ID and the expected roles (all = etcd,control plane,worker roles).
 
 .. code-block:: bash
 
@@ -660,9 +779,41 @@ Help
 
 For help with any of the commands run the command with `--help`.
 
-Additional commands:
-^^^^^^^^^^^^^^^^^^^^
+Additional commands
+^^^^^^^^^^^^^^^^^^^
 
 The application level CLI commands are covered under the :doc:`/user_guide/package_software/orch_cli/orch_cli_guide`
 
 See "./orch-cli <verb> <noun> --help" for current usage and capabilities of these commands.
+
+Overriding dynamic feature detection
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The dynamic feature detection can be overridden temporarily for debug or experimental purposes by overriding the viper configuration which stores the detected features.
+The viper configuration file is located at **~/.orch-cli/orch-cli.yaml**
+
+To override and unlock or lock the execution of commands and their subsequent API calls edit the file directly or run the following commands and set the feature to `true` or `false` as an example:
+
+.. code-block:: bash
+
+    # To unlock application orchestration commands
+    orch-cli config set orchestrator.features.application-orchestration.installed true
+    # To lock cluster orchestration commands
+    orch-cli config set orchestrator.features.cluster-orchestration.installed false
+    # To lock multitenancy commands
+    orch-cli config set orchestrator.features.multitenancy.installed false
+    # To unlock the EIM onboarding commands
+    orch-cli config set orchestrator.features.edge-infrastructure-manager.onboarding.installed true
+    # To unlock the EIM provisioning commands
+    orch-cli config set orchestrator.features.edge-infrastructure-manager.provisioning.installed true
+    # To unlock the EIM Day2 updates commands
+    orch-cli config set orchestrator.features.edge-infrastructure-manager.day2.installed true
+    # To lock the EIM OOB commands
+    orch-cli config set orchestrator.features.edge-infrastructure-manager.oob.installed false
+    # To lock the EIM OXM commands
+    orch-cli config set orchestrator.features.edge-infrastructure-manager.oxm-profile.installed false
+
+The overridden configuration will persist until a *login* or a *logout* command is run - which will reset the configuration to the dynamically detected features/defaults
+(on login) or disable all configurations (on logout).
+Note that overriding the features in this way does not change the actual capabilities of the connected Edge Orchestrator - attempting to run commands that are not supported
+by the Edge Orchestrator will result in error responses.
