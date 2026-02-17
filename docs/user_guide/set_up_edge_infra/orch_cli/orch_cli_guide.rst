@@ -465,13 +465,14 @@ AMT/vPRO Management on a Host
 For more information on AMT/vPRO management features see:
 :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
 
-The orch-cli provides a set of commands for managing AMT/vPRO-enabled devices. These commands allow users to perform various operations such as powering on/off, restarting, and configuring AMT settings on the devices.
+The orch-cli provides a set of commands for managing AMT/vPRO-enabled devices.
+These commands allow users to perform various operations such as powering on/off, restarting, and configuring AMT settings on the devices.
 
 To activate/deactivate AMT on a host run the activation command.
 
 .. code-block:: bash
 
-    ./orch-cli set host host-1234abcd --amt-state activate|deactivate
+    ./orch-cli set host host-1234abcd --amt-state provisioned|unprovisioned
 
 The actvation/deactivation can also be done in bulk with a .csv file as an input.
 To generate file, with current AMT state of hosts for bulk activation/deactivation run the following command.
@@ -480,7 +481,7 @@ To generate file, with current AMT state of hosts for bulk activation/deactivati
 
     ./orch-cli set host --generate-csv test.csv
 
-Once the file is generated edit the "AMTState" column to the desired state (activate or deactivate) and then run the command to execute the changes.
+Once the file is generated edit the "AMTState" column to the desired state (provisioned or unprovisioned) and then run the command to execute the changes.
 
 .. code-block:: bash
 
@@ -563,7 +564,8 @@ Cluster Management
 
 A single node K3s cluster can be deployed to an onboarded/provisioned host using the orch-cli.
 
-To create a cluster with a default template and all roles run the create command --nodes <hostID or UUID>:<role> flag requires the ENs UUID or the host resource ID and the expected roles (all = etcd,control plane,worker roles).
+To create a cluster with a default template and all roles run the create command --nodes <hostID or UUID>:<role>
+flag requires the ENs UUID or the host resource ID and the expected roles (all = etcd,control plane,worker roles).
 
 .. code-block:: bash
 
