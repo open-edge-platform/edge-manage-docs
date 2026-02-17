@@ -21,7 +21,7 @@ Add configuration for modules
 +++++++++++++++++++++++++++++
 
 Each ``backend.tf`` file contains three values: ``region``, ``bucket``, and ``key``. These values are the same
-used during `Terraform configuration <adv_manual_terraconfig>`_.
+used during `Terraform configuration <./cloud_manual_terraconfig.html>`_.
 
 Every environment must use a unique region, bucket, and key combination. Terraform can't distinguish between environments.
 

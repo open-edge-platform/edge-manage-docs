@@ -77,6 +77,12 @@ Default OS profiles available after the EMF orchestrator installation are:
 - EMT standalone (used for OXM profile)
 - EMT with IDV (used for OXM profile)
 
+NOTE: If you want to use Ubuntu desktop image for provisioning, follow the procedure below to generate the
+      Ubuntu raw image.
+
+You can use this guideline :doc:`./ubuntu_raw_image_generation_from_iso`
+
+
 Steps to Use the Custom OS Profile Feature
 ------------------------------------------
 

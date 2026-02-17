@@ -59,6 +59,13 @@ Create provisioning configuration
       the state of the cluster. It can be arbitrary, but must follow AWS bucket
       `naming rules <https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html>`_.
 
+   .. note::
+
+      The S3 bucket will be created in the same AWS region as the cluster. If you want to use
+      a different region for the S3 bucket, you need to manually export ``BUCKET_REGION=[bucket region]``
+      before running the command above. Replace ``[bucket region]`` with the name of the AWS region
+      where you want to create the S3 bucket.
+
    The following is an example:
 
    .. code-block:: shell
