@@ -1,7 +1,8 @@
 Adding a Resource to Inventory
 ==============================
 
-This section covers the process of adding a new resource to `Inventory <https://github.com/open-edge-platform/infra-core/tree/main/inventory>`_, which
+This section covers the process of adding a new resource to
+:doc:`Inventory <../../arch/components/inventory>`, which
 implies extending the database schema and adding the necessary logic to handle
 the translations from protobuf definitions to database entries, and vice versa.
 
@@ -111,7 +112,9 @@ Code and Documentation Generation
 ---------------------------------
 
 Assuming that the protobuf definition is ready, the next step is to generate
-the code and the documentation. **Inventory Service** exposes several make
+the code and the documentation.
+:doc:`Inventory Service <../../arch/components/inventory>`
+exposes several make
 targets that assist the developer journey. Use the following command to
 generate the code and the documentation:
 
@@ -223,7 +226,8 @@ Testing the New Resource
 ------------------------
 
 Last but not least, test the new resource to ensure that the code and the
-extensions to the Inventory are working as expected.
+extensions to the :doc:`Inventory <../../arch/components/inventory>`
+are working as expected.
 
 This includes testing the CRUD operations for the new resource. Special-purpose
 tests are usually required to verify the behavior of validation rules or custom
