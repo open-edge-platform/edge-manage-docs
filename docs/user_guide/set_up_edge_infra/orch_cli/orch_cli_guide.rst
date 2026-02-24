@@ -500,19 +500,13 @@ To change the power policy of an AMT-enabled host run the power-policy command.
 
     ./orch-cli set host host-1234abcd --power-policy immediate|ordered
 
-To set a desired DNS suffix for AMT Admin Mode run the dns-suffix command.
-
-.. code-block:: bash
-
-    ./orch-cli set host host-1234abcd --dns-suffix example.com
-
 To set a desired control mode for AMT run the control mode command.
 
 .. code-block:: bash
 
     ./orch-cli set host host-1234abcd --control-mode admin|client
 
-Note that the dns-suffix and control mode changes can also be done in bulk with a .csv file as an input, similar to/along the AMT activation/deactivation process described above.
+Note that the control mode changes can also be done in bulk with a .csv file as an input, similar to/along the AMT activation/deactivation process described above.
 
 AMT Policy Management
 ^^^^^^^^^^^^^^^^^^^^^
