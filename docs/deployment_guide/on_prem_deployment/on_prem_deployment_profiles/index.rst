@@ -6,9 +6,11 @@ We currently support the following deployment profiles:
 
 * :doc:`/deployment_guide/on_prem_deployment/on_prem_deployment_profiles/on_prem_lenovo` for Edge Orchestrator deployments with Lenovo\* Open Cloud Automation (LOC-A).
 * :doc:`/deployment_guide/on_prem_deployment/on_prem_deployment_profiles/on_prem_oxm_profile` for Edge Orchestrator deployments supporting the OXM use cases.
+* :doc:`/deployment_guide/on_prem_deployment/on_prem_deployment_profiles/on_prem_vpro` for Edge Orchestrator deployments with Intel\* vPro\* Technology support and AMT capabilities.
 
 .. toctree::
    :hidden:
 
    on_prem_lenovo
    on_prem_oxm_profile
+   on_prem_vpro
