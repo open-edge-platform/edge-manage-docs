@@ -10,9 +10,15 @@ the bare metal machine.
 Both Host and Instances follow the current and desired state model and the
 `Onboarding Manager <../onboarding-provisioning.html#onboarding-manager>`__
 is responsible for running these resources to completion, i.e., achieving the desired state.
+The manager also acts as a
+`host resource manager <../resource-managers.html#host-resource-manager>`__
+as it is responsible for updating statuses with the ``ONBOARDED`` or
+``PROVISIONED`` values. The :doc:`node agent </developer_guide/agents/index>`
+calls the host resource manager via gRPC and sets the ``hostStatus`` to ``RUNNING``.
 
-The split into the Host and Instance resources expresses the split into the
-Onboarding and Provisioning phases - the Onboarding phase ends when the Host
+The division between the Host and Instance resources reflects the division between the
+Onboarding and Provisioning phases.
+The Onboarding phase ends when the Host
 resource enters its desired state ``ONBOARDED``, while the Provisioning phase
 ends when the Instance resource achieves the ``RUNNING`` state.
 
