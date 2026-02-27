@@ -92,6 +92,37 @@ Edge Node Requirements
 - Network connectivity to the control plane
 - Compatible operating system (Ubuntu 24.04 LTS)
 
-
 Evaluation Deployment Instructions
 ----------------------------------
+
+Install control-plane
+~~~~~~~~~~~~~~~~~~~~~~
+
+Install edge node components
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Verify edge node on the control-plane
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Activate vPro on the edge node
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Verify vPro activation on the control plane
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Perform out-of-band power management operations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Uninstall edge node components
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Partner Developers
+------------------
+
+- Explain the modular workflow directory structure, highlighting key components
+  and their roles in the workflow. Provide guidance on navigating the codebase
+  and understanding the interactions between modules.
+- Explain how customers can integrate modular workflow components into their own
+  device-management platforms, including required APIs, configuration steps,
+  and best practices for seamless integration.
+
