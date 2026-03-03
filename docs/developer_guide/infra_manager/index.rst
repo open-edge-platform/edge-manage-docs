@@ -26,17 +26,18 @@ facing APIs exposed by the infrastructure.
 Features
 ^^^^^^^^
 
-- Onboard and OS provision edge device in under 7 minutes. Concurrent
-  onboarding of up to 50 edge devices.
-- Support concurrent 10,000 edge devices for normal operations and 1000 edge
-  devices OS provisioning.
+- Onboarding and OS provisioning of an edge device in under 7 minutes.
+- Support concurrent onboarding of up to 50 edge devices.
+- Support concurrent OS provisioning of up to 1000 edge devices.
+- Support concurrent normal operations of up to 10,000 edge devices.
+- Zero-touch Onboarding and OS provisioning edge devices without the need for a
+  keyboard and monitor. Local USB and remote HTTPs based OS provisioning
+  support.
 - Support Atomic Upgrade and Rollback with Edge Microvisor Toolkit Package base Update for
   Ubuntu LTS.
 - Trusted Node with Secure Boot and full disk encryption.
-- Zero-touch Onboarding and OS provisioning edge device without need for a
-  keyboard and monitor. Local USB and remote HTTPs based OS provisioning
-  support.
-- Wide range of Supported hardware base on Intel® Core™ and Intel® Xeon®
+
+- Wide range of Supported hardware based on Intel® Core™, Intel® NPU, and Intel® Xeon®
   platforms with single/multiple storage, Intel® GPU and Ethernet.
 
 
