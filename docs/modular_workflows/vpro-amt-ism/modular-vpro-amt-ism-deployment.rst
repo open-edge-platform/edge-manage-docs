@@ -333,10 +333,10 @@ Clean up edge node
 
 .. code-block:: shell
 
-  wget https://tinkerbell-haproxy.${CLUSTER_FQDN}/tink-stack/Uninstaller \
+  wget https://tinkerbell-haproxy.${CLUSTER_FQDN}/tink-stack/uninstall.sh \
     --no-check-certificate --no-proxy
-  chmod +x Uninstaller
-  ./Uninstaller
+  chmod +x uninstall.sh
+  ./uninstall.sh
 
 Proceed with your standard edge-node uninstallation flow.
 
