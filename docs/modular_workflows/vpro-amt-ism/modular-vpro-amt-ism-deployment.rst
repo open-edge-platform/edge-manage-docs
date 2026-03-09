@@ -308,21 +308,14 @@ Power On:
     --api-endpoint https://api.${CLUSTER_FQDN} \
     --power on
 
-Power Cycle:
+Power Reset:
 
 .. code-block:: bash
 
   orch-cli set host ${HOST_ID} \
     --project ${PROJECT_NAME} \
     --api-endpoint https://api.${CLUSTER_FQDN} \
-    --power cycle
-
-Operational considerations:
-
-- No UI-based operations are available.
-- No centralized monitoring stack is deployed.
-- No cluster orchestration capabilities are present.
-- No policy enforcement via Kyverno.
+    --power reset
 
 .. note::
 
@@ -358,4 +351,3 @@ Partner Developers
 - Explain how customers can integrate modular workflow components into their own
   device-management platforms, including required APIs, configuration steps,
   and best practices for seamless integration.
-
