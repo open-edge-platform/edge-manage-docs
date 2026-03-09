@@ -99,11 +99,37 @@ Evaluation Deployment Instructions
 Install control-plane
 ~~~~~~~~~~~~~~~~~~~~~
 
-Edit ``onprem.env`` with your deployment-specific values:
+Update the ``onprem.env`` file with the required deployment configuration
+before starting the Edge Orchestrator installation.
 
-.. code-block:: shell
+Modify the following parameters as needed:
 
+.. code-block:: bash
+
+  # Installer profile for vPro-only deployment
   export ORCH_INSTALLER_PROFILE=onprem-vpro
+
+  # Deployment version
+  export DEPLOY_VERSION='2026.0.0'
+  # Repository branch
+  export DEPLOY_REPO_BRANCH='2026.0.0'
+
+  # Load balancer IPs
+  export ARGO_IP=''
+  export TRAEFIK_IP=''
+  export HAPROXY_IP=''
+
+  # Proxy configuration (optional) — set if Orchestrator or edge nodes sit
+  # behind an HTTP/HTTPS proxy. Example: export ORCH_HTTP_PROXY="http://proxy:3128"
+  export ORCH_HTTP_PROXY=""
+  export ORCH_HTTPS_PROXY=""
+  export ORCH_NO_PROXY=""
+  # Edge-node proxy variables
+  export EN_HTTP_PROXY=""
+  export EN_HTTPS_PROXY=""
+  export EN_FTP_PROXY=""
+  export EN_SOCKS_PROXY=""
+  export EN_NO_PROXY=""
 
 Run the installer:
 
@@ -122,6 +148,53 @@ users using the Orch CLI. See the Orch CLI User Guide for detailed commands
 and examples:
 
 :doc:`Orch CLI User Guide <user_guide/set_up_edge_infra/orch_cli/orch_cli_guide>`
+
+Orch CLI host registration
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Use the following commands as a quick setup and verification flow for the
+Orch CLI. Adjust `CLUSTER_FQDN`, `PROJECT_NAME`, and other values as needed.
+
+.. code-block:: bash
+
+  export CLUSTER_FQDN=cluster.onprem
+  export EP=https://api.$CLUSTER_FQDN
+  export PROJECT_NAME=<project-name>
+  export ORCH_DEFAULT_PASSWORD="password-for-edgeinfra-api-user"
+  export ORCH_DEFAULT_USER="username-foredgeinfra-api-user"
+
+  orch-cli logout
+  orch-cli login $ORCH_DEFAULT_USER $ORCH_DEFAULT_PASSWORD \
+    --keycloak https://keycloak.$CLUSTER_FQDN/realms/master
+
+  orch-cli config set project $PROJECT_NAME
+  orch-cli config set api-endpoint $EP
+
+  # Regster host example (adjust parameters as needed):
+
+  orch-cli create host -i host-config.csv
+  och-cli list hosts 
+  
+
+  
+host-config.csv template
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Use this CSV template with `orch-cli create host -i <file>`; adapt columns
+to your environment. The header row is required.
+
+.. code-block:: csv
+
+Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,LVMSize,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill
+EDGENODE1_SERIALNO,,,,,,,,,,,,
+EDGENODE2_SERIALNO,,,,,,,,,,,,
+
+.. note::
+
+  Replace `EDGENODE1_SERIALNO` (and `EDGENODE2_SERIALNO`) with the actual
+  serial number(s) of your edge node(s). If you have multiple edge nodes,
+  add one row per device in this CSV and use `orch-cli create host -i <file>`
+  to perform bulk registration.
 
 Install edge node components
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
