@@ -170,12 +170,13 @@ Orch CLI. Adjust `CLUSTER_FQDN`, `PROJECT_NAME`, and other values as needed.
   orch-cli config set project $PROJECT_NAME
   orch-cli config set api-endpoint $EP
 
+  # Show enabled features on the Orchestrator
+  orch-cli list feature
+
   # Regster host example (adjust parameters as needed):
 
   orch-cli create host -i host-config.csv
-  och-cli list hosts 
-  
-
+  orch-cli list hosts
   
 host-config.csv template
 ~~~~~~~~~~~~~~~~~~~~~~~~
