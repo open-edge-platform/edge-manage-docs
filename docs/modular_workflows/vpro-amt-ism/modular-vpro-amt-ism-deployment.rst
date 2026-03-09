@@ -269,9 +269,7 @@ Set the required environment variables:
 
 .. code-block:: bash
 
-   export CLUSTER_FQDN=<cluster.example.com>
-   export PROJECT_NAME=itep
-   export HOST_ID=<host-id>
+   export HOST_ID=<edgenode-host-id>
 
 Provision a vPro device:
 
