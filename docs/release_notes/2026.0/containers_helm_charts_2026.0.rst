@@ -26,7 +26,7 @@ Helm Charts for Observability (O11y)
      - "1900"
      - alerting-monitor
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/o11y/charts
-     - 1.7.4
+     - 1.7.7
    * - 2
      - edgenode-dashboards
      - edgenode-dashboards
@@ -34,7 +34,7 @@ Helm Charts for Observability (O11y)
      - "1000"
      - edgenode-dashboards
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/o11y/charts
-     - 0.3.8
+     - 0.3.10
    * - 3
      - edgenode-observability
      - edgenode-observability
@@ -42,7 +42,7 @@ Helm Charts for Observability (O11y)
      - "1000"
      - edgenode-observability
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/o11y/charts
-     - 0.10.15
+     - 0.10.21
    * - 4
      - observability-tenant-controller
      - observability-tenant-controller
@@ -50,7 +50,7 @@ Helm Charts for Observability (O11y)
      - "2005"
      - observability-tenant-controller
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/o11y/charts
-     - 0.7.0
+     - 0.7.1
    * - 5
      - orchestrator-dashboards
      - orchestrator-dashboards
@@ -66,7 +66,7 @@ Helm Charts for Observability (O11y)
      - "1000"
      - orchestrator-observability
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/o11y/charts
-     - 0.5.15
+     - 0.5.18
    * - 7
      - sre-exporter
      - sre-exporter
@@ -74,7 +74,7 @@ Helm Charts for Observability (O11y)
      - "2000"
      - sre-exporter
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/o11y/charts
-     - 0.9.2
+     - 0.9.3
 
 Helm Charts for Infrastructure Manager
 --------------------------------------
@@ -122,7 +122,7 @@ Helm Charts for Infrastructure Manager
      - "2000"
      - infra-core
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/infra/charts
-     - 2.18.5
+     - 2.19.7
    * - 5
      - infra-external
      - infra-external
@@ -130,7 +130,7 @@ Helm Charts for Infrastructure Manager
      - "2100"
      - infra-external
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/infra/charts
-     - 2.11.2
+     - 2.12.11
    * - 6
      - infra-managers
      - infra-managers
@@ -138,7 +138,7 @@ Helm Charts for Infrastructure Manager
      - "2100"
      - infra-managers
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/infra/charts
-     - 2.16.6
+     - 2.17.2
    * - 7
      - infra-onboarding
      - infra-onboarding
@@ -146,7 +146,7 @@ Helm Charts for Infrastructure Manager
      - "2100"
      - infra-onboarding
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/infra/charts
-     - 1.34.0
+     - 1.35.8
 
 Helm Charts for Application Orchestration
 ------------------------------------------
@@ -170,7 +170,7 @@ Helm Charts for Application Orchestration
      - "2000"
      - app-deployment-crd
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/app/charts
-     - 2.5.9
+     - 2.6.1
    * - 2
      - app-deployment-manager
      - app-deployment-manager
@@ -178,48 +178,40 @@ Helm Charts for Application Orchestration
      - "2100"
      - app-deployment-manager
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/app/charts
-     - 2.5.9
+     - 2.6.1
    * - 3
-     - app-interconnect-manager
-     - app-interconnect-manager
-     - orch-app
-     - "2210"
-     - app-interconnect-manager
-     - oci://registry-rs.edgeorchestration.intel.com/edge-orch/app/charts
-     - 0.3.2
-   * - 4
      - app-orch-catalog
      - app-orch-catalog
      - orch-app
      - "1101"
      - app-orch-catalog
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/app/charts
-     - 0.15.7
-   * - 5
+     - 0.16.1
+   * - 4
      - app-orch-tenant-controller
      - app-orch-tenant-controller
      - orch-app
      - "1100"
      - app-orch-tenant-controller
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/app/charts
-     - 0.4.4
+     - 0.5.1
+   * - 5
+     - app-resource-manager
+     - app-resource-manager
+     - orch-app
+     - "2100"
+     - app-resource-manager
+     - oci://registry-rs.edgeorchestration.intel.com/edge-orch/app/charts
+     - 2.6.1
    * - 6
-     - app-resource-manager
-     - app-resource-manager
+     - app-service-proxy
+     - app-service-proxy
      - orch-app
      - "2100"
-     - app-resource-manager
+     - app-service-proxy
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/app/charts
-     - 2.5.4
+     - 1.6.1
    * - 7
-     - app-service-proxy
-     - app-service-proxy
-     - orch-app
-     - "2100"
-     - app-service-proxy
-     - oci://registry-rs.edgeorchestration.intel.com/edge-orch/app/charts
-     - 1.5.4
-   * - 8
      - copy-ca-cert-gitea-to-app
      - copy-secret
      - orch-app
@@ -467,7 +459,7 @@ Helm Charts for User Interface components
      - "2000"
      - metadata-broker
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/charts
-     - 0.4.14
+     - 1.0.1
    * - 2
      - web-ui-admin
      - orch-ui-admin
@@ -475,7 +467,7 @@ Helm Charts for User Interface components
      - "3000"
      - web-ui
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/charts
-     - 3.2.4
+     - 4.0.4
    * - 3
      - web-ui-app-orch
      - orch-ui-app-orch
@@ -483,7 +475,7 @@ Helm Charts for User Interface components
      - "3000"
      - web-ui
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/charts
-     - 3.2.5
+     - 4.0.5
    * - 4
      - web-ui-cluster-orch
      - orch-ui-cluster-orch
@@ -491,7 +483,7 @@ Helm Charts for User Interface components
      - "3000"
      - web-ui
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/charts
-     - 3.2.4
+     - 4.0.0
    * - 5
      - web-ui-infra
      - orch-ui-infra
@@ -499,7 +491,7 @@ Helm Charts for User Interface components
      - "3000"
      - web-ui
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/charts
-     - 3.2.18
+     - 4.0.3
    * - 6
      - web-ui-root
      - orch-ui-root
@@ -507,7 +499,7 @@ Helm Charts for User Interface components
      - "3000"
      - web-ui
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/charts
-     - 3.2.11
+     - 4.0.6
 
 Helm Charts for Platform services components
 ------------------------------------------------
@@ -531,7 +523,7 @@ Helm Charts for Platform services components
      - "2005"
      - auth-service
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.3
+     - 26.0.3
    * - 2
      - botkube
      - botkube
@@ -547,7 +539,7 @@ Helm Charts for Platform services components
      - "160"
      - cert-synchronizer
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.11
+     - 26.0.5
    * - 4
      - certificate-file-server
      - certificate-file-server
@@ -571,7 +563,7 @@ Helm Charts for Platform services components
      - "1250"
      - keycloak-tenant-controller
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.5
+     - 26.0.11
    * - 7
      - secret-wait-tls-orch
      - secret-wait
@@ -595,7 +587,7 @@ Helm Charts for Platform services components
      - "1200"
      - traefik-extra-objects
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.1
+     - 26.0.1
    * - 10
      - traefik-pre
      - traefik-pre
@@ -632,7 +624,7 @@ Helm Charts for Platform services components
      - "120"
      - aws-lb-tgb
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 1.0.1
+     - 26.0.1
    * - 3
      - cluster-autoscaler
      - cluster-autoscaler
@@ -701,7 +693,7 @@ Helm Charts for Platform services components
      - "150"
      - kiali
      - https://kiali.org/helm-charts
-     - 2.18.0
+     - 2.22.0
 
 .. list-table:: Platform services components for namespace: orch-harbor
    :header-rows: 1
@@ -743,7 +735,7 @@ Helm Charts for Platform services components
      - "100"
      - kyverno
      - https://kyverno.github.io/kyverno
-     - 3.5.1
+     - 3.6.1
    * - 2
      - kyverno-extra-policies
      - kyverno-extra-policies
@@ -782,6 +774,22 @@ Helm Charts for Platform services components
      - repo
      - version
    * - 1
+     - haproxy-ingress-pxe-boots
+     - haproxy-ingress-pxe-boots
+     - orch-boots
+     - "1200"
+     - haproxy-ingress-pxe-boots
+     - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
+     - 1.0.1
+   * - 2
+     - ingress-haproxy
+     - kubernetes-ingress
+     - orch-boots
+     - "1100"
+     - ingress-haproxy
+     - https://haproxytech.github.io/helm-charts
+     - 1.41.0
+   * - 3
      - ingress-nginx
      - ingress-nginx
      - orch-boots
@@ -789,15 +797,15 @@ Helm Charts for Platform services components
      - ingress-nginx
      - https://kubernetes.github.io/ingress-nginx
      - 4.13.3
-   * - 2
+   * - 4
      - nginx-ingress-pxe-boots
      - nginx-ingress-pxe-boots
      - orch-boots
      - "1200"
      - nginx-ingress-pxe-boots
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.1
-   * - 3
+     - 26.1.0
+   * - 5
      - secret-wait-tls-boots
      - secret-wait
      - orch-boots
@@ -805,7 +813,7 @@ Helm Charts for Platform services components
      - secret-wait-tls-boots
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
      - 25.2.3
-   * - 4
+   * - 6
      - traefik-boots
      - traefik
      - orch-boots
@@ -841,7 +849,7 @@ Helm Charts for Platform services components
      - "105"
      - aws-sm-proxy
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.3
+     - 26.0.3
    * - 3
      - external-secrets
      - external-secrets
@@ -849,7 +857,7 @@ Helm Charts for Platform services components
      - "100"
      - external-secrets
      - https://charts.external-secrets.io
-     - 0.20.4
+     - 2.0.1
    * - 4
      - secret-wait-azure-ad-creds
      - secret-wait
@@ -873,7 +881,7 @@ Helm Charts for Platform services components
      - "1300"
      - token-fs
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.1
+     - 26.0.2
    * - 7
      - token-refresh
      - token-refresh
@@ -904,6 +912,22 @@ Helm Charts for Platform services components
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
      - 25.2.2
    * - 2
+     - component-status
+     - component-status
+     - orch-platform
+     - "2000"
+     - component-status
+     - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
+     - 26.0.4
+   * - 3
+     - keycloak-operator
+     - keycloak-operator
+     - orch-platform
+     - "1"
+     - keycloak-operator
+     - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
+     - 26.1.2
+   * - 4
      - orchestrator-prometheus-agent
      - kube-prometheus-stack
      - orch-platform
@@ -911,15 +935,15 @@ Helm Charts for Platform services components
      - orchestrator-prometheus-agent
      - https://prometheus-community.github.io/helm-charts
      - 79.7.1
-   * - 3
+   * - 5
      - platform-keycloak
      - keycloak
      - orch-platform
      - "150"
      - platform-keycloak
      - "registry-1.docker.io/bitnamicharts"
-     - 24.4.12
-   * - 4
+     - 26.1.2
+   * - 6
      - prometheus-crd
      - prometheus-operator-crds
      - orch-platform
@@ -927,7 +951,7 @@ Helm Charts for Platform services components
      - prometheus-crd
      - https://prometheus-community.github.io/helm-charts
      - 24.0.1
-   * - 5
+   * - 7
      - reloader
      - reloader
      - orch-platform
@@ -935,7 +959,7 @@ Helm Charts for Platform services components
      - reloader
      - https://stakater.github.io/stakater-charts
      - 2.2.3
-   * - 6
+   * - 8
      - rs-image-pull-secrets
      - rs-image-pull-secrets
      - orch-platform
@@ -943,7 +967,7 @@ Helm Charts for Platform services components
      - rs-image-pull-secrets
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
      - 25.2.2
-   * - 7
+   * - 9
      - rs-proxy
      - rs-proxy
      - orch-platform
@@ -951,7 +975,7 @@ Helm Charts for Platform services components
      - rs-proxy
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
      - 25.2.3
-   * - 8
+   * - 10
      - secrets-config
      - secrets-config
      - orch-platform
@@ -959,7 +983,7 @@ Helm Charts for Platform services components
      - secrets-config
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
      - 3.0.6
-   * - 9
+   * - 11
      - squid-proxy
      - squid-proxy
      - orch-platform
@@ -967,14 +991,14 @@ Helm Charts for Platform services components
      - squid-proxy
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
      - 25.2.1
-   * - 10
+   * - 12
      - vault
      - vault
      - orch-platform
      - "160"
      - vault
      - https://helm.releases.hashicorp.com
-     - 0.31.0
+     - 0.32.0
 
 .. list-table:: Platform services components for namespace: metallb-system
    :header-rows: 1
@@ -1003,7 +1027,7 @@ Helm Charts for Platform services components
      - "150"
      - metallb-config
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 1.0.1
+     - 26.0.1
 
 .. list-table:: Platform services components for namespace: ns-label
    :header-rows: 1
@@ -1053,7 +1077,7 @@ Helm Charts for Platform services components
      - "1200"
      - nexus-api-gw
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.4
+     - 26.0.6
    * - 2
      - tenancy-api-mapping
      - tenancy-api-mapping
@@ -1061,7 +1085,7 @@ Helm Charts for Platform services components
      - "1200"
      - tenancy-api-mapping
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.11
+     - 26.0.8
    * - 3
      - tenancy-datamodel
      - tenancy-datamodel
@@ -1069,7 +1093,7 @@ Helm Charts for Platform services components
      - "1200"
      - tenancy-datamodel
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.2
+     - 26.0.2
    * - 4
      - tenancy-init
      - tenancy-init
@@ -1077,7 +1101,7 @@ Helm Charts for Platform services components
      - "3000"
      - tenancy-init
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.7
+     - 26.0.3
    * - 5
      - tenancy-manager
      - tenancy-manager
@@ -1085,7 +1109,7 @@ Helm Charts for Platform services components
      - "1200"
      - tenancy-manager
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.5
+     - 26.0.3
 
 .. list-table:: Platform services components for namespace: argocd
    :header-rows: 1
@@ -1143,7 +1167,7 @@ Helm Charts for Platform services components
      - "130"
      - postgresql-secrets
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.4
+     - 26.0.1
 
 .. list-table:: Platform services Components for namespace: cert-manager
    :header-rows: 1
@@ -1164,7 +1188,7 @@ Helm Charts for Platform services components
      - "100"
      - cert-manager
      - https://charts.jetstack.io
-     - 1.17.4
+     - 1.19.3
    * - 2
      - platform-autocert
      - platform-autocert
@@ -1196,40 +1220,36 @@ Docker Containers
      - Full Entry
    * - 1
      - adm-controller
-     - 2.5.9
-     - registry-rs.edgeorchestration.intel.com/edge-orch/app/adm-controller:2.5.9
+     - 2.6.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/app/adm-controller:2.6.1
    * - 2
      - adm-gateway
-     - 2.5.9
-     - registry-rs.edgeorchestration.intel.com/edge-orch/app/adm-gateway:2.5.9
+     - 2.6.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/app/adm-gateway:2.6.1
    * - 3
-     - app-interconnect-manager
-     - 0.3.2
-     - registry-rs.edgeorchestration.intel.com/edge-orch/app/app-interconnect-manager:0.3.2
-   * - 4
      - app-orch-catalog
-     - 0.15.7
-     - registry-rs.edgeorchestration.intel.com/edge-orch/app/app-orch-catalog:0.15.7
-   * - 5
+     - 0.16.7
+     - registry-rs.edgeorchestration.intel.com/edge-orch/app/app-orch-catalog:0.16.7
+   * - 4
      - app-orch-tenant-controller
-     - 0.4.4
-     - registry-rs.edgeorchestration.intel.com/edge-orch/app/app-orch-tenant-controller:0.4.4
-   * - 6
+     - 0.5.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/app/app-orch-tenant-controller:0.5.1
+   * - 5
      - app-resource-manager
-     - 2.5.4
-     - registry-rs.edgeorchestration.intel.com/edge-orch/app/app-resource-manager:2.5.4
-   * - 7
+     - 2.6.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/app/app-resource-manager:2.6.1
+   * - 6
      - app-resource-rest-proxy
-     - 2.5.4
-     - registry-rs.edgeorchestration.intel.com/edge-orch/app/app-resource-rest-proxy:2.5.4
-   * - 8
+     - 2.6.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/app/app-resource-rest-proxy:2.6.1
+   * - 7
      - app-resource-vnc-proxy
-     - 2.5.4
-     - registry-rs.edgeorchestration.intel.com/edge-orch/app/app-resource-vnc-proxy:2.5.4
-   * - 9
+     - 2.6.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/app/app-resource-vnc-proxy:2.6.1
+   * - 8
      - app-service-proxy
-     - 1.5.4
-     - registry-rs.edgeorchestration.intel.com/edge-orch/app/app-service-proxy:1.5.4
+     - 1.6.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/app/app-service-proxy:1.6.1
 
 .. list-table:: Cluster Orchestration Containers
    :widths: 5 25 20 55
@@ -1278,68 +1298,68 @@ Docker Containers
      - registry-rs.edgeorchestration.intel.com/edge-orch/infra/api:1.36.0
    * - 2
      - apiv2
-     - 2.8.2
-     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/apiv2:2.8.2
+     - 2.9.10
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/apiv2:2.9.10
    * - 3
      - attestationstatusmgr
-     - 0.8.1
-     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/attestationstatusmgr:0.8.1
+     - 0.9.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/attestationstatusmgr:0.9.1
    * - 4
      - dkammgr
-     - 1.32.9
-     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/dkammgr:1.32.9
+     - 1.33.8
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/dkammgr:1.33.8
    * - 5
      - dm-manager
-     - 0.7.5
-     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/dm-manager:0.7.5
+     - 0.8.3
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/dm-manager:0.8.3
    * - 6
      - exporter
-     - 1.23.0
-     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/exporter:1.23.0
+     - 1.26.3
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/exporter:1.26.3
    * - 7
      - hostmgr
-     - 1.24.1
-     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/hostmgr:1.24.1
+     - 1.25.2
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/hostmgr:1.25.2
    * - 8
      - inventory
-     - 2.33.4
-     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/inventory:2.33.4
+     - 2.34.4
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/inventory:2.34.4
    * - 9
      - loca-templates-manager
-     - 1.6.2
-     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/loca-templates-manager:1.6.2
+     - 1.7.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/loca-templates-manager:1.7.1
    * - 10
      - locametamgr
-     - 1.5.2
-     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/locametamgr:1.5.2
+     - 1.6.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/locametamgr:1.6.1
    * - 11
      - locamgr
-     - 2.21.2
-     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/locamgr:2.21.2
+     - 2.22.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/locamgr:2.22.1
    * - 12
      - maintmgr
-     - 1.24.2
-     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/maintmgr:1.24.2
+     - 1.25.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/maintmgr:1.25.1
    * - 13
      - netmgr
-     - 1.20.0
-     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/netmgr:1.20.0
+     - 1.21.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/netmgr:1.21.1
    * - 14
      - onboardingmgr
-     - 1.38.15
-     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/onboardingmgr:1.38.15
+     - 1.39.9
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/onboardingmgr:1.39.9
    * - 15
      - osresourcemgr
-     - 0.20.5
-     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/osresourcemgr:0.20.5
+     - 0.21.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/osresourcemgr:0.21.1
    * - 16
      - telemetrymgr
-     - 1.24.1
-     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/telemetrymgr:1.24.1
+     - 1.25.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/telemetrymgr:1.25.1
    * - 17
      - tenant-controller
-     - 0.24.2
-     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/tenant-controller:0.24.2
+     - 0.25.3
+     - registry-rs.edgeorchestration.intel.com/edge-orch/infra/tenant-controller:0.25.3
 
 .. list-table:: Observability Containers
    :widths: 5 25 20 55
@@ -1351,32 +1371,32 @@ Docker Containers
      - Full Entry
    * - 1
      - alerting-monitor-management
-     - 1.7.4
-     - registry-rs.edgeorchestration.intel.com/edge-orch/o11y/alerting-monitor-management:1.7.4
+     - 1.7.7
+     - registry-rs.edgeorchestration.intel.com/edge-orch/o11y/alerting-monitor-management:1.7.7
    * - 2
      - alerting-monitor
-     - 1.7.4
-     - registry-rs.edgeorchestration.intel.com/edge-orch/o11y/alerting-monitor:1.7.4
+     - 1.7.7
+     - registry-rs.edgeorchestration.intel.com/edge-orch/o11y/alerting-monitor:1.7.7
    * - 3
      - grafana-proxy
-     - 0.5.1
-     - registry-rs.edgeorchestration.intel.com/edge-orch/o11y/grafana-proxy:0.5.1
+     - 0.5.2
+     - registry-rs.edgeorchestration.intel.com/edge-orch/o11y/grafana-proxy:0.5.2
    * - 4
      - observability-tenant-controller
-     - 0.7.0
-     - registry-rs.edgeorchestration.intel.com/edge-orch/o11y/observability-tenant-controller:0.7.0
+     - 0.7.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/o11y/observability-tenant-controller:0.7.1
    * - 5
      - orch-otelcol
-     - 0.2.2
-     - registry-rs.edgeorchestration.intel.com/edge-orch/o11y/orch-otelcol:0.2.2
+     - 0.2.3
+     - registry-rs.edgeorchestration.intel.com/edge-orch/o11y/orch-otelcol:0.2.3
    * - 6
      - sre-config-reloader
-     - 0.9.2
-     - registry-rs.edgeorchestration.intel.com/edge-orch/o11y/sre-config-reloader:0.9.2
+     - 0.9.3
+     - registry-rs.edgeorchestration.intel.com/edge-orch/o11y/sre-config-reloader:0.9.3
    * - 7
      - sre-metrics-exporter
-     - 0.9.2
-     - registry-rs.edgeorchestration.intel.com/edge-orch/o11y/sre-metrics-exporter:0.9.2
+     - 0.9.3
+     - registry-rs.edgeorchestration.intel.com/edge-orch/o11y/sre-metrics-exporter:0.9.3
 
 .. list-table:: User Interface Containers
    :widths: 5 25 20 55
@@ -1388,28 +1408,28 @@ Docker Containers
      - Full Entry
    * - 1
      - admin
-     - 3.2.4
-     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/admin:3.2.4
+     - 4.0.4
+     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/admin:4.0.4
    * - 2
      - app-orch
-     - 3.2.5
-     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/app-orch:3.2.5
+     - 4.0.5
+     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/app-orch:4.0.5
    * - 3
      - cluster-orch
-     - 3.2.4
-     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/cluster-orch:3.2.4
+     - 4.0.0
+     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/cluster-orch:4.0.0
    * - 4
      - infra
-     - 3.2.18
-     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/infra:3.2.18
+     - 4.0.3
+     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/infra:4.0.3
    * - 5
      - metadata-broker
-     - 0.4.14
-     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/metadata-broker:0.4.14
+     - 1.0.1
+     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/metadata-broker:1.0.1
    * - 6
      - root
-     - 3.2.11
-     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/root:3.2.11
+     - 4.0.6
+     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/root:4.0.6
 
 .. list-table:: Platform services Containers
    :widths: 5 25 20 55
@@ -1421,36 +1441,40 @@ Docker Containers
      - Full Entry
    * - 1
      - auth-service
-     - 25.2.3
-     - registry-rs.edgeorchestration.intel.com/edge-orch/common/auth-service:25.2.3
+     - 26.0.3
+     - registry-rs.edgeorchestration.intel.com/edge-orch/common/auth-service:26.0.3
    * - 2
      - aws-sm-proxy
-     - 25.2.3
-     - registry-rs.edgeorchestration.intel.com/edge-orch/common/aws-sm-proxy:25.2.3
+     - 26.0.3
+     - registry-rs.edgeorchestration.intel.com/edge-orch/common/aws-sm-proxy:26.0.3
    * - 3
      - cert-synchronizer
-     - 25.2.11
-     - registry-rs.edgeorchestration.intel.com/edge-orch/common/cert-synchronizer:25.2.11
+     - 26.0.5
+     - registry-rs.edgeorchestration.intel.com/edge-orch/common/cert-synchronizer:26.0.5
    * - 4
      - nexus-api-gw
-     - 25.2.3
-     - registry-rs.edgeorchestration.intel.com/edge-orch/common/nexus-api-gw:25.2.3
+     - 26.0.6
+     - registry-rs.edgeorchestration.intel.com/edge-orch/common/nexus-api-gw:26.0.6
    * - 5
      - orchestrator-installer-cloudfull
      - v2025.2.0-dev-5d077132
      - registry-rs.edgeorchestration.intel.com/edge-orch/common/orchestrator-installer-cloudfull:v2025.2.0-dev-5d077132
    * - 6
      - tenancy-init
-     - 25.2.1
-     - registry-rs.edgeorchestration.intel.com/edge-orch/common/tenancy-init:25.2.1
+     - 26.0.3
+     - registry-rs.edgeorchestration.intel.com/edge-orch/common/tenancy-init:26.0.3
    * - 7
      - token-fs
-     - 25.2.0
-     - registry-rs.edgeorchestration.intel.com/edge-orch/common/token-fs:25.2.0
+     - 26.0.2
+     - registry-rs.edgeorchestration.intel.com/edge-orch/common/token-fs:26.0.2
    * - 8
      - metrics-server
      - v0.8.0
      - registry.k8s.io/metrics-server/metrics-server:v0.8.0
+   * - 9
+     - component-status
+     - 26.0.4
+     - registry-rs.edgeorchestration.intel.com/edge-orch/common/component-status:26.0.4
 
 .. list-table:: Shared containers
    :widths: 5 25 20 55
@@ -1494,12 +1518,12 @@ Docker Containers
      - docker.io/bats/bats:v1.11.1
    * - 9
      - grafana
-     - 12.2.1
-     - docker.io/grafana/grafana:12.2.1
+     - 12.3.3
+     - docker.io/grafana/grafana:12.3.3
    * - 10
      - loki
-     - 3.5.7
-     - docker.io/grafana/loki:3.5.7
+     - 3.6.5
+     - docker.io/grafana/loki:3.6.5
    * - 11
      - oact-mps
      - v2.14.2
@@ -1518,8 +1542,8 @@ Docker Containers
      - docker.io/nginxinc/nginx-unprivileged:1.29-alpine
    * - 15
      - mimir
-     - 3.0.0
-     - grafana/mimir:3.0.0
+     - 3.0.1
+     - grafana/mimir:3.0.1
    * - 16
      - memcached
      - 1.6.39-alpine
@@ -1546,8 +1570,8 @@ Docker Containers
      - otel/opentelemetry-collector-contrib:0.111.0
    * - 22
      - opentelemetry-collector-contrib
-     - 0.136.0
-     - otel/opentelemetry-collector-contrib:0.136.0
+     - 0.146.1
+     - otel/opentelemetry-collector-contrib:0.146.1
    * - 23
      - kubectl-shell
      - latest
@@ -1558,25 +1582,29 @@ Docker Containers
      - postgres:16.10-bookworm
    * - 25
      - memcached-exporter
-     - v0.15.3
-     - prom/memcached-exporter:v0.15.3
+     - v0.15.4
+     - prom/memcached-exporter:v0.15.4
    * - 26
      - k8s-sidecar
-     - 1.30.10
-     - quay.io/kiwigrid/k8s-sidecar:1.30.10
+     - 2.5.0
+     - quay.io/kiwigrid/k8s-sidecar:2.5.0
    * - 27
      - prometheus-config-reloader
      - v0.86.2
      - quay.io/prometheus-operator/prometheus-config-reloader:v0.86.2
    * - 28
-     - alertmanager
-     - v0.29.0
-     - quay.io/prometheus/alertmanager:v0.29.0
+     - prometheus-config-reloader
+     - v0.89.0
+     - quay.io/prometheus-operator/prometheus-config-reloader:v0.89.0
    * - 29
+     - alertmanager
+     - v0.31.1
+     - quay.io/prometheus/alertmanager:v0.31.1
+   * - 30
      - tink-controller
      - v0.10.0
      - quay.io/tinkerbell/tink-controller:v0.10.0
-   * - 30
+   * - 31
      - tink
      - v0.10.0
      - quay.io/tinkerbell/tink:v0.10.0

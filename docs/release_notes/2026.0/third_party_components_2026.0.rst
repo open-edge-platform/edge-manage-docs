@@ -117,54 +117,46 @@ Cluster Extensions
      - Type
      - Link
      - Version
-   * - Skupper Site Controller
-     - Container
-     - quay.io/skupper/site-controller
-     - 1.9.4
    * - MetalLB Controller
      - Container
      - quay.io/metallb/controller
-     - v0.15.2
+     - v0.15.3
    * - MetalLB Speaker
      - Container
      - quay.io/metallb/speaker
-     - v0.15.2
-   * - Nginx Ingress
-     - Container
-     - ingress-nginx-controller
-     - v1.13.3
+     - v0.15.3
    * - Kube-Rbac-Proxy
      - Container
      - quay.io/brancz/kube-rbac-proxy
-     - v0.20.0
+     - v0.21.0
    * - macvtap-cni (Kubevirt)
      - Container
      - quay.io/kubevirt/macvtap-cni
-     - v0.13.0
+     - v0.13.1
    * - virt-controller (Kubevirt)
      - Container
      - quay.io/kubevirt/virt-controller
-     - v1.6.3
+     - v1.7.1
    * - virt-launcher (Kubevirt)
      - Container
      - quay.io/kubevirt/virt-launcher
-     - v1.6.3
+     - v1.7.1
    * - virt-handler (Kubevirt)
      - Container
      - quay.io/kubevirt/virt-handler
-     - v1.6.3
+     - v1.7.1
    * - virt-operator (Kubevirt)
      - Container
      - quay.io/kubevirt/virt-operator
-     - v1.6.3
+     - v1.7.1
    * - cert-manager
      - Helm/Container
      - https://artifacthub.io/packages/helm/cert-manager/cert-manager
-     - 1.19.1
+     - 1.19.4
    * - fluent-bit
      - Helm/Container
      - https://github.com/fluent/helm-charts/tree/main/charts/fluent-bit
-     - 0.54.0
+     - 0.55.0
    * - nfd
      - Helm/Container
      - https://github.com/kubernetes-sigs/node-feature-discovery/tree/0706c7a5607ec260a024a36c22697f054fac3e77/deployment/helm/node-feature-discovery
@@ -172,7 +164,7 @@ Cluster Extensions
    * - node-exporter
      - Helm/Container
      - https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-node-exporter
-     - 4.49.1
+     - 4.51.1
    * - prometheus
      - Helm/Container
      - https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
@@ -180,11 +172,11 @@ Cluster Extensions
    * - telegraf
      - Helm/Container
      - https://github.com/influxdata/helm-charts/tree/master/charts/telegraf
-     - 1.8.64
-   * - kubernetes-dashboard
+     - 1.8.67
+   * - headlamp
      - Helm/Container
-     - https://github.com/kubernetes/dashboard/releases/tag/kubernetes-dashboard-7.13.0
-     - 7.14.0
+     - https://github.com/kubernetes-sigs/headlamp/tree/main/charts/headlamp
+     - 0.39.3
 
 Edge Infrastructure Manager
 ----------------------------
@@ -217,7 +209,7 @@ Edge Infrastructure Manager
    * - curl-jq
      - Container (utility)
      - https://github.com/badouralix/dockerfiles
-     - sha256:fe8a5ee49f613495df3b57afa86b39f081bd1b3b9ed61248f46c3d3d7df56092
+     - sha256:8ee002ae4452b23a3c70750c5c081e95334cfe9f7968fb4d67a90d4001c29d0b
    * - busybox
      - Container (utility)
      - https://hub.docker.com/_/busybox/
@@ -262,19 +254,19 @@ Platform services
    * - cert-manager
      - helm chart
      - https://charts.jetstack.io
-     - 1.17.4
+     - 1.19.3
    * - cert-manager
      - image
      - quay.io/jetstack/cert-manager-controller
-     - v1.17.4
+     - v1.19.3
    * - cert-manager
      - image
      - quay.io/jetstack/cert-manager-cainjector
-     - v1.17.4
+     - v1.19.3
    * - cert-manager
      - image
      - quay.io/jetstack/cert-manager-webhook
-     - v1.17.4
+     - v1.19.3
    * - cluster-autoscaler
      - helm chart
      - https://kubernetes.github.io/autoscaler
@@ -282,11 +274,11 @@ Platform services
    * - external-secrets
      - helm chart
      - https://charts.external-secrets.io
-     - 0.20.4
+     - 2.0.1
    * - external-secrets
      - image
      - ghcr.io/external-secrets/external-secrets
-     - v0.20.4
+     - v2.0.4
    * - ingress-nginx
      - helm chart
      - https://kubernetes.github.io/ingress-nginx
@@ -311,18 +303,22 @@ Platform services
      - image
      - docker.io/istio/pilot
      - 1.28.0
+   * - istiod
+     - image
+     - docker.io/istio/proxyv2
+     - 1.28.0
    * - keycloak
      - helm chart
      - https://github.com/bitnami/charts/tree/main/bitnami/keycloak
      - 24.4.12
    * - keycloak
      - image
-     - docker.io/bitnami/keycloak
-     - 26.1.3-debian-12-r0
+     - quay.io/keycloak/keycloak
+     - 26.5.3
    * - keycloak
      - image
-     - docker.io/bitnami/keycloak-config-cli
-     - 6.4.0-debian-12-r0
+     - quay.io/keycloak/keycloak-operator
+     - 26.5.3
    * - keycloak-tenant-controller
      - image
      - badouralix/curl-jq
@@ -334,27 +330,27 @@ Platform services
    * - kiali
      - helm chart
      - https://kiali.org/helm-charts
-     - 2.18.0
+     - 2.22.0
    * - kiali
      - image
      - quay.io/kiali/kiali
-     - v2.18.0
+     - v2.22.0
    * - kyverno
      - helm chart
      - https://kyverno.github.io/kyverno
-     - 3.5.1
+     - 3.6.1
    * - kyverno
      - image
-     - ghcr.io/kyverno/kyvernopre
-     - v1.15.1
+     - reg.kyverno.io/kyverno/kyvernopre
+     - v1.16.1
    * - kyverno
      - image
-     - ghcr.io/kyverno/kyverno
-     - v1.15.1
+     - reg.kyverno.io/kyverno/kyverno
+     - v1.16.1
    * - kyverno
      - image
-     - ghcr.io/kyverno/background-controller
-     - v1.15.1
+     - reg.kyverno.io/kyverno/background-controller
+     - v1.16.1
    * - metalLB
      - helm chart
      - https://metallb.github.io/metallb
@@ -366,7 +362,7 @@ Platform services
    * - metalLB
      - image
      - quay.io/frrouting/frr
-     - v0.15.2
+     - 8.5.2
    * - metalLB
      - image
      - quay.io/metallb/speaker
@@ -406,7 +402,7 @@ Platform services
    * - vault
      - helm chart
      - https://helm.releases.hashicorp.com/
-     - 0.31.0
+     - 0.32.0
    * - vault
      - image
      - alpine
@@ -418,11 +414,11 @@ Platform services
    * - vault
      - image
      - hashicorp/vault
-     - 1.20.4
+     - 1.21.4
    * - vault
      - image
      - hashicorp/vault-k8s
-     - 1.7.0
+     - 1.7.2
    * - argocd
      - helm chart
      - https://argoproj.github.io/argo-helm
@@ -455,6 +451,10 @@ Platform services
      - image
      - openebs/provisioner-localpv
      - 4.3.0
+   * - haproxy-ingress
+     - image
+     - haproxytech/kubernetes-ingress
+     - 3.0.1
 
 Observabilty (O11y)
 -------------------
@@ -475,7 +475,7 @@ Observabilty (O11y)
    * - grafana
      - Helm Chart
      - https://grafana.github.io/helm-charts
-     - 10.1.4
+     - 11.1.8
    * - kube-prometheus-stack
      - Helm Chart
      - https://prometheus-community.github.io/helm-charts
@@ -483,11 +483,11 @@ Observabilty (O11y)
    * - loki
      - Helm Chart
      - https://grafana.github.io/helm-charts
-     - 6.46.0
+     - 6.53.0
    * - mimir-distributed
      - Helm Chart
      - https://grafana.github.io/helm-charts
-     - 6.0.3
+     - 6.0.5
    * - minio
      - Helm Chart
      - https://charts.min.io/
