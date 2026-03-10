@@ -335,6 +335,7 @@ Update the following sections:
 - **CORE DEPLOYMENT CONFIGURATION:**
   - RELEASE_SERVICE_URL
   - DEPLOY_VERSION
+  - DEPLOY_REPO_BRANCH
   - ORCH_INSTALLER_PROFILE
 
 - **AUTHENTICATION & SECURITY:**
@@ -367,8 +368,10 @@ Update the following sections:
    kubectl get svc traefik -n orch-gateway
    kubectl get svc ingress-nginx-controller -n orch-boots
 
-   # Set deployment version (replace with your actual upgrade version tag)
-   export DEPLOY_VERSION=v2025.2.0
+  # Set deployment version (replace with your actual upgrade version tag)
+  export DEPLOY_VERSION=v2026.0.0
+  #Set the deploy repo release tag/branch (Gitea commit/tag/branch from EMF repo)
+  export DEPLOY_REPO_BRANCH=v2026.0.0
 
    # Set non-interactive mode to true to skip prompts
    export PROCEED=true
