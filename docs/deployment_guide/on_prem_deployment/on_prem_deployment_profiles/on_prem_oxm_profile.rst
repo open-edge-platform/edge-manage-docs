@@ -51,9 +51,9 @@ A sample network topology is presented in the diagram below:
 #. Most of Edge Orchestrator services are accessible via ``TRAEFIK_IP``, a Virtual IP reserved in the local subnet.
 
 #. The Edge Orchestrator must be configured with two more Virtual IPs that are reserved in the local subnet. ``ARGO_IP`` is used to access
-   ArgoCD server, while ``NGINX_IP`` exposes installation artifacts that are downloaded by Edge Nodes during OS provisioning.
+   ArgoCD server, while ``HAPROXY_IP`` exposes installation artifacts that are downloaded by Edge Nodes during OS provisioning.
 
-#. Note that one of ``TRAEFIK_IP``, ``NGINX_IP`` and ``ARGO_IP`` can be same as the physical interface's IP address (``ARGO_IP`` in the example).
+#. Note that one of ``TRAEFIK_IP``, ``HAPROXY_IP`` and ``ARGO_IP`` can be same as the physical interface's IP address (``ARGO_IP`` in the example).
 
 #. Only the PXE server is attached to the host networking and binds to the IP address of the physical network interface to listen to DHCP requests.
 

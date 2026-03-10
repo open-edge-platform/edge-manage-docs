@@ -144,9 +144,9 @@ Network Configuration
    * - ``TRAEFIK_IP``
      - MetalLB IP address for Traefik
      - (empty)
-   * - ``NGINX_IP``
-     - MetalLB IP address for NGINX
-     - (empty)
+    * - ``HAPROXY_IP``
+       - MetalLB IP address for HAProxy
+       - (empty)
 
 Container Registry Configuration
 +++++++++++++++++++++++++++++++++++

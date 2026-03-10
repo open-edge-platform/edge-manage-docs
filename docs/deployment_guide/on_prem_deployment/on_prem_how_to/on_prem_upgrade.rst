@@ -176,8 +176,8 @@ Network Configuration
    * - ``TRAEFIK_IP``
      - MetalLB IP address for Traefik
      - (empty)
-   * - ``NGINX_IP``
-     - MetalLB IP address for NGINX
+   * - ``HAPROXY_IP``
+     - MetalLB IP address for HAProxy
      - (empty)
 
 Container Registry Configuration
@@ -343,7 +343,7 @@ Update the following sections:
 
 - **NETWORK CONFIGURATION:**
   - CLUSTER_DOMAIN
-  - ARGO_IP, TRAEFIK_IP, NGINX_IP
+  - ARGO_IP, TRAEFIK_IP, HAPROXY_IP
 
 - **CONTAINER REGISTRY:**
   - GITEA_IMAGE_REGISTRY
