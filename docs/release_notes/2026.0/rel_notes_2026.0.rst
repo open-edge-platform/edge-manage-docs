@@ -22,10 +22,10 @@ onboarded node.
 
 EMF release versioning has been changed to align with the year and release number.
 
-Key highlights of the 2025.2 release include:
+Key highlights of the 2026.0 release include:
 
-.. figure:: release-notes-20252.png
-      :alt: 2025.2 Release Highlights
+.. figure:: release-notes-20260.png
+      :alt: 2026.0 Release Highlights
 
 **Infrastructure and Edge Node Software**
 

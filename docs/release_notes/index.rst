@@ -33,10 +33,10 @@ Version 2025.2
 Version 2026.0
 ------------------
 
-- :doc:`/release_notes/2025.2/rel_notes_2026.0`
-- :doc:`/release_notes/2025.2/kpi_2026.0`
-- :doc:`/release_notes/2025.2/third_party_components_2026.0`
-- :doc:`/release_notes/2025.2/containers_helm_charts_2026.0`
+- :doc:`/release_notes/2026.0/rel_notes_2026.0`
+- :doc:`/release_notes/2026.0/kpi_2026.0`
+- :doc:`/release_notes/2026.0/third_party_components_2026.0`
+- :doc:`/release_notes/2026.0/containers_helm_charts_2026.0`
 
 
 .. toctree::

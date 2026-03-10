@@ -1,13 +1,13 @@
-Version 2025.2
+Version 2026.0
 ======================
 
-|software_prod_name| version 2025.2 consists of the following elements and
+|software_prod_name| version 2026.0 consists of the following elements and
 complies with key performance indicators:
 
-- :doc:`rel_notes_2025.2`
-- :doc:`kpi_2025.2`
-- :doc:`third_party_components_2025.2`
-- :doc:`containers_helm_charts_2025.2`
+- :doc:`rel_notes_2026.0`
+- :doc:`kpi_2026.0`
+- :doc:`third_party_components_2026.0`
+- :doc:`containers_helm_charts_2026.0`
 
 
 
@@ -16,8 +16,8 @@ complies with key performance indicators:
 .. toctree::
    :hidden:
 
-   rel_notes_2025.2
-   kpi_2025.2
-   third_party_components_2025.2
-   containers_helm_charts_2025.2
+   rel_notes_2026.0
+   kpi_2026.0
+   third_party_components_2026.0
+   containers_helm_charts_2026.0
 
