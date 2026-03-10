@@ -135,10 +135,13 @@ Core Deployment Configuration
      - ``registry-rs.edgeorchestration.intel.com``
    * - ``DEPLOY_VERSION``
      - Version of Edge Orchestrator to deploy
-     - ``v2025.2.0``
-   * - ``ORCH_INSTALLER_PROFILE``
-     - Deployment profile for Edge Orchestrator
-     - ``onprem``
+     - ``v2026.0.0``
+  * - ``DEPLOY_REPO_BRANCH``
+    - Git tag or branch for edge-manageability-framework deployment repository
+    - ``v2026.0.0``
+  * - ``ORCH_INSTALLER_PROFILE``
+    - Deployment profile for Edge Orchestrator
+    - ``onprem``
 
 Authentication & Security
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
