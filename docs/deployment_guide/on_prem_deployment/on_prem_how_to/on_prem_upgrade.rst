@@ -578,8 +578,8 @@ Verify that the ``signed_ipxe.efi`` image is downloaded using the freshly downlo
       # Delete both files before downloading
       rm -rf Full_server.crt signed_ipxe.efi
       export CLUSTER_DOMAIN=cluster.onprem
-      wget https://tinkerbell-nginx.$CLUSTER_DOMAIN/tink-stack/keys/Full_server.crt --no-check-certificate --no-proxy -q -O Full_server.crt
-      wget --ca-certificate=Full_server.crt https://tinkerbell-nginx.$CLUSTER_DOMAIN/tink-stack/signed_ipxe.efi -q -O signed_ipxe.efi
+      wget https://tinkerbell-haproxy.$CLUSTER_DOMAIN/tink-stack/keys/Full_server.crt --no-check-certificate --no-proxy -q -O Full_server.crt
+      wget --ca-certificate=Full_server.crt https://tinkerbell-haproxy.$CLUSTER_DOMAIN/tink-stack/signed_ipxe.efi -q -O signed_ipxe.efi
 
    Once the above steps are successful, the orchestrator (Orch) is ready for onboarding new Edge Nodes (EN).
 

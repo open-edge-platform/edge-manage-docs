@@ -156,7 +156,7 @@ Post-installation steps
      .. code-block:: shell
 
         address=/[on.prem.domain.name]/[traefik-external-ip]
-        address=/tinkerbell-nginx.[on.prem.domain.name]/[ingress-nginx-external-ip]
+      address=/tinkerbell-haproxy.[on.prem.domain.name]/[ingress-nginx-external-ip]
 
 #. Retrieve the self-signed Edge Orchestrator certificate and install it to the trust store.
 
