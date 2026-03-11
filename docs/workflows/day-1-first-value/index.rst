@@ -13,4 +13,3 @@ profiles, create clusters, and deploy your first applications using orch-cli.
    host-provisioning
    cluster-lifecycle
    app-deployment
-   custom-os-profile
