@@ -13,7 +13,7 @@ Depending on the EIM scenario, some of the APIs may not be supported. Currently 
 - EIM vPRO - only a subset of APIs is supported for vPRO feature management, limited to Create, Read, Update, and Delete operations for hosts.
 For details, see :doc:`/deployment_guide/on_prem_deployment/on_prem_deployment_profiles/onprem_vpro_profile`.
 - EIM without Observability - all EIM APIs are supported except observability-related APIs, such as Telemetry configuration.
-For details, see :doc:`/user_guide/set_up_edge_infra/installation_script_options/installation_script_options`.
+For instructions to disable observability in deployment, see :doc:`/deployment_guide/on_prem_deployment/on_prem_get_started/on_prem_install`.
 
 The APIs return error codes based on the internal result of the operation.
 
