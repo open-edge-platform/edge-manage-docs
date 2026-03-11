@@ -1,3 +1,6 @@
+.. SPDX-FileCopyrightText: (C) 2026 Intel Corporation
+.. SPDX-License-Identifier: Apache-2.0
+
 Cloud Orchestrator Deployment (AWS) - CLI Validation First
 ===========================================================
 
