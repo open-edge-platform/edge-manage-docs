@@ -72,11 +72,11 @@ Remote power operations are available independent of the operating system state:
   sequence.
 - **Power Status Retrieval** — Query the current power state of a device.
 
-System Requirements 
+System Requirements
 -------------------
 
-The modular vPro workflow has control plane and edge node environments. 
-Here are the minimum requirements for these two environment. 
+The modular vPro workflow has control plane and edge node environments.
+Here are the minimum requirements for these two environment.
 
 Control Plane Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -177,18 +177,18 @@ Orch CLI. Adjust `CLUSTER_FQDN`, `PROJECT_NAME`, and other values as needed.
 
   orch-cli create host -i host-config.csv
   orch-cli list hosts
-  
+
 host-config.csv template
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use this CSV template with `orch-cli create host -i <file>`; adapt columns
 to your environment. The header row is required.
 
-.. code-block:: csv
+.. code-block:: text
 
-Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,LVMSize,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill
-EDGENODE1_SERIALNO,,,,,,,,,,,,
-EDGENODE2_SERIALNO,,,,,,,,,,,,
+  Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,LVMSize,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill
+  EDGENODE1_SERIALNO,,,,,,,,,,,,
+  EDGENODE2_SERIALNO,,,,,,,,,,,,
 
 .. note::
 
@@ -280,10 +280,41 @@ Provision a vPro device:
     --api-endpoint https://api.${CLUSTER_FQDN} \
     --amt-state provisioned
 
+Activate vPro In ACM mode
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Domain creation
+
+  .. code-block:: bash
+
+    orch-cli create amtprofile <domain_name> \
+      --project ${PROJECT_NAME} \
+      --cert 'Domain-certificate.pfx' \
+      --cert-pass cert-password \
+      --cert-format string \
+      --domain-suffix <Domain-suffix> \
+      --api-endpoint https://api.${CLUSTER_FQDN}
+
+- ACM Activation command
+
+  .. code-block:: bash
+
+    orch-cli set host ${HOST_ID} \
+      --project ${PROJECT_NAME} \
+      --api-endpoint https://api.${CLUSTER_FQDN} \
+      --amt-state provisioned \
+      --control-mode admin
+
 Verify vPro activation on the control plane
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Because UI is disabled, verify activation state via ``orch-cli``.
+
+.. code-block:: bash
+
+  orch-cli get host ${HOST_ID} \
+    --project ${PROJECT_NAME} \
+    --api-endpoint https://api.${CLUSTER_FQDN}
 
 Perform out-of-band power management operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
