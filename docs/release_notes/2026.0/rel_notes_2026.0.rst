@@ -183,6 +183,9 @@ Cluster and Application Management
   becomes available, then upon upgrading the deployed application, the application may
   fail to update and become stuck in an "Updating" state when using the upgrade functionality.
   As a workaround, delete the existing deployment and create a fresh deployment with the new version of the application.
+* If Application Management, including the application catalog, has not been enabled but Cluster Management has been
+  enabled, the deployment packages from `cluster-extensions <https://github.com/open-edge-platform/cluster-extensions/tree/main/deployment-package>`_
+  will not be available for installation onto an edge node cluster, since these are stored within the catalog service.
 
 User Experience
 ^^^^^^^^^^^^^^^^^
