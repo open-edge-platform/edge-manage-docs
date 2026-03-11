@@ -51,8 +51,8 @@ You need to follow the steps mentioned in `Prerequisites section <https://docs.o
 
    .. code-block:: bash
 
-      # Replace <25.2-TAG> with actual tag
-      oras pull registry-rs.edgeorchestration.intel.com/edge-orch/common/files/cloud-orchestrator-installer:<25.2-TAG>
+      # Replace <26.0-TAG> with actual tag
+      oras pull registry-rs.edgeorchestration.intel.com/edge-orch/common/files/cloud-orchestrator-installer:<26.0-TAG>
       tar -xzf _build/cloud-orchestrator-installer.tgz
 
 2. **Start the installation Environment**
