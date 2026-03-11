@@ -1,7 +1,7 @@
 On-Prem Upgrade Guide
 =========================
 
-**Upgrade Path:** EMF On-Prem v3.1.3 → v2025.2.0
+**Upgrade Path:** EMF On-Prem v2025.2.0 → v2026.0.0
 
 **Document Version:** 1.0
 
@@ -9,7 +9,7 @@ Overview
 --------
 
 This document provides step-by-step instructions to upgrade
-On-Prem Edge Manageability Framework (EMF) from version v3.1.3 to v2025.2.0.
+On-Prem Edge Manageability Framework (EMF) from version v2025.2.0 to  v2026.0.0
 
 Prerequisites
 -------------
@@ -17,7 +17,7 @@ Prerequisites
 System Requirements
 ~~~~~~~~~~~~~~~~~~~
 
-- Current EMF On-Prem installation version 3.1.3 or later
+- Current EMF On-Prem installation version v2025.2.0 or later
 - Root/sudo privileges on orchestrator node
 - PostgreSQL service running and accessible
 - Sufficient disk space for backups (~200GB minimum)
@@ -53,7 +53,7 @@ Step 1: Download the Latest On-Prem Upgrade Script
     REGISTRY_URL='registry-rs.edgeorchestration.intel.com'
     RS_PATH='edge-orch/common/files/on-prem'
     ORAS_VERSION='1.1.0'
-    ORCH_VERSION='v2025.2.0'
+    ORCH_VERSION='v2026.0.0'
 
     # Install oras if not already installed
     if ! command -v oras &> /dev/null; then
@@ -182,6 +182,9 @@ Network Configuration
    * - ``HAPROXY_IP``
      - MetalLB IP address for HAProxy
      - (empty)
+
+.. note::
+   In **v2026.0.0 (latest release)**, the ingress controller was **replaced from NGINX to HAProxy**.
 
 Container Registry Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -433,7 +436,7 @@ Before confirming in Terminal 1, open **Terminal 2** and update configurations:
       # Check current LoadBalancer IPs
       kubectl get svc argocd-server -n argocd
       kubectl get svc traefik -n orch-gateway
-      kubectl get svc ingress-nginx-controller -n orch-boots
+      kubectl get svc ingress-haproxy-kubernetes-ingress -n orch-boots
 
       # Verify LB IP configurations are updated
       nano repo_archives/tmp/edge-manageability-framework/orch-configs/clusters/onprem.yaml
@@ -457,7 +460,7 @@ Step 7: Monitor Upgrade Progress
 
 The upgrade process includes:
 
-- Upgrade RKE2 to 1.34.1 versions
+- Upgrade RKE2 to v1.35.0 versions
 - OS Configuration upgrade
 - Gitea upgrade
 - ArgoCD upgrade
