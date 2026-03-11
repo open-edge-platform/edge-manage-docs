@@ -676,7 +676,7 @@ Helm Charts for Platform services components
      - istio-system
      - "100"
      - istio-base
-     - https://istio-release.storage.googleapis.com/charts
+     - https://istio.io/latest/docs/setup/install/helm/
      - 1.28.0
    * - 2
      - istio-policy
@@ -692,7 +692,7 @@ Helm Charts for Platform services components
      - istio-system
      - "110"
      - istiod
-     - https://istio-release.storage.googleapis.com/charts
+     - https://istio-release.storage.googleapis.com
      - 1.28.0
    * - 4
      - kiali

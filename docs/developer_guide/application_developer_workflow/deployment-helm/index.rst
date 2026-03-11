@@ -151,7 +151,7 @@ properly:
       helm -n testns template --release-name foobar . -f <values.yaml from deployment package>
 
 #. Be aware of the preinstalled network policies applied to various namespaces on the Edge Node cluster.
-   These can be seen in `network-policies  <https://github.com/open-edge-platform/cluster-extensions/tree/main/helm/network-policies/templates>`_
+   These can be seen in `network-policies  <https://github.com/open-edge-platform/cluster-extensions/tree/main/helm/>`_
    or by running `kubectl` on the Edge Node:
 
    .. code:: shell
@@ -194,7 +194,7 @@ properly:
    dependent on any specific configuration, then default configuration can be left as is.
 
 #. Scan the Helm Chart for security vulnerabilities. This can be done using
-   `Trivy <https://trivy.dev/latest/>`_.
+   `Trivy <https://trivy.dev/docs/latest/guide/>`_.
 
    .. code:: shell
 
