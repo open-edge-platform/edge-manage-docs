@@ -72,11 +72,11 @@ Remote power operations are available independent of the operating system state:
   sequence.
 - **Power Status Retrieval** — Query the current power state of a device.
 
-System Requirements 
+System Requirements
 -------------------
 
-The modular vPro workflow has control plane and edge node environments. 
-Here are the minimum requirements for these two environment. 
+The modular vPro workflow has control plane and edge node environments.
+Here are the minimum requirements for these two environment.
 
 Control Plane Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
