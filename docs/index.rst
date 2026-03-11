@@ -116,9 +116,9 @@ you can find details about the high-level design and submit patches of your own.
         APIs offer Create, Read, Update, and Delete capabilities.
 
 
-Workflows (CLI-First)
----------------------
-Step-by-step CLI-first workflows organized by deployment phases. Learn how to execute common tasks
+EMF Workflows
+-------------
+Step-by-step workflows organized by deployment phases. Learn how to execute common tasks
 using the orch-cli command-line interface, from platform setup through infrastructure management and operations.
 
 .. grid:: 3

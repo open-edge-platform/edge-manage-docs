@@ -1,8 +1,8 @@
 .. SPDX-FileCopyrightText: (C) 2025 Intel Corporation
 .. SPDX-License-Identifier: Apache-2.0
 
-Cluster Lifecycle (CLI-First)
-=============================
+Cluster Lifecycle
+=================
 
 Deploy and manage Kubernetes clusters on provisioned edge nodes using ``orch-cli``.
 
@@ -16,10 +16,16 @@ Step 1 – Verify Cluster Prerequisites
    # List available cluster templates
    orch-cli list clustertemplates
 
-   # Verify provisioned hosts
+   # List provisioned hosts and capture the host UUID
    orch-cli list hosts
 
-Note the host UUID and template name for cluster creation.
+To look up a specific host by serial number:
+
+.. code-block:: bash
+
+   orch-cli list hosts --filter serial=<SERIAL_NUMBER>
+
+Note the host ``uuid`` and template name for cluster creation.
 
 Step 2 – Create Cluster
 -----------------------

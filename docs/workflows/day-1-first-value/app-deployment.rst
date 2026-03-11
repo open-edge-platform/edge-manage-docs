@@ -1,8 +1,8 @@
 .. SPDX-FileCopyrightText: (C) 2025 Intel Corporation
 .. SPDX-License-Identifier: Apache-2.0
 
-Application Deployment (CLI-First)
-===================================
+Application Deployment
+======================
 
 Package and deploy containerized or VM-based applications to edge clusters using ``orch-cli``.
 
@@ -52,7 +52,7 @@ Replace ``<CHART_URL>`` (e.g., ``https://charts.bitnami.com/bitnami/wordpress-23
 
 Replace ``<CHART_NAME>`` with the Helm chart name in the registry.
 
-Step 2a – Create Application Profile (Optional)
+Step 3 – Create Application Profile (Optional)
 -------------------------------------------------
 
 Profiles define runtime configurations and custom values for applications. This step is optional but recommended for customizing application behavior.
@@ -117,32 +117,26 @@ Step 5 – Create Deployment
 .. code-block:: bash
 
    # Deploy package to target cluster
-   orch-cli create deployment <DEPLOYMENT_NAME> \
-     --deploymentpackage <PACKAGE_NAME>:<PACKAGE_VERSION> \
-     --cluster <CLUSTER_NAME>
+   orch-cli create deployment <PACKAGE_NAME> <PACKAGE_VERSION> \
+     --application-clusterid <APP_NAME>:<APP_VERSION>=<CLUSTER_ID> \
+     --display-name "<DEPLOYMENT_NAME>"
 
-Replace ``<DEPLOYMENT_NAME>`` (e.g., ``wordpress-prod``) and ``<CLUSTER_NAME>`` with your deployment and cluster names.
+Replace ``<PACKAGE_NAME>`` and ``<PACKAGE_VERSION>`` with your deployment package
+details, ``<APP_NAME>:<APP_VERSION>`` with the application name and version,
+``<CLUSTER_ID>`` with the target cluster ID, and ``<DEPLOYMENT_NAME>``
+(e.g., ``wordpress-prod``) with your desired deployment name.
 
-**Option B: Deploy using metadata matching:**
+**Option B: Deploy to multiple clusters:**
 
 .. code-block:: bash
 
    # Deploy to all clusters matching criteria
-   orch-cli create deployment <DEPLOYMENT_NAME> \
-     --deploymentpackage <PACKAGE_NAME>:<PACKAGE_VERSION> \
-     --metadata environment=production,region=us-west
+   orch-cli create deployment <PACKAGE_NAME> <PACKAGE_VERSION> \
+     --application-clusterid <APP_NAME>:<APP_VERSION>=<CLUSTER_ID_1> \
+     --application-clusterid <APP_NAME>:<APP_VERSION>=<CLUSTER_ID_2> \
+     --display-name "<DEPLOYMENT_NAME>"
 
-Metadata-based deployments automatically target all clusters with matching labels.
-
-**Customize deployment with override values:**
-
-.. code-block:: bash
-
-   orch-cli create deployment <DEPLOYMENT_NAME> \
-     --deploymentpackage <PACKAGE_NAME>:<PACKAGE_VERSION> \
-     --cluster <CLUSTER_NAME> \
-     --override replicaCount=3 \
-     --override service.type=LoadBalancer
+Specify multiple ``--application-clusterid`` flags to deploy to additional clusters.
 
 Step 6 – Monitor Deployment Status
 ----------------------------------
@@ -157,7 +151,7 @@ Step 6 – Monitor Deployment Status
 
 .. code-block:: bash
 
-   orch-cli get deployment <DEPLOYMENT_NAME>
+   orch-cli get deployment <DEPLOYMENT_ID>
 
 Deployment transitions: ``pending`` → ``deploying`` → ``deployed`` → ``running``.
 
@@ -168,17 +162,9 @@ Step 7 – Update Deployment (Optional)
 
 .. code-block:: bash
 
-   # Update application version
-   orch-cli update application <APP_NAME> --version <NEW_VERSION>
-
-   # Update deployment package
-   orch-cli update deploymentpackage <PACKAGE_NAME> \
-     --version <NEW_PACKAGE_VERSION> \
-     --application <APP_NAME>:<NEW_VERSION>
-
-   # Trigger redeployment
-   orch-cli update deployment <DEPLOYMENT_NAME> \
-     --deploymentpackage <PACKAGE_NAME>:<NEW_PACKAGE_VERSION>
+   # Upgrade deployment to a new package version
+   orch-cli upgrade deployment <DEPLOYMENT_ID> \
+     --package-version <NEW_PACKAGE_VERSION>
 
 Step 8 – Delete Deployment Resources
 ------------------------------------
@@ -186,7 +172,7 @@ Step 8 – Delete Deployment Resources
 .. code-block:: bash
 
    # Delete deployment (removes from clusters)
-   orch-cli delete deployment <DEPLOYMENT_NAME>
+   orch-cli delete deployment <DEPLOYMENT_ID>
 
    # Clean up deployment package
    orch-cli delete deploymentpackage <PACKAGE_NAME> --version <PACKAGE_VERSION>
@@ -200,7 +186,9 @@ Step 8 – Delete Deployment Resources
 Alternative: Using YAML Files with ``orch-cli upload``
 ---------------------------------------------------------
 
-Instead of using multiple CLI commands, you can define applications, profiles, and deployment packages as YAML files and upload them in a single operation. This approach simplifies deployment for complex multi-application scenarios.
+Instead of using multiple CLI commands, you can define applications, profiles,
+and deployment packages as YAML files and upload them in a single operation.
+This approach simplifies deployment for complex multi-application scenarios.
 
 **Create YAML configuration files:**
 
@@ -228,7 +216,7 @@ Instead of using multiple CLI commands, you can define applications, profiles, a
    chartName: my-app
    chartVersion: "1.0.0"
    helmRegistry: my-registry
-   
+
    profiles:
      - name: default
        displayName: "Default Configuration"
@@ -248,11 +236,11 @@ Instead of using multiple CLI commands, you can define applications, profiles, a
    name: my-package
    version: "1.0.0"
    description: "Complete application stack"
-   
+
    applications:
      - name: my-app
        version: "1.0.0"
-   
+
    deploymentProfiles:
      - name: default-profile
        displayName: "Default Deployment"

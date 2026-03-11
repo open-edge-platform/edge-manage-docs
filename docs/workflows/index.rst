@@ -1,8 +1,8 @@
 
-Workflows (CLI-First)
-=====================
+EMF Workflows
+=============
 
-Operator-intent, CLI-first workflows with binary validation and
+Operator-intent workflows with binary validation and
 optional UI confirmation.
 
 .. toctree::

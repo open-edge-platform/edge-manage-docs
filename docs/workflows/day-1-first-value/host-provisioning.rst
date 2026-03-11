@@ -1,5 +1,5 @@
-Host Provisioning (CLI-First)
-=============================
+Host Provisioning
+=================
 
 Quick-start guide to onboard and provision edge nodes using ``orch-cli``.
 
@@ -42,6 +42,15 @@ Replace ``<KEY_NAME>`` (e.g., ``mykey``), ``<PATH_TO_PUBLIC_KEY>`` (e.g., ``~/.s
 
 Step 3 – Register Hosts via CSV
 --------------------------------
+
+First, identify available OS profiles to use in the CSV:
+
+.. code-block:: bash
+
+   # List available OS profiles
+   orch-cli list osprofiles
+
+Note the ``profileName`` value (e.g., ``Edge Microvisor Toolkit 3.0.20251112``) for the ``OSProfile`` column in your CSV.
 
 .. code-block:: bash
 

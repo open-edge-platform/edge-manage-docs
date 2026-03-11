@@ -34,8 +34,8 @@ Registry Management
 
    orch-cli delete registry <REGISTRY_NAME>
 
-Application Management
-----------------------
+Applications
+------------
 
 **Create application:**
 
@@ -139,9 +139,9 @@ Deployments
 
 .. code-block:: bash
 
-   orch-cli create deployment <DEPLOYMENT_NAME> <VERSION> \
-     --application-clusterid app=<CLUSTER_ID> \
-     --display-name "<DISPLAY_NAME>"
+   orch-cli create deployment <PACKAGE_NAME> <PACKAGE_VERSION> \
+     --application-clusterid <APP_NAME>:<APP_VERSION>=<CLUSTER_ID> \
+     --display-name "<DEPLOYMENT_NAME>"
 
 **List deployments:**
 
@@ -153,7 +153,7 @@ Deployments
 
 .. code-block:: bash
 
-   orch-cli get deployment <DEPLOYMENT_NAME>
+   orch-cli get deployment <DEPLOYMENT_ID>
 
 **Update deployment:**
 
@@ -164,11 +164,17 @@ Deployments
      --application-label <APP_NAME>=<LABEL> \
      --application-namespace <APP_NAME>=<NAMESPACE>
 
+**Upgrade deployment:**
+
+.. code-block:: bash
+
+   orch-cli upgrade deployment <DEPLOYMENT_ID> --package-version <NEW_PACKAGE_VERSION>
+
 **Delete deployment:**
 
 .. code-block:: bash
 
-   orch-cli delete deployment <DEPLOYMENT_NAME>
+   orch-cli delete deployment <DEPLOYMENT_ID>
 
 See Also
 --------
