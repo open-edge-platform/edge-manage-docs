@@ -8,7 +8,8 @@ The modular vPro workflow makes use of components from the Edge Infrastructure
 Manager to provide an out-of-band (OOB) management pipeline for edge devices.
 The high level architecture of the workflow is shown in the following diagram:
 
-TODO: Add arch diagram
+.. figure:: images/modular-vpro-architecture.png
+   :alt: High-Level Architecture of the modular vPro workflow
 
 Key Components
 --------------
