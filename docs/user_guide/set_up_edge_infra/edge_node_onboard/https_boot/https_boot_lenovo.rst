@@ -13,7 +13,7 @@ Prepare the ISO image one time, so that it will be mounted as Virtual Media on t
 
    .. code-block:: shell
 
-      wget https://tinkerbell-nginx.${CLUSTER_FQDN}/tink-stack/keys/Full_server.crt --no-check-certificate --no-proxy
+      wget https://tinkerbell-haproxy.${CLUSTER_FQDN}/tink-stack/keys/Full_server.crt --no-check-certificate --no-proxy
 
 #. Use the following command to download the secure boot certificate for iPXE and Hook Os, independent of final OS.
    This is step is not required if **Secure Boot** is not enabled.
@@ -21,7 +21,7 @@ Prepare the ISO image one time, so that it will be mounted as Virtual Media on t
 
    .. code-block:: shell
 
-      wget https://tinkerbell-nginx.${CLUSTER_FQDN}/tink-stack/keys/db.der --no-check-certificate --no-proxy
+      wget https://tinkerbell-haproxy.${CLUSTER_FQDN}/tink-stack/keys/db.der --no-check-certificate --no-proxy
 
    For Edge Microvisor Toolkit, if Secure Boot (SB) is enabled (Not required for Ubuntu):
 
@@ -142,7 +142,7 @@ HTTP Boot Option
       :alt: Boot Option
       :width: 750px
 
-#. Set **Boot URI** to ``https://tinkerbell-nginx.CLUSTER_FQDN/tink-stack/signed_ipxe.efi``. This value is defined during installation of |software_prod_name|\ .
+#. Set **Boot URI** to ``https://tinkerbell-haproxy.CLUSTER_FQDN/tink-stack/signed_ipxe.efi``. This value is defined during installation of |software_prod_name|\ .
 
    .. note:: Replace CLUSTER_FQDN with the domain name of |software_prod_name|\ .
 
