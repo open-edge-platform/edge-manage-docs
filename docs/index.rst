@@ -116,6 +116,64 @@ you can find details about the high-level design and submit patches of your own.
         APIs offer Create, Read, Update, and Delete capabilities.
 
 
+EMF Workflows
+-------------
+Step-by-step workflows organized by deployment phases. Learn how to execute common tasks
+using the orch-cli command-line interface, from platform setup through infrastructure management and operations.
+
+.. grid:: 3
+
+    .. grid-item-card:: Day-0: Platform Readiness
+        :link: workflows/day-0-platform-readiness/index
+        :link-type: doc
+        :link-alt: clickable cards
+
+        Deploy and configure Edge Orchestrator. Set up composability profiles and validate the platform.
+
+    .. grid-item-card:: Day-1: First Value
+        :link: workflows/day-1-first-value/index
+        :link-type: doc
+        :link-alt: clickable cards
+
+        Onboard infrastructure, create clusters, and deploy your first applications using orch-cli.
+
+    .. grid-item-card:: Day-2: Operations
+        :link: workflows/day-2-operations/index
+        :link-type: doc
+        :link-alt: clickable cards
+
+        Manage platform operations, upgrades, scaling, and advanced troubleshooting scenarios.
+
+
+Orch CLI Reference
+------------------
+Install, configure, and use the orchestrator command-line interface (orch-cli). Comprehensive reference
+for all orch-cli commands, authentication methods, and command-line workflows.
+
+.. grid:: 3
+
+    .. grid-item-card:: Installation & Setup
+        :link: orch-cli/installation
+        :link-type: doc
+        :link-alt: clickable cards
+
+        Download, install, and verify the orch-cli tool. Configure your environment.
+
+    .. grid-item-card:: Authentication & Configuration
+        :link: orch-cli/authentication
+        :link-type: doc
+        :link-alt: clickable cards
+
+        Set up authentication with JWT tokens and configure orch-cli with your orchestrator instance.
+
+    .. grid-item-card:: Commands & Troubleshooting
+        :link: orch-cli/index
+        :link-type: doc
+        :link-alt: clickable cards
+
+        Reference for all command groups, syntax, and troubleshooting guidance.
+
+
 .. toctree::
    :hidden:
 
@@ -125,5 +183,7 @@ you can find details about the high-level design and submit patches of your own.
    developer_guide/index
    api/index
    system_requirements/index
+   workflows/index
+   orch-cli/index
 
 
