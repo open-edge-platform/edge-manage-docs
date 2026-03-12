@@ -185,6 +185,7 @@ Network Configuration
 
 .. note::
    In **v2026.0.0 (latest release)**, the ingress controller was **replaced from NGINX to HAProxy**.
+   Please check whether the DNS entry for HAProxy is present after installation .
 
 Container Registry Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
