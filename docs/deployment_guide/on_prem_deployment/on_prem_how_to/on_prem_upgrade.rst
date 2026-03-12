@@ -460,7 +460,7 @@ Step 7: Monitor Upgrade Progress
 
 The upgrade process includes:
 
-- Upgrade RKE2 to v1.34.4 versions
+- Upgrade RKE2 to 1.34.4 versions
 - OS Configuration upgrade
 - Gitea upgrade
 - ArgoCD upgrade
