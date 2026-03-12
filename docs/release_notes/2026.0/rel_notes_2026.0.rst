@@ -24,9 +24,6 @@ EMF release versioning has been changed to align with the year and release numbe
 
 Key highlights of the 2026.0 release include:
 
-.. figure:: release-notes-20260.png
-      :alt: 2026.0 Release Highlights
-
 **Infrastructure and Edge Node Software**
 
 
