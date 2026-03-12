@@ -1,11 +1,11 @@
-Version 2025.2 Release Notes
+Version 2026.0 Release Notes
 ========================================
 
 Version History/Revision History
 -------------------------------------------------------
 
-This is the Release Notes for \ |software_prod_name|\  version 2025.2, released
-Dec 11 2025.
+This is the Release Notes for \ |software_prod_name|\  version 2026.0, released
+Mar 18 2026.
 
 .. note::
 
@@ -29,17 +29,11 @@ Key highlights of the 2026.0 release include:
 
 **Infrastructure and Edge Node Software**
 
-* **New:** Support for Ubuntu 24.04 LTS OS with kernel 6.11.0-17. Official support for Ubuntu 22.04 LTS OS continues.
-* **New:** Users can create custom OS profiles based on Ubuntu 24.04 LTS or the Edge Microvisor Toolkit.
+
 * **New:** You can now use Intel vPro® platform-based out-of-band management for
   `Intel® Standard Manageability in conjunction with Intel® Active Management Technology (Intel® AMT)
   devices <https://www.intel.com/content/www/us/en/support/articles/000090499/technologies/intel-active-management-technology-intel-amt.html>`__..
-* **New:** Expanding the device customization capabilities, you can now customize operating system kernel
-  command-line parameters.
-* **New:** Security compliance verification through tracking of open and fixed CVEs for packages installed on
-  Ubuntu 24.04 LTS OS and Edge Microvisor Toolkit.
 * **Update:** Architectural enhancements to improve the reliability of operations of out-of-band management using Intel® AMT and ISM.
-* **Update:** Users can activate Intel® AMT or Intel® Standard Manageability post device onboarding and provisioning.
 * **Update:** New implementation of In-Band Manageability (INBM) agents that provide OS and package update capabilities on edge nodes. For implementation details, see the `INBM Architecture <https://github.com/open-edge-platform/edge-node-agents/blob/main/in-band-manageability/README.md>`__.
 
 **Advanced Cluster and Application Management**
@@ -80,8 +74,8 @@ and the `Edge Manageability Framework README file <https://github.com/open-edge-
 Upgrades from Previous Releases
 -------------------------------
 
-Edge Manageability Framework version 2025.2 supports direct upgrades from
-version **v3.1.3** to **v2025.2** for both on-prem and AWS deployments.
+Edge Manageability Framework version 2026.0 supports direct upgrades from
+version **v2025.2** to **v2026.0** for both on-prem and AWS deployments.
 
 Refer to the following guides for detailed upgrade steps:
 
