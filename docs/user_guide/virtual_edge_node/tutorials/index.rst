@@ -52,7 +52,7 @@ To download the Full_server.crt file and save it in the certs directory, follow 
 .. code-block:: shell
 
     source ./config
-    wget https://"tinkerbell-nginx.${CLUSTER}"/tink-stack/keys/Full_server.crt --no-check-certificate -O certs/"Full_server.crt"
+    wget https://"tinkerbell-haproxy.${CLUSTER}"/tink-stack/keys/Full_server.crt --no-check-certificate -O certs/"Full_server.crt"
 
 
 Step-4: Create Provide with OS Resource

@@ -85,7 +85,7 @@ Firewall Configuration
 The following table lists the network endpoints for Edge Orchestrator and edge nodes, which you can use to configure firewall rules tailored to your network environment.
 
 * ArgoCD Admin UI at ``argo.{domain}``. Intel recommends that you restrict the incoming traffic to a subset of known source IPs because this is an administrator interface.
-* BIOS Onboarding accesses ``tinkerbell-nginx.{domain}``.
+* BIOS Onboarding accesses ``tinkerbell-haproxy.{domain}``.
 * You can access all other services from edge nodes agents, UI, and APIs of Edge Orchestrator.
 
 .. list-table:: Network Endpoints for Edge Orchestrator and Edge Nodes
@@ -252,7 +252,7 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
      -  443
      -  Edge infrastructure management
    * -  Edge node
-     -  tinkerbell-nginx.{domain}
+     -  tinkerbell-haproxy.{domain}
      -  TCP
      -  443
      -  BIOS onboarding
