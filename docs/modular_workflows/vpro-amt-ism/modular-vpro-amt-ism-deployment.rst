@@ -147,7 +147,12 @@ After the control plane is healthy, create your organization, project, and
 users using the Orch CLI. See the Orch CLI User Guide for detailed commands
 and examples:
 
-:doc:`Orch CLI User Guide <user_guide/set_up_edge_infra/orch_cli/orch_cli_guide>`
+.. note::
+   See :doc:`Orch CLI User Guide <user_guide/set_up_edge_infra/orch_cli/orch_cli_guide>`.
+
+   Follow the Orch CLI User Guide for creating multi-tenancy organizations,
+   projects, users.
+ - :doc:`MT Orch CLI Guide <shared/shared_ht_iam_mt_cli>`
 
 Orch CLI host registration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
