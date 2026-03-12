@@ -103,10 +103,10 @@ Core Deployment Configuration
      - ``registry-rs.edgeorchestration.intel.com``
    * - ``DEPLOY_VERSION``
      - Version of Edge Orchestrator to deploy
-       - ``v2026.0.0``
+     - ``v2026.0.0``
    * - ``DEPLOY_REPO_BRANCH``
-      - Git tag or branch for deployment repository (overrides default commit)
-      - ``v2026.0.0``
+     - Git tag or branch for deployment repository (overrides default commit)
+     - ``v2026.0.0``
    * - ``ORCH_INSTALLER_PROFILE``
      - Deployment profile for Edge Orchestrator
      - ``onprem``
@@ -147,9 +147,9 @@ Network Configuration
    * - ``TRAEFIK_IP``
      - MetalLB IP address for Traefik
      - (empty)
-    * - ``HAPROXY_IP``
-       - MetalLB IP address for HAProxy
-       - (empty)
+   * - ``HAPROXY_IP``
+     - MetalLB IP address for HAProxy
+     - (empty)
 
 Container Registry Configuration
 +++++++++++++++++++++++++++++++++++

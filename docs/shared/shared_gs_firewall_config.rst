@@ -113,7 +113,7 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
      -  TCP:443
      -  Cluster orchestration
    * -  Edge node
-    -  tinkerbell-haproxy.{domain}
+     -  tinkerbell-haproxy.{domain}
      -  TCP:443
      -  BIOS onboarding
    * -  Edge Orchestrator admin
