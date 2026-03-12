@@ -148,10 +148,10 @@ users using the Orch CLI. See the Orch CLI User Guide for detailed commands
 and examples:
 
 .. note::
-  For orch-cli utilities and downloads, see the project repository:
-  `Orch CLI on GitHub <https://github.com/open-edge-platform/orch-cli>`_
-  - :doc:`MT Orch CLI Guide </shared/shared_ht_iam_mt_cli>`
-  - :doc:`Orch CLI User Guide </user_guide/set_up_edge_infra/orch_cli/orch_cli_guide>`
+  For orch-cli documentation and utilities, see:
+
+  - :doc:`MT Orch CLI Guide <shared/shared_ht_iam_mt_cli>`
+  - :doc:`Orch CLI User Guide <user_guide/set_up_edge_infra/orch_cli/orch_cli_guide>`
 
 
 Orch CLI host registration
