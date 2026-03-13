@@ -1,14 +1,14 @@
 EMF Cloud Upgrade Guide
 =========================
 
-**Upgrade Path:** EMF Cloud v3.1 → v25.2
+**Upgrade Path:** EMF Cloud v25.2 → v26.0
 **Document Version:** 1.0
 
 Overview
 --------
 
 This document provides step-by-step instructions to upgrade
-Cloud Edge Manageability Framework (EMF) from version 3.1 to 25.2.
+Cloud Edge Manageability Framework (EMF) from version 25.2 to 26.0
 
 Important Notes
 ---------------
@@ -51,8 +51,8 @@ You need to follow the steps mentioned in `Prerequisites section <https://docs.o
 
    .. code-block:: bash
 
-      # Replace <25.2-TAG> with actual tag
-      oras pull registry-rs.edgeorchestration.intel.com/edge-orch/common/files/cloud-orchestrator-installer:<25.2-TAG>
+      # Replace <26.0-TAG> with actual tag
+      oras pull registry-rs.edgeorchestration.intel.com/edge-orch/common/files/cloud-orchestrator-installer:<26.0-TAG>
       tar -xzf _build/cloud-orchestrator-installer.tgz
 
 2. **Start the installation Environment**
@@ -125,7 +125,12 @@ You need to follow the steps mentioned in `Prerequisites section <https://docs.o
 
       orchestrator-admin:~$ ./configure-cluster.sh
 
+   .. code-block:: bash
+
+      orchestrator-admin:~$ make upgrade
+
    This process will start redeploying the upgraded applications in the cluster starting with root-app.
+  **Note: If the application does not sync successfully or the upgrade process times out, rerun the make upgrade command.**
 
 
 Step 2: Verification
