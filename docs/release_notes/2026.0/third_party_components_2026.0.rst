@@ -120,11 +120,11 @@ Cluster Extensions
    * - MetalLB Controller
      - Container
      - quay.io/metallb/controller
-     - v0.15.3
+     - v0.15.2
    * - MetalLB Speaker
      - Container
      - quay.io/metallb/speaker
-     - v0.15.3
+     - v0.15.2
    * - Kube-Rbac-Proxy
      - Container
      - quay.io/brancz/kube-rbac-proxy
@@ -201,7 +201,7 @@ Edge Infrastructure Manager
    * - tinkerbell - tink
      - Container
      - https://github.com/tinkerbell/tink
-     - v0.12.2
+     - v0.10.0
    * - tinkerbell - kube-vip
      - Container (load balancer)
      - https://github.com/kube-vip/kube-vip
@@ -278,7 +278,7 @@ Platform services
    * - external-secrets
      - image
      - ghcr.io/external-secrets/external-secrets
-     - v2.0.4
+     - v2.0.1
    * - ingress-nginx
      - helm chart
      - https://kubernetes.github.io/ingress-nginx
@@ -294,19 +294,19 @@ Platform services
    * - istio base
      - helm chart
      - https://istio-release.storage.googleapis.com/charts
-     - 1.28.0
+     - 1.29.0
    * - istiod
      - helm chart
      - https://istio-release.storage.googleapis.com/charts
-     - 1.28.0
+     - 1.29.0
    * - istiod
      - image
      - docker.io/istio/pilot
-     - 1.28.0
+     - 1.29.0
    * - istiod
      - image
      - docker.io/istio/proxyv2
-     - 1.28.0
+     - 1.29.0
    * - keycloak
      - helm chart
      - https://github.com/bitnami/charts/tree/main/bitnami/keycloak
@@ -382,7 +382,7 @@ Platform services
    * - postgresql-operator
      - image
      - ghcr.io/cloudnative-pg/cloudnative-pg
-     - 1.27.0
+     - 1.28.1
    * - reloader
      - helm chart
      - https://stakater.github.io/stakater-charts
@@ -414,7 +414,7 @@ Platform services
    * - vault
      - image
      - hashicorp/vault
-     - 1.21.4
+     - 1.21.3
    * - vault
      - image
      - hashicorp/vault-k8s
@@ -438,7 +438,7 @@ Platform services
    * - gitea
      - image
      - gitea/gitea
-     - 1.25.1-rootless
+     - 1.25.4-rootless
    * - gitea
      - image
      - postgres
@@ -701,7 +701,7 @@ User Interface
    * - nginxinc/nginx-unprivileged
      - Container
      - https://hub.docker.com/r/nginxinc/nginx-unprivileged
-     - stable-alpine
+     - 1.29-alpine
    * - golang
      - ContainerImage
      - https://hub.docker.com/_/golang
