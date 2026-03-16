@@ -1,7 +1,7 @@
 On-Prem Upgrade Guide
 =========================
 
-**Upgrade Path:** EMF On-Prem v3.1.3 → v2025.2.0
+**Upgrade Path:** EMF On-Prem v2025.2.0 → v2026.0.0
 
 **Document Version:** 1.0
 
@@ -9,7 +9,7 @@ Overview
 --------
 
 This document provides step-by-step instructions to upgrade
-On-Prem Edge Manageability Framework (EMF) from version v3.1.3 to v2025.2.0.
+On-Prem Edge Manageability Framework (EMF) from version v2025.2.0 to  v2026.0.0
 
 Prerequisites
 -------------
@@ -17,7 +17,7 @@ Prerequisites
 System Requirements
 ~~~~~~~~~~~~~~~~~~~
 
-- Current EMF On-Prem installation version 3.1.3 or later
+- Current EMF On-Prem installation version v2025.2.0 or later
 - Root/sudo privileges on orchestrator node
 - PostgreSQL service running and accessible
 - Sufficient disk space for backups (~200GB minimum)
@@ -53,7 +53,7 @@ Step 1: Download the Latest On-Prem Upgrade Script
     REGISTRY_URL='registry-rs.edgeorchestration.intel.com'
     RS_PATH='edge-orch/common/files/on-prem'
     ORAS_VERSION='1.1.0'
-    ORCH_VERSION='v2025.2.0'
+    ORCH_VERSION='v2026.0.0'
 
     # Install oras if not already installed
     if ! command -v oras &> /dev/null; then
@@ -135,7 +135,10 @@ Core Deployment Configuration
      - ``registry-rs.edgeorchestration.intel.com``
    * - ``DEPLOY_VERSION``
      - Version of Edge Orchestrator to deploy
-     - ``v2025.2.0``
+     - ``v2026.0.0``
+   * - ``DEPLOY_REPO_BRANCH``
+     - Git tag or branch for edge-manageability-framework deployment repository
+     - ``v2026.0.0``
    * - ``ORCH_INSTALLER_PROFILE``
      - Deployment profile for Edge Orchestrator
      - ``onprem``
@@ -176,9 +179,13 @@ Network Configuration
    * - ``TRAEFIK_IP``
      - MetalLB IP address for Traefik
      - (empty)
-   * - ``NGINX_IP``
-     - MetalLB IP address for NGINX
+   * - ``HAPROXY_IP``
+     - MetalLB IP address for HAProxy
      - (empty)
+
+.. note::
+   In **v2026.0.0 (latest release)**, the ingress controller was **replaced from NGINX to HAProxy**.
+   Please check whether the DNS entry for HAProxy is present after installation .
 
 Container Registry Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -335,6 +342,7 @@ Update the following sections:
 - **CORE DEPLOYMENT CONFIGURATION:**
   - RELEASE_SERVICE_URL
   - DEPLOY_VERSION
+  - DEPLOY_REPO_BRANCH
   - ORCH_INSTALLER_PROFILE
 
 - **AUTHENTICATION & SECURITY:**
@@ -343,7 +351,7 @@ Update the following sections:
 
 - **NETWORK CONFIGURATION:**
   - CLUSTER_DOMAIN
-  - ARGO_IP, TRAEFIK_IP, NGINX_IP
+  - ARGO_IP, TRAEFIK_IP, HAPROXY_IP
 
 - **CONTAINER REGISTRY:**
   - GITEA_IMAGE_REGISTRY
@@ -367,8 +375,10 @@ Update the following sections:
    kubectl get svc traefik -n orch-gateway
    kubectl get svc ingress-nginx-controller -n orch-boots
 
-   # Set deployment version (replace with your actual upgrade version tag)
-   export DEPLOY_VERSION=v2025.2.0
+  # Set deployment version (replace with your actual upgrade version tag)
+  export DEPLOY_VERSION=v2026.0.0
+  #Set the deploy repo release tag/branch (Gitea commit/tag/branch from EMF repo)
+  export DEPLOY_REPO_BRANCH=v2026.0.0
 
    # Set non-interactive mode to true to skip prompts
    export PROCEED=true
@@ -427,7 +437,7 @@ Before confirming in Terminal 1, open **Terminal 2** and update configurations:
       # Check current LoadBalancer IPs
       kubectl get svc argocd-server -n argocd
       kubectl get svc traefik -n orch-gateway
-      kubectl get svc ingress-nginx-controller -n orch-boots
+      kubectl get svc ingress-haproxy-kubernetes-ingress -n orch-boots
 
       # Verify LB IP configurations are updated
       nano repo_archives/tmp/edge-manageability-framework/orch-configs/clusters/onprem.yaml
@@ -451,7 +461,7 @@ Step 7: Monitor Upgrade Progress
 
 The upgrade process includes:
 
-- Upgrade RKE2 to 1.34.1 versions
+- Upgrade RKE2 to 1.34.4 versions
 - OS Configuration upgrade
 - Gitea upgrade
 - ArgoCD upgrade
@@ -575,8 +585,8 @@ Verify that the ``signed_ipxe.efi`` image is downloaded using the freshly downlo
       # Delete both files before downloading
       rm -rf Full_server.crt signed_ipxe.efi
       export CLUSTER_DOMAIN=cluster.onprem
-      wget https://tinkerbell-nginx.$CLUSTER_DOMAIN/tink-stack/keys/Full_server.crt --no-check-certificate --no-proxy -q -O Full_server.crt
-      wget --ca-certificate=Full_server.crt https://tinkerbell-nginx.$CLUSTER_DOMAIN/tink-stack/signed_ipxe.efi -q -O signed_ipxe.efi
+      wget https://tinkerbell-haproxy.$CLUSTER_DOMAIN/tink-stack/keys/Full_server.crt --no-check-certificate --no-proxy -q -O Full_server.crt
+      wget --ca-certificate=Full_server.crt https://tinkerbell-haproxy.$CLUSTER_DOMAIN/tink-stack/signed_ipxe.efi -q -O signed_ipxe.efi
 
    Once the above steps are successful, the orchestrator (Orch) is ready for onboarding new Edge Nodes (EN).
 

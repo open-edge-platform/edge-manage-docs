@@ -25,7 +25,7 @@ PXE-assisted boot flow
 
 #. Prepare local PXE server deployment. It can be done via :doc:`/deployment_guide/on_prem_deployment/on_prem_deployment_profiles/on_prem_oxm_profile`
    or :doc:`/user_guide/advanced_functionality/pxe_provisioning_with_cloud_emf` (experimental feature).
-   The local PXE server must provide the iPXE script exposed at ``https://tinkerbell-nginx.CLUSTER_FQDN/tink-stack/signed_ipxe.efi`` via TFTP.
+   The local PXE server must provide the iPXE script exposed at ``https://tinkerbell-haproxy.CLUSTER_FQDN/tink-stack/signed_ipxe.efi`` via TFTP.
 
 #. Optionally, if Edge Nodes have been configured with Secure Boot, configure BIOS to enable Secure Boot and upload |software_prod_name| CA certificates.
 
