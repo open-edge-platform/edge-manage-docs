@@ -152,7 +152,8 @@ and examples:
 
    Follow the Orch CLI User Guide for creating multi-tenancy organizations,
    projects, users.
- - :doc:`MT Orch CLI Guide <shared/shared_ht_iam_mt_cli>`
+
+   - :doc:`MT Orch CLI Guide <shared/shared_ht_iam_mt_cli>`
 
 Orch CLI host registration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -295,12 +296,12 @@ Activate vPro In ACM mode
 
   To obtain and prepare the certificate:
 
-  1. **Purchase a provisioning certificate** from a CA whose root certificate hash is listed in Intel AMT's trusted root store.
+  **Purchase a provisioning certificate** from a CA whose root certificate hash is listed in Intel AMT's trusted root store.
      The certificate must match the domain suffix configured in the AMT BIOS (MEBx) settings.
 
-  2. **Export the certificate** in PFX/PKCS#12 format, including the full certificate chain and private key.
+  **Export the certificate** in PFX/PKCS#12 format, including the full certificate chain and private key.
 
-  3. **Note the certificate password** — it will be required when creating the AMT domain profile via ``orch-cli``.
+  **Note the certificate password** — it will be required when creating the AMT domain profile via ``orch-cli``.
 
   .. note::
 
@@ -310,6 +311,7 @@ Activate vPro In ACM mode
 - BIOS configuration for ACM mode
 
   Ensure the edge node's BIOS is configured for ACM mode with Domain suffix in Remote configuration settings.
+
   Advanced > MEBx > {Enter MEBx Password- default is "admin"} > Intel AMT Configuration > Network Access State > Full Unprovision
   Advanced > MEBx > {Enter MEBx Password- default is "admin"} > Intel AMT Configuration > Remote Setup and Configuration > PKI DNS Suffix > Set to your domain suffix (e.g., "example.com")
 
