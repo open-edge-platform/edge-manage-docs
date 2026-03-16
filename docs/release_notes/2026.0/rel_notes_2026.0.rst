@@ -61,8 +61,8 @@ version **v2025.2** to **v2026.0** for both on-prem and AWS deployments.
 
 Refer to the following guides for detailed upgrade steps:
 
-- `Cloud Upgrade Guide <https://github.com/open-edge-platform/edge-manage-docs/blob/release-2025.2/docs/deployment_guide/cloud_deployment/cloud_how_to/cloud_upgrade.rst>`_
-- `On-Prem Upgrade Guide <https://github.com/open-edge-platform/edge-manage-docs/blob/release-2025.2/docs/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.rst>`_
+- `Cloud Upgrade Guide <https://github.com/open-edge-platform/edge-manage-docs/blob/release-2026.0/docs/deployment_guide/cloud_deployment/cloud_how_to/cloud_upgrade.rst>`_
+- `On-Prem Upgrade Guide <https://github.com/open-edge-platform/edge-manage-docs/blob/release-2026.0/docs/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.rst>`_
 
 Upgrade Behavior
 ----------------
@@ -78,8 +78,8 @@ During the on-prem upgrade process, the following stability issues are observed:
 
 * Some applications appear as **OutOfSync**, **Degraded**, or in a missing state after the upgrade.
   Refer to Issue#1 in the On-Prem Upgrade Guide troubleshooting section.
-* Gitea pod crashes result in the ``onprem_upgrade.sh`` script failing.
-  Refer to Issue#2 in the On-Prem Upgrade Guide troubleshooting section.
+* Sometimes the Gitea pod may crash when Full EMF or App Orchestration (AO) is enabled, which can cause the onprem_upgrade.sh script to fail.
+  Refer to Issue#2 in the On-Prem Upgrade Guide troubleshooting section.”
 * Edge Node onboarding fails when an EN was partially installed before the upgrade.
   Refer to Issue#3 in the On-Prem Upgrade Guide troubleshooting section.
 
