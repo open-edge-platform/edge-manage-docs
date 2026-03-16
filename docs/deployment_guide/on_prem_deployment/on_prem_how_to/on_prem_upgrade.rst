@@ -482,7 +482,7 @@ The **last line** should read:
 
       ./after_upgrade_restart.sh
 
-   This will resync applications, perform ``root-app`` sync, and restart ``tls-boots`` and ``dkam`` pods.
+   This will resync all applications, perform ``root-app`` sync, and restart ``tls-boots`` and ``dkam`` pods.
 
 System Health Check
 ~~~~~~~~~~~~~~~~~~~~~
