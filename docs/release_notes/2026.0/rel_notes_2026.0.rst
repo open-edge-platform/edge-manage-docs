@@ -27,9 +27,10 @@ Key highlights of the 2026.0 release include:
 **Infrastructure and Edge Node Software**
 
 
-* **New:** You can now use Intel vPro® platform-based out-of-band management for
-  `Intel® Standard Manageability in conjunction with Intel® Active Management Technology (Intel® AMT)
-  devices <https://www.intel.com/content/www/us/en/support/articles/000090499/technologies/intel-active-management-technology-intel-amt.html>`__..
+* **New:** A new minimalistic deployment profile has been introduced, designed specifically to enable Intel® vPro®–based
+  power management workflows for EdgeNodes, leveraging the modular architecture of the Edge Manageability Framework to support streamlined
+  vPro‑focused functionality. EdgeNodes pre‑provisioned with Ubuntu 24.04 can now be seamlessly onboarded using the Open Edge Platform CLI.
+
 * **Update:** Architectural enhancements to improve the reliability of operations of out-of-band management using Intel® AMT and ISM.
 * **Update:** New implementation of In-Band Manageability (INBM) agents that provide OS and package update capabilities on edge nodes. For implementation details, see the `INBM Architecture <https://github.com/open-edge-platform/edge-node-agents/blob/main/in-band-manageability/README.md>`__.
 
