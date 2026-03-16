@@ -32,13 +32,20 @@ Key highlights of the 2026.0 release include:
   vPro‑focused functionality. EdgeNodes pre‑provisioned with Ubuntu 24.04 can now be seamlessly onboarded using the Open Edge Platform CLI.
 * **New:** Introduction of Intel vPro Admin Control Mode (ACM) support in EMF.
 * **Update:** Replaced retiring Ingress NGINX with HAPROXY.
+* **New:** Panther lake and Bartlet lake support (AR: Sonia to consolidate with supported platforms section)
+
 
 **Edge Manageability Framework Platform Enhancements**
 * **Update:** Updates to the ``orch-cli`` tool to support the vPRO deployment profile and ACM Mode
 * **Update:** Updates to the UI to support the ACM mode
 
+**Maintenance Updates**
+* **Update:** Replaced Kubernetes dashboard with headlamp.
+* **Update:** Removed Ingress NGNIX from loadbalancer
+* **Update:** Removal of Skupper extension and interconnect manager
+* **Update:** Removed the Gitea dependency when Application Management is disabled. Argo CD now points to the EMF open-source repository
 
-* **Update:**: Support for new versions of 2025.2 Applications
+**Update:**: Support for new versions of 2025.2 Applications
     * `Weld Porosity Detection v1.4.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/weld-porosity/get-started/deploy-with-edge-orchestrator.md>`__.
     * `Pallet Defect Detection v2.6.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/get-started/deploy-with-edge-orchestrator.md>`__.
     * `Worker Safety Gear Detection v1.2.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/worker-safety-gear-detection/get-started/deploy-with-edge-orchestrator.md>`__.
