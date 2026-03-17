@@ -26,7 +26,7 @@ Example command to download certificate:
 .. code-block:: shell
 
     CLUSTER_FQDN="specify the fqdn of the cluster"
-    wget https://"tinkerbell-nginx.${CLUSTER_FQDN}"/tink-stack/keys/Full_server.crt --no-check-certificate -O certs/"Full_server.crt"
+    wget https://"tinkerbell-haproxy.${CLUSTER_FQDN}"/tink-stack/keys/Full_server.crt --no-check-certificate -O certs/"Full_server.crt"
 
 Dependencies
 ------------
