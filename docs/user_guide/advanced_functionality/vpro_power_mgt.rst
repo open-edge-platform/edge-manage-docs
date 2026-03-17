@@ -94,9 +94,9 @@ Activate vPro In ACM mode
       --amt-state provisioned \
       --control-mode admin
 
-- ACM mode Deactivation - Once the operation is complete, you can deactivate ACM mode using the following command:
+- ACM mode Deactivation - Once the operation is complete, you can deactivate ACM mode using the following command
 
-.. code-block:: bash
+   .. code-block:: bash
 
     orch-cli set host ${HOST_ID} \
       --project ${PROJECT_NAME} \
