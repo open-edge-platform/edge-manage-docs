@@ -34,8 +34,6 @@ Helm Charts for Observability (O11y)
      - "1000"
      - edgenode-dashboards
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/o11y/charts
-
-     
      - 0.3.10
    * - 3
      - edgenode-observability
