@@ -285,6 +285,10 @@ User Experience Limitations
   show an error message when duplicate metadata keys are entered. However, it
   will still allow the user to proceed to the next step. Only the last
   duplicate key/value pair will be considered in the end.
+* When Cluster Orchestration (CO) is disabled, users with
+  CLUSTER_TEMPLATES_WRITE or CLUSTER_TEMPLATES_READ roles encounter a "Page
+  Not Found" error when initially loading the Admin view, though other
+  navigation sections work correctly.
 
 Recommendations
 ---------------------
