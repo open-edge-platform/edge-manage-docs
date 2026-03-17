@@ -519,7 +519,7 @@ ArgoCD
 
      kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 
-Gitea (when Orch is deployed with Full EMF or App Orchestration enabled)
+Gitea (when Orch is deployed with Full EMF or App manageability enabled)
 ~~~~~~~
 
 - **Retrieve Gitea username:**
