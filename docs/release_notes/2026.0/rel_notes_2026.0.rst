@@ -48,16 +48,18 @@ Key highlights of the 2026.0 release include:
 
 **Update:**: Support for new versions of 2025.2 Applications
 
-  In this release, the NPU profile is enabled to run supported application workloads on NPU.
+  In this release, a separate intel npu device plugin has been added to the intel-accelerator-extension, previously intel-gpu-extension, enabling users to deploy and run NPU workloads.
     
-    * `Weld Porosity Detection v1.4.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/weld-porosity/get-started/deploy-with-edge-orchestrator.md>`__ (NPU profile enabled).
-    * `Pallet Defect Detection v2.6.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/get-started/deploy-with-edge-orchestrator.md>`__ (NPU profile enabled).
-    * `Worker Safety Gear Detection v1.2.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/worker-safety-gear-detection/get-started/deploy-with-edge-orchestrator.md>`__ (NPU profile enabled).
-    * `PCB Anomaly Detection v1.2.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pcb-anomaly-detection/get-started/deploy-with-edge-orchestrator.md>`__ (NPU profile enabled).
+    * `Weld Porosity Detection v1.4.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/weld-porosity/get-started/deploy-with-edge-orchestrator.md>`__ [NPU].
+    * `Pallet Defect Detection v2.6.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/get-started/deploy-with-edge-orchestrator.md>`__ [NPU].
+    * `Worker Safety Gear Detection v1.2.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/worker-safety-gear-detection/get-started/deploy-with-edge-orchestrator.md>`__ [NPU].
+    * `PCB Anomaly Detection v1.2.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pcb-anomaly-detection/get-started/deploy-with-edge-orchestrator.md>`__ [NPU].
     * `Image-Based Video Search v1.2.0  <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/metro-ai-suite/image-based-video-search/docs/user-guide/get-started/deploy-with-edge-orchestrator.md>`__.
     * `Chat Q&A Sample Application v2.1.0 <https://github.com/open-edge-platform/edge-ai-libraries/blob/release-2026.0.0/sample-applications/chat-question-and-answer/docs/user-guide/get-started/deploy-with-edge-orchestrator.md>`__.
-    * `Smart Parking v1.4.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/metro-ai-suite/metro-vision-ai-app-recipe/smart-parking/docs/user-guide/get-started/deploy-with-edge-orchestrator.md>`__ (NPU profile enabled).
-    * `Loitering Detection v1.4.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/metro-ai-suite/metro-vision-ai-app-recipe/loitering-detection/docs/user-guide/get-started/deploy-with-edge-orchestrator.md>`__ (NPU profile enabled).
+    * `Smart Parking v1.4.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/metro-ai-suite/metro-vision-ai-app-recipe/smart-parking/docs/user-guide/get-started/deploy-with-edge-orchestrator.md>`__ [NPU].
+    * `Loitering Detection v1.4.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/metro-ai-suite/metro-vision-ai-app-recipe/loitering-detection/docs/user-guide/get-started/deploy-with-edge-orchestrator.md>`__ [NPU].
+
+  [NPU]: A separate NPU profile is available in deployment package  for this application to deploy and run NPU workloads.
 
 The codebase is Apache software version 2.0 licensed and available on the Github repository.
 
