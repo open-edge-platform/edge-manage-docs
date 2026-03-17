@@ -18,7 +18,7 @@ Prepare the USB drive one time, so that the platform can use the USB-assisted bo
 
    .. code-block:: shell
 
-      wget https://tinkerbell-nginx.CLUSTER_FQDN/tink-stack/signed_ipxe.efi --no-check-certificate --no-proxy
+      wget https://tinkerbell-haproxy.CLUSTER_FQDN/tink-stack/signed_ipxe.efi --no-check-certificate --no-proxy
 
 #. Use the following command to download the secure boot certificate for iPXE and Hook Os, independent of final OS.
    This is step is not required if **Secure Boot** is not enabled.
@@ -26,7 +26,7 @@ Prepare the USB drive one time, so that the platform can use the USB-assisted bo
 
    .. code-block:: shell
 
-      wget https://tinkerbell-nginx.${CLUSTER_FQDN}/tink-stack/keys/db.der --no-check-certificate --no-proxy
+      wget https://tinkerbell-haproxy.${CLUSTER_FQDN}/tink-stack/keys/db.der --no-check-certificate --no-proxy
 
    For Edge Microvisor Toolkit, if Secure Boot (SB) is enabled (Not required for Ubuntu\* OS):
 
