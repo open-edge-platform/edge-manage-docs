@@ -177,7 +177,6 @@ For example, the output might look like this:
   NAME                                             READY   STATUS    RESTARTS   AGE
   app-deployment-api-74f8b9f687-b6w5n              4/4     Running   0          48m
   app-deployment-manager-6c5d999699-z6dvp          2/2     Running   0          48m
-  app-interconnect-manager-66bff55584-lbpqq        2/2     Running   0          47m
   app-orch-catalog-776f84b67b-npqsb                4/4     Running   0          50m
   app-orch-tenant-controller-7cf9f5bc76-vnsdh      2/2     Running   0          51m
   app-resource-manager-574849769-4d4t5             4/4     Running   0          48m
@@ -255,18 +254,6 @@ Check `app-orch-catalog` logs using the following command for potential issues:
 Check `app-orch-catalog` logs when the user observes one of the following issues:
     - If the user cannot see the list of applications, extensions,  deployment packages, or registries in the UI.
     - If the user cannot add a new application, registry, or deployment package to the catalog.
-
-App Interconnect Manager
--------------------------
-Check `app-interconnect-manager` logs using the following command for potential issues:
-
-.. code:: shell
-
-    $ kubectl logs -n orch-app deployments/app-interconnect-manager app-interconnect-manager
-
-Check `app-interconnect-manager` logs when the user observes one of the following issues:
-   - if the user cannot expose a service from one edge cluster to other clusters using the Interconnect feature explained in :doc:`../../user_guide/package_software/interconnect`.
-
 
 App Service Proxy
 -------------------

@@ -427,14 +427,14 @@ Platform Observability Agent depends on |software_prod_name| endpoints:
 Platform Observability Agent external telemetry collectors:
 
 - Official `fluent-bit
-  <https://docs.fluentbit.io/manual/installation/linux/ubuntu>`_ Debian
+  <https://docs.fluentbit.io/manual/installation/downloads/linux/ubuntu>`_ Debian
   package.
 
 - Official `telegraf <https://docs.influxdata.com/telegraf/v1/install/>`_
   Debian package.
 
 - Official `Otel Collector
-  <https://opentelemetry.io/docs/collector/installation/#deb-installation>`_
+  <https://opentelemetry.io/docs/collector/install/binary/linux/#deb-installation>`_
   Debian package.
 
 .. figure:: ./images/poa-system.png

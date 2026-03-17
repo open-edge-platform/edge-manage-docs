@@ -24,34 +24,34 @@ General guidelines to follow when updating an OS profile:
   human-readable OS profile name. The ``name`` field should uniquely identify the OS profile.
 - remember to change the ``VERSION`` file, we follow SemVer for OS profiles' versioning.
 
-Example: Updating OS image version of Ubuntu\* 22.04 OS profile
+Example: Updating OS image version of Ubuntu\* 24.04 OS profile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-An example of Ubuntu\* 22.04 OS profile is defined in the `ubuntu-22.04-lts-generic.yaml <https://github.com/open-edge-platform/infra-core/blob/main/os-profiles/ubuntu-22.04-lts-generic.yaml>`_ file.
+An example of Ubuntu\* 24.04 OS profile is defined in the `ubuntu-24.04-lts.yaml <https://github.com/open-edge-platform/infra-core/blob/main/os-profiles/ubuntu-24.04-lts.yaml>`_ file.
 
 For Ubuntu we use stable releases that are published under `cloud-images.ubuntu.com/releases <https://cloud-images.ubuntu.com/releases>`_.
-Let's assume we want to update to a version released in `https://cloud-images.ubuntu.com/releases/22.04/release-20250108/ <https://cloud-images.ubuntu.com/releases/22.04/release-20250108/>`_.
+Let's assume we want to update to a version released in `https://cloud-images.ubuntu.com/releases/noble/release-20251123/ <https://cloud-images.ubuntu.com/releases/noble/release-20251123/>`_.
 We should perform the following steps:
 
-1. Enter the link above and look for the .img file URL. In this case it's `https://cloud-images.ubuntu.com/releases/22.04/release-20250108/ubuntu-22.04-server-cloudimg-amd64.img <https://cloud-images.ubuntu.com/releases/22.04/release-20250108/ubuntu-22.04-server-cloudimg-amd64.img>`_.
+1. Enter the link above and look for the .img file URL. In this case it's `https://cloud-images.ubuntu.com/releases/noble/release-20251123/ubuntu-24.04-server-cloudimg-amd64.img <https://cloud-images.ubuntu.com/releases/noble/release-20251123/ubuntu-24.04-server-cloudimg-amd64.img>`_.
    Copy the link and paste as ``os_image_url`` to the OS profile manifest. Note that we only support .img format for Ubuntu images as of now.
 2. Find the SHA-256 checksum of the image. It's usually provided in the same directory as the image file. In this case
-   it's `https://cloud-images.ubuntu.com/releases/22.04/release-20250108/SHA256SUMS <https://cloud-images.ubuntu.com/releases/22.04/release-20250108/SHA256SUMS>`_.
+   it's `https://cloud-images.ubuntu.com/releases/noble/release-20251123/SHA256SUMS <https://cloud-images.ubuntu.com/releases/noble/release-20251123/SHA256SUMS>`_.
    Open the file and find the checksum for the image file. Copy the checksum and paste as ``os_image_sha256`` to the OS profile manifest.
-3. Set the ``os_image_version``. If you use Ubuntu LTS OS, you can set `22.04` as it's the version of the image.
+3. Set the ``os_image_version``. If you use Ubuntu LTS OS, you can set `24.04` as it's the version of the image.
    Otherwise, to point to the release build you have to find the version in the image.
    You can do it by downloading the image and running ``cat /etc/os-release`` on it. The ``VERSION_ID`` field should contain the version.
-4. Update the ``name`` field to reflect the new version. For Ubuntu LTS it can be ``Ubuntu 22.04 LTS``, but if you want
-   to explicitly point to the release build you should specify the full version (e.g., ``Ubuntu 22.04.5``).
+4. Update the ``name`` field to reflect the new version. For Ubuntu LTS it can be ``Ubuntu 24.04 LTS``, but if you want
+   to explicitly point to the release build you should specify the full version (e.g., ``Ubuntu 24.04.5``).
 
 After updating the fields, the manifest should look like this:
 
 .. code-block:: yaml
 
-    name: Ubuntu 22.04.5 LTS
-    os_image_url: https://cloud-images.ubuntu.com/releases/22.04/release-20250108/ubuntu-22.04-server-cloudimg-amd64.img
-    os_image_sha256: 610e1d37fe06fa23db2ff34d1c03711e55d73b7c3e4482503f50c4d2f9b9d06d
-    os_image_version: 22.04.5
+    name: Ubuntu 24.04 LTS
+    os_image_url: https://cloud-images.ubuntu.com/releases/noble/release-20251123/ubuntu-24.04-server-cloudimg-amd64.img
+    os_image_sha256: 6fdec096f788d3fb39668f211146e5ab82f8f0b13ba529a46226abca22ba5bcf
+    os_image_version: 24.04
 
 Example: Example: Updating OS image version of Edge Microvisor Toolkit profile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -64,15 +64,15 @@ An example of Edge Microvisor Toolkit non-RT profile is defined in the `microvis
 Edge Microvisor Toolkit is an immutable OS developed and distributed by Intel. Let's assume we want to update Edge Microvisor Toolkit version to ``3.0.20250105.2206``.
 
 The Edge Microvisor Toolkit image is stored on the Release Service (RS) file server under the following subpath
-``files-edge-orch/repository/microvisor/non_rt/edge-readonly-dev-3.0.20250324.1008.raw.gz``.
+``files-edge-orch/repository/microvisor/non_rt/edge-readonly-3.0.20251204.0140.raw.gz``.
 
 To update the Edge Microvisor Toolkit profile perform the following steps:
 
-1. Set `os_image_url` as the RS file server subpath. In this case it's ``files-edge-orch/repository/microvisor/non_rt/edge-readonly-dev-3.0.20250324.1008.raw.gz``.
+1. Set `os_image_url` as the RS file server subpath. In this case it's ``files-edge-orch/repository/microvisor/non_rt/edge-readonly-3.0.20251204.0140.raw.gz``.
    Edge Orchestrator will automatically expand the URL to the full URL based on the cluster configuration (the RS endpoint is cluster-specific).
    Note that we only support the .raw.gz extension for Edge Microvisor Toolkit.
-2. Set ``os_image_version`` to ``3.0.20250324.1008``.
-3. Update the ``name`` field to reflect the new version. It can be ``Edge Microvisor Toolkit 3.0.20250324`` (you can omit the last part that identifies the build ID).
+2. Set ``os_image_version`` to ``3.0.20251204.0140``.
+3. Update the ``name`` field to reflect the new version. It can be ``Edge Microvisor Toolkit 3.0.20251204`` (you can omit the last part that identifies the build ID).
 4. Update the ``os_image_sha256`` field. The SHA2-56 checksum can be obtained by downloading the image and running ``sha256sum`` on it
    or by downloading ``.sha256sum`` file that is associated with the Edge Microvisor Toolkit image.
 
@@ -80,10 +80,10 @@ After updating the fields, the manifest should look like this:
 
 .. code-block:: yaml
 
-    name: Edge Microvisor Toolkit 3.0.20250324
-    osImageUrl: files-edge-orch/repository/microvisor/non_rt/edge-readonly-dev-3.0.20250324.1008.raw.gz
-    osImageVersion: 3.0.20250324.1008
-    osImageSha256: 89d691eded21e158e94cf52235106d8eb6c17f81f37b1a79c70514776744bc74
+    name: Edge Microvisor Toolkit 3.0.20251204
+    osImageUrl: files-edge-orch/repository/microvisor/non_rt/edge-readonly-3.0.20251204.0140.raw.gz
+    osImageVersion: 3.0.20251204.0140
+    osImageSha256: 5ff6275a008f4ccfd5fedb034d53a2c90651aa9dc65855576746373bf7c43c43
 
 Adding new OS profile
 ---------------------

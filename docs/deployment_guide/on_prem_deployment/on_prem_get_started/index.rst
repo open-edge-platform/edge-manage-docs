@@ -85,7 +85,7 @@ Firewall Configuration
 The following table lists the network endpoints for Edge Orchestrator and edge nodes, which you can use to configure firewall rules tailored to your network environment.
 
 * ArgoCD Admin UI at ``argo.{domain}``. Intel recommends that you restrict the incoming traffic to a subset of known source IPs because this is an administrator interface.
-* BIOS Onboarding accesses ``tinkerbell-nginx.{domain}``.
+* BIOS Onboarding accesses ``tinkerbell-haproxy.{domain}``.
 * You can access all other services from edge nodes agents, UI, and APIs of Edge Orchestrator.
 
 .. list-table:: Network Endpoints for Edge Orchestrator and Edge Nodes
@@ -252,7 +252,7 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
      -  443
      -  Edge infrastructure management
    * -  Edge node
-     -  tinkerbell-nginx.{domain}
+     -  tinkerbell-haproxy.{domain}
      -  TCP
      -  443
      -  BIOS onboarding
@@ -297,7 +297,7 @@ To install Edge Orchestrator and Edge Node, the following Egress rules are requi
     -  https://github.com/
     -  Container images
   * -  Edge Orchestrator
-    -  https://kubernetes.github.io/
+    -  https://kubernetes.io/
     -  Helm Chart
   * -  Edge Orchestrator
     -  https://charts.external-secrets.io/
@@ -315,22 +315,22 @@ To install Edge Orchestrator and Edge Node, the following Egress rules are requi
     -  https://kiali.org/
     -  Helm Chart
   * -  Edge Orchestrator
-    -  https://kyverno.github.io/
+    -  https://kyverno.github.io/kyverno/
     -  Helm Chart
   * -  Edge Orchestrator
-    -  https://metallb.github.io/
+    -  https://metallb.io/
     -  Helm Chart
   * -  Edge Orchestrator
-    -  https://prometheus-community.github.io/
+    -  https://github.com/prometheus-community/helm-charts
     -  Helm Chart
   * -  Edge Orchestrator
     -  https://charts.bitnami.com/
     -  Helm Chart
   * -  Edge Orchestrator
-    -  https://stakater.github.io/
+    -  https://github.com/stakater/
     -  Helm Chart
   * -  Edge Orchestrator
-    -  https://helm.traefik.io/
+    -  https://github.com/traefik/traefik-helm-chart
     -  Helm Chart
   * -  Edge Orchestrator
     -  https://helm.releases.hashicorp.com
@@ -387,7 +387,7 @@ To install Edge Orchestrator and Edge Node, the following Egress rules are requi
     -  https://\*.archive.ubuntu.com
     -  Onboarding
   * -  Edge Node
-    -  https://ppa.launchpad.net
+    -  https://launchpad.net/+tour/ppa
     -  Onboarding
   * -  Edge Node
     -  https://esm.ubuntu.com

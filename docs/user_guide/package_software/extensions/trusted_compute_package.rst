@@ -67,7 +67,7 @@ To prepare your application to be deployed in a Trusted Compute compatible node,
            runtimeClassName: kata-qemu
 
 
-#. Refer `deployment package <./../index>`__ to create application deployment package.
+#. Refer `deployment package <./../index.html>`__ to create application deployment package.
 
 Deploy Trusted Compute Package
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -5,7 +5,10 @@ Applications in |software_prod_name| must fulfill the following criteria to be d
 and managed successfully:
 
 **Kubernetes Compatibility**
-  - Deployable on CNCF-certified Kubernetes version v1.27
+  - Deployable on CNCF-certified Kubernetes version v1.33 or later
+  - Compliant with Kubernetes best practices for resource definitions and configurations
+  - All resources defined in YAML manifests must adhere to Kubernetes API specifications
+  - Use of Kubernetes namespaces for resource isolation and management
 
 **Chart Management**
   - All Helm charts stored in Helm or OCI registry and downloadable through the network

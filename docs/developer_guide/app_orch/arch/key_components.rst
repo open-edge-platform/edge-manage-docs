@@ -92,14 +92,6 @@ access to the services running on the edge. When integrated into the
 |software_prod_name| UI it will provide a seamless experience for the user to
 access the Web UI or API of an end application deployed on the Edge Node cluster.
 
-Interconnect
-------------
-
-Interconnect is a service that allows multiple applications deployed on separate
-Edge Node clusters to communicate with each other in a secure and controlled
-configuration. It is implemented as a set of Kubernetes\* controllers managing CRDs
-that ultimately configure Skupper open source system.
-
 OCI Registry
 ------------
 
@@ -137,4 +129,4 @@ The specific Web UI tasks include:
 * Application Catalog Service: Upload, download, and manage Deployment Packages, Applications and Registries.
 * Application Deployment Manager: Deploy, uninstall, and upgrade applications, and monitor deployment status.
 
-Some tasks do not yet have a Web UI interface and must be done through the APIs. For example, the addition and deletion of Network Objects to drive the Interconnect service.
+Some tasks do not yet have a Web UI interface and must be done through the APIs.

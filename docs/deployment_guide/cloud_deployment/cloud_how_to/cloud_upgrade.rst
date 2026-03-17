@@ -126,8 +126,6 @@ You need to follow the steps mentioned in `Prerequisites section <https://docs.o
       orchestrator-admin:~$ ./configure-cluster.sh
 
    This process will start redeploying the upgraded applications in the cluster starting with root-app.
-   Let it continue and you would observe "infra-external" app is failing due to orch-infra-rps and orch-infra-mps databases.
-   In order to fix the above problem, you need to follow below steps.
 
 
 Step 2: Verification

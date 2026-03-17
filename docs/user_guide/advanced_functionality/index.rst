@@ -18,6 +18,8 @@ application's capabilities:
    * :doc:`/user_guide/advanced_functionality/pxe_provisioning_with_cloud_emf`
    * :doc:`/user_guide/advanced_functionality/custom_config`
    * :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
+   * :doc:`/user_guide/advanced_functionality/custom_os_profile`
+   * :doc:`/user_guide/advanced_functionality/ubuntu_raw_image_generation_from_iso`
 
 
 .. toctree::
@@ -37,3 +39,5 @@ application's capabilities:
    custom_config
    vpro_power_mgt
    configure_edgenode_lvm_parition.rst
+   custom_os_profile
+   ubuntu_raw_image_generation_from_iso

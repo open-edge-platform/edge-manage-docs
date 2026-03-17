@@ -24,9 +24,6 @@ ENT is used with the `PostgreSQL\* database <https://www.postgresql.org/>`_. In 
 deployments, a managed service such as `AWS\* Aurora <https://aws.amazon.com/rds/aurora/>`_
 may be used.
 
-`Skupper <https://skupper.io/index.html>`_ is used to provide the secure network used by
-the Interconnect system.
-
 The Tenant Provisioner component is built in Go and uses a plugin approach for extending
 the actions it takes during the creation and deletion of Multi-Tenant Projects.
 

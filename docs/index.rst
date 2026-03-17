@@ -116,13 +116,31 @@ you can find details about the high-level design and submit patches of your own.
         APIs offer Create, Read, Update, and Delete capabilities.
 
 
+Modular Workflows
+-----------------
+Device management workflows from EMF that showcase Intel Architecture capabilities,
+designed to be evaluated independently and seamlessly integrated into partner
+device-management solutions to extend their functionality.
+
+.. grid:: 3
+
+    .. grid-item-card:: Modular Workflows
+        :link: modular_workflows/index
+        :link-type: doc
+        :link-alt: clickable cards
+
+        Explore modular device management workflows that extend partner solutions with Intel Architecture capabilities.
+
+
 .. toctree::
    :hidden:
 
+   release_notes/index
    deployment_guide/index
    user_guide/index
    developer_guide/index
    api/index
    system_requirements/index
-   release_notes/index
+   modular_workflows/index
+
 
