@@ -130,6 +130,7 @@ You need to follow the steps mentioned in `Prerequisites section <https://docs.o
       orchestrator-admin:~$ make upgrade
 
    This process will start redeploying the upgraded applications in the cluster starting with root-app.
+
   **Note: If the application does not sync successfully or the upgrade process times out, rerun the make upgrade command.**
 
 
