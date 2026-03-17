@@ -160,14 +160,6 @@ Cluster and Application Management
 * The same USB peripheral cannot be shared between the same type of
   applications, while the same USB peripheral can be simultaneously
   connected to the different types of applications.
-* If a targeted deployment is edited and one of the clusters is removed, then
-  the deployment may not actually be removed from the clusters.
-* Deployment Instance Status Down alert is not automatically cleared after
-  deletion of the deployed application instance, The alert will remain active.
-* After upgrading the orchestrator, if a newer version of a deployed application
-  becomes available, then upon upgrading the deployed application, the application may
-  fail to update and become stuck in an "Updating" state when using the upgrade functionality.
-  As a workaround, delete the existing deployment and create a fresh deployment with the new version of the application.
 * If Application Management, including the application catalog, has not been enabled but Cluster Management has been
   enabled, the deployment packages from `cluster-extensions <https://github.com/open-edge-platform/cluster-extensions/tree/main/deployment-package>`_
   will not be available for installation onto an edge node cluster, since these are stored within the catalog service.
