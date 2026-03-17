@@ -289,6 +289,35 @@ Provision a vPro device:
 Activate vPro In ACM mode
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+- `ACM mode certificate creation <https://device-management-toolkit.github.io/docs/2.32/GetStarted/Cloud/createProfileACM/#provisioning-certificate>`_
+
+  ACM (Admin Control Mode) activation requires a provisioning certificate issued by a trusted Certificate Authority (CA).
+  This certificate must be rooted in one of the trusted CAs embedded in the Intel AMT firmware (e.g., Comodo, DigiCert, GoDaddy, or VeriSign).
+
+  To obtain and prepare the certificate:
+
+  **Purchase a provisioning certificate** from a CA whose root certificate hash is listed in Intel AMT's trusted root store.
+     The certificate must match the domain suffix configured in the AMT BIOS (MEBx) settings.
+
+  **Export the certificate** in PFX/PKCS#12 format, including the full certificate chain and private key.
+
+  **Note the certificate password** — it will be required when creating the AMT domain profile via ``orch-cli``.
+
+  .. note::
+
+     The domain suffix in the certificate's Common Name (CN) or Subject Alternative Name (SAN) must match the
+     PKI DNS suffix configured in the edge node's MEBx settings.
+
+- BIOS configuration for ACM mode
+
+  Ensure the edge node's BIOS is configured for ACM mode with Domain suffix in Remote configuration settings.
+
+  Advanced > MEBx > {Enter MEBx Password- default is "admin"} > Intel AMT Configuration > Network Access State > Full Unprovision
+  Advanced > MEBx > {Enter MEBx Password- default is "admin"} > Intel AMT Configuration > Remote Setup and Configuration > PKI DNS Suffix > Set to your domain suffix (e.g., "example.com")
+
+  .. figure:: images/Vpro-BIOS-settings.png
+   :alt: BIOS ACM configuration settings
+
 - Domain creation
 
   .. code-block:: bash
@@ -310,6 +339,19 @@ Activate vPro In ACM mode
       --api-endpoint https://api.${CLUSTER_FQDN} \
       --amt-state provisioned \
       --control-mode admin
+
+- ACM mode Deactivation - Once the operation is complete, you can deactivate ACM mode using the following command:
+
+  .. code-block:: bash
+
+    orch-cli set host ${HOST_ID} \
+      --project ${PROJECT_NAME} \
+      --api-endpoint https://api.${CLUSTER_FQDN} \
+      --amt-state unprovisioned
+
+.. note::
+   Ensure that deactivation completes successfully. If it does not, the host may enter a limbo state and cannot be reactivated.
+   In that case, you must clear the system CMOS to reset the Intel® vPro® state before activating again.
 
 Verify vPro activation on the control plane
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
