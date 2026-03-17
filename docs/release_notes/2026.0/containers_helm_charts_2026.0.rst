@@ -34,6 +34,8 @@ Helm Charts for Observability (O11y)
      - "1000"
      - edgenode-dashboards
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/o11y/charts
+
+     
      - 0.3.10
    * - 3
      - edgenode-observability
@@ -170,7 +172,7 @@ Helm Charts for Application Orchestration
      - "2000"
      - app-deployment-crd
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/app/charts
-     - 2.6.1
+     - 2.6.2
    * - 2
      - app-deployment-manager
      - app-deployment-manager
@@ -178,7 +180,7 @@ Helm Charts for Application Orchestration
      - "2100"
      - app-deployment-manager
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/app/charts
-     - 2.6.1
+     - 2.6.2
    * - 3
      - app-orch-catalog
      - app-orch-catalog
@@ -186,7 +188,7 @@ Helm Charts for Application Orchestration
      - "1101"
      - app-orch-catalog
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/app/charts
-     - 0.16.1
+     - 0.16.2
    * - 4
      - app-orch-tenant-controller
      - app-orch-tenant-controller
@@ -194,7 +196,7 @@ Helm Charts for Application Orchestration
      - "1100"
      - app-orch-tenant-controller
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/app/charts
-     - 0.5.1
+     - 0.5.2
    * - 5
      - app-resource-manager
      - app-resource-manager
@@ -202,7 +204,7 @@ Helm Charts for Application Orchestration
      - "2100"
      - app-resource-manager
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/app/charts
-     - 2.6.1
+     - 2.6.2
    * - 6
      - app-service-proxy
      - app-service-proxy
@@ -210,7 +212,7 @@ Helm Charts for Application Orchestration
      - "2100"
      - app-service-proxy
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/app/charts
-     - 1.6.1
+     - 1.6.2
    * - 7
      - copy-ca-cert-gitea-to-app
      - copy-secret
@@ -218,7 +220,7 @@ Helm Charts for Application Orchestration
      - "180"
      - copy-ca-cert-gitea-to-app
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.1
+     - 26.0.0
 
 .. list-table:: Application Orchestration Components for namespace: fleet-default
    :header-rows: 1
@@ -239,7 +241,7 @@ Helm Charts for Application Orchestration
      - "1200"
      - copy-app-gitea-cred-to-fleet
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.1
+     - 26.0.0
    * - 2
      - copy-cluster-gitea-cred-to-fleet
      - copy-secret
@@ -247,7 +249,7 @@ Helm Charts for Application Orchestration
      - "1200"
      - copy-cluster-gitea-cred-to-fleet
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.1
+     - 26.0.0
    * - 3
      - fleet-rs-secret
      - fleet-rs-secret
@@ -467,7 +469,7 @@ Helm Charts for User Interface components
      - "3000"
      - web-ui
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/charts
-     - 4.0.4
+     - 4.0.7
    * - 3
      - web-ui-app-orch
      - orch-ui-app-orch
@@ -499,7 +501,7 @@ Helm Charts for User Interface components
      - "3000"
      - web-ui
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/charts
-     - 4.0.6
+     - 4.0.7
 
 Helm Charts for Platform services components
 ------------------------------------------------
@@ -669,7 +671,7 @@ Helm Charts for Platform services components
      - "100"
      - istio-base
      - https://istio.io/latest/docs/setup/install/helm/
-     - 1.28.0
+     - 1.29.0
    * - 2
      - istio-policy
      - istio-policy
@@ -685,7 +687,7 @@ Helm Charts for Platform services components
      - "110"
      - istiod
      - https://istio-release.storage.googleapis.com
-     - 1.28.0
+     - 1.29.0
    * - 4
      - kiali
      - kiali-server
@@ -910,7 +912,7 @@ Helm Charts for Platform services components
      - "2000"
      - app-deployment-manager-secret
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.2
+     - 26.0.1
    * - 2
      - component-status
      - component-status
@@ -1056,7 +1058,7 @@ Helm Charts for Platform services components
      - "110"
      - wait-istio-job
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/common/charts
-     - 25.2.3
+     - 26.0.1
 
 .. list-table:: Platform services components for namespace: orch-iam
    :header-rows: 1
@@ -1159,7 +1161,7 @@ Helm Charts for Platform services components
      - "1"
      - postgresql-operator
      - "ghcr.io/cloudnative-pg/charts"
-     - 0.26.0
+     - 0.27.1
    * - 3
      - postgresql-secrets
      - postgresql-secrets

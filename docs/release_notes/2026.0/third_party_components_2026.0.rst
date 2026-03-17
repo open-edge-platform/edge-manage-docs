@@ -294,19 +294,19 @@ Platform services
    * - istio base
      - helm chart
      - https://istio-release.storage.googleapis.com/charts
-     - 1.28.0
+     - 1.29.0
    * - istiod
      - helm chart
      - https://istio-release.storage.googleapis.com/charts
-     - 1.28.0
+     - 1.29.0
    * - istiod
      - image
      - docker.io/istio/pilot
-     - 1.28.0
+     - 1.29.0
    * - istiod
      - image
      - docker.io/istio/proxyv2
-     - 1.28.0
+     - 1.29.0
    * - keycloak
      - helm chart
      - https://github.com/bitnami/charts/tree/main/bitnami/keycloak
@@ -382,7 +382,7 @@ Platform services
    * - postgresql-operator
      - image
      - ghcr.io/cloudnative-pg/cloudnative-pg
-     - 1.27.0
+     - 1.28.1
    * - reloader
      - helm chart
      - https://stakater.github.io/stakater-charts
@@ -414,7 +414,7 @@ Platform services
    * - vault
      - image
      - hashicorp/vault
-     - 1.21.4
+     - 1.21.3
    * - vault
      - image
      - hashicorp/vault-k8s
@@ -438,7 +438,7 @@ Platform services
    * - gitea
      - image
      - gitea/gitea
-     - 1.25.1-rootless
+     - 1.25.4-rootless
    * - gitea
      - image
      - postgres
