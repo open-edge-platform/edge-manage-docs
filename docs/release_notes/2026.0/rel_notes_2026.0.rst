@@ -27,9 +27,10 @@ Key highlights of the 2026.0 release include:
 **Infrastructure and Edge Node Software**
 
 
-* **New:** A new minimalistic deployment profile has been introduced, designed specifically to enable Intel® vPro®–based
-  power management workflows for EdgeNodes, leveraging the modular architecture of the Edge Manageability Framework to support streamlined
-  vPro‑focused functionality. EdgeNodes pre‑provisioned with Ubuntu 24.04 can now be seamlessly onboarded using the Open Edge Platform CLI.
+* **New:** A minimalistic deployment profile has been introduced to enable Intel® vPro®–based power‑management workflows for EdgeNodes, leveraging
+  the modular architecture of the Edge Manageability Framework and adding simplified multitenancy for EIM. EdgeNodes pre‑provisioned with Ubuntu 24.04
+  can now be seamlessly onboarded using the Open Edge Platform CLI.
+  See :doc:`/modular_workflows/vpro-amt-ism/index`.
 * **New:** Introduction of Intel vPro Admin Control Mode (ACM) support in EMF.
 * **Update:** Replaced retiring Ingress NGINX with HAPROXY.
 * **New:** Panther lake and Bartlet lake support (AR: Sonia to consolidate with supported platforms section)
