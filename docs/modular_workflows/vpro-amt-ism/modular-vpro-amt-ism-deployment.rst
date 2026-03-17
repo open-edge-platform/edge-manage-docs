@@ -347,12 +347,11 @@ Activate vPro In ACM mode
     orch-cli set host ${HOST_ID} \
       --project ${PROJECT_NAME} \
       --api-endpoint https://api.${CLUSTER_FQDN} \
-      --amt-state unprovisioned 
+      --amt-state unprovisioned
 
 .. note::
    Ensure that deactivation completes successfully. If it does not, the host may enter a limbo state and cannot be reactivated.
    In that case, you must clear the system CMOS to reset the Intel® vPro® state before activating again.
-   
 
 Verify vPro activation on the control plane
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
