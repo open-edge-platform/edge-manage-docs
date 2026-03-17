@@ -33,7 +33,7 @@ Key highlights of the 2026.0 release include:
   See :doc:`/modular_workflows/vpro-amt-ism/index`.
 * **New:** Introduction of Intel vPro Admin Control Mode (ACM) support in EMF.
 * **Update:** Replaced retiring Ingress NGINX with HAPROXY.
-* **New:** Panther lake and Bartlet lake support (AR: Sonia to consolidate with supported platforms section)
+* **New:** Panther lake and Bartlet lake support
 
 
 **Edge Manageability Framework Platform Enhancements**
@@ -47,6 +47,7 @@ Key highlights of the 2026.0 release include:
 * **Update:** Removed the Gitea dependency when Application Management is disabled. Argo CD now points to the EMF open-source repository
 
 **Update:**: Support for new versions of 2025.2 Applications
+    
     * `Weld Porosity Detection v1.4.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/weld-porosity/get-started/deploy-with-edge-orchestrator.md>`__.
     * `Pallet Defect Detection v2.6.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/get-started/deploy-with-edge-orchestrator.md>`__.
     * `Worker Safety Gear Detection v1.2.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/worker-safety-gear-detection/get-started/deploy-with-edge-orchestrator.md>`__.
@@ -95,7 +96,7 @@ Known Issues
 ----------------------------------
 
 The following are known issues in the release. While several known issues
-and limitations have been addressed during the 3.1 release cycle, some have
+and limitations have been addressed during the 2026.0 release cycle, some have
 been still carried over from past releases.
 
 EMF deployment
