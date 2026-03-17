@@ -629,22 +629,3 @@ To continue successfully after the upgrade, choose one of the following options:
 
 #. Update the EN to the latest available OS profile using the day-2 upgrade process
 #. After the OS profile upgrade is complete, proceed with cluster installation
-
-
-Issue#4: Kyverno Pod in ImagePullBackOff State
--------------------------------------------------------------------------
-
-**Issue:**
-
-After the upgrade, the Kyverno pod may be stuck in an ``ImagePullBackOff`` state due to image pull errors.
-
-**Resolution:**
-
-To resolve this issue, run the following commands to clean up and reset the Kyverno clean-reports job:
-
-.. code-block:: bash
-
-   kubectl delete job kyverno-clean-reports -n kyverno &
-   kubectl delete pods -l job-name="kyverno-clean-reports" -n kyverno &
-   kubectl patch job kyverno-clean-reports -n kyverno --type=merge -p='{"metadata":{"finalizers":[]}}'
-
