@@ -111,7 +111,7 @@ configured before running the upgrade.
    Runtime arguments will have higher precedence over the environment variables set in ``onprem.env``.
 
 Configuration Workflow
-+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
 
 #. Download the installer scripts using ``access_script.sh`` (see previous section)
 #. Locate the ``onprem.env`` file in the downloaded directory
@@ -519,8 +519,11 @@ ArgoCD
 
      kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 
-Gitea (when Orch is deployed with Full EMF or App manageability enabled)
-~~~~~~~
+
+Gitea
+~~~~~
+
+(when Orch is deployed with Full EMF or App manageability enabled)
 
 - **Retrieve Gitea username:**
 
