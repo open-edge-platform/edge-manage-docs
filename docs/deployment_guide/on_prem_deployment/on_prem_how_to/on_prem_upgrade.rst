@@ -414,7 +414,7 @@ Before confirming in Terminal 1, open **Terminal 2** and update configurations:
 
    .. code-block:: yaml
 
-      # File: onprem.yaml
+      # File: repo_archives/tmp/edge-manageability-framework/orch-configs/clusters/onprem.yaml
 
       argo:
         proxy:
