@@ -53,13 +53,13 @@ Supported AWS regions
 Edge Orchestrator must be installed to an AWS Region with at least **three**
 `Availability Zones* <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones>`_.
 
-You can use an `AWS Region map <https://www.cloudregions.io/aws/regions-map>`_ that lists Availability Zones per region to verify
+You can use an `AWS Region map <https://aws.amazon.com/about-aws/global-infrastructure/regions_az/>`_ that lists Availability Zones per region to verify
 that the AWS Region you plan to install to has a minimum of three Availability Zones.
 
 The Edge Orchestrator installer will verify that the selected AWS Region has at least three Availability Zones and error out if the requirement is not met.
 
 For Firewall configuration, see
-`Firewall Configuration </../../shared/shared_gs_iam>`__
+`Firewall Configuration <../../../shared/shared_gs_firewall_config.html>`__
 
 .. toctree::
    :hidden:

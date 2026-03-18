@@ -212,6 +212,11 @@ In order to submit a component pull request, follow these steps:
 1. Push a branch that contains your code change to the repo that you've forked
    on GitHub repository.
 
+   - The CI that will be run on the PR branch will check that the branch name
+     is not ``main`` or starts with ``release-``, please ensure that the branch
+     containing your code changes does not include either of these names when
+     pushing your changes to the repo that you have forked.
+
 2. `Create a Pull Request
    <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request>`_.
    You will be prompted to fill out a pull request template which lists the

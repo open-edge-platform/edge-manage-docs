@@ -20,7 +20,7 @@ Procedure
 To login to the Internal Harbor registry, follow these steps:
 
 #. In a web browser navigate to the Internal Harbor registry URL
-   (for example, https://registry-oci.<CLUSTER_FQDN>).
+   (for example, `https://registry-oci.<CLUSTER_FQDN>`).
 
 #. At the Registry login page choose "Login with IAM" with a user
    that either has:

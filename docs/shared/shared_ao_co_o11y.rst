@@ -184,7 +184,7 @@ each edge node by connecting via SSH.
    To access edge nodes when observability is disabled, the edge node must be onboarded
    with **SSH enabled** in the configuration.
 
-   For details on how to add SSH users, refer to the `Local SSH Account Management <../user_guide/set_up_edge_infra/orch_cli/orch_cli_guide.rst#local-ssh-account-management>`_ section in the orch-cli guide.
+   For details on how to add SSH users, refer to the `Local SSH Account Management <../user_guide/set_up_edge_infra/orch_cli/orch_cli_guide.html#local-ssh-account-management>`_ section in the orch-cli guide.
 
 ----------------------------------------------------
 4.6.1 SSH Login to Edge Node

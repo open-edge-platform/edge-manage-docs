@@ -37,8 +37,8 @@ Developers Highlights
 Key Performance Indicators
 ---------------------------
 
-* The onboarding and provisioning process for an Ubuntu* profile taking around 15 minutes.
-* The onboarding and provisioning process for an Ubuntu profile taking around 8 minutes.
+* The onboarding and provisioning process for an Ubuntu 24.04LTS* profile taking around 9 minutes.
+* The onboarding and provisioning process for an Microvisor Toolkit* profile taking around 8 minutes.
 * Virtual Edge Node is highly useful for scale testing. Ansible scripts are very used for automation and scale tests.
 * Support on-prem environments behind FW/NAT without the need to expose the edge to external network.
 

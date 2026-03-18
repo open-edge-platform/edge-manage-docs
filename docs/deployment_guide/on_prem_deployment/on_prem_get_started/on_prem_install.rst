@@ -103,7 +103,10 @@ Core Deployment Configuration
      - ``registry-rs.edgeorchestration.intel.com``
    * - ``DEPLOY_VERSION``
      - Version of Edge Orchestrator to deploy
-     - ``v2025.2.0``
+     - ``v2026.0.0``
+   * - ``DEPLOY_REPO_BRANCH``
+     - Git tag or branch for deployment repository (overrides default commit)
+     - ``v2026.0.0``
    * - ``ORCH_INSTALLER_PROFILE``
      - Deployment profile for Edge Orchestrator
      - ``onprem``
@@ -144,8 +147,8 @@ Network Configuration
    * - ``TRAEFIK_IP``
      - MetalLB IP address for Traefik
      - (empty)
-   * - ``NGINX_IP``
-     - MetalLB IP address for NGINX
+   * - ``HAPROXY_IP``
+     - MetalLB IP address for HAProxy
      - (empty)
 
 Container Registry Configuration
@@ -787,7 +790,7 @@ An example of the `dnsmasq` config file:
    address=/vnc.[on.prem.domain.name]/[traefik-external-ip]
    address=/web-ui.[on.prem.domain.name]/[traefik-external-ip]
    address=/ws-app-service-proxy.[on.prem.domain.name]/[traefik-external-ip]
-   address=/tinkerbell-nginx.[on.prem.domain.name]/[ingress-nginx-external-ip]
+   address=/tinkerbell-haproxy.[on.prem.domain.name]/[ingress-nginx-external-ip]
    address=/mps.[on.prem.domain.name]/[traefik-external-ip]
    address=/rps.[on.prem.domain.name]/[traefik-external-ip]
    address=/mps-wss.[on.prem.domain.name]/[traefik-external-ip]
