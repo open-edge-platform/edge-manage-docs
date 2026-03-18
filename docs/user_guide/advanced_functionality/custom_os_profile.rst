@@ -213,7 +213,7 @@ provisioning, add the following to the ``metadata`` field in the YAML file:
 Step 3: Login to orch-cli
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Login to orch-cli first. Replace the placeholders with your EMF orchestrator details::
+Login to orch-cli first. Replace the placeholders with your EMF orchestrator details:
 
 ``<project_name>``
     The name of the project where you want to create the OS Profile.
@@ -226,7 +226,6 @@ Login to orch-cli first. Replace the placeholders with your EMF orchestrator det
 
 ``<password>``
     Keycloak API user password for logging into orch-cli.
-
 
 .. code-block:: bash
 
