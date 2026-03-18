@@ -49,7 +49,7 @@ Key highlights of the 2026.0 release include:
 **Update:**: Support for new versions of 2025.2 Applications
 
   In this release, a separate intel npu device plugin has been added to the intel-accelerator-extension, previously intel-gpu-extension, enabling users to deploy and run NPU workloads.
-    
+
     * `Weld Porosity Detection v1.4.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/weld-porosity/get-started/deploy-with-edge-orchestrator.md>`__ [NPU].
     * `Pallet Defect Detection v2.6.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/pallet-defect-detection/get-started/deploy-with-edge-orchestrator.md>`__ [NPU].
     * `Worker Safety Gear Detection v1.2.0 <https://github.com/open-edge-platform/edge-ai-suites/blob/release-2026.0.0/manufacturing-ai-suite/industrial-edge-insights-vision/docs/user-guide/worker-safety-gear-detection/get-started/deploy-with-edge-orchestrator.md>`__ [NPU].
