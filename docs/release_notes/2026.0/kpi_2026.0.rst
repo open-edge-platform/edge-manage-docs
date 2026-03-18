@@ -1,7 +1,7 @@
-Version 2025.2 Key Performance Indicators (KPIs)
+Version 2026.0 Key Performance Indicators (KPIs)
 =======================================================
 
-For 2025.2 release the following KPI goals were met that assured the quality
+For 2026.0 release the following KPI goals were met that assured the quality
 and proficiency of |software_prod_name|.
 
 Key Performance Indicators for Cloud Based Edge Orchestrator
