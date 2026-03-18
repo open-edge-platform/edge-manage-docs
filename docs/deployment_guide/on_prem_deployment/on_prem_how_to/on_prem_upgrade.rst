@@ -111,7 +111,7 @@ configured before running the upgrade.
    Runtime arguments will have higher precedence over the environment variables set in ``onprem.env``.
 
 Configuration Workflow
-+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
 
 #. Download the installer scripts using ``access_script.sh`` (see previous section)
 #. Locate the ``onprem.env`` file in the downloaded directory
@@ -414,7 +414,7 @@ Before confirming in Terminal 1, open **Terminal 2** and update configurations:
 
    .. code-block:: yaml
 
-      # File: repo_archives/tmp/edge-manageability-framework/orch-configs/clusters/onprem.yaml
+      # File: onprem.yaml
 
       argo:
         proxy:
@@ -438,9 +438,6 @@ Before confirming in Terminal 1, open **Terminal 2** and update configurations:
       kubectl get svc argocd-server -n argocd
       kubectl get svc traefik -n orch-gateway
       kubectl get svc ingress-haproxy-kubernetes-ingress -n orch-boots
-
-      # Verify LB IP configurations are updated
-      nano repo_archives/tmp/edge-manageability-framework/orch-configs/clusters/onprem.yaml
 
 3. **Ensure all configurations are correct.**
 
@@ -477,6 +474,16 @@ The **last line** should read:
 
 ``Upgrade completed! Wait for ArgoCD applications to be in 'Synced' and 'Healthy' state``
 
+.. note::
+
+   After running ``onprem_upgrade.sh``, wait for ~5 minutes for ``root-app`` and dependent applications to sync. Then run the following script:
+
+   .. code-block:: bash
+
+      ./after_upgrade_restart.sh
+
+   This will resync all applications, perform ``root-app`` sync, and restart ``tls-boots`` and ``dkam`` pods.
+
 System Health Check
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -512,8 +519,11 @@ ArgoCD
 
      kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 
+
 Gitea
-~~~~~~~
+~~~~~
+
+(when Orch is deployed with Full EMF or App manageability enabled)
 
 - **Retrieve Gitea username:**
 
@@ -541,33 +551,7 @@ Gitea
 
 Troubleshooting
 ===============
-
-Issue#1: Root-App Sync and Certificate Refresh After Upgrade
---------------------------------------------------------------------
-
-**Symptoms:**
-
-- Some applications show as **OutOfSync**, **Degraded**, or **Missing**
-- **external-secrets** and **copy-ca\*** specific pods remain in **OutOfSync**, **Missing**, or **Processing** state
-
-**Resolution:**
-
-#. After running ``onprem_upgrade.sh``, **wait 5–10 minutes** for ``root-app`` and dependent applications to sync.
-
-#. Run the resync script:
-
-   .. code-block:: bash
-
-      ./after_upgrade_restart.sh
-
-   This script:
-
-   - Continuously syncs applications
-   - Performs **root-app sync**
-   - Restarts **tls-boots** and **dkam** pods
-
-#. If applications still fail to sync:
-
+Issue#1 : If applications still fail to sync:
    - Log in to ArgoCD UI
    - Delete error-state CRDs/jobs
    - Re-sync ``root-app`` and rerun the ``./after_upgrade_restart.sh`` script
@@ -648,22 +632,3 @@ To continue successfully after the upgrade, choose one of the following options:
 
 #. Update the EN to the latest available OS profile using the day-2 upgrade process
 #. After the OS profile upgrade is complete, proceed with cluster installation
-
-
-Issue#4: Kyverno Pod in ImagePullBackOff State
--------------------------------------------------------------------------
-
-**Issue:**
-
-After the upgrade, the Kyverno pod may be stuck in an ``ImagePullBackOff`` state due to image pull errors.
-
-**Resolution:**
-
-To resolve this issue, run the following commands to clean up and reset the Kyverno clean-reports job:
-
-.. code-block:: bash
-
-   kubectl delete job kyverno-clean-reports -n kyverno &
-   kubectl delete pods -l job-name="kyverno-clean-reports" -n kyverno &
-   kubectl patch job kyverno-clean-reports -n kyverno --type=merge -p='{"metadata":{"finalizers":[]}}'
-
