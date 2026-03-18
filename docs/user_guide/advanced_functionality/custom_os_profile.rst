@@ -115,11 +115,10 @@ Create the OS profile YAML file ``custom_os_profile.yaml`` with the following co
      version: 0.2.0
    spec:
      name: <custom_os_profile_name>
-     type: <IMMUTABLE/MUTABLE>
+     type: <OS_TYPE_IMMUTABLE/OS_TYPE_MUTABLE>
      provider: OS_PROVIDER_KIND_INFRA
-     architecture: x86_64
-     profileName: <custom_os_profile_name>
-     image_url: <url_to_os_image>
+     profileName: <profile_name_used_for_custom_os_profile>
+     osImageUrl: <url_to_os_image>
      osImageVersion: <os_image_version>
      osImageSha256: <sha256_checksum_of_os_image>
      securityFeature: <SECURITY_FEATURE_NONE/SECURITY_FEATURE_SECURE_BOOT_AND_FULL_DISK_ENCRYPTION>
@@ -132,20 +131,33 @@ Replace the placeholders with appropriate values:
 ``<custom_os_profile_name>``
     A unique name for the custom OS profile.
 
-``<IMMUTABLE/MUTABLE>``
-    Specify whether the OS profile is immutable or mutable.
+``type`` (OPERATING_SYSTEM_TYPE_IMMUTABLE or OPERATING_SYSTEM_TYPE_MUTABLE)
+    Specify whether the OS profile is immutable or mutable based on the nature of your custom OS image.
+    For example, if you are testing an Edge Microvisor Toolkit image, it should be set to OPERATING_SYSTEM_TYPE_IMMUTABLE since EMT is an immutable OS.
+    If you are testing an Ubuntu image, it should be set to OPERATING_SYSTEM_TYPE_MUTABLE since Ubuntu is a mutable OS.
+
+``provider``
+    The OS provider, which should be set to OS_PROVIDER_KIND_INFRA for custom OS profiles.
+
+``<profile_name_used_for_custom_os_profile>``
+    The profile name that is used for custom OS profile.
+    For example, for Edge Microvisor Toolkit (EMT) images, the profile name is "microvisor-nonrt".
+    For Ubuntu images, the profile name is "ubuntu-22.04-lts-generic".
+    Check the `os-profiles <https://github.com/open-edge-platform/infra-core/blob/main/os-profiles>`_ repository for other profile names.
 
 ``<url_to_os_image>``
-    The URL where the OS image is hosted.
+    The URL where the OS image is hosted. Make sure the URL is accessible from the Edge node during provisioning.
 
 ``<sha256_checksum_of_os_image>``
     The SHA256 checksum of the OS image for verification.
 
 ``<os_image_version>``
-    The version of the OS image.
+    The version of the OS image. For example, for Ubuntu 22.04 image, it should be "22.04.X".
 
-``<SECURITY_FEATURE_NONE/SECURITY_FEATURE_SECURE_BOOT_AND_FULL_DISK_ENCRYPTION>``
-    Specify the security features enabled for the OS profile.
+``securityFeature`` (SECURITY_FEATURE_NONE or SECURITY_FEATURE_SECURE_BOOT_AND_FULL_DISK_ENCRYPTION)
+    Specify the security features enabled for the OS profile based on whether your custom OS image supports secure boot and full disk encryption.
+    For example, if your custom OS image is signed and supports secure boot and full disk encryption, set it to SECURITY_FEATURE_SECURE_BOOT_AND_FULL_DISK_ENCRYPTION.
+    If not, set it to SECURITY_FEATURE_NONE.
 
 ``<description_of_custom_os_profile>``
     A brief description of the custom OS profile.
@@ -201,19 +213,25 @@ provisioning, add the following to the ``metadata`` field in the YAML file:
 Step 3: Login to orch-cli
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Login to orch-cli first. Replace ``<EMF_KEYSTONE_URL>``, ``<USERNAME>``, and ``<PASSWORD>``
-with your EMF orchestrator details:
+Login to orch-cli first. Replace the placeholders with your EMF orchestrator details:
+
+``<project_name>``
+    The name of the project where you want to create the OS Profile.
+
+``<cluster_fqdn>``
+    The DNS name of your Edge Orchestrator instance (without ``https://``).
+
+``<user_name>``
+    Keycloak API username for logging into orch-cli.
+
+``<password>``
+    Keycloak API user password for logging into orch-cli.
 
 .. code-block:: bash
 
-   orch-cli login <EMF_KEYSTONE_URL> --username <USERNAME> --password <PASSWORD>
-   orch-cli config set project <PROJECT_NAME>
-   orch-cli config set api-endpoint <EMF_API_ENDPOINT>
-
-Replace the following placeholders:
-
-- ``<PROJECT_NAME>``: Your project name.
-- ``<EMF_API_ENDPOINT>``: Your EMF API endpoint (for example, ``https://api.<cluster_domain>``).
+  orch-cli config set project <project_name>
+  orch-cli config set api-endpoint https://api.<cluster_fqdn>
+  orch-cli login <user_name> <password> --keycloak https://keycloak.<cluster_fqdn>/realms/master
 
 Step 4: Create the Custom OS Profile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
