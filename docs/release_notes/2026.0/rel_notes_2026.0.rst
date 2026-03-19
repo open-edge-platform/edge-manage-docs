@@ -198,6 +198,10 @@ User Experience
 * Users created in Keycloak solution must have email address set up to properly
   perform authentication to Grafana Observability Dashboards. Users without
   email set won't be able to access metrics and logs via Grafana UI.
+* The site search dropdown may experience a flicker issue and lose focus when
+  typing during provisioning. The workaround is to change the targetRevision
+  version to 4.0.7 in the Argo CD web-ui-root configuration. Note that
+  version 4.0.8 exhibits this issue.
 
 Limitations
 ---------------------------------------------------------------------
