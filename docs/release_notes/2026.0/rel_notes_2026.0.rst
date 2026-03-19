@@ -37,10 +37,12 @@ Key highlights of the 2026.0 release include:
 
 
 **Edge Manageability Framework Platform Enhancements**
+
 * **Update:** Updates to the ``orch-cli`` tool to support the vPRO deployment profile and ACM Mode
 * **Update:** Updates to the UI to support the ACM mode
 
 **Maintenance Updates**
+
 * **Update:** Replaced Kubernetes dashboard with headlamp.
 * **Update:** Removed Ingress NGNIX from loadbalancer
 * **Update:** Removal of Skupper extension and interconnect manager
