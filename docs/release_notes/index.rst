@@ -30,6 +30,14 @@ Version 2025.2
 - :doc:`/release_notes/2025.2/third_party_components_2025.2`
 - :doc:`/release_notes/2025.2/containers_helm_charts_2025.2`
 
+Version 2026.0
+------------------
+
+- :doc:`/release_notes/2026.0/rel_notes_2026.0`
+- :doc:`/release_notes/2026.0/kpi_2026.0`
+- :doc:`/release_notes/2026.0/third_party_components_2026.0`
+- :doc:`/release_notes/2026.0/containers_helm_charts_2026.0`
+
 
 .. toctree::
    :hidden:
@@ -37,4 +45,5 @@ Version 2025.2
    3.0/version_3.0
    3.1/version_3.1
    2025.2/version_2025.2
+   2026.0/version_2026.0
 
