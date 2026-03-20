@@ -20,7 +20,7 @@ Replace ``<CLUSTER_DOMAIN>`` (e.g., ``cluster.onprem``) and ``<PROJECT_NAME>`` (
 Step 1 – Fetch OS Profiles (Optional)
 ----------------------------------
 
-First, identify available OS profile to use in the Upgrade of immutable OS, if upgrade is to be done for a known and available OS version of a immutable OS software:
+First, identify available OS profile to use in the Upgrade of immutable OS, if upgrade is to be done for a known and available OS version of an immutable OS software:
 
 .. code-block:: bash
 
