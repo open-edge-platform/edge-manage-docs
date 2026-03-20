@@ -54,6 +54,17 @@ See the following examples of OS Update Policy configuration for immutable OS:
             description: "immutable OS update - latest OS"
             updatePolicy: "UPDATE_POLICY_LATEST"
 
+   This is for updating immutable OS software with a kernel command.
+    .. code-block:: yaml
+
+        appVersion: apps/v1
+        spec:
+            name: "policy3"
+            description: "immutable OS update - kernel command"
+            updatePolicy: "UPDATE_POLICY_TARGET"
+            updateKernelCommand: "<UPDATE_KERNEL_COMMAND>"
+    Replace ``<UPDATE_KERNEL_COMMAND>`` (e.g., ``hugepages=2``) with your values.
+
 Step 3 – Create the OS Update Policy using the created yaml file, and locate its resource ID.
 ---------------------------------------------------------------------------------------------
 
@@ -62,7 +73,11 @@ Step 3 – Create the OS Update Policy using the created yaml file, and locate i
         orch-cli create osupdatepolicy <POLICY_YAML_FILE_PATH>
         orch-cli list osupdatepolicy
 
-Replace ``<POLICY_YAML_FILE_PATH>`` (e.g., ``./policy1.yaml``) with your values. From Step 2, choose the yaml file based on whether you want to upgrade to a particular known and available OS version of a immutable OS software or to the latest available OS image version of a immutable OS software.
+Replace ``<POLICY_YAML_FILE_PATH>`` (e.g., ``./policy1.yaml``) with your values. From Step 2, choose the yaml file based on whether you want to 
+- upgrade to a particular known and available OS version of a immutable OS software or 
+- to the latest available OS image version of a immutable OS software or
+- update immutable OS software with a kernel command.
+
 Note the ``Resource ID`` value (e.g., ``osupdatepolicy-6204eb4a``) for the created OS Update Policy.
 
 Step 4 – Locate the resource ID of your host and link your OS Update Policy with it.
