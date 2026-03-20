@@ -8,8 +8,8 @@ Keep your platform running smoothly. Manage platform upgrades, scale infrastruct
 and monitor observability across your edge deployment.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   upgrade-rollback
-   automation-and-scale
-   o11y-ops
+   upgrade-edge-node-immutable-os-software
+   install-package-on-edge-node-mutable-os
+   
