@@ -185,8 +185,9 @@ messages and vice versa.
         ...
     }
 
-Create unit tests using the testing framework exposed by Inventory. This will
-allow to test using a real Inventory instance. To further tests corner case
+Create unit tests using the testing framework exposed by
+:doc:`Inventory service <../../arch/components/inventory>`.
+This will allow to test using a real Inventory instance. To further tests corner case
 make sure to extend the logic of the Inventory mocks. The mocks implementation
 are located in ``api/test/utils``.
 
@@ -198,6 +199,6 @@ expected. The tests are in the folder ``api/test/client`` and use
 auto-generated Golang clients which make HTTP requests to the API server. The
 tests written in Go are executed using a deployment that contains Edge
 Infrastructure Manager components and allows to test the new resource in a real
-environment and exercise the reconciliation of the resource managers.
+environment and exercise the reconciliation of the :doc:`resource managers <../../arch/components/resource-managers>`.
 
 See the ``test`` directory for more details.

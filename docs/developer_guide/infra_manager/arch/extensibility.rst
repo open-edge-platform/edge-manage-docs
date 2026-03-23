@@ -7,8 +7,8 @@ systems, and support new features. This document provides an overview of the
 extensibility options available in the Edge Infrastructure Manager.
 
 The typical way to extend the system is by adding new resources in the
-Inventory datamodel (see :doc:`/developer_guide/infra_manager/arch/data_model`). Modeling is
-done using the `Protocol Buffer <https://protobuf.dev/>`_ serialization format
+Inventory datamodel (see :doc:`/developer_guide/infra_manager/arch/components/inventory/data_model`).
+Modeling is done using the `Protocol Buffer <https://protobuf.dev/>`_ serialization format
 that is language independent, and then presented to other services using gRPC.
 The protobuf format is the canonical format for data in Edge Infrastructure
 Manager.
