@@ -5,7 +5,6 @@ This guide walks you through the process to set up the Edge Orchestrator develop
 to run basic sanity tests. KinD is useful to validate lifecycle management operations on already provisioned Edge Node.
 
 .. note::
-   ENIC only emulates the real Edge Node and does not cover full Edge Node lifecycle management (from Day0 provisioning).
    To set up developer environment that is closest to the real-world deployment, see :doc:`/developer_guide/set_up_dev_env/dev_env_onprem`.
 
 System Requirements
@@ -13,7 +12,7 @@ System Requirements
 
 Your development machine must meet the following minimum requirements:
 
-- Recommended Operating System: Ubuntu\* 22.04 Server
+- Recommended Operating System: Ubuntu\* 24.04 Server
 
 - Processor: 16 cores or more
 
