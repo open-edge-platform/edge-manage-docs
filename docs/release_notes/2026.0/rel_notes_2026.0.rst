@@ -331,11 +331,4 @@ System Requirements
 You can find the system requirements on the :doc:`/system_requirements/index`
 page.
 
-Where to Find the Release
--------------------------------------------------------------------------------
-
-Each customer of the release will get a public web link to their Product
-deployment. Contact your System Integrator (SI) or Intel representative for
-access.
-
 [1]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set
