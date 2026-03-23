@@ -1,8 +1,7 @@
 Develop on KinD
 ===============
 
-This guide walks you through the process to set up the Edge Orchestrator development environment on KinD
-to run basic sanity tests. KinD is useful to validate lifecycle management operations on already provisioned Edge Node.
+This guide walks you through the process of setting up the Edge Orchestrator development environment on KinD (Kubernetes in Docker) to run basic sanity tests. KinD, along with a virtual Edge Node, is useful for validating lifecycle management operations when no physical Edge Node is available
 
 .. note::
    To set up developer environment that is closest to the real-world deployment, see :doc:`/developer_guide/set_up_dev_env/dev_env_onprem`.
