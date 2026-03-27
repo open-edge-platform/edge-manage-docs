@@ -50,13 +50,13 @@ between the agents and services at different stages:
    end
    note over pma: User updates edge node BIOS with DNS Suffix and MEBx Password
    us->>cli: Register the edge node
-   node over cli: If no mode is specified by the user, CCM will be collected by default
+   note over cli: If no mode is specified by the user, CCM will be collected by default
    cli->>api: Register host with node serial number/hardware UUID as well as activation mode
    api->>inv: Create host and persist the host details in the inventory database
    inv->>api: Return response from host creation in inventory database
    api->>cli: Return response from host registration
    cli->>us: Return response from host registration
-   node over pma: Periodically calls API to get activation request
+   note over pma: Periodically calls API to get activation request
    us->>cli: Activate AMT request for edge node
    cli->>api: Activate AMT request for edge node
    api->>inv: Set the Desired State for AMT for edge node to PROVISIONED
@@ -65,7 +65,7 @@ between the agents and services at different stages:
    cli->>us: Return response from activate AMT
    pma->>dm: Get AMT Activation Request
    dm->>inv: Query host to retrieve Activate AMT request from user
-   inv->>dm: Return repsonse from activate AMT with desired state
+   inv->>dm: Return response from activate AMT with desired state
    dm->>pma: Return response with profile name and details for AMT activation
    pma->>rpc: Trigger activation command using rpc binary and received profile
    rpc->>pma: Return activation command result
