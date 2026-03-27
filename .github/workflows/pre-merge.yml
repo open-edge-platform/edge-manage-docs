@@ -6,7 +6,7 @@ name: Pre-Merge CI Pipeline
 
 on:  # yamllint disable-line rule:truthy
   pull_request:
-    branches: ['main', 'release-[0-9]+.[0-9]+.*']
+    branches: ['main', 'release-*']
   workflow_dispatch:
 
 concurrency:
@@ -21,17 +21,39 @@ jobs:
     permissions:
       contents: read
     runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.branch_check.outputs.skip }}
     steps:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
+      - name: Validate branch name
+        id: branch_check
+        run: |
+          BRANCH="${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
+          echo "Branch: $BRANCH"
+
+          if [[ "$BRANCH" == release-* ]]; then
+            if [[ "$BRANCH" =~ ^release-[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
+              echo "✅ Valid release branch"
+              echo "skip=false" >> $GITHUB_OUTPUT
+            else
+              echo "⚠️ Invalid release branch → skipping pipeline"
+              echo "skip=true" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "Not a release branch"
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
       - name: "Verify Branch Name"
+        if: steps.branch_check.outputs.skip != 'true'
         uses: open-edge-platform/orch-ci/verify-branch-name@b5930c48c1fcdb6b34ffbcd465cff96dabfbde70  # yamllint disable-line rule:line-length
 
   pre-merge-pipeline:
     permissions:
       contents: read
     needs: pre-checks
+    if: needs.pre-checks.outputs.skip != 'true'
     uses: open-edge-platform/orch-ci/.github/workflows/pre-merge.yml@b5930c48c1fcdb6b34ffbcd465cff96dabfbde70  # yamllint disable-line rule:line-length
     with:
       run_security_scans: false
