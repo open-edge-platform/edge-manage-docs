@@ -15,6 +15,5 @@ guidance tailored to each deployment option.
 .. toctree::
    :hidden:
 
-   cloud_deployment/index
    on_prem_deployment/index
    virtual_edge_node_deployment/deployment
