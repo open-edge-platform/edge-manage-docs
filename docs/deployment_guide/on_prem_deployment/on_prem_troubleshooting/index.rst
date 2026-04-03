@@ -15,6 +15,9 @@ If an operation fails, you can generally rerun the operation to complete the ins
 - :doc:`/shared/shared_ts_sriov_webhook`
 - :doc:`/shared/shared_on_prem_rs_proxy`
 - :doc:`/shared/shared_on_prem_rke2_deployment`
+- :doc:`/shared/shared_cloud_ts_sync_root_app`
+- :doc:`/shared/shared_gs_firewall_config`
+- :doc:`/shared/shared_traefik_rate_limit`
 
 .. toctree::
    :hidden:
@@ -26,3 +29,6 @@ If an operation fails, you can generally rerun the operation to complete the ins
    ../../../shared/shared_ts_sriov_webhook
    ../../../shared/shared_on_prem_rs_proxy
    ../../../shared/shared_on_prem_rke2_deployment
+   ../../../shared/shared_cloud_ts_sync_root_app
+   ../../../shared/shared_gs_firewall_config
+   ../../../shared/shared_traefik_rate_limit
