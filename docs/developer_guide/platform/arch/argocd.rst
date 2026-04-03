@@ -419,7 +419,6 @@ Deployment
 
 Please refer to the following pages:
 
-- :doc:`/deployment_guide/cloud_deployment/index`
 - :doc:`/deployment_guide/on_prem_deployment/index`
 
 Technology Stack
