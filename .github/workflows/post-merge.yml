@@ -70,6 +70,7 @@ jobs:
       pull-requests: read
       issues: write
     needs: pre-checks
+    if: needs.pre-checks.outputs.skip != 'true'
     uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@bf82f7924caaac6ba2f388b6ec6ac4edd65f48ee  # yamllint disable-line rule:line-length
     with:
       simple_mode: false
