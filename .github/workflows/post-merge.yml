@@ -44,8 +44,10 @@ jobs:
       - name: "Verify Branch Name"
         if: steps.branch_check.outputs.skip != 'true'
         uses: open-edge-platform/orch-ci/verify-branch-name@bf82f7924caaac6ba2f388b6ec6ac4edd65f48ee  # yamllint disable-line rule:line-length
-        
+
   post-merge-pipeline:
+    needs: pre-checks
+    if: needs.pre-checks.outputs.skip != 'true'
     permissions:
       contents: read
       security-events: write
