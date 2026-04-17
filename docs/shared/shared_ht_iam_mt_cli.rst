@@ -12,6 +12,7 @@ operations:
 * Create, inspect, update, and delete Keycloak users.
 * List Keycloak groups.
 * Add users to groups and remove users from groups.
+* Inspect, assign, and remove user realm roles.
 * Create, inspect, list, and delete organizations and projects.
 
 This covers the most common bootstrap flow for local users. Advanced Keycloak
@@ -109,9 +110,9 @@ The commands used in this guide are:
 
    # Users
    orch-cli list users [--realm master]
-   orch-cli get user <username> [--groups] [--realm master]
+   orch-cli get user <username> [--groups] [--roles] [--realm master]
    orch-cli create user <username> [--email ... --first-name ... --last-name ...] [--password] [--temporary-password] [--disabled] [--realm master]
-   orch-cli set user <username> [--password] [--temporary-password] [--add-group <group>] [--remove-group <group>] [--realm master]
+   orch-cli set user <username> [--password] [--temporary-password] [--add-group <group>] [--remove-group <group>] [--add-realm-role <role>] [--remove-realm-role <role>] [--realm master]
    orch-cli delete user <username> [--realm master]
 
    # Groups
@@ -157,6 +158,12 @@ Create a new user for organization and project administration.
 
    # To include group membership
    orch-cli get user sample-user --groups
+
+   # To include realm role assignments
+   orch-cli get user sample-user --roles
+
+   # To include both groups and realm roles
+   orch-cli get user sample-user --groups --roles
 
 Add the user to **org-admin-group**.
 
@@ -241,10 +248,39 @@ Log in as the user that belongs to the organization-specific
    Status message:    Project sample-project CREATE is complete
    UID:               70883f2f-4bbe-4a67-9eea-1a5824dee549
 
+Assign the internal project-membership realm role
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In addition to project groups, Edge Orchestrator uses the internal realm role
+``<org-id>_<project-id>_m`` to indicate membership in a specific organization
+and project. You can assign this role directly with ``orch-cli``.
+
+.. code-block:: bash
+
+   # Log back in as admin or another Keycloak admin-capable user
+   orch-cli login admin
+   Enter Password:
+
+   ORG_UID=$(orch-cli get organization sample-org | grep "UID:" | awk '{print $2}')
+   PROJ_UID=$(orch-cli get project sample-project | grep "UID:" | awk '{print $2}')
+   PROJECT_MEMBERSHIP_ROLE="${ORG_UID}_${PROJ_UID}_m"
+
+   # Assign the internal project membership realm role
+   orch-cli set user sample-user --add-realm-role "$PROJECT_MEMBERSHIP_ROLE"
+
+   # Verify the role assignment
+   orch-cli get user sample-user --roles
+
+To remove the role later, use:
+
+.. code-block:: bash
+
+   orch-cli set user sample-user --remove-realm-role "$PROJECT_MEMBERSHIP_ROLE"
+
 Grant project access groups to a user
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Project creation dynamically creates project-specific groups such as
+Project creation also dynamically creates project-specific groups such as
 ``<project-id>_Edge-Manager-Group`` and ``<project-id>_Host-Manager-Group``.
 Add users to the groups that match the tasks they need to perform.
 
@@ -252,9 +288,6 @@ Log back in as ``admin`` or another Keycloak admin-capable user before making
 additional user or group membership changes.
 
 .. code-block:: bash
-
-   orch-cli login admin
-   Enter Password:
 
    PROJ_UUID=$(orch-cli get project sample-project | grep "UID:" | awk '{print $2}')
    orch-cli list groups | grep "$PROJ_UUID"
@@ -288,6 +321,9 @@ The following examples show other common operations supported by the current
 ``orch-cli`` implementation.
 
 .. code-block:: bash
+
+   # Review both groups and realm roles for a user
+   orch-cli get user sample-user --groups --roles
 
    # Force a password change on next login
    orch-cli set user sample-user --password --temporary-password

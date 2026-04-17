@@ -81,9 +81,9 @@ users.
 
 The current CLI supports:
 
-* ``list users`` and ``get user``
+* ``list users`` and ``get user`` including optional group and realm-role output
 * ``create user`` and ``delete user``
-* ``set user`` for password updates and group membership changes
+* ``set user`` for password updates, group membership changes, and realm-role assignment or removal
 * ``list groups``
 * organization and project management commands
 
