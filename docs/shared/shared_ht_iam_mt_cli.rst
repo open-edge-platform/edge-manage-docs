@@ -255,6 +255,10 @@ In addition to project groups, Edge Orchestrator uses the internal realm role
 ``<org-id>_<project-id>_m`` to indicate membership in a specific organization
 and project. You can assign this role directly with ``orch-cli``.
 
+Note: The admin account used below must have project manager permissions in
+the organization in order to complete the following workflow. See instructions
+above on adding project management groups if you have not already done so.
+
 .. code-block:: bash
 
    # Log back in as admin or another Keycloak admin-capable user
