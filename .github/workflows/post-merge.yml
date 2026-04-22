@@ -73,7 +73,7 @@ jobs:
       issues: write
     needs: pre-checks
     if: needs.pre-checks.outputs.skip != 'true'
-    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@bf82f7924caaac6ba2f388b6ec6ac4edd65f48ee  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@a95228137803b756aae327668c115db235802982  # yamllint disable-line rule:line-length
     with:
       simple_mode: false
       branch_pattern: '^(main|release-[0-9]+\.[0-9]+.*)$'
