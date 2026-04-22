@@ -76,15 +76,22 @@ The orch-cli configuration file can be found at **~/.orch-cli/orch-cli.yaml**
 User management
 ^^^^^^^^^^^^^^^
 
-The orch-cli does not support Identity and Access Management at Keycloak level. To manage Keycloak users and assign roles/groups See:
-:doc:`/shared/shared_gs_iam`
+The ``orch-cli`` supports the common IAM bootstrap tasks for local Keycloak
+users.
 
-The organization and project management is supported by the orch-cli.
+The current CLI supports:
 
-The Keycloak's `kcadm Admin CLI <https://www.keycloak.org/docs/latest/server_admin/index.html#admin-cli>`_ can be used to achieve terminal based user management along with the orch-cli's organization/project creation.
+* ``list users`` and ``get user`` including optional group and realm-role output
+* ``create user`` and ``delete user``
+* ``set user`` for password updates, group membership changes, and realm-role assignment or removal
+* ``list groups``
+* organization and project management commands
 
-The combined usage of kcadm and orch-cli to initially set up the IAM/tenancy can be found at:
-:doc:`/shared/shared_ht_iam_mt_cli`
+For the step-by-step workflow, see :doc:`/shared/shared_ht_iam_mt_cli`.
+
+Advanced Keycloak administration such as external identity providers, realm
+customization, or direct client management still requires the Keycloak UI or
+Keycloak's `kcadm Admin CLI <https://www.keycloak.org/docs/latest/server_admin/index.html#admin-cli>`_.
 
 .. note::
 
