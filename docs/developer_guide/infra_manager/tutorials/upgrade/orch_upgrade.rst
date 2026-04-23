@@ -197,7 +197,9 @@ To verify if the OS profiles are automatically repopulated follow the steps:
          -H "accept: application/json" \
          -H "Authorization: Bearer ${JWT_TOKEN}"
 
-Soon, the deleted OS profile should be rediscovered by OS Resource Manager and displayed again in the Web UI. The OS profiles are updated by OS Resource Manager every 60 minutes.
+Soon, the deleted OS profile should be rediscovered by
+`OS Resource Manager <../../arch/components/resource-managers.html#os-resource-manager>`__
+and displayed again in the Web UI. The OS profiles are updated by OS Resource Manager every 60 minutes.
 
 Trigger EN Update
 ^^^^^^^^^^^^^^^^^

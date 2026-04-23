@@ -6,11 +6,15 @@ support a large fleet of devices. This section provides an overview of the
 scalability considerations, the importance of scalability for the project, and
 the key mechanisms at the ground.
 
-Edge Infrastructure Manager has different scaling dimensions: onboarding (Day
-0), steady state (Day 1) and upgrade operations (Day 2). Currently Edge
-Infrastructure Manager has been demonstrated to work at 10,000 provisioned edge
-nodes (in steady state during Day 1) for AWS deployment and 2000 provisioned
-edge devices for on-premises deployment.  As of writing, the system has been
+Edge Infrastructure Manager has different scaling dimensions:
+
+- :doc:`onboarding <provisioning>` - **Day 0**,
+- :doc:`steady state <deployment>` - **Day 1**,
+- :doc:`upgrade operations <day2_flow>` - **Day 2**.
+
+Currently Edge Infrastructure Manager has been demonstrated to work at 10,000 provisioned
+edge nodes (in steady state during Day 1) for AWS deployment and 2000 provisioned
+edge devices for on-premises deployment. As of writing, the system has been
 tested to work with 50 concurrently onboarded nodes (Day 0 operations) and 1000
 concurrent upgrades during Day 2 activities.
 
@@ -30,7 +34,7 @@ sharding and read-only replicas. In its cloud deployment, the Edge
 Infrastructure Manager utilizes `AWS RDS* <https://aws.amazon.com/rds/>`_,
 providing a scalable and highly available Postgres implementation.
 
-**Inventory Component:** This is the closest component to the data persistence
+`Inventory Component <components/inventory>`: This is the closest component to the data persistence
 layer, and it's used by all other components. To optimize database access, we
 should:
 
@@ -60,7 +64,8 @@ limited business logic and stateless input validation to ensure fast CRUD
 operations while enforcing security and access control. Heavy hitter APIs
 should be optimized by introducing caching layers.
 
-**Resource Managers (RMs):** RMs implement the system's business logic, are
+`Resource Managers (RMs) <components/resource-managers>`:
+RMs implement the system's business logic, are
 stateless, and horizontally scalable. They follow the reconciliation paradigm,
 inspired by Kubernetes' control plane architecture, to design resilient
 distributed control planes. RMs use events from Inventory as triggers for their
@@ -92,7 +97,8 @@ passive. Greedy caches perform eager loading of resources, while passive caches
 store the results of read operations.
 
 The ORM framework employed in the project efficiently handles eager loading of
-data, preventing the N+1 queries problem. Additionally, the Resource Managers'
+data, preventing the N+1 queries problem. Additionally, the
+`Resource Managers <components/resource-managers>`'
 code is optimized to avoid unnecessary database writes, which helps maintain
 cache validity.
 
@@ -104,7 +110,8 @@ notification system, such as message durability and ordering. Consequently,
 events can be lost or delivered out of order, serving merely as indicators of
 system changes.
 
-Inventory operations are typically resource-oriented, and the Inventory service
+`Inventory <components/inventory>`
+operations are typically resource-oriented, and the Inventory service
 interface is designed to be agnostic to the resources it manages. Complex data
 processing operations are supported by optimized queries and, when necessary,
 custom APIs (RPCs). These operations are designed to be efficient, avoiding the
