@@ -72,6 +72,7 @@ jobs:
       contents: read
       pull-requests: read
       issues: write
+      id-token: write
     needs: pre-checks
     if: needs.pre-checks.outputs.skip != 'true'
     uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@a95228137803b756aae327668c115db235802982  # yamllint disable-line rule:line-length
@@ -81,5 +82,5 @@ jobs:
       switch_main_to_dev: true
     secrets:
       SYS_EMF_GH_TOKEN: ${{ secrets.SYS_EMF_GH_TOKEN }}
-      DOC_AWS_ACCESS_KEY_ID: ${{ secrets.DOC_AWS_ACCESS_KEY_ID2 }}
-      DOC_AWS_SECRET_ACCESS_KEY: ${{ secrets.DOC_AWS_SECRET_ACCESS_KEY2 }}
+      DOC_AWS_ACCESS_KEY_ID: ${{ secrets.DOC_AWS_ACCESS_KEY_ID }}
+      DOC_AWS_SECRET_ACCESS_KEY: ${{ secrets.DOC_AWS_SECRET_ACCESS_KEY }}
