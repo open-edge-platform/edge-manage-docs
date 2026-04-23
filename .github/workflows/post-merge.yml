@@ -81,5 +81,5 @@ jobs:
       switch_main_to_dev: true
     secrets:
       SYS_EMF_GH_TOKEN: ${{ secrets.SYS_EMF_GH_TOKEN }}
-      DOC_AWS_ACCESS_KEY_ID: ${{ secrets.DOC_AWS_ACCESS_KEY_ID }}
-      DOC_AWS_SECRET_ACCESS_KEY: ${{ secrets.DOC_AWS_SECRET_ACCESS_KEY }}
+      DOC_AWS_ACCESS_KEY_ID: ${{ secrets.DOC_AWS_ACCESS_KEY_ID2 }}
+      DOC_AWS_SECRET_ACCESS_KEY: ${{ secrets.DOC_AWS_SECRET_ACCESS_KEY2 }}
