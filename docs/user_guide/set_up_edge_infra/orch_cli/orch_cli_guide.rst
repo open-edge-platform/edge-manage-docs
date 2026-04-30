@@ -486,7 +486,7 @@ Note that power policy commands will not take effect on hosts with deactivated A
 
 .. code-block:: bash
 
-    ./orch-cli set host host-1234abcd --power on|off|reset
+    ./orch-cli set host host-1234abcd --power on|off|reset|power-cycle
 
 To change the power policy of an AMT-enabled host run the power-policy command.
 
@@ -510,7 +510,7 @@ Use ``--dry-run`` to preview which hosts will be affected before making changes.
 .. code-block:: bash
 
     # Power on all hosts matching a filter
-    ./orch-cli set host --filter "hostStatus='HOST_STATUS_ONBOARDED'" --power on
+    ./orch-cli set host --filter "hostStatus='onboarded'" --power on
 
     # Set AMT state for all hosts at a site
     ./orch-cli set host --site <site-id> --amt-state provisioned
@@ -519,7 +519,7 @@ Use ``--dry-run`` to preview which hosts will be affected before making changes.
     ./orch-cli set host --region <region-id> --power on --control-mode admin
 
     # Preview which hosts would be affected (dry run)
-    ./orch-cli set host --filter "hostStatus='HOST_STATUS_ONBOARDED'" --power off --dry-run
+    ./orch-cli set host --filter "hostStatus='onboarded'" --power off --dry-run
 
 **Bulk Host Actions via CSV**
 
