@@ -481,25 +481,12 @@ To activate/deactivate AMT on a host run the activation command.
 
     ./orch-cli set host host-1234abcd --amt-state provisioned|unprovisioned
 
-The actvation/deactivation can also be done in bulk with a .csv file as an input.
-To generate file, with current AMT state of hosts for bulk activation/deactivation run the following command.
-
-.. code-block:: bash
-
-    ./orch-cli set host --generate-csv test.csv
-
-Once the file is generated edit the "AMTState" column to the desired state (provisioned or unprovisioned) and then run the command to execute the changes.
-
-.. code-block:: bash
-
-    ./orch-cli set host --import-from-csv test.csv
-
-To power on/off or restart an AMT-enabled host run the power command.
+To power on/off, restart, or power-cycle an AMT-enabled host run the power command.
 Note that power policy commands will not take effect on hosts with deactivated AMT.
 
 .. code-block:: bash
 
-    ./orch-cli set host host-1234abcd --power on|off|restart
+    ./orch-cli set host host-1234abcd --power on|off|reset|power-cycle
 
 To change the power policy of an AMT-enabled host run the power-policy command.
 
@@ -513,7 +500,54 @@ To set a desired control mode for AMT run the control mode command.
 
     ./orch-cli set host host-1234abcd --control-mode admin|client
 
-Note that the control mode changes can also be done in bulk with a .csv file as an input, similar to/along the AMT activation/deactivation process described above.
+**Bulk Host Actions via Filter**
+
+Power, AMT state, control mode, power policy, and OS update policy actions can be applied
+to multiple hosts at once using ``--filter``, ``--site``, or ``--region`` flags.
+The ``--site`` and ``--region`` flags are mutually exclusive. Either can be combined with ``--filter``.
+Use ``--dry-run`` to preview which hosts will be affected before making changes.
+
+.. code-block:: bash
+
+    # Power on all hosts matching a filter
+    ./orch-cli set host --filter "hostStatus='onboarded'" --power on
+
+    # Set AMT state for all hosts at a site
+    ./orch-cli set host --site <site-id> --amt-state provisioned
+
+    # Combine power and control mode for all hosts in a region
+    ./orch-cli set host --region <region-id> --power on --control-mode admin
+
+    # Preview which hosts would be affected (dry run)
+    ./orch-cli set host --filter "hostStatus='onboarded'" --power off --dry-run
+
+**Bulk Host Actions via CSV**
+
+Host actions can also be performed in bulk with a .csv file as an input.
+To generate a file with current host state for bulk changes run the following command.
+
+.. code-block:: bash
+
+    ./orch-cli set host --generate-csv test.csv
+
+The generated CSV has the following columns:
+
+.. code-block:: text
+
+    Name,ResourceID,DesiredAmtState,ControlMode,DesiredPowerState
+
+All action columns are optional — leave a column blank to skip that action for a given host.
+Edit the desired columns and then run the command to execute the changes.
+
+.. code-block:: bash
+
+    ./orch-cli set host --import-from-csv test.csv
+
+To preview what changes would be made without executing them, add ``--dry-run``:
+
+.. code-block:: bash
+
+    ./orch-cli set host --import-from-csv test.csv --dry-run
 
 AMT Policy Management
 ^^^^^^^^^^^^^^^^^^^^^

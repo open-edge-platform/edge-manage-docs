@@ -142,7 +142,29 @@ Clicking 'Restart' will Reset the device.
    # Reset
    orch-cli set host <host-id>  --project <project_name> --power reset
 
+   # Power Cycle (full power-off then power-on sequence)
+   orch-cli set host <host-id>  --project <project_name> --power power-cycle
+
 Replace `<host_id>` and `<project_name>` with your actual host-id and project name.
+
+**Bulk Power Operations:**
+
+Power operations can be applied to multiple hosts at once using filter, site, or region flags.
+Use ``--dry-run`` to preview which hosts will be affected before making changes.
+
+.. code-block:: bash
+
+   # Power on all hosts matching a filter
+   orch-cli set host --project <project_name> --filter "hostStatus='onboarded'" --power on
+
+   # Power off all hosts at a specific site
+   orch-cli set host --project <project_name> --site <site-id> --power off
+
+   # Reset all hosts in a region
+   orch-cli set host --project <project_name> --region <region-id> --power reset
+
+   # Preview which hosts would be affected (dry run)
+   orch-cli set host --project <project_name> --site <site-id> --power on --dry-run
 
 **Check the current power status of the edge node:**
 
