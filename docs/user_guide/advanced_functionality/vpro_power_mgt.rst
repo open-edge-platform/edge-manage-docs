@@ -142,9 +142,6 @@ Clicking 'Restart' will Reset the device.
    # Reset
    orch-cli set host <host-id>  --project <project_name> --power reset
 
-   # Power Cycle (full power-off then power-on sequence)
-   orch-cli set host <host-id>  --project <project_name> --power power-cycle
-
 Replace `<host_id>` and `<project_name>` with your actual host-id and project name.
 
 **Bulk Power Operations:**

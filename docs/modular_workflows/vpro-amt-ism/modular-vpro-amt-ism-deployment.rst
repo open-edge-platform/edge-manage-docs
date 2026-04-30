@@ -393,15 +393,6 @@ Power Reset:
     --api-endpoint https://api.${CLUSTER_FQDN} \
     --power reset
 
-Power Cycle (full power-off then power-on sequence):
-
-.. code-block:: bash
-
-  orch-cli set host ${HOST_ID} \
-    --project ${PROJECT_NAME} \
-    --api-endpoint https://api.${CLUSTER_FQDN} \
-    --power power-cycle
-
 **Bulk Power Operations:**
 
 Power operations can be applied to multiple hosts at once using filter, site,

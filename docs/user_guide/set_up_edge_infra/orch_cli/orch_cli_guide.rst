@@ -486,7 +486,7 @@ Note that power policy commands will not take effect on hosts with deactivated A
 
 .. code-block:: bash
 
-    ./orch-cli set host host-1234abcd --power on|off|reset|power-cycle
+    ./orch-cli set host host-1234abcd --power on|off|reset
 
 To change the power policy of an AMT-enabled host run the power-policy command.
 
