@@ -393,6 +393,45 @@ Power Reset:
     --api-endpoint https://api.${CLUSTER_FQDN} \
     --power reset
 
+Power Cycle (full power-off then power-on sequence):
+
+.. code-block:: bash
+
+  orch-cli set host ${HOST_ID} \
+    --project ${PROJECT_NAME} \
+    --api-endpoint https://api.${CLUSTER_FQDN} \
+    --power power-cycle
+
+**Bulk Power Operations:**
+
+Power operations can be applied to multiple hosts at once using filter, site,
+or region flags. Use ``--dry-run`` to preview which hosts will be affected
+before making changes.
+
+.. code-block:: bash
+
+  # Power on all hosts matching a filter
+  orch-cli set host \
+    --project ${PROJECT_NAME} \
+    --api-endpoint https://api.${CLUSTER_FQDN} \
+    --filter "hostStatus='HOST_STATUS_ONBOARDED'" \
+    --power on
+
+  # Power off all hosts at a specific site
+  orch-cli set host \
+    --project ${PROJECT_NAME} \
+    --api-endpoint https://api.${CLUSTER_FQDN} \
+    --site <site-id> \
+    --power off
+
+  # Preview which hosts would be affected (dry run)
+  orch-cli set host \
+    --project ${PROJECT_NAME} \
+    --api-endpoint https://api.${CLUSTER_FQDN} \
+    --region <region-id> \
+    --power reset \
+    --dry-run
+
 .. note::
 
   Ensure secure API access and proper credentials management when operating in
