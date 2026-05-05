@@ -1,153 +1,133 @@
-# edge-manage-docs
+# OpenVINO Documentation Hub
 
-Documentation hub for the OpenVINO ecosystem (prototype). Renders one
-Docusaurus site that aggregates docs from multiple "spoke" repositories
-listed in [`spokes.yml`](spokes.yml).
-
-For day-to-day contribution guidelines (adding spokes, landing pages,
-generated docs) see [`CONTRIBUTING.md`](CONTRIBUTING.md). This file
-documents the publishing pipeline — what gets built, where it lands, and
-when.
+A central documentation platform that aggregates content from multiple
+repositories ("spokes") into a single website. Each spoke owns its
+documentation content; the hub owns the framework, theme, and deployment
+pipeline.
 
 ---
 
-## Buckets and URL layout
+## How it works
 
-Two S3 buckets, each fronted by its own CloudFront distribution.
+Each spoke repository contains a `docs/` folder with content (Markdown, MDX, TSX).
+The hub clones the relevant spoke, builds a Docusaurus site from its
+content, and deploys it. Spokes never need to install Docusaurus, manage
+themes, or configure hosting.
 
-### Dev bucket — work in progress
+### Responsibilities
+
+| Concern | Owner |
+|---|---|
+| Content (Markdown, MDX, images) | Spoke |
+| Versioning (cutting snapshots into `docs-versions/`) | Spoke |
+| Theme, styles, shared components | Hub |
+| Build pipeline and deployment | Hub |
+| Landing page (per-spoke, via `docs/index.mdx`) | Spoke |
+| Ecosystem-wide landing page (`/`) | Hub |
+| Version dropdown rendering | Hub |
+| CI trigger (dispatch to hub) | Spoke (one-line reusable workflow) |
+
+---
+
+## Connecting your repository
+
+1. **Add an entry to [`spokes.yml`](spokes.yml)** in this repository:
+
+```yaml
+spokes:
+  - repo: owner/your-repo
+    ref: main
+    id: your-repo
+    routeBasePath: your-repo
+    paths:
+      - docs/
+```
+
+2. **Have a `docs/` folder** in your repository with Markdown, MDX, or TSX files.
+
+3. **Add the trigger workflow** — a single reusable workflow call in your
+   repository's CI that dispatches to the hub on PR label and tag events.
+
+That's it. The hub handles the rest.
+
+---
+
+## Previewing changes
+
+When you open a PR that touches documentation:
+
+1. Add the `deploy-doc-preview` label to your PR.
+2. The hub builds a preview of your spoke and posts a link as a PR comment.
+3. Every subsequent push to that PR updates the preview automatically.
+4. When the PR is closed, the preview is cleaned up.
+
+The preview URL follows the pattern: `<preview-domain>/pr/<spoke>/<PR#>/`
+
+> **Note:** Currently the preview builds all connected spokes alongside
+> yours. This will be scoped to only the triggering spoke in a future update.
+
+---
+
+## Deploying to production
+
+Two events trigger production deployments:
+
+### On merge to default branch
+
+When a PR is merged, the hub rebuilds your spoke and deploys it to
+production. This updates the "next" (unreleased) version of your docs.
+Previously released versions remain unchanged.
+
+### On release tag
+
+When you push a release tag:
+
+1. Run `scripts/cut-doc-version.sh <version>` to snapshot the current
+   `docs/` into `docs-versions/`.
+2. Commit and tag the release.
+3. Push — the hub rebuilds your spoke (all versions + next) and syncs
+   the full site to production at `/<spoke>/`.
+
+The Docusaurus version dropdown automatically picks up the new version.
+
+> **Alternative under discussion:** Deploy only released versions to
+> production (no "next"), making the release tag the sole gate to prod.
+
+---
+
+## Versioning
+
+Each spoke manages its own versions in a `docs-versions/` folder:
 
 ```
-<DEV_BUCKET>/
-├── index.html                 ← hub root landing (multi-spoke shell)
-├── <spoke>/                   ← latest merged docs for each spoke
-│   └── …
-└── pr/
-    └── <spoke>/<N>/           ← PR previews, one folder per (spoke, PR#)
+your-repo/
+├── docs/                      ← current (becomes "next" on the site)
+└── docs-versions/
+    ├── versions.json          ← ["v2.0", "v1.1", "v1.0"]
+    └── versioned_docs/
+        ├── version-v2.0/
+        ├── version-v1.1/
+        └── version-v1.0/
 ```
 
-- `<spoke>/` reflects the latest commit merged to the spoke's default
-  branch (`main` / `master`).
-- `pr/<spoke>/<N>/` reflects the head of an open PR carrying the
-  `deploy-doc-preview` label. Namespaced by spoke so PR numbers from
-  different spoke repos can't collide.
-
-### Prod bucket — released documentation
-
-```
-<PROD_BUCKET>/
-├── index.html                 ← hub root landing (multi-spoke shell)
-├── <spoke>/
-│   ├── index.html             ← redirect to the latest spoke version
-│   ├── v1.0/                  ← immutable per-spoke-version releases
-│   ├── v1.1/
-│   └── v1.2/
-```
-
-- Each `<spoke>/<vX.Y>/` is built once per release tag, then overwritten
-  in place when a patch on that version lands.
-- `<spoke>/index.html` is a meta-refresh redirect that always points at
-  the most recently deployed version of that spoke.
+- The version format is up to the spoke (`v1.0`, `2024.1`, etc.).
+- The hub renders whatever is in `docs-versions/` — it does not
+  validate or enforce a format.
+- Use `scripts/cut-doc-version.sh` to snapshot the current `docs/`
+  into a new version. The script is provided in your spoke repo.
 
 ---
 
-## Build modes
+## Content conventions
 
-Every build emits a single Docusaurus bundle that always includes the
-hub landing at `/`. The mode env var selects which spoke docs plugins
-are wired in alongside it. Exactly one mode env var must be set; the
-build aborts otherwise.
+- Write Markdown (`.md`) or MDX (`.mdx`) in `docs/`.
+- Use **relative links** between documents (`../guides/setup.md`).
+- Colocate images next to the docs that use them.
+- Control sidebar order with `_category_.json` and frontmatter `sidebar_position`.
+- Do not add `sidebars.ts`, `docusaurus.config.ts`, or `package.json` — the hub owns these.
 
-| Env | Used by | Bundle contents |
-|---|---|---|
-| `HUB_ONLY=1` | `deploy.yml` (push to main / tag) | Hub landing only. |
-| `BUILD_ALL_SPOKES=1` | `deploy.yml` (PR preview) | Hub + every spoke under its `routeBasePath`. |
-| `SPOKE=<id>` | `deploy.yml` (merge) | Hub + that spoke under its `routeBasePath`. |
-| `SPOKE=<id>` + `SPOKE_VERSION=vX.Y` | `deploy.yml` (release) | Hub + that spoke under `<routeBasePath>/<vX.Y>/`. |
-
----
-
-## Pipeline triggers
-
-Hub workflows are driven by `repository_dispatch` events sent by spokes
-(each spoke owns a thin "trigger" workflow that authenticates via a
-shared GitHub App).
-
-### PR preview — `pr/<spoke>/<N>/`
-
-Trigger: PR labeled `deploy-doc-preview`, or new commit on a labeled PR.
-Workflow: [`deploy.yml`](.github/workflows/deploy.yml) (preview mode).
-
-Builds a bundle containing the hub landing and every spoke (the source
-spoke pinned to the PR commit) and syncs it to
-`<DEV_BUCKET>/pr/<spoke>/<N>/`. The PR is commented with the preview URL.
-
-### PR merge — `/` + `/<spoke>/`
-
-Trigger: PR closed with `merged == true` and the `deploy-doc-preview`
-label.
-Workflow: [`deploy.yml`](.github/workflows/deploy.yml) (merge mode).
-
-Builds a bundle containing the hub landing and the merged spoke, then
-syncs to `<DEV_BUCKET>/` with `--exclude` patterns that protect other
-spokes' subtrees and the `pr/` previews. Removes the corresponding PR
-preview prefix.
-
-### PR closed without merging — cleanup
-
-Trigger: PR closed, not merged.
-Hub workflow: [`deploy-spoke.yml`](.github/workflows/deploy-spoke.yml)
-(close mode).
-
-Removes `<DEV_BUCKET>/pr/<spoke>/<N>/`.
-
-### Release — `<spoke>/<vX.Y>/`
-
-Trigger: tag push matching `v[0-9]+.[0-9]+.[0-9]+`.
-Workflow: [`deploy.yml`](.github/workflows/deploy.yml) (release mode).
-
-Builds a bundle containing the hub landing and the spoke mounted under
-`<routeBasePath>/<vX.Y>/`, then syncs to `<PROD_BUCKET>/` with
-`--exclude` / `--include` patterns that protect other spokes, other
-versions of this spoke, and the `pr/` previews. A meta-refresh
-`<spoke>/index.html` is written to redirect the unversioned URL to the
-latest published version.
-
-### Hub root — `/`
-
-Workflow: [`deploy.yml`](.github/workflows/deploy.yml) (hub-only mode).
-
-Triggers:
-- Push to `main` → deploy to **dev**.
-- Push of a tag matching `v*` → deploy to **prod**.
-
-Builds with `HUB_ONLY=1` and syncs to the bucket root with
-`--exclude` patterns that preserve every spoke subtree and the
-`pr/` previews.
-
-This is the **only** workflow that publishes the hub root; existing
-spoke deployments at `<bucket>/<spoke>/` are preserved on every run.
-
----
-
-## Concurrency
-
-`deploy.yml` runs share a `concurrency` group keyed on the source
-repo + PR/tag (or `dev-hub` / `prod-hub` for push events), so events
-for the same target never race.
-
----
-
-## Required secrets
-
-| Secret | Used by | Purpose |
-|---|---|---|
-| `DEV_ROLE`, `DEV_BUCKET`, `DEV_URL` | preview / merge / close | Dev S3 deploy + comment URLs |
-| `PROD_ROLE`, `PROD_BUCKET`, `PROD_URL` | release | Prod S3 deploy |
-| `DOC_HELPER_APP_ID`, `DOC_HELPER_APP_PRIVATE_KEY` | preview | GitHub App used to comment back on the source-spoke PR |
-
-Spokes additionally need `DOC_HUB_APP_ID`, `DOC_HUB_APP_PRIVATE_KEY`, and
-`DOC_HUB_REPO` to dispatch into the hub.
+For the full conventions guide (shared components, advanced MDX, generated
+docs), see [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ---
 
