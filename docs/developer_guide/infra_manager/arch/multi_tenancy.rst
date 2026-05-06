@@ -136,7 +136,8 @@ assumptions, we can infer the Tenant ID from the roles. In the Resource
 Managers, we have a special interceptor on our gRPC APIs that extracts the
 Tenant ID from the roles and adds it to the context of the request. The server
 code implementation of the API extracts the Tenant ID from the context and uses
-it explicitly in all internal subsequent requests (e.g., to Inventory).
+it explicitly in all internal subsequent requests
+(e.g., to :doc:`Inventory <components/inventory>`).
 
 Resource Managers also act as PEPs by validating the roles in the JWT.
 

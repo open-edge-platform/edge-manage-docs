@@ -1,84 +1,35 @@
-Onboarding and Provisioning
-===========================
+Day 0 Onboarding and Provisioning
+=================================
 
-Overview
---------
-
-Edge Infrastructure Manager includes the `Onboarding and Provisioning <https://github.com/open-edge-platform/infra-onboarding>`_ subsystem that is responsible for initial device discovery as well as the OS installation and configuration on managed Edge Nodes.
-
-.. note:: The notion of **Onboarding** refers to the process of discovering a bare metal device (Edge Node) and its basic information
-   such as UUID or Serial Number, while **Provisioning** refers to the process of OS and Edge Node Agents installation on managed Edge Nodes.
-
-The main features of the Edge Infrastructure Manager Onboarding and Provisioning subsystem:
-
-- Enables remote Onboarding and Provisioning of Edge Nodes over the Internet.
-- Designed with the security-first approach by leveraging HTTPS certificates, secure JWT-based communication channels and Secure Boot.
-- Supports full Zero-Touch Provisioning without any user intervention.
-- Uses well-adopted, industry standard tools such as iPXE and cloud-init.
-- Supports onboarding and provisioning of both mutable (Ubuntu\* OS) and immutable (`Edge Microvisor Toolkit <https://github.com/open-edge-platform/edge-microvisor-toolkit>`_) operating systems.
-- Supports onboarding of up to 50 Edge Nodes simultaneously.
-- Can onboard and provision an Edge Node in ~6-8 minutes.
-
-High-level Architecture
------------------------
-
-The high-level architecture of Edge Infrastructure Manager components involved in the onboarding and provisioning is depicted below:
+At high-level, the Edge Infrastructure Manager's Onboarding and Provisioning
+relies on the following concepts:
 
 .. figure:: ./images/eim_provisioning.png
    :alt: High-Level Architecture of Onboarding and Provisioning Subsystem
 
-At high-level, the Edge Infrastructure Manager's Onboarding and Provisioning relies on the following concepts:
-
-- It assumes the **pull-based (call-to-home) communication model** meaning that Edge Nodes should initiate the onboarding and provisioning process.
-- The onboarding and provisioning is initiated via **iPXE**, an open-source, scriptable and configurable bootloader capable of booting from many sources
+- It assumes the **pull-based (call-to-home) communication model** meaning that Edge Nodes
+  should initiate the onboarding and provisioning process.
+- The onboarding and provisioning is initiated via **iPXE**, an open-source, scriptable
+  and configurable bootloader capable of booting from many sources
   (e.g., TFTP, USB devices, UEFI binary). It can also chain load other systems and scripts,
   over many protocols including HTTPS. More details about iPXE can be found at `ipxe.org <https://www.ipxe.org/>`_.
-- The iPXE script can be either started via **BIOS UEFI (HTTPS boot)**, or from **the USB device (USB boot)**.
-- **Micro-OS** - a lightweight, in-memory, Linux\*-based OS - is used during the installation process to run services responsible for downloading and installing the target OS.
-  Currently, we use `HookOS from the Tinkerbell project <https://tinkerbell.org/docs/additionalcomponents/hookos/>`_ as the only supported Micro-OS.
-- **Tinkerbell**, an open-source provisioning engine, is used to execute the target OS installation process. In particular, the Tinkerbell worker running in Micro-OS
-  downloads target OS image, writes it to the disk partition and injects all installation scripts that are executed post-boot.
-- Edge Node Agents are distributed as OS packages and run as systemd services on the target OS. They are either baked into the OS image
-  (in the case of immutable OSes, like Edge Microvisor Toolkit) or installed once the target OS is booted (mutable OSes, like Ubuntu OS).
-- The OS configuration is provided to Edge Nodes via **cloud-init** that is executed at the target OS boot time and provides all necessary
-  configuration (JWT credentials, certificates, orchestrator URLs, etc.) for Edge Node Agents to connect to the Edge Orchestrator.
+- The iPXE script can be either started via **BIOS UEFI (HTTPS boot)**, or from
+  **the USB device (USB boot)**.
+- **Micro-OS** - a lightweight, in-memory, Linux\*-based OS - is used during the
+  installation process to run services responsible for downloading and installing the target OS.
+  Currently, we use `HookOS from the Tinkerbell project <https://tinkerbell.org/docs/additionalcomponents/hookos/>`_
+  as the only supported Micro-OS.
+- `Tinkerbell <components/onboarding-provisioning.html#tinker-actions>`__, an open-source provisioning engine, is used to execute the target
+  OS installation process. In particular, the Tinkerbell worker running in Micro-OS
+  downloads target OS image, writes it to the disk partition and injects all
+  installation scripts that are executed post-boot.
+- Edge Node Agents are distributed as OS packages and run as systemd services on
+  the target OS. They are either baked into the OS image (in case of immutable OSes,
+  like Edge Microvisor Toolkit) or installed once the target OS is booted (mutable OSes, like Ubuntu OS).
+- The OS configuration is provided to Edge Nodes via **cloud-init** that is executed
+  at the target OS boot time and provides all necessary configuration (JWT credentials,
+  certificates, orchestrator URLs, etc.) for Edge Node Agents to connect to the Edge Orchestrator.
 
-On the Edge Orchestrator side, the following components are involved in the onboarding and provisioning:
-
-- `Onboarding Manager <https://github.com/open-edge-platform/infra-onboarding/tree/main/onboarding-manager>`_ - the main component that is responsible for coordination of the onboarding and provisioning process.
-  It exposes southbound gRPC interfaces for node onboarding (device discovery) initiated by Edge Nodes, and communicates with Inventory
-  to create and/or update information about Edge Node devices. Moreover, it curates and creates the Tinkerbell CRD objects (Hardware, Template, and Workflow)
-  to drive the provisioning process (OS installation). It is also responsible for updating current status of onboarding and provisioning operations.
-- `Dynamic Kit Adaptation Module (DKAM) <https://github.com/open-edge-platform/infra-onboarding/tree/main/onboarding-manager>`_ - an Edge Orchestrator service that curates, builds and signs the OS installation artifacts, including iPXE binaries and Micro-OS image.
-  **DKAM** is only involved during the initial Edge Orchestrator deployment or when the Edge Orchestrator certificates or Secure Boot keys are refreshed.
-  The role of **DKAM** is to curate the Micro-OS image and the iPXE script with a runtime configuration (e.g., orchestrator URLs, certificate)
-  that is specific to a given Edge Orchestrator instance. Once curated, it builds the installation artifacts, signs them with Secure Boot keys and orchestrator certificate,
-  and saves to the K8s Persistent Volume Claim that stores all OS installation artifacts.
-- `Provisioning NGINX\* server <https://nginx.org/>`_ - a component that exposes OS installation artifacts curated by **DKAM** to downstream Edge Nodes via the HTTPS endpoint.
-  In particular, the BIOS UEFI communicates with the **Provisioning NGINX server** to download the iPXE script and Micro-OS image to run on the Edge Node.
-- **Tinkerbell engine** - a subset of `Tinkerbell <https://tinkerbell.org/>`_ components that the Edge Infrastructure Manager uses to perform remote OS provisioning.
-  The Tinkerbell engine reconciles Tinkerbell CRDs that are used to define the provisioning workflow for each Edge Node. Edge Nodes download the Tinkerbell workflow
-  from the Tinkerbell server via secure gRPC channel and execute the workflow locally.
-
-Architecture Details
---------------------
-
-The below diagram shows a detailed view on the Edge Infrastructure Manager components involved in the Onboarding and Provisioning process.
-
-.. figure:: ./images/eim_provisioning_detail.png
-   :alt: Detailed Architecture of Onboarding and Provisioning Subsystem
-
-Data Modelling
-^^^^^^^^^^^^^^
-
-See :doc:`/developer_guide/infra_manager/arch/data_model`.
-
-Each Edge Node is represented in the Inventory data model as a pair of Host and Instance resources (with a 1:1 relationships between them). A Host resource
-represents a bare metal machine with its basic device information like UUID or Serial Number. An Instance resource describes the actual OS that is running on the bare metal machine.
-Both Host and Instances follow the current and desired state model and the Onboarding Manager is responsible for running these resources to completion, i.e., achieving the desired state.
-
-The split into the Host and Instance resources expresses the split into the Onboarding and Provisioning phases - the Onboarding phase ends when the Host resource enters its desired state
-``ONBOARDED``, while the Provisioning phase ends when the Instance resource achieves the ``RUNNING`` state.
 
 Edge Node Lifecycle
 ^^^^^^^^^^^^^^^^^^^
