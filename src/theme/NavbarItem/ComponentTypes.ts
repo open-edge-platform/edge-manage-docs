@@ -1,9 +1,13 @@
 import ComponentTypes from '@theme-original/NavbarItem/ComponentTypes';
 import SpokeVersionDropdown from '@site/src/theme/NavbarItem/SpokeVersionDropdown';
+import ProductGridDropdown from '@site/src/theme/NavbarItem/ProductGridDropdown';
 
-// Register `custom-spokeVersionDropdown` so docusaurus.config.ts can wire one
-// route-scoped version dropdown per spoke in BUILD_ALL_SPOKES navbar items.
+// Register custom navbar item types so docusaurus.config.ts can wire them
+// by `type: 'custom-...'`.
+//   custom-spokeVersionDropdown — route-scoped per-spoke version dropdown.
+//   custom-productGrid          — "OpenVINO Runtime" product card dropdown.
 export default {
   ...ComponentTypes,
   'custom-spokeVersionDropdown': SpokeVersionDropdown,
+  'custom-productGrid': ProductGridDropdown,
 };

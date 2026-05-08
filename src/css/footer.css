@@ -20,3 +20,32 @@
   white-space: pre-wrap;
   font-size: 12px;
 }
+
+/* Slim legal footer rendered via themeConfig.footer.copyright (HTML).
+   Lays out the © line and the three legal links in a single row. */
+.legal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  font-size: 12px;
+}
+
+.legal-footer__links a {
+  margin-left: 16px;
+  color: inherit;
+  opacity: 0.85;
+}
+
+.legal-footer__links a:first-child {
+  margin-left: 0;
+}
+
+.legal-footer__links a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
