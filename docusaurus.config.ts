@@ -290,26 +290,24 @@ const config: Config = {
   themeConfig: {
     colorMode: { disableSwitch: true, defaultMode: 'light' },
     navbar: {
-      title: 'OpenVINO Docs',
       logo: { alt: 'Intel logo', src: 'img/intel-logo.svg' },
       items: SPOKE_MODE
         ? [
-            // Spoke bundles are self-contained sites and only carry a link
-            // back to the hub. The hub link is absolute (with `target=_self`)
-            // because the spoke is rooted at /<rbp>/ and Docusaurus would
-            // otherwise prefix it with that baseUrl.
-            {
-              href: `${SITE_ORIGIN}/`,
-              label: 'Home',
-              position: 'left' as const,
-              target: '_self',
-            },
             // Cross-product switcher. Cards link to absolute URLs so they
             // work from inside this spoke's bundle.
             {
               type: 'custom-productGrid' as const,
               label: 'OpenVINO Runtime',
               position: 'left' as const,
+            },
+            // Hardcoded shortcut to the primary (openvino) spoke. Absolute
+            // URL with target=_self so the spoke bundle doesn't prefix it
+            // with its own baseUrl.
+            {
+              href: `${SITE_ORIGIN}/openvino/`,
+              label: 'Documentation',
+              position: 'right' as const,
+              target: '_self',
             },
             // Built-in Docusaurus version dropdown. Reads versions.json /
             // versioned_docs/ from site root (symlinked into the hub by
@@ -323,11 +321,18 @@ const config: Config = {
         : [
             // Hub bundle. The product-grid dropdown replaces the per-spoke
             // link group; cards inside it link to absolute spoke URLs.
-            { to: '/', label: 'Home', position: 'left' as const },
             {
               type: 'custom-productGrid' as const,
               label: 'OpenVINO Runtime',
               position: 'left' as const,
+            },
+            // Hardcoded shortcut to the primary (openvino) spoke so visitors
+            // can jump straight into docs from the landing page.
+            {
+              href: `${SITE_ORIGIN}${BASE_URL}openvino/`,
+              label: 'Documentation',
+              position: 'right' as const,
+              target: '_self',
             },
             // One version dropdown per spoke, scoped by the spoke's URL
             // prefix via a small wrapper around `docsVersionDropdown`. The
