@@ -290,67 +290,37 @@ const config: Config = {
   themeConfig: {
     colorMode: { disableSwitch: true, defaultMode: 'light' },
     navbar: {
-      title: 'OpenVINO Docs',
-      logo: { alt: 'Intel logo', src: 'img/intel-logo.svg' },
-      items: SPOKE_MODE
-        ? [
-            // Spoke bundles are self-contained sites and only carry a link
-            // back to the hub. The hub link is absolute (with `target=_self`)
-            // because the spoke is rooted at /<rbp>/ and Docusaurus would
-            // otherwise prefix it with that baseUrl.
-            {
-              href: `${SITE_ORIGIN}/`,
-              label: 'Home',
-              position: 'left' as const,
-              target: '_self',
-            },
-            // Cross-product switcher. Cards link to absolute URLs so they
-            // work from inside this spoke's bundle.
-            {
-              type: 'custom-productGrid' as const,
-              label: 'OpenVINO Runtime',
-              position: 'left' as const,
-            },
-            // Built-in Docusaurus version dropdown. Reads versions.json /
-            // versioned_docs/ from site root (symlinked into the hub by
-            // clone-spokes.sh from the spoke's docs-versions/). Hides
-            // automatically when there is only the current (next) version.
-            {
-              type: 'docsVersionDropdown' as const,
-              position: 'right' as const,
-            },
-          ]
-        : [
-            // Hub bundle. The product-grid dropdown replaces the per-spoke
-            // link group; cards inside it link to absolute spoke URLs.
-            { to: '/', label: 'Home', position: 'left' as const },
-            {
-              type: 'custom-productGrid' as const,
-              label: 'OpenVINO Runtime',
-              position: 'left' as const,
-            },
-            // One version dropdown per spoke, scoped by the spoke's URL
-            // prefix via a small wrapper around `docsVersionDropdown`. The
-            // wrapper hides itself on the hub landing and on routes
-            // belonging to other spokes, so only the active spoke's
-            // selector ever appears. Skip in HUB_ONLY builds because the
-            // per-spoke docs plugins aren't registered there and the
-            // wrapper's `useVersions(pluginId)` would crash SSG.
-            ...(HUB_ONLY
-              ? []
-              : allSpokes.map((spoke) => ({
-                  type: 'custom-spokeVersionDropdown' as const,
-                  position: 'right' as const,
-                  docsPluginId: docsPluginId(spoke),
-                  routePrefix: `${BASE_URL}${spoke.routeBasePath}/`,
-                }))),
-          ],
+      items: [
+        {
+          type: 'custom-productGrid' as const,
+          label: 'OpenVINO Runtime',
+          position: 'left' as const,
+        },
+        {
+          href: `${SITE_ORIGIN}${SPOKE_MODE ? '/' : BASE_URL}openvino/`,
+          label: 'Documentation',
+          position: 'right' as const,
+          target: '_self',
+        },
+        ...(SPOKE_MODE
+          ? [
+              {
+                type: 'docsVersionDropdown' as const,
+                position: 'right' as const,
+              },
+            ]
+          : HUB_ONLY
+            ? []
+            : allSpokes.map((spoke) => ({
+                type: 'custom-spokeVersionDropdown' as const,
+                position: 'right' as const,
+                docsPluginId: docsPluginId(spoke),
+                routePrefix: `${BASE_URL}${spoke.routeBasePath}/`,
+              }))),
+      ],
     },
     prism: { theme: prismThemes.github, darkTheme: prismThemes.dracula },
     footer: {
-      // Slim legal footer rendered on every page. The copyright field
-      // takes HTML so we pack the © line and the three legal links into
-      // a single flex row, avoiding Docusaurus' per-link-column layout.
       style: 'dark',
       copyright: `<div class="legal-footer">
         <span>\u00a9 ${new Date().getFullYear()} Intel Corporation</span>
