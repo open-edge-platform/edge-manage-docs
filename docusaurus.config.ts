@@ -290,6 +290,12 @@ const config: Config = {
   themeConfig: {
     colorMode: { disableSwitch: true, defaultMode: 'light' },
     navbar: {
+      logo: {
+        alt: 'Intel logo',
+        src: 'img/intel-logo.svg',
+        href: `${SITE_ORIGIN}/`,
+        target: '_self',
+      },
       items: [
         {
           type: 'custom-productGrid' as const,
