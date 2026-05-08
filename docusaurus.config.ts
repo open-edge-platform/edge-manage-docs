@@ -265,6 +265,7 @@ const config: Config = {
     // The search theme's <SearchBar> hooks into the docs plugin's global
     // data. In hub-only builds there's no docs plugin, so we drop the
     // search theme entirely (the hub landing has no content to search).
+
     ...(HUB_ONLY
       ? []
       : ([
@@ -274,6 +275,10 @@ const config: Config = {
               hashed: true,
               highlightSearchTermsOnTargetPage: true,
               searchBarShortcutHint: false,
+              docsRouteBasePath: spokes.map((s) => effectiveRouteBasePath(s)),
+              docsDir: spokes.map((s) =>
+                path.join(spokeCheckoutDir(s), 'docs'),
+              ),
             },
           ],
         ] as Config['themes'] & object[])),
