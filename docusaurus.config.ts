@@ -225,12 +225,15 @@ const config: Config = {
     // Exposed to client-side code (e.g. the hub landing page) via
     // useDocusaurusContext(). Always advertises every spoke so the hub
     // landing renders the same card grid regardless of build mode.
+    // `href` is a fully-qualified absolute URL so cross-bundle links work
+    // identically from hub and spoke builds (and across preview prefixes).
     spokes: allSpokes.map((s) => ({
       id: s.id,
       label: SPOKE_CATALOG[s.id]?.label ?? s.id,
       description: SPOKE_CATALOG[s.id]?.description,
       routeBasePath: s.routeBasePath,
       repo: s.repo,
+      href: `${SITE_ORIGIN}${SPOKE_MODE ? '/' : BASE_URL}${s.routeBasePath}/`,
     })),
   },
 
@@ -301,6 +304,13 @@ const config: Config = {
               position: 'left' as const,
               target: '_self',
             },
+            // Cross-product switcher. Cards link to absolute URLs so they
+            // work from inside this spoke's bundle.
+            {
+              type: 'custom-productGrid' as const,
+              label: 'OpenVINO Runtime',
+              position: 'left' as const,
+            },
             // Built-in Docusaurus version dropdown. Reads versions.json /
             // versioned_docs/ from site root (symlinked into the hub by
             // clone-spokes.sh from the spoke's docs-versions/). Hides
@@ -311,17 +321,14 @@ const config: Config = {
             },
           ]
         : [
-            // Hub bundle. Each spoke is a separate Docusaurus bundle; using
-            // an absolute URL prevents Docusaurus' Link from attempting SPA
-            // navigation within the hub bundle (which has no route for the
-            // spoke and would render 404 until the user refreshes).
+            // Hub bundle. The product-grid dropdown replaces the per-spoke
+            // link group; cards inside it link to absolute spoke URLs.
             { to: '/', label: 'Home', position: 'left' as const },
-            ...allSpokes.map((spoke) => ({
-              href: `${SITE_ORIGIN}${BASE_URL}${spoke.routeBasePath}/`,
-              label: SPOKE_CATALOG[spoke.id]?.label ?? spoke.id,
+            {
+              type: 'custom-productGrid' as const,
+              label: 'OpenVINO Runtime',
               position: 'left' as const,
-              target: '_self',
-            })),
+            },
             // One version dropdown per spoke, scoped by the spoke's URL
             // prefix via a small wrapper around `docsVersionDropdown`. The
             // wrapper hides itself on the hub landing and on routes
@@ -340,6 +347,20 @@ const config: Config = {
           ],
     },
     prism: { theme: prismThemes.github, darkTheme: prismThemes.dracula },
+    footer: {
+      // Slim legal footer rendered on every page. The copyright field
+      // takes HTML so we pack the © line and the three legal links into
+      // a single flex row, avoiding Docusaurus' per-link-column layout.
+      style: 'dark',
+      copyright: `<div class="legal-footer">
+        <span>\u00a9 ${new Date().getFullYear()} Intel Corporation</span>
+        <span class="legal-footer__links">
+          <a href="https://www.intel.com/content/www/us/en/legal/terms-of-use.html">Terms of Use</a>
+          <a href="https://www.intel.com/content/www/us/en/privacy/intel-cookie-notice.html">Cookies</a>
+          <a href="https://www.intel.com/content/www/us/en/privacy/intel-privacy-notice.html">Privacy Policy</a>
+        </span>
+      </div>`,
+    },
   } satisfies Preset.ThemeConfig,
 };
 
