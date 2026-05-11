@@ -58,33 +58,11 @@ Edge Orchestrator for Edge Nodes without Direct Internet Access
 
 .. _on_prem_lenovo_network_topology:
 
-Lenovo\* Open Cloud Automation (LOC-A) Network Topology (Optional)
-------------------------------------------------------------------
-
-When integrating the Lenovo\* Open Cloud Automation (LOC-A) software, you can use the networking settings of your choice.
-
-In general, Edge Orchestrator and LOC-A can share the same subnet, but this might not be desirable for the Baseboard Management Controller (BMC) of the edge devices (or not entirely possible).
-The following figure shows a simple network topology:
-
-.. image:: ../images/on-prem-loca-install-topology-config.png
-   :alt: The network topology for Edge Orchestrator and LOC-A
-   :width: 500px
-   :align: center
-
-In addition to upstream connectivity, Edge Orchestrator requires connectivity to LOC-A; while the edge node requires connectivity to Edge Orchestrator.
-LOC-A also has its own network environment requirements to ensure proper communication between the LOC-A Portal and the edge nodes. For details on LOC-A and networking settings, see the `Lenovo ISG Support Plan - LOC-A (Lenovo Open Cloud Automation) <https://support.lenovo.com/us/en/solutions/ht509884-loc-a-lenovo-open-cloud-automation-for-vcf>`_.
-
-This Edge Orchestrator version is compatible with LOC-A version 3.2.
-
-.. note::
-   Other configurations are possible, for example, having a separate network for BMC and OS management.
-
 Firewall Configuration
 ----------------------
 
 The following table lists the network endpoints for Edge Orchestrator and edge nodes, which you can use to configure firewall rules tailored to your network environment.
 
-* ArgoCD Admin UI at ``argo.{domain}``. Intel recommends that you restrict the incoming traffic to a subset of known source IPs because this is an administrator interface.
 * BIOS Onboarding accesses ``tinkerbell-haproxy.{domain}``.
 * You can access all other services from edge nodes agents, UI, and APIs of Edge Orchestrator.
 
@@ -117,31 +95,6 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
      -  443
      -  Web UI
    * -  Edge Orchestrator UI and API
-     -  app-orch.{domain}
-     -  TCP
-     -  443
-     -  Application orchestration
-   * -  Edge Orchestrator UI and API
-     -  app-service-proxy.{domain}
-     -  TCP
-     -  443
-     -  Application orchestration
-   * -  Edge Orchestrator UI and API
-     -  ws-app-service-proxy.{domain}
-     -  TCP
-     -  443
-     -  Application orchestration
-   * -  Edge Orchestrator UI and API
-     -  gitea.{domain}
-     -  TCP
-     -  443
-     -  Application orchestration
-   * -  Edge Orchestrator UI and API
-     -  vnc.{domain}
-     -  TCP
-     -  443
-     -  Application orchestration
-   * -  Edge Orchestrator UI and API
      -  cluster-orch.{domain}
      -  TCP
      -  443
@@ -171,26 +124,6 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
      -  TCP
      -  443
      -  Identity and Access Management
-   * -  Edge Orchestrator UI and API
-     -  log-query.{domain}
-     -  TCP
-     -  443
-     -  Observability
-   * -  Edge Orchestrator UI and API
-     -  observability-admin.{domain}
-     -  TCP
-     -  443
-     -  Observability
-   * -  Edge Orchestrator UI and API
-     -  observability-ui.{domain}
-     -  TCP
-     -  443
-     -  Observability
-   * -  Edge Orchestrator UI and API
-     -  telemetry.{domain}
-     -  TCP
-     -  443
-     -  Observability
    * -  Edge Orchestrator UI and API
      -  rancher.{domain}
      -  TCP
@@ -227,21 +160,6 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
      -  443
      -  Release service token
    * -  Edge node
-     -  metrics-node.{domain}
-     -  TCP
-     -  443
-     -  Observability
-   * -  Edge node
-     -  telemetry-node.{domain}
-     -  TCP
-     -  443
-     -  Observability
-   * -  Edge node
-     -  logs-node.{domain}
-     -  TCP
-     -  443
-     -  Observability
-   * -  Edge node
      -  tinkerbell-server.{domain}
      -  TCP
      -  443
@@ -256,11 +174,6 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
      -  TCP
      -  443
      -  BIOS onboarding
-   * -  Edge Orchestrator admin
-     -  argo.{domain}
-     -  TCP
-     -  443
-     -  ArgoCD UI
 
 .. _on_prem_lenovo_firewall_configuration:
 
@@ -426,24 +339,6 @@ To install Edge Orchestrator and Edge Node, the following Egress rules are requi
     -  http://http.debian.net
     -  Onboarding
 
-LOC-A Firewall Configuration (Optional)
----------------------------------------
-
-When integrating the LOC-A and Edge Orchestrator, you will need an additional entry if you deploy LOC-A on the same network that is served by the same DNS.
-
-.. list-table:: Network Endpoints for Lenovo Open Cloud Automation (LOC-A)
-   :header-rows: 1
-
-   * -  Source
-     -  Destination
-     -  Protocol
-     -  Port number
-     -  Description
-   * -  LOC-A Web UI and API
-     -  loca.{domain}
-     -  TCP
-     -  443
-     -  Web UI and REST API
 
 Squid Proxy Firewall Configuration (Optional)
 ---------------------------------------------

@@ -29,6 +29,3 @@ working with |software_prod_name|:
 - :doc:`/user_guide/set_up_edge_infra/location/index`
 - :doc:`/user_guide/advanced_functionality/set_default_cluster_template`
 
-If you are deploying LOC-A with |software_prod_name|:
-
-- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/3rd_party_examples/setup_loca`
