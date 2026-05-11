@@ -75,13 +75,10 @@ Helm\*-based applications compatible with |software_prod_name|.
 
    contributor_guide/index
    set_up_dev_env/index
-   application_developer_workflow/index
    troubleshooting/index
    agents/index
    infra_manager/index
    cluster_orch/index
-   app_orch/index
-   observability/index
    platform/index
    virtual_edge_node/index
    trusted_compute/index
