@@ -181,7 +181,7 @@ jobs:
           owner:       ${{ needs.validate-input.outputs.repo_owner }}
           repo:        ${{ needs.validate-input.outputs.repo_name }}
           pr_number:   ${{ needs.validate-input.outputs.pr_number }}
-          body: "🔄 Building documentation preview for commit `${{ needs.validate-input.outputs.commit_sha }}`..."
+          body: "🔄 Building documentation preview for commit `${{ needs.validate-input.outputs.commit_sha }}`... ([View build progress](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}))"
 
   preview-build-deploy:
     needs: [validate-input, preview-comment-start]
