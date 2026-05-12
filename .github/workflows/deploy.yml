@@ -74,6 +74,7 @@ jobs:
       mode: ${{ steps.validate.outputs.mode }}
       spoke_id: ${{ steps.validate.outputs.spoke_id }}
       spoke_route_base_path: ${{ steps.validate.outputs.spoke_route_base_path }}
+      spoke_preview_path: ${{ steps.validate.outputs.spoke_preview_path }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
@@ -228,7 +229,7 @@ jobs:
             echo "body<<EOF" >> $GITHUB_OUTPUT
             echo "✅ Documentation preview deployed for commit \`${{ needs.validate-input.outputs.commit_sha }}\`" >> $GITHUB_OUTPUT
             echo "" >> $GITHUB_OUTPUT
-            echo "Preview: ${{ secrets.DEV_URL }}/pr/${{ needs.validate-input.outputs.spoke_id }}/${{ needs.validate-input.outputs.pr_number }}/${{ needs.validate-input.outputs.spoke_id }}/next/" >> $GITHUB_OUTPUT
+            echo "Preview: ${{ secrets.DEV_URL }}/pr/${{ needs.validate-input.outputs.spoke_id }}/${{ needs.validate-input.outputs.pr_number }}/${{ needs.validate-input.outputs.spoke_id }}/next/${{ needs.validate-input.outputs.spoke_preview_path }}" >> $GITHUB_OUTPUT
             echo "EOF" >> $GITHUB_OUTPUT
           else
             echo "body<<EOF" >> $GITHUB_OUTPUT
