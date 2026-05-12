@@ -74,7 +74,13 @@ runs:
         target="$BUCKET/${TARGET_PATH%/}"
         case "$MODE" in
           sync)
+            # Increase S3 sync concurrency for faster metadata comparisons
+            aws configure set default.s3.max_concurrent_requests 50
+            aws configure set default.s3.max_queue_size 10000
+
             args=()
+            args+=(--no-progress)
+            args+=(--size-only)
             [[ "$DELETE" == "true" ]] && args+=(--delete)
             while IFS= read -r pattern; do
               [[ -z "$pattern" ]] && continue
