@@ -3,7 +3,6 @@ spokes:
     ref: master
     id: genai
     routeBasePath: genai
-    previewPath: getting-started/introduction/
     paths:
       - docs/
       - docs-versions/
@@ -15,7 +14,6 @@ spokes:
     ref: master
     id: openvino
     routeBasePath: openvino
-    previewPath: ''
     paths:
       - docs/
       - docs-versions/
