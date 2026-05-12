@@ -95,9 +95,6 @@ outputs:
   spoke_route_base_path:
     description: 'Spoke routeBasePath from spokes.yml'
     value: ${{ steps.validate.outputs.spoke_route_base_path }}
-  spoke_preview_path:
-    description: 'Spoke previewPath from spokes.yml (empty string if not set)'
-    value: ${{ steps.validate.outputs.spoke_preview_path }}
 
 runs:
   using: composite
@@ -211,7 +208,7 @@ runs:
 
         # --- Spoke lookup from spokes.yml via yq. -------------------------
         SPOKE_LINE=$(SOURCE_REPO="$SOURCE_REPO" yq -r \
-          '.spokes[] | select(.repo == strenv(SOURCE_REPO)) | .id + "\t" + .routeBasePath + "\t" + (.previewPath // "")' \
+          '.spokes[] | select(.repo == strenv(SOURCE_REPO)) | .id + "\t" + .routeBasePath' \
           spokes.yml)
         if [[ -z "$SPOKE_LINE" ]]; then
           echo "Error: Repository '$SOURCE_REPO' not in spokes.yml"
@@ -219,8 +216,7 @@ runs:
         fi
         SPOKE_ID="$(printf '%s' "$SPOKE_LINE" | cut -f1)"
         SPOKE_RBP="$(printf '%s' "$SPOKE_LINE" | cut -f2)"
-        SPOKE_PREVIEW_PATH="$(printf '%s' "$SPOKE_LINE" | cut -f3)"
-        echo "✅ Source repository validated (spoke=$SPOKE_ID, routeBasePath=$SPOKE_RBP, previewPath=$SPOKE_PREVIEW_PATH)"
+        echo "✅ Source repository validated (spoke=$SPOKE_ID, routeBasePath=$SPOKE_RBP)"
 
         # --- Per-event GH API checks. -------------------------------------
         case "$EVENT_TYPE" in
@@ -290,7 +286,6 @@ runs:
           echo "mode=$MODE"
           echo "spoke_id=$SPOKE_ID"
           echo "spoke_route_base_path=$SPOKE_RBP"
-          echo "spoke_preview_path=$SPOKE_PREVIEW_PATH"
         } >> "$GITHUB_OUTPUT"
 
         echo ""
