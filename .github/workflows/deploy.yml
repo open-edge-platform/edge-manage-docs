@@ -208,7 +208,8 @@ jobs:
           bucket: ${{ secrets.DEV_BUCKET }}
           path:   pr/${{ needs.validate-input.outputs.spoke_id }}/${{ needs.validate-input.outputs.pr_number }}
 
-  preview-comment-success:
+  add-pr-comment:
+    if: always() && needs.validate-input.outputs.mode == 'preview'
     needs: [validate-input, preview-build-deploy]
     runs-on: ubuntu-latest
     permissions:
@@ -220,6 +221,22 @@ jobs:
         with:
           sparse-checkout: .github/actions/pr-comment
           persist-credentials: false
+      - name: Prepare PR comment
+        id: message
+        run: |
+          if [ "${{ needs.preview-build-deploy.result }}" == "success" ]; then
+            echo "body<<EOF" >> $GITHUB_OUTPUT
+            echo "✅ Documentation preview deployed for commit \`${{ needs.validate-input.outputs.commit_sha }}\`" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+            echo "Preview: ${{ secrets.DEV_URL }}/pr/${{ needs.validate-input.outputs.spoke_id }}/${{ needs.validate-input.outputs.pr_number }}/" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "body<<EOF" >> $GITHUB_OUTPUT
+            echo "❌ Documentation preview failed for commit \`${{ needs.validate-input.outputs.commit_sha }}\`" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+            echo "[View failed GitHub Actions run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
       - uses: ./.github/actions/pr-comment
         with:
           app_id:      ${{ secrets.DOC_HELPER_APP_ID }}
@@ -228,10 +245,7 @@ jobs:
           repo:        ${{ needs.validate-input.outputs.repo_name }}
           pr_number:   ${{ needs.validate-input.outputs.pr_number }}
           edit_last:   'true'
-          body: |
-            ✅ Documentation preview deployed for commit `${{ needs.validate-input.outputs.commit_sha }}`
-
-            Preview: ${{ secrets.DEV_URL }}/pr/${{ needs.validate-input.outputs.spoke_id }}/${{ needs.validate-input.outputs.pr_number }}/
+          body: ${{ steps.message.outputs.body }}
 
   # --- Merge: spoke bundle into <rbp>/ (runs in parallel with hub-deploy). --
   merge-spoke-deploy:
