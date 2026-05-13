@@ -1,19 +1,17 @@
 Provisioning Clusters without Cluster Orchestrator (CO)
 =======================================================
 
-
-The following sections describe how to provision clusters without using Edge Cluster Orchestrator.
 There could be various reasons for provisioning clusters without CO, such as testing, development,
-or specific use cases that do not require the full capabilities of CO.
-The methods described in this section allow you to provision clusters using EMF and orch-cli
-without the need for CO.
-The clusters provisioned using the methods described in this section will not be managed by CO,
-and thus will not be visible in the CO dashboard. However, their configuration will be bundled with
-their host configuration, and will be registered and managed by EMF.
+or specific use cases that do not require the full capabilities of CO. 
+This document describes how to provision clusters without using CO.
+The clusters provisioned using the methods described here will not be managed by CO,
+and thus will not be visible in the CO dashboard.
+However, their configuration will be bundled with their host configuration,
+and retrievable using front end tools.
 
 
 Pre-requisites
------------------
+--------------
 - EMF installed and configured in the environment.
 - Access to the EMF API server.
 - Access to the Kubernetes\* cluster where EMF is installed.
