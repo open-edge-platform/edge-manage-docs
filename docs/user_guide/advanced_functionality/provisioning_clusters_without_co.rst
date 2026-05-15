@@ -20,7 +20,7 @@ Pre-requisites
 
 Cluster Provisioning
 --------------------
-1. Customize the cloud init file
+1. Customize the cloud init file as explained here https://docs.openedgeplatform.intel.com/edge-manage-docs/2026.0/user_guide/advanced_functionality/oxm_pxe_provisioning.html#set-up-environment
 2. Generate the stand alone configuration file
 3. Use orch-cli to create a host.
 
