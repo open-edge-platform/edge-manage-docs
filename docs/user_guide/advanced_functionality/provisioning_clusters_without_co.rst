@@ -27,3 +27,6 @@ Cluster Provisioning
 
 Wait for the host to be provisioned and registered with EMF. Once the host is registered and onboarded to EMF,
 you can use the orch-cli to retrieve the host information and access the cluster configuration.
+
+The cluster configuration will be bundled with the host configuration,
+and you can retrieve it using the orch-cli commands to get the host details.
