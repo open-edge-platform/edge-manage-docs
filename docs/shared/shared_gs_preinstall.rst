@@ -29,18 +29,3 @@ Update the Package Information
    sudo apt-get update
    sudo apt-get upgrade
 
-SRE Destination Endpoint
---------------------------------
-
-If the SRE (Service Reliability Engineering) exporter service is enabled in Edge Orchestrator,
-it exports SLI (Service Level Indicator) metrics allowing constant monitoring of Edge Orchestrator cluster availability and the health of edge node hosts using an external monitoring system.
-
-The metrics are sent every time interval (default 30 seconds) to the external SRE Destination Endpoint.
-
-To set up communication between the SRE exporter and SRE Destination Endpoint:
-
-* Enable basic access authentication for the SRE destination server.
-* The SRE endpoint server must support `Prometheus Remote Write protocol <https://prometheus.io/docs/concepts/remote_write_spec>`_
-  with basic access authentication.
-* If TLS is enabled, publicly trusted Certificate Authority (CA) certificates for the destination server are supported by default.
-  Private server CA certificates are also supported if provided.

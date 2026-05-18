@@ -57,20 +57,6 @@ prepare hardware for deployment, package and deploy applications, monitor the he
 
 .. grid:: 3
 
-    .. grid-item-card:: Package Applications
-        :link: user_guide/package_software/index
-        :link-type: doc
-        :link-alt: clickable cards
-
-        Import, package, and customize applications.
-
-    .. grid-item-card:: Set Up a Deployment
-        :link: user_guide/package_software/setup_deploy
-        :link-type: doc
-        :link-alt: clickable cards
-
-        Once you have a working platform with at least one edge cluster, deploy your first application.
-
     .. grid-item-card:: Dashboards and Alerts
         :link: user_guide/monitor_deployments/index
         :link-type: doc
