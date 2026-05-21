@@ -221,9 +221,98 @@ Template Examples
 Filters
 ^^^^^^^
 
+The orch-cli supports filtering of the output of the ``orch-cli list`` command. Two types of filters are supported: server-side and client-side.
+Server-side filters are paseed via API calls and applied by the server before the response is sent to the client.
+These filters are specified using the ``--filter`` flag and support a syntax of ``field=value`` aligning with the https://google.aip.dev/160.
+Server side filtering is more efficient as it reduces the amount of data sent over the network and processed by the client, but it may not support all possible filter expressions.
+Client-side filters are applied after the data is received from the server and can support more complex expressions,
+but they require more data to be transferred and processed by the client. Client-side filters are specified using the ``--output-filter`` flag and support a syntax of ``ffield<op>value``.
+Server side filters are applied before client side filters, so if both are specified, the server side filter will narrow down the data set before the client side filter is applied.
+Client-side filtering is applied to the output of the command, so it can be used in conjunction with custom templates and output formatting but it is not applied when
+using ``--output-type json`` or ``--output-type yaml``.
+
+Server-Side Filter (``--filter``)
+""""""""""""""""""""""""""""""""""
+
+The filter expression syntax is ``fieldName=value``. The ``*`` wildcard is supported within
+values. For infra resources (``host``, ``site``, ``region``, etc.), values must be
+single-quoted (``field='value'``); for catalog and deployment resources
+(``deployment-package``, ``application``, ``deployment``), values must be unquoted
+(``field=value``).
+
+For infra resources, multiple conditions can be combined with ``AND``; multi-condition
+filtering is not supported server-side for catalog and deployment resources.
+Use ``--output-filter`` for operators beyond ``=`` or for multi-condition catalog filters.
+
+.. code-block:: bash
+
+    # Infra — exact match and wildcard
+    orch-cli list host --filter "serialNumber='9D3Q6S3'"
+    orch-cli list host --filter "serialNumber='9D3*'"
+    orch-cli list host --filter "serialNumber='9D3*' AND hostStatus='provisioned'"
+
+    # Catalog — exact match and wildcard (no quotes around value)
+    orch-cli list deployment-packages --filter "name=observability"
+    orch-cli list deployment-packages --filter "name=observ*"
+
+.. note::
+
+    When combining multiple conditions with ``AND``, only the first field name is normalized
+    by the CLI. Fields following ``AND`` must use the exact camelCase API field name
+    (e.g. ``hostStatus``, not ``host_status``). Comma-separated conditions are not supported
+    for server-side filters — use ``AND`` instead.
+
+Client-Side Filter (``--output-filter``)
+"""""""""""""""""""""""""""""""""""""""""
+
+Client-side filters are applied locally after the full result set has been received from the
+server. The supported operators are ``=``, ``!=``, ``>``, ``<``, ``>=``, ``<=``, and ``~``
+(regular expression match). Multiple conditions are combined with a comma (logical AND).
+Field names are case-insensitive and accept camelCase, PascalCase, or snake_case variants
+(e.g. ``HostStatus``, ``hostStatus``, and ``host_status`` are all equivalent). Nested fields
+are accessed with dot notation (e.g. ``Region.Name``). Values may be quoted or unquoted.
+
+.. note::
+
+    ``--output-filter`` is only applied to table output. It has no effect when
+    ``--output-type json`` or ``--output-type yaml`` is specified.
+
+.. code-block:: bash
+
+    # Regex match on name
+    orch-cli list host --output-filter "Name~'name.*'"
+
+    # Exclude hosts in a specific state
+    orch-cli list host --output-filter "HostStatus!='Rebooting'"
+
+    # Combine server-side and client-side: fetch provisioned hosts, then filter by name
+    orch-cli list host --filter "hostStatus='provisioned'" --output-filter "Name~'^edge-'"
+
+    # Filter deployment packages not yet deployed
+    orch-cli list deployment-packages --output-filter "IsDeployed=false"
+
+    # Multiple conditions (AND)
+    orch-cli list host --output-filter "HostStatus=Rebooting,Name~'name.*'"
+
+Ordering and sorting
+^^^^^^^^^^^^^^^^^^^^
 
 Output formatting
 ^^^^^^^^^^^^^^^^^
+
+Orch-cli templates can be used to format output in various ways, such as templated tables or detailed views or JSON or YAML structures.
+By deafult the orch-cli outputs in a human-friendly tabular format which is an equivelent of using ``--output-type table`` flag.
+To display output in JSON or YAML format, use the ``--output-type`` flag with the desired format:
+
+.. code-block:: bash
+
+    orch-cli list site --output-type json
+    orch-cli get host my-host --output-type yaml
+
+.. note::
+
+    When ``--output-type json`` or ``--output-type yaml`` is used, only server side filtering and ordering is applied when respective flags are provided.
+    The output will be the raw API response in the specified format.
 
 Appendix: Environment Variables for Custom Templates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
