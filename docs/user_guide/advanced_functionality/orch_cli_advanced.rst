@@ -294,8 +294,35 @@ are accessed with dot notation (e.g. ``Region.Name``). Values may be quoted or u
     # Multiple conditions (AND)
     orch-cli list host --output-filter "HostStatus=Rebooting,Name~'name.*'"
 
-Ordering and sorting
+Ordering and Sorting
 ^^^^^^^^^^^^^^^^^^^^
+
+The ``--order-by`` flag controls the sort order of ``orch-cli list`` output. When using table
+output (the default), sorting is applied client-side after all data has been received from the
+server. When using ``--output-type json`` or ``--output-type yaml``, the order-by expression
+is passed to the API and applied server-side.
+
+The syntax is a comma-separated list of field names. Prefix a field with ``+`` or no prefix
+for ascending order, and ``-`` for descending. Field names are case-insensitive and accept
+camelCase, PascalCase, or snake_case variants. Multiple fields are evaluated left to right.
+
+.. code-block:: bash
+
+    # Sort hosts by name ascending (default)
+    orch-cli list host --order-by name
+
+    # Sort hosts by serial number descending
+    orch-cli list host --order-by -serialNumber
+
+    # Server-side ordering (JSON output)
+    orch-cli list host --output-type json --order-by name
+
+.. note::
+
+    The ``>`` and ``<`` direction prefixes are supported for client-side (table) ordering
+    but are rejected when the order-by is sent to the API (JSON/YAML output). Use ``+``
+    and ``-`` prefixes for compatibility with both modes. If an unsupported field is
+    specified, the CLI returns an error listing the available sortable fields.
 
 Output formatting
 ^^^^^^^^^^^^^^^^^
