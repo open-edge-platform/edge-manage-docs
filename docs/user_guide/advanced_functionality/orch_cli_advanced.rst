@@ -9,7 +9,7 @@ Custom Templates
 
 The orch-cli supports custom templates for output formatting of the ``orch-cli list`` and ``orch-cli get`` commands.
 Users can create their own templates to display the output in a format that suits their needs.
-Templates are defined as text files and can be specified when running the orch-cli commands.
+Templates are defined as string inputs and can be specified when running the orch-cli commands.
 The templates can be invoked using a flag to direct input into the command, a flag to read template from a file,
 or by setting an environment variable containing the template.
 
@@ -43,7 +43,7 @@ note that the template will be persistent until the environment variable is unse
 
     For deployment and application related resources the ``ORCH_CLI_<RESOURCE_NAME>_OUTPUT_TEMPLATE`` controls both the 
     ``orch-cli list`` and ``orch-cli get`` output formatting, while the ``ORCH_CLI_<RESOURCE_NAME>_INSPECT_TEMPLATE``
-    variable controls the ``--verbose`` output.
+    variable controls the ``--verbose`` output, see the appendix for more details.
 
 .. code-block:: bash
 
@@ -53,7 +53,170 @@ note that the template will be persistent until the environment variable is unse
     export ORCH_CLI_SITE_INSPECT_TEMPLATE='Name:\t{{.Name}}\nResource ID:\t{{.ResourceId}}\n'
     ./orch-cli get site mysite
 
-TODO - provide instructions for creating and using custom templates, including examples of template syntax.
+Template Syntax and Structure
+"""""""""""""""""""""""""""""
+
+Templates use Go's `text/template <https://pkg.go.dev/text/template>`_ syntax. Each field of the
+resource is accessed with dot-notation ``{{.FieldName}}``. Nested fields are accessed with
+additional dots, e.g. ``{{.Region.Name}}``.
+
+**Table templates** must begin with the prefix ``table`` followed immediately by the first field
+expression. Columns are separated by ``\t`` (a literal tab character). The CLI automatically
+generates column headers from the field names:
+
+.. code-block:: text
+
+    table{{.ResourceId}}\t{{.Name}}\t{{.RegionId}}
+
+**Inspect / detail templates** (for ``orch-cli get``) are free-form. Use ``\n`` for newlines and
+``\t`` for alignment. A trailing ``\n`` is recommended:
+
+.. code-block:: text
+
+    Name:\t{{.Name}}\nResource ID:\t{{.ResourceId}}\n
+
+.. note::
+
+    The escape sequences ``\t``, ``\n``, and ``\r`` are interpreted when the template is provided
+    via ``--output-template``, ``--output-template-file``, or an environment variable. They do not
+    need to be pre-expanded in the source string.
+
+Template Functions
+""""""""""""""""""
+
+The following helper functions are available inside every template:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Function
+     - Description
+   * - ``str .Field``
+     - Safely dereferences a string pointer. Returns an empty string if the value is nil.
+   * - ``none .Field``
+     - Dereferences a string pointer. Returns ``<none>`` if the value is nil or empty.
+   * - ``deref .Field``
+     - Recursively dereferences a pointer (including slices and maps behind pointers). Useful with ``range``.
+   * - ``fmttime .Field``
+     - Formats a ``time.Time`` value as ``2006-01-02T15:04:05`` (no timezone).
+   * - ``formatTime .Field``
+     - Formats a timestamp value (Unix int, ``time.Time``, or protobuf Timestamp) as RFC3339.
+   * - ``timestamp .Field``
+     - Formats a protobuf Timestamp as RFC3339.
+   * - ``since .Field``
+     - Computes elapsed time since a protobuf Timestamp and returns it in ``HhMmSs`` format.
+   * - ``gosince .Field``
+     - Same as ``since`` but accepts a ``time.Time`` value.
+   * - ``statusIndicator .Field``
+     - Returns a single-character indicator (``✓``, ``⨯``, ``⏳``, ``-``) from a status object.
+   * - ``statusMessage .Field``
+     - Extracts the human-readable message string from a status object.
+   * - ``nodeCount .Field``
+     - Formats a node-count pointer, returning ``-`` when nil.
+
+Available Fields by Resource
+"""""""""""""""""""""""""""""
+
+The table below lists the fields available for each resource. To discover all fields for a resource
+not listed here, use ``--output-type json`` or ``--output-type yaml`` to inspect the raw API
+response.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 15 40 45
+
+   * - Resource
+     - List (``orch-cli list``) fields
+     - Get / Inspect (``orch-cli get``) additional fields
+   * - ``site``
+     - ``ResourceId``, ``Name``, ``RegionId``, ``Region.Name``, ``SiteLng``, ``SiteLat``
+     - (same fields, shown in detail layout)
+   * - ``region``
+     - ``ResourceId``, ``Name``, ``ParentId``, ``TotalSites``, ``ParentRegion.Name``
+     - (same fields, shown in detail layout)
+   * - ``host``
+     - ``ResourceId``, ``Name``, ``HostStatus``, ``SerialNumber``, ``Uuid``
+     - ``OsProfile``, ``NicIps``, ``LvmSize``, ``HostStatusDetails``, ``ProvisioningStatus``,
+       ``UpdateStatus``, ``OsUpdatePolicy``, ``OperatingSystem``, ``BiosVendor``, ``BiosVersion``,
+       ``ProductName``, ``CustomConfigs``, ``Metadata``, ``CpuModel``, ``CpuCores``,
+       ``CpuArchitecture``, ``CpuThreads``, ``CpuSockets``, ``MemoryGB``, ``Storage``, ``Gpus``,
+       ``Usbs``, ``Nics``, ``Cves``, and AMT fields (``AmtEnabled``, ``AmtSku``,
+       ``CurrentAmtState``, ``DesiredAmtState``, ``AmtControlMode``, ``AmtDnsSuffix``,
+       ``DesiredKvmState``, ``CurrentKvmState``, ``KvmStatus``, ``KvmSessionStatus``,
+       ``DesiredSolState``, ``CurrentSolState``, ``SolSessionStatus``, ``CurrentPower``,
+       ``DesiredPower``, ``PowerStatus``, ``PowerOnTime``)
+   * - ``cluster``
+     - ``Name``, ``KubernetesVersion``, ``LifecyclePhase``, ``ProviderStatus``,
+       ``ControlPlaneReady``, ``InfrastructureReady``, ``NodeHealth``, ``NodeQuantity``, ``Labels``
+     - ``Template``, ``Nodes`` (each node has ``Id``, ``Role``)
+   * - ``clustertemplates``
+     - ``Name``, ``Description``, ``Version``, ``KubernetesVersion``
+     - ``Controlplaneprovidertype``, ``Infraprovidertype``, ``ClusterLabels``, ``ClusterNetwork``
+   * - ``deployment-package``
+     - ``Name``, ``DisplayName``, ``Version``, ``Kind``, ``DefaultProfileName``, ``IsDeployed``,
+       ``ApplicationReferences``
+     - ``Description``, ``ApplicationDependencies``, ``Profiles``, ``DefaultNamespaces``,
+       ``Extensions``, ``Artifacts``, ``CreateTime``, ``UpdateTime``
+   * - ``deployment-package-profile``
+     - ``Name``, ``DisplayName``, ``Description``, ``ApplicationProfiles``
+     - ``CreateTime``, ``UpdateTime``
+   * - ``osprofile``
+     - ``Name``, ``Architecture``, ``SecurityFeature``
+     - ``ProfileName``, ``OsResourceID``, ``ProfileVersion``, ``Sha256``, ``ImageId``,
+       ``ImageUrl``, ``RepoUrl``, ``Description``, ``Metadata``, ``OsType``, ``OsProvider``
+   * - ``osupdatepolicy``
+     - ``Name``, ``ResourceId``, ``Description``
+     - ``TargetOsId``, ``TargetOs.Name``, ``UpdateKernelCommand``, ``UpdatePackages``,
+       ``UpdatePolicy``, ``UpdateSources``, ``Timestamps.CreatedAt``, ``Timestamps.UpdatedAt``
+   * - ``amtprofile``
+     - ``ProfileName``, ``DomainSuffix``
+     - ``Version``, ``TenantId``, ``ProvisioningCertStorageFormat``, ``ExpirationDate``
+   * - ``sshkey``
+     - ``Username``, ``ResourceId``
+     - ``SshKey``, ``InUse``, ``UseHosts``
+
+Template Examples
+""""""""""""""""""
+
+**Compact table with selected fields:**
+
+.. code-block:: bash
+
+    # Show host serial numbers alongside status
+    orch-cli list host \
+      --output-template 'table{{.SerialNumber}}\t{{.Name}}\t{{.HostStatus}}'
+
+**Detail view with a status function:**
+
+.. code-block:: bash
+
+    orch-cli get cluster my-cluster \
+      --output-template 'Name:\t{{.Name}}\nK8s:\t{{none .KubernetesVersion}}\nPhase:\t{{statusMessage .LifecyclePhase}}\n'
+
+**Iterate over a repeated field:**
+
+.. code-block:: bash
+
+    orch-cli get deployment-package my-pkg\
+      --output-template 'Package: {{.Name}}:{{.Version}}
+    Applications:{{range .ApplicationReferences}}
+      - {{.Name}}:{{.Version}}{{end}}
+    '
+
+**Dereference a pointer-wrapped slice with** ``deref``:
+
+.. code-block:: bash
+
+    # OS update policy sources are stored as *[]string
+    orch-cli get osupdatepolicy my-policy \
+      --output-template 'Policy:\t{{.Name}}\nSources:{{range deref .UpdateSources}} {{.}}{{end}}\n'
+
+.. tip::
+
+    To discover all available fields for a resource, run
+    ``orch-cli get <resource> <name> --output-type json``. Every top-level key in the JSON output
+    corresponds to a template field accessible as ``{{.FieldName}}``.
 
 Filters
 ^^^^^^^
@@ -61,26 +224,6 @@ Filters
 
 Output formatting
 ^^^^^^^^^^^^^^^^^
-
-
-Sample paragraph
-^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-    ./orch-cli config set api-endpoint https://api.<CLUSTER_FQDN>
-    ./orch-cli config set project <PROJECT>
-
-The orch-cli configuration file can be found at **~/.orch-cli/orch-cli.yaml**
-
-* ``list users`` and ``get user`` including optional group and realm-role output
-
-For the step-by-step workflow, see :doc:`/shared/shared_ht_iam_mt_cli`.
-
-.. note::
-
-     Certain modular deployments/workflows of Edge Manageability Framework or it's components may not include support for
-     multitenancy - in those cases a default user/tenant is created and configuring user management may not be needed.
 
 Appendix: Environment Variables for Custom Templates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
