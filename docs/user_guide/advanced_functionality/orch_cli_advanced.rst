@@ -37,7 +37,8 @@ To read a template from a file, use the ``--output-template-file`` flag:
 
 To set a custom template using an environment variable, use the ``ORCH_CLI_<RESOURCE_NAME>_OUTPUT_TEMPLATE`` variable
 for list commands and the ``ORCH_CLI_<RESOURCE_NAME>_INSPECT_TEMPLATE`` variable for get commands,
-note that the template will be persistent until the environment variable is unset. See the appendix for details of available environment variables:
+note that the template will be persistent until the environment variable is unset. See the appendix for details of
+available environment variables:
 
 .. note::
 
@@ -221,14 +222,20 @@ Template Examples
 Filters
 ^^^^^^^
 
-The orch-cli supports filtering of the output of the ``orch-cli list`` command. Two types of filters are supported: server-side and client-side.
-Server-side filters are paseed via API calls and applied by the server before the response is sent to the client.
-These filters are specified using the ``--filter`` flag and support a syntax of ``field=value`` aligning with the https://google.aip.dev/160.
-Server side filtering is more efficient as it reduces the amount of data sent over the network and processed by the client, but it may not support all possible filter expressions.
+The orch-cli supports filtering of the output of the ``orch-cli list`` command.
+Two types of filters are supported: server-side and client-side.
+Server-side filters are passed via API calls and applied by the server before the response is sent to the client.
+These filters are specified using the ``--filter`` flag and support a syntax of ``field=value``
+aligning with the https://google.aip.dev/160.
+Server side filtering is more efficient as it reduces the amount of data sent over the network and processed by the client,
+but it may not support all possible filter expressions.
 Client-side filters are applied after the data is received from the server and can support more complex expressions,
-but they require more data to be transferred and processed by the client. Client-side filters are specified using the ``--output-filter`` flag and support a syntax of ``ffield<op>value``.
-Server side filters are applied before client side filters, so if both are specified, the server side filter will narrow down the data set before the client side filter is applied.
-Client-side filtering is applied to the output of the command, so it can be used in conjunction with custom templates and output formatting but it is not applied when
+but they require more data to be transferred and processed by the client. Client-side filters are specified using
+the ``--output-filter`` flag and support a syntax of ``field<op>value``.
+Server side filters are applied before client side filters, so if both are specified, the server side filter will narrow
+down the data set before the client side filter is applied.
+Client-side filtering is applied to the output of the command, so it can be used in conjunction with custom templates
+and output formatting but it is not applied when
 using ``--output-type json`` or ``--output-type yaml``.
 
 Server-Side Filter (``--filter``)
@@ -328,7 +335,7 @@ Output formatting
 ^^^^^^^^^^^^^^^^^
 
 Orch-cli templates can be used to format output in various ways, such as templated tables or detailed views or JSON or YAML structures.
-By deafult the orch-cli outputs in a human-friendly tabular format which is an equivelent of using ``--output-type table`` flag.
+By default the orch-cli outputs in a human-friendly tabular format which is an equivalent of using ``--output-type table`` flag.
 To display output in JSON or YAML format, use the ``--output-type`` flag with the desired format:
 
 .. code-block:: bash
@@ -338,7 +345,8 @@ To display output in JSON or YAML format, use the ``--output-type`` flag with th
 
 .. note::
 
-    When ``--output-type json`` or ``--output-type yaml`` is used, only server side filtering and ordering is applied when respective flags are provided.
+    When ``--output-type json`` or ``--output-type yaml`` is used, only server side filtering and ordering is
+    applied when respective flags are provided.
     The output will be the raw API response in the specified format.
 
 Appendix: Environment Variables for Custom Templates
