@@ -44,7 +44,7 @@ To install the binary on Linux system copy the file to an install path (/usr/loc
 Building from source
 ^^^^^^^^^^^^^^^^^^^^
 
-The orch-cli binary can be build from source. The source code is available in te `orch-cli GitHub repository <https://github.com/open-edge-platform/orch-cli>`_
+The orch-cli binary can be build from source. The source code is available in the `orch-cli GitHub repository <https://github.com/open-edge-platform/orch-cli>`_
 To build the binary from source run the make target from top level directory:
 
 .. code-block:: bash
@@ -108,7 +108,7 @@ The token is removed on logout. User must logout and login after token expiry.
 The keycloak service endpoint for containing the CLUSTER_FQDN of a given edge orchestrator must be provided during login - this is automatically
 done if the api-endpoint was provided as per :ref:`endpoint-and-project-configuration` - otherwise add **--keycloak https://keycloak.<CLUSTER_FQDN>/realms/master** to below commands.
 
-There is two login methods available:
+There are two login methods available:
 
 #. **Interactive shell** - The default way to authenticate with Edge Orchestrator is to log in by providing username as first argument and using an interactive prompt.
     The prompt will ask for password. This is the recommended way to log in.
@@ -152,6 +152,8 @@ done if the api-endpoint and project was provided as per :ref:`endpoint-and-proj
     --project <PROJECT_NAME>
 
 For the *list* commands the --verbose flag can be used to include additional information in the output.
+
+The orch-cli supports advanced filtering, sorting, and templating of the output of the commands. For more information see the :doc:`/user_guide/advanced_functionality/orch_cli_advanced` document.
 
 Note that some of the *get* and *delete* commands support usage of both resource ID or resource name as the subject field.
 Due to the fact that some resources do not
@@ -201,7 +203,7 @@ Organization Management
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Edge Orchestrator offers a two-level tenancy structure, with organizations that can contain one or more projects.
-To create an organization the orch-cli user must part of the "Org Admin Group". See :doc:`/shared/shared_mt_overview`
+To create an organization the orch-cli user must be part of the "Org Admin Group". See :doc:`/shared/shared_mt_overview`
 
 To create an organization run the create command, --description is an optional field.
 
@@ -235,9 +237,9 @@ To delete an organization run the delete command.
 Project Management
 ^^^^^^^^^^^^^^^^^^
 
-To create a project the orch-cli user must associated with the organization group. See :doc:`/shared/shared_mt_overview`
+To create a project the orch-cli user must be associated with the organization group. See :doc:`/shared/shared_mt_overview`
 
-To create an project run the create command, --description is an optional field.
+To create a project run the create command, --description is an optional field.
 
 .. code-block:: bash
 
@@ -440,11 +442,17 @@ For details on how to prepare the input .csv file and advanced options to create
      the edge nodes without an association to the OS Profile and Site.
      Provisioning of an OS will not happen and it is expected that the OS on the Edge Node and deployment of necessary agents is done by the user.
 
-To create a host run the create command with the --import-from-csv flag pointing to .csv filepath.
+To create a host in bulk mode run the create command with the --import-from-csv flag pointing to .csv filepath.
 
 .. code-block:: bash
 
     ./orch-cli create host --import-from-csv <PATH_TO_CSV_FILE>
+
+To create a single host run the create command with required flags for hostname, site, and os profile along with optional flags for additional configuration.
+
+.. code-block:: bash
+
+    ./orch-cli create host <HOST_NAME> --serial <SERIAL_NUMBER> --uuid <UUID> --os-profile <OS_PROFILE ID or NAME> --site <SITE ID or NAME>
 
 To list all hosts run the list command.
 
@@ -483,7 +491,7 @@ To activate/deactivate AMT on a host run the activation command.
 
     ./orch-cli set host <HOST_ID or HOST_NAME> --amt-state provisioned|unprovisioned
 
-The actvation/deactivation can also be done in bulk with a .csv file as an input.
+The activation/deactivation can also be done in bulk with a .csv file as an input.
 To generate file, with current AMT state of hosts for bulk activation/deactivation run the following command.
 
 .. code-block:: bash
