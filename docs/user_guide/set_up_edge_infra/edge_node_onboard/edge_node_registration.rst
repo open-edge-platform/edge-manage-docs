@@ -353,3 +353,4 @@ To create a single host with additional provisioning configuration, the followin
 
    ./orch-cli create host myhost --serial 2500JF3 --uuid 4c4c4544-2046-5310-8052-cac04f515233 --os-profile "Edge Microvisor Toolkit 3.0.20208" /
    --site mysite --secure true --remote-user mysshuser --metadata key1=value1&key2=value2 --lvm-size 500 --cloud-init-meta custom-config
+   

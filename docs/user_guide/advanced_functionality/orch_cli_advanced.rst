@@ -42,7 +42,7 @@ available environment variables:
 
 .. note::
 
-    For deployment and application related resources the ``ORCH_CLI_<RESOURCE_NAME>_OUTPUT_TEMPLATE`` controls both the 
+    For deployment and application related resources the ``ORCH_CLI_<RESOURCE_NAME>_OUTPUT_TEMPLATE`` controls both the
     ``orch-cli list`` and ``orch-cli get`` output formatting, while the ``ORCH_CLI_<RESOURCE_NAME>_INSPECT_TEMPLATE``
     variable controls the ``--verbose`` output, see the appendix for more details.
 
@@ -412,3 +412,4 @@ Appendix: Environment Variables for Custom Templates
     ORCH_CLI_DEPLOYMENT_PACKAGE_INSPECT_TEMPLATE orch-cli list|get deployment-package --verbose
     ORCH_CLI_DEPLOYMENT_PROFILE_INSPECT_TEMPLATE orch-cli list|get deployment-package-profile --verbose
     ORCH_CLI_PROFILE_INSPECT_TEMPLATE            orch-cli list|get profile --verbose
+    
