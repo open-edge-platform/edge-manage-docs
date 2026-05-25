@@ -31,8 +31,8 @@ Option 1: Manual Provider Creation Using Curl Command
    --header 'Content-Type: application/x-www-form-urlencoded' \
    --data-urlencode 'grant_type=password' \
    --data-urlencode 'client_id=system-client' \
-   --data-urlencode 'username=${PROJECT_API_USER}' \
-   --data-urlencode 'password=${PROJECT_API_PASSWORD}' \
+   --data-urlencode "username=${PROJECT_API_USER}" \
+   --data-urlencode "password=${PROJECT_API_PASSWORD}" \
    --data-urlencode 'scope=openid profile email groups' | jq -r '.access_token')
 
 **Important**: Before executing the Below JWT export command, ensure that all NIO configurations are properly exported as environment variables.
@@ -51,8 +51,7 @@ This step is crucial to ensure that the JWT export process has access to the nec
 .. code-block:: shell
 
    curl -X POST "https://api.${CLUSTER}/v1/projects/${PROJECT_NAME}/providers" -H "accept: application/json" \
-   -H "Content-Type: application/json" -d '{"providerKind":"PROVIDER_KIND_BAREMETAL","name":"infra_onboarding", \
-   "apiEndpoint":"xyz123", "apiCredentials": ["abc123"], "config": "{\"defaultOs\":\"os-51c4eba0\",\"autoProvision\":true}" }' \
+   -H "Content-Type: application/json" -d '{"providerKind":"PROVIDER_KIND_BAREMETAL","name":"infra_onboarding", "apiEndpoint":"xyz123", "apiCredentials": ["abc123"],"config": "{\"defaultOs\":\"os-51c4eba0\",\"autoProvision\":true}" }' \
    -H "Authorization: Bearer ${JWT_TOKEN}"
 
 Option 2: Automated Provider Creation Using Script
