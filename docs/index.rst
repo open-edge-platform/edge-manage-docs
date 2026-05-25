@@ -121,5 +121,3 @@ device-management solutions to extend their functionality.
    api/index
    system_requirements/index
    modular_workflows/index
-
-

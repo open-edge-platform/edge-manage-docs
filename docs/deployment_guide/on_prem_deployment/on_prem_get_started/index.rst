@@ -125,16 +125,6 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
      -  443
      -  Identity and Access Management
    * -  Edge Orchestrator UI and API
-     -  rancher.{domain}
-     -  TCP
-     -  443
-     -  Rancher's Fleet UI
-   * -  Edge Orchestrator UI and API
-     -  registry.{domain}
-     -  TCP
-     -  443
-     -  Harbor\* UI
-   * -  Edge Orchestrator UI and API
      -  vault.{domain}
      -  TCP
      -  443
@@ -217,9 +207,6 @@ To install Edge Orchestrator and Edge Node, the following Egress rules are requi
     -  Helm Chart
   * -  Edge Orchestrator
     -  https://rancher.github.io/
-    -  Helm Chart
-  * -  Edge Orchestrator
-    -  https://helm.goharbor.io
     -  Helm Chart
   * -  Edge Orchestrator
     -  https://istio-release.storage.googleapis.com/

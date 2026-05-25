@@ -27,5 +27,3 @@ working with |software_prod_name|:
 
 - :doc:`/shared/shared_mt_overview` to create Organizations and Projects
 - :doc:`/user_guide/set_up_edge_infra/location/index`
-- :doc:`/user_guide/advanced_functionality/set_default_cluster_template`
-

@@ -38,10 +38,6 @@ or in the cloud:
   edges, providing centralized monitoring and access control.
   Read more about :doc:`cluster_orch/index`.
 
-* **Edge Application Orchestrator**: Offers customers the ability to easily
-  package, deploy and monitor cloud-native applications at scale across
-  distributed edges. Read more about :doc:`app_orch/index`.
-
 * **User Interface**: The web user interface for the Edge Orchestrator, allowing
   the user to manage most of the features of the product in an intuitive,
   visual, manner without having to trigger a series of APIs individually.
