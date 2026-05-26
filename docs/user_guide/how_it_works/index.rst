@@ -1,19 +1,18 @@
 How it Works
 ============
 
-Edge Out Of Band Management (EOM) is the primary solution to manage edge environments
+Edge Manageability Framework is the primary solution to manage edge environments
 efficiently and securely. It provides out-of-band management capabilities for edge
 infrastructure, ensuring seamless operation across diverse hardware and software
 landscapes.
 
-Edge Out Of Band Management (EOM) is designed to enable secure and reliable
+Edge Manageability Framework is designed to enable secure and reliable
 out-of-band management of edge infrastructure and edge nodes. It offers identity
 & access management for tenants, multitenancy support, and comprehensive management
 of all hardware infrastructure components including edge nodes (i.e. hosts).
 
 At a high level, this is how you can use Edge Orchestrator.
 
-TBD : Rmove this image
   .. figure:: ./images/how_it_works2.png
       :alt: How it works
 
