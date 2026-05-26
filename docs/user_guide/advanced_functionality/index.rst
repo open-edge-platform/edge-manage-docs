@@ -20,6 +20,7 @@ application's capabilities:
    * :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
    * :doc:`/user_guide/advanced_functionality/custom_os_profile`
    * :doc:`/user_guide/advanced_functionality/ubuntu_raw_image_generation_from_iso`
+   * :doc:`/user_guide/advanced_functionality/orch_cli_advanced`
 
 
 .. toctree::
@@ -41,3 +42,4 @@ application's capabilities:
    configure_edgenode_lvm_parition.rst
    custom_os_profile
    ubuntu_raw_image_generation_from_iso
+   orch_cli_advanced
