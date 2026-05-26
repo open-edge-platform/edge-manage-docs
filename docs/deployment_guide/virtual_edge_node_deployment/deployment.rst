@@ -12,4 +12,3 @@ To get started, refer to the following sections for detailed instructions and gu
 .. toctree::
 
     baremetal_deployment
-    cloud_deployment

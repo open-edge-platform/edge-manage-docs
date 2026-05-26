@@ -138,12 +138,6 @@ Network Configuration
    * - Variable
      - Description
      - Default Value
-   * - ``CLUSTER_DOMAIN``
-     - Cluster domain name for internal services
-     - ``cluster.onprem``
-   * - ``ARGO_IP``
-     - MetalLB IP address for ArgoCD
-     - (empty)
    * - ``TRAEFIK_IP``
      - MetalLB IP address for Traefik
      - (empty)
@@ -165,49 +159,6 @@ Container Registry Configuration
      - Image registry for Gitea container images
      - ``docker.io``
 
-SRE and SMTP Configuration
-++++++++++++++++++++++++++++
-
-.. list-table:: SRE Configuration
-   :widths: 30 40 30
-   :header-rows: 1
-
-   * - Variable
-     - Description
-     - Default Value
-   * - ``SRE_USERNAME``
-     - Site Reliability Engineering username
-     - ``sre``
-   * - ``SRE_PASSWORD``
-     - SRE password
-     - ``123``
-   * - ``SRE_DEST_URL``
-     - SRE exporter destination URL
-     - ``http://sre-exporter-destination.cluster.onprem:8428/api/v1/write``
-
-.. list-table:: SMTP Configuration for Email Notifications
-   :widths: 30 40 30
-   :header-rows: 1
-
-   * - Variable
-     - Description
-     - Default Value
-   * - ``SMTP_ADDRESS``
-     - SMTP server address
-     - ``smtp.serveraddress.com``
-   * - ``SMTP_PORT``
-     - SMTP server port
-     - ``587``
-   * - ``SMTP_HEADER``
-     - Email sender information
-     - ``foo bar <foo@bar.com>``
-   * - ``SMTP_USERNAME``
-     - SMTP authentication username
-     - ``uSeR``
-   * - ``SMTP_PASSWORD``
-     - SMTP authentication password
-     - ``T@123sfD``
-
 Advanced Configuration
 +++++++++++++++++++++++
 
@@ -221,26 +172,6 @@ Advanced Configuration
    * - ``KUBECONFIG``
      - Kubernetes configuration file path
      - ``/home/$USER/.kube/config``
-
-OXM Network Configuration
-+++++++++++++++++++++++++++
-
-.. list-table:: OXM PXE Server Variables
-   :widths: 30 40 30
-   :header-rows: 1
-
-   * - Variable
-     - Description
-     - Default Value
-   * - ``OXM_PXE_SERVER_INT``
-     - PXE server interface
-     - (empty)
-   * - ``OXM_PXE_SERVER_IP``
-     - PXE server IP address
-     - (empty)
-   * - ``OXM_PXE_SERVER_SUBNET``
-     - PXE server subnet
-     - (empty)
 
 Proxy Configuration
 ++++++++++++++++++++
@@ -292,9 +223,7 @@ The Edge Orchestrator installation uses a two-phase approach orchestrated by the
    - Prepares the system for Edge Orchestrator deployment
 
 **Phase 2: Main Installation** (``onprem_orch_install.sh``)
-   - Installs ArgoCD for GitOps deployment
-   - Sets up Gitea repository with Edge Orchestrator source code
-   - Deploys Edge Orchestrator components via ArgoCD
+   - Deploys Edge Orchestrator components 
    - Configures networking, load balancers, and services
 
 The ``onprem_installer.sh`` wrapper script runs both phases sequentially and allows you to pass options to each phase separately using the ``--`` separator.
@@ -383,7 +312,7 @@ What the Installer Does
 
 The installation script performs the following actions:
 
-- Prompts to configure Argo\* CD tool, Traefik\* application proxy, and NGINX\* web server IP addresses, for details see
+- Prompts to configure Traefik\* application proxy, and HAProxy\* web server IP addresses, for details see
   `Installer Prompts and Deployment Configuration <#installer-prompts-and-deployment-configuration>`__
 
 - Prompts to confirm custom configurations to the deployment, for details see
@@ -397,15 +326,7 @@ The installation script performs the following actions:
 
 - Installs RKE2 and related components
 
-- Installs Argo CD tool
-
-- Installs a Gitea\* repository
-
 - Installs Edge Orchestrator
-
-  - Creates and populates the Gitea repositories with downloaded archives
-
-  - Starts Edge Orchestrator via Argo CD tool to populate the Gitea repositories
 
 
 See the following sections for details about the installation process and prompts.
@@ -418,13 +339,13 @@ Installer Prompts and Deployment Configuration
 The installer script prompts for configuration input during the installation process.
 
 #. The installer prompts you to enter the IP addresses used by the
-   Load Balancer for Argo CD UI, Traefik application proxy, and NGINX web server as follows.
+   Load Balancer for Traefik application proxy, and HAProxy web server as follows.
    There are strict requirements on these IP addresses:
 
-   - All three IP addresses must be on the same subnet (for example, `10.0.0.1/24`)
+   - All two IP addresses must be on the same subnet (for example, `10.0.0.1/24`)
      of the Edge Orchestrator node.
 
-   - IP addresses must be unique - you cannot use the same IP address for all three endpoints.
+   - IP addresses must be unique - you cannot use the same IP address for both endpoints.
      The installation will fail, if any IP address is duplicated.
 
    - These are "Virtual IPs" - you do not have to assign these IPs to any hardware network interface,
@@ -434,19 +355,16 @@ The installer script prompts for configuration input during the installation pro
 
    An example of the topology:
 
-   - `Argo IP` is the IP for CI/CD automated deployment tool.
 
    - `Traefik IP` is the IP for the application API proxy, the entry point to reach the Edge Orchestrator.
 
-   - `Nginx IP` is the IP for southbound specific tools onboarding and provisioning.
+   - `HAProxy IP` is the IP for southbound specific tools onboarding and provisioning.
 
    .. code-block:: shell
 
-      Enter Argo IP:
-      [xx.xx.xx.xx]
       Enter Traefik IP:
       [yy.yy.yy.yy]
-      Enter Nginx IP:
+      Enter HAProxy IP:
       [zz.zz.zz.zz]
 
 .. _on_prem_custom_settings:
@@ -558,54 +476,6 @@ Configure Custom Settings
 
        +    - profiles/default-traefik-rate-limit.yaml
 
-
-Disable SRE (Optional)
-++++++++++++++++++++++
-
-It is possible to configure or fully disable SRE during the next step by doing the following:
-
-#. To enable or disable the SRE Exporter service, include or exclude
-   ``[path_to_untarred_repo]/orch-configs/profiles/enable-sre.yaml``
-   in the *cluster definition* YAML file under ``root.clusterValues``.
-
-#. Optionally, the default values for SRE can be overridden in the *cluster definition* YAML file under ``.argo.o11y.sre``.
-
-See :doc:`/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_sre`
-for more information.
-
-Enable TLS for SRE Exporter endpoint (Optional)
-++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-To enable Transport Layer Security (TLS) authentication between an SRE
-exporter and SRE endpoint, use the ``-s`` flag after the ``--`` separator
-to pass options to the main installer:
-
-.. code-block:: shell
-
-   ./onprem_installer.sh -- -s
-
-.. note::
-   The ``-s`` flag is optional. If omitted, the SRE exporter will deploy with the TLS authentication option turned off.
-
-Optionally, a private TLS CA certificate of the destination SRE server may be provided by passing an absolute
-path to the file containing the certificate after ``-s`` flag:
-
-.. code-block:: shell
-
-   ./onprem_installer.sh -- -s /path/to/SRE_Endpoint_TLS_CA_Cert
-
-If you want to disable SRE functionality fully, see the
-`Disable SRE <#disable-sre-optional>`__ section above.
-
-
-Disable SMTP Server Authentication (Optional)
-+++++++++++++++++++++++++++++++++++++++++++++
-
-Use the ``-d`` option after the ``--`` separator to turn off the TLS authentication between the SMTP server and alert monitor:
-
-.. code-block:: shell
-
-   ./onprem_installer.sh -- -d
 
 Non-Interactive Installation
 ++++++++++++++++++++++++++++++
@@ -738,17 +608,13 @@ Find the external IPs allocated to services reachable from outside of the cluste
 
 .. code-block:: shell
 
-   kubectl get services argocd-server -n argocd
-   NAME            TYPE           CLUSTER-IP     EXTERNAL-IP
-   argocd-server   LoadBalancer   [clusterIP]    [argo-cd-external-ip]
-
    kubectl get services traefik -n orch-gateway
    NAME            TYPE           CLUSTER-IP     EXTERNAL-IP
    argocd-server   LoadBalancer   [clusterIP]    [traefik-external-ip]
 
-   kubectl get services ingress-nginx-controller -n orch-boots
+   kubectl get services ingress-haproxy-controller -n orch-boots
    NAME            TYPE           CLUSTER-IP     EXTERNAL-IP
-   argocd-server   LoadBalancer   [clusterIP]    [ingress-nginx-external-ip]
+   argocd-server   LoadBalancer   [clusterIP]    [ingress-haproxy-external-ip]
 
 Map the IP addresses obtained above to the domain names that need to be
 reachable through DNS, and add to DNS record used in the on-premises environment.
@@ -757,7 +623,6 @@ An example of the `dnsmasq` config file:
 
 .. code-block:: shell
 
-   address=/argocd.[on.prem.domain.name]/[argo-cd-external-ip]
    address=/[on.prem.domain.name]/[traefik-external-ip]
    address=/alerting-monitor.[on.prem.domain.name]/[traefik-external-ip]
    address=/api.[on.prem.domain.name]/[traefik-external-ip]
@@ -790,7 +655,7 @@ An example of the `dnsmasq` config file:
    address=/vnc.[on.prem.domain.name]/[traefik-external-ip]
    address=/web-ui.[on.prem.domain.name]/[traefik-external-ip]
    address=/ws-app-service-proxy.[on.prem.domain.name]/[traefik-external-ip]
-   address=/tinkerbell-haproxy.[on.prem.domain.name]/[ingress-nginx-external-ip]
+   address=/tinkerbell-haproxy.[on.prem.domain.name]/[ingress-haproxy-external-ip]
    address=/mps.[on.prem.domain.name]/[traefik-external-ip]
    address=/rps.[on.prem.domain.name]/[traefik-external-ip]
    address=/mps-wss.[on.prem.domain.name]/[traefik-external-ip]
@@ -808,7 +673,6 @@ using self-signed certificates:
 
 * \https://keycloak.CLUSTER_FQDN
 * \https://web-ui.CLUSTER_FQDN
-* \https://argocd.CLUSTER_FQDN
 * \https://vnc.CLUSTER_FQDN
 * \https://CLUSTER_FQDN
 

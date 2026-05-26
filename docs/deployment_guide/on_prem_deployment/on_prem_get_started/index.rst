@@ -95,11 +95,6 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
      -  443
      -  Web UI
    * -  Edge Orchestrator UI and API
-     -  cluster-orch.{domain}
-     -  TCP
-     -  443
-     -  Cluster orchestration
-   * -  Edge Orchestrator UI and API
      -  iaas.{domain}
      -  TCP
      -  443
@@ -129,11 +124,6 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
      -  TCP
      -  443
      -  Vault\* UI
-   * -  Edge node
-     -  cluster-orch-node.{domain}
-     -  TCP
-     -  443
-     -  Cluster orchestration
    * -  Edge node
      -  infra-node.{domain}
      -  TCP
@@ -213,9 +203,6 @@ To install Edge Orchestrator and Edge Node, the following Egress rules are requi
     -  Helm Chart
   * -  Edge Orchestrator
     -  https://kiali.org/
-    -  Helm Chart
-  * -  Edge Orchestrator
-    -  https://kyverno.github.io/kyverno/
     -  Helm Chart
   * -  Edge Orchestrator
     -  https://metallb.io/
