@@ -7,6 +7,8 @@ name: Post-Merge CI Pipeline
 on:  # yamllint disable-line rule:truthy
   push:
     branches: ['main', 'release-*']
+    tags:
+      - '*'
   workflow_dispatch:
 
 permissions:
