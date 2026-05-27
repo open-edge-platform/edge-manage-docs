@@ -34,12 +34,14 @@ If you try to generate the standalone configuration file using orch-cli and you 
 similar to the one below:
 
 .. code-block:: shell
+
   $ orch-cli generate standalone-config -c config-file -o cloud-init.cfg
   Error: command "generate" is disabled in the current Edge Orchestrator configuration
 
 run the following command to enable the command in the Edge Orchestrator configuration:
 
 .. code-block:: shell
+
   $ orch-cli config set orchestrator.features.edge-infrastructure-manager.oxm-profile.installed true
 
 The "generate" command should now be enabled, and you can proceed with generating
