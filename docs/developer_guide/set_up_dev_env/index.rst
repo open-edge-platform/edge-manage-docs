@@ -17,9 +17,8 @@ As a developer you have two options on how to set up your developer environment 
 #. :doc:`/developer_guide/set_up_dev_env/dev_env_kind` to deploy a test instance of the Edge Orchestrator
    on the KinD cluster. Choose this option if:
 
-   * You do not need to develop/or test OS provisioning. For testing on KinD you will use `ENiC (Edge Node in a Container) <https://github.com/open-edge-platform/virtual-edge-node/tree/main/edge-node-container>`_
-     that only simulates an Edge Node and does not run OS provisioning steps.
-     However, ENiC is enough to perform basic sanity tests (such as Edge Node statuses, some Day1/Day2 operations, etc.).
+    * You do not need to develop/or test OS provisioning. KinD does not emulate full OS provisioning and is intended
+       to perform basic sanity tests on already provisioned Edge Nodes (such as Edge Node statuses and some Day1/Day2 operations).
 
    * You have limited resources.
 

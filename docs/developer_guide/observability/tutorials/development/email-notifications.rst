@@ -106,15 +106,6 @@ Example `smtp-auth.yaml`:
 How to section
 --------------
 
-AWS\* environments
-~~~~~~~~~~~~~~~~~~
-
-To configure this functionality on AWS\* environments, you must create/adjust
-the terraform variables.
-
-See :doc:`/deployment_guide/cloud_deployment/cloud_advanced/cloud_alerts` for more information
-about configuring email notifications.
-
 Kind environment
 ~~~~~~~~~~~~~~~~
 

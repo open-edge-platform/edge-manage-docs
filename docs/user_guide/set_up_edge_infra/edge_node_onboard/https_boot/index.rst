@@ -19,7 +19,7 @@ Requirements
 HTTPS-assisted boot flow
 ------------------------
 
-#. Configure BIOS with UEFI HTTP URL pointing to ``https://tinkerbell-nginx.CLUSTER_FQDN/tink-stack/signed_ipxe.efi``.
+.#. Configure BIOS with UEFI HTTP URL pointing to ``https://tinkerbell-haproxy.CLUSTER_FQDN/tink-stack/signed_ipxe.efi``.
 
 #. Optionally, if Edge Nodes have been configured with Secure Boot, configure BIOS to enable Secure Boot and upload |software_prod_name| CA certificates.
 

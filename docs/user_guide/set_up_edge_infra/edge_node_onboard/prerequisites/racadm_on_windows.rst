@@ -49,7 +49,7 @@ For iPXE and Hook Os, independent of final operating system:
 .. code-block:: bash
 
    # Replace **CLUSTER_FQDN** with name of the domain of the orchestrator
-   curl "https://tinkerbell-nginx.${CLUSTER_FQDN}/tink-stack/keys/db.der" -O --insecure
+   curl "https://tinkerbell-haproxy.${CLUSTER_FQDN}/tink-stack/keys/db.der" -O --insecure
 
 ``db.der`` is the public key to trust the `ipxe.efi` and `Hook Os` during the Secure Boot.
 
@@ -108,7 +108,7 @@ Finally, you can Upload the certificates to the server with the `racadm` command
 .. code-block:: bash
 
     # Replace **CLUSTER_FQDN** with the name of the domain of the orchestrator
-    curl "https://tinkerbell-nginx.${CLUSTER_FQDN}/tink-stack/keys/Full_server.crt" -O --insecure
+   curl "https://tinkerbell-haproxy.${CLUSTER_FQDN}/tink-stack/keys/Full_server.crt" -O --insecure
 
     # Full_server.crt - TLS authorization with cluster for HTTPS boot.
     racadm.exe -r {iDRAC IP address} - u [iDRAC username] -p [iDRAC password] httpsbootcert import -i 1 -f C:\\\<{path_to_certificates}\>\\Full_server.crt

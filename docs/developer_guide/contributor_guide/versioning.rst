@@ -1,6 +1,9 @@
 Versioning
 ==========
 
+Note: The Edge Manageability Framework repository and its documentation repository follow the calendar-based versioning format of the Open Edge Platform: `YEAR-BASED MAJOR.MONTH.PATCH`. Their respective release numbers are published in the `VERSION <https://github.com/open-edge-platform/edge-manageability-framework/blob/main/VERSION>`__ file of the framework repository and the `VERSION <https://github.com/open-edge-platform/edge-manage-docs/blob/main/VERSION>`__ file of the documentation repository.
+All other component repositories within the Edge Manageability Framework continue to use their own versioning schemes and branching strategies as described below.
+
 Versioning is an integral part of the code review and Continuous Integration
 (CI) process, and releasing a new version of a component will be an extremely
 lightweight and frequent event.

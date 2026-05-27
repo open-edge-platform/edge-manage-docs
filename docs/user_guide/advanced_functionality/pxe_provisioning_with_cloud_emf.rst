@@ -57,7 +57,7 @@ Regardless of the deployment option, the first step is to download the iPXE scri
 
 .. code-block:: shell
 
-   wget https://tinkerbell-nginx.CLUSTER_FQDN/tink-stack/signed_ipxe.efi --no-check-certificate --no-proxy
+   wget https://tinkerbell-haproxy.CLUSTER_FQDN/tink-stack/signed_ipxe.efi --no-check-certificate --no-proxy
 
 .. note:: Replace CLUSTER_FQDN with the FQDN of the Edge Orchestrator.
 

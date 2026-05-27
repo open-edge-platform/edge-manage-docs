@@ -1,7 +1,7 @@
 On-Prem Upgrade Guide
 =========================
 
-**Upgrade Path:** EMF On-Prem v3.1.3 → v2025.2.0
+**Upgrade Path:** EMF On-Prem v2025.2.0 → v2026.0.0
 
 **Document Version:** 1.0
 
@@ -9,7 +9,7 @@ Overview
 --------
 
 This document provides step-by-step instructions to upgrade
-On-Prem Edge Manageability Framework (EMF) from version v3.1.3 to v2025.2.0.
+On-Prem Edge Manageability Framework (EMF) from version v2025.2.0 to  v2026.0.0
 
 Prerequisites
 -------------
@@ -17,7 +17,7 @@ Prerequisites
 System Requirements
 ~~~~~~~~~~~~~~~~~~~
 
-- Current EMF On-Prem installation version 3.1.3 or later
+- Current EMF On-Prem installation version v2025.2.0 or later
 - Root/sudo privileges on orchestrator node
 - PostgreSQL service running and accessible
 - Sufficient disk space for backups (~200GB minimum)
@@ -53,7 +53,7 @@ Step 1: Download the Latest On-Prem Upgrade Script
     REGISTRY_URL='registry-rs.edgeorchestration.intel.com'
     RS_PATH='edge-orch/common/files/on-prem'
     ORAS_VERSION='1.1.0'
-    ORCH_VERSION='v2025.2.0'
+    ORCH_VERSION='v2026.0.0'
 
     # Install oras if not already installed
     if ! command -v oras &> /dev/null; then
@@ -111,7 +111,7 @@ configured before running the upgrade.
    Runtime arguments will have higher precedence over the environment variables set in ``onprem.env``.
 
 Configuration Workflow
-+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
 
 #. Download the installer scripts using ``access_script.sh`` (see previous section)
 #. Locate the ``onprem.env`` file in the downloaded directory
@@ -135,7 +135,10 @@ Core Deployment Configuration
      - ``registry-rs.edgeorchestration.intel.com``
    * - ``DEPLOY_VERSION``
      - Version of Edge Orchestrator to deploy
-     - ``v2025.2.0``
+     - ``v2026.0.0``
+   * - ``DEPLOY_REPO_BRANCH``
+     - Git tag or branch for edge-manageability-framework deployment repository
+     - ``v2026.0.0``
    * - ``ORCH_INSTALLER_PROFILE``
      - Deployment profile for Edge Orchestrator
      - ``onprem``
@@ -176,9 +179,13 @@ Network Configuration
    * - ``TRAEFIK_IP``
      - MetalLB IP address for Traefik
      - (empty)
-   * - ``NGINX_IP``
-     - MetalLB IP address for NGINX
+   * - ``HAPROXY_IP``
+     - MetalLB IP address for HAProxy
      - (empty)
+
+.. note::
+   In **v2026.0.0 (latest release)**, the ingress controller was **replaced from NGINX to HAProxy**.
+   Please check whether the DNS entry for HAProxy is present after installation .
 
 Container Registry Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -335,6 +342,7 @@ Update the following sections:
 - **CORE DEPLOYMENT CONFIGURATION:**
   - RELEASE_SERVICE_URL
   - DEPLOY_VERSION
+  - DEPLOY_REPO_BRANCH
   - ORCH_INSTALLER_PROFILE
 
 - **AUTHENTICATION & SECURITY:**
@@ -343,7 +351,7 @@ Update the following sections:
 
 - **NETWORK CONFIGURATION:**
   - CLUSTER_DOMAIN
-  - ARGO_IP, TRAEFIK_IP, NGINX_IP
+  - ARGO_IP, TRAEFIK_IP, HAPROXY_IP
 
 - **CONTAINER REGISTRY:**
   - GITEA_IMAGE_REGISTRY
@@ -367,8 +375,10 @@ Update the following sections:
    kubectl get svc traefik -n orch-gateway
    kubectl get svc ingress-nginx-controller -n orch-boots
 
-   # Set deployment version (replace with your actual upgrade version tag)
-   export DEPLOY_VERSION=v2025.2.0
+  # Set deployment version (replace with your actual upgrade version tag)
+  export DEPLOY_VERSION=v2026.0.0
+  #Set the deploy repo release tag/branch (Gitea commit/tag/branch from EMF repo)
+  export DEPLOY_REPO_BRANCH=v2026.0.0
 
    # Set non-interactive mode to true to skip prompts
    export PROCEED=true
@@ -427,10 +437,7 @@ Before confirming in Terminal 1, open **Terminal 2** and update configurations:
       # Check current LoadBalancer IPs
       kubectl get svc argocd-server -n argocd
       kubectl get svc traefik -n orch-gateway
-      kubectl get svc ingress-nginx-controller -n orch-boots
-
-      # Verify LB IP configurations are updated
-      nano repo_archives/tmp/edge-manageability-framework/orch-configs/clusters/onprem.yaml
+      kubectl get svc ingress-haproxy-kubernetes-ingress -n orch-boots
 
 3. **Ensure all configurations are correct.**
 
@@ -451,7 +458,7 @@ Step 7: Monitor Upgrade Progress
 
 The upgrade process includes:
 
-- Upgrade RKE2 to 1.34.1 versions
+- Upgrade RKE2 to 1.34.4 versions
 - OS Configuration upgrade
 - Gitea upgrade
 - ArgoCD upgrade
@@ -466,6 +473,16 @@ Check the console output from the script.
 The **last line** should read:
 
 ``Upgrade completed! Wait for ArgoCD applications to be in 'Synced' and 'Healthy' state``
+
+.. note::
+
+   After running ``onprem_upgrade.sh``, wait for ~5 minutes for ``root-app`` and dependent applications to sync. Then run the following script:
+
+   .. code-block:: bash
+
+      ./after_upgrade_restart.sh
+
+   This will resync all applications, perform ``root-app`` sync, and restart ``tls-boots`` and ``dkam`` pods.
 
 System Health Check
 ~~~~~~~~~~~~~~~~~~~~~
@@ -502,8 +519,11 @@ ArgoCD
 
      kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 
+
 Gitea
-~~~~~~~
+~~~~~
+
+(when Orch is deployed with Full EMF or App manageability enabled)
 
 - **Retrieve Gitea username:**
 
@@ -531,33 +551,7 @@ Gitea
 
 Troubleshooting
 ===============
-
-Issue#1: Root-App Sync and Certificate Refresh After Upgrade
---------------------------------------------------------------------
-
-**Symptoms:**
-
-- Some applications show as **OutOfSync**, **Degraded**, or **Missing**
-- **external-secrets** and **copy-ca\*** specific pods remain in **OutOfSync**, **Missing**, or **Processing** state
-
-**Resolution:**
-
-#. After running ``onprem_upgrade.sh``, **wait 5–10 minutes** for ``root-app`` and dependent applications to sync.
-
-#. Run the resync script:
-
-   .. code-block:: bash
-
-      ./after_upgrade_restart.sh
-
-   This script:
-
-   - Continuously syncs applications
-   - Performs **root-app sync**
-   - Restarts **tls-boots** and **dkam** pods
-
-#. If applications still fail to sync:
-
+Issue#1 : If applications still fail to sync:
    - Log in to ArgoCD UI
    - Delete error-state CRDs/jobs
    - Re-sync ``root-app`` and rerun the ``./after_upgrade_restart.sh`` script
@@ -575,8 +569,8 @@ Verify that the ``signed_ipxe.efi`` image is downloaded using the freshly downlo
       # Delete both files before downloading
       rm -rf Full_server.crt signed_ipxe.efi
       export CLUSTER_DOMAIN=cluster.onprem
-      wget https://tinkerbell-nginx.$CLUSTER_DOMAIN/tink-stack/keys/Full_server.crt --no-check-certificate --no-proxy -q -O Full_server.crt
-      wget --ca-certificate=Full_server.crt https://tinkerbell-nginx.$CLUSTER_DOMAIN/tink-stack/signed_ipxe.efi -q -O signed_ipxe.efi
+      wget https://tinkerbell-haproxy.$CLUSTER_DOMAIN/tink-stack/keys/Full_server.crt --no-check-certificate --no-proxy -q -O Full_server.crt
+      wget --ca-certificate=Full_server.crt https://tinkerbell-haproxy.$CLUSTER_DOMAIN/tink-stack/signed_ipxe.efi -q -O signed_ipxe.efi
 
    Once the above steps are successful, the orchestrator (Orch) is ready for onboarding new Edge Nodes (EN).
 
@@ -638,22 +632,3 @@ To continue successfully after the upgrade, choose one of the following options:
 
 #. Update the EN to the latest available OS profile using the day-2 upgrade process
 #. After the OS profile upgrade is complete, proceed with cluster installation
-
-
-Issue#4: Kyverno Pod in ImagePullBackOff State
--------------------------------------------------------------------------
-
-**Issue:**
-
-After the upgrade, the Kyverno pod may be stuck in an ``ImagePullBackOff`` state due to image pull errors.
-
-**Resolution:**
-
-To resolve this issue, run the following commands to clean up and reset the Kyverno clean-reports job:
-
-.. code-block:: bash
-
-   kubectl delete job kyverno-clean-reports -n kyverno &
-   kubectl delete pods -l job-name="kyverno-clean-reports" -n kyverno &
-   kubectl patch job kyverno-clean-reports -n kyverno --type=merge -p='{"metadata":{"finalizers":[]}}'
-

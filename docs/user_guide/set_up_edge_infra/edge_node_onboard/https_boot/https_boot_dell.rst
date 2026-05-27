@@ -20,7 +20,7 @@ HTTPS boot is required to securely onboard devices.
 #. In iDRAC, go to **Configuration** > **BIOS Settings** > **Network Settings**.
 #. Set **HTTP Device1** to **Enabled**.
 #. Go to **HTTP Device1 Settings** > **Interface** and choose the NIC identified previously.
-#. Set the **URI** to ``https://tinkerbell-nginx.CLUSTER_FQDN/tink-stack/signed_ipxe.efi``
+#. Set the **URI** to ``https://tinkerbell-haproxy.CLUSTER_FQDN/tink-stack/signed_ipxe.efi``
    path. This value is defined during installation of |software_prod_name|.
 
    .. note:: Replace CLUSTER_FQDN with the name of the domain of the Edge Orchestrator.

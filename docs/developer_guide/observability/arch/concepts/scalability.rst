@@ -19,11 +19,6 @@ Argo\* CD app overrides, are:
    * ``o11y-dev.yaml`` - default development profile consuming minimal
      resources.
 
-* Production (cloud-based)
-
-   * ``o11y-release.yaml`` - default profile for up to 100 Edge Nodes.
-   * ``o11y-release-large.yaml`` - profile for 1000 Edge Nodes (and more).
-
 * Production (on-premises)
 
    * ``o11y-onprem.yaml`` - default profile for up to 100 Edge Nodes.
@@ -32,6 +27,5 @@ Argo\* CD app overrides, are:
 For more information on the system requirements regarding scalability, refer
 the following guides:
 
-* :doc:`/deployment_guide/cloud_deployment/index`
 * :doc:`/deployment_guide/on_prem_deployment/index`
 

@@ -44,19 +44,3 @@ To set up communication between the SRE exporter and SRE Destination Endpoint:
   with basic access authentication.
 * If TLS is enabled, publicly trusted Certificate Authority (CA) certificates for the destination server are supported by default.
   Private server CA certificates are also supported if provided.
-
-TLS Certificate for Edge Orchestrator
------------------------------------------
-
-A custom TLS certificate is required to be used for Edge Orchestrator. The
-certificate is used to provide transport encryption for all communication
-between the Edge Orchestrator, Edge Nodes and clients. For information on
-certificate requirements, see:
-:doc:`/deployment_guide/cloud_deployment/cloud_get_started/cloud_certs`.
-
-.. note::
-   Edge Orchestrator supports Self-Signed TLS certificates. However, the usage of such
-   certificates may result in the Edge Orchestrator not being upgradable and clients
-   being unable to access the Edge Orchestrator unless they explicitly trust the Self-Signed
-   certificate. For more information, see:
-   :doc:`/deployment_guide/cloud_deployment/cloud_get_started/cloud_certs`.

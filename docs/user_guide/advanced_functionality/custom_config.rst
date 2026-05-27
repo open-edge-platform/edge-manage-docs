@@ -106,3 +106,23 @@ commands can be used to add/delete a custom config file to the edgenode. The cus
 
     This command links the specified custom config to the host, ensuring that the cloud-init file is applied during the provisioning process.
     Refer :doc:`orch-cli documentation </user_guide/set_up_edge_infra/orch_cli/orch_cli_guide>` for more options to manage host.
+
+#. If your cloud-init file triggers package upgrades on the machine, this may result in upgrading the agent version. To prevent unintended agent upgrades, add the
+   following commands to your cloud-init file:
+
+    .. code-block:: yaml
+
+        #cloud-config
+
+        merge_how:
+        - name: list
+            settings: [ append ]
+        - name: dict
+            settings: [ no_replace, recurse_list ]
+
+        runcmd:
+        - apt-mark hold platform-observability-agent platform-telemetry-agent hardware-discovery-agent in-band-manageability platform-update-agent node-agent cluster-agent platform-manageability-agent
+        - apt upgrade # Or any other package management commands that may trigger upgrades
+        - apt-mark unhold platform-observability-agent platform-telemetry-agent hardware-discovery-agent in-band-manageability platform-update-agent node-agent cluster-agent platform-manageability-agent
+
+    This approach holds the agent packages before executing upgrades, then releases them afterward, ensuring agents are not inadvertently updated during the provisioning process.

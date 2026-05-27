@@ -6,7 +6,7 @@ name: Pre-Merge CI Pipeline
 
 on:  # yamllint disable-line rule:truthy
   pull_request:
-    branches: ['main', 'release-[0-9]+.[0-9]+.*']
+    branches: ['main', 'release-*']
   workflow_dispatch:
 
 concurrency:
@@ -21,18 +21,40 @@ jobs:
     permissions:
       contents: read
     runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.branch_check.outputs.skip }}
     steps:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
+      - name: Validate branch name
+        id: branch_check
+        run: |
+          BRANCH="${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
+          echo "Branch: $BRANCH"
+
+          if [[ "$BRANCH" == release-* ]]; then
+            if [[ "$BRANCH" =~ ^release-[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
+              echo "✅ Valid release branch"
+              echo "skip=false" >> $GITHUB_OUTPUT
+            else
+              echo "⚠️ Invalid release branch → skipping pipeline"
+              echo "skip=true" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "Not a release branch"
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
       - name: "Verify Branch Name"
-        uses: open-edge-platform/orch-ci/verify-branch-name@24a3a495be45af021486e265cf09a17ac3798405  # yamllint disable-line rule:line-length
+        if: steps.branch_check.outputs.skip != 'true'
+        uses: open-edge-platform/orch-ci/verify-branch-name@a95228137803b756aae327668c115db235802982  # yamllint disable-line rule:line-length
 
   pre-merge-pipeline:
     permissions:
       contents: read
     needs: pre-checks
-    uses: open-edge-platform/orch-ci/.github/workflows/pre-merge.yml@24a3a495be45af021486e265cf09a17ac3798405  # yamllint disable-line rule:line-length
+    if: needs.pre-checks.outputs.skip != 'true'
+    uses: open-edge-platform/orch-ci/.github/workflows/pre-merge.yml@a95228137803b756aae327668c115db235802982  # yamllint disable-line rule:line-length
     with:
       run_security_scans: false
       run_version_check: true

@@ -32,7 +32,7 @@ Install RACADM on Linux PC
       NODE_BMC_PWD="Your iDRAC password"
 
       CLUSTER_FQDN="Your cluster FQDN established when deploying Edge Orchestrator"
-      TINK_FQDN=tinkerbell-nginx.${CLUSTER_FQDN}
+      TINK_FQDN=tinkerbell-haproxy.${CLUSTER_FQDN}
 
       # RACADM login
       LOGIN="-r ${NODE_BMC_IP} -u ${NODE_BMC_USER} -p ${NODE_BMC_PWD} --nocertwarn"

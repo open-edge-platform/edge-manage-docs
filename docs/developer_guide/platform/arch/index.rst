@@ -9,6 +9,4 @@ architecture for both cloud and on-premises environments.
 .. toctree::
 
    argocd
-   cloud_orchestrator
-   comparison
    on_premise_orchestrator/index
