@@ -59,7 +59,7 @@ You can proceed to **onboard** the host by following the
 To **provision** the host after it is onboarded, follow the
 :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/onboarding_actions/provision_host` instructions.
 
-Refer to :doc:`Registered Host Mismatch </shared/shared_registration_info_mismatch>` for any issues in encountered during set up.
+Refer to :doc:`Registered Host Mismatch </shared/shared_registration_info_mismatch>` for any issues encountered during set up.
 
 Automated Onboarding and Manual Provisioning
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -256,14 +256,14 @@ be provided via `K8sClusterTemplate` which expects the template name and version
 #. Do the following before running the `create host` command with the `orch-cli`:
 
    i. Complete the CSV file with the provisioning details for the edge nodes you want to register. `OSProfile` and `Site` are a mandatory fields without which provisioning configuration cannot be completed. Also, be aware that the `OSProfile` and `Secure` fields are related. If `Secure` is set to `true`, the `OSProfile` must support it. If left blank, `Secure` defaults to `false`.
-      The values in other fields are validated before consumption though an empty string is allowed for all of them. If a column is not filled in but followed but value in other column it should be left blank followed by nex column ie. `value,,value2`.
+      The values in other fields are validated before consumption though an empty string is allowed for all of them. If a column is not filled in but followed by a value in another column it should be left blank followed by the next column ie. `value,,value2`.
       The following is an example:
 
       .. code-block:: bash
 
          Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,LVMSize,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill
          2500JF3,4c4c4544-2046-5310-8052-cac04f515233,os-7d650dd1,site-08c1e377,true,localaccount-9dfb57cb,key1=value1&key2=value2,500,custom-config
-         ICW814D,4c4c4544-4046-5310-8052-cac04f515233,ubuntu-22.04-lts-generic,site-08c1e377,true,myuser-key,key1=value1&key2=value2,500
+         ICW814D,4c4c4544-4046-5310-8052-cac04f515233,ubuntu-22.04-lts-generic,mysite,true,myuser-key,key1=value1&key2=value2,500
          FW908CX,4c4c4544-0946-5310-8052-cac04f515233,os-7d650dd1,site-08c1e377,true,myuser-key,key1=value1&key2=value2,500,,true,baseline:v1.0.0,role:all;name:mycluster;labels:sample-label=samplevalue&sample-label2=samplevalue2
 
    #. Authenticate with Edge Orchestrator before importing hosts.
@@ -327,3 +327,29 @@ Example of invocation and failure:
       $ cat import_error_2025-08-15T18\:28\:44+05\:30_test.csv
       Serial,UUID,OSProfile,Site,Secure,RemoteUser,Metadata,LVMSize,CloudInitMeta,K8sEnable,K8sClusterTemplate,K8sConfig,Error - do not fill
       FW908CX,4c4c4544-0946-5310-8052-cac04f515233,os-7d650dd1,site-abcd1234,true,myuser-key,key1=value1&key2=value2,500,Host already registered
+
+Orch-CLI - Create a single Edge Device
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The orch-cli tool allows for registration of a single edge node through the command line interface.
+To create a single edge node, use the `create host` command with the required arguments of
+`--serial` or `--uuid` , `--os-profile` and `--site` along with optional arguments for provisioning configuration.
+
+.. note::
+
+   If the provisioning functionality is not enabled on the Edge Orchestrator (ie. in vPRO only deployment), the `--os-profile` and `--site` is not needed
+   and any additional provisioning configuration options will be ignored.
+
+Creating a single host through orch-cli requires authentication and configuration of the API endpoint and project as
+described in the previous sections. Once that is done, the following command can be used to create a single host:
+
+.. code-block:: bash
+
+   ./orch-cli create host myhost --serial 2500JF3 --uuid 4c4c4544-2046-5310-8052-cac04f515233 --os-profile "Edge Microvisor Toolkit 3.0.20208" --site site-b05caf24
+
+To create a single host with additional provisioning configuration, the following command can be used:
+
+.. code-block:: bash
+
+   ./orch-cli create host myhost --serial 2500JF3 --uuid 4c4c4544-2046-5310-8052-cac04f515233 --os-profile "Edge Microvisor Toolkit 3.0.20208" /
+   --site mysite --secure true --remote-user mysshuser --metadata key1=value1&key2=value2 --lvm-size 500 --cloud-init-meta custom-config
