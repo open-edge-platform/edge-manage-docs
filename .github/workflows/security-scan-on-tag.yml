@@ -2,9 +2,11 @@
 # SPDX-FileCopyrightText: (C) 2026 Intel Corporation
 # SPDX-License-Identifier: Apache-2.0
 
+# yamllint disable rule:line-length
+
 name: Security scan on tag
 
-on:
+on: # yamllint disable-line rule:truthy
   workflow_dispatch:
   push:
     tags:
