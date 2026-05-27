@@ -41,3 +41,4 @@ application's capabilities:
    configure_edgenode_lvm_parition.rst
    custom_os_profile
    ubuntu_raw_image_generation_from_iso
+   provisioning_clusters_without_co
