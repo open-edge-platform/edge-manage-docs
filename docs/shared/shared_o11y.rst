@@ -1,77 +1,95 @@
-AO / CO / Observability Composability
+Observability Composability
 =====================================
 
 This document provides end-to-end guidance on:
 
-1. Deploying orchestration with **Application Orchestrator (AO)**,
-   **Cluster Orchestrator (CO)**, and **Observability (O11Y)** profiles,
-   including how to enable or disable them using composability flags.
+1. Deploying orchestration with the **Observability (O11Y)** profile,
+   including how to enable or disable it using composability flags.
 2. Onboarding edge nodes in **NIO mode** using ``orch-cli``.
 
 ----------------------------------------------------
-1. AO / CO / Observability Composability Overview
+1. Observability Composability Overview
 ----------------------------------------------------
 
-During orchestration deployment, the following profiles are **enabled by default**:
+During orchestration deployment, the **Observability (O11Y)** profile, which
+integrates telemetry, metrics and monitoring, is **disabled by default**.
 
-- **Application Orchestrator (AO)** — handles application orchestration at the edge.
-- **Cluster Orchestrator (CO)** — manages cluster-level orchestration, scaling, and coordination.
-- **Observability (O11Y)** — integrates telemetry, metrics, and monitoring.
-
-Composability provides **flexibility and control**, allowing you to include or exclude specific profiles as needed.
-These profiles are controlled through **environment flags** set before starting the orchestration deployment.
+Composability provides **flexibility and control**, allowing you to include or exclude specific services as needed.
+The profile is controlled through an **environment flag** which must be set before starting the deployment.
 
 .. important::
 
-   The flags must be defined **before** orchestration deployment begins.
-   For upgrades, ensure the same flags are used to maintain consistent orchestration state
+   The flag must be defined **before** orchestration deployment begins.
+   For upgrades, ensure the same flag is used to maintain consistent orchestration state
    and avoid unexpected composability changes.
 
 ----------------------------------------------------
-2. Configuration Flags
+2. Configuration Flag
 ----------------------------------------------------
 
-By default, all profiles are enabled (flags unset or set to ``false``).
+By default, the profile is disabled by default.
 
-To modify which components are deployed, export the following environment variables
-**before starting orchestration deployment or upgrade**:
+To enable the profile to deploy the services, the following environment variables
+must be enabled in the post-orch.env file **before starting orchestration deployment
+or upgrade**:
 
 .. code-block:: bash
 
-   export DISABLE_AO_PROFILE=true      # Disable Application Orchestrator
-   export DISABLE_CO_PROFILE=true      # Disable Cluster Orchestrator
-   export DISABLE_O11Y_PROFILE=true    # Disable Observability
+   EOM_ENABLE_O11Y=true
 
 .. note::
 
-   These flags must be exported to your environment **prior to both deployment and upgrade**
+   This flag must be configured in the post-orch.env file **prior to both deployment and upgrade**
    to ensure consistent composability across lifecycle operations.
+
+The environment flag will enable deployment of the edgenode observability services as
+well as the Promethheus CRDs to enable service monitors. To enable the orchestrator
+observability services, the following flags must also be enabled, either by being
+added to the ``post-orch.env`` file or by enabling them in the
+``environments/defauls-disabled.yaml.gotmpl`` file.
+
+.. code-block:: yaml
+
+   orchestrator-observability:
+     enabled: true
+   orchestrator-dashboards:
+     enabled: true
+   orchestrator-prometheus-agent:
+     enabled: true
 
 ----------------------------------------------------
 3. Verification After Deployment or Upgrade
 ----------------------------------------------------
 
-After orchestration deployment or upgrade, you can verify which profiles are enabled or disabled
-using the following one-liner command:
+After orchestration deployment or upgrade, you can verify that the observability services are
+enabled or disabled using the following command:
 
 .. code-block:: bash
 
-   root_app_ns=$(kubectl get application -A | grep root-app | awk '{print $1}')
-   VALUE_FILES=$(kubectl get application root-app -n $root_app_ns -o yaml)
-   echo "$VALUE_FILES" | grep -q "enable-cluster-orch.yaml" && echo "✅ CO enabled" || echo "⛔ CO disabled"
-   echo "$VALUE_FILES" | grep -q "enable-app-orch.yaml" && echo "✅ AO enabled" || echo "⛔ AO disabled"
-   echo "$VALUE_FILES" | grep -qE "(enable-o11y)" && echo "✅ O11Y enabled" || echo "⛔ O11Y disabled"
+   kubectl get pods -n orch-infra | grep edgenode-observability
 
 **Example Output:**
 
 .. code-block:: text
 
-   ⛔ CO disabled     --> if CO disabled
-   ⛔ AO disabled     --> if AO disabled
-   ✅ O11Y enabled    --> if observability enabled
-
-You can also confirm the same from the ArgoCD ``root-app`` application view.
-For pre-deployment verification (before cluster creation), review the **orchestration clustername.yaml** file.
+   edgenode-observability-grafana-644fbcc577-wr2k2                   4/4     Running     0               5m36s
+   edgenode-observability-loki-chunks-cache-0                        3/3     Running     0               5m36s
+   edgenode-observability-loki-gateway-59f4f949b8-lwbls              2/2     Running     0               5m36s
+   edgenode-observability-loki-results-cache-0                       3/3     Running     0               5m36s
+   edgenode-observability-mimir-compactor-0                          2/2     Running     0               5m36s
+   edgenode-observability-mimir-distributor-65cc4bf9cf-cg9kr         2/2     Running     0               5m36s
+   edgenode-observability-mimir-gateway-6b6845b5bb-2ppjm             2/2     Running     0               5m36s
+   edgenode-observability-mimir-ingester-0                           2/2     Running     0               5m36s
+   edgenode-observability-mimir-ingester-1                           2/2     Running     0               5m36s
+   edgenode-observability-mimir-make-minio-buckets-5.4.0-dpd2d       0/1     Completed   0               5m36s
+   edgenode-observability-mimir-querier-78669bdd7f-djqm8             2/2     Running     0               5m36s
+   edgenode-observability-mimir-query-frontend-5c676c7964-zg8bt      2/2     Running     0               5m36s
+   edgenode-observability-mimir-query-scheduler-97c7fbb55-4bmnl      2/2     Running     0               5m36s
+   edgenode-observability-mimir-query-scheduler-97c7fbb55-8wsv8      2/2     Running     0               5m36s
+   edgenode-observability-mimir-ruler-d55cc759b-9bvkc                2/2     Running     0               5m36s
+   edgenode-observability-mimir-store-gateway-0                      2/2     Running     0               5m36s
+   edgenode-observability-minio-748dc47495-8hzr9                     2/2     Running     0               5m36s
+   edgenode-observability-opentelemetry-collector-696c4475d7-mcchc   2/2     Running     0               5m36s
 
 ----------------------------------------------------
 4. Edge Node Onboarding in NIO Mode
@@ -218,26 +236,8 @@ After logging in to the edge node, you can collect logs from various edge servic
    sudo journalctl -u node-agent -f
    sudo systemctl status node-agent
 
-**Check Cluster Agent Logs (if CO is enabled):**
-
-.. code-block:: bash
-
-  sudo journalctl -u cluster-agent -f
-  sudo systemctl status cluster-agent
-
 **Check Other Service Logs:**
 
 .. code-block:: bash
 
    sudo journalctl -u <service-name> -f
-
-----------------------------------------------------
-4.7 Create a Cluster (if CO is enabled)
-----------------------------------------------------
-
-If the **Cluster Orchestrator** is enabled, create and verify the cluster using the commands below:
-
-.. code-block:: bash
-
-   orch-cli create cluster cli-cluster --nodes <EDGENODE-UUID>:all
-   orch-cli list cluster
