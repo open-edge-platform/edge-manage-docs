@@ -43,7 +43,7 @@ jobs:
           fi
       - name: "Verify Branch Name"
         if: steps.branch_check.outputs.skip != 'true'
-        uses: open-edge-platform/orch-ci/verify-branch-name@a95228137803b756aae327668c115db235802982  # yamllint disable-line rule:line-length
+        uses: open-edge-platform/orch-ci/verify-branch-name@8f913a3d65d77e7553a00519102f2bf3a0dcd108  # yamllint disable-line rule:line-length
 
   post-merge-pipeline:
     needs: pre-checks
@@ -53,7 +53,7 @@ jobs:
       security-events: write
       id-token: write
       actions: read
-    uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@a95228137803b756aae327668c115db235802982  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@8f913a3d65d77e7553a00519102f2bf3a0dcd108  # yamllint disable-line rule:line-length
     with:
       run_version_check: true
       run_dep_version_check: false
@@ -74,7 +74,7 @@ jobs:
       issues: write
     needs: pre-checks
     if: needs.pre-checks.outputs.skip != 'true'
-    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@a95228137803b756aae327668c115db235802982  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/publish-documentation.yml@8f913a3d65d77e7553a00519102f2bf3a0dcd108  # yamllint disable-line rule:line-length
     with:
       simple_mode: false
       branch_pattern: '^(main|release-[0-9]+\.[0-9]+.*)$'
