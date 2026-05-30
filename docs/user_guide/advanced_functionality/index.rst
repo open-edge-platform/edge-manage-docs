@@ -43,3 +43,4 @@ application's capabilities:
    custom_os_profile
    ubuntu_raw_image_generation_from_iso
    orch_cli_advanced
+   provisioning_clusters_without_co
