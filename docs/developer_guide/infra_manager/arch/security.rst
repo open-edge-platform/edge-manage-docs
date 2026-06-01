@@ -102,7 +102,7 @@ The set of roles in the token are extracted and checked against a set of
 policies that are written using `OPA <https://www.openpolicyagent.org/>`_ query
 language (REGO rules) and verified at run time by the OPA module that is loaded
 in the boundary components (micro-services exposing an API) and in the
-Inventory service.
+:doc:`Inventory service <components/inventory>`.
 
 Role based Access Control (RBAC) is performed right after the authentication
 phase to ensure that the user has the necessary permissions to perform

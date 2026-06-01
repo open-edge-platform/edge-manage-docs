@@ -9,7 +9,7 @@ there are resources represented using a pure declarative model that provides
 top-down policy.
 
 The following image summarizes at high level the data flow in Edge Infrastructure
-Manager in terms of the main components (see :doc:`hl_architecture`) and the
+Manager in terms of the main components (see :doc:`../architecture`) and the
 interactions between them. The following sections will provide a more detailed
 description of the data flows.
 

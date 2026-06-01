@@ -1,5 +1,5 @@
-Day2 Updates
-============
+Day 2 Updates
+=============
 
 The Edge Orchestrator supports deployment and scheduled updates of two types of Edge Nodes:
 

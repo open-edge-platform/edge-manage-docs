@@ -12,6 +12,6 @@ Manager software.
 .. toctree::
    :hidden:
 
-   new_resource/index
-   os_profiles/index
-   upgrade/index
+   ./tutorials/new_resource/index
+   ./tutorials/os_profiles/index
+   ./tutorials/upgrade/index
