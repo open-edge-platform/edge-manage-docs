@@ -1,4 +1,6 @@
 
+:orphan:
+
 
 
 Delete Cluster Template
@@ -24,7 +26,6 @@ Perform the following steps to delete a cluster template:
 .. figure:: images/delete_cluster_template_confirmation.png
    :width: 100 %
    :alt: Delete Cluster Template
-
 
 
 

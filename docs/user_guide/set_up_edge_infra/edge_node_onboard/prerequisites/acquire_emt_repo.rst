@@ -1,3 +1,5 @@
+:orphan:
+
 .. _acquire_emt_repo:
 
 Acquiring the Edge Microvisor Toolkit repository URL path from Edge Orchestrator API
