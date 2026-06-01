@@ -223,7 +223,7 @@ The Edge Orchestrator installation uses a two-phase approach orchestrated by the
    - Prepares the system for Edge Orchestrator deployment
 
 **Phase 2: Main Installation** (``onprem_orch_install.sh``)
-   - Deploys Edge Orchestrator components 
+   - Deploys Edge Orchestrator components
    - Configures networking, load balancers, and services
 
 The ``onprem_installer.sh`` wrapper script runs both phases sequentially and allows you to pass options to each phase separately using the ``--`` separator.
