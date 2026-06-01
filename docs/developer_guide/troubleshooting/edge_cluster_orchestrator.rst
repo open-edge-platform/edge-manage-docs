@@ -48,7 +48,7 @@ Edge Orchestrator
    Kubernetes\* Cluster. To troubleshoot access to the ``KUBECONFIG`` is
    required.  Similar logs information can be obtained from
    ``observability-admin`` UI. See:
-   :doc:`/user_guide/monitor_deployments/grafana_content`.
+   :doc:`/user_guide/monitor_deployments/status_deployment`.
 
 .. code:: shell
 
@@ -94,7 +94,7 @@ Prerequisite Knowledge to Access the Edge Node Logs
 .. note::
    To access the logs on the Edge Node, you will need to have
    access to the logs via observability dashboard. See:
-   :doc:`../../../user_guide/monitor_deployments/grafana_content`
+   :doc:`/user_guide/monitor_deployments/status_deployment`
 
 To access the logs related to both Cluster Agent and RKE Server, you have to
 select the Edge Node Agent Log search as below:
@@ -126,7 +126,7 @@ the search filter as displayed below:
    :width: 80%
 
 For more information related to logs.
-See: :doc:`/user_guide/monitor_deployments/grafana_content`.
+See: :doc:`/user_guide/monitor_deployments/status_deployment`.
 
 **context:** issues with ``rke2-server`` misconfiguration
 or Kubernetes cluster installation
@@ -138,7 +138,7 @@ or issues specific to the agent
 (check agent logs for more info as shown above).
 
 See for more information:
-:doc:`/user_guide/monitor_deployments/grafana_content`.
+:doc:`/user_guide/monitor_deployments/status_deployment`.
 
 Troubleshooting Edge Node Clusters Extensions Deployment
 --------------------------------------------------------
@@ -226,7 +226,7 @@ Testing Extension Changes
 -------------------------
 
 If you want to test changes that you believe will fix an extension, you will
-first need a :doc:`/user_guide/package_software/deploy_packages` to apply your
+first need a deployment package to apply your
 changes to.
 
 Extensions are currently stored here:

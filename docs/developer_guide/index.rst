@@ -45,7 +45,7 @@ or in the cloud:
 * **Observability**: A modular observability stack that provides visibility into
   the health and performance of the system, including logging, reporting,
   alerts, and SRE data from Edge Orchestrator components and Edge Nodes.
-  Read more about :doc:`observability/index`.
+  Read more about :doc:`/user_guide/monitor_deployments/index`.
 
 * **Platform Services**: A collection of services that support the deployment
   and management of Edge Orchestrator, including Identity and Access

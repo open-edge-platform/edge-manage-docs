@@ -795,7 +795,7 @@ For help with any of the commands run the command with `--help`.
 Additional commands
 ^^^^^^^^^^^^^^^^^^^
 
-The application level CLI commands are covered under the :doc:`/user_guide/package_software/orch_cli/orch_cli_guide`
+The application level CLI commands are covered under this CLI guide.
 
 See "./orch-cli <verb> <noun> --help" for current usage and capabilities of these commands.
 

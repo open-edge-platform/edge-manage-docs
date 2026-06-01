@@ -304,7 +304,7 @@ Related Documentation
 ---------------------
 
 - For more details on using the orch-cli, refer to the
-  :doc:`orch-cli user guide </user_guide/package_software/orch_cli/orch_cli_guide>`.
+  :doc:`orch-cli user guide </user_guide/set_up_edge_infra/orch_cli/orch_cli_guide>`.
 
 - For more details on edge node provisioning, refer to the
   :doc:`edge node provisioning guide </user_guide/set_up_edge_infra/edge_node_onboard/index>`.
