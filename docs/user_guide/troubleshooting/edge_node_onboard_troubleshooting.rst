@@ -77,7 +77,7 @@ follow these steps:
 
 #. If the device is not getting reported, collect the logs of `loca-manager`
    deployment using
-   :doc:`/user_guide/monitor_deployments/orchestrator_observability`.
+   :doc:`/user_guide/monitor_deployments/status_deployment`.
 
 #. Report the issue using the ticketing system.
 
@@ -118,7 +118,7 @@ follow the steps:
 #. If the host is not in `Running` status on the host details page (that is,
    the status is not green), then collect the logs of the `loca-manager,`
    `host-manager,` `maintenance-manager,` deployments using
-   :doc:`/user_guide/monitor_deployments/orchestrator_observability`.
+   :doc:`/user_guide/monitor_deployments/status_deployment`.
 
 #. Report the issue using the ticketing system.
 
@@ -142,7 +142,7 @@ instances running on these devices need to be removed from LOC-A as well.
    logs and report to your Lenovo representative for further troubleshooting.
 
 #. If no tasks were created, collect the logs of `loca-manager` deployment
-   using :doc:`/user_guide/monitor_deployments/orchestrator_observability`.
+   using :doc:`/user_guide/monitor_deployments/status_deployment`.
 
 #. Report the issue using the ticketing system.
 
@@ -172,7 +172,7 @@ sites and cloud services will be reconciled with LOC-A.
    representative for further troubleshooting.
 
 #. If no tasks were created, collect the logs of `loca-metadata-manager`
-   deployment through the :doc:`/user_guide/monitor_deployments/orchestrator_observability`.
+   deployment through the :doc:`/user_guide/monitor_deployments/status_deployment`.
 
     .. note:: LOCA-A does not create the `Add Cloud Service` task when a cloud
               service is created.
@@ -200,6 +200,6 @@ profiles into LOC-A instance templates.
    your Lenovo representative for further troubleshooting.
 
 #. If no tasks were created, collect the logs of `loca-template-manager`
-   deployment using :doc:`/user_guide/monitor_deployments/orchestrator_observability`.
+   deployment using :doc:`/user_guide/monitor_deployments/status_deployment`.
 
 #. Report the issue using the ticketing system.

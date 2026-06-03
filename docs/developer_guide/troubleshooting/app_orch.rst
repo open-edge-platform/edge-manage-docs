@@ -12,19 +12,19 @@ Prerequisites
     Before commencing troubleshooting, it is recommended
     to be familiar with the following documents:
 
-    - :doc:`../app_orch/arch/technology_stack` used for App Orchestration services.
-    - :doc:`../app_orch/arch/deployment` of the App Orchestration services.
-    - :doc:`../app_orch/arch/key_components` of the App Orchestration services in a k8s cluster.
-    - :doc:`../app_orch/arch/data_model`  for top-level objects managed by App Orchestration services for orchestrating applications.
+    - Technology stack used for App Orchestration services.
+    - Deployment model of the App Orchestration services.
+    - Key components of the App Orchestration services in a k8s cluster.
+    - Top-level objects managed by App Orchestration services for orchestrating applications.
 
 .. note::
    This guide is intended for experienced SRE / DevOps engineers who have been granted permissions/roles to access the console and further intervention is
    needed to troubleshoot the issue after using logs gathered from observability. See: :doc:`capture_logs`
    The following commands are executed against an Edge Orchestrator's Kubernetes\* Cluster. To troubleshoot, access to the KUBECONFIG is required. Similar logs information can be obtained
-   from the observability-admin UI. See: :doc:`../../../user_guide/monitor_deployments/grafana_content`.
+   from the observability-admin UI. See: :doc:`/user_guide/monitor_deployments/status_deployment`.
 
 .. note::
-   This troubleshooting guide assumes that the user has followed all the steps in the :doc:`../../user_guide/package_software/index`
+   This troubleshooting guide assumes that the user has followed all the steps in :doc:`/user_guide/advanced_functionality/automated_deployment`
    to package and deploy an application to the edge node cluster. If the application is not installed successfully or is not running as expected,
    and the :doc:`../../user_guide/troubleshooting/deploy_issue` document was not sufficient to debug the issue, the user can use this guide to troubleshoot further.
 
@@ -302,5 +302,4 @@ Here examples of using `kubectl` commands to check the status of the CRs with a 
    fleet-local                            local                         Running   Running:KubeconfigReady(True)   Complete
 
 .. note:: you can use `kubectl describe` to get more details about each CR.
-
 

@@ -38,10 +38,6 @@ or in the cloud:
   edges, providing centralized monitoring and access control.
   Read more about :doc:`cluster_orch/index`.
 
-* **Edge Application Orchestrator**: Offers customers the ability to easily
-  package, deploy and monitor cloud-native applications at scale across
-  distributed edges. Read more about :doc:`app_orch/index`.
-
 * **User Interface**: The web user interface for the Edge Orchestrator, allowing
   the user to manage most of the features of the product in an intuitive,
   visual, manner without having to trigger a series of APIs individually.
@@ -49,7 +45,7 @@ or in the cloud:
 * **Observability**: A modular observability stack that provides visibility into
   the health and performance of the system, including logging, reporting,
   alerts, and SRE data from Edge Orchestrator components and Edge Nodes.
-  Read more about :doc:`observability/index`.
+  Read more about :doc:`/user_guide/monitor_deployments/index`.
 
 * **Platform Services**: A collection of services that support the deployment
   and management of Edge Orchestrator, including Identity and Access
@@ -75,13 +71,10 @@ Helm\*-based applications compatible with |software_prod_name|.
 
    contributor_guide/index
    set_up_dev_env/index
-   application_developer_workflow/index
    troubleshooting/index
    agents/index
    infra_manager/index
    cluster_orch/index
-   app_orch/index
-   observability/index
    platform/index
    virtual_edge_node/index
    trusted_compute/index
