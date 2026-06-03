@@ -61,37 +61,6 @@ For a detailed list of features, see the
 and the `Edge Out-of-Band Manageability README file
 <https://github.com/open-edge-platform/edge-out-of-band-manageability/blob/main/README.md>`_.
 
-
-Upgrades from Previous Releases
--------------------------------
-
-Edge Out-of-Band Manageability (EOM) version 2026.1 supports direct upgrades from
-version **v2026.0** to **v2026.1** for both on-prem and AWS deployments.
-
-Refer to the following guides for detailed upgrade steps:
-
-- `Cloud Upgrade Guide
-  <https://github.com/open-edge-platform/edge-manage-docs/blob/release-2026.1/docs/deployment_guide/cloud_deployment/cloud_how_to/cloud_upgrade.rst>`_
-- `On-Prem Upgrade Guide
-  <https://github.com/open-edge-platform/edge-manage-docs/blob/release-2026.1/docs/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.rst>`_
-
-Upgrade Behavior
-----------------
-
-After the upgrade, all previously onboarded Edge Nodes and their associated
-configuration data are expected to persist without requiring re-onboarding or
-additional configuration.
-
-
-On-Prem Upgrade – Known Issues
-------------------------------
-
-During the on-prem upgrade process, the following stability issues are
-observed:
-
-* <TBD – list any on-prem upgrade known issues>
-
-
 Known Issues
 ----------------------------------
 
@@ -102,9 +71,6 @@ been carried over from past releases.
 EOM deployment
 ^^^^^^^^^^^^^^
 
-* Current release still uses legacy Bitnami container image for Keycloak
-  solution. This image is being deprecated by Bitnami. Intel is working to
-  replace this image with alternatives in future releases.
 * For on-premises EOM deployment and upgrade issues and workarounds, `see
   <https://docs.openedgeplatform.intel.com/edge-manage-docs/release-2026.1/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.html>`_.
 
