@@ -63,7 +63,7 @@ you must provide a new APT source using the DEB822 Source Format.
      hYW8LV7a9pavxV2tLuVjMM+05ut/d38IkTV7OSJgisbSGcmycXIzxsipyXJVGMZt
      MFw3quqJhQMRsA==
      =gbRM
-     -----END PGP PUBLIC KEY BLOCK---
+     -----END PGP PUBLIC KEY BLOCK----
 
 Create OS Update Policy
 ------------------------
