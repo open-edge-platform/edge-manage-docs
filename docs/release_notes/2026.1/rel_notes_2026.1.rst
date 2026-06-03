@@ -34,8 +34,7 @@ Release Highlights
 ---------------------------
 
 Edge Out-of-Band Manageability (EOM) enables you to securely onboard and provision
-remote edge devices to a central management plane, orchestrate Kubernetes
-clusters and applications across distributed edge, at scale. Edge Node
+remote edge devices to a central management plane. Edge Node
 software provides the profiles of infrastructure software configurations that
 get provisioned onto an onboarded node.
 
@@ -103,27 +102,6 @@ Out-of-band device management
 * For Intel® AMT or Intel® Standard Manageability issues see
   :doc:`/user_guide/advanced_functionality/vpro_power_mgt`.
 
-Cluster and Application Management
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-* When creating a cluster, you must select a region and a site but the
-  region and site are not automatically added to the cluster's deployment
-  metadata. You must add them as deployment metadata manually if you desire.
-* Support for in-place upgrades of Edge Node Kubernetes cluster is currently
-  not available. This is to be addressed in a future release. Currently in
-  2026.0, cluster upgrade can be done by deleting the cluster and recreating
-  with a new cluster template version.
-* Multi-Node Cluster Provision is not supported in this release. This is to
-  be addressed in future releases.
-* Any USB peripherals connected to the edge node can be connected to a
-  VM-based application. However, although the USB peripheral(s) are detached
-  from the edge node, the VM-based application will still have the USB
-  peripherals connected. In this situation, when you run applications
-  requiring USB peripherals, it will fail.
-* The same USB peripheral cannot be shared between the same type of
-  applications, while the same USB peripheral can be simultaneously connected
-  to the different types of applications.
-
 User Experience
 ^^^^^^^^^^^^^^^^^
 
@@ -144,11 +122,7 @@ User Experience
 * The querying capabilities of Mimir on orchestrator-observability and
   edgenode-observability may occasionally fail due to loss of communication
   between querier and query-frontend. The workaround is a restart of querier
-  pod through Argo CD tool.
-* Occasionally, a reboot of the On-prem Edge Out-of-Band Manageability (EOM) makes
-  the Argo CD tool's `root-app` and `secret-config` remain in the
-  `provisioning` state, and prevents creation of application deployment. The
-  workaround is to unseal the vault using the provided script.
+  pod.
 * Users created in Keycloak solution must have email address set up to
   properly perform authentication to Grafana Observability Dashboards. Users
   without email set won't be able to access metrics and logs via Grafana UI.
@@ -188,25 +162,6 @@ Hosts and Infrastructure Limitations
   activation completed. Refer to
   :doc:`/user_guide/advanced_functionality/vpro_power_mgt`
 
-Cluster and Application Management Limitations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-* A deployment package cannot be created by including two applications with
-  the same name but with different versions. Do not include two applications
-  with the same name in a single deployment project. You can modify the name
-  of one of the applications if required.
-* Multiple "-" (for example, `1.0.0-dev-test`) characters are not allowed in
-  an application's chart or version during creation.
-* When you use "%GeneratedDockerCredential%" in the Application Profile, any
-  updates made to the image registry in Catalog are not automatically applied
-  to existing deployments. To update the image pull secret, you must recreate
-  the existing deployments.
-* If an application containing CRDs is deployed and subsequently undeployed,
-  it may leave behind orphaned CRDs and related cluster-level objects. This
-  is a deliberate design choice made by the Helm tool. This can lead to an
-  `annotation validation` error when attempting to redeploy on the cluster.
-  See :doc:`troubleshooting guide </user_guide/troubleshooting/deploy_issue>`.
-
 Multi-tenancy Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -228,10 +183,6 @@ User Experience Limitations
 * The `Show All` page size for hosts does not work for lists over 100. If you
   have a list of more than 100 hosts in a view, do not set the page size to
   larger than 100.
-* Accessing more than one edge web application at a time in a browser through
-  the Service Link feature (Application Service Proxy) is not supported. The
-  workaround is to open a second application in an incognito window or a
-  different browser.
 * Scheduling a recurring maintenance to happen on the last day of the month
   before midnight in a timezone that is behind GMT/UTC, when the schedule is
   after midnight in GMT/UTC causes the maintenance to be scheduled on the 1st
@@ -245,10 +196,6 @@ User Experience Limitations
   show an error message when duplicate metadata keys are entered. However, it
   will still allow the user to proceed to the next step. Only the last
   duplicate key/value pair will be considered in the end.
-* When Cluster Orchestration (CO) is disabled, users with
-  CLUSTER_TEMPLATES_WRITE or CLUSTER_TEMPLATES_READ roles encounter a "Page
-  Not Found" error when initially loading the Admin view, though other
-  navigation sections work correctly.
 
 
 Recommendations
