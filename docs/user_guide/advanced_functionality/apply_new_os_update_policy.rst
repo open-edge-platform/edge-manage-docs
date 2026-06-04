@@ -161,7 +161,7 @@ _________
 Mutable OS - OS update, no kernel command update and no new packages installation.
 
 .. note::
-        No OS Update Policy is needed. 
+        No OS Update Policy is needed.
 
 Example 2
 _________
