@@ -17,3 +17,11 @@ spokes:
     paths:
       - docs/
       - docs-versions/
+
+  - repo: AlexanderBarabanov/physicalai
+    ref: main
+    id: physicalai
+    routeBasePath: physicalai
+    paths:
+      - docs/
+      - docs-versions/
