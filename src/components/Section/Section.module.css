@@ -1,0 +1,15 @@
+.container {
+  background: linear-gradient(
+    90deg,
+    #0e1566 0%,
+    #1a237f 30%,
+    #222d96 60%,
+    #2c2cb6 100%
+  );
+
+  & > div {
+    padding: 64px 32px 32px;
+    max-width: var(--max-container-width);
+    margin: 0 auto;
+  }
+}

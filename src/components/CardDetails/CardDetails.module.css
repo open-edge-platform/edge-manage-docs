@@ -1,0 +1,50 @@
+.container {
+  gap: 16px;
+  padding: 32px;
+  display: flex;
+  background: #061f55;
+  box-shadow: 0px 2px 4px 0px #0404041f;
+  align-items: center;
+  border-radius: 16px;
+  flex-direction: column;
+  color: var(--genai-color-white);
+  position: relative;
+  background: #06145f;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    transparent 100%
+  );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  filter: blur(2px);
+}
+.title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  text-align: center;
+}
+
+.description {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  text-align: center;
+}
