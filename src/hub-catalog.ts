@@ -17,6 +17,10 @@ export const SPOKE_CATALOG: Record<string, SpokeCatalogEntry> = {
     label: 'OpenVINO GenAI',
     description: 'Run and deploy generative AI models.',
   },
+  physicalai: {
+    label: 'Physical AI',
+    description: 'Runtime documentation for PhysicalAI inference and deployment.',
+  },
 };
 
 // Product cards rendered in the navbar "OpenVINO Runtime" dropdown and in
@@ -42,13 +46,8 @@ export const PRODUCT_CARDS: readonly ProductCard[] = [
     spokeId: 'genai',
   },
   {
-    title: 'OV Physical AI',
-    description: 'placeholder',
-    spokeId: null,
-  },
-  {
-    title: 'OVMS',
-    description: 'placeholder',
-    spokeId: null,
+    title: 'Physical AI',
+    description: 'Runtime documentation for PhysicalAI inference and deployment',
+    spokeId: 'physicalai',
   },
 ];
