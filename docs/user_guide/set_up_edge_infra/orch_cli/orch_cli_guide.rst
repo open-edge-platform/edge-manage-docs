@@ -554,6 +554,135 @@ To delete an AMT domain profile run the delete command.
 
     ./orch-cli delete amtprofile <NAME>
 
+KVM and SOL Session Management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The orch-cli supports starting and stopping KVM (Keyboard, Video, Mouse) and SOL (Serial Over LAN)
+remote sessions on AMT/vPRO-enabled Edge Nodes. These features require the OOB (out-of-band)
+support to be enabled on the connected Edge Orchestrator.
+
+Building the KVM-enabled Binary
+""""""""""""""""""""""""""""""""
+
+KVM session support requires a special build of the orch-cli that embeds the KVM Viewer Angular
+UI. The KVM Viewer UI source is located in ``ui/kvm-viewer/`` of the
+`orch-cli repository <https://github.com/open-edge-platform/orch-cli>`_.
+Refer to the ``ui/kvm-viewer/README.md`` in that repository for details on the Angular application.
+
+**Prerequisites**
+
+Node.js v22.22.3 (x64) must be installed before building. Install it using
+`nvm <https://github.com/nvm-sh/nvm>`_ or your preferred Node version manager:
+
+.. code-block:: bash
+
+    nvm install 22.22.3
+    nvm use 22.22.3
+
+Verify the active version:
+
+.. code-block:: bash
+
+    node --version
+    # v22.22.3
+
+**Build and install**
+
+Once Node.js v22.22.3 is active, run the following make target from the top-level directory of the
+orch-cli repository. This first compiles the KVM Viewer Angular UI (``build-kvm-ui``) and then
+produces a KVM-enabled ``orch-cli`` binary:
+
+.. code-block:: bash
+
+    make build-kvm
+
+To install the resulting binary to ``/usr/local/bin``:
+
+.. code-block:: bash
+
+    make install
+
+The installed binary supports all standard orch-cli commands in addition to the KVM and SOL
+session management commands described below.
+
+Starting and Stopping a KVM Session
+"""""""""""""""""""""""""""""""""""""
+
+**CCM mode** (Client Control Mode) — no AMT password is required. Start the KVM session
+directly:
+
+.. code-block:: bash
+
+    ./orch-cli set host <HOST_ID or HOST_NAME> --session-type kvm --session-state start --orch-ca orch-ca.crt
+
+**ACM mode** (Admin Control Mode) — the AMT password must be exported before starting the
+session. Use the password that was set during deployment time in
+``edge-out-of-band-manageability/post-orch/post-orch.env``:
+
+.. code-block:: bash
+
+    export AMT_PASSWORD="<AMT_PASSWORD>"
+    ./orch-cli set host <HOST_ID or HOST_NAME> --session-type kvm --session-state start --orch-ca orch-ca.crt
+
+The ``--orch-ca`` flag must point to the cluster CA certificate file (``orch-ca.crt``).
+
+To stop a running KVM session (both CCM and ACM modes):
+
+.. code-block:: bash
+
+    ./orch-cli set host <HOST_ID or HOST_NAME> --session-type kvm --session-state stop
+
+Starting and Stopping a SOL Session
+"""""""""""""""""""""""""""""""""""""
+
+**CCM mode** — no AMT password is required:
+
+.. code-block:: bash
+
+    ./orch-cli set host <HOST_ID or HOST_NAME> --session-type sol --session-state start --orch-ca orch-ca.crt
+
+**ACM mode** — export the AMT password from ``post-orch.env`` before starting:
+
+.. code-block:: bash
+
+    export AMT_PASSWORD="<AMT_PASSWORD>"
+    ./orch-cli set host <HOST_ID or HOST_NAME> --session-type sol --session-state start --orch-ca orch-ca.crt
+
+To stop a running SOL session (both CCM and ACM modes):
+
+.. code-block:: bash
+
+    ./orch-cli set host <HOST_ID or HOST_NAME> --session-type sol --session-state stop
+
+Checking KVM and SOL Session Status
+"""""""""""""""""""""""""""""""""""""
+
+Use the ``get host`` command to inspect the current KVM and SOL session state of a host. The
+output includes the current state, desired state, session status, and overall KVM/SOL status
+fields:
+
+.. code-block:: bash
+
+    ./orch-cli get host <HOST_ID or HOST_NAME>
+
+The relevant fields in the output are:
+
+* **KVM Current State** — the active KVM session state reported by the device.
+* **KVM Desired State** — the requested KVM session state.
+* **KVM Session Status** — the status of the KVM session negotiation.
+* **KVM Status** — overall KVM availability status.
+* **SOL Current State** — the active SOL session state reported by the device.
+* **SOL Desired State** — the requested SOL session state.
+* **SOL Session Status** — the status of the SOL session negotiation.
+
+.. note::
+
+    The ``--session-type`` flag accepts ``kvm`` or ``sol``.
+    The ``--session-state`` flag accepts ``start`` or ``stop``.
+    In ACM mode, ``AMT_PASSWORD`` must be exported before running the start command. The
+    password is the one configured in ``edge-out-of-band-manageability/post-orch/post-orch.env``
+    at deployment time. CCM mode does not require a password.
+
 Cluster Template Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
