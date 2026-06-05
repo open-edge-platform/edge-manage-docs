@@ -20,24 +20,14 @@ on:
     types: [deploy-preview, close-preview, deploy]
   workflow_dispatch:
     inputs:
-      source_repo:
-        description: 'Source repository (owner/repo)'
+      target:
+        description: 'What to deploy'
         required: false
-        type: string
-      pr_number:
-        description: 'Pull request number (preview/merge modes)'
-        required: false
-        type: string
-      branch:
-        description: 'Branch (main/master => merge, otherwise => preview)'
-        required: false
-        type: string
-      commit_sha:
-        description: 'Commit SHA (40 hex chars; not required for close mode)'
-        required: false
-        type: string
-      closed:
-        description: 'Set to "true" to clean up a closed spoke PR preview'
+        type: choice
+        options: [all, hub, spoke]
+        default: all
+      spoke_id:
+        description: 'Spoke ID (required when target = spoke)'
         required: false
         type: string
 
@@ -50,10 +40,9 @@ concurrency:
   group: >-
     ${{ github.event_name == 'push' && 'deploy-hub'
         || github.event_name == 'pull_request' && format('deploy-hub-pr-{0}', github.event.pull_request.number)
-        || (github.event.action == 'deploy' && format('deploy-manual-{0}', github.event.client_payload.target || 'all'))
-        || format('deploy-{0}-{1}',
-             github.event.client_payload.source_repo || inputs.source_repo,
-             github.event.client_payload.pr_number   || inputs.pr_number) }}
+        || github.event_name == 'workflow_dispatch' && format('deploy-manual-{0}', inputs.target || 'all')
+        || github.event.action == 'deploy' && format('deploy-manual-{0}', github.event.client_payload.target || 'all')
+        || format('deploy-{0}-{1}', github.event.client_payload.source_repo, github.event.client_payload.pr_number) }}
   cancel-in-progress: false
 
 jobs:
@@ -82,7 +71,7 @@ jobs:
           persist-credentials: false
 
       - id: validate
-        if: (github.event_name == 'repository_dispatch' && github.event.action != 'deploy') || (github.event_name == 'workflow_dispatch' && inputs.source_repo != '')
+        if: github.event_name == 'repository_dispatch' && github.event.action != 'deploy'
         uses: ./.github/actions/validate-dispatch
         with:
           event_type:   ${{ github.event.action || ((inputs.closed == 'true' && 'close-preview') || 'deploy-preview') }}
@@ -110,9 +99,8 @@ jobs:
           LABELED_NAME:       ${{ github.event.label.name }}
           REPO_OWNER:         ${{ github.repository_owner }}
           REPO_NAME:          ${{ github.event.repository.name }}
-          INPUTS_SOURCE_REPO: ${{ inputs.source_repo }}
-          DISPATCH_TARGET:    ${{ github.event.client_payload.target }}
-          DISPATCH_SPOKE_ID:  ${{ github.event.client_payload.spoke_id }}
+          DISPATCH_TARGET:    ${{ github.event.client_payload.target || inputs.target }}
+          DISPATCH_SPOKE_ID:  ${{ github.event.client_payload.spoke_id || inputs.spoke_id }}
           MODE:               ${{ steps.validate.outputs.mode }}
           SPOKE_ID:           ${{ steps.validate.outputs.spoke_id }}
           SPOKE_RBP:          ${{ steps.validate.outputs.spoke_route_base_path }}
@@ -135,11 +123,11 @@ jobs:
           comment_preview_path=
           cleanup_path=
 
-          if [[ "$EVENT_NAME" == "push" ]] \
-          || [[ "$EVENT_NAME" == "workflow_dispatch" && -z "$INPUTS_SOURCE_REPO" ]]; then
+          if [[ "$EVENT_NAME" == "push" ]]; then
             deploy_hub=true
 
-          elif [[ "$EVENT_NAME" == "repository_dispatch" && "$ACTION" == "deploy" ]]; then
+          elif [[ "$EVENT_NAME" == "workflow_dispatch" ]] \
+            || [[ "$EVENT_NAME" == "repository_dispatch" && "$ACTION" == "deploy" ]]; then
             case "$DISPATCH_TARGET" in
               spoke)
                 SPOKE_RBP_MANUAL=$(SPOKE="$DISPATCH_SPOKE_ID" \
