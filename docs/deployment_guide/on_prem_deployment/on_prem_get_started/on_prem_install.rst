@@ -275,7 +275,7 @@ The ``post-orch/post-orch.env`` file controls the Helm-based Edge Orchestrator d
 Run Installation Scripts
 ------------------------
 
-The installation is performed in three phases using scripts from the downloaded
+The installation is performed in two phases using scripts from the downloaded
 repository.
 
 Phase 1: Kubernetes Setup (pre-orch.sh)
