@@ -42,7 +42,14 @@ Key highlights of the 2026.1 release include:
 
 **Infrastructure and Edge Node Software**
 
-* **Update:** <TBD – list new/updated features for infrastructure and edge node>
+* **New:** Added support for provisioning clusters independently of the Cluster
+  Orchestrator (CO) for testing, development, and specialised use cases that
+  do not require full CO management capabilities. Clusters provisioned this way
+  will not appear in the CO dashboard, but their configurations remain bundled
+  with host configuration and accessible through ``orch-cli`` commands. For
+  full provisioning steps, see `Provisioning Clusters Without the Cluster
+  Orchestrator
+  <https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/advanced_functionality/provisioning_clusters_without_co.html>`_.
 
 **Edge Out-of-Band Manageability (EOM) Platform Enhancements**
 
