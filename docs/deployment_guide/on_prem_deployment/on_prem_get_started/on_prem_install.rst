@@ -7,7 +7,7 @@ Download the Installation Script
 -----------------------------------------------
 
 .. note::
-   EMF is released on a weekly basis. To use a weekly build, refer to the latest weekly tag available `here <https://github.com/open-edge-platform/edge-manageability-framework/discussions>`_. In the below script, replace v2025.2.0 with the appropriate weekly tag. Weekly tags follow the format: v2025.2.0-nYYYYMMDD.
+   EMF is released on a weekly basis. To use a weekly build, refer to the latest weekly tag available `here <https://github.com/open-edge-platform/edge-manageability-framework/discussions>`_. In the below script, replace v2026.1.0 with the appropriate weekly tag. Weekly tags follow the format: v2026.1.0-nYYYYMMDD.
 
 #. Create the script file on the Edge Orchestrator node using the following command:
 
@@ -282,7 +282,7 @@ Phase 1: Kubernetes Setup (pre-orch.sh)
 ++++++++++++++++++++++++++++++++++++++++
 
 The ``pre-orch.sh`` script installs a Kubernetes cluster together with MetalLB and
-OpenEBS LocalPV. Once the cluster is healthy, it automatically runs
+ OpenEBS LocalPV. Once the cluster is healthy, it automatically runs
 ``pre-orch-config.sh`` (controlled by ``INSTALL_PRE_CONFIG=true`` in ``pre-orch.env``)
 to create namespaces and seed Keycloak and PostgreSQL secrets. The Kubernetes
 provider (K3s, RKE2, or KinD) is configured in ``pre-orch/pre-orch.env`` or passed
