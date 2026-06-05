@@ -29,3 +29,25 @@
   line-height: 20px;
   letter-spacing: 0.25px;
 }
+
+.languageTabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.languageTab {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 6px 0;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+}
+
+.activeLanguageTab {
+  border-bottom: 2px solid #00c7fd;
+}

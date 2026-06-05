@@ -27,10 +27,15 @@ export const Performance = () => {
         <DottedCardDetails
           title="Optimize for latency"
           learnMoreLink="/docs/ecosystem/openvino-genai"
-          code={`compiled_model_latency = core.compile_model(
+          code={[
+            {
+              lang: "python",
+              code: `compiled_model_latency = core.compile_model(
               model,
               "CPU",
-              config={"PERFORMANCE_HINT": "LATENCY"})`}
+              config={"PERFORMANCE_HINT": "LATENCY"})`,
+            },
+          ]}
         />
 
         <DottedCardDetails
@@ -40,10 +45,15 @@ export const Performance = () => {
             </>
           }
           learnMoreLink="/docs/ecosystem/openvino-genai"
-          code={`compiled_model_throughput = core.compile_model(
+          code={[
+            {
+              lang: "python",
+              code: `compiled_model_throughput = core.compile_model(
               model,
               "CPU",
-              config={"PERFORMANCE_HINT": "THROUGHPUT"})`}
+              config={"PERFORMANCE_HINT": "THROUGHPUT"})`,
+            },
+          ]}
         />
         <div>
           <img src="/img/throughput-runtime.png" />

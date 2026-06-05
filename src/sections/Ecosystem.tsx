@@ -24,20 +24,30 @@ export const Ecosystem = () => {
           title="OpenVINO GenAI"
           description="Simplify GenAI model deployment"
           learnMoreLink="/docs/ecosystem/openvino-genai"
-          code={`
-                  import openvino genai as ov genai
+          code={[
+            {
+              lang: "python",
+              code: `import openvino genai as ov genai
 
                   pipe = ov_genai.LLMPipeline("TinyLlama_1_1b_v1_ov", "CPU")
-                  print(pipe.generate("What is OpenVINO?", max_new_tokens=100))`}
+                  print(pipe.generate("What is OpenVINO?", max_new_tokens=100))`,
+            },
+          ]}
         />
 
         <DottedCardDetails
           title="OpenVINO Physical AI"
           description="Real-time inference for robotics and autonomous systems (TBU)"
           learnMoreLink="/docs/ecosystem/openvino-genai"
-          code={`
-              from physicalai import InferenceModel
-`}
+          code={[
+            {
+              lang: "python",
+              code: `from physicalai import InferenceModel
+
+                      policy = InferenceModel("./exports/act_policy")
+                      action = policy.select_action(observation)`,
+            },
+          ]}
         />
 
         <DottedCardDetails
@@ -51,8 +61,10 @@ export const Ecosystem = () => {
           }
           description="A suite of post-training and training-time algorithms for optimizing inference"
           learnMoreLink="/docs/ecosystem/openvino-genai"
-          code={`
-              import nncf
+          code={[
+            {
+              lang: "python",
+              code: `import nncf
               import openvino as ov
               import torch
 
@@ -67,23 +79,27 @@ export const Ecosystem = () => {
               quantized_model = nncf.quantize(model, calibration_dataset)
               
               # Save or use the quantized model
-              ov.save_model(quantized_model, "quantized_model.xml")`}
+              ov.save_model(quantized_model, "quantized_model.xml")`,
+            },
+          ]}
         />
 
         <DottedCardDetails
           title="OpenVINO Model Server"
           description="A scalable inference server for models optimized with OpenVINO"
           learnMoreLink="/docs/ecosystem/openvino-genai"
-          lang="dockerfile"
-          code={`
-              docker run -d --rm -p 9000:9000 \\
+          code={[
+            {
+              lang: "dockerfile",
+              code: `docker run -d --rm -p 9000:9000 \\
 
               -v /path/to/models:/models \\
               openvino/model_server:latest \\
               --model_name resnet \\
               --model_path /models/resnet \\
-              --port 9000
-`}
+              --port 9000`,
+            },
+          ]}
         />
       </div>
     </Section>

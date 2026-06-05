@@ -62,6 +62,7 @@
 .row3 > :first-child,
 .row5 > :first-child {
   justify-self: end;
+  width: 100%;
 }
 
 .row1 > :last-child,

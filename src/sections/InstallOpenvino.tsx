@@ -33,7 +33,10 @@ export const InstallOpenvino = () => {
           <DottedCardDetails
             title="Bring your model to OpenVINO"
             learnMoreLink="/docs/ecosystem/openvino-genai"
-            code={`import openvino as ov
+            code={[
+              {
+                lang: "python",
+                code: `import openvino as ov
                     
                 import numpy as np
                 import nncf
@@ -41,7 +44,9 @@ export const InstallOpenvino = () => {
                 import torchvision.models as models
 
                 model = torchvision.models.resnet50(weights='DEFAULT')model.eval()
-                ov_model = ov.convert_model(model)`}
+                ov_model = ov.convert_model(model)`,
+              },
+            ]}
           />
 
           <img src="/img/openvino-ir.png" />
@@ -57,9 +62,14 @@ export const InstallOpenvino = () => {
           <DottedCardDetails
             title="Optimize your model"
             learnMoreLink="/docs/ecosystem/openvino-genai"
-            code={`calibration_data = [torch.randn(1, 3, 224, 224) for _ in range(00)]
+            code={[
+              {
+                lang: "python",
+                code: `calibration_data = [torch.randn(1, 3, 224, 224) for _ in range(00)]
                 calibration_dataset = nncf.Dataset(calibration_data)
-                quantized_model = nncf.quantize(ov_model, calibration_dataset)`}
+                quantized_model = nncf.quantize(ov_model, calibration_dataset)`,
+              },
+            ]}
           />
         </div>
 
@@ -71,10 +81,31 @@ export const InstallOpenvino = () => {
           <DottedCardDetails
             title="Run and infer"
             learnMoreLink="/docs/ecosystem/openvino-genai"
-            code={`core = ov.Core()
+            code={[
+              {
+                lang: "cpp",
+                label: "Run in C++",
+                code: `#include <openvino/openvino.hpp>
+                      #include <vector>
+                      #include <random>
+                      #include <iostream>`,
+              },
+              {
+                lang: "python",
+                label: "Run in Python",
+                code: `core = ov.Core()
                   compiled_model = core.compile_model(quantized_model, "CPU")
                   input_data = np.random.randn(1, 3, 224, 224).astype(np.float32)
-                  output = compiled_model(input_data)predictions = output[0]`}
+                  output = compiled_model(input_data)predictions = output[0]`,
+              },
+              {
+                lang: "javascript",
+                label: "Run in JavaScript",
+                code: `const ov = require('openvino-node');
+                      const core = new ov.Core();
+                      const compiledModel = core.compileModel(quantizedModel, 'CPU');`,
+              },
+            ]}
           />
 
           <img src="/img/run-and-infer.png" />

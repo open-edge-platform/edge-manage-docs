@@ -29,6 +29,7 @@
   mask-composite: exclude;
 
   filter: blur(2px);
+  pointer-events: none;
 }
 
 .container :global(pre.shiki) {
