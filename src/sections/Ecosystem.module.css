@@ -1,0 +1,47 @@
+.icon {
+  margin: auto;
+  display: block;
+  max-width: 80px;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 48px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+.description {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  text-align: center;
+  margin-top: var(--margin-size);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--margin-size) * 2);
+  align-items: stretch;
+  width: 100%;
+  margin-top: calc(var(--margin-size) * 4);
+}
+
+.grid > * {
+  height: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.titleDetails {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+h3:has(> .titleDetails) {
+  display: flex;
+  gap: var(--margin-size);
+}

@@ -1,15 +1,12 @@
 .container {
-  gap: 16px;
-  padding: 32px;
-  display: flex;
-  background: #061f55;
-  box-shadow: 0px 2px 4px 0px #0404041f;
-  align-items: center;
-  border-radius: 16px;
-  flex-direction: column;
-  color: var(--genai-color-white);
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
   position: relative;
   background: #06145f;
+  border-radius: 8px;
+  padding: calc(var(--margin-size) * 2);
+  overflow: hidden;
 }
 
 .container::before {
@@ -35,17 +32,18 @@
   filter: blur(2px);
 }
 
-.title {
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 32px;
-  text-align: center;
+.container :global(pre.shiki) {
+  margin: 0;
+  max-width: 100%;
+  min-width: 0;
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  overflow-x: hidden;
 }
 
-.description {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.25px;
-  text-align: center;
+.container :global(pre.shiki code) {
+  white-space: inherit !important;
+  overflow-wrap: inherit;
+  word-break: inherit;
 }

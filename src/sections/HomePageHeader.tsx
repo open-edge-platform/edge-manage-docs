@@ -1,6 +1,6 @@
+import { CardDetails } from "../components/CardDetails";
 import styles from "./HomePageHeader.module.css";
 import { Section } from "@site/src/components/Section/Section";
-import { CardDetails } from "../components/CardDetails";
 
 export const HomePageHeader = () => {
   return (

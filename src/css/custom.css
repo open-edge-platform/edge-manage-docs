@@ -53,7 +53,7 @@
 
   --ifm-link-color: var(--genai-color-classic-blue);
 
-  --max-container-width: 1200px;
+  --max-container-width: 1210px;
   --text-shadow-color: #171462db;
   --margin-size: 10px;
 }
@@ -71,7 +71,7 @@
 }
 
 body {
-  background-color: var(--genai-color-white);
+  color: var(--genai-color-white);
   font-family: var(--genai-font-family);
 }
 

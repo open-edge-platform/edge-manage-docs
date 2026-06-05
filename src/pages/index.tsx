@@ -1,8 +1,8 @@
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import EcosystemSection from "@site/src/components/EcosystemSection";
 import Layout from "@theme/Layout";
 import React from "react";
-import { HomePageHeader } from "../sections/HomePageHeader";
+import { Ecosystem } from "../Sections/Ecosystem";
+import { HomePageHeader } from "../Sections/HomePageHeader";
 
 export default function Home(): React.JSX.Element {
   const { siteConfig } = useDocusaurusContext();
@@ -13,7 +13,7 @@ export default function Home(): React.JSX.Element {
     >
       <HomePageHeader />
 
-      <EcosystemSection />
+      <Ecosystem />
     </Layout>
   );
 }
