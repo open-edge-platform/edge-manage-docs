@@ -101,7 +101,7 @@ The ``pre-orch/pre-orch.env`` file controls the Kubernetes cluster setup phase.
      - Default / Options
    * - ``PROVIDER``
      - Kubernetes distribution to install
-     - ``k3s`` *(options:* ``kind``, ``k3s``, ``rke2``*)*
+     - ``k3s`` (options: ``kind``, ``k3s``, ``rke2``)
    * - ``K3S_VERSION``
      - K3s version (used when ``PROVIDER=k3s``)
      - ``v1.34.3+k3s1``
@@ -282,7 +282,7 @@ Phase 1: Kubernetes Setup (pre-orch.sh)
 ++++++++++++++++++++++++++++++++++++++++
 
 The ``pre-orch.sh`` script installs a Kubernetes cluster together with MetalLB and
- OpenEBS LocalPV. Once the cluster is healthy, it automatically runs
+OpenEBS LocalPV. Once the cluster is healthy, it automatically runs
 ``pre-orch-config.sh`` (controlled by ``INSTALL_PRE_CONFIG=true`` in ``pre-orch.env``)
 to create namespaces and seed Keycloak and PostgreSQL secrets. The Kubernetes
 provider (K3s, RKE2, or KinD) is configured in ``pre-orch/pre-orch.env`` or passed
