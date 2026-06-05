@@ -20,7 +20,7 @@ jobs:
     outputs:
       skip: ${{ steps.branch_check.outputs.skip }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.2
         with:
           persist-credentials: false
       - name: Validate branch name
@@ -53,7 +53,7 @@ jobs:
       security-events: write
       id-token: write
       actions: read
-    uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@8f913a3d65d77e7553a00519102f2bf3a0dcd108  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@788914661031dded2960ee0af10169ca6c2e6686  # yamllint disable-line rule:line-length
     with:
       run_version_check: true
       run_dep_version_check: false
