@@ -266,7 +266,7 @@ The ``post-orch/post-orch.env`` file controls the Helm-based Edge Orchestrator d
      - Enable edge-node and orchestrator observability (metrics, logs, dashboards)
      - ``false``
    * - ``EOM_DEFAULT_TENANCY``
-     - Auto-create a default organisation, project, and tenant-admin user on first start
+     - Auto-create a default organization, project, and tenant-admin user on first start
      - ``false``
    * - ``EOM_ENABLE_PXE``
      - Enable PXE boot server for edge-node OS provisioning
@@ -518,7 +518,7 @@ Grafana dashboards, Prometheus agents, and the observability tenant controller.
 Single Tenancy (Auto-bootstrap)
 ++++++++++++++++++++++++++++++++
 
-Automatically creates a default organisation, project, and ``tenant-admin`` Keycloak user
+Automatically creates a default organization, project, and ``tenant-admin`` Keycloak user
 on first deployment.
 
 .. code-block:: shell
@@ -606,6 +606,7 @@ Start the Deployment Process
 This process can take up to an hour to complete.
 
 .. _on_prem_view_argocd:
+.. _on_prem_watch_deploy:
 
 Watch Deployment Progress
 --------------------------
