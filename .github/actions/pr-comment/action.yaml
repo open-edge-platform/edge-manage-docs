@@ -1,20 +1,29 @@
 name: PR Comment
 description: |
-  Mint a GitHub App token scoped to the spoke repo and post (or edit) a
-  comment on a PR there. Used to surface preview build status from the hub.
+  Post or update a PR comment. Supports two auth modes:
+    - GitHub App (app_id + private_key): for cross-repo comments (spoke PRs).
+    - GITHUB_TOKEN (token): for same-repo comments (hub PRs).
+
+  Update modes:
+    - edit_last: "true"  → edit the most recent comment by the authenticated user.
+    - comment_id: "<id>" → update a specific comment by ID.
+    - neither            → create a new comment; emits comment_id output.
 
 inputs:
   app_id:
-    description: 'GitHub App ID'
-    required: true
+    description: 'GitHub App ID (cross-repo auth)'
+    required: false
+    default: ''
   private_key:
-    description: 'GitHub App private key'
-    required: true
-  owner:
-    description: 'Spoke repo owner'
-    required: true
+    description: 'GitHub App private key (cross-repo auth)'
+    required: false
+    default: ''
+  token:
+    description: 'GITHUB_TOKEN (same-repo auth, alternative to app_id + private_key)'
+    required: false
+    default: ''
   repo:
-    description: 'Spoke repo name (without owner)'
+    description: 'Full repository reference (owner/repo)'
     required: true
   pr_number:
     description: 'Pull request number'
@@ -23,34 +32,59 @@ inputs:
     description: 'Comment body (markdown)'
     required: true
   edit_last:
-    description: 'If "true", edit the most recent comment authored by the app instead of posting a new one.'
+    description: 'If "true", edit the most recent comment by the authenticated user.'
     required: false
     default: 'false'
+  comment_id:
+    description: 'Comment ID to update (takes precedence over edit_last).'
+    required: false
+    default: ''
+
+outputs:
+  comment_id:
+    description: 'ID of the created comment (only set when creating a new comment).'
+    value: ${{ steps.post.outputs.comment_id }}
 
 runs:
   using: composite
   steps:
-    - name: Generate GitHub App token
-      id: token
-      uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
-      with:
-        app-id: ${{ inputs.app_id }}
-        private-key: ${{ inputs.private_key }}
-        owner: ${{ inputs.owner }}
-        repositories: ${{ inputs.repo }}
-
-    - name: Post comment
+    - name: Parse repo owner and name
+      id: parse
+      if: inputs.app_id != ''
       shell: bash
       env:
-        GH_TOKEN: ${{ steps.token.outputs.token }}
-        SOURCE_REPO: ${{ inputs.owner }}/${{ inputs.repo }}
-        PR_NUM: ${{ inputs.pr_number }}
-        BODY: ${{ inputs.body }}
-        EDIT_LAST: ${{ inputs.edit_last }}
+        REPO: ${{ inputs.repo }}
+      run: |
+        echo "owner=${REPO%%/*}" >> "$GITHUB_OUTPUT"
+        echo "name=${REPO##*/}"  >> "$GITHUB_OUTPUT"
+
+    - name: Generate GitHub App token
+      id: app-token
+      if: inputs.app_id != ''
+      uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
+      with:
+        app-id:      ${{ inputs.app_id }}
+        private-key: ${{ inputs.private_key }}
+        owner:        ${{ steps.parse.outputs.owner }}
+        repositories: ${{ steps.parse.outputs.name }}
+
+    - name: Post or update comment
+      id: post
+      shell: bash
+      env:
+        GH_TOKEN:   ${{ inputs.token != '' && inputs.token || steps.app-token.outputs.token }}
+        REPO:       ${{ inputs.repo }}
+        PR_NUM:     ${{ inputs.pr_number }}
+        BODY:       ${{ inputs.body }}
+        EDIT_LAST:  ${{ inputs.edit_last }}
+        COMMENT_ID: ${{ inputs.comment_id }}
       run: |
         set -euo pipefail
-        args=(pr comment "$PR_NUM" --repo "$SOURCE_REPO" --body "$BODY")
-        if [[ "$EDIT_LAST" == "true" ]]; then
-          args+=(--edit-last)
+        if [[ -n "$COMMENT_ID" ]]; then
+          gh api "repos/$REPO/issues/comments/$COMMENT_ID" -X PATCH -f body="$BODY"
+        elif [[ "$EDIT_LAST" == "true" ]]; then
+          gh pr comment "$PR_NUM" --repo "$REPO" --body "$BODY" --edit-last
+        else
+          new_id=$(gh api "repos/$REPO/issues/$PR_NUM/comments" -f body="$BODY" --jq '.id')
+          echo "comment_id=$new_id" >> "$GITHUB_OUTPUT"
         fi
-        gh "${args[@]}"

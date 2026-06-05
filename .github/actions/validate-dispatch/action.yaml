@@ -2,16 +2,15 @@ name: Validate Dispatch
 description: |
   Validate a dispatch payload (or workflow_dispatch input set), check the
   source repo against `spokes.yml`, and emit normalised outputs for the
-  caller. Handles three event types:
-    - deploy-preview  (preview/merge mode, used by publish-preview.yml)
-    - publish-release (used by publish-release.yml)
-    - close-preview   (used by close-preview.yml)
+  caller. Handles two event types:
+    - deploy-preview  (preview/merge mode)
+    - close-preview
 
   Includes a sparse checkout of `spokes.yml` so callers do not repeat it.
 
 inputs:
   event_type:
-    description: '`deploy-preview` | `publish-release` | `close-preview`'
+    description: '`deploy-preview` | `close-preview`'
     required: true
   source_repo:
     description: 'owner/name of the spoke repo'
@@ -25,11 +24,7 @@ inputs:
     required: false
     default: ''
   commit_sha:
-    description: 'Commit SHA (deploy-preview, publish-release)'
-    required: false
-    default: ''
-  tag:
-    description: 'Release tag vX.Y.Z (publish-release only)'
+    description: 'Commit SHA (deploy-preview only)'
     required: false
     default: ''
   sender_login:
@@ -61,7 +56,7 @@ inputs:
     required: false
     default: ''
   github_token:
-    description: 'Token for the GH API checks (PR/tag/commit existence).'
+    description: 'Token for the GH API checks (PR/commit existence).'
     required: true
 
 outputs:
@@ -83,11 +78,8 @@ outputs:
   commit_sha:
     description: 'Validated commit SHA'
     value: ${{ steps.validate.outputs.commit_sha }}
-  tag:
-    description: 'Validated release tag'
-    value: ${{ steps.validate.outputs.tag }}
   mode:
-    description: '`preview` or `merge` (deploy-preview only)'
+    description: '`preview`, `merge`, or `close`'
     value: ${{ steps.validate.outputs.mode }}
   spoke_id:
     description: 'Spoke id from spokes.yml'
@@ -115,7 +107,6 @@ runs:
         PR_NUM: ${{ inputs.pr_number }}
         BRANCH: ${{ inputs.branch }}
         COMMIT_SHA: ${{ inputs.commit_sha }}
-        TAG: ${{ inputs.tag }}
         SENDER_LOGIN: ${{ inputs.sender_login }}
         SENDER_ID: ${{ inputs.sender_id }}
         SENDER_TYPE: ${{ inputs.sender_type }}
@@ -153,10 +144,6 @@ runs:
             require branch     "$BRANCH"
             require commit_sha "$COMMIT_SHA"
             ;;
-          publish-release)
-            require tag        "$TAG"
-            require commit_sha "$COMMIT_SHA"
-            ;;
           close-preview)
             require pr_number  "$PR_NUM"
             ;;
@@ -191,15 +178,6 @@ runs:
             MODE="preview"
           fi
           echo "Mode: $MODE"
-        fi
-
-        # --- Tag validation (publish-release only). -----------------------
-        if [[ "$EVENT_TYPE" == "publish-release" ]]; then
-          if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "Error: Tag '$TAG' does not match required format vMAJOR.MINOR.PATCH"
-            exit 1
-          fi
-          MODE="release"
         fi
 
         if [[ "$EVENT_TYPE" == "close-preview" ]]; then
@@ -244,7 +222,7 @@ runs:
                 [[ "$PR_MERGED" == "true" ]] \
                   || { echo "Error: PR #$PR_NUM has not been merged (merged=$PR_MERGED, state=$PR_STATE)"; exit 1; }
 
-                # Only accept PR_HEAD_SHA or PR_MERGE_SHA to prevent downgrade attacks (double-check)
+                # Only accept PR_HEAD_SHA or PR_MERGE_SHA to prevent downgrade attacks
                 if [[ "$COMMIT_SHA" != "$PR_HEAD_SHA" && "$COMMIT_SHA" != "$PR_MERGE_SHA" ]]; then
                   echo "Error: Commit $COMMIT_SHA does not belong to PR #$PR_NUM (expected: $PR_HEAD_SHA or $PR_MERGE_SHA)"
                   exit 1
@@ -252,20 +230,6 @@ runs:
                 echo "✅ Merge commit verified against PR #$PR_NUM"
                 ;;
             esac
-            ;;
-          publish-release)
-            # Verify tag exists and points at the claimed commit.
-            TAG_SHA=$(gh api "repos/$SOURCE_REPO/git/refs/tags/$TAG" --jq '.object.sha' 2>/dev/null || echo "")
-            [[ -n "$TAG_SHA" ]] || { echo "Error: Tag '$TAG' not found in $SOURCE_REPO"; exit 1; }
-            TAG_OBJ_TYPE=$(gh api "repos/$SOURCE_REPO/git/tags/$TAG_SHA" --jq '.object.type' 2>/dev/null || echo "")
-            if [[ "$TAG_OBJ_TYPE" == "commit" ]]; then
-              TAG_COMMIT=$(gh api "repos/$SOURCE_REPO/git/tags/$TAG_SHA" --jq '.object.sha')
-            else
-              TAG_COMMIT="$TAG_SHA"
-            fi
-            [[ "$TAG_COMMIT" == "$COMMIT_SHA" ]] \
-              || { echo "Error: Tag '$TAG' points at $TAG_COMMIT, not $COMMIT_SHA"; exit 1; }
-            echo "✅ Release validated: $SOURCE_REPO@$TAG → $SPOKE_ID/"
             ;;
           close-preview)
             : # No further checks needed; cleanup is keyed solely on PR number + spoke.
@@ -282,7 +246,6 @@ runs:
           echo "pr_number=$PR_NUM"
           echo "branch=$BRANCH"
           echo "commit_sha=$COMMIT_SHA"
-          echo "tag=$TAG"
           echo "mode=$MODE"
           echo "spoke_id=$SPOKE_ID"
           echo "spoke_route_base_path=$SPOKE_RBP"

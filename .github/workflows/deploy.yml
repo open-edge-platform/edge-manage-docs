@@ -1,151 +1,58 @@
 name: Deploy
 
-# Single workflow that builds and deploys self-contained Docusaurus bundles.
-# Each bundle owns its own S3 prefix so concurrent deploys to sibling prefixes
-# are safe (their `--delete` syncs never touch each other's assets).
-#
-#   push to main                → hub bundle  → bucket root (dev).
-#   push of v* tag              → hub bundle  → bucket root (prod).
-#   repository_dispatch preview → spoke bundle at baseUrl=/pr/<id>/<N>/ →
-#                                  pr/<id>/<N>/.   (independent site)
-#   repository_dispatch merge   → hub bundle to bucket root  ‖  spoke bundle
-#                                  at baseUrl=/<rbp>/  →  <rbp>/.   (parallel)
-#   repository_dispatch release → hub bundle to bucket root  ‖  spoke bundle
-#                                  at baseUrl=/<rbp>/  →  <rbp>/.
-#                                  Versioning is part of the spoke content
-#                                  (docs-versions/), so the same <rbp>/
-#                                  prefix carries every published version.
-#   repository_dispatch close   → remove pr/<id>/<N>/.
-
 on:
-  push:
-    branches: [main]
-    tags: ['v*']
-  repository_dispatch:
-    types: [deploy-preview, publish-release, close-preview]
-  workflow_dispatch:
+  workflow_call:
     inputs:
-      source_repo:
-        description: 'Source repository (owner/repo)'
+      mode:
+        description: '"hub" | "spoke"'
+        required: true
+        type: string
+      s3_path:
+        description: 'S3 prefix to sync to (empty = bucket root)'
         required: false
         type: string
-      pr_number:
-        description: 'Pull request number (preview/merge modes)'
+        default: ''
+      spoke_id:
+        description: 'Spoke identifier — spoke mode only'
         required: false
         type: string
-      branch:
-        description: 'Branch (main/master => merge, otherwise => preview)'
+        default: ''
+      spoke_overrides:
+        description: 'SPOKE_OVERRIDES value (<repo>:<sha>) — spoke mode only'
         required: false
         type: string
-      commit_sha:
-        description: 'Commit SHA (40 hex chars; not required for close mode)'
+        default: ''
+      ref:
+        description: 'Git ref to checkout (empty = HEAD)'
         required: false
         type: string
-      tag:
-        description: 'Release tag vX.Y.Z (release mode only)'
-        required: false
-        type: string
-      closed:
-        description: 'Set to "true" to clean up a closed PR preview'
-        required: false
-        type: string
-
-permissions: {}
-
-concurrency:
-  group: deploy-${{ github.event_name == 'push' && (startsWith(github.ref, 'refs/tags/') && 'prod-hub' || 'dev-hub') || format('{0}-{1}', github.event.client_payload.source_repo || inputs.source_repo, github.event.client_payload.pr_number || inputs.pr_number || github.event.client_payload.tag || inputs.tag) }}
-  cancel-in-progress: false
+        default: ''
 
 jobs:
-  # --- Dispatch validation (repository_dispatch / workflow_dispatch). -------
-  validate-input:
-    if: github.event_name == 'repository_dispatch' || (github.event_name == 'workflow_dispatch' && inputs.source_repo != '')
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    outputs:
-      source_repo: ${{ steps.validate.outputs.source_repo }}
-      repo_owner: ${{ steps.validate.outputs.repo_owner }}
-      repo_name: ${{ steps.validate.outputs.repo_name }}
-      pr_number: ${{ steps.validate.outputs.pr_number }}
-      branch: ${{ steps.validate.outputs.branch }}
-      commit_sha: ${{ steps.validate.outputs.commit_sha }}
-      tag: ${{ steps.validate.outputs.tag }}
-      mode: ${{ steps.validate.outputs.mode }}
-      spoke_id: ${{ steps.validate.outputs.spoke_id }}
-      spoke_route_base_path: ${{ steps.validate.outputs.spoke_route_base_path }}
-      spoke_preview_path: ${{ steps.validate.outputs.spoke_preview_path }}
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          sparse-checkout: |
-            .github/actions/validate-dispatch
-            spokes.yml
-          sparse-checkout-cone-mode: false
-          persist-credentials: false
-      - id: validate
-        uses: ./.github/actions/validate-dispatch
-        with:
-          event_type: ${{ github.event.action || ((inputs.closed == 'true' && 'close-preview') || (inputs.tag && 'publish-release') || 'deploy-preview') }}
-          source_repo: ${{ github.event.client_payload.source_repo || inputs.source_repo }}
-          pr_number:   ${{ github.event.client_payload.pr_number   || inputs.pr_number }}
-          branch:      ${{ github.event.client_payload.branch      || inputs.branch }}
-          commit_sha:  ${{ github.event.client_payload.commit_sha  || inputs.commit_sha }}
-          tag:         ${{ github.event.client_payload.tag         || inputs.tag }}
-          sender_login: ${{ github.event.sender.login }}
-          sender_id:    ${{ github.event.sender.id }}
-          sender_type:  ${{ github.event.sender.type }}
-          is_repository_dispatch: ${{ github.event_name == 'repository_dispatch' }}
-          approved_sender_login: ${{ secrets.APPROVED_BOT_LOGIN }}
-          approved_sender_id:    ${{ secrets.APPROVED_BOT_ID }}
-          approved_sender_type:  ${{ secrets.APPROVED_BOT_TYPE }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-  # --- Hub bundle: bucket-root deploy. --------------------------------------
-  # Runs for every push (dev hub on main, prod hub on tag) and on every
-  # merge/release dispatch. Always builds with HUB_ONLY=1; the sync excludes
-  # every spoke's <rbp> and the pr/ prefix so it never touches their bytes.
-  hub-deploy:
-    if: |
-      !failure() && !cancelled()
-      && (
-        github.event_name == 'push'
-        || (github.event_name == 'workflow_dispatch' && inputs.source_repo == '')
-        || needs.validate-input.outputs.mode == 'merge'
-        || needs.validate-input.outputs.mode == 'release'
-      )
-    needs: [validate-input]
+  deploy:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
       contents: read
-    env:
-      IS_PROD: ${{ startsWith(github.ref, 'refs/tags/') || needs.validate-input.outputs.mode == 'release' }}
+    environment:
+      name: publish-preview
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
+          ref: ${{ inputs.ref }}
           persist-credentials: false
       - uses: ./.github/actions/setup-build
-      - name: Resolve secrets
-        id: secrets
+      - name: Build
         env:
-          AWS_ROLE: ${{ env.IS_PROD == 'true' && secrets.PROD_ROLE   || secrets.DEV_ROLE }}
-          BUCKET:   ${{ env.IS_PROD == 'true' && secrets.PROD_BUCKET || secrets.DEV_BUCKET }}
-          SITE_URL: ${{ env.IS_PROD == 'true' && secrets.PROD_URL    || secrets.DEV_URL }}
-        run: |
-          {
-            echo "aws_role=$AWS_ROLE"
-            echo "bucket=$BUCKET"
-            echo "site_url=$SITE_URL"
-          } >> "$GITHUB_OUTPUT"
-      - name: Build hub-only
-        env:
-          HUB_ONLY: '1'
-          SITE_URL: ${{ steps.secrets.outputs.site_url }}
-          BASE_URL: /
+          HUB_ONLY:        ${{ inputs.mode == 'hub' && '1' || '' }}
+          SPOKE:           ${{ inputs.mode == 'spoke' && inputs.spoke_id || '' }}
+          SPOKE_OVERRIDES: ${{ inputs.spoke_overrides }}
+          SITE_URL:        ${{ secrets.DEV_URL }}
+          BASE_URL:        ${{ inputs.s3_path != '' && format('/{0}/', inputs.s3_path) || '/' }}
         run: npm run build
-      - name: Compute spoke excludes
+      - name: Compute excludes
         id: excludes
+        if: inputs.mode == 'hub'
         run: |
           set -euo pipefail
           {
@@ -154,187 +61,10 @@ jobs:
             yq -r '.spokes[].routeBasePath | . + "/*"' spokes.yml
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
-      - name: Sync hub to bucket root
+      - name: Sync
         uses: ./.github/actions/aws-deploy
         with:
-          role:     ${{ steps.secrets.outputs.aws_role }}
-          bucket:   ${{ steps.secrets.outputs.bucket }}
+          role:     ${{ secrets.DEV_ROLE }}
+          bucket:   ${{ secrets.DEV_BUCKET }}
+          path:     ${{ inputs.s3_path }}
           excludes: ${{ steps.excludes.outputs.patterns }}
-
-  # --- PR preview: spoke bundle at pr/<id>/<N>/ (independent site). --------
-  preview-comment-start:
-    needs: [validate-input]
-    if: needs.validate-input.outputs.mode == 'preview'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    environment:
-      name: publish-preview
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          sparse-checkout: .github/actions/pr-comment
-          persist-credentials: false
-      - uses: ./.github/actions/pr-comment
-        with:
-          app_id:      ${{ secrets.DOC_HELPER_APP_ID }}
-          private_key: ${{ secrets.DOC_HELPER_APP_PRIVATE_KEY }}
-          owner:       ${{ needs.validate-input.outputs.repo_owner }}
-          repo:        ${{ needs.validate-input.outputs.repo_name }}
-          pr_number:   ${{ needs.validate-input.outputs.pr_number }}
-          body: "🔄 Building documentation preview for commit `${{ needs.validate-input.outputs.commit_sha }}`... ([View build progress](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}))"
-
-  preview-build-deploy:
-    needs: [validate-input, preview-comment-start]
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          persist-credentials: false
-      - uses: ./.github/actions/setup-build
-      - name: Build hub + all spokes at preview prefix
-        env:
-          BUILD_ALL_SPOKES: '1'
-          SPOKE_OVERRIDES: ${{ needs.validate-input.outputs.source_repo }}:${{ needs.validate-input.outputs.commit_sha }}
-          SITE_URL: ${{ secrets.DEV_URL }}
-          BASE_URL: /pr/${{ needs.validate-input.outputs.spoke_id }}/${{ needs.validate-input.outputs.pr_number }}/
-        run: npm run build
-      - name: Sync to pr/<id>/<N>/
-        uses: ./.github/actions/aws-deploy
-        with:
-          role:   ${{ secrets.DEV_ROLE }}
-          bucket: ${{ secrets.DEV_BUCKET }}
-          path:   pr/${{ needs.validate-input.outputs.spoke_id }}/${{ needs.validate-input.outputs.pr_number }}
-
-  add-pr-comment:
-    if: always() && needs.validate-input.outputs.mode == 'preview'
-    needs: [validate-input, preview-build-deploy]
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    environment:
-      name: publish-preview
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          sparse-checkout: .github/actions/pr-comment
-          persist-credentials: false
-      - name: Prepare PR comment
-        id: message
-        run: |
-          if [ "${{ needs.preview-build-deploy.result }}" == "success" ]; then
-            echo "body<<EOF" >> $GITHUB_OUTPUT
-            echo "✅ Documentation preview deployed for commit \`${{ needs.validate-input.outputs.commit_sha }}\`" >> $GITHUB_OUTPUT
-            echo "" >> $GITHUB_OUTPUT
-            echo "Preview: ${{ secrets.DEV_URL }}/pr/${{ needs.validate-input.outputs.spoke_id }}/${{ needs.validate-input.outputs.pr_number }}/" >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT
-          else
-            echo "body<<EOF" >> $GITHUB_OUTPUT
-            echo "❌ Documentation preview failed for commit \`${{ needs.validate-input.outputs.commit_sha }}\`" >> $GITHUB_OUTPUT
-            echo "" >> $GITHUB_OUTPUT
-            echo "[View failed GitHub Actions run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT
-          fi
-      - uses: ./.github/actions/pr-comment
-        with:
-          app_id:      ${{ secrets.DOC_HELPER_APP_ID }}
-          private_key: ${{ secrets.DOC_HELPER_APP_PRIVATE_KEY }}
-          owner:       ${{ needs.validate-input.outputs.repo_owner }}
-          repo:        ${{ needs.validate-input.outputs.repo_name }}
-          pr_number:   ${{ needs.validate-input.outputs.pr_number }}
-          edit_last:   'true'
-          body: ${{ steps.message.outputs.body }}
-
-  # --- Merge: spoke bundle into <rbp>/ (runs in parallel with hub-deploy). --
-  merge-spoke-deploy:
-    needs: [validate-input]
-    if: needs.validate-input.outputs.mode == 'merge'
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
-    environment:
-      name: publish-preview
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          persist-credentials: false
-      - uses: ./.github/actions/setup-build
-      - name: Build spoke
-        env:
-          SPOKE: ${{ needs.validate-input.outputs.spoke_id }}
-          SPOKE_OVERRIDES: ${{ needs.validate-input.outputs.source_repo }}:${{ needs.validate-input.outputs.commit_sha }}
-          SITE_URL: ${{ secrets.DEV_URL }}
-        run: npm run build
-      - name: Sync to <rbp>/
-        uses: ./.github/actions/aws-deploy
-        with:
-          role:   ${{ secrets.DEV_ROLE }}
-          bucket: ${{ secrets.DEV_BUCKET }}
-          path:   ${{ needs.validate-input.outputs.spoke_route_base_path }}
-      - name: Remove stale PR preview
-        if: needs.validate-input.outputs.pr_number != ''
-        uses: ./.github/actions/aws-deploy
-        with:
-          role:   ${{ secrets.DEV_ROLE }}
-          bucket: ${{ secrets.DEV_BUCKET }}
-          path:   pr/${{ needs.validate-input.outputs.spoke_id }}/${{ needs.validate-input.outputs.pr_number }}
-          mode:   rm
-
-  # --- Release: spoke bundle into <rbp>/ at the tagged commit. -------------
-  # Versioning is part of the spoke's content (docs-versions/), so a release
-  # is just "build the spoke at the tagged commit and replace <rbp>/". The
-  # built-in docsVersionDropdown reads the version list from the bundle
-  # itself — no separate redirect or manifest is needed.
-  release-spoke-deploy:
-    needs: [validate-input]
-    if: needs.validate-input.outputs.mode == 'release'
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
-    environment:
-      name: publish-release
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          persist-credentials: false
-      - uses: ./.github/actions/setup-build
-      - name: Build spoke at release commit
-        env:
-          SPOKE: ${{ needs.validate-input.outputs.spoke_id }}
-          SPOKE_OVERRIDES: ${{ needs.validate-input.outputs.source_repo }}:${{ needs.validate-input.outputs.commit_sha }}
-          SITE_URL: ${{ secrets.PROD_URL }}
-        run: npm run build
-      - name: Sync to <rbp>/
-        uses: ./.github/actions/aws-deploy
-        with:
-          role:   ${{ secrets.PROD_ROLE }}
-          bucket: ${{ secrets.PROD_BUCKET }}
-          path:   ${{ needs.validate-input.outputs.spoke_route_base_path }}
-
-  # --- Close: remove the PR preview prefix. ---------------------------------
-  close-cleanup:
-    needs: [validate-input]
-    if: needs.validate-input.outputs.mode == 'close'
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
-    environment:
-      name: publish-preview
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          sparse-checkout: .github/actions/aws-deploy
-          persist-credentials: false
-      - name: Remove preview folder
-        uses: ./.github/actions/aws-deploy
-        with:
-          role:   ${{ secrets.DEV_ROLE }}
-          bucket: ${{ secrets.DEV_BUCKET }}
-          path:   pr/${{ needs.validate-input.outputs.spoke_id }}/${{ needs.validate-input.outputs.pr_number }}
-          mode:   rm
