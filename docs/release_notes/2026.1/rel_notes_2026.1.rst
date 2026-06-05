@@ -84,7 +84,6 @@ Day 2 Updates
   after successful OS image download. In this release, update status reporting
   is corrected to reflect the actual download result.
 
-
 Known Issues
 ----------------------------------
 
