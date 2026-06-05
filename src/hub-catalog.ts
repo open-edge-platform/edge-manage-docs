@@ -24,7 +24,7 @@ export const SPOKE_CATALOG: Record<string, SpokeCatalogEntry> = {
   },
 };
 
-// Product cards rendered in the navbar "/Users/ccolora1/Downloads/ai.png" dropdown and in
+// Product cards rendered in the navbar "OpenVINO Runtime" dropdown and in
 // the landing page Ecosystem section. A card is clickable iff `spokeId`
 // matches an id in spokes.yml (looked up at render time via the
 // site-config customField). Otherwise it renders disabled with a
