@@ -7,10 +7,6 @@ on:
         description: '"hub" | "spoke"'
         required: true
         type: string
-      base_url:
-        description: 'Docusaurus BASE_URL'
-        required: true
-        type: string
       s3_path:
         description: 'S3 prefix to sync to (empty = bucket root)'
         required: false
@@ -52,7 +48,7 @@ jobs:
           SPOKE:           ${{ inputs.mode == 'spoke' && inputs.spoke_id || '' }}
           SPOKE_OVERRIDES: ${{ inputs.spoke_overrides }}
           SITE_URL:        ${{ secrets.DEV_URL }}
-          BASE_URL:        ${{ inputs.base_url }}
+          BASE_URL:        ${{ inputs.s3_path != '' && format('/{0}/', inputs.s3_path) || '/' }}
         run: npm run build
       - name: Compute excludes
         id: excludes

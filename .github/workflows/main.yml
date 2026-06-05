@@ -62,7 +62,7 @@ jobs:
     permissions:
       contents: read
     outputs:
-      hub_base_url:          ${{ steps.compute.outputs.hub_base_url }}
+      deploy_hub:            ${{ steps.compute.outputs.deploy_hub }}
       hub_s3_path:           ${{ steps.compute.outputs.hub_s3_path }}
       hub_ref:               ${{ steps.compute.outputs.hub_ref }}
       spoke_matrix:          ${{ steps.compute.outputs.spoke_matrix }}
@@ -124,7 +124,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          hub_base_url=
+          deploy_hub=false
           hub_s3_path=
           hub_ref=
           spoke_matrix=[]
@@ -137,27 +137,25 @@ jobs:
 
           if [[ "$EVENT_NAME" == "push" ]] \
           || [[ "$EVENT_NAME" == "workflow_dispatch" && -z "$INPUTS_SOURCE_REPO" ]]; then
-            hub_base_url=/
+            deploy_hub=true
 
           elif [[ "$EVENT_NAME" == "repository_dispatch" && "$ACTION" == "deploy" ]]; then
             case "$DISPATCH_TARGET" in
-              hub)
-                hub_base_url=/
-                ;;
               spoke)
                 SPOKE_RBP_MANUAL=$(SPOKE="$DISPATCH_SPOKE_ID" \
                   yq -r '.spokes[] | select(.id == strenv(SPOKE)) | .routeBasePath' spokes.yml)
                 spoke_matrix=$(jq -cn \
-                  --arg id       "$DISPATCH_SPOKE_ID" \
-                  --arg base_url "/$SPOKE_RBP_MANUAL/" \
-                  --arg s3_path  "$SPOKE_RBP_MANUAL" \
-                  '[{"id":$id,"base_url":$base_url,"s3_path":$s3_path,"spoke_overrides":"","ref":""}]')
+                  --arg id      "$DISPATCH_SPOKE_ID" \
+                  --arg s3_path "$SPOKE_RBP_MANUAL" \
+                  '[{"id":$id,"s3_path":$s3_path,"spoke_overrides":"","ref":""}]')
+                ;;
+              hub)
+                deploy_hub=true
                 ;;
               all|*)
-                hub_base_url=/
+                deploy_hub=true
                 spoke_matrix=$(yq -o=json '[.spokes[] | {
                   "id":              .id,
-                  "base_url":        "/" + .routeBasePath + "/",
                   "s3_path":         .routeBasePath,
                   "spoke_overrides": "",
                   "ref":             ""
@@ -168,7 +166,7 @@ jobs:
           elif [[ "$EVENT_NAME" == "pull_request" && "$ACTION" != "closed" ]] \
             && { [[ "$ACTION" == "labeled" && "$LABELED_NAME" == "deploy-doc-preview" ]] \
               || [[ "$ACTION" == "synchronize" && "$HAS_LABEL" == "true" ]]; }; then
-            hub_base_url=/pr/hub/$PR_NUMBER/
+            deploy_hub=true
             hub_s3_path=pr/hub/$PR_NUMBER
             hub_ref=$PR_HEAD_SHA
             comment_auth_method=token
@@ -179,7 +177,6 @@ jobs:
             spoke_matrix=$(PR_NUM="$PR_NUMBER" REF="$PR_HEAD_SHA" \
               yq -o=json '[.spokes[] | {
                 "id":              .id,
-                "base_url":        "/pr/hub/" + strenv(PR_NUM) + "/" + .routeBasePath + "/",
                 "s3_path":         "pr/hub/" + strenv(PR_NUM) + "/" + .routeBasePath,
                 "spoke_overrides": "",
                 "ref":             strenv(REF)
@@ -189,7 +186,7 @@ jobs:
             cleanup_path=pr/hub/$PR_NUMBER
 
           elif [[ "$MODE" == "preview" ]]; then
-            hub_base_url=/pr/$SPOKE_ID/$PR_NUMBER_DISP/
+            deploy_hub=true
             hub_s3_path=pr/$SPOKE_ID/$PR_NUMBER_DISP
             comment_auth_method=app
             comment_repo=$REPO_OWNER_DISP/$REPO_NAME_DISP
@@ -198,26 +195,24 @@ jobs:
             comment_preview_path=pr/$SPOKE_ID/$PR_NUMBER_DISP/
             spoke_matrix=$(jq -cn \
               --arg id        "$SPOKE_ID" \
-              --arg base_url  "/pr/$SPOKE_ID/$PR_NUMBER_DISP/$SPOKE_RBP/" \
               --arg s3_path   "pr/$SPOKE_ID/$PR_NUMBER_DISP/$SPOKE_RBP" \
               --arg overrides "$SOURCE_REPO:$COMMIT_SHA" \
-              '[{"id":$id,"base_url":$base_url,"s3_path":$s3_path,"spoke_overrides":$overrides,"ref":""}]')
+              '[{"id":$id,"s3_path":$s3_path,"spoke_overrides":$overrides,"ref":""}]')
 
           elif [[ "$MODE" == "merge" ]]; then
             [[ -n "$PR_NUMBER_DISP" ]] && cleanup_path="pr/$SPOKE_ID/$PR_NUMBER_DISP"
             spoke_matrix=$(jq -cn \
               --arg id        "$SPOKE_ID" \
-              --arg base_url  "/$SPOKE_RBP/" \
               --arg s3_path   "$SPOKE_RBP" \
               --arg overrides "$SOURCE_REPO:$COMMIT_SHA" \
-              '[{"id":$id,"base_url":$base_url,"s3_path":$s3_path,"spoke_overrides":$overrides,"ref":""}]')
+              '[{"id":$id,"s3_path":$s3_path,"spoke_overrides":$overrides,"ref":""}]')
 
           elif [[ "$MODE" == "close" ]]; then
             cleanup_path=pr/$SPOKE_ID/$PR_NUMBER_DISP
           fi
 
           {
-            echo "hub_base_url=$hub_base_url"
+            echo "deploy_hub=$deploy_hub"
             echo "hub_s3_path=$hub_s3_path"
             echo "hub_ref=$hub_ref"
             echo "spoke_matrix=$spoke_matrix"
@@ -257,16 +252,16 @@ jobs:
 
   deploy-hub:
     needs: [prepare]
-    if: needs.prepare.outputs.hub_base_url != ''
+    if: needs.prepare.outputs.deploy_hub == 'true'
     uses: ./.github/workflows/deploy.yml
     with:
-      mode:     hub
-      base_url: ${{ needs.prepare.outputs.hub_base_url }}
-      s3_path:  ${{ needs.prepare.outputs.hub_s3_path }}
-      ref:      ${{ needs.prepare.outputs.hub_ref }}
+      mode:    hub
+      s3_path: ${{ needs.prepare.outputs.hub_s3_path }}
+      ref:     ${{ needs.prepare.outputs.hub_ref }}
     secrets: inherit
 
   deploy-spokes:
+    name: deploy-spokes (${{ matrix.spoke.id }})
     needs: [prepare]
     if: needs.prepare.outputs.spoke_matrix != '[]'
     strategy:
@@ -277,7 +272,6 @@ jobs:
     with:
       mode:            spoke
       spoke_id:        ${{ matrix.spoke.id }}
-      base_url:        ${{ matrix.spoke.base_url }}
       s3_path:         ${{ matrix.spoke.s3_path }}
       spoke_overrides: ${{ matrix.spoke.spoke_overrides }}
       ref:             ${{ matrix.spoke.ref }}
