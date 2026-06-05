@@ -559,7 +559,7 @@ KVM and SOL Session Management
 
 The orch-cli supports starting and stopping KVM (Keyboard, Video, Mouse) and SOL (Serial Over LAN)
 remote sessions on AMT/vPRO-enabled Edge Nodes. These features require the OOB (out-of-band)
-support to be enabled on the connected Edge Orchestrator.
+support to be enabled on the connected Edge Nodes.
 
 Building the Binary
 """""""""""""""""""
