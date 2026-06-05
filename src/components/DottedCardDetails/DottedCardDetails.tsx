@@ -1,21 +1,21 @@
 import { ReactNode } from "react";
 import { Link } from "../Link/Link";
 import styles from "./DottedCardDetails.module.css";
+import { Code } from "../Code/Code";
 
 type DottedCardDetailsProps = {
   title: ReactNode;
+  code: string;
+  lang?: string;
   description?: ReactNode;
-  children: ReactNode;
-  learnMoreLink: {
-    text: string;
-    href: string;
-  };
+  learnMoreLink: string;
 };
 
 export const DottedCardDetails = ({
+  code,
   title,
+  lang,
   description,
-  children,
   learnMoreLink,
 }: DottedCardDetailsProps) => {
   return (
@@ -23,9 +23,9 @@ export const DottedCardDetails = ({
       <h3 className={styles.title}>{title}</h3>
       {description && <p className={styles.description}>{description}</p>}
 
-      {children}
+      <Code code={code} lang={lang} />
 
-      <Link href={learnMoreLink.href} label={learnMoreLink.text} />
+      <Link href={learnMoreLink} label="Learn more" />
     </div>
   );
 };

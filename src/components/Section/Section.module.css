@@ -13,3 +13,26 @@
     margin: 0 auto;
   }
 }
+
+.icon {
+  margin: auto;
+  display: block;
+  width: fit-content;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 48px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+.description {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  text-align: center;
+  margin-top: var(--margin-size);
+}

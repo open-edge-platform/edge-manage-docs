@@ -1,24 +1,5 @@
 .icon {
-  margin: auto;
-  display: block;
-  max-width: calc(var(--max-icon-size) + 16px);
-}
-
-.title {
-  font-weight: 500;
-  font-size: 48px;
-  line-height: 48px;
-  letter-spacing: 0px;
-  text-align: center;
-}
-
-.description {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.25px;
-  text-align: center;
-  margin-top: var(--margin-size);
+  max-width: calc(var(--max-icon-size) + 50px);
 }
 
 .containerOptions {

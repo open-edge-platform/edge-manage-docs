@@ -5,7 +5,6 @@
   position: relative;
   background: #06145f;
   border-radius: 8px;
-  padding: calc(var(--margin-size) * 2);
   overflow: hidden;
 }
 
@@ -36,6 +35,8 @@
   margin: 0;
   max-width: 100%;
   min-width: 0;
+  font-size: 12px;
+  padding: calc(var(--margin-size) * 2.2);
   white-space: pre-wrap !important;
   overflow-wrap: anywhere;
   word-break: break-word;

@@ -33,7 +33,7 @@ export const HomePageHeader = () => {
 
         <CardDetails
           maxIconWidth={70}
-          iconUrl="/img/performance.png"
+          iconUrl="/img/max-performance.png"
           title={<>Max performance, {<br />}min footprint</>}
           description="Advanced model compression, int4/int8 inference, and precision tuning close the gap with GPU performance on embedded and mobile devices."
         />
