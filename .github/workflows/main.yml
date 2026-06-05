@@ -1,18 +1,15 @@
 name: Main
 
-# Coordinator workflow. Reacts to supported events, converts each into a
-# set of deployment parameters, then delegates to reusable workflows.
+# Coordinator. Converts each supported trigger into deployment parameters,
+# then delegates to deploy.yml.
 #
-# Supported triggers → outcome:
-#   push to main                → hub at /
-#   hub PR labeled              → hub + all spokes at pr/hub/<N>/
-#   repository_dispatch preview → hub + spoke at pr/<spoke>/<N>/
-#   repository_dispatch merge   → spoke at /<rbp>/
-#   repository_dispatch close   → remove pr/<spoke>/<N>/
-#   hub PR closed               → remove pr/hub/<N>/
-#
-# Delegates to:
-#   .github/workflows/deploy.yml — builds and deploys a single hub or spoke bundle
+# trigger                       → outcome
+# push to main                  → hub at /
+# hub PR labeled                → hub + all spokes at pr/hub/<N>/
+# repository_dispatch preview   → hub + spoke at pr/<spoke>/<N>/
+# repository_dispatch merge     → spoke at /<rbp>/
+# repository_dispatch close     → remove pr/<spoke>/<N>/
+# hub PR closed                 → remove pr/hub/<N>/
 
 on:
   push:
@@ -238,8 +235,8 @@ jobs:
     secrets: inherit
 
   deploy-spokes:
-    needs: [prepare, deploy-hub]
-    if: "!failure() && !cancelled() && needs.prepare.outputs.spoke_matrix != '[]'"
+    needs: [prepare]
+    if: needs.prepare.outputs.spoke_matrix != '[]'
     strategy:
       fail-fast: false
       matrix:
@@ -316,3 +313,13 @@ jobs:
           bucket: ${{ secrets.DEV_BUCKET }}
           path:   ${{ needs.prepare.outputs.cleanup_path }}
           mode:   rm
+
+  status:
+    if: always()
+    needs: [deploy-hub, deploy-spokes, comment-end, cleanup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check all jobs passed
+        run: |
+          echo '${{ toJSON(needs) }}' \
+            | jq -e '[.[].result] | all(. == "success" or . == "skipped")'
