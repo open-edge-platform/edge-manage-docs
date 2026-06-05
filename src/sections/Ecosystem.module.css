@@ -1,7 +1,7 @@
 .icon {
   margin: auto;
   display: block;
-  max-width: 80px;
+  max-width: var(--max-icon-size);
 }
 
 .title {

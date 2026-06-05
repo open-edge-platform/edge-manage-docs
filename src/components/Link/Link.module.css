@@ -1,0 +1,15 @@
+.link {
+  align-self: flex-start;
+  color: #6ddcff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.link:hover {
+  text-decoration: none;
+}

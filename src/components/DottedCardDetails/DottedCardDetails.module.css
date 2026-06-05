@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  padding: calc(var(--margin-size) * 3);
+  padding: calc(var(--margin-size) * 4) calc(var(--margin-size) * 5);
   gap: calc(var(--margin-size) * 3);
   background: transparent;
   position: relative;
@@ -28,16 +28,4 @@
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.25px;
-}
-
-.learnMore {
-  align-self: flex-start;
-  color: #6ddcff;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 14px;
-  transition: color 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  margin-left: auto;
 }

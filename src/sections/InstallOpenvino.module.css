@@ -1,0 +1,90 @@
+.icon {
+  margin: auto;
+  display: block;
+  max-width: calc(var(--max-icon-size) + 16px);
+}
+
+.title {
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 48px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+.description {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  text-align: center;
+  margin-top: var(--margin-size);
+}
+
+.containerOptions {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  margin-top: calc(var(--margin-size) * 3);
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--margin-size) * 2);
+}
+
+.installButton {
+  cursor: pointer;
+  border: none;
+  background: #602dd0;
+  border-radius: 20px;
+  padding: var(--margin-size) calc(var(--margin-size) * 2);
+  color: var(--genai-color-white);
+}
+
+.twoColumnsFiveRowsGrid {
+  display: grid;
+  align-items: stretch;
+  margin-top: calc(var(--margin-size) * 4);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(5, auto);
+}
+
+.row1,
+.row3,
+.row5 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.row2,
+.row4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.row1 > *,
+.row3 > *,
+.row5 > * {
+  align-self: center;
+}
+
+.row2 > *,
+.row4 > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row1 > :first-child,
+.row3 > :first-child,
+.row5 > :first-child {
+  justify-self: end;
+}
+
+.row1 > :last-child,
+.row3 > :last-child,
+.row5 > :last-child {
+  justify-self: start;
+}

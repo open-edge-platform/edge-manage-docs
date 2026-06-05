@@ -3,6 +3,7 @@ import Layout from "@theme/Layout";
 import React from "react";
 import { Ecosystem } from "../Sections/Ecosystem";
 import { HomePageHeader } from "../Sections/HomePageHeader";
+import { InstallOpenvino } from "../Sections/InstallOpenvino";
 
 export default function Home(): React.JSX.Element {
   const { siteConfig } = useDocusaurusContext();
@@ -13,6 +14,7 @@ export default function Home(): React.JSX.Element {
     >
       <HomePageHeader />
 
+      <InstallOpenvino />
       <Ecosystem />
     </Layout>
   );
