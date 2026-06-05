@@ -1,13 +1,18 @@
 name: Main
 
-# Orchestrator: prepare computes all deployment parameters; deploy jobs consume them.
+# Coordinator workflow. Reacts to supported events, converts each into a
+# set of deployment parameters, then delegates to reusable workflows.
 #
+# Supported triggers → outcome:
 #   push to main                → hub at /
 #   hub PR labeled              → hub + all spokes at pr/hub/<N>/
 #   repository_dispatch preview → hub + spoke at pr/<spoke>/<N>/
 #   repository_dispatch merge   → spoke at /<rbp>/
 #   repository_dispatch close   → remove pr/<spoke>/<N>/
 #   hub PR closed               → remove pr/hub/<N>/
+#
+# Delegates to:
+#   .github/workflows/deploy.yml — builds and deploys a single hub or spoke bundle
 
 on:
   push:
