@@ -41,7 +41,10 @@ on:
         required: false
         type: string
 
-permissions: {}
+permissions:
+  contents: read
+  id-token: write
+  pull-requests: write
 
 concurrency:
   group: >-
