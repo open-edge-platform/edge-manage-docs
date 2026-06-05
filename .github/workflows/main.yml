@@ -161,7 +161,7 @@ jobs:
                   "s3_path":         .routeBasePath,
                   "spoke_overrides": "",
                   "ref":             ""
-                }]' spokes.yml)
+                }]' spokes.yml | jq -c .)
                 ;;
             esac
 
@@ -183,7 +183,7 @@ jobs:
                 "s3_path":         "pr/hub/" + strenv(PR_NUM) + "/" + .routeBasePath,
                 "spoke_overrides": "",
                 "ref":             strenv(REF)
-              }]' spokes.yml)
+              }]' spokes.yml | jq -c .)
 
           elif [[ "$EVENT_NAME" == "pull_request" && "$ACTION" == "closed" && "$HAS_LABEL" == "true" ]]; then
             cleanup_path=pr/hub/$PR_NUMBER
