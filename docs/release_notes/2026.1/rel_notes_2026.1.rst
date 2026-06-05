@@ -98,6 +98,27 @@ Device Provisioning
 
 Out-of-band device management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Serial‑over‑LAN (SOL) and Keyboard‑Video‑Mouse (KVM) enabled through Intel® Active Management Technology (AMT), provided the target system is vPro‑enabled and provisioned.
+
+SOL (Serial Over LAN) Support
+
+SOL provides a managed text-based console redirection. It is primarily used for
+troubleshooting at the BIOS level or when the operating system is in a command-line state.
+
+Function: It redirects the serial character stream from the remote device to your management console over the network.
+
+Best For: Accessing BIOS/UEFI settings, interacting with Linux terminal consoles, or viewing BSOD/boot-loader text.
+
+KVM (Keyboard, Video, Mouse) Support
+KVM is the "Remote Desktop" equivalent for out-of-band management.
+Unlike software-based tools (like TeamViewer), Intel AMT KVM works at the hardware level.
+
+Function: It allows you to see the screen and control the input of a remote system during
+the entire boot process, including BIOS and OS loading.
+
+Requirements: KVM is only available on Intel vPro® Enterprise platforms.
+It is generally not available on "Standard Manageability" or "Entry" versions of AMT.
+Usage : https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide.html
 
 * For Intel® AMT or Intel® Standard Manageability issues see
   :doc:`/user_guide/advanced_functionality/vpro_power_mgt`.
