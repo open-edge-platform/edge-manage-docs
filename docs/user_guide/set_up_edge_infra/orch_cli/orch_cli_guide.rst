@@ -561,15 +561,23 @@ The orch-cli supports starting and stopping KVM (Keyboard, Video, Mouse) and SOL
 remote sessions on AMT/vPRO-enabled Edge Nodes. These features require the OOB (out-of-band)
 support to be enabled on the connected Edge Orchestrator.
 
-Building the KVM-enabled Binary
-""""""""""""""""""""""""""""""""
+Building the Binary
+"""""""""""""""""""
 
-KVM session support requires a special build of the orch-cli that embeds the KVM Viewer Angular
-UI. The KVM Viewer UI source is located in ``ui/kvm-viewer/`` of the
+**SOL sessions** use the standard orch-cli binary and do not require any additional build steps.
+Build and install the binary as described in `Building from source`_:
+
+.. code-block:: bash
+
+    make build
+    make install
+
+**KVM sessions** require a special build that embeds the KVM Viewer Angular UI as static assets
+into the orch-cli binary. The KVM Viewer UI source is located in ``ui/kvm-viewer/`` of the
 `orch-cli repository <https://github.com/open-edge-platform/orch-cli>`_.
-Refer to the ``ui/kvm-viewer/README.md`` in that repository for details on the Angular application.
+Refer to ``ui/kvm-viewer/README.md`` in that repository for details on the Angular application.
 
-**Prerequisites**
+**Prerequisites for the KVM build**
 
 Node.js v22.22.3 (x64) must be installed before building. Install it using
 `nvm <https://github.com/nvm-sh/nvm>`_ or your preferred Node version manager:
@@ -586,24 +594,24 @@ Verify the active version:
     node --version
     # v22.22.3
 
-**Build and install**
+**KVM build and install**
 
-Once Node.js v22.22.3 is active, run the following make target from the top-level directory of the
-orch-cli repository. This first compiles the KVM Viewer Angular UI (``build-kvm-ui``) and then
-produces a KVM-enabled ``orch-cli`` binary:
+Once Node.js v22.22.3 is active, run the ``build-kvm`` target from the top-level directory of the
+orch-cli repository. This first compiles the KVM Viewer Angular UI (``build-kvm-ui``), embeds the
+resulting static files into the binary, and then produces a KVM-enabled ``orch-cli`` binary:
 
 .. code-block:: bash
 
     make build-kvm
 
-To install the resulting binary to ``/usr/local/bin``:
+To install the resulting KVM-enabled binary to ``/usr/local/bin``:
 
 .. code-block:: bash
 
     make install
 
-The installed binary supports all standard orch-cli commands in addition to the KVM and SOL
-session management commands described below.
+The KVM-enabled binary supports all standard orch-cli commands in addition to the KVM session
+management commands. The standard binary (``make build``) is sufficient for SOL sessions.
 
 Starting and Stopping a KVM Session
 """""""""""""""""""""""""""""""""""""
@@ -617,7 +625,7 @@ directly:
 
 **ACM mode** (Admin Control Mode) — the AMT password must be exported before starting the
 session. Use the password that was set during deployment time in
-``edge-out-of-band-manageability/post-orch/post-orch.env``:
+`edge-out-of-band-manageability/post-orch/post-orch.env <https://github.com/open-edge-platform/edge-out-of-band-manageability/blob/main/post-orch/post-orch.env>`_:
 
 .. code-block:: bash
 
@@ -641,7 +649,8 @@ Starting and Stopping a SOL Session
 
     ./orch-cli set host <HOST_ID or HOST_NAME> --session-type sol --session-state start --orch-ca orch-ca.crt
 
-**ACM mode** — export the AMT password from ``post-orch.env`` before starting:
+**ACM mode** — export the AMT password from
+`post-orch.env <https://github.com/open-edge-platform/edge-out-of-band-manageability/blob/main/post-orch/post-orch.env>`_ before starting:
 
 .. code-block:: bash
 
@@ -680,7 +689,8 @@ The relevant fields in the output are:
     The ``--session-type`` flag accepts ``kvm`` or ``sol``.
     The ``--session-state`` flag accepts ``start`` or ``stop``.
     In ACM mode, ``AMT_PASSWORD`` must be exported before running the start command. The
-    password is the one configured in ``edge-out-of-band-manageability/post-orch/post-orch.env``
+    password is the one configured in
+    `edge-out-of-band-manageability/post-orch/post-orch.env <https://github.com/open-edge-platform/edge-out-of-band-manageability/blob/main/post-orch/post-orch.env>`_
     at deployment time. CCM mode does not require a password.
 
 Cluster Template Management
