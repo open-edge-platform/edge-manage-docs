@@ -118,6 +118,7 @@ the entire boot process, including BIOS and OS loading.
 
 Requirements: KVM is only available on Intel vPro® Enterprise platforms.
 It is generally not available on "Standard Manageability" or "Entry" versions of AMT.
+Usage : https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide.html
 
 * For Intel® AMT or Intel® Standard Manageability issues see
   :doc:`/user_guide/advanced_functionality/vpro_power_mgt`.
