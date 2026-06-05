@@ -96,7 +96,7 @@ jobs:
           approved_sender_type:  ${{ secrets.APPROVED_BOT_TYPE }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - id: compute-parameters
+      - id: compute
         shell: bash
         env:
           EVENT_NAME:         ${{ github.event_name }}
