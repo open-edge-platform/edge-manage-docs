@@ -52,6 +52,35 @@ your-repo/
 
 Run `scripts/cut-doc-version.sh <version>` to snapshot `docs/` into a new version, then merge to main.
 
+## Manual deployment
+
+Trigger a deployment without a code push via the GitHub UI or the CLI.
+
+**GitHub UI** — Actions → Main → Run workflow → pick a target:
+
+| Target | What deploys |
+|---|---|
+| `all` | Hub + all spokes |
+| `hub` | Hub only |
+| `spoke` + Spoke ID | Single spoke |
+
+**CLI:**
+```sh
+# Everything
+gh api repos/AlexanderBarabanov/edge-manage-docs/dispatches \
+  -f event_type=deploy
+
+# Hub only
+gh api repos/AlexanderBarabanov/edge-manage-docs/dispatches \
+  -f event_type=deploy \
+  -f client_payload='{"target":"hub"}'
+
+# Single spoke
+gh api repos/AlexanderBarabanov/edge-manage-docs/dispatches \
+  -f event_type=deploy \
+  -f client_payload='{"target":"spoke","spoke_id":"genai"}'
+```
+
 ## Local development
 
 ```sh
