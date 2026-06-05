@@ -1,153 +1,79 @@
 # OpenVINO Documentation Hub
 
-A central documentation platform that aggregates content from multiple
-repositories ("spokes") into a single website. Each spoke owns its
-documentation content; the hub owns the framework, theme, and deployment
-pipeline.
+Hub-spoke Docusaurus platform. The hub owns the framework, theme, and deployment. Spokes own their content.
 
----
+## Architecture
 
-## How it works
+The hub and each spoke are **independent self-contained websites**, each with its own S3 prefix. They share a domain and a common theme but are built and deployed separately — a spoke deploy never touches the hub prefix, and vice versa.
 
-Each spoke repository contains a `docs/` folder with content (Markdown, MDX, TSX).
-The hub clones the relevant spoke, builds a Docusaurus site from its
-content, and deploys it. Spokes never need to install Docusaurus, manage
-themes, or configure hosting.
-
-### Responsibilities
+Spokes are repos with a `docs/` folder. The hub clones a spoke at build time, produces a standalone Docusaurus bundle for it, and deploys that bundle to `/<routeBasePath>/`. The hub itself builds separately and deploys to `/`. Spokes need no Docusaurus config.
 
 | Concern | Owner |
 |---|---|
 | Content (Markdown, MDX, images) | Spoke |
-| Versioning (cutting snapshots into `docs-versions/`) | Spoke |
-| Theme, styles, shared components | Hub |
-| Build pipeline and deployment | Hub |
-| Landing page (per-spoke, via `docs/index.mdx`) | Spoke |
-| Ecosystem-wide landing page (`/`) | Hub |
-| Version dropdown rendering | Hub |
-| CI trigger (dispatch to hub) | Spoke (one-line reusable workflow) |
+| Versioning (`docs-versions/`) | Spoke |
+| CI dispatch to hub | Spoke |
+| Theme, components, build, hosting | Hub |
 
----
+Spokes are registered in [`spokes.yml`](spokes.yml).
 
-## Connecting your repository
+## Deployment model
 
-1. **Add an entry to [`spokes.yml`](spokes.yml)** in this repository:
+All deploys target a single S3 bucket.
 
-```yaml
-spokes:
-  - repo: owner/your-repo
-    ref: main
-    id: your-repo
-    routeBasePath: your-repo
-    paths:
-      - docs/
-```
+| Trigger | What deploys | Where |
+|---|---|---|
+| Spoke PR labeled `deploy-doc-preview` | Hub + changed spoke | `pr/<spoke>/<PR#>/` |
+| Hub PR labeled `deploy-doc-preview` | Hub + all spokes | `pr/hub/<PR#>/` |
+| Spoke PR merged to main | That spoke | `/<rbp>/` |
+| Push to hub `main` | Hub only | `/` |
+| PR closed | — | Preview prefix deleted |
 
-2. **Have a `docs/` folder** in your repository with Markdown, MDX, or TSX files.
+**Release:** no special trigger. Snapshot versions into `docs-versions/`, merge to main — the normal merge flow deploys to prod.
 
-3. **Add the trigger workflow** — a single reusable workflow call in your
-   repository's CI that dispatches to the hub on PR label and tag events.
+## PR previews
 
-That's it. The hub handles the rest.
+Add `deploy-doc-preview` to your PR. The hub posts a preview link as a PR comment and updates it on each push. Preview is cleaned up when the PR closes.
 
----
-
-## Previewing changes
-
-When you open a PR that touches documentation:
-
-1. Add the `deploy-doc-preview` label to your PR.
-2. The hub builds a preview of your spoke and posts a link as a PR comment.
-3. Every subsequent push to that PR updates the preview automatically.
-4. When the PR is closed, the preview is cleaned up.
-
-The preview URL follows the pattern: `<preview-domain>/pr/<spoke>/<PR#>/`
-
-> **Note:** Currently the preview builds all connected spokes alongside
-> yours. This will be scoped to only the triggering spoke in a future update.
-
----
-
-## Deploying to production
-
-Two events trigger production deployments:
-
-### On merge to default branch
-
-When a PR is merged, the hub rebuilds your spoke and deploys it to
-production. This updates the "next" (unreleased) version of your docs.
-Previously released versions remain unchanged.
-
-### On release tag
-
-When you push a release tag:
-
-1. Run `scripts/cut-doc-version.sh <version>` to snapshot the current
-   `docs/` into `docs-versions/`.
-2. Commit and tag the release.
-3. Push — the hub rebuilds your spoke (all versions + next) and syncs
-   the full site to production at `/<spoke>/`.
-
-The Docusaurus version dropdown automatically picks up the new version.
-
-> **Alternative under discussion:** Deploy only released versions to
-> production (no "next"), making the release tag the sole gate to prod.
-
----
+- **Spoke PR:** builds hub + the triggering spoke only. Other spoke nav links resolve to prod.
+- **Hub PR:** builds hub first, then all spokes in parallel.
 
 ## Versioning
 
-Each spoke manages its own versions in a `docs-versions/` folder:
-
 ```
 your-repo/
-├── docs/                      ← current (becomes "next" on the site)
+├── docs/                    ← next (unreleased)
 └── docs-versions/
-    ├── versions.json          ← ["v2.0", "v1.1", "v1.0"]
+    ├── versions.json        ← ["v2.0", "v1.1"]
     └── versioned_docs/
         ├── version-v2.0/
-        ├── version-v1.1/
-        └── version-v1.0/
+        └── version-v1.1/
 ```
 
-- The version format is up to the spoke (`v1.0`, `2024.1`, etc.).
-- The hub renders whatever is in `docs-versions/` — it does not
-  validate or enforce a format.
-- Use `scripts/cut-doc-version.sh` to snapshot the current `docs/`
-  into a new version. The script is provided in your spoke repo.
-
----
-
-## Content conventions
-
-- Write Markdown (`.md`) or MDX (`.mdx`) in `docs/`.
-- Use **relative links** between documents (`../guides/setup.md`).
-- Colocate images next to the docs that use them.
-- Control sidebar order with `_category_.json` and frontmatter `sidebar_position`.
-- Do not add `sidebars.ts`, `docusaurus.config.ts`, or `package.json` — the hub owns these.
-
-For the full conventions guide (shared components, advanced MDX, generated
-docs), see [`CONTRIBUTING.md`](CONTRIBUTING.md).
-
----
+Run `scripts/cut-doc-version.sh <version>` to snapshot `docs/` into a new version, then merge to main.
 
 ## Local development
 
 ```sh
-# Symlink a local spoke checkout instead of cloning from GitHub.
-./scripts/clone-spokes.sh \
-  --use-local=openvinotoolkit/openvino.genai:/abs/path/to/openvino.genai
+npm install
 
-# Multi-spoke build (matches PR preview).
+# Hub + all spokes
 BUILD_ALL_SPOKES=1 BASE_URL=/ SITE_URL=https://docs.example.com npm run build
 
-# Single-spoke build (matches merge / release pipeline). The spoke is
-# mounted at /.
-SPOKE=genai BASE_URL=/genai/v1.2/ SITE_URL=https://docs.example.com npm run build
-
-# Hub-only build (matches deploy-hub.yml). Skips spoke cloning entirely.
+# Hub + one spoke (two builds — matches spoke PR preview)
 HUB_ONLY=1 BASE_URL=/ SITE_URL=https://docs.example.com npm run build
+SPOKE=genai BASE_URL=/genai/ SITE_URL=https://docs.example.com npm run build
+
+# Single spoke at its prod path
+SPOKE=genai BASE_URL=/genai/ SITE_URL=https://docs.example.com npm run build
+
+# Hub only
+HUB_ONLY=1 BASE_URL=/ SITE_URL=https://docs.example.com npm run build
+
+# Use a local spoke checkout instead of cloning from GitHub
+./scripts/clone-spokes.sh --use-local=owner/repo:/abs/path/to/checkout
+
+npm run serve   # serve build/ at localhost:3000
 ```
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the full contributor
-workflow.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for spoke content conventions and how to register a new spoke.

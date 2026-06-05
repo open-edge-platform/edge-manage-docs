@@ -1,0 +1,314 @@
+name: Main
+
+# Orchestrator: prepare computes all deployment parameters; deploy jobs consume them.
+#
+#   push to main                → hub at /
+#   hub PR labeled              → hub + all spokes at pr/hub/<N>/
+#   repository_dispatch preview → hub + spoke at pr/<spoke>/<N>/
+#   repository_dispatch merge   → spoke at /<rbp>/
+#   repository_dispatch close   → remove pr/<spoke>/<N>/
+#   hub PR closed               → remove pr/hub/<N>/
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [labeled, synchronize, closed]
+  repository_dispatch:
+    types: [deploy-preview, close-preview]
+  workflow_dispatch:
+    inputs:
+      source_repo:
+        description: 'Source repository (owner/repo)'
+        required: false
+        type: string
+      pr_number:
+        description: 'Pull request number (preview/merge modes)'
+        required: false
+        type: string
+      branch:
+        description: 'Branch (main/master => merge, otherwise => preview)'
+        required: false
+        type: string
+      commit_sha:
+        description: 'Commit SHA (40 hex chars; not required for close mode)'
+        required: false
+        type: string
+      closed:
+        description: 'Set to "true" to clean up a closed spoke PR preview'
+        required: false
+        type: string
+
+permissions: {}
+
+concurrency:
+  group: >-
+    ${{ github.event_name == 'push' && 'deploy-hub'
+        || github.event_name == 'pull_request' && format('deploy-hub-pr-{0}', github.event.pull_request.number)
+        || format('deploy-{0}-{1}',
+             github.event.client_payload.source_repo || inputs.source_repo,
+             github.event.client_payload.pr_number   || inputs.pr_number) }}
+  cancel-in-progress: false
+
+jobs:
+  # ── Prepare: resolve scenario and compute all deployment parameters ─────────
+  prepare:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      hub_base_url:          ${{ steps.compute.outputs.hub_base_url }}
+      hub_s3_path:           ${{ steps.compute.outputs.hub_s3_path }}
+      hub_ref:               ${{ steps.compute.outputs.hub_ref }}
+      spoke_matrix:          ${{ steps.compute.outputs.spoke_matrix }}
+      comment_auth_method:   ${{ steps.compute.outputs.comment_auth_method }}
+      comment_repo:          ${{ steps.compute.outputs.comment_repo }}
+      comment_pr_number:     ${{ steps.compute.outputs.comment_pr_number }}
+      comment_commit:        ${{ steps.compute.outputs.comment_commit }}
+      comment_preview_path:  ${{ steps.compute.outputs.comment_preview_path }}
+      cleanup_path:          ${{ steps.compute.outputs.cleanup_path }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          sparse-checkout: |
+            .github/actions/validate-dispatch
+            spokes.yml
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+
+      - id: validate
+        if: github.event_name == 'repository_dispatch' || (github.event_name == 'workflow_dispatch' && inputs.source_repo != '')
+        uses: ./.github/actions/validate-dispatch
+        with:
+          event_type:   ${{ github.event.action || ((inputs.closed == 'true' && 'close-preview') || 'deploy-preview') }}
+          source_repo:  ${{ github.event.client_payload.source_repo || inputs.source_repo }}
+          pr_number:    ${{ github.event.client_payload.pr_number   || inputs.pr_number }}
+          branch:       ${{ github.event.client_payload.branch      || inputs.branch }}
+          commit_sha:   ${{ github.event.client_payload.commit_sha  || inputs.commit_sha }}
+          sender_login: ${{ github.event.sender.login }}
+          sender_id:    ${{ github.event.sender.id }}
+          sender_type:  ${{ github.event.sender.type }}
+          is_repository_dispatch: ${{ github.event_name == 'repository_dispatch' }}
+          approved_sender_login: ${{ secrets.APPROVED_BOT_LOGIN }}
+          approved_sender_id:    ${{ secrets.APPROVED_BOT_ID }}
+          approved_sender_type:  ${{ secrets.APPROVED_BOT_TYPE }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: compute-parameters
+        shell: bash
+        env:
+          EVENT_NAME:         ${{ github.event_name }}
+          ACTION:             ${{ github.event.action }}
+          PR_NUMBER:          ${{ github.event.pull_request.number }}
+          PR_HEAD_SHA:        ${{ github.event.pull_request.head.sha }}
+          HAS_LABEL:          ${{ contains(github.event.pull_request.labels.*.name, 'deploy-doc-preview') }}
+          LABELED_NAME:       ${{ github.event.label.name }}
+          REPO_OWNER:         ${{ github.repository_owner }}
+          REPO_NAME:          ${{ github.event.repository.name }}
+          INPUTS_SOURCE_REPO: ${{ inputs.source_repo }}
+          MODE:               ${{ steps.validate.outputs.mode }}
+          SPOKE_ID:           ${{ steps.validate.outputs.spoke_id }}
+          SPOKE_RBP:          ${{ steps.validate.outputs.spoke_route_base_path }}
+          SOURCE_REPO:        ${{ steps.validate.outputs.source_repo }}
+          REPO_OWNER_DISP:    ${{ steps.validate.outputs.repo_owner }}
+          REPO_NAME_DISP:     ${{ steps.validate.outputs.repo_name }}
+          PR_NUMBER_DISP:     ${{ steps.validate.outputs.pr_number }}
+          COMMIT_SHA:         ${{ steps.validate.outputs.commit_sha }}
+        run: |
+          set -euo pipefail
+
+          hub_base_url=
+          hub_s3_path=
+          hub_ref=
+          spoke_matrix=[]
+          comment_auth_method=
+          comment_repo=
+          comment_pr_number=
+          comment_commit=
+          comment_preview_path=
+          cleanup_path=
+
+          if [[ "$EVENT_NAME" == "push" ]] \
+          || [[ "$EVENT_NAME" == "workflow_dispatch" && -z "$INPUTS_SOURCE_REPO" ]]; then
+            hub_base_url=/
+
+          elif [[ "$EVENT_NAME" == "pull_request" && "$ACTION" != "closed" ]] \
+            && { [[ "$ACTION" == "labeled" && "$LABELED_NAME" == "deploy-doc-preview" ]] \
+              || [[ "$ACTION" == "synchronize" && "$HAS_LABEL" == "true" ]]; }; then
+            hub_base_url=/pr/hub/$PR_NUMBER/
+            hub_s3_path=pr/hub/$PR_NUMBER
+            hub_ref=$PR_HEAD_SHA
+            comment_auth_method=token
+            comment_repo=$REPO_OWNER/$REPO_NAME
+            comment_pr_number=$PR_NUMBER
+            comment_commit=$PR_HEAD_SHA
+            comment_preview_path=pr/hub/$PR_NUMBER/
+            spoke_matrix=$(PR_NUM="$PR_NUMBER" REF="$PR_HEAD_SHA" \
+              yq -o=json '[.spokes[] | {
+                "id":              .id,
+                "base_url":        "/pr/hub/" + strenv(PR_NUM) + "/" + .routeBasePath + "/",
+                "s3_path":         "pr/hub/" + strenv(PR_NUM) + "/" + .routeBasePath,
+                "spoke_overrides": "",
+                "ref":             strenv(REF)
+              }]' spokes.yml)
+
+          elif [[ "$EVENT_NAME" == "pull_request" && "$ACTION" == "closed" && "$HAS_LABEL" == "true" ]]; then
+            cleanup_path=pr/hub/$PR_NUMBER
+
+          elif [[ "$MODE" == "preview" ]]; then
+            hub_base_url=/pr/$SPOKE_ID/$PR_NUMBER_DISP/
+            hub_s3_path=pr/$SPOKE_ID/$PR_NUMBER_DISP
+            comment_auth_method=app
+            comment_repo=$REPO_OWNER_DISP/$REPO_NAME_DISP
+            comment_pr_number=$PR_NUMBER_DISP
+            comment_commit=$COMMIT_SHA
+            comment_preview_path=pr/$SPOKE_ID/$PR_NUMBER_DISP/
+            spoke_matrix=$(jq -cn \
+              --arg id        "$SPOKE_ID" \
+              --arg base_url  "/pr/$SPOKE_ID/$PR_NUMBER_DISP/$SPOKE_RBP/" \
+              --arg s3_path   "pr/$SPOKE_ID/$PR_NUMBER_DISP/$SPOKE_RBP" \
+              --arg overrides "$SOURCE_REPO:$COMMIT_SHA" \
+              '[{"id":$id,"base_url":$base_url,"s3_path":$s3_path,"spoke_overrides":$overrides,"ref":""}]')
+
+          elif [[ "$MODE" == "merge" ]]; then
+            [[ -n "$PR_NUMBER_DISP" ]] && cleanup_path="pr/$SPOKE_ID/$PR_NUMBER_DISP"
+            spoke_matrix=$(jq -cn \
+              --arg id        "$SPOKE_ID" \
+              --arg base_url  "/$SPOKE_RBP/" \
+              --arg s3_path   "$SPOKE_RBP" \
+              --arg overrides "$SOURCE_REPO:$COMMIT_SHA" \
+              '[{"id":$id,"base_url":$base_url,"s3_path":$s3_path,"spoke_overrides":$overrides,"ref":""}]')
+
+          elif [[ "$MODE" == "close" ]]; then
+            cleanup_path=pr/$SPOKE_ID/$PR_NUMBER_DISP
+          fi
+
+          {
+            echo "hub_base_url=$hub_base_url"
+            echo "hub_s3_path=$hub_s3_path"
+            echo "hub_ref=$hub_ref"
+            echo "spoke_matrix=$spoke_matrix"
+            echo "comment_auth_method=$comment_auth_method"
+            echo "comment_repo=$comment_repo"
+            echo "comment_pr_number=$comment_pr_number"
+            echo "comment_commit=$comment_commit"
+            echo "comment_preview_path=$comment_preview_path"
+            echo "cleanup_path=$cleanup_path"
+          } >> "$GITHUB_OUTPUT"
+
+  comment-start:
+    needs: [prepare]
+    if: needs.prepare.outputs.comment_auth_method != ''
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    environment:
+      name: publish-preview
+    outputs:
+      comment_id: ${{ steps.post.outputs.comment_id }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          sparse-checkout: .github/actions/pr-comment
+          persist-credentials: false
+      - id: post
+        uses: ./.github/actions/pr-comment
+        with:
+          token:       ${{ needs.prepare.outputs.comment_auth_method == 'token' && secrets.GITHUB_TOKEN || '' }}
+          app_id:      ${{ needs.prepare.outputs.comment_auth_method == 'app' && secrets.DOC_HELPER_APP_ID || '' }}
+          private_key: ${{ needs.prepare.outputs.comment_auth_method == 'app' && secrets.DOC_HELPER_APP_PRIVATE_KEY || '' }}
+          repo:        ${{ needs.prepare.outputs.comment_repo }}
+          pr_number:   ${{ needs.prepare.outputs.comment_pr_number }}
+          body:        "🔄 Building preview for commit `${{ needs.prepare.outputs.comment_commit }}`... ([View run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}))"
+
+  deploy-hub:
+    needs: [prepare]
+    if: needs.prepare.outputs.hub_base_url != ''
+    uses: ./.github/workflows/deploy.yml
+    with:
+      mode:     hub
+      base_url: ${{ needs.prepare.outputs.hub_base_url }}
+      s3_path:  ${{ needs.prepare.outputs.hub_s3_path }}
+      ref:      ${{ needs.prepare.outputs.hub_ref }}
+    secrets: inherit
+
+  deploy-spokes:
+    needs: [prepare, deploy-hub]
+    if: "!failure() && !cancelled() && needs.prepare.outputs.spoke_matrix != '[]'"
+    strategy:
+      fail-fast: false
+      matrix:
+        spoke: ${{ fromJson(needs.prepare.outputs.spoke_matrix) }}
+    uses: ./.github/workflows/deploy.yml
+    with:
+      mode:            spoke
+      spoke_id:        ${{ matrix.spoke.id }}
+      base_url:        ${{ matrix.spoke.base_url }}
+      s3_path:         ${{ matrix.spoke.s3_path }}
+      spoke_overrides: ${{ matrix.spoke.spoke_overrides }}
+      ref:             ${{ matrix.spoke.ref }}
+    secrets: inherit
+
+  comment-end:
+    if: always() && needs.prepare.outputs.comment_auth_method != ''
+    needs: [prepare, comment-start, deploy-hub, deploy-spokes]
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    environment:
+      name: publish-preview
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          sparse-checkout: .github/actions/pr-comment
+          persist-credentials: false
+      - name: Prepare body
+        id: message
+        run: |
+          if [[ "${{ needs.deploy-hub.result }}" =~ ^(failure|cancelled)$ ]] \
+          || [[ "${{ needs.deploy-spokes.result }}" =~ ^(failure|cancelled)$ ]]; then
+            echo "body<<EOF" >> $GITHUB_OUTPUT
+            echo "❌ Preview failed for commit \`${{ needs.prepare.outputs.comment_commit }}\`" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+            echo "[View failed run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "body<<EOF" >> $GITHUB_OUTPUT
+            echo "✅ Preview deployed for commit \`${{ needs.prepare.outputs.comment_commit }}\`" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+            echo "Preview: ${{ secrets.DEV_URL }}/${{ needs.prepare.outputs.comment_preview_path }}" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+      - uses: ./.github/actions/pr-comment
+        with:
+          token:       ${{ needs.prepare.outputs.comment_auth_method == 'token' && secrets.GITHUB_TOKEN || '' }}
+          app_id:      ${{ needs.prepare.outputs.comment_auth_method == 'app' && secrets.DOC_HELPER_APP_ID || '' }}
+          private_key: ${{ needs.prepare.outputs.comment_auth_method == 'app' && secrets.DOC_HELPER_APP_PRIVATE_KEY || '' }}
+          repo:        ${{ needs.prepare.outputs.comment_repo }}
+          pr_number:   ${{ needs.prepare.outputs.comment_pr_number }}
+          comment_id:  ${{ needs.prepare.outputs.comment_auth_method == 'token' && needs.comment-start.outputs.comment_id || '' }}
+          edit_last:   ${{ needs.prepare.outputs.comment_auth_method == 'app' && 'true' || 'false' }}
+          body:        ${{ steps.message.outputs.body }}
+
+  cleanup:
+    needs: [prepare, deploy-spokes]
+    if: "!failure() && !cancelled() && needs.prepare.outputs.cleanup_path != ''"
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    environment:
+      name: publish-preview
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          sparse-checkout: .github/actions/aws-deploy
+          persist-credentials: false
+      - uses: ./.github/actions/aws-deploy
+        with:
+          role:   ${{ secrets.DEV_ROLE }}
+          bucket: ${{ secrets.DEV_BUCKET }}
+          path:   ${{ needs.prepare.outputs.cleanup_path }}
+          mode:   rm
