@@ -160,8 +160,8 @@ _________
 
 Mutable OS - OS update, no kernel command update and no new packages installation.
 
-.. figure:: images/os-update-policy_mutable_only_os.png
-        :alt: OS Update Policy - OS update example per mutable OS - no kernel command update and no new packages
+.. note::
+        No OS Update Policy is needed.
 
 Example 2
 _________
