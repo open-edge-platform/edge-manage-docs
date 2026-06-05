@@ -640,6 +640,9 @@ To stop a running KVM session (both CCM and ACM modes):
 
     ./orch-cli set host <HOST_ID or HOST_NAME> --session-type kvm --session-state stop
 
+Alternatively, the KVM session can be stopped by clicking the **Disconnect** button in the
+KVM Viewer Angular browser application.
+
 Starting and Stopping a SOL Session
 """""""""""""""""""""""""""""""""""""
 
