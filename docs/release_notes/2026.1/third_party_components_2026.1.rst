@@ -40,11 +40,11 @@ Edge Infrastructure Manager
    * - curl-jq
      - Container (utility)
      - https://github.com/badouralix/dockerfiles
-     - <TBD>
+     - sha256:8ee002ae4452b23a3c70750c5c081e95334cfe9f7968fb4d67a90d4001c29d0b
    * - busybox
      - Container (utility)
      - https://hub.docker.com/_/busybox/
-     - <TBD>
+     - 1.36.1
    * - mps
      - Container
      - docker.io/intel/oact-mps
@@ -206,45 +206,57 @@ Observabilty (O11y)
      - Link
      - Version
    * - alertmanager
-     - Helm Chart
-     - https://prometheus-community.github.io/helm-charts/
-     - <TBD>
+     - image
+     - quay.io/prometheus/alertmanager
+     - v0.32.1
    * - grafana
      - Helm Chart
      - https://grafana.github.io/helm-charts
-     - <TBD>
-   * - kube-prometheus-stack
-     - Helm Chart
-     - https://prometheus-community.github.io/helm-charts
-     - <TBD>
+     - 12.3.2
+   * - grafana
+     - image
+     - docker.io/grafana/grafana
+     - 12.3.6-security-04
    * - loki
      - Helm Chart
      - https://grafana.github.io/helm-charts
-     - <TBD>
+     - 14.2.0
+   * - loki
+     - image
+     - docker.io/grafana/loki
+     - 3.7.2
    * - mimir-distributed
      - Helm Chart
      - https://grafana.github.io/helm-charts
-     - <TBD>
+     - 6.0.6
+   * - mimir-distributed
+     - image
+     - grafana/mimir
+     - 3.0.4
    * - minio
      - Helm Chart
      - https://charts.min.io/
-     - <TBD>
+     - 5.4.0
+   * - minio
+     - image
+     - quay.io/minio/minio
+     - RELEASE.2025-09-07T16-13-09Z
    * - opentelemetry-collector
      - Helm Chart
      - https://open-telemetry.github.io/opentelemetry-helm-charts
-     - <TBD>
+     - 0.155.0
    * - opentelemetry-operator
      - Helm Chart
      - https://open-telemetry.github.io/opentelemetry-helm-charts
-     - <TBD>
+     - 0.113.1
    * - tempo
      - Helm Chart
      - https://grafana.github.io/helm-charts
-     - <TBD>
+     - 2.1.0
    * - open-policy-agent
      - Container
      - openpolicyagent/opa
-     - <TBD>
+     - 1.10.1-static
 
 
 Edge Node Agents
