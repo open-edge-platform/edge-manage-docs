@@ -1,8 +1,12 @@
 import { DottedCardDetails } from "../components/DottedCardDetails/DottedCardDetails";
 import { Section } from "../components/Section/Section";
+import { useSpokeHref } from "../hooks/use-spoke-href";
+import { OpenVINOHub } from "../hub-catalog";
 import styles from "./Performance.module.css";
 
 export const Performance = () => {
+  const href = useSpokeHref(OpenVINOHub.spokeId);
+
   return (
     <Section>
       <Section.Icon>
@@ -29,7 +33,7 @@ export const Performance = () => {
         </div>
         <DottedCardDetails
           title="Optimize for latency"
-          learnMoreLink="/docs/ecosystem/openvino-genai"
+          learnMoreLink={String(href)}
           code={[
             {
               lang: "python",
@@ -47,7 +51,7 @@ export const Performance = () => {
               Optimize for <br /> throughput
             </>
           }
-          learnMoreLink="/docs/ecosystem/openvino-genai"
+          learnMoreLink={String(href)}
           code={[
             {
               lang: "python",

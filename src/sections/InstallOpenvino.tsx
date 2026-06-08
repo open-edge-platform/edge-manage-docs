@@ -1,11 +1,13 @@
-import Button from "../components/Button";
-import { Code } from "../components/Code/Code";
 import { DottedCardDetails } from "../components/DottedCardDetails/DottedCardDetails";
 import { Link } from "../components/Link/Link";
 import { Section } from "../components/Section/Section";
+import { useSpokeHref } from "../hooks/use-spoke-href";
+import { OpenVINOHub } from "../hub-catalog";
 import styles from "./InstallOpenvino.module.css";
 
 export const InstallOpenvino = () => {
+  const href = useSpokeHref(OpenVINOHub.spokeId);
+
   return (
     <Section>
       <Section.Icon>
@@ -23,16 +25,24 @@ export const InstallOpenvino = () => {
       </Section.Description>
 
       <div className={styles.containerOptions}>
-        <button className={styles.installButton}>pip install openvino</button>
+        <a
+          className={styles.installButton}
+          href={`${href}#installing-openvino-runtime`}
+        >
+          pip install openvino
+        </a>
 
-        <Link href="#" label="Advanced installation options" />
+        <Link
+          href={`${href}#installing-openvino-runtime`}
+          label="Advanced installation options"
+        />
       </div>
 
       <div className={styles.twoColumnsFiveRowsGrid}>
         <div className={styles.row1}>
           <DottedCardDetails
             title="Bring your model to OpenVINO"
-            learnMoreLink="/docs/ecosystem/openvino-genai"
+            learnMoreLink={String(href)}
             code={[
               {
                 lang: "python",
@@ -64,7 +74,7 @@ export const InstallOpenvino = () => {
 
           <DottedCardDetails
             title="Optimize your model"
-            learnMoreLink="/docs/ecosystem/openvino-genai"
+            learnMoreLink={String(href)}
             code={[
               {
                 lang: "python",
@@ -83,7 +93,7 @@ export const InstallOpenvino = () => {
         <div className={styles.row5}>
           <DottedCardDetails
             title="Run and infer"
-            learnMoreLink="/docs/ecosystem/openvino-genai"
+            learnMoreLink={String(href)}
             code={[
               {
                 lang: "cpp",

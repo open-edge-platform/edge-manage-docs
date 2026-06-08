@@ -21,6 +21,12 @@
   color: var(--genai-color-white);
 }
 
+.installButton:hover {
+  background: #8ad9fb;
+  text-decoration: none;
+  color: var(--genai-color-white);
+}
+
 .twoColumnsFiveRowsGrid {
   display: grid;
   align-items: stretch;

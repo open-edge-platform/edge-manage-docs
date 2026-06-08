@@ -1,9 +1,13 @@
 import { Code } from "../components/Code/Code";
 import { DottedCardDetails } from "../components/DottedCardDetails/DottedCardDetails";
 import { Section } from "../components/Section/Section";
+import { useSpokeHref } from "../hooks/use-spoke-href";
+import { OpenVINOHub } from "../hub-catalog";
 import styles from "./Ecosystem.module.css";
 
 export const Ecosystem = () => {
+  const href = useSpokeHref(OpenVINOHub.spokeId);
+
   return (
     <Section>
       <Section.Icon>
@@ -23,7 +27,7 @@ export const Ecosystem = () => {
         <DottedCardDetails
           title="OpenVINO GenAI"
           description="Simplify GenAI model deployment"
-          learnMoreLink="/docs/ecosystem/openvino-genai"
+          learnMoreLink={String(href)}
           code={[
             {
               lang: "python",
@@ -38,7 +42,7 @@ export const Ecosystem = () => {
         <DottedCardDetails
           title="OpenVINO Physical AI"
           description="Real-time inference for robotics and autonomous systems (TBU)"
-          learnMoreLink="/docs/ecosystem/openvino-genai"
+          learnMoreLink={String(href)}
           code={[
             {
               lang: "python",
@@ -60,7 +64,7 @@ export const Ecosystem = () => {
             </>
           }
           description="A suite of post-training and training-time algorithms for optimizing inference"
-          learnMoreLink="/docs/ecosystem/openvino-genai"
+          learnMoreLink={String(href)}
           code={[
             {
               lang: "python",
@@ -87,7 +91,7 @@ export const Ecosystem = () => {
         <DottedCardDetails
           title="OpenVINO Model Server"
           description="A scalable inference server for models optimized with OpenVINO"
-          learnMoreLink="/docs/ecosystem/openvino-genai"
+          learnMoreLink={String(href)}
           code={[
             {
               lang: "dockerfile",
