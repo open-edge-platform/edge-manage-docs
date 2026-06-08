@@ -1,4 +1,4 @@
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 // Mirrors the shape produced by docusaurus.config.ts customFields.spokes.
 export type SpokeSummary = {

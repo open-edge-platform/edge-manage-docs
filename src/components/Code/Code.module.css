@@ -1,0 +1,51 @@
+.container {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  position: relative;
+  background: #06145f;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    transparent 100%
+  );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.container :global(pre.shiki) {
+  margin: 0;
+  max-width: 100%;
+  min-width: 0;
+  font-size: 12px;
+  padding: calc(var(--margin-size) * 2.2);
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  overflow-x: hidden;
+}
+
+.container :global(pre.shiki code) {
+  white-space: inherit !important;
+  overflow-wrap: inherit;
+  word-break: inherit;
+}

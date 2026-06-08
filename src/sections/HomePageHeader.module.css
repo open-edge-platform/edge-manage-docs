@@ -1,0 +1,99 @@
+.heroTitle,
+.heroSubtitle {
+  color: var(--genai-color-text-white);
+  font-weight: 500;
+  font-size: 72px;
+  text-align: center;
+}
+
+.heroTitle {
+  background: linear-gradient(
+    101.29deg,
+    #91ffed 0.16%,
+    #3094ff 36.93%,
+    #b57cff 73.71%
+  );
+  z-index: 1;
+  color: transparent;
+  position: relative;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.heroSubtitle {
+  margin-top: -16px;
+  text-shadow: 2px 2px 2px var(--text-shadow-color);
+}
+
+.description {
+  margin: auto;
+  margin-top: 16px;
+  max-width: 670px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--genai-color-text-white);
+  text-shadow: 2px 2px 2px var(--text-shadow-color);
+}
+
+.cards {
+  gap: calc(var(--margin-size) * 2);
+  padding: 0 calc(var(--margin-size) * 3);
+  position: relative;
+  z-index: 2;
+  display: grid;
+  margin-top: calc(var(--margin-size) * 4);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 996px) {
+  .heroTitle {
+    font-size: 40px;
+  }
+  .heroSubtitle {
+    font-size: 34px;
+    margin-top: 0px;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.divider {
+  width: 100%;
+  margin: calc(var(--margin-size) * 5) 0px;
+  background: radial-gradient(
+    58.09% 39.47% at 50% 105.5%,
+    #121971 49.95%,
+    rgba(44, 44, 182, 0) 100%
+  );
+  height: 3px;
+}
+
+.architecture {
+  color: var(--genai-color-text-white);
+
+  h2 {
+    font-size: 48px;
+    text-align: center;
+    font-weight: 500;
+    line-height: 48px;
+  }
+
+  p {
+    max-width: 520px;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0%;
+    margin: auto;
+  }
+
+  video {
+    width: 100%;
+    margin-top: calc(var(--margin-size) * 3);
+  }
+}

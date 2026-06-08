@@ -9,17 +9,18 @@ export type SpokeCatalogEntry = {
 
 export const SPOKE_CATALOG: Record<string, SpokeCatalogEntry> = {
   openvino: {
-    label: 'OpenVINO',
+    label: "OpenVINO",
     description:
-      'Open-source toolkit for deploying performant AI solutions in the cloud, on-prem, and on the edge.',
+      "Open-source toolkit for deploying performant AI solutions in the cloud, on-prem, and on the edge.",
   },
   genai: {
-    label: 'OpenVINO GenAI',
-    description: 'Run and deploy generative AI models.',
+    label: "OpenVINO GenAI",
+    description: "Run and deploy generative AI models.",
   },
   physicalai: {
-    label: 'Physical AI',
-    description: 'Runtime documentation for PhysicalAI inference and deployment.',
+    label: "Physical AI",
+    description:
+      "Runtime documentation for PhysicalAI inference and deployment.",
   },
 };
 
@@ -34,20 +35,26 @@ export type ProductCard = {
   spokeId: string | null;
 };
 
+export const OpenVINOHub: ProductCard = {
+  title: "OpenVINO",
+  description: "Open-source toolkit for deploying performant AI solutions",
+  spokeId: "openvino",
+};
+
+export const GenAIHub: ProductCard = {
+  title: "OpenVINO GenAI",
+  description: "Optimizing pipelines for running generative AI models",
+  spokeId: "genai",
+};
+
+export const PhysicalAIHub: ProductCard = {
+  title: "Physical AI",
+  description: "Runtime documentation for PhysicalAI inference and deployment",
+  spokeId: "physicalai",
+};
+
 export const PRODUCT_CARDS: readonly ProductCard[] = [
-  {
-    title: 'OpenVINO',
-    description: 'Open-source toolkit for deploying performant AI solutions',
-    spokeId: 'openvino',
-  },
-  {
-    title: 'OpenVINO GenAI',
-    description: 'Optimizing pipelines for running generative AI models',
-    spokeId: 'genai',
-  },
-  {
-    title: 'Physical AI',
-    description: 'Runtime documentation for PhysicalAI inference and deployment',
-    spokeId: 'physicalai',
-  },
+  OpenVINOHub,
+  GenAIHub,
+  PhysicalAIHub,
 ];

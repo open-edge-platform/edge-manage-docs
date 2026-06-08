@@ -1,10 +1,10 @@
-import type * as Preset from '@docusaurus/preset-classic';
-import type { Config, PluginConfig } from '@docusaurus/types';
-import { readFileSync, realpathSync } from 'node:fs';
-import path from 'node:path';
-import { themes as prismThemes } from 'prism-react-renderer';
-import { load as yamlLoad } from 'js-yaml';
-import { SPOKE_CATALOG } from './src/hub-catalog';
+import type * as Preset from "@docusaurus/preset-classic";
+import type { Config, PluginConfig } from "@docusaurus/types";
+import { readFileSync, realpathSync } from "node:fs";
+import path from "node:path";
+import { themes as prismThemes } from "prism-react-renderer";
+import { load as yamlLoad } from "js-yaml";
+import { SPOKE_CATALOG } from "./src/hub-catalog";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -21,14 +21,16 @@ type SpokesYml = {
 };
 
 const REPO_ROOT = __dirname;
-const SPOKES_DIR = 'spokes';
+const SPOKES_DIR = "spokes";
 
 const allSpokes: SpokeConfig[] = (
-  yamlLoad(readFileSync(path.join(REPO_ROOT, 'spokes.yml'), 'utf8')) as SpokesYml
+  yamlLoad(
+    readFileSync(path.join(REPO_ROOT, "spokes.yml"), "utf8"),
+  ) as SpokesYml
 ).spokes;
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-const fs = require('fs') as typeof import('fs');
+const fs = require("fs") as typeof import("fs");
 
 // Exactly one of these three modes must be selected. No defaults, no fallbacks.
 // Each mode emits a single self-contained Docusaurus bundle whose webpack
@@ -43,27 +45,29 @@ const fs = require('fs') as typeof import('fs');
 // Each spoke owns its own `docs-versions/` (versions.json + versioned_docs/
 // + versioned_sidebars/) which clone-spokes.sh symlinks into hub root with
 // the appropriate `<id>_` prefix per plugin instance.
-const HUB_ONLY = process.env.HUB_ONLY === '1';
-const BUILD_ALL_SPOKES = process.env.BUILD_ALL_SPOKES === '1';
-const SPOKE = (process.env.SPOKE ?? '').trim();
+const HUB_ONLY = process.env.HUB_ONLY === "1";
+const BUILD_ALL_SPOKES = process.env.BUILD_ALL_SPOKES === "1";
+const SPOKE = (process.env.SPOKE ?? "").trim();
 
 // Site origin (no trailing slash). Used for the canonical site URL and for
 // cross-bundle navbar links (those need an absolute URL so Docusaurus treats
 // them as external and skips baseUrl prefixing).
-const SITE_URL = (process.env.SITE_URL ?? '').trim();
+const SITE_URL = (process.env.SITE_URL ?? "").trim();
 if (!SITE_URL) {
-  throw new Error('SITE_URL must be set (e.g. https://docs.example.com).');
+  throw new Error("SITE_URL must be set (e.g. https://docs.example.com).");
 }
-const SITE_ORIGIN = SITE_URL.replace(/\/+$/, '');
+const SITE_ORIGIN = SITE_URL.replace(/\/+$/, "");
 
 const modesSet = [HUB_ONLY, BUILD_ALL_SPOKES, !!SPOKE].filter(Boolean).length;
 if (modesSet !== 1) {
   throw new Error(
-    'Exactly one build mode must be set: HUB_ONLY=1, BUILD_ALL_SPOKES=1, or SPOKE=<id>.',
+    "Exactly one build mode must be set: HUB_ONLY=1, BUILD_ALL_SPOKES=1, or SPOKE=<id>.",
   );
 }
 const SPOKE_MODE = !!SPOKE;
-const selectedSpoke = SPOKE_MODE ? allSpokes.find((s) => s.id === SPOKE) : undefined;
+const selectedSpoke = SPOKE_MODE
+  ? allSpokes.find((s) => s.id === SPOKE)
+  : undefined;
 if (SPOKE_MODE && !selectedSpoke) {
   throw new Error(`SPOKE='${SPOKE}' not found in spokes.yml.`);
 }
@@ -72,11 +76,11 @@ if (SPOKE_MODE && !selectedSpoke) {
 // hrefs include the correct prefix (e.g. /pr/<id>/<N>/<rbp>/ in previews).
 const BASE_URL: string = SPOKE_MODE
   ? process.env.BASE_URL
-    ? process.env.BASE_URL.replace(/\/?$/, '/')
+    ? process.env.BASE_URL.replace(/\/?$/, "/")
     : `/${selectedSpoke!.routeBasePath}/`
   : process.env.BASE_URL
-    ? process.env.BASE_URL.replace(/\/?$/, '/')
-    : '/';
+    ? process.env.BASE_URL.replace(/\/?$/, "/")
+    : "/";
 
 const spokes: SpokeConfig[] = HUB_ONLY
   ? []
@@ -85,7 +89,7 @@ const spokes: SpokeConfig[] = HUB_ONLY
     : [selectedSpoke!];
 
 for (const s of spokes) {
-  const dir = path.join(REPO_ROOT, SPOKES_DIR, s.repo.split('/').pop()!);
+  const dir = path.join(REPO_ROOT, SPOKES_DIR, s.repo.split("/").pop()!);
   if (!fs.existsSync(dir)) {
     throw new Error(`Spoke '${s.id}' (${s.repo}) not checked out at ${dir}.`);
   }
@@ -95,14 +99,14 @@ for (const s of spokes) {
 // docs sit at routeBasePath '/'. In BUILD_ALL_SPOKES mode each spoke mounts
 // at its own <rbp> within a single hub bundle.
 const effectiveRouteBasePath = (spoke: SpokeConfig): string =>
-  SPOKE_MODE ? '/' : spoke.routeBasePath;
+  SPOKE_MODE ? "/" : spoke.routeBasePath;
 
 function spokeCheckoutDir(spoke: SpokeConfig): string {
   // Matches clone-spokes.sh: basename(repo) under spokes/.
   // Resolve symlinks so webpack's resolve.symlinks behaviour (which
   // normalises imported paths to their real path) still matches the
   // `include` list that plugins pass to the MDX loader.
-  const relDir = path.join(SPOKES_DIR, spoke.repo.split('/').pop()!);
+  const relDir = path.join(SPOKES_DIR, spoke.repo.split("/").pop()!);
   const absDir = path.join(REPO_ROOT, relDir);
   try {
     return path.relative(REPO_ROOT, realpathSync(absDir));
@@ -115,25 +119,32 @@ function docsPluginId(spoke: SpokeConfig): string {
   // The first spoke is mounted via the classic preset (pluginId='default') so
   // theme features that default to pluginId="default" (404 page, search index,
   // etc.) have a docs instance to bind to.
-  return spoke === spokes[0] ? 'default' : spoke.id;
+  return spoke === spokes[0] ? "default" : spoke.id;
 }
 
 function docsPluginOptions(spoke: SpokeConfig) {
   const spokeDir = spokeCheckoutDir(spoke);
   return {
-    path: path.join(spokeDir, 'docs'),
+    path: path.join(spokeDir, "docs"),
     routeBasePath: effectiveRouteBasePath(spoke),
-    sidebarPath: require.resolve('./sidebars/auto.ts'),
+    sidebarPath: require.resolve("./sidebars/auto.ts"),
     editUrl: ({ docPath }: { docPath: string }) =>
       `https://github.com/${spoke.repo}/edit/${spoke.ref}/docs/${docPath}`,
-    async sidebarItemsGenerator({ defaultSidebarItemsGenerator, ...args }: any) {
+    async sidebarItemsGenerator({
+      defaultSidebarItemsGenerator,
+      ...args
+    }: any) {
       const excludeCategories = args.item.customProps?.excludeCategories as
         | string[]
         | undefined;
       const items = await defaultSidebarItemsGenerator(args);
       return items.filter(
         (i: any) =>
-          !(excludeCategories && i.type === 'category' && excludeCategories.includes(i.label)),
+          !(
+            excludeCategories &&
+            i.type === "category" &&
+            excludeCategories.includes(i.label)
+          ),
       );
     },
   };
@@ -141,7 +152,7 @@ function docsPluginOptions(spoke: SpokeConfig) {
 
 function docsPlugin(spoke: SpokeConfig): PluginConfig {
   return [
-    '@docusaurus/plugin-content-docs',
+    "@docusaurus/plugin-content-docs",
     { id: docsPluginId(spoke), ...docsPluginOptions(spoke) },
   ];
 }
@@ -150,15 +161,15 @@ function landingPagePlugin(spoke: SpokeConfig): PluginConfig | null {
   // Optional landing page lives at `docs/_landing/` inside the spoke — the
   // leading underscore tells the docs plugin to ignore the folder, so a single
   // `docs/` tree holds both docs content and the landing page source.
-  const landingDir = path.join(spokeCheckoutDir(spoke), 'docs', '_landing');
+  const landingDir = path.join(spokeCheckoutDir(spoke), "docs", "_landing");
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    require('fs').statSync(path.join(REPO_ROOT, landingDir));
+    require("fs").statSync(path.join(REPO_ROOT, landingDir));
   } catch {
     return null;
   }
   return [
-    '@docusaurus/plugin-content-pages',
+    "@docusaurus/plugin-content-pages",
     {
       id: `${spoke.id}-landing`,
       path: landingDir,
@@ -169,19 +180,21 @@ function landingPagePlugin(spoke: SpokeConfig): PluginConfig | null {
 
 function samplesPlugin(spoke: SpokeConfig): PluginConfig | null {
   // Only wire the samples plugin for the GenAI spoke (it is GenAI-specific).
-  if (spoke.id !== 'genai') return null;
+  if (spoke.id !== "genai") return null;
   const spokeDir = spokeCheckoutDir(spoke);
   // In SPOKE mode the spoke owns '/' (the bundle is rooted at /<rbp>/[<v>/]),
   // so samples live at '/samples'. In BUILD_ALL_SPOKES they live at '/<rbp>/samples'.
-  const docsRouteBase = SPOKE_MODE ? '/samples' : `/${spoke.routeBasePath}/samples`;
+  const docsRouteBase = SPOKE_MODE
+    ? "/samples"
+    : `/${spoke.routeBasePath}/samples`;
   return [
-    require.resolve('./src/plugins/genai-samples-docs-plugin'),
+    require.resolve("./src/plugins/genai-samples-docs-plugin"),
     {
       // The spoke's `samples-list` component calls
       // `usePluginData('genai-samples-docs-plugin')`, which implicitly looks up
       // the 'default' instance id. Leave `id` unset so Docusaurus assigns it.
-      samplesPath: path.join(spokeDir, 'samples'),
-      docsOutPath: path.join(spokeDir, 'docs', 'samples'),
+      samplesPath: path.join(spokeDir, "samples"),
+      docsOutPath: path.join(spokeDir, "docs", "samples"),
       readmeImportBase: `@site/${spokeDir}/samples`,
       githubBaseUrl: `https://github.com/${spoke.repo}/tree/${spoke.ref}/samples`,
       docsRouteBase,
@@ -204,8 +217,8 @@ const spokePlugins: PluginConfig[] = [
 ];
 
 const config: Config = {
-  title: 'OpenVINO Documentation',
-  favicon: 'img/favicon.png',
+  title: "OpenVINO Documentation",
+  favicon: "img/favicon.png",
 
   // Production URL of the site. Override per deployment via $SITE_URL.
   url: SITE_ORIGIN,
@@ -218,8 +231,8 @@ const config: Config = {
   //   SPOKE=<id>         → /<rbp>/ (or $BASE_URL for previews).
   baseUrl: BASE_URL,
 
-  organizationName: 'open-edge-platform',
-  projectName: 'edge-manage-docs',
+  organizationName: "open-edge-platform",
+  projectName: "edge-manage-docs",
 
   customFields: {
     // Exposed to client-side code (e.g. the hub landing page) via
@@ -233,23 +246,23 @@ const config: Config = {
       description: SPOKE_CATALOG[s.id]?.description,
       routeBasePath: s.routeBasePath,
       repo: s.repo,
-      href: `${SITE_ORIGIN}${SPOKE_MODE ? '/' : BASE_URL}${s.routeBasePath}/`,
+      href: `${SITE_ORIGIN}${SPOKE_MODE ? "/" : BASE_URL}${s.routeBasePath}/`,
     })),
   },
 
-  onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: "warn",
+  onBrokenMarkdownLinks: "warn",
 
   // S3 + CloudFront serves /foo/ as /foo/index.html but does NOT rewrite
   // /foo to /foo/index.html. Generating links with a trailing slash keeps
   // every internal nav working without a CloudFront Function.
   trailingSlash: true,
 
-  i18n: { defaultLocale: 'en', locales: ['en'] },
+  i18n: { defaultLocale: "en", locales: ["en"] },
 
   presets: [
     [
-      'classic',
+      "classic",
       {
         docs: HUB_ONLY ? false : docsPluginOptions(firstSpoke),
         blog: false,
@@ -257,7 +270,7 @@ const config: Config = {
         // include the hub itself (HUB_ONLY, BUILD_ALL_SPOKES). In SPOKE mode
         // the bundle is the spoke alone and must not emit a hub landing.
         pages: SPOKE_MODE ? false : undefined,
-        theme: { customCss: './src/css/custom.css' },
+        theme: { customCss: "./src/css/custom.css" },
       } satisfies Preset.Options,
     ],
   ],
@@ -273,53 +286,53 @@ const config: Config = {
       ? []
       : ([
           [
-            require.resolve('@easyops-cn/docusaurus-search-local'),
+            require.resolve("@easyops-cn/docusaurus-search-local"),
             {
               hashed: true,
               highlightSearchTermsOnTargetPage: true,
               searchBarShortcutHint: false,
               docsRouteBasePath: spokes.map((s) => effectiveRouteBasePath(s)),
               docsDir: spokes.map((s) =>
-                path.join(spokeCheckoutDir(s), 'docs'),
+                path.join(spokeCheckoutDir(s), "docs"),
               ),
             },
           ],
-        ] as Config['themes'] & object[])),
+        ] as Config["themes"] & object[])),
   ],
 
   themeConfig: {
-    colorMode: { disableSwitch: true, defaultMode: 'light' },
+    colorMode: { disableSwitch: true, defaultMode: "light" },
     navbar: {
       logo: {
-        alt: 'Intel logo',
-        src: 'img/intel-logo.svg',
+        alt: "Intel logo",
+        src: "img/intel-logo.svg",
         href: `${SITE_ORIGIN}/`,
-        target: '_self',
+        target: "_self",
       },
       items: [
         {
-          type: 'custom-productGrid' as const,
-          label: 'OpenVINO Runtime',
-          position: 'left' as const,
+          type: "custom-productGrid" as const,
+          label: "OpenVINO Runtime",
+          position: "left" as const,
         },
         {
-          href: `${SITE_ORIGIN}${SPOKE_MODE ? '/' : BASE_URL}openvino/`,
-          label: 'Documentation',
-          position: 'left' as const,
-          target: '_self',
+          href: `${SITE_ORIGIN}${SPOKE_MODE ? "/" : BASE_URL}openvino/`,
+          label: "Documentation",
+          position: "left" as const,
+          target: "_self",
         },
         ...(SPOKE_MODE
           ? [
               {
-                type: 'docsVersionDropdown' as const,
-                position: 'right' as const,
+                type: "docsVersionDropdown" as const,
+                position: "right" as const,
               },
             ]
           : HUB_ONLY
             ? []
             : allSpokes.map((spoke) => ({
-                type: 'custom-spokeVersionDropdown' as const,
-                position: 'right' as const,
+                type: "custom-spokeVersionDropdown" as const,
+                position: "right" as const,
                 docsPluginId: docsPluginId(spoke),
                 routePrefix: `${BASE_URL}${spoke.routeBasePath}/`,
               }))),
@@ -327,14 +340,13 @@ const config: Config = {
     },
     prism: { theme: prismThemes.github, darkTheme: prismThemes.dracula },
     footer: {
-      style: 'dark',
+      style: "dark",
       copyright: `<div class="legal-footer">
         <span>\u00a9 ${new Date().getFullYear()} Intel Corporation</span>
-        <span class="legal-footer__links">
-          <a href="https://www.intel.com/content/www/us/en/legal/terms-of-use.html">Terms of Use</a>
-          <a href="https://www.intel.com/content/www/us/en/privacy/intel-cookie-notice.html">Cookies</a>
-          <a href="https://www.intel.com/content/www/us/en/privacy/intel-privacy-notice.html">Privacy Policy</a>
-        </span>
+        <a href="https://www.intel.com/content/www/us/en/legal/terms-of-use.html">Terms of Use</a>
+        <a href="https://www.intel.com/content/www/us/en/privacy/intel-cookie-notice.html">Cookies</a>
+        <a href="https://www.intel.com/content/www/us/en/privacy/intel-privacy-notice.html">Privacy Policy</a>
+      
       </div>`,
     },
   } satisfies Preset.ThemeConfig,

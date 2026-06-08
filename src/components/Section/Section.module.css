@@ -1,0 +1,39 @@
+.container {
+  color: var(--genai-color-white);
+  background: linear-gradient(
+    102deg,
+    #0e1566 0%,
+    #1a237f 30%,
+    #222d96 60%,
+    #2c2cb6 100%
+  );
+
+  & > div {
+    padding: 64px 32px 32px;
+    max-width: var(--max-container-width);
+    margin: 0 auto;
+  }
+}
+
+.icon {
+  margin: auto;
+  display: block;
+  width: fit-content;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 48px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+.description {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  text-align: center;
+  margin-top: var(--margin-size);
+}

@@ -1,0 +1,82 @@
+.icon {
+  max-width: calc(var(--max-icon-size) + 50px);
+}
+
+.containerOptions {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  margin-top: calc(var(--margin-size) * 3);
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--margin-size) * 2);
+}
+
+.installButton {
+  cursor: pointer;
+  border: none;
+  background: #602dd0;
+  border-radius: 20px;
+  padding: var(--margin-size) calc(var(--margin-size) * 2);
+  color: var(--genai-color-white);
+}
+
+.installButton:hover {
+  background: #8ad9fb;
+  text-decoration: none;
+  color: var(--genai-color-white);
+}
+
+.twoColumnsFiveRowsGrid {
+  display: grid;
+  align-items: stretch;
+  margin-top: calc(var(--margin-size) * 4);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(5, auto);
+}
+
+.row1,
+.row3,
+.row5 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.row2,
+.row4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.row1 > *,
+.row3 > *,
+.row5 > * {
+  align-self: center;
+}
+
+.row2 > *,
+.row4 > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row1 > :first-child,
+.row3 > :first-child,
+.row5 > :first-child {
+  justify-self: end;
+  width: 100%;
+}
+
+.row1 > :last-child,
+.row3 > :last-child,
+.row5 > :last-child {
+  justify-self: start;
+}
+
+.blendModeLighten {
+  mix-blend-mode: lighten;
+}
