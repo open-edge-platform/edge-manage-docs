@@ -1,10 +1,13 @@
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { DottedCardDetails } from "../components/DottedCardDetails/DottedCardDetails";
 import { Section } from "../components/Section/Section";
 import { useSpokeHref } from "../hooks/use-spoke-href";
 import { OpenVINOHub } from "../hub-catalog";
 import styles from "./Performance.module.css";
+import { useAssetUrl } from "../hooks/use-asset-url";
 
 export const Performance = () => {
+  const assetUrl = useAssetUrl();
   const href = useSpokeHref(OpenVINOHub.spokeId);
 
   return (
@@ -12,7 +15,7 @@ export const Performance = () => {
       <Section.Icon>
         <img
           className={styles.icon}
-          src="/img/performance.png"
+          src={assetUrl("img/performance.png")}
           alt="performance"
         />
       </Section.Icon>
@@ -28,7 +31,7 @@ export const Performance = () => {
         <div>
           <img
             className={styles.blendModeLighten}
-            src="/img/openvino-runtime.png"
+            src={assetUrl("img/openvino-runtime.png")}
           />
         </div>
         <DottedCardDetails
@@ -65,7 +68,7 @@ export const Performance = () => {
         <div>
           <img
             className={styles.blendModeLighten}
-            src="/img/throughput-runtime.png"
+            src={assetUrl("img/throughput-runtime.png")}
           />
         </div>
       </div>

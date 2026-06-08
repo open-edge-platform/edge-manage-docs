@@ -1,8 +1,12 @@
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { CardDetails } from "../components/CardDetails";
 import styles from "./HomePageHeader.module.css";
 import { Section } from "@site/src/components/Section/Section";
+import { useAssetUrl } from "../hooks/use-asset-url";
 
 export const HomePageHeader = () => {
+  const assetUrl = useAssetUrl();
+
   return (
     <Section>
       <h1 className={styles.heroTitle} data-text="Deploy AI anywhere">
@@ -19,21 +23,21 @@ export const HomePageHeader = () => {
       <div className={styles.cards}>
         <CardDetails
           maxIconWidth={78}
-          iconUrl="/img/hardware.png"
+          iconUrl={assetUrl("img/hardware.png")}
           title={"One model - any Intel hardware"}
           description="Run your model on CPU, GPU, and NPU without changing your code. Automatic device detection and fallback for maximum compatibility."
         />
 
         <CardDetails
           maxIconWidth={60}
-          iconUrl="/img/ai.png"
+          iconUrl={assetUrl("img/ai.png")}
           title={<>Built for {<br />}Generative AI</>}
           description="Supports LLMs, multi-modal models, and vision-language models — with optimizations like int4/int8 compression and KV-cache for peak throughput."
         />
 
         <CardDetails
           maxIconWidth={70}
-          iconUrl="/img/max-performance.png"
+          iconUrl={assetUrl("img/max-performance.png")}
           title={<>Max performance, {<br />}min footprint</>}
           description="Advanced model compression, int4/int8 inference, and precision tuning close the gap with GPU performance on embedded and mobile devices."
         />
@@ -52,7 +56,7 @@ export const HomePageHeader = () => {
           loop
           muted
           autoPlay
-          src="/video/energy_flows.mp4"
+          src={assetUrl("video/energy_flows.mp4")}
           controls={false}
         />
       </div>

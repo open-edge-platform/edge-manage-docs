@@ -1,17 +1,23 @@
 import { DottedCardDetails } from "../components/DottedCardDetails/DottedCardDetails";
 import { Link } from "../components/Link/Link";
 import { Section } from "../components/Section/Section";
+import { useAssetUrl } from "../hooks/use-asset-url";
 import { useSpokeHref } from "../hooks/use-spoke-href";
 import { OpenVINOHub } from "../hub-catalog";
 import styles from "./InstallOpenvino.module.css";
 
 export const InstallOpenvino = () => {
+  const assetUrl = useAssetUrl();
   const href = useSpokeHref(OpenVINOHub.spokeId);
 
   return (
     <Section>
       <Section.Icon>
-        <img className={styles.icon} src="/img/install.png" alt="install" />
+        <img
+          className={styles.icon}
+          src={assetUrl("img/install.png")}
+          alt="install"
+        />
       </Section.Icon>
 
       <Section.Title>Install OpenVINO™</Section.Title>
@@ -59,17 +65,20 @@ export const InstallOpenvino = () => {
             ]}
           />
 
-          <img className={styles.blendModeLighten} src="/img/openvino-ir.png" />
+          <img
+            className={styles.blendModeLighten}
+            src={assetUrl("img/openvino-ir.png")}
+          />
         </div>
 
         <div className={styles.row2}>
-          <img src="/img/left-right-connector.svg" />
+          <img src={assetUrl("img/left-right-connector.svg")} />
         </div>
 
         <div className={styles.row3}>
           <img
             className={styles.blendModeLighten}
-            src="/img/optimize-model.png"
+            src={assetUrl("img/optimize-model.png")}
           />
 
           <DottedCardDetails
@@ -87,7 +96,7 @@ export const InstallOpenvino = () => {
         </div>
 
         <div className={styles.row4}>
-          <img src="/img/right-left-connector.svg" />
+          <img src={assetUrl("img/right-left-connector.svg")} />
         </div>
 
         <div className={styles.row5}>
@@ -123,7 +132,7 @@ export const InstallOpenvino = () => {
 
           <img
             className={styles.blendModeLighten}
-            src="/img/run-and-infer.png"
+            src={assetUrl("img/run-and-infer.png")}
           />
         </div>
       </div>

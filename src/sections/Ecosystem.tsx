@@ -1,17 +1,24 @@
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { Code } from "../components/Code/Code";
 import { DottedCardDetails } from "../components/DottedCardDetails/DottedCardDetails";
 import { Section } from "../components/Section/Section";
 import { useSpokeHref } from "../hooks/use-spoke-href";
 import { OpenVINOHub } from "../hub-catalog";
 import styles from "./Ecosystem.module.css";
+import { useAssetUrl } from "../hooks/use-asset-url";
 
 export const Ecosystem = () => {
+  const assetUrl = useAssetUrl();
   const href = useSpokeHref(OpenVINOHub.spokeId);
 
   return (
     <Section>
       <Section.Icon>
-        <img className={styles.icon} src="/img/ecosystem.png" alt="Ecosystem" />
+        <img
+          className={styles.icon}
+          src={assetUrl("img/ecosystem.png")}
+          alt="Ecosystem"
+        />
       </Section.Icon>
 
       <Section.Title>Ecosystem</Section.Title>
