@@ -72,7 +72,7 @@
 }
 
 body {
-  color: var(--genai-color-white);
+  background-color: var(--genai-color-white);
   font-family: var(--genai-font-family);
 }
 

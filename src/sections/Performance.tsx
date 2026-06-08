@@ -22,7 +22,10 @@ export const Performance = () => {
 
       <div className={styles.grid}>
         <div>
-          <img src="/img/openvino-runtime.png" />
+          <img
+            className={styles.blendModeLighten}
+            src="/img/openvino-runtime.png"
+          />
         </div>
         <DottedCardDetails
           title="Optimize for latency"
@@ -56,7 +59,10 @@ export const Performance = () => {
           ]}
         />
         <div>
-          <img src="/img/throughput-runtime.png" />
+          <img
+            className={styles.blendModeLighten}
+            src="/img/throughput-runtime.png"
+          />
         </div>
       </div>
     </Section>

@@ -1,4 +1,5 @@
 .container {
+  color: var(--genai-color-white);
   background: linear-gradient(
     102deg,
     #0e1566 0%,

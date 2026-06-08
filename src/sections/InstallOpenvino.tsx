@@ -49,7 +49,7 @@ export const InstallOpenvino = () => {
             ]}
           />
 
-          <img src="/img/openvino-ir.png" />
+          <img className={styles.blendModeLighten} src="/img/openvino-ir.png" />
         </div>
 
         <div className={styles.row2}>
@@ -57,7 +57,10 @@ export const InstallOpenvino = () => {
         </div>
 
         <div className={styles.row3}>
-          <img src="/img/optimize-model.png" />
+          <img
+            className={styles.blendModeLighten}
+            src="/img/optimize-model.png"
+          />
 
           <DottedCardDetails
             title="Optimize your model"
@@ -108,7 +111,10 @@ export const InstallOpenvino = () => {
             ]}
           />
 
-          <img src="/img/run-and-infer.png" />
+          <img
+            className={styles.blendModeLighten}
+            src="/img/run-and-infer.png"
+          />
         </div>
       </div>
     </Section>

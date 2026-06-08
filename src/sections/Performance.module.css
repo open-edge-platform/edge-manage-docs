@@ -37,3 +37,7 @@
     grid-column: auto;
   }
 }
+
+.blendModeLighten {
+  mix-blend-mode: lighten;
+}

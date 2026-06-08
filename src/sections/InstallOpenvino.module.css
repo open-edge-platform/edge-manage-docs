@@ -70,3 +70,7 @@
 .row5 > :last-child {
   justify-self: start;
 }
+
+.blendModeLighten {
+  mix-blend-mode: lighten;
+}
