@@ -1,10 +1,10 @@
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import React from "react";
-import { Ecosystem } from "../Sections/Ecosystem";
-import { Performance } from "../Sections/Performance";
-import { HomePageHeader } from "../Sections/HomePageHeader";
-import { InstallOpenvino } from "../Sections/InstallOpenvino";
+import { Ecosystem } from "../sections/Ecosystem";
+import { HomePageHeader } from "../sections/HomePageHeader";
+import { InstallOpenvino } from "../sections/InstallOpenvino";
+import { Performance } from "../sections/Performance";
 
 export default function Home(): React.JSX.Element {
   const { siteConfig } = useDocusaurusContext();
