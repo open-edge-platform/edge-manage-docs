@@ -186,7 +186,7 @@ Platform services
    * - vault
      - image
      - hashicorp/vault
-     - 1.21.3
+     - 1.21.2
    * - vault
      - image
      - hashicorp/vault-k8s

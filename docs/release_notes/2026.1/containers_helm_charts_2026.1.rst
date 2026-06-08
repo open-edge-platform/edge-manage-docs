@@ -54,7 +54,7 @@ Helm Charts for Infrastructure Manager
    * - infra-onboarding
      - infra-onboarding
      - orch-infra
-     - 1.36.5
+     - 1.36.6
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/infra/charts
 
 
@@ -78,17 +78,17 @@ Helm Charts for User Interface
    * - web-ui
      - orch-ui-root
      - orch-ui
-     - 4.0.14
+     - 4.0.16
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/charts
    * - web-ui-admin
      - orch-ui-admin
      - orch-ui
-     - 4.0.11
+     - 4.0.13
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/charts
    * - web-ui-infra
      - orch-ui-infra
      - orch-ui
-     - 4.0.9
+     - 4.0.10
      - oci://registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/charts
 
 
@@ -464,20 +464,20 @@ Docker Containers
      - Full Entry
    * - 1
      - admin
-     - 4.0.11
-     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/admin:4.0.11
+     - 4.0.13
+     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/admin:4.0.13
    * - 2
      - infra
-     - 4.0.9
-     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/infra:4.0.9
+     - 4.0.10
+     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/infra:4.0.10
    * - 3
      - metadata-broker
      - 1.0.3
      - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/metadata-broker:1.0.3
    * - 4
      - root
-     - 4.0.14
-     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/root:4.0.14
+     - 4.0.16
+     - registry-rs.edgeorchestration.intel.com/edge-orch/orch-ui/root:4.0.16
 
 .. list-table:: Platform Services Containers
    :widths: 5 30 20 50
@@ -622,8 +622,8 @@ Docker Containers
      - docker.io/traefik:v3.7.1
    * - 26
      - vault
-     - 1.21.3
-     - hashicorp/vault:1.21.3
+     - 1.21.2
+     - hashicorp/vault:1.21.2
    * - 27
      - vault-k8s (agent injector)
      - 1.7.2

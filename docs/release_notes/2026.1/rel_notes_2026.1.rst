@@ -53,11 +53,43 @@ Key highlights of the 2026.1 release include:
 
 **Edge Out-of-Band Manageability (EOM) Platform Enhancements**
 
-* **Update:** <TBD – list platform enhancements>
+* **New:** Replaced ArgoCD and Gitea-based deployment with a Helmfile-based
+  deployment model. The new ``pre-orch.sh`` and ``post-orch-deploy.sh`` scripts
+  manage cluster setup and Helm chart lifecycle independently of the Cluster
+  Orchestrator (CO) and Application Orchestrator (AO).
+* **New:** Added ``pre-orch-backup.sh`` script for pre-upgrade backup of
+  PostgreSQL data and Kubernetes secrets, consumed automatically by
+  ``post-orch-deploy.sh upgrade``.
+* **New:** Introduced two deployment profiles via ``EOM_HELMFILE_ENV``:
+  ``onprem-eim`` (full Edge Infrastructure Manager) and ``onprem-vpro``
+  (AMT out-of-band only, reduced footprint).
 
 **Maintenance Updates**
 
-* **Update:** <TBD – list maintenance/dependency updates>
+Infrastructure component versions for this release:
+
+.. list-table:: Cluster Infrastructure Versions
+   :widths: 40 30 30
+   :header-rows: 1
+
+   * - Component
+     - Version
+     - Notes
+   * - K3s
+     - ``v1.34.3+k3s1``
+     - Default Kubernetes provider
+   * - RKE2
+     - ``v1.34.4+rke2r1``
+     - Alternative provider (optional)
+   * - KinD
+     - ``v0.27.0``
+     - Dev/test provider (optional)
+   * - OpenEBS LocalPV
+     - ``4.3.0``
+     - Persistent storage provisioner
+   * - MetalLB
+     - ``0.15.2``
+     - Load-balancer
 
 The codebase is Apache software version 2.0 licensed and available on the
 Github repository.
@@ -65,7 +97,7 @@ Github repository.
 For a detailed list of features, see the
 :doc:`Overview page </user_guide/index>`
 and the `Edge Out-of-Band Manageability README file
-<https://github.com/open-edge-platform/edge-out-of-band-manageability/blob/main/README.md>`_.
+<https://github.com/open-edge-platform/edge-out-of-band-manageability/blob/v2026.1.0-rc2/README.md>`_.
 
 Known Issues
 ----------------------------------
