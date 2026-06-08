@@ -1,27 +1,35 @@
 Resolving Incomplete Component Deployment
 =========================================
 
-Slow network connections or failures may cause the ArgoCD retry limit to
-be reached, and some applications may not deploy successfully.
+Network issues or timeouts during deployment may cause some Helm releases to fail
+or remain in a ``pending`` or ``failed`` state.
 
-Reset the ``root-app``
+Redeploy Failed Releases
 -------------------------
 
-#. Run the command below to find the IP address for ArgoCD tool.
+#. Check the status of all releases:
 
    .. code-block:: shell
 
-      kubectl get svc -n argocd -o json argocd-server|jq '.status.loadBalancer.ingress[0].ip'
-      "xx.xx.xx.xx"
+      cd post-orch
+      ./post-orch-deploy.sh list
 
-#. Run the command below to find the ArgoCD password.
+#. For a specific failed chart, re-run the install:
 
    .. code-block:: shell
 
-      kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath={.data.password}|base64 -d
-      <password>
+      ./post-orch-deploy.sh install <chart-name>
 
-#. From a browser, open the ArgoCD IP address.
-#. Log in using ``admin`` as the username, and the password from the earlier step.
-#. Open the ``root-app`` application and check its status.
-#. Click **Sync** > **Synchronize** to trigger an application update.
+#. To redeploy all charts (idempotent):
+
+   .. code-block:: shell
+
+      ./post-orch-deploy.sh install
+
+#. Monitor progress:
+
+   .. code-block:: shell
+
+      ./watch-deploy.sh
+      # or in debug mode:
+      ./watch-deploy.sh --debug

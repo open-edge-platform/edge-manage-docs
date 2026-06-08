@@ -6,65 +6,9 @@ Install Edge Orchestrator
 Download the Installation Script
 -----------------------------------------------
 
-.. note::
-   EMF is released on a weekly basis. To use a weekly build, refer to the latest weekly tag available `here <https://github.com/open-edge-platform/edge-manageability-framework/discussions>`_. In the below script, replace v2026.1.0 with the appropriate weekly tag. Weekly tags follow the format: v2026.1.0-nYYYYMMDD.
-
-#. Create the script file on the Edge Orchestrator node using the following command:
-
-  .. code-block:: shell
-
-    cat <<'EOF' > access_script.sh
-    #!/usr/bin/env bash
-
-    set -o errexit
-    set -o nounset
-    set -o pipefail
-
-    REGISTRY_URL='registry-rs.edgeorchestration.intel.com'
-    RS_PATH='edge-orch/common/files/on-prem'
-    ORAS_VERSION='1.1.0'
-    ORCH_VERSION='v2026.1.0'
-
-    # Install oras if not already installed
-    if ! command -v oras &> /dev/null; then
-       echo "Oras not found. Installing..."
-       # Download the specified version of oras
-       curl -LO "https://github.com/oras-project/oras/releases/download/v${ORAS_VERSION}/oras_${ORAS_VERSION}_linux_amd64.tar.gz"
-       # Create a temporary directory for oras installation
-       mkdir -p oras-install/
-       # Extract the downloaded tarball into the temporary directory
-       tar -zxf oras_${ORAS_VERSION}_*.tar.gz -C oras-install/
-       # Move the oras binary to a directory in the system PATH
-       sudo mv oras-install/oras /usr/local/bin/
-       # Clean up the downloaded files and temporary directory
-       rm -rf oras_${ORAS_VERSION}_*.tar.gz oras-install/
-    else
-       echo "Oras is already installed."
-    fi
-
-    # Pull the specified artifact from the registry
-    oras pull -v "${REGISTRY_URL}/${RS_PATH}:${ORCH_VERSION}"
-
-    # Make all shell scripts in the current directory executable
-    chmod +x *.sh
-    EOF
-
-#. Make the script executable.
-
-   .. code-block:: shell
-
-      chmod +x access_script.sh
-
-#. Run the script on the Edge Orchestrator node.
-
-   .. code-block:: shell
-
-      ./access_script.sh
-
-   The script does the following:
-
-   * Installs the ``oras`` tool
-   * Downloads the scripts to install and uninstall Edge Orchestrator
+Download the installation scripts from the
+`Edge Out-of-Band Manageability repository
+<https://github.com/open-edge-platform/edge-out-of-band-manageability>`_.
 
 Configure Installation Environment
 -----------------------------------
@@ -333,12 +277,6 @@ Install with K3s explicitly:
 .. code-block:: shell
 
    ./pre-orch.sh k3s install
-
-Install without MetalLB (for a manual load-balancer setup):
-
-.. code-block:: shell
-
-   ./pre-orch.sh k3s install --no-metallb
 
 Install RKE2 with Docker Hub credentials:
 
@@ -683,15 +621,9 @@ An example of the `dnsmasq` config file:
    address=/[on.prem.domain.name]/[traefik-external-ip]
    address=/alerting-monitor.[on.prem.domain.name]/[traefik-external-ip]
    address=/api.[on.prem.domain.name]/[traefik-external-ip]
-   address=/app-orch.[on.prem.domain.name]/[traefik-external-ip]
-   address=/app-service-proxy.[on.prem.domain.name]/[traefik-external-ip]
    address=/attest-node.[on.prem.domain.name]/[traefik-external-ip]
-   address=/cluster-orch-edge-node.[on.prem.domain.name]/[traefik-external-ip]
-   address=/cluster-orch-node.[on.prem.domain.name]/[traefik-external-ip]
-   address=/cluster-orch.[on.prem.domain.name]/[traefik-external-ip]
    address=/connect-gateway.[on.prem.domain.name]/[traefik-external-ip]
    address=/fleet.[on.prem.domain.name]/[traefik-external-ip]
-   address=/gitea.[on.prem.domain.name]/[traefik-external-ip]
    address=/infra-node.[on.prem.domain.name]/[traefik-external-ip]
    address=/keycloak.[on.prem.domain.name]/[traefik-external-ip]
    address=/log-query.[on.prem.domain.name]/[traefik-external-ip]

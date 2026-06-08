@@ -4,7 +4,7 @@ Open Edge Platform System Requirements
 Edge Orchestrator On-Premises Resource Requirements
 --------------------------------------------------------
 
-* OS: Ubuntu 22.04.3 Server LTS.
+* OS: Ubuntu 24.04 Server LTS.
 
 * Storage: 1x Storage Device (SSD, HDD or NVMe) needed to install the OS to
   and needs to be at least 256 Gb; Intel suggests 512 Gb.
@@ -17,42 +17,23 @@ Edge Orchestrator On-Premises Resource Requirements
 
 * Compute resources
 
-  * For small scale deployments (10 ENs), Intel recommends the following compute resources setups:
+  * For  deployments (10 ENs), Intel recommends the following compute resources setups:
 
-     * RAM: 48 GiB
-     * CPU: 16 physical cores
-     * Disk: 512 GiB
+     * RAM: 32 GiB
+     * CPU: 8 physical cores
+     * Disk: 256 GiB
 
-  * For large scale deployments (1.000 ENs), Intel recommends the following compute resources setups:
+  * For deployments (1.000 ENs), Intel recommends the following compute resources setups:
 
      * RAM: 475 GiB
      * CPU: 128 physical cores
      * Disk: 2 TiB
 
-  * For small-scale deployments (10 ENs), Intel recommends the following compute resource setup when AO/CO and Observability are disabled:
-
-     * RAM: 16 GiB
-     * CPU: 6 physical cores
-     * Disk: 256 GiB
-
 Storage consumption varies with environment-specific details, including user-specific telemetry collection policies and application log generation.
-
 With the specifications above, the system has been validated to support up to 1000 edge nodes concurrently connected, 100 of with a cluster deployed on it and one application.
 
-
-
-Edge Orchestrator Scalability Configuration
------------------------------------------------
-
-Depending on the number of edge nodes, you must include cluster-specific configuration:
-
-* The default profile ``onprem`` supports up to 100 edge nodes.
-* The large-scale profile ``onprem-1k`` supports up to 1,000 edge nodes.
-
-See the installation section at
-:doc:`/deployment_guide/on_prem_deployment/on_prem_get_started/on_prem_install`.
-
-.. note:: These profiles use `xlarge` as the value for `resourcesPreset` of the `postgresql` database.
+.. note::
+   The above specifications are not tested with Observability profile enabled. Enabling Observability will require additional resources, and the exact requirements will depend on the scale of telemetry collection and retention policies.
 
 Supported OS and Browsers
 --------------------------------------------------------
