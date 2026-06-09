@@ -66,30 +66,13 @@ Key highlights of the 2026.1 release include:
 
 **Maintenance Updates**
 
-Infrastructure component versions for this release:
+Upgrades from Previous Releases
+----------------------------------
 
-.. list-table:: Cluster Infrastructure Versions
-   :widths: 40 30 30
-   :header-rows: 1
-
-   * - Component
-     - Version
-     - Notes
-   * - K3s
-     - ``v1.34.3+k3s1``
-     - Default Kubernetes provider
-   * - RKE2
-     - ``v1.34.4+rke2r1``
-     - Alternative provider (optional)
-   * - KinD
-     - ``v0.27.0``
-     - Dev/test provider (optional)
-   * - OpenEBS LocalPV
-     - ``4.3.0``
-     - Persistent storage provisioner
-   * - MetalLB
-     - ``0.15.2``
-     - Load-balancer
+Breaking Change Notice
+Upgrading from EMF 2026.0 to 2026.1 introduces a breaking change as we shifted from argocd to helm based 
+approach for deployment. This change requires a complete reinstallation of the product, which includes 
+deleting and re-provisioning all edge nodes. Please plan accordingly for this upgrade process.
 
 The codebase is Apache software version 2.0 licensed and available on the
 Github repository.
@@ -97,7 +80,7 @@ Github repository.
 For a detailed list of features, see the
 :doc:`Overview page </user_guide/index>`
 and the `Edge Out-of-Band Manageability README file
-<https://github.com/open-edge-platform/edge-out-of-band-manageability/blob/v2026.1.0-rc2/README.md>`_.
+<https://github.com/open-edge-platform/edge-out-of-band-manageability/blob/main/README.md>`_.
 
 Known Issues
 ----------------------------------
@@ -161,23 +144,6 @@ Usage : https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/
 
 * For Intel® AMT or Intel® Standard Manageability issues see
   :doc:`/user_guide/advanced_functionality/vpro_power_mgt`.
-* **vPro Profile Only:** Project deletion may fail to complete successfully when
-  using the vPro profile, leaving the project in ``STATUS_INDICATION_IN_PROGRESS``
-  state with status message "waiting for: infra-tenant-controller". This prevents
-  new project creation from completing.
-
-  **Workaround:**
-
-  1. Delete the stuck project from the database using the following command
-     (replace ``<resource_id>`` with the project's UID from ``orch-cli get project``
-     output)::
-
-       POD=postgresql-cluster-1; kubectl -n orch-database exec "$POD" -c postgres -- psql -U postgres -d orch-iam-iam-tenancy -c "DELETE FROM controller_status WHERE resource_id = '<resource_id>';"
-
-  2. Restart the tenant-controller pod in the ``orch-infra`` namespace to allow
-     stuck projects to be created::
-
-       kubectl -n orch-infra delete pod -l app=infra-tenant-controller
 
 User Experience
 ^^^^^^^^^^^^^^^^^
