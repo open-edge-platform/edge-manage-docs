@@ -297,19 +297,19 @@ Edge Node Agents
      - Debian pkg
      - Source
      - https://github.com/fluent/fluent-bit
-     - 3.2.9
-     - 3.1.9
+     - 5.0.5
+     - 3.1.10
    * - otelcol-contrib
      - Debian pkg
      - Source
      - https://github.com/open-telemetry/opentelemetry-collector-contrib
-     - 0.122.1
-     - 0.117.0
+     - 0.152.0
+     - 0.151.0
    * - telegraf
      - Debian pkg
      - Source
      - https://github.com/influxdata/telegraf
-     - 1.34.0
+     - 1.38.4-1
      - 1.31.0
    * - lms
      - Debian package
