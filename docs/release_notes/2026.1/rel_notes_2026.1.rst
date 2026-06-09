@@ -70,8 +70,8 @@ Upgrades from Previous Releases
 ----------------------------------
 
 Breaking Change Notice
-Upgrading from EMF 2026.0 to 2026.1 introduces a breaking change as we shifted from argocd to helm based 
-approach for deployment. This change requires a complete reinstallation of the product, which includes 
+Upgrading from EMF 2026.0 to 2026.1 introduces a breaking change as we shifted from argocd to helm based
+approach for deployment. This change requires a complete reinstallation of the product, which includes
 deleting and re-provisioning all edge nodes. Please plan accordingly for this upgrade process.
 
 The codebase is Apache software version 2.0 licensed and available on the
