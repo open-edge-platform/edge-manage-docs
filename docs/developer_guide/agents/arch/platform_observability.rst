@@ -274,9 +274,18 @@ Figure 2: Log Collection configuration
 
    - Telegraf configuration
       - Inputs
+         - `System input plugin
+           <https://github.com/influxdata/telegraf/blob/master/plugins/inputs/system/README.md>`_
+           enables gathering of `system` related metrics from the HW, including
+           how long it has been running for since the last power off.
+
          - `CPU input plugin
            <https://github.com/influxdata/telegraf/blob/master/plugins/inputs/cpu/README.md>`_
            enables gathering of `CPU` related metrics from the HW.
+
+         - `Linux CPU input plugin
+           <https://github.com/influxdata/telegraf/blob/master/plugins/inputs/linux_cpu/README.md>`_
+           enables gathering of `Linux CPU` related metrics from the HW.
 
          - `Memory input plugin
            <https://github.com/influxdata/telegraf/blob/master/plugins/inputs/mem/README.md>`_
@@ -310,13 +319,53 @@ Figure 2: Log Collection configuration
 
          - `Intel powerstat input plugin
            <https://github.com/influxdata/telegraf/blob/master/plugins/inputs/intel_powerstat/README.md>`_
-           enables gathering of ``power`` related metrics from Intel based
+           enables gathering of `power` related metrics from Intel based
            platforms. Disabled by default.
+
+         - `Intel PMU input plugin
+           <https://github.com/influxdata/telegraf/blob/master/plugins/inputs/intel_pmu/README.md>`_
+           enables gathering of `performance` related metrics from the Intel
+           Performance Monitoring Unit (PMU) using the ``Linux Perf`` subsystem.
+           Disabled by default.
+
+         - `Intel RDT input plugin
+           <https://github.com/influxdata/telegraf/blob/master/plugins/inputs/intel_rdt/README.md>`_
+           enables gathering of `shared resource` metrics from the HW using
+           the Intel Resource Director Technology framework.
+
+         - `Intel PMT input plugin
+           <https://github.com/influxdata/telegraf/blob/master/plugins/inputs/intel_pmt/README.md>`_
+           enables gathering of `system` metrics from the HW using the Linux
+           kernel driver for Intel Platform Montoring Technology (PMT). Disabled
+           by default.
+
+         - `LVM input plugin
+           <https://github.com/influxdata/telegraf/blob/master/plugins/inputs/lvm/README.md>`_
+           enables gathering of ``physical volume, volume group and logical
+           group`` metrics from the Logical Volume Management (LVM) service in
+           the kernel. Disabled by default.
+
+         - `Exec input plugin
+           <https://github.com/influxdata/telegraf/blob/master/plugins/inputs/exec/README.md>`_
+           enables gathering of metrics from `system commands` using shell
+           scripts. In the agent, this includes dGPU, iGPU, NPU, disk, BIOS and
+           hyper threading metrics. Disabled by default except for disk and
+           BIOS metrics.
+
+         - `Ethtool input plugin
+           <https://github.com/influxdata/telegraf/blob/master/plugins/inputs/ethtool/README.md>`_
+           enables gathering of `Ethernet device` metrics from the HW.
+           Disabled by default.
 
          - `RAS input plugin
            <https://github.com/influxdata/telegraf/blob/master/plugins/inputs/ras/README.md>`_
-           enables gathering of ``error`` metrics from the RASDaemon in the HW.
+           enables gathering of `error` metrics from the RASDaemon in the HW.
            Disabled by default.
+
+         - `Redfish input plugin
+           <https://github.com/influxdata/telegraf/blob/master/plugins/inputs/redfish/README.md>`_
+           enables gathering of `status information` from the HW when
+           DMTF Redfish support is enabled. Disabled by default.
 
       - Outputs
          - `OpenTelemetry output plugin
