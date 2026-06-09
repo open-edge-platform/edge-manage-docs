@@ -17,6 +17,7 @@ application's capabilities:
    * :doc:`/user_guide/advanced_functionality/custom_os_profile`
    * :doc:`/user_guide/advanced_functionality/ubuntu_raw_image_generation_from_iso`
    * :doc:`/user_guide/advanced_functionality/orch_cli_advanced`
+   * :doc:`/user_guide/advanced_functionality/view_metrics`
 
 
 .. toctree::
@@ -36,3 +37,4 @@ application's capabilities:
    ubuntu_raw_image_generation_from_iso
    orch_cli_advanced
    provisioning_clusters_without_co
+   view_metrics
