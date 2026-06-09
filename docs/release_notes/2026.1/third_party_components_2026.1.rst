@@ -28,15 +28,11 @@ Edge Infrastructure Manager
    * - tinkerbell - smee
      - Container
      - https://github.com/tinkerbell/smee
-     - <TBD>
+     - v0.9.0
    * - tinkerbell - tink
      - Container
      - https://github.com/tinkerbell/tink
      - v0.10.0
-   * - tinkerbell - kube-vip
-     - Container (load balancer)
-     - https://github.com/kube-vip/kube-vip
-     - <TBD>
    * - curl-jq
      - Container (utility)
      - https://github.com/badouralix/dockerfiles
@@ -283,44 +279,44 @@ Edge Node Agents
      - Debian pkg
      - Source
      - https://github.com/caddyserver/caddy
-     - <TBD>
-     - <TBD>
+     - 2.7.6
+     - 2.9.1
    * - openssl
      - Debian pkg
      - Source
      - https://www.openssl.org/
-     - <TBD>
-     - <TBD>
+     - 3.0.2
+     - 3.3.3
    * - ipmitool
      - Debian pkg
      - Source
      - https://github.com/ipmitool/ipmitool
-     - <TBD>
-     - <TBD>
+     - 1.8.18
+     - 1.8.19
    * - fluent-bit
      - Debian pkg
      - Source
      - https://github.com/fluent/fluent-bit
-     - <TBD>
-     - <TBD>
+     - 3.2.9
+     - 3.1.9
    * - otelcol-contrib
      - Debian pkg
      - Source
      - https://github.com/open-telemetry/opentelemetry-collector-contrib
-     - <TBD>
-     - <TBD>
+     - 0.122.1
+     - 0.117.0
    * - telegraf
      - Debian pkg
      - Source
      - https://github.com/influxdata/telegraf
-     - <TBD>
-     - <TBD>
+     - 1.34.0
+     - 1.31.0
    * - lms
      - Debian package
      - Source
      - https://github.com/intel/lms
-     - <TBD>
-     - <TBD>
+     - 2506.0.0.0
+     - 2506.0.0.0
 
 
 User Interface
@@ -342,11 +338,11 @@ User Interface
    * - golang
      - ContainerImage
      - https://hub.docker.com/_/golang
-     - <TBD>
+     - 1.26.3
    * - openpolicyagent/opa
      - ContainerImage
      - https://hub.docker.com/r/openpolicyagent/opa/
-     - <TBD>
+     - 1.10.1-static
    * - react
      - ContainerImage
      - https://www.npmjs.com/package/react
