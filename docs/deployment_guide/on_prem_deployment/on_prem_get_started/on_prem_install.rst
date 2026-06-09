@@ -202,10 +202,10 @@ The ``post-orch/post-orch.env`` file controls the Helm-based Edge Orchestrator d
      - Default
    * - ``EOM_ENABLE_ISTIO``
      - Enable Istio service mesh (istiod, istio-base, Kiali, and Istio policies)
-     - ``false``
+     - ``true``
    * - ``EOM_ENABLE_KYVERNO``
      - Enable Kyverno policy engine and admission policies
-     - ``false``
+     - ``true``
    * - ``EOM_ENABLE_O11Y``
      - Enable edge-node and orchestrator observability (metrics, logs, dashboards)
      - ``false``
