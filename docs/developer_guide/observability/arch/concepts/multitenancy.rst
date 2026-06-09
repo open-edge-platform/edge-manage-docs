@@ -13,7 +13,7 @@ residing at the Edge Nodes) is at the highest level divided into:
   Edge Node Observability stack), and providing an overall administrative view
   of Edge Orchestrator and the Edge Nodes.
 
-Data isolation due to multi-tenancy is critical for the 
+Data isolation due to multi-tenancy is critical for the
 **Edge Node Observability** stack which presents per-project information. The
 **Orchestrator Observability** stack provides an administrative view of the
 multi-tenant system so data from all projects can be reviewed in a
