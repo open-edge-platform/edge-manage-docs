@@ -79,7 +79,7 @@ of the node:
 
 You can click on a pod name to see details regarding the pod:
 
-.. figure:: image/orchestrator_pod_details.png
+.. figure:: images/orchestrator_pod_details.png
    :width: 95 %
    :alt: Pod details
 

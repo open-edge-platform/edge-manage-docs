@@ -118,7 +118,7 @@ Key interactions of **Observability Tenant Controller** include:
 Architecture Diagrams
 ---------------------
 
-.. image:: ./images/obs_multi_ingestio_processing.svg
+.. image:: ./images/obs_multi_data_ingestio_processing.svg
    :alt: Observability Multitenancy (Data Ingestion & Processing)
    :align: center
    :width: 100%

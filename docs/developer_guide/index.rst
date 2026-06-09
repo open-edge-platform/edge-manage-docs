@@ -78,3 +78,4 @@ Helm\*-based applications compatible with |software_prod_name|.
    platform/index
    virtual_edge_node/index
    trusted_compute/index
+   observability/index

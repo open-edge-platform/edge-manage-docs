@@ -17,7 +17,7 @@ It depends on established flow of telemetry data from ``Edge Nodes`` to the
 ``Edge Node Observability Stack`` and the presence of external ``Email Server``
 for delivering emails.
 
-.. image:: ./image/diagram_ui_alerting.svg
+.. image:: ./images/diagram_ui_alerting.svg
    :alt: System Context diagram for UI-configurable Alerting
    :align: center
    :width: 100%
@@ -116,7 +116,7 @@ REST API requests originating are handled:
 - *Asynchronously* if they translate to requests that require changing the
   configuration of other services.
 
-- *Synchronously*if they translate to only read requests on dependent
+- *Synchronously* if they translate to only read requests on dependent
   services.
 
 Asynchronous API Call Example

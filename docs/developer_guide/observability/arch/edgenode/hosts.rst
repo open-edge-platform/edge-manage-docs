@@ -16,7 +16,7 @@ following data is collected for every host of the Edge Node:
 
   * **provisioning logs** - via separate instance deployed as part of
     ``HookOS`` (review
-    :doc:`/developer_guide/infra_manager_arch_overview` and its
+    :doc:`/developer_guide/infra_manager/arch/overview` and its
     subsections for an overview of provisioning).
 
   * **agent logs** - logs from the agents running on the Edge Node.
@@ -32,7 +32,7 @@ collection interval can be controlled via Platform Telemetry Agent. For
 additional details refer to:
 
 * :doc:`/developer_guide/agents/arch/platform_observability`
-* :doc:`/developer_guide/agents//arch/platform_telemetry`
+* :doc:`/developer_guide/agents/arch/platform_telemetry`
 
 .. note::
     All data originating from a single Edge Node is associated with a single

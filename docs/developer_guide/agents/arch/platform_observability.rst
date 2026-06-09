@@ -345,7 +345,7 @@ Figure 2: Log Collection configuration
            group`` metrics from the Logical Volume Management (LVM) service in
            the kernel. Disabled by default.
 
-         - `Exec input plugin
+         - `Telegraf exec input plugin
            <https://github.com/influxdata/telegraf/blob/master/plugins/inputs/exec/README.md>`_
            enables gathering of metrics from `system commands` using shell
            scripts. In the agent, this includes dGPU, iGPU, NPU, disk, BIOS and
