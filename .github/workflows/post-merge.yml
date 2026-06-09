@@ -20,7 +20,7 @@ jobs:
     outputs:
       skip: ${{ steps.branch_check.outputs.skip }}
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v6.0.3
         with:
           persist-credentials: false
       - name: Validate branch name
