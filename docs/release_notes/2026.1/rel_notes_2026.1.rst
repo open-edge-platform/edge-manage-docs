@@ -82,6 +82,23 @@ For a detailed list of features, see the
 and the `Edge Out-of-Band Manageability README file
 <https://github.com/open-edge-platform/edge-out-of-band-manageability/blob/main/README.md>`_.
 
+Fixed Issues
+----------------------------------
+
+The following issues were fixed in this release.
+
+Day 2 Updates
+^^^^^^^^^^^^^
+
+* Mutable OS Day 2 updates could fail in earlier configurations when the
+  In-Band-Manageability SOTA command timeout was set to 6 minutes. In this
+  release, timeout handling was updated to support long-running package
+  operations, including kernel module builds on Ubuntu 22.04.5 LTS with Intel
+  out-of-tree GPU drivers on bare-metal systems.
+* Immutable OS Day 2 updates could incorrectly report a failed update status
+  after successful OS image download. In this release, update status reporting
+  is corrected to reflect the actual download result.
+
 Known Issues
 ----------------------------------
 
