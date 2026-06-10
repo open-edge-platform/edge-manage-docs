@@ -394,3 +394,16 @@ scenarios:
    MPS and RPS pod restarts during token refresh are a known behaviour of
    the Edge Out-of-Band Manageability orchestrator. KVM session disconnection
    during these restarts is expected.
+
+   -----------------------------------------------------------------------
+   **Issue:** Sol session did not got os prompt after successful connection established.
+
+   **Solution:**
+      Enable the serial-getty service on the edge node to ensure the SOL session can access the OS prompt. 
+      You can do this by running the following commands on the edge node:
+   .. code-block:: bash
+
+      TTY=$(sudo dmesg | grep -oP 'ttyS\d+' | head -n1) && \
+      echo "Using $TTY" && \
+      sudo systemctl start serial-getty@$TTY.service && \
+      sudo systemctl enable serial-getty@$TTY.service
