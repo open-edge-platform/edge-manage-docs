@@ -1,11 +1,9 @@
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { Code } from "../components/Code/Code";
 import { DottedCardDetails } from "../components/DottedCardDetails/DottedCardDetails";
 import { Section } from "../components/Section/Section";
+import { useAssetUrl } from "../hooks/use-asset-url";
 import { useSpokeHref } from "../hooks/use-spoke-href";
 import { OpenVINOHub } from "../hub-catalog";
 import styles from "./Ecosystem.module.css";
-import { useAssetUrl } from "../hooks/use-asset-url";
 
 export const Ecosystem = () => {
   const assetUrl = useAssetUrl();

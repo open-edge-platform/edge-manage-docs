@@ -1,8 +1,7 @@
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { CardDetails } from "../components/CardDetails";
-import styles from "./HomePageHeader.module.css";
 import { Section } from "@site/src/components/Section/Section";
 import { useAssetUrl } from "../hooks/use-asset-url";
+import styles from "./HomePageHeader.module.css";
+import { CardDetails } from "../components/CardDetails/CardDetails";
 
 export const HomePageHeader = () => {
   const assetUrl = useAssetUrl();

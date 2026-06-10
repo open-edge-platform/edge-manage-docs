@@ -1,26 +1,35 @@
 import { useEffect, useState } from "react";
-import { createHighlighter } from "shiki";
+import { createHighlighter, ThemeInput } from "shiki";
 
 import { openvinoTheme } from "./codeTheme";
 import styles from "./Code.module.css";
+import clsx from "clsx";
 
 type CodeProps = {
   code: string;
   lang?: string;
+  theme?: ThemeInput;
+  className?: string;
 };
 
 const removeIndent = (str: string) => str.replace(/^[ \t]+/gm, "").trim();
 
-export const Code = ({ code, lang = "python" }: CodeProps) => {
+export const Code = ({
+  code,
+  lang = "python",
+  theme: customTheme,
+  className,
+}: CodeProps) => {
   const [html, setHtml] = useState("");
+  const theme = { ...openvinoTheme, ...customTheme };
 
   useEffect(() => {
     renderCode();
-  }, [code, lang]);
+  }, [code, lang, theme]);
 
   const renderCode = async () => {
     const highlighter = await createHighlighter({
-      themes: [openvinoTheme],
+      themes: [theme],
       langs: [lang],
     });
 
@@ -34,7 +43,7 @@ export const Code = ({ code, lang = "python" }: CodeProps) => {
 
   return (
     <div
-      className={styles.container}
+      className={clsx(styles.container, className)}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );
