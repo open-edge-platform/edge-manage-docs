@@ -53,8 +53,4 @@ export const PhysicalAIHub: ProductCard = {
   spokeId: "physicalai",
 };
 
-export const PRODUCT_CARDS: readonly ProductCard[] = [
-  OpenVINOHub,
-  GenAIHub,
-  PhysicalAIHub,
-];
+export const PRODUCT_CARDS: readonly ProductCard[] = [GenAIHub, PhysicalAIHub];

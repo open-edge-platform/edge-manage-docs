@@ -2,12 +2,14 @@ import { DottedCardDetails } from "../components/DottedCardDetails/DottedCardDet
 import { Section } from "../components/Section/Section";
 import { useAssetUrl } from "../hooks/use-asset-url";
 import { useSpokeHref } from "../hooks/use-spoke-href";
-import { OpenVINOHub } from "../hub-catalog";
+import { GenAIHub, OpenVINOHub, PhysicalAIHub } from "../hub-catalog";
 import styles from "./Ecosystem.module.css";
 
 export const Ecosystem = () => {
   const assetUrl = useAssetUrl();
   const href = useSpokeHref(OpenVINOHub.spokeId);
+  const genAIHubHref = useSpokeHref(GenAIHub.spokeId);
+  const physicalAIHubHref = useSpokeHref(PhysicalAIHub.spokeId);
 
   return (
     <Section>
@@ -32,7 +34,7 @@ export const Ecosystem = () => {
         <DottedCardDetails
           title="OpenVINO GenAI"
           description="Simplify GenAI model deployment"
-          learnMoreLink={String(href)}
+          learnMoreLink={String(genAIHubHref)}
           code={[
             {
               lang: "python",
@@ -47,7 +49,7 @@ export const Ecosystem = () => {
         <DottedCardDetails
           title="OpenVINO Physical AI"
           description="Real-time inference for robotics and autonomous systems (TBU)"
-          learnMoreLink={String(href)}
+          learnMoreLink={String(physicalAIHubHref)}
           code={[
             {
               lang: "python",
