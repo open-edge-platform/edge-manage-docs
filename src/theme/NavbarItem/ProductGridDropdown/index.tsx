@@ -1,15 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
-import clsx from 'clsx';
-import { PRODUCT_CARDS } from '@site/src/hub-catalog';
-import { useSpokeHref } from '@site/src/hooks/use-spoke-href';
-import styles from './styles.module.css';
+import { useCurrentSpoke } from "@site/src/hooks/use-current-spoke";
+import { useSpokeHref } from "@site/src/hooks/use-spoke-href";
+import { SpokeSummary } from "@site/src/hooks/use-spokes";
+import { PRODUCT_CARDS } from "@site/src/hub-catalog";
+import clsx from "clsx";
+import React, { useEffect, useRef, useState } from "react";
+import styles from "./styles.module.css";
 
 // Navbar item registered as `custom-productGrid`. Renders the
 // "OpenVINO Runtime" hover dropdown on desktop and a stacked card list
 // inside the mobile drawer.
 type Props = {
   label: string;
-  position?: 'left' | 'right';
+  position?: "left" | "right";
   mobile?: boolean;
   className?: string;
 };
@@ -20,34 +22,44 @@ export default function ProductGridDropdownNavbarItem(
   return props.mobile ? <Mobile {...props} /> : <Desktop {...props} />;
 }
 
+const getLabel = (spokes: SpokeSummary[]) => {
+  if (location.pathname === "/") {
+    return `OpenVINO Runtime`;
+  }
+
+  return spokes.find(({ href }) => href.includes(location.pathname))?.label;
+};
 // Mirrors @theme/NavbarItem/DropdownNavbarItem/Desktop's class structure
 // so theme CSS handles hover-to-open. Menu content is replaced with a
 // 552-wide gradient panel containing a 2x2 product card grid.
-function Desktop({ label, position, className }: Props) {
+function Desktop({ position, className }: Props) {
+  const spoke = useCurrentSpoke();
   const ref = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
+
+  const label = spoke ? spoke.label : "OpenVINO Runtime";
 
   useEffect(() => {
     const onPointerDown = (e: Event) => {
       if (!ref.current || ref.current.contains(e.target as Node)) return;
       setOpen(false);
     };
-    document.addEventListener('mousedown', onPointerDown);
-    document.addEventListener('touchstart', onPointerDown);
-    document.addEventListener('focusin', onPointerDown);
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("touchstart", onPointerDown);
+    document.addEventListener("focusin", onPointerDown);
     return () => {
-      document.removeEventListener('mousedown', onPointerDown);
-      document.removeEventListener('touchstart', onPointerDown);
-      document.removeEventListener('focusin', onPointerDown);
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("touchstart", onPointerDown);
+      document.removeEventListener("focusin", onPointerDown);
     };
   }, []);
 
   return (
     <div
       ref={ref}
-      className={clsx('navbar__item', 'dropdown', 'dropdown--hoverable', {
-        'dropdown--right': position === 'right',
-        'dropdown--show': open,
+      className={clsx("navbar__item", "dropdown", "dropdown--hoverable", {
+        "dropdown--right": position === "right",
+        "dropdown--show": open,
       })}
     >
       <a
@@ -55,10 +67,10 @@ function Desktop({ label, position, className }: Props) {
         role="button"
         aria-haspopup="true"
         aria-expanded={open}
-        className={clsx('navbar__link', className)}
+        className={clsx("navbar__link", className)}
         onClick={(e) => e.preventDefault()}
         onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
+          if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             setOpen((v) => !v);
           }
@@ -66,7 +78,7 @@ function Desktop({ label, position, className }: Props) {
       >
         {label}
       </a>
-      <div className={clsx('dropdown__menu', styles.panel)}>
+      <div className={clsx("dropdown__menu", styles.panel)}>
         <div className={styles.header}>{label}</div>
         <div className={styles.grid}>
           {PRODUCT_CARDS.map((card) => (
@@ -102,9 +114,9 @@ function DesktopCard({ card }: { card: (typeof PRODUCT_CARDS)[number] }) {
 // drawer's width.
 function Mobile({ label, className }: Props) {
   return (
-    <li className={clsx('menu__list-item', className)}>
+    <li className={clsx("menu__list-item", className)}>
       <div className={styles.mobileHeader}>{label}</div>
-      <ul className={clsx('menu__list', styles.mobileList)}>
+      <ul className={clsx("menu__list", styles.mobileList)}>
         {PRODUCT_CARDS.map((card) => (
           <MobileCard key={card.title} card={card} />
         ))}

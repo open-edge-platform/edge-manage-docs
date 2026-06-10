@@ -316,7 +316,7 @@ const config: Config = {
           position: "left" as const,
         },
         {
-          href: `${SITE_ORIGIN}${SPOKE_MODE ? "/" : BASE_URL}openvino/`,
+          type: "custom-documentationLink" as const,
           label: "Documentation",
           position: "left" as const,
           target: "_self",
