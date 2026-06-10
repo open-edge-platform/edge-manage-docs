@@ -346,7 +346,7 @@ User Interface
    * - react
      - ContainerImage
      - https://www.npmjs.com/package/react
-     - <TBD>
+     - 18.2.0
 
 
 Trusted Compute
@@ -364,16 +364,16 @@ Trusted Compute
    * - confidential containers
      - Containers, scripts, dockerfiles and binaries
      - https://github.com/confidential-containers/containerd
-     - <TBD>
+     -
    * - kata
      - Containers, scripts, dockerfiles and binaries
      - https://github.com/kata-containers/kata-containers
-     - <TBD>
+     -
    * - Alpine Linux
      - Containers and binaries
      - https://hub.docker.com/_/alpine
-     - <TBD>
+     - 3.18.2
    * - golang
      - Containers and binaries
      - https://hub.docker.com/_/golang
-     - <TBD>
+     - 1.23.2
