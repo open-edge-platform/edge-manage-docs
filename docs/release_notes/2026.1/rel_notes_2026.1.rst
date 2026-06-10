@@ -10,30 +10,16 @@ Version History/Revision History
 -------------------------------------------------------
 
 This is the Release Notes for |software_prod_name| version 2026.1, released
-<TBD>.
+June 15th 2026.
 
 .. note::
 
    This document refers to |software_prod_name| as the "Product".
 
-.. list-table:: Version History
-   :widths: 10 10 15 65
-   :header-rows: 1
-
-   * - Version
-     - Date
-     - Author
-     - Description
-   * - 1.0
-     - <TBD>
-     - <TBD>
-     - Initial release of 2026.1 Release Notes
-
-
 Release Highlights
 ---------------------------
 
-Edge Out-of-Band Manageability (EOM) enables you to securely onboard and provision
+Edge Manageability Framework (EMF) enables you to securely onboard and provision
 remote edge devices to a central management plane. Edge Node
 software provides the profiles of infrastructure software configurations that
 get provisioned onto an onboarded node.
@@ -51,7 +37,7 @@ Key highlights of the 2026.1 release include:
   Orchestrator
   <https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/advanced_functionality/provisioning_clusters_without_co.html>`_.
 
-**Edge Out-of-Band Manageability (EOM) Platform Enhancements**
+**Edge Manageability Framework Platform Enhancements**
 
 * **New:** Replaced ArgoCD and Gitea-based deployment with a Helmfile-based
   deployment model. The new ``pre-orch.sh`` and ``post-orch-deploy.sh`` scripts
@@ -63,6 +49,33 @@ Key highlights of the 2026.1 release include:
 * **New:** Introduced two deployment profiles via ``EOM_HELMFILE_ENV``:
   ``onprem-eim`` (full Edge Infrastructure Manager) and ``onprem-vpro``
   (AMT out-of-band only, reduced footprint).
+
+**Out-of-Band Device Management**
+
+Serial‑over‑LAN (SOL) and Keyboard‑Video‑Mouse (KVM) enabled through Intel® Active Management Technology (AMT), provided the target system is vPro®‑enabled and provisioned.
+
+SOL (Serial Over LAN) Support
+
+SOL provides a managed text-based console redirection. It is primarily used for
+troubleshooting at the BIOS level or when the operating system is in a command-line state.
+
+Function: It redirects the serial character stream from the remote device to your management console over the network.
+
+Best For: Accessing BIOS/UEFI settings, interacting with Linux terminal consoles, or viewing BSOD/boot-loader text.
+
+KVM (Keyboard, Video, Mouse) Support
+KVM is the "Remote Desktop" equivalent for out-of-band management.
+Unlike software-based tools (like TeamViewer), Intel AMT KVM works at the hardware level.
+
+Function: It allows you to see the screen and control the input of a remote system during
+the entire boot process, including BIOS and OS loading.
+
+Requirements: KVM is only available on Intel vPro® Enterprise platforms.
+It is generally not available on "Standard Manageability" or "Entry" versions of AMT.
+Usage : https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide.html
+
+* For Intel® AMT or Intel® Standard Manageability issues see
+  :doc:`/user_guide/advanced_functionality/vpro_power_mgt`.
 
 **Maintenance Updates**
 
@@ -89,7 +102,7 @@ The following are known issues in the release. While several known issues and
 limitations have been addressed during the 2026.1 release cycle, some have
 been carried over from past releases.
 
-EOM deployment
+EMF deployment
 ^^^^^^^^^^^^^^
 
 * For on-premises EOM deployment and upgrade issues and workarounds, `see
@@ -117,33 +130,6 @@ Device Provisioning
   Docker account, there is a limit of 100 pulls per IP over a four-hour
   window. In this case, upgrade to the premium account or wait to provision
   more edge nodes.
-
-Out-of-band device management
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Serial‑over‑LAN (SOL) and Keyboard‑Video‑Mouse (KVM) enabled through Intel® Active Management Technology (AMT), provided the target system is vPro‑enabled and provisioned.
-
-SOL (Serial Over LAN) Support
-
-SOL provides a managed text-based console redirection. It is primarily used for
-troubleshooting at the BIOS level or when the operating system is in a command-line state.
-
-Function: It redirects the serial character stream from the remote device to your management console over the network.
-
-Best For: Accessing BIOS/UEFI settings, interacting with Linux terminal consoles, or viewing BSOD/boot-loader text.
-
-KVM (Keyboard, Video, Mouse) Support
-KVM is the "Remote Desktop" equivalent for out-of-band management.
-Unlike software-based tools (like TeamViewer), Intel AMT KVM works at the hardware level.
-
-Function: It allows you to see the screen and control the input of a remote system during
-the entire boot process, including BIOS and OS loading.
-
-Requirements: KVM is only available on Intel vPro® Enterprise platforms.
-It is generally not available on "Standard Manageability" or "Entry" versions of AMT.
-Usage : https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide.html
-
-* For Intel® AMT or Intel® Standard Manageability issues see
-  :doc:`/user_guide/advanced_functionality/vpro_power_mgt`.
 
 User Experience
 ^^^^^^^^^^^^^^^^^
@@ -218,11 +204,6 @@ Multi-tenancy Limitations
 User Experience Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Cluster labels (metadata) for both names and values fields must follow
-  Kubernetes label syntax requirements, including using lowercase alphanumeric
-  characters, dashes, underscores, and dots only. For complete label syntax
-  requirements, see the `Kubernetes documentation
-  <https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set>`_.
 * The `Show All` page size for hosts does not work for lists over 100. If you
   have a list of more than 100 hosts in a view, do not set the page size to
   larger than 100.
@@ -235,11 +216,6 @@ User Experience Limitations
   scheduling, be aware of the time zone.
 * The "Total Provisioning Time" metric is only available for approximately 15
   days since a node was provisioned.
-* When adding/editing a deployment with the autoscaling option, the UI will
-  show an error message when duplicate metadata keys are entered. However, it
-  will still allow the user to proceed to the next step. Only the last
-  duplicate key/value pair will be considered in the end.
-
 
 Recommendations
 ---------------------
