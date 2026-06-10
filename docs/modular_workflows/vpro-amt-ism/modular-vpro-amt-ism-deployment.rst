@@ -26,7 +26,6 @@ deliver OOB device-management functionality to customers quickly and reliably.
 
 Partner Responsibilities
 ------------------------
-
 When evaluating this workflow, partners are responsible for the following areas:
 
 - Device OS provisioning
@@ -419,12 +418,3 @@ Clean up edge node
 
 Proceed with your standard edge-node uninstallation flow.
 
-Partner Developers
-------------------
-
-- Explain the modular workflow directory structure, highlighting key components
-  and their roles in the workflow. Provide guidance on navigating the codebase
-  and understanding the interactions between modules.
-- Explain how customers can integrate modular workflow components into their own
-  device-management platforms, including required APIs, configuration steps,
-  and best practices for seamless integration.

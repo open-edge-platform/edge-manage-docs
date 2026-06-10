@@ -6,7 +6,6 @@ This page provides high-level description of the HTTPS-assisted boot.
 For platform-specific steps see examples using HTTPS-assisted boot:
 
 - :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/https_boot/https_boot_dell`
-- :doc:`/user_guide/set_up_edge_infra/edge_node_onboard/https_boot/https_boot_lenovo`
 
 Requirements
 ------------
@@ -29,4 +28,3 @@ HTTPS-assisted boot flow
    :hidden:
 
    https_boot_dell
-   https_boot_lenovo

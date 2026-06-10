@@ -1,0 +1,33 @@
+---
+# SPDX-FileCopyrightText: (C) 2026 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+# yamllint disable rule:line-length
+
+name: Security scan on tag
+
+on:  # yamllint disable-line rule:truthy
+  workflow_dispatch:
+  push:
+    tags:
+      - '*'
+permissions:
+  contents: read
+
+jobs:
+  post-merge-pipeline:
+    permissions:
+      contents: read
+      security-events: write
+      id-token: write
+      actions: read
+    uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@5334419b32744e71750bb67db36abfba2539a643
+    with:
+      run_build: false
+      run_version_tag: false
+      run_repo_pipeline: false
+    secrets:
+      SYS_EMF_GH_TOKEN: ${{ secrets.SYS_EMF_GH_TOKEN }}
+      NO_AUTH_ECR_PUSH_USERNAME: ${{ secrets.NO_AUTH_ECR_PUSH_USERNAME }}
+      NO_AUTH_ECR_PUSH_PASSWD: ${{ secrets.NO_AUTH_ECR_PUSH_PASSWD }}
+      MSTEAMS_WEBHOOK: ${{ secrets.TEAMS_WEBHOOK }}

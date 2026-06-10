@@ -32,11 +32,10 @@ for initial configuration of the service.
    how_it_works/index.rst
    get_started_guide/index.rst
    set_up_edge_infra/index.rst
-   package_software/index.rst
    monitor_deployments/index.rst
-   intel_solutions/index.rst
    advanced_functionality/index.rst
    administration/index.rst
+   intel_solutions/index.rst
    troubleshooting/index.rst
    concepts/index.rst
    virtual_edge_node/index.rst

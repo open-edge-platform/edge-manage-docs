@@ -19,13 +19,6 @@ Review system requirements and then select your deployment type: AWS\* Cloud or 
 
         Review the minimum edge node hardware requirements and supported browsers.
 
-    .. grid-item-card:: Deploy Edge Orchestrator on AWS* Cloud
-        :link: deployment_guide/cloud_deployment/cloud_get_started/index
-        :link-type: doc
-        :link-alt: clickable cards
-
-        Host Edge Orchestrator on a Cloud environment.
-
     .. grid-item-card:: Deploy Edge Orchestrator On-Premises
         :link: deployment_guide/on_prem_deployment/on_prem_get_started/index
         :link-type: doc
@@ -63,20 +56,6 @@ prepare hardware for deployment, package and deploy applications, monitor the he
         Prepare hardware for deployment. Onboard and configure hosts and create clusters.
 
 .. grid:: 3
-
-    .. grid-item-card:: Package Applications
-        :link: user_guide/package_software/index
-        :link-type: doc
-        :link-alt: clickable cards
-
-        Import, package, and customize applications.
-
-    .. grid-item-card:: Set Up a Deployment
-        :link: user_guide/package_software/setup_deploy
-        :link-type: doc
-        :link-alt: clickable cards
-
-        Once you have a working platform with at least one edge cluster, deploy your first application.
 
     .. grid-item-card:: Dashboards and Alerts
         :link: user_guide/monitor_deployments/index
@@ -142,5 +121,3 @@ device-management solutions to extend their functionality.
    api/index
    system_requirements/index
    modular_workflows/index
-
-

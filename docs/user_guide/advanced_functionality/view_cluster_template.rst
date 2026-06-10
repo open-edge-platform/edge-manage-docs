@@ -1,3 +1,5 @@
+:orphan:
+
 View Cluster Template Details
 ==============================
 

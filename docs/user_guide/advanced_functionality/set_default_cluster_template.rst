@@ -1,3 +1,5 @@
+:orphan:
+
 Set Default Cluster Template
 ================================
 
@@ -15,7 +17,6 @@ To assign the default template, do the following:
 .. figure:: images/default_cluster_template.png
    :width: 100 %
    :alt: Default Cluster Template
-
 
 
 

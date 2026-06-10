@@ -16,7 +16,7 @@ The tool is made available in the public AWS* Elastic Container Registry. It can
 
 .. code-block:: bash
 
-    oras pull registry-rs.edgeorchestration.intel.com/edge-orch/files/orch-cli:v2026.0.0
+    oras pull registry-rs.edgeorchestration.intel.com/edge-orch/files/orch-cli:v2026.1.0
 
 The package will be an archive which needs to be unpacked to access the binary named orch-cli.
 Together with the binary as part of the archive the source code and the package signatures are downloaded.
@@ -44,7 +44,7 @@ To install the binary on Linux system copy the file to an install path (/usr/loc
 Building from source
 ^^^^^^^^^^^^^^^^^^^^
 
-The orch-cli binary can be build from source. The source code is available in te `orch-cli GitHub repository <https://github.com/open-edge-platform/orch-cli>`_
+The orch-cli binary can be build from source. The source code is available in the `orch-cli GitHub repository <https://github.com/open-edge-platform/orch-cli>`_
 To build the binary from source run the make target from top level directory:
 
 .. code-block:: bash
@@ -76,15 +76,22 @@ The orch-cli configuration file can be found at **~/.orch-cli/orch-cli.yaml**
 User management
 ^^^^^^^^^^^^^^^
 
-The orch-cli does not support Identity and Access Management at Keycloak level. To manage Keycloak users and assign roles/groups See:
-:doc:`/shared/shared_gs_iam`
+The ``orch-cli`` supports the common IAM bootstrap tasks for local Keycloak
+users.
 
-The organization and project management is supported by the orch-cli.
+The current CLI supports:
 
-The Keycloak's `kcadm Admin CLI <https://www.keycloak.org/docs/latest/server_admin/index.html#admin-cli>`_ can be used to achieve terminal based user management along with the orch-cli's organization/project creation.
+* ``list users`` and ``get user`` including optional group and realm-role output
+* ``create user`` and ``delete user``
+* ``set user`` for password updates, group membership changes, and realm-role assignment or removal
+* ``list groups``
+* organization and project management commands
 
-The combined usage of kcadm and orch-cli to initially set up the IAM/tenancy can be found at:
-:doc:`/shared/shared_ht_iam_mt_cli`
+For the step-by-step workflow, see :doc:`/shared/shared_ht_iam_mt_cli`.
+
+Advanced Keycloak administration such as external identity providers, realm
+customization, or direct client management still requires the Keycloak UI or
+Keycloak's `kcadm Admin CLI <https://www.keycloak.org/docs/latest/server_admin/index.html#admin-cli>`_.
 
 .. note::
 
@@ -101,7 +108,7 @@ The token is removed on logout. User must logout and login after token expiry.
 The keycloak service endpoint for containing the CLUSTER_FQDN of a given edge orchestrator must be provided during login - this is automatically
 done if the api-endpoint was provided as per :ref:`endpoint-and-project-configuration` - otherwise add **--keycloak https://keycloak.<CLUSTER_FQDN>/realms/master** to below commands.
 
-There is two login methods available:
+There are two login methods available:
 
 #. **Interactive shell** - The default way to authenticate with Edge Orchestrator is to log in by providing username as first argument and using an interactive prompt.
     The prompt will ask for password. This is the recommended way to log in.
@@ -146,7 +153,11 @@ done if the api-endpoint and project was provided as per :ref:`endpoint-and-proj
 
 For the *list* commands the --verbose flag can be used to include additional information in the output.
 
-Note that some of the *get* and *delete* commands require usage of resource ID instead of resource name due to the fact that some resources do not have unique names.
+The orch-cli supports advanced filtering, sorting, and templating of the output of the commands. For more information see the :doc:`/user_guide/advanced_functionality/orch_cli_advanced` document.
+
+Note that some of the *get* and *delete* commands support usage of both resource ID or resource name as the subject field.
+Due to the fact that some resources do not
+have unique names the usage of resource name may fail and prompt the user to select and provide the precise resource ID instead.
 
 Dynamic EMF feature support within CLI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -192,7 +203,7 @@ Organization Management
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Edge Orchestrator offers a two-level tenancy structure, with organizations that can contain one or more projects.
-To create an organization the orch-cli user must part of the "Org Admin Group". See :doc:`/shared/shared_mt_overview`
+To create an organization the orch-cli user must be part of the "Org Admin Group". See :doc:`/shared/shared_mt_overview`
 
 To create an organization run the create command, --description is an optional field.
 
@@ -226,9 +237,9 @@ To delete an organization run the delete command.
 Project Management
 ^^^^^^^^^^^^^^^^^^
 
-To create a project the orch-cli user must associated with the organization group. See :doc:`/shared/shared_mt_overview`
+To create a project the orch-cli user must be associated with the organization group. See :doc:`/shared/shared_mt_overview`
 
-To create an project run the create command, --description is an optional field.
+To create a project run the create command, --description is an optional field.
 
 .. code-block:: bash
 
@@ -332,7 +343,7 @@ Accepted region types are country/state/county/region/city.
 
 .. code-block:: bash
 
-    ./orch-cli create region <NAME> --type <TYPE> --parent-region <REGION_ID>
+    ./orch-cli create region <NAME> --type <TYPE> --parent-region <REGION_ID or REGION_NAME>
 
 To list all regions and their associated sites run list command. --region flag provides for listing specific region level.
 
@@ -344,13 +355,13 @@ To get information about specific region run the get command.
 
 .. code-block:: bash
 
-    ./orch-cli get region <REGION_ID>
+    ./orch-cli get region <REGION_ID or REGION_NAME>
 
 To delete a region run the delete command.
 
 .. code-block:: bash
 
-    ./orch-cli delete region <REGION_ID>
+    ./orch-cli delete region <REGION_ID or REGION_NAME>
 
 Site Management
 ^^^^^^^^^^^^^^^
@@ -363,7 +374,7 @@ Optional --longitude and --latitude flags can be provided to specify the site's 
 
 .. code-block:: bash
 
-    ./orch-cli create site <NAME> --region <REGION_ID>
+    ./orch-cli create site <NAME> --region <REGION_ID or REGION_NAME>
 
 To list all sites and their associated regions run the list command.
 
@@ -375,13 +386,13 @@ To get information about specific site run the get command.
 
 .. code-block:: bash
 
-    ./orch-cli get site <SITE_ID>
+    ./orch-cli get site <SITE_ID or SITE_NAME>
 
 To delete a site run the delete command.
 
 .. code-block:: bash
 
-    ./orch-cli delete site <SITE_ID>
+    ./orch-cli delete site <SITE_ID or SITE_NAME>
 
 Custom Cloud Init Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -431,11 +442,17 @@ For details on how to prepare the input .csv file and advanced options to create
      the edge nodes without an association to the OS Profile and Site.
      Provisioning of an OS will not happen and it is expected that the OS on the Edge Node and deployment of necessary agents is done by the user.
 
-To create a host run the create command with the --import-from-csv flag pointing to .csv filepath.
+To create a host in bulk mode run the create command with the --import-from-csv flag pointing to .csv filepath.
 
 .. code-block:: bash
 
     ./orch-cli create host --import-from-csv <PATH_TO_CSV_FILE>
+
+To create a single host run the create command with required flags for hostname, site, and os profile along with optional flags for additional configuration.
+
+.. code-block:: bash
+
+    ./orch-cli create host <HOST_NAME> --serial <SERIAL_NUMBER> --uuid <UUID> --os-profile <OS_PROFILE ID or NAME> --site <SITE ID or NAME>
 
 To list all hosts run the list command.
 
@@ -447,7 +464,7 @@ To get a specific host run get command.
 
 .. code-block:: bash
 
-    ./orch-cli get host <HOST_ID>
+    ./orch-cli get host <HOST_ID or HOST_NAME>
 
 .. note::
 
@@ -457,7 +474,7 @@ To delete a specific host run the delete command.
 
 .. code-block:: bash
 
-    ./orch-cli delete host <HOST_ID>
+    ./orch-cli delete host <HOST_ID or HOST_NAME>
 
 AMT/vPRO Management on a Host
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -472,9 +489,9 @@ To activate/deactivate AMT on a host run the activation command.
 
 .. code-block:: bash
 
-    ./orch-cli set host host-1234abcd --amt-state provisioned|unprovisioned
+    ./orch-cli set host <HOST_ID or HOST_NAME> --amt-state provisioned|unprovisioned
 
-The actvation/deactivation can also be done in bulk with a .csv file as an input.
+The activation/deactivation can also be done in bulk with a .csv file as an input.
 To generate file, with current AMT state of hosts for bulk activation/deactivation run the following command.
 
 .. code-block:: bash
@@ -492,19 +509,19 @@ Note that power policy commands will not take effect on hosts with deactivated A
 
 .. code-block:: bash
 
-    ./orch-cli set host host-1234abcd --power on|off|restart
+    ./orch-cli set host <HOST_ID or HOST_NAME> --power on|off|restart
 
 To change the power policy of an AMT-enabled host run the power-policy command.
 
 .. code-block:: bash
 
-    ./orch-cli set host host-1234abcd --power-policy immediate|ordered
+    ./orch-cli set host <HOST_ID or HOST_NAME> --power-policy immediate|ordered
 
 To set a desired control mode for AMT run the control mode command.
 
 .. code-block:: bash
 
-    ./orch-cli set host host-1234abcd --control-mode admin|client
+    ./orch-cli set host <HOST_ID or HOST_NAME> --control-mode admin|client
 
 Note that the control mode changes can also be done in bulk with a .csv file as an input, similar to/along the AMT activation/deactivation process described above.
 
@@ -537,6 +554,148 @@ To delete an AMT domain profile run the delete command.
 
     ./orch-cli delete amtprofile <NAME>
 
+KVM and SOL Session Management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The orch-cli supports starting and stopping KVM (Keyboard, Video, Mouse) and SOL (Serial Over LAN)
+remote sessions on AMT/vPRO-enabled Edge Nodes. These features require the OOB (out-of-band)
+support to be enabled on the connected Edge Nodes.
+
+Building the Binary
+"""""""""""""""""""
+
+**SOL sessions** use the standard orch-cli binary and do not require any additional build steps.
+Build and install the binary as described in `Building from source`_:
+
+.. code-block:: bash
+
+    make build
+    make install
+
+**KVM sessions** require a special build that embeds the KVM Viewer Angular UI as static assets
+into the orch-cli binary. The KVM Viewer UI source is located in ``ui/kvm-viewer/`` of the
+`orch-cli repository <https://github.com/open-edge-platform/orch-cli>`_.
+Refer to ``ui/kvm-viewer/README.md`` in that repository for details on the Angular application.
+
+**Prerequisites for the KVM build**
+
+Node.js v22.22.3 (x64) must be installed before building. Install it using
+`nvm <https://github.com/nvm-sh/nvm>`_ or your preferred Node version manager:
+
+.. code-block:: bash
+
+    nvm install 22.22.3
+    nvm use 22.22.3
+
+Verify the active version:
+
+.. code-block:: bash
+
+    node --version
+    # v22.22.3
+
+**KVM build and install**
+
+Once Node.js v22.22.3 is active, run the ``build-kvm`` target from the top-level directory of the
+orch-cli repository. This first compiles the KVM Viewer Angular UI (``build-kvm-ui``), embeds the
+resulting static files into the binary, and then produces a KVM-enabled ``orch-cli`` binary:
+
+.. code-block:: bash
+
+    make build-kvm
+
+To install the resulting KVM-enabled binary to ``/usr/local/bin``:
+
+.. code-block:: bash
+
+    make install
+
+The KVM-enabled binary supports all standard orch-cli commands in addition to the KVM session
+management commands. The standard binary (``make build``) is sufficient for SOL sessions.
+
+Starting and Stopping a KVM Session
+"""""""""""""""""""""""""""""""""""""
+
+**CCM mode** (Client Control Mode) — no AMT password is required. Start the KVM session
+directly:
+
+.. code-block:: bash
+
+    ./orch-cli set host <HOST_ID or HOST_NAME> --session-type kvm --session-state start --orch-ca orch-ca.crt
+
+**ACM mode** (Admin Control Mode) — the AMT password must be exported before starting the
+session. Use the password that was set during deployment time in
+`edge-out-of-band-manageability/post-orch/post-orch.env <https://github.com/open-edge-platform/edge-out-of-band-manageability/blob/main/post-orch/post-orch.env>`_:
+
+.. code-block:: bash
+
+    export AMT_PASSWORD="<AMT_PASSWORD>"
+    ./orch-cli set host <HOST_ID or HOST_NAME> --session-type kvm --session-state start --orch-ca orch-ca.crt
+
+The ``--orch-ca`` flag must point to the cluster CA certificate file (``orch-ca.crt``).
+
+To stop a running KVM session (both CCM and ACM modes):
+
+.. code-block:: bash
+
+    ./orch-cli set host <HOST_ID or HOST_NAME> --session-type kvm --session-state stop
+
+Alternatively, the KVM session can be stopped by clicking the **Disconnect** button in the
+KVM Viewer Angular browser application.
+
+Starting and Stopping a SOL Session
+"""""""""""""""""""""""""""""""""""""
+
+**CCM mode** — no AMT password is required:
+
+.. code-block:: bash
+
+    ./orch-cli set host <HOST_ID or HOST_NAME> --session-type sol --session-state start --orch-ca orch-ca.crt
+
+**ACM mode** — export the AMT password from
+`post-orch.env <https://github.com/open-edge-platform/edge-out-of-band-manageability/blob/main/post-orch/post-orch.env>`_ before starting:
+
+.. code-block:: bash
+
+    export AMT_PASSWORD="<AMT_PASSWORD>"
+    ./orch-cli set host <HOST_ID or HOST_NAME> --session-type sol --session-state start --orch-ca orch-ca.crt
+
+To stop a running SOL session (both CCM and ACM modes):
+
+.. code-block:: bash
+
+    ./orch-cli set host <HOST_ID or HOST_NAME> --session-type sol --session-state stop
+
+Checking KVM and SOL Session Status
+"""""""""""""""""""""""""""""""""""""
+
+Use the ``get host`` command to inspect the current KVM and SOL session state of a host. The
+output includes the current state, desired state, session status, and overall KVM/SOL status
+fields:
+
+.. code-block:: bash
+
+    ./orch-cli get host <HOST_ID or HOST_NAME>
+
+The relevant fields in the output are:
+
+* **KVM Current State** — the active KVM session state reported by the device.
+* **KVM Desired State** — the requested KVM session state.
+* **KVM Session Status** — the status of the KVM session negotiation.
+* **KVM Status** — overall KVM availability status.
+* **SOL Current State** — the active SOL session state reported by the device.
+* **SOL Desired State** — the requested SOL session state.
+* **SOL Session Status** — the status of the SOL session negotiation.
+
+.. note::
+
+    The ``--session-type`` flag accepts ``kvm`` or ``sol``.
+    The ``--session-state`` flag accepts ``start`` or ``stop``.
+    In ACM mode, ``AMT_PASSWORD`` must be exported before running the start command. The
+    password is the one configured in
+    `edge-out-of-band-manageability/post-orch/post-orch.env <https://github.com/open-edge-platform/edge-out-of-band-manageability/blob/main/post-orch/post-orch.env>`_
+    at deployment time. CCM mode does not require a password.
+
 Cluster Template Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -563,13 +722,13 @@ flag requires the ENs UUID or the host resource ID and the expected roles (all =
 
 .. code-block:: bash
 
-    ./orch-cli create cluster cli-cluster --nodes d7911144-3010-11f0-a1c2-370d26b04195:all
+    ./orch-cli create cluster cli-cluster --nodes <HOST UUID or NAME or ID>:all
 
 To create a cluster with specific template and specific labels use the following create command:
 
 .. code-block:: bash
 
-    ./orch-cli create cluster cli-cluster --nodes d7911144-3010-11f0-a1c2-370d26b04195:all --labels sample-label=samplevalue,another-label=another-value
+    ./orch-cli create cluster cli-cluster --nodes <HOST UUID or NAME or ID>:all --labels sample-label=samplevalue,another-label=another-value
 
 To list clusters use the list command.
 
@@ -611,19 +770,19 @@ To get information about a specific OS Update Policy run the get command with th
 
 .. code-block:: bash
 
-    ./orch-cli get osupdatepolicy <POLICY_ID>
+    ./orch-cli get osupdatepolicy <POLICY_ID or POLICY_NAME>
 
 To delete an OS Update Policy run the delete command.
 
 .. code-block:: bash
 
-    ./orch-cli get osupdatepolicy <POLICY_ID>
+    ./orch-cli delete osupdatepolicy <POLICY_ID or POLICY_NAME>
 
 To associate a policy with an Edge Node to be used during a scheduled update run the "set host <host-id>" command.
 
 .. code-block:: bash
 
-    ./orch-cli set host host-1234abcd --osupdatepolicy <resourceID>
+    ./orch-cli set host <HOST_ID or HOST_NAME> --osupdatepolicy <POLICY_ID or POLICY_NAME>
 
 Schedule Management
 ^^^^^^^^^^^^^^^^^^^
@@ -636,13 +795,13 @@ To create a repeated OS Update schedule use the create command.
 
 .. code-block:: bash
 
-    ./orch-cli create schedules my-schedule --timezone GMT --frequency-type repeated --maintenance-type osupdate --target site-532d1d07 --frequency weekly --start-time "10:10" --day-of-week "1-3,5" --months "2,4,7-8" --duration 3600
+    ./orch-cli create schedules my-schedule --timezone GMT --frequency-type repeated --maintenance-type osupdate --target <TARGET_ID or TARGET_NAME> --frequency weekly --start-time "10:10" --day-of-week "1-3,5" --months "2,4,7-8" --duration 3600
 
 To create a single maintenance schedule use the create command.
 
 .. code-block:: bash
 
-    ./orch-cli create schedules my-schedule --timezone GMT --frequency-type single --maintenance-type maintenance --target region-65c0d433 --start-time "2026-12-01 20:20" --end-time "2027-12-01 20:20"
+    ./orch-cli create schedules my-schedule --timezone GMT --frequency-type single --maintenance-type maintenance --target <TARGET_ID or TARGET_NAME> --start-time "2026-12-01 20:20" --end-time "2027-12-01 20:20"
 
 
 See --help on how to create other combinations for schedule.
@@ -657,19 +816,19 @@ To get details of a specific schedule run the get command.
 
 .. code-block:: bash
 
-    ./orch-cli get schedule <schedule ID>
+    ./orch-cli get schedule <SCHEDULE_ID or SCHEDULE_NAME>
 
 To edit an existing single schedule run the set command.
 
 .. code-block:: bash
 
-    ./orch-cli set schedules singleschedule-abcd1234 --timezone GMT --maintenance-type osupdate --start-time "2026-02-02 10:10" --end-time "2026-02-02 10:10"
+    ./orch-cli set schedules <SCHEDULE_ID or SCHEDULE_NAME> --timezone GMT --maintenance-type osupdate --start-time "2026-02-02 10:10" --end-time "2026-02-02 10:10"
 
 To edit an existing repeated schedule run the set command.
 
 .. code-block:: bash
 
-    ./orch-cli set schedules repeatedschedule-abcd1234 --timezone GMT --maintenance-type osupdate --frequency weekly --start-time "10:10" --day-of-week "1-3,5" --months "2,4,7-8" --duration 3600
+    ./orch-cli set schedules <SCHEDULE_ID or SCHEDULE_NAME> --timezone GMT --maintenance-type osupdate --frequency weekly --start-time "10:10" --day-of-week "1-3,5" --months "2,4,7-8" --duration 3600
 
 See --help on how to set other combinations for schedule.
 
@@ -677,7 +836,7 @@ To  delete a schedule run the delete command.
 
 .. code-block:: bash
 
-    ./orch-cli delete schedule <schedule ID>
+    ./orch-cli delete schedule <SCHEDULE_ID or SCHEDULE_NAME>
 
 OS Update Run Management
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -694,13 +853,13 @@ To get specific OS Update Run information run the get command.
 
 .. code-block:: bash
 
-    ./orch-cli get osupdaterun <RUN_ID>
+    ./orch-cli get osupdaterun <RUN_ID or RUN_NAME>
 
 To delete an OS Update Run run the delete command.
 
 .. code-block:: bash
 
-    ./orch-cli delete osupdaterun <RUN_ID>
+    ./orch-cli delete osupdaterun <RUN_ID or RUN_NAME>
 
 One-click Host Update
 ^^^^^^^^^^^^^^^^^^^^^
@@ -713,13 +872,13 @@ To update a single host with an already assigned OS Update Policy.
 
 .. code-block:: bash
 
-    ./orch-cli update-os host <HOST_ID>
+    ./orch-cli update-os host <HOST_ID or HOST_NAME>
 
 To update a single host and assign a new OS Update Policy.
 
 .. code-block:: bash
 
-    ./orch-cli update-os host <HOST_ID> --osupdatepolicy <OSUPDATEPOLICY_ID>
+    ./orch-cli update-os host <HOST_ID or HOST_NAME> --osupdatepolicy <OSUPDATEPOLICY_ID or OSUPDATEPOLICY_NAME>
 
 To generate a blank file for bulk update of hosts.
 
@@ -742,8 +901,8 @@ Note --site and --region flags are mutually exclusive, either can be used with c
 
 .. code-block:: bash
 
-    orch-cli update-os host --generate-csv test.csv --site <SITE_ID>
-    orch-cli update-os host --generate-csv test.csv --region <REGION_ID>
+    orch-cli update-os host --generate-csv test.csv --site <SITE_ID or SITE_NAME>
+    orch-cli update-os host --generate-csv test.csv --region <REGION_ID or REGION_NAME>
 
 The required input .csv file should be of following format to execute the update.
 
@@ -778,7 +937,7 @@ For help with any of the commands run the command with `--help`.
 Additional commands
 ^^^^^^^^^^^^^^^^^^^
 
-The application level CLI commands are covered under the :doc:`/user_guide/package_software/orch_cli/orch_cli_guide`
+The application level CLI commands are covered under this CLI guide.
 
 See "./orch-cli <verb> <noun> --help" for current usage and capabilities of these commands.
 

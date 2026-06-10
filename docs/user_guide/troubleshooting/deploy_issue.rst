@@ -257,5 +257,5 @@ Deployment does not complete
    `data` or `spec` that was added by some other process or operator.
 #. Try adding an `ignoredResources` entry to the Application manifest
    to ignore this resource. This will allow the deployment to continue without
-   failing due to this resource. See :doc:`/developer_guide/application_developer_workflow/deployment-packages/application-yaml-reference`
-   for more information on the `ignoredResources` field.
+   failing due to this resource. See the Application manifest reference for
+   more information on the `ignoredResources` field.

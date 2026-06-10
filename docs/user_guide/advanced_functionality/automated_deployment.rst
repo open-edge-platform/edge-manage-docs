@@ -93,7 +93,7 @@ the following:
 - :doc:`/user_guide/set_up_edge_infra/clusters/create_clusters`, including adding
   user-defined metadata labels for the cluster.
 
-- :doc:`/user_guide/package_software/setup_deploy`, including adding the target labels for
+- deployment setup, including adding the target labels for
   the deployment.
 
 Once these elements are in place, |software_prod_name| will automatically
@@ -123,6 +123,5 @@ custom list of clusters.
 In this way, you can create a deployment target from clusters that do not
 share common criteria. Once created, the list of clusters cannot be modified.
 
-See :doc:`/user_guide/package_software/setup_deploy` for information on associating a list of clusters
+See deployment setup guidance for information on associating a list of clusters
 with a software deployment.
-
