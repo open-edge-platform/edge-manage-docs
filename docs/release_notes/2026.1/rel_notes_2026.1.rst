@@ -20,9 +20,11 @@ Release Highlights
 ---------------------------
 
 Edge Manageability Framework (EMF) enables you to securely onboard and provision
-remote edge devices to a central management plane. Edge Node
-software provides the profiles of infrastructure software configurations that
-get provisioned onto an onboarded node.
+remote edge devices to a central management plane. Edge Node software provides
+infrastructure software configuration profiles that are provisioned onto onboarded
+nodes. The 2026.1 release supports two deployment workflows: Edge Infrastructure
+Manager (EIM) and vPRO. Application Orchestration and Cluster Orchestration are
+not supported in this release.
 
 Key highlights of the 2026.1 release include:
 
@@ -54,30 +56,30 @@ Key highlights of the 2026.1 release include:
 
 Serial‑over‑LAN (SOL) and Keyboard‑Video‑Mouse (KVM) enabled through Intel® Active Management Technology (AMT), provided the target system is vPro®‑enabled and provisioned.
 
-SOL (Serial Over LAN) Support
+* SOL (Serial Over LAN) Support
 
-SOL provides a managed text-based console redirection. It is primarily used for
-troubleshooting at the BIOS level or when the operating system is in a command-line state.
+  SOL provides a managed text-based console redirection. It is primarily used for
+  troubleshooting at the BIOS level or when the operating system is in a command-line state.
 
-Function: It redirects the serial character stream from the remote device to your management console over the network.
+  **Function:** It redirects the serial character stream from the remote device to your management console over the network.
 
-Best For: Accessing BIOS/UEFI settings, interacting with Linux terminal consoles, or viewing BSOD/boot-loader text.
+  **Best For:** Accessing BIOS/UEFI settings, interacting with Linux terminal consoles, or viewing BSOD/boot-loader text.
 
-KVM (Keyboard, Video, Mouse) Support
-KVM is the "Remote Desktop" equivalent for out-of-band management.
-Unlike software-based tools (like TeamViewer), Intel AMT KVM works at the hardware level.
+* KVM (Keyboard, Video, Mouse) Support
 
-Function: It allows you to see the screen and control the input of a remote system during
-the entire boot process, including BIOS and OS loading.
+  KVM is the "Remote Desktop" equivalent for out-of-band management.
+  Unlike software-based tools (like TeamViewer), Intel AMT KVM works at the hardware level.
 
-Requirements: KVM is only available on Intel vPro® Enterprise platforms.
-It is generally not available on "Standard Manageability" or "Entry" versions of AMT.
-Usage : https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide.html
+  **Function:** It allows you to see the screen and control the input of a remote system during
+  the entire boot process, including BIOS and OS loading.
+
+  **Requirements:** KVM is only available on Intel vPro® Enterprise platforms.
+  It is generally not available on "Standard Manageability" or "Entry" versions of AMT.
+
+  **Usage:** https://docs.openedgeplatform.intel.com/edge-manage-docs/dev/user_guide/set_up_edge_infra/orch_cli/orch_cli_guide.html
 
 * For Intel® AMT or Intel® Standard Manageability issues see
   :doc:`/user_guide/advanced_functionality/vpro_power_mgt`.
-
-**Maintenance Updates**
 
 Upgrades from Previous Releases
 ----------------------------------
@@ -105,8 +107,9 @@ been carried over from past releases.
 EMF deployment
 ^^^^^^^^^^^^^^
 
-* For on-premises EOM deployment and upgrade issues and workarounds, `see
-  <https://docs.openedgeplatform.intel.com/edge-manage-docs/release-2026.1/deployment_guide/on_prem_deployment/on_prem_how_to/on_prem_upgrade.html>`_.
+* For on-premises EMF deployment and upgrade issues and workarounds, see the
+  `On-Prem Upgrade Guide
+  <https://github.com/open-edge-platform/edge-manage-docs/blob/release-2026.1/docs/deployment_guide/cloud_deployment/cloud_how_to/cloud_upgrade.rst>`_.
 
 Device Provisioning
 ^^^^^^^^^^^^^^^^^^^
