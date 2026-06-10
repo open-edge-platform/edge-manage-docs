@@ -22,13 +22,6 @@ export default function ProductGridDropdownNavbarItem(
   return props.mobile ? <Mobile {...props} /> : <Desktop {...props} />;
 }
 
-const getLabel = (spokes: SpokeSummary[]) => {
-  if (location.pathname === "/") {
-    return `OpenVINO Runtime`;
-  }
-
-  return spokes.find(({ href }) => href.includes(location.pathname))?.label;
-};
 // Mirrors @theme/NavbarItem/DropdownNavbarItem/Desktop's class structure
 // so theme CSS handles hover-to-open. Menu content is replaced with a
 // 552-wide gradient panel containing a 2x2 product card grid.
@@ -37,7 +30,10 @@ function Desktop({ position, className }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
 
-  const label = spoke ? spoke.label : "OpenVINO Runtime";
+  const label =
+    spoke === undefined || spoke.id === "openvino"
+      ? "OpenVINO Runtime"
+      : spoke.label;
 
   useEffect(() => {
     const onPointerDown = (e: Event) => {

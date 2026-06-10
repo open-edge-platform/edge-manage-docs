@@ -303,13 +303,14 @@ const config: Config = {
   themeConfig: {
     colorMode: { disableSwitch: true, defaultMode: "light" },
     navbar: {
-      logo: {
-        alt: "Intel logo",
-        src: "img/intel-logo.svg",
-        href: `${SITE_ORIGIN}/`,
-        target: "_self",
-      },
       items: [
+        {
+          type: "custom-intelLogo" as const,
+          alt: "Intel logo",
+          src: "img/intel-logo.svg",
+          target: "_self",
+          position: "left" as const,
+        },
         {
           type: "custom-productGrid" as const,
           label: "OpenVINO Runtime",
