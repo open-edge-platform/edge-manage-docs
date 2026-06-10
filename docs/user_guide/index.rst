@@ -35,6 +35,7 @@ for initial configuration of the service.
    monitor_deployments/index.rst
    advanced_functionality/index.rst
    administration/index.rst
+   intel_solutions/index.rst
    troubleshooting/index.rst
    concepts/index.rst
    virtual_edge_node/index.rst
