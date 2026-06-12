@@ -90,6 +90,7 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
      -  tinkerbell-haproxy.{domain}
      -  TCP:443
      -  BIOS onboarding
+
 To install Edge Orchestrator and Edge Node, the following Egress rules are required:
 
 .. list-table:: Network Egress for Edge Orchestrator and Edge Nodes

@@ -413,6 +413,7 @@ Set in ``post-orch/post-orch.env``:
    EOM_HELMFILE_ENV=onprem-vpro
 
 .. _on_prem_custom_settings:
+.. _on_prem_optional_feature_flags:
 
 Optional Feature Flags
 -----------------------

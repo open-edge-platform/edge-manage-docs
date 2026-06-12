@@ -58,7 +58,7 @@ the tenancy-manager Helm release values:
      orgName: default
      projectName: default
 
-Alternatively, confirm the default organisation was created:
+Alternatively, confirm the default organization was created:
 
 .. code-block:: bash
 
