@@ -3,11 +3,14 @@
 .panel {
   width: 552px;
   padding: 24px;
-  background: linear-gradient(90deg, #30007c, #0f2fa0);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(83, 43, 190, 0.62), transparent 34%),
+    linear-gradient(135deg, rgba(58, 15, 142, 0.76) 0%, rgba(22, 37, 170, 0.72) 52%, rgba(9, 31, 118, 0.74) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 12px;
-  box-shadow: 0 16px 40px rgba(15, 47, 160, 0.25);
+  box-shadow: 0 18px 44px rgba(3, 10, 68, 0.44), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   color: #fff;
-  border: none;
   list-style: none;
 }
 
@@ -26,8 +29,8 @@
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
   padding: 16px;
   min-height: 112px;
@@ -37,11 +40,11 @@
   position: relative;
   color: #fff;
   text-decoration: none;
-  transition: background 0.15s;
+  transition: background 0.15s, border-color 0.15s;
 }
 
 .card:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.13);
   text-decoration: none;
   color: #fff;
 }

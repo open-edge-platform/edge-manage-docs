@@ -36,7 +36,7 @@ export type ProductCard = {
 };
 
 export const OpenVINOHub: ProductCard = {
-  title: "OpenVINO",
+  title: "OpenVINO Runtime",
   description: "Open-source toolkit for deploying performant AI solutions",
   spokeId: "openvino",
 };
@@ -53,4 +53,4 @@ export const PhysicalAIHub: ProductCard = {
   spokeId: "physicalai",
 };
 
-export const PRODUCT_CARDS: readonly ProductCard[] = [GenAIHub, PhysicalAIHub];
+export const PRODUCT_CARDS: readonly ProductCard[] = [OpenVINOHub, GenAIHub, PhysicalAIHub];
