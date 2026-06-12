@@ -49,16 +49,19 @@ Solution
 --------
 
 The issue cannot be fixed automatically and requires manual intervention.
-The following steps can be taken to resolve the issue:
+Restart the affected Deployment using ``kubectl``:
 
-* log into ``ArgoCD`` and navigate to the ``edgenode-observability`` or
-  ``orchestrator-observability`` application (depending on where the issue
-  is observed)
-* locate ``query-frontend`` Deployment (ReplicaSet) and restart it
-* if the issue persists, restart the ``querier`` Deployment (ReplicaSet)
-  as well
+.. code-block:: bash
 
-.. image:: images/argocd-restart-querier.png
-    :width: 600px
-    :alt: Restarting Grafana Mimir Software Querier in Argo CD tool
+   # Restart the querier in edgenode-observability
+   kubectl rollout restart deployment/querier -n orch-o11y
+
+   # Or restart query-frontend
+   kubectl rollout restart deployment/query-frontend -n orch-o11y
+
+If the issue is in orchestrator-observability, replace the namespace accordingly:
+
+.. code-block:: bash
+
+   kubectl rollout restart deployment/querier -n orch-platform
 

@@ -67,8 +67,9 @@ To update the release service token for on-prem deployment, follow these steps:
 
       $ kubectl delete externalsecret.external-secrets.io -n orch-secret token-refresh
 
-#. Once the external secrets is deleted, ArgoCD will create a new one which
-   will trigger the token refresh. You can verify this with the following command:
+#. Once the external secret is deleted, the External Secrets Operator will create
+   a new one which will trigger the token refresh. You can verify this with the
+   following command:
 
    .. code-block:: shell
 

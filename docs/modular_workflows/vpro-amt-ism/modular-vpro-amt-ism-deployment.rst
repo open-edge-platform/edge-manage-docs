@@ -136,8 +136,13 @@ Run the installer:
 
   ./onprem_installer.sh
 
-After the installer completes, wait until the `root-app` is in sync and in a
-healthy state before proceeding.
+After the deployment completes, verify all Helm releases are healthy before
+proceeding:
+
+.. code-block:: shell
+
+  cd post-orch
+  ./post-orch-deploy.sh list
 
 Create project and user
 ~~~~~~~~~~~~~~~~~~~~~~~

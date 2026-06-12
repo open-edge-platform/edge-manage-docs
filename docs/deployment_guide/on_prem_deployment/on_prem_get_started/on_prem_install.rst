@@ -6,497 +6,473 @@ Install Edge Orchestrator
 Download the Installation Script
 -----------------------------------------------
 
-.. note::
-   EMF is released on a weekly basis. To use a weekly build, refer to the latest weekly tag available `here <https://github.com/open-edge-platform/edge-manageability-framework/discussions>`_. In the below script, replace v2025.2.0 with the appropriate weekly tag. Weekly tags follow the format: v2025.2.0-nYYYYMMDD.
-
-#. Create the script file on the Edge Orchestrator node using the following command:
-
-  .. code-block:: shell
-
-    cat <<'EOF' > access_script.sh
-    #!/usr/bin/env bash
-
-    set -o errexit
-    set -o nounset
-    set -o pipefail
-
-    REGISTRY_URL='registry-rs.edgeorchestration.intel.com'
-    RS_PATH='edge-orch/common/files/on-prem'
-    ORAS_VERSION='1.1.0'
-    ORCH_VERSION='v2025.2.0'
-
-    # Install oras if not already installed
-    if ! command -v oras &> /dev/null; then
-       echo "Oras not found. Installing..."
-       # Download the specified version of oras
-       curl -LO "https://github.com/oras-project/oras/releases/download/v${ORAS_VERSION}/oras_${ORAS_VERSION}_linux_amd64.tar.gz"
-       # Create a temporary directory for oras installation
-       mkdir -p oras-install/
-       # Extract the downloaded tarball into the temporary directory
-       tar -zxf oras_${ORAS_VERSION}_*.tar.gz -C oras-install/
-       # Move the oras binary to a directory in the system PATH
-       sudo mv oras-install/oras /usr/local/bin/
-       # Clean up the downloaded files and temporary directory
-       rm -rf oras_${ORAS_VERSION}_*.tar.gz oras-install/
-    else
-       echo "Oras is already installed."
-    fi
-
-    # Pull the specified artifact from the registry
-    oras pull -v "${REGISTRY_URL}/${RS_PATH}:${ORCH_VERSION}"
-
-    # Make all shell scripts in the current directory executable
-    chmod +x *.sh
-    EOF
-
-#. Make the script executable.
-
-   .. code-block:: shell
-
-      chmod +x access_script.sh
-
-#. Run the script on the Edge Orchestrator node.
-
-   .. code-block:: shell
-
-      ./access_script.sh
-
-   The script does the following:
-
-   * Installs the ``oras`` tool
-   * Downloads the scripts to install and uninstall Edge Orchestrator
+Download the installation scripts from the
+`Edge Out-of-Band Manageability repository
+<https://github.com/open-edge-platform/edge-out-of-band-manageability>`_.
 
 Configure Installation Environment
 -----------------------------------
 
-The installation uses an ``onprem.env`` file for configuration. This file contains all
-environment variables used by the on-premise installer scripts and must be properly
-configured before running the installation.
+The installation is controlled by two separate environment files:
 
-.. important::
-   The ``onprem.env`` file is located in the same directory as the installer scripts (downloaded via ``access_script.sh``). You must edit this file and set the required values before proceeding with the installation.
-   If you re-run the installer script, ensure the ``onprem.env`` file is correctly configured.
-   Runtime arguments will have higher precedence over the environment variables set in ``onprem.env``.
+* ``pre-orch/pre-orch.env`` — configures the Kubernetes cluster provider, node settings,
+  components, and load-balancer IPs
+* ``post-orch/post-orch.env`` — configures the Edge Orchestrator deployment: cluster domain,
+  registry, profile, proxy, and optional feature flags
+
+Edit both files before running the installation scripts.
 
 Configuration Workflow
 +++++++++++++++++++++++
 
-#. Download the installer scripts using ``access_script.sh`` (see previous section)
-#. Locate the ``onprem.env`` file in the downloaded directory
-#. Edit ``onprem.env`` with your deployment-specific values
-#. Run ``./onprem_installer.sh`` to begin installation
+#. Configure ``pre-orch/pre-orch.env`` with Kubernetes and networking settings
+#. Run ``pre-orch/pre-orch.sh`` to set up the Kubernetes cluster (also creates
+   namespaces and secrets automatically)
+#. Configure ``post-orch/post-orch.env`` with deployment and feature settings
+#. Run ``post-orch/post-orch-deploy.sh install`` to deploy Edge Orchestrator
 
-The ``onprem.env`` file contains several configuration sections described below.
+pre-orch.env Configuration
++++++++++++++++++++++++++++
 
-Core Deployment Configuration
-++++++++++++++++++++++++++++++++
+The ``pre-orch/pre-orch.env`` file controls the Kubernetes cluster setup phase.
 
-.. list-table:: Core Environment Variables (Required)
-   :widths: 30 40 30
+.. list-table:: Kubernetes Provider Settings
+   :widths: 30 45 25
    :header-rows: 1
 
    * - Variable
      - Description
-     - Default Value
-   * - ``RELEASE_SERVICE_URL``
-     - Registry where packages and images are hosted
-     - ``registry-rs.edgeorchestration.intel.com``
-   * - ``DEPLOY_VERSION``
-     - Version of Edge Orchestrator to deploy
-     - ``v2026.0.0``
-   * - ``DEPLOY_REPO_BRANCH``
-     - Git tag or branch for deployment repository (overrides default commit)
-     - ``v2026.0.0``
-   * - ``ORCH_INSTALLER_PROFILE``
-     - Deployment profile for Edge Orchestrator
-     - ``onprem``
+     - Default / Options
+   * - ``PROVIDER``
+     - Kubernetes distribution to install
+     - ``k3s`` (options: ``kind``, ``k3s``, ``rke2``)
+   * - ``K3S_VERSION``
+     - K3s version (used when ``PROVIDER=k3s``)
+     - ``v1.34.3+k3s1``
+   * - ``RKE2_VERSION``
+     - RKE2 version (used when ``PROVIDER=rke2``)
+     - ``v1.34.4+rke2r1``
+   * - ``KIND_VERSION``
+     - KinD version (used when ``PROVIDER=kind``)
+     - latest
+   * - ``MAX_PODS``
+     - Maximum pods per Kubernetes node
+     - ``500``
 
-Authentication & Security
-++++++++++++++++++++++++++
-
-.. list-table:: Docker Hub Credentials (Required)
-   :widths: 30 40 30
+.. list-table:: Docker Hub Credentials
+   :widths: 30 45 25
    :header-rows: 1
 
    * - Variable
      - Description
-     - Default Value
+     - Default
    * - ``DOCKER_USERNAME``
-     - Docker Hub username for pulling images
+     - Docker Hub username (required for K3s/RKE2 registry authentication)
      - (empty)
    * - ``DOCKER_PASSWORD``
-     - Docker Hub password or access token
+     - Docker Hub password or personal access token
      - (empty)
 
-Network Configuration
-++++++++++++++++++++++++
-
-.. list-table:: Network Variables (Required)
-   :widths: 30 40 30
+.. list-table:: Pre-Orch Components
+   :widths: 30 45 25
    :header-rows: 1
 
    * - Variable
      - Description
-     - Default Value
-   * - ``TRAEFIK_IP``
-     - MetalLB IP address for Traefik
-     - (empty)
-   * - ``HAPROXY_IP``
-     - MetalLB IP address for HAProxy
-     - (empty)
+     - Default
+   * - ``INSTALL_OPENEBS``
+     - Install OpenEBS LocalPV storage provisioner
+     - ``true``
+   * - ``INSTALL_METALLB``
+     - Install MetalLB load-balancer
+     - ``true``
+   * - ``INSTALL_PRE_CONFIG``
+     - Run pre-deployment configuration (namespaces and secrets)
+     - ``true``
+   * - ``LOCALPV_VERSION``
+     - OpenEBS LocalPV Helm chart version
+     - ``4.3.0``
 
-Container Registry Configuration
-+++++++++++++++++++++++++++++++++++
-
-.. list-table:: Registry Variables
-   :widths: 30 40 30
+.. list-table:: Load Balancer IP Configuration
+   :widths: 30 45 25
    :header-rows: 1
 
    * - Variable
      - Description
-     - Default Value
-   * - ``GITEA_IMAGE_REGISTRY``
-     - Image registry for Gitea container images
-     - ``docker.io``
-
-Advanced Configuration
-+++++++++++++++++++++++
-
-.. list-table:: Advanced Variables
-   :widths: 30 40 30
-   :header-rows: 1
-
-   * - Variable
-     - Description
-     - Default Value
-   * - ``KUBECONFIG``
-     - Kubernetes configuration file path
-     - ``/home/$USER/.kube/config``
-
-Proxy Configuration
-++++++++++++++++++++
-
-.. list-table:: Proxy Variables
-   :widths: 30 40 30
-   :header-rows: 1
-
-   * - Variable
-     - Description
-     - Default Value
-   * - ``ENABLE_EXPLICIT_PROXY``
-     - Enable explicit proxy configuration
-     - ``false``
-   * - ``ORCH_HTTP_PROXY``
-     - HTTP proxy for Orchestrator
+     - Default
+   * - ``EOM_ORCH_IP``
+     - *Single-IP mode* — one IP shared by Traefik (:443) and HAProxy (:9443)
      - (empty)
-   * - ``ORCH_HTTPS_PROXY``
-     - HTTPS proxy for Orchestrator
+   * - ``EOM_TRAEFIK_IP``
+     - *Multi-IP mode* — dedicated IP for Traefik
      - (empty)
-   * - ``ORCH_NO_PROXY``
-     - No proxy list for Orchestrator
+   * - ``EOM_HAPROXY_IP``
+     - *Multi-IP mode* — dedicated IP for HAProxy
      - (empty)
-   * - ``EN_HTTP_PROXY``
-     - HTTP proxy for Edge Nodes
-     - (empty)
-   * - ``EN_HTTPS_PROXY``
-     - HTTPS proxy for Edge Nodes
-     - (empty)
-   * - ``EN_FTP_PROXY``
-     - FTP proxy for Edge Nodes
-     - (empty)
-   * - ``EN_SOCKS_PROXY``
-     - SOCKS proxy for Edge Nodes
-     - (empty)
-   * - ``EN_NO_PROXY``
-     - No proxy list for Edge Nodes
-     - (empty)
-
-Run Installer
--------------
-
-The Edge Orchestrator installation uses a two-phase approach orchestrated by the ``onprem_installer.sh`` wrapper script:
-
-**Phase 1: Pre-Installation** (``onprem_pre_install.sh``)
-   - Installs OS-level prerequisites
-   - Downloads installation packages from the registry
-   - Installs RKE2 Kubernetes cluster
-   - Prepares the system for Edge Orchestrator deployment
-
-**Phase 2: Main Installation** (``onprem_orch_install.sh``)
-   - Deploys Edge Orchestrator components
-   - Configures networking, load balancers, and services
-
-The ``onprem_installer.sh`` wrapper script runs both phases sequentially and allows you to pass options to each phase separately using the ``--`` separator.
-
-Installation Script Options
-++++++++++++++++++++++++++++
-
-The ``onprem_installer.sh`` script supports the following command-line options:
 
 .. note::
-   All configuration is read from the ``onprem.env`` file. Ensure this file is properly configured before running the installer.
+   Use **single-IP mode** (``EOM_ORCH_IP``) when only one IP address is available.
+   Traefik listens on port 443 and HAProxy listens on port 9443 in this mode.
+   Use **multi-IP mode** (``EOM_TRAEFIK_IP`` + ``EOM_HAPROXY_IP``) when separate IPs are
+   available; both services listen on port 443.
 
-**Pre-Install Options** (before ``--``):
+post-orch.env Configuration
+++++++++++++++++++++++++++++
+
+The ``post-orch/post-orch.env`` file controls the Helm-based Edge Orchestrator deployment.
+
+.. list-table:: Core Deployment Settings (Required)
+   :widths: 30 45 25
+   :header-rows: 1
+
+   * - Variable
+     - Description
+     - Default / Example
+   * - ``EOM_HELMFILE_ENV``
+     - Deployment profile. See `Deployment Profiles`_.
+     - ``onprem-eim``
+   * - ``EOM_CLUSTER_DOMAIN``
+     - Fully qualified domain name of the cluster
+     - ``orch-10-0-0-1.example.com``
+   * - ``EOM_REGISTRY``
+     - Container and chart registry URL
+     - ``registry-rs.edgeorchestration.intel.com``
+   * - ``EOM_STORAGE_CLASS``
+     - Kubernetes storage class for persistent volumes
+     - ``openebs-hostpath``
+   * - ``EOM_AMT_PASSWORD``
+     - Intel AMT password (required; must meet AMT complexity rules)
+     - (empty)
+
+.. list-table:: Load Balancer IPs (same modes as pre-orch.env)
+   :widths: 30 45 25
+   :header-rows: 1
+
+   * - Variable
+     - Description
+     - Default
+   * - ``EOM_ORCH_IP``
+     - Single-IP mode — one IP for Traefik (:443) and HAProxy (:9443)
+     - (empty)
+   * - ``EOM_TRAEFIK_IP``
+     - Multi-IP mode — IP for Traefik
+     - (empty)
+   * - ``EOM_HAPROXY_IP``
+     - Multi-IP mode — IP for HAProxy
+     - (empty)
+
+.. list-table:: Proxy Configuration
+   :widths: 30 45 25
+   :header-rows: 1
+
+   * - Variable
+     - Description
+     - Default
+   * - ``EOM_HTTP_PROXY``
+     - HTTP proxy for orchestrator components
+     - (empty)
+   * - ``EOM_HTTPS_PROXY``
+     - HTTPS proxy for orchestrator components
+     - (empty)
+   * - ``EOM_NO_PROXY``
+     - Comma-separated no-proxy list for orchestrator
+     - (empty)
+   * - ``EOM_EN_HTTP_PROXY``
+     - HTTP proxy for edge nodes
+     - (empty)
+   * - ``EOM_EN_HTTPS_PROXY``
+     - HTTPS proxy for edge nodes
+     - (empty)
+   * - ``EOM_EN_FTP_PROXY``
+     - FTP proxy for edge nodes
+     - (empty)
+   * - ``EOM_EN_SOCKS_PROXY``
+     - SOCKS proxy for edge nodes
+     - (empty)
+   * - ``EOM_EN_NO_PROXY``
+     - Comma-separated no-proxy list for edge nodes
+     - (empty)
+
+.. list-table:: Feature Flags (Optional, ``true``/``false``)
+   :widths: 30 45 25
+   :header-rows: 1
+
+   * - Variable
+     - Description
+     - Default
+   * - ``EOM_ENABLE_ISTIO``
+     - Enable Istio service mesh (istiod, istio-base, Kiali, and Istio policies)
+     - ``true``
+   * - ``EOM_ENABLE_KYVERNO``
+     - Enable Kyverno policy engine and admission policies
+     - ``true``
+   * - ``EOM_ENABLE_O11Y``
+     - Enable edge-node and orchestrator observability (metrics, logs, dashboards)
+     - ``false``
+   * - ``EOM_DEFAULT_TENANCY``
+     - Auto-create a default organization, project, and tenant-admin user on first start
+     - ``false``
+   * - ``EOM_ENABLE_PXE``
+     - Enable PXE boot server for edge-node OS provisioning
+     - ``false``
+
+Run Installation Scripts
+------------------------
+
+The installation is performed in two phases using scripts from the downloaded
+repository.
+
+Phase 1: Kubernetes Setup (pre-orch.sh)
+++++++++++++++++++++++++++++++++++++++++
+
+The ``pre-orch.sh`` script installs a Kubernetes cluster together with MetalLB and
+OpenEBS LocalPV. Once the cluster is healthy, it automatically runs
+``pre-orch-config.sh`` (controlled by ``INSTALL_PRE_CONFIG=true`` in ``pre-orch.env``)
+to create namespaces and seed Keycloak and PostgreSQL secrets. The Kubernetes
+provider (K3s, RKE2, or KinD) is configured in ``pre-orch/pre-orch.env`` or passed
+as a CLI argument.
 
 .. code-block:: shell
 
-   -h, --help          Show help message
-   --skip-download     Skip downloading packages (use existing ones)
-   -y, --yes           Skip Docker credentials prompt and run non-interactively
-   -t, --trace         Enable debug tracing
+   cd pre-orch
+   ./pre-orch.sh [kind|k3s|rke2] install
 
-**Main Install Options** (after ``--``):
+**pre-orch.sh options:**
 
-.. code-block:: shell
+.. code-block:: text
 
-   -h, --help                 Show help message
-   -s, --sre [CA_CERT_PATH]   Enable TLS for SRE with optional CA certificate
-   -d, --notls                Disable TLS verification for SMTP endpoint
-   -y, --yes                  Assume 'yes' to all prompts and run non-interactively
-   --disable-co               Disable Cluster Orchestrator profile
-   --disable-ao               Disable Application Orchestrator profile
-   --disable-o11y             Disable Observability profile
-   -st, --single_tenancy      Enable single tenancy mode
-   -t, --trace                Enable bash debug tracing
+   ./pre-orch.sh [provider] [install|uninstall|upgrade] [options]
+
+   Global options:
+     --wait-timeout <seconds>   Timeout for readiness checks (default: 300)
+     --wait-interval <seconds>  Polling interval (default: 5)
+     --no-openebs               Skip OpenEBS LocalPV install
+     --no-metallb               Skip MetalLB install
+     --no-pre-config            Skip automatic execution of pre-orch-config.sh
+
+   K3s options:
+     --k3s-version <version>    Override K3S_VERSION from pre-orch.env
+     --docker-username <user>   Docker Hub username
+     --docker-password <pass>   Docker Hub password
+
+   RKE2 options:
+     --rke2-version <version>   Override RKE2_VERSION from pre-orch.env
+     --docker-username <user>   Docker Hub username
+     --docker-password <pass>   Docker Hub password
+
+   KinD options:
+     --cluster-name <name>      KinD cluster name (default: kind-cluster)
+     --api-port <port>          KinD API server port (default: 6443)
 
 **Examples:**
 
-Basic installation with default settings:
+Use the provider configured in ``pre-orch.env``:
 
 .. code-block:: shell
 
-   ./onprem_installer.sh
+   ./pre-orch.sh install
 
-Skip package downloads (use existing packages):
-
-.. code-block:: shell
-
-   ./onprem_installer.sh --skip-download
-
-Fully non-interactive installation (skip all prompts in both phases):
+Install with K3s explicitly:
 
 .. code-block:: shell
 
-   ./onprem_installer.sh -y -- -y
+   ./pre-orch.sh k3s install
 
-Enable SRE with TLS using CA certificate:
-
-.. code-block:: shell
-
-   ./onprem_installer.sh -- -s /path/to/ca.crt
-
-Disable observability and application orchestrator profiles:
+Install RKE2 with Docker Hub credentials:
 
 .. code-block:: shell
 
-   ./onprem_installer.sh -- --disable-o11y --disable-ao
+   ./pre-orch.sh rke2 install --docker-username myuser --docker-password mytoken
 
-Complete installation with SRE TLS, SMTP no-TLS, and debug tracing:
+Phase 2: Helm Deployment (post-orch-deploy.sh)
+++++++++++++++++++++++++++++++++++++++++++++++++
 
-.. code-block:: shell
-
-   ./onprem_installer.sh -t -- -s /path/to/ca.crt -d -t
-
-Single tenancy mode with tracing:
+The ``post-orch-deploy.sh`` script deploys all Edge Orchestrator components via Helmfile.
+The deployment profile and all settings are read from ``post-orch/post-orch.env``.
 
 .. code-block:: shell
 
-   ./onprem_installer.sh -- -st -t
+   cd post-orch
+   ./post-orch-deploy.sh install
 
-Note:
-When running onprem_installer.sh, onprem.env may retain previously set flags (e.g., AO, CO, ST, o11y) if the installer is rerun without them.
-This can cause configuration drift. Always review and update onprem.env before running the installer to ensure it reflects the desired settings.
+**post-orch-deploy.sh actions:**
 
-What the Installer Does
-+++++++++++++++++++++++++
+.. code-block:: text
 
-The installation script performs the following actions:
+   ./post-orch-deploy.sh <action> [chart-name]
 
-- Prompts to configure Traefik\* application proxy, and HAProxy\* web server IP addresses, for details see
-  `Installer Prompts and Deployment Configuration <#installer-prompts-and-deployment-configuration>`__
+   Actions:
+     install              Install all charts for the active profile
+     install <chart>      Install a single chart (for example, traefik, vault)
+     uninstall            Uninstall all charts
+     uninstall <chart>    Uninstall a single chart
+     upgrade              Upgrade all charts and restore PostgreSQL from backup
+     diff                 Preview configuration changes for all charts
+     diff <chart>         Preview changes for a single chart
+     values               Dump computed Helm values for all charts
+     values <chart>       Dump computed Helm values for a single chart
+     list                 List all charts and their current status
 
-- Prompts to confirm custom configurations to the deployment, for details see
-  `Installer Prompts and Deployment Configuration <#installer-prompts-and-deployment-configuration>`__
+**Examples:**
 
-- Downloads installation packages for individual component installations
-
-- Downloads archived Edge Orchestrator's Git\* repositories
-
-- Installs OS-level prerequisites
-
-- Installs RKE2 and related components
-
-- Installs Edge Orchestrator
-
-
-See the following sections for details about the installation process and prompts.
-
-.. _on_prem_installer_prompts:
-
-Installer Prompts and Deployment Configuration
---------------------------------------------------
-
-The installer script prompts for configuration input during the installation process.
-
-#. The installer prompts you to enter the IP addresses used by the
-   Load Balancer for Traefik application proxy, and HAProxy web server as follows.
-   There are strict requirements on these IP addresses:
-
-   - All two IP addresses must be on the same subnet (for example, `10.0.0.1/24`)
-     of the Edge Orchestrator node.
-
-   - IP addresses must be unique - you cannot use the same IP address for both endpoints.
-     The installation will fail, if any IP address is duplicated.
-
-   - These are "Virtual IPs" - you do not have to assign these IPs to any hardware network interface,
-     but you must reserve these IPs within the local subnet. Ensure your DHCP server does not assign conflicting IP addresses.
-
-   See `Edge Orchestrator Network Topology <./index.html#edge-orchestrator-network-topology>`__ for details about possible network configurations.
-
-   An example of the topology:
-
-
-   - `Traefik IP` is the IP for the application API proxy, the entry point to reach the Edge Orchestrator.
-
-   - `HAProxy IP` is the IP for southbound specific tools onboarding and provisioning.
-
-   .. code-block:: shell
-
-      Enter Traefik IP:
-      [yy.yy.yy.yy]
-      Enter HAProxy IP:
-      [zz.zz.zz.zz]
-
-.. _on_prem_custom_settings:
-
-Configure Custom Settings
-++++++++++++++++++++++++++++
-
-#. Create any custom configurations for the Edge Orchestrator deployment
-   before pushing the source code into the local ``Gitea repository``.
-   See `Email notifications <../../cloud_deployment/cloud_advanced/cloud_alerts.html#email-notifications>`__
-   to enable email notifications.
-
-#. To change the deployment parameters, edit the following files
-   in a separate terminal window.
-
-   .. note:: Do not exit the script.
-
-   * ``[path_to_untarred_repo]/orch-configs/clusters/[profile_name].yaml``
-   * ``[path_to_untarred_repo]/orch-configs/profiles/*.yaml``
-
-#. By default, Edge Orchestrator use the base domain name of `cluster.onprem`.
-   If you require a custom domain name, edit the cluster
-   domain name in the ``[path_to_untarred_repo]/orch-configs/clusters/onprem.yaml`` file.
-
-   .. code-block:: shell
-
-      clusterDomain: [customer.cluster.domain]
-
-#. By default, the NTP server (ntpServer) settings uses the public NTP time
-   server pool at `pool.ntp.org`. If the customer network requires any other servers, edit the ntpServer settings in the
-   ``[path_to_untarred_repo]/orch-configs/profiles/profile-onprem.yaml`` file.
-
-   .. code-block:: shell
-
-      ntpServer: ["time.google.com"]
-
-#. By default, Edge Orchestrator uses a self-signed TLS certificate
-   to serve requests. This works for test deployments, however, Intel recommends using a TLS certificate obtained from a trusted CA for product deployments.
-
-   .. note::
-      To use a custom TLS certificate, edit the following:
-
-   * Ensure that the cluster domain name matches the Common Name or
-     ensure that the DNS names are valid for the custom
-     TLS certificate in the ``[path_to_untarred_repo]/orch-configs/clusters/onprem.yaml`` file:
-
-     .. code-block:: shell
-
-        clusterDomain: [customer.cluster.domain]
-
-   * Disable the self-signed certificate creation in the ``[path_to_untarred_repo]/orch-configs/profiles/profile-onprem.yaml`` file:
-
-     .. code-block:: shell
-
-        self-signed-cert:
-          generateOrchCert: false
-
-#. If Edge Orchestrator or the edge nodes requires a proxy to access the
-   Internet, configure the proxy settings in the ``onprem.env`` file before running the installer.
-   The installer will automatically apply the proxy configuration. See the
-   `Proxy Configuration <#proxy-configuration>`__ section for details on the available proxy variables.
-
-#. Edge Orchestrator detects the latest compatible versions of the Edge Microvisor Toolkit for update of edge nodes deployed with an immutable OS.
-   By default, manual association of the Edge Microvisor Toolkit version with edge nodes is required. Alternatively,
-   select custom Edge Microvisor Toolkit version from the Release Service and link it to edge nodes. For more information, see
-   :doc:`/user_guide/advanced_functionality/host_update_immutable_os`.
-
-   * To allow Edge Orchestrator to automatically associate the latest available Edge Microvisor Toolkit version with all edge nodes,
-     enable automatic mode for the Edge Infrastructure Manager's OS Resource Manager in the relevant profile file.
-
-   * To enable automatic mode, edit the ``[path_to_untarred_repo]/orch-configs/profiles/enable-osrm-manual-mode.yaml`` file and set:
-
-     .. code-block:: shell
-
-        argo:
-          infra-managers:
-            os-resource-manager-manual-mode: false
-
-#. When deploying Edge Orchestrator with an optional proxy for Edge
-   Nodes without direct Internet access,
-   set both ``enHttpProxy`` and ``enHttpsProxy`` variables to resolve to the Edge Orchestrator's Traefik\* IP endpoint using port 8080.
-   Intel recommends adding an entry for the Traefik endpoint to the DNS server. The following are examples of entries for proxy and ``enNoProxy`` variables:
-
-   .. code-block:: shell
-
-        enHttpProxy: http://<Traefik-IP-endpoint>:8080
-        enHttpsProxy: http://< Traefik-IP-endpoint>:8080
-        enNoProxy: localhost,127.0.0.1,<Traefik-IP-endpoint-or-subnet-of-Edge-Orchestrator>,.internal,.cluster.local,<domain-of-orchestrator>
-
-#. You can edit the near Zero-Touch Provisioning (nZTP) configuration
-   by modifying the values in
-   ``[path_to_untarred_repo]/orch-configs/profiles/enable-autoprovision.yaml`` and include in the cluster definition
-
-   .. code-block:: shell
-
-      autoProvision:
-         enabled: true # enabled/disabled near Zero Touch Provisioning
-         defaultProfile: ubuntu-22.04-lts-generic # OS to be provisioned when autoProvision is enabled
-
-   This configuration applies for every organization and project by default when they are created, but you can edit the nZTP configuration for each project at a later time.
-   To learn more about the nZTP feature, see the :doc:`/user_guide/concepts/nztp` section in the *User Guide*.
-
-#. You can configure a custom Traefik rate limit. See :doc:`/shared/shared_traefik_rate_limit`.
-
-   Configure the Traefik rate limit in the ``[path_to_untarred_repo]/orch-configs/profiles/default-traefik-rate-limit.yaml``
-   file and add the profile in the ``[path_to_untarred_repo]/orch-configs/clusters/onprem.yaml`` file:
-
-   .. code-block:: shell
-
-       +    - profiles/default-traefik-rate-limit.yaml
-
-
-Non-Interactive Installation
-++++++++++++++++++++++++++++++
-
-For automated or CI/CD deployments, you can skip all interactive prompts using the ``-y`` flag.
-This flag can be used for both the pre-install and main install phases:
-
-Skip Docker credentials prompt in pre-install:
+Install all charts for the selected profile:
 
 .. code-block:: shell
 
-   ./onprem_installer.sh -y
+   ./post-orch-deploy.sh install
 
-Skip all prompts in both phases:
+Re-install a single chart after a configuration change:
 
 .. code-block:: shell
 
-   ./onprem_installer.sh -y -- -y
+   ./post-orch-deploy.sh install traefik
+
+Preview configuration changes before applying:
+
+.. code-block:: shell
+
+   ./post-orch-deploy.sh diff
+
+Upgrade all charts and restore PostgreSQL from backup:
+
+.. code-block:: shell
+
+   ./post-orch-deploy.sh upgrade
+
+Uninstall all charts:
+
+.. code-block:: shell
+
+   ./post-orch-deploy.sh uninstall
+
+Override the profile inline without editing ``post-orch.env``:
+
+.. code-block:: shell
+
+   EOM_HELMFILE_ENV=onprem-vpro ./post-orch-deploy.sh install
 
 .. note::
-   When using ``-y`` flag, ensure that the ``onprem.env`` file is properly configured with all required parameters before running the installer.
+   All configuration is read from ``post-orch/post-orch.env``.
+   Shell environment variables set before running the script take precedence over the file.
+
+.. _on_prem_deployment_profiles:
+
+Deployment Profiles
+--------------------
+
+The deployment profile controls which components are installed. Set ``EOM_HELMFILE_ENV``
+in ``post-orch/post-orch.env`` to select the profile.
+
+.. list-table:: Available Profiles
+   :widths: 20 80
+   :header-rows: 1
+
+   * - Profile
+     - Description
+   * - ``onprem-eim``
+     - **Edge Infrastructure Manager (default)** — Full deployment including the EIM Web UI,
+       edge-node provisioning via HAProxy and PXE boots infrastructure, AMT/Intel vPro management
+       (MPS, RPS, DM Manager), Keycloak-based IAM, and multi-tenancy. Use for standard
+       on-premises deployments.
+   * - ``onprem-vpro``
+     - **vPro-only** — Reduced footprint for managing vPro-capable edge nodes via AMT
+       out-of-band control. Does not include the Web UI, boots infrastructure, or PXE
+       provisioning. Intended for environments where only AMT-based management is needed.
+
+onprem-eim Profile
++++++++++++++++++++
+
+The ``onprem-eim`` profile enables the full EIM feature set:
+
+* Web UI (root, infrastructure, and admin portals)
+* HAProxy and PXE boots infrastructure for edge-node OS provisioning
+* AMT/Intel vPro support (MPS, RPS, DM Manager) for out-of-band management
+* Keycloak-based identity and access management
+* Multi-tenancy (tenancy manager, Keycloak tenant controller)
+* Full infra-core and infra-managers services
+
+Set in ``post-orch/post-orch.env``:
+
+.. code-block:: shell
+
+   EOM_HELMFILE_ENV=onprem-eim
+
+onprem-vpro Profile
+++++++++++++++++++++
+
+The ``onprem-vpro`` profile provides a reduced footprint focused on AMT out-of-band management:
+
+* Enables infra-core and infra-external (MPS, RPS, DM Manager) only
+* Disables Web UI, boots infrastructure, and HAProxy
+* Sets ``skipOSProvisioning: true`` — does not provision edge-node operating systems
+
+Set in ``post-orch/post-orch.env``:
+
+.. code-block:: shell
+
+   EOM_HELMFILE_ENV=onprem-vpro
+
+.. _on_prem_custom_settings:
+.. _on_prem_optional_feature_flags:
+
+Optional Feature Flags
+-----------------------
+
+Set the following variables in ``post-orch/post-orch.env`` to enable optional components.
+All flags default to ``false`` unless stated otherwise.
+
+Istio Service Mesh
++++++++++++++++++++
+
+Enables the full Istio service mesh stack: istiod, istio-base, Kiali dashboard, and
+Kyverno Istio policies.
+
+.. code-block:: shell
+
+   EOM_ENABLE_ISTIO=true
+
+.. note::
+   Enabling Istio adds resource overhead and latency. Recommended only for environments that
+   require mutual TLS (mTLS) between services or fine-grained traffic management.
+
+Kyverno Policy Engine
+++++++++++++++++++++++
+
+Enables the Kyverno admission controller with extra policies and Traefik-specific policies.
+
+.. code-block:: shell
+
+   EOM_ENABLE_KYVERNO=true
+
+Observability (O11y)
++++++++++++++++++++++
+
+Enables orchestrator and edge-node observability: metrics collection, log aggregation,
+Grafana dashboards, Prometheus agents, and the observability tenant controller.
+
+.. code-block:: shell
+
+   EOM_ENABLE_O11Y=true
+
+Single Tenancy (Auto-bootstrap)
+++++++++++++++++++++++++++++++++
+
+Automatically creates a default organization, project, and ``tenant-admin`` Keycloak user
+on first deployment.
+
+.. code-block:: shell
+
+   EOM_DEFAULT_TENANCY=true
+
+PXE Boot Server
+++++++++++++++++
+
+Enables the PXE boot server for edge-node OS provisioning via network boot.
+Requires the ``onprem-eim`` profile and a correctly configured network interface.
+
+.. code-block:: shell
+
+   EOM_ENABLE_PXE=true
 
 Prepare TLS Certificate Secret
 ------------------------------
@@ -552,35 +528,55 @@ execute the following command:
 Start the Deployment Process
 +++++++++++++++++++++++++++++
 
-#. Make all changes, or if no changes are needed, type ``yes`` and press
-   the **Enter** key to complete the installation.
-
-#. When using a custom non self-signed certificate, apply the previously
-   prepared secret containing the TLS certificate:
+#. If using a custom non-self-signed certificate, apply the previously prepared TLS secret
+   before starting the deployment:
 
    .. code-block:: shell
 
       kubectl apply -f tls-secret.yaml
 
+#. Run the Helm deployment:
+
+   .. code-block:: shell
+
+      cd post-orch
+      ./post-orch-deploy.sh install
+
 This process can take up to an hour to complete.
 
-Argo CD Root Application Deployment
------------------------------------------------
-
-Argo CD tool begins the deployment of the Edge Orchestrator software from the ``edge-manageability-framework`` repository pushed to the ``Gitea repository``.
-
-Sub-applications continue to deploy in the ``syncwave`` order until all the applications are deployed.
-
 .. _on_prem_view_argocd:
+.. _on_prem_watch_deploy:
 
-View Application Deployment
-++++++++++++++++++++++++++++++++
+Watch Deployment Progress
+--------------------------
 
-To see the deployment progress, run the following:
+Use ``watch-deploy.sh`` in the ``post-orch`` directory to monitor Helm release status
+during and after deployment.
+
+Info mode (release status summary):
 
 .. code-block:: shell
 
-   watch kubectl get applications -A
+   cd post-orch
+   ./watch-deploy.sh
+
+Debug mode (includes pod and job details per release):
+
+.. code-block:: shell
+
+   ./watch-deploy.sh --debug
+
+Alternatively, list all release statuses using the deploy script:
+
+.. code-block:: shell
+
+   ./post-orch-deploy.sh list
+
+Or check all releases across namespaces with Helm directly:
+
+.. code-block:: shell
+
+   helm list -A
 
 This process can take up to an hour to complete.
 
@@ -626,15 +622,9 @@ An example of the `dnsmasq` config file:
    address=/[on.prem.domain.name]/[traefik-external-ip]
    address=/alerting-monitor.[on.prem.domain.name]/[traefik-external-ip]
    address=/api.[on.prem.domain.name]/[traefik-external-ip]
-   address=/app-orch.[on.prem.domain.name]/[traefik-external-ip]
-   address=/app-service-proxy.[on.prem.domain.name]/[traefik-external-ip]
    address=/attest-node.[on.prem.domain.name]/[traefik-external-ip]
-   address=/cluster-orch-edge-node.[on.prem.domain.name]/[traefik-external-ip]
-   address=/cluster-orch-node.[on.prem.domain.name]/[traefik-external-ip]
-   address=/cluster-orch.[on.prem.domain.name]/[traefik-external-ip]
    address=/connect-gateway.[on.prem.domain.name]/[traefik-external-ip]
    address=/fleet.[on.prem.domain.name]/[traefik-external-ip]
-   address=/gitea.[on.prem.domain.name]/[traefik-external-ip]
    address=/infra-node.[on.prem.domain.name]/[traefik-external-ip]
    address=/keycloak.[on.prem.domain.name]/[traefik-external-ip]
    address=/log-query.[on.prem.domain.name]/[traefik-external-ip]
@@ -690,12 +680,6 @@ Otherwise, use ``opensssl``, if you do not have access to ``kubectl``:
    # Copy Server Certificate from the output and paste to orch.crt file
 
 Copy the ``orch.crt`` file to your local machine and import it to your system trust store.
-
-Limit Exposure of Argo CD Endpoint
------------------------------------------------
-
-Intel recommends restricting the Argo CD UI endpoint to a known subnet
-of safe IP addresses.
 
 Edge Orchestrator Restart
 -----------------------------------------------
