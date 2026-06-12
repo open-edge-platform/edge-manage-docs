@@ -11,10 +11,6 @@
   width: 100%;
 }
 
-.navbar__items {
-  margin-left: var(--ifm-navbar-height);
-}
-
 .navbar__inner {
   align-items: center;
 }
