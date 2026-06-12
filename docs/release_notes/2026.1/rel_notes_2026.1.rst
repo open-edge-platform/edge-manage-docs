@@ -104,7 +104,7 @@ The following are known issues in the release. While several known issues and
 limitations have been addressed during the 2026.1 release cycle, some have
 been carried over from past releases.
 
-* The lenovo profile is not supported in this release. If you have a lenovo 
+* The lenovo profile is not supported in this release. If you have a lenovo
   profile, please switch to the onprem-eim profile and re-provision the edge node.
 
 EMF deployment
