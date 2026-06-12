@@ -259,3 +259,151 @@ reports.
   <../advanced_functionality/vpro_power_mgt.html>`_ for general BIOS
   enablement recommendations
 - This limitation is specific to OnLogic K804 hardware
+
+
+KVM/SOL Consent Code Timeout in Client Control Mode
+----------------------------------------------------
+
+**Issue:** When activating a KVM or SOL remote session from the orch-cli in
+client control mode (CCM), a user consent code is required. The code is
+displayed on the edge node screen. A new consent code is **not** generated on
+every session start. If a session is stopped (for example, after entering an
+incorrect code) and a new session is started, the same consent code must be
+re-entered within 2 minutes of the previous session. If that window has
+elapsed, the user must wait 5 minutes for the next consent code to appear on
+the edge node screen before attempting again.
+
+**Background:**
+
+The Intel® AMT consent code mechanism is governed by two timeouts:
+
+- ``OptInCodeTimeout`` — **120 seconds.** The consent code is valid for
+  120 seconds. Within this window, the same code can be re-used to open
+  a new remote session without requiring additional user consent.
+- ``OptInDisplayTimeout`` — **300 seconds.** The code is displayed on
+  the edge node screen for 300 seconds. If the code expires and a new
+  one cannot be generated immediately by the ME, you must wait for the
+  full 300-second (5-minute) display period to elapse before requesting
+  a new code.
+
+**Expected Behavior:**
+
+- Once user consent has been established, a new remote session can be
+  opened without additional consent until 2 minutes of inactivity have
+  elapsed (``OptInCodeTimeout`` = 120 s).
+- If the ME cannot generate a new consent code, the previously generated
+  code remains valid within the 120-second reuse window.
+
+**Workaround:**
+
+1. If the session fails because a new code cannot be generated, re-enter
+   the previously displayed consent code (valid for 120 seconds).
+2. If the 120-second window has passed and no new code appears, wait for
+   the full 5-minute ``OptInDisplayTimeout`` (300 seconds) to elapse
+   before requesting a new consent code.
+
+**Reference:**
+
+- `Intel® AMT KVM Application Developer's Guide
+  <https://software.intel.com/sites/manageability/AMT_Implementation_and_Reference_Guide/default.htm?turl=WordDocuments%2Fkvmapplicationdevelopersguide.htm>`_
+- For orch-cli KVM and SOL session usage, see
+  `KVM and SOL Session Management
+  <set_up_edge_infra/orch_cli/orch_cli_guide.html#kvm-and-sol-session-management>`_
+
+
+Power Off Queued During Active KVM or SOL Session
+--------------------------------------------------
+
+**Issue:** When a power-off command is initiated via the orch-cli while a KVM
+or SOL session is active, the system does not power off immediately. The
+power-off is queued by Intel® AMT and is triggered automatically as soon as
+the active KVM or SOL session is deactivated.
+
+**Expected Behavior:**
+
+- A power-off command sent via orch-cli during an active KVM/SOL session is
+  accepted but not executed immediately.
+- The system remains powered on for the duration of the active session.
+- Once the KVM or SOL session is stopped or disconnected, the queued power-off
+  is executed automatically and the edge node shuts down.
+
+**Recommendation:**
+
+If an immediate power-off is required, stop the active KVM or SOL session
+first using the orch-cli, then issue the power-off command:
+
+.. code-block:: bash
+
+   # Stop the active KVM or SOL session
+   ./orch-cli set host <HOST_ID or HOST_NAME> --session-type kvm --session-state stop
+
+   # Then power off
+   ./orch-cli set host <HOST_ID or HOST_NAME> --power off
+
+**Reference:**
+
+- For orch-cli KVM and SOL session usage, see
+  `KVM and SOL Session Management
+  <set_up_edge_infra/orch_cli/orch_cli_guide.html#kvm-and-sol-session-management>`_
+
+
+KVM Session WebSocket Disconnected When Idle or During MPS/RPS Restart
+-----------------------------------------------------------------------
+
+**Issue:** A KVM session WebSocket connection may be disconnected in two
+scenarios:
+
+1. **Idle session** — the KVM session is left idle (no user interaction) for
+   an extended period. The WebSocket is disconnected automatically by the
+   DMT (Device Management Toolkit).
+2. **MPS/RPS token refresh** — MPS and RPS pods restart approximately every
+   50 seconds during token refreshment. During this restart window, the DMT
+   disconnects the active KVM session.
+
+**Expected Behavior:**
+
+- An idle KVM session will be disconnected automatically. The session does
+  not remain open indefinitely without user activity.
+- During each MPS/RPS token refresh cycle (~50 seconds), the pods restart
+  briefly. Any active KVM session is disconnected by the DMT during this
+  period.
+
+**Recommendation:**
+
+- **Avoid leaving the KVM session idle.** Keep the session active by
+  performing operations on the KVM viewer browser application to prevent
+  automatic disconnection. If the session is disconnected due to inactivity,
+  restart it using the orch-cli and continue performing operations in the
+  KVM viewer — do not leave the browser window idle:
+
+  .. code-block:: bash
+
+     ./orch-cli set host <HOST_ID or HOST_NAME> --session-type kvm --session-state start --orch-ca orch-ca.crt
+
+- **MPS/RPS restarts are expected.** If the KVM session disconnects
+  unexpectedly, check whether an MPS or RPS pod restart has occurred. Once
+  the pods have restarted and stabilized, start a new KVM session using
+  the orch-cli:
+
+  .. code-block:: bash
+
+     ./orch-cli set host <HOST_ID or HOST_NAME> --session-type kvm --session-state start --orch-ca orch-ca.crt
+
+.. note::
+
+   MPS and RPS pod restarts during token refresh are a known behaviour of
+   the Edge Out-of-Band Manageability orchestrator. KVM session disconnection
+   during these restarts is expected.
+
+   **Issue:** Sol session did not got os prompt after successful connection established.
+
+   **Solution:**
+      Enable the serial-getty service on the edge node to ensure the SOL session can access the OS prompt.
+      You can do this by running the following commands on the edge node:
+
+   .. code-block:: bash
+
+      TTY=$(sudo dmesg | grep -oP 'ttyS\d+' | head -n1) && \
+      echo "Using $TTY" && \
+      sudo systemctl start serial-getty@$TTY.service && \
+      sudo systemctl enable serial-getty@$TTY.service
