@@ -11,6 +11,10 @@
   width: 100%;
 }
 
+.navbar__brand {
+  display: none;
+}
+
 .navbar__inner {
   align-items: center;
 }
