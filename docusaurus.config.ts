@@ -314,7 +314,6 @@ const config: Config = {
           type: "custom-documentationLink" as const,
           label: "Documentation",
           position: "left" as const,
-          target: "_self",
         },
         ...(SPOKE_MODE
           ? [

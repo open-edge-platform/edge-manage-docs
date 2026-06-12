@@ -12,16 +12,20 @@ type Props = {
   mobile?: boolean;
 };
 
-const getHref = (spoke: SpokeSummary) => {
+const getTo = (spoke: SpokeSummary) => {
+  // Use only the pathname so DefaultNavbarItem treats this as an internal
+  // route rather than an external `href`. This prevents Docusaurus from appending the external-link SVG icon.
+  const base = new URL(spoke.href).pathname;
+
   if (spoke.id === "genai") {
-    return `${spoke.href}getting-started/introduction/`;
+    return `${base}getting-started/introduction/`;
   }
 
   if (spoke.id === "physicalai") {
-    return `${spoke.href}getting-started/`;
+    return `${base}getting-started/`;
   }
 
-  return spoke.href;
+  return base;
 };
 
 // Registered as `custom-documentationLink`. This keeps the documentation
@@ -33,6 +37,6 @@ export default function DocumentationLinkNavbarItem(props: Props) {
   const fallbackSpoke = spokes.find(({ id }) => id === "openvino") ?? spokes[0];
 
   return (
-    <DefaultNavbarItem {...props} href={getHref(spoke ?? fallbackSpoke)} />
+    <DefaultNavbarItem {...props} to={getTo(spoke ?? fallbackSpoke)} />
   );
 }
