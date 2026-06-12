@@ -53,7 +53,7 @@ jobs:
       security-events: write
       id-token: write
       actions: read
-    uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@d17180cb7af62dc10bea371bd0cfdc2ba5bc1f02  # yamllint disable-line rule:line-length
+    uses: open-edge-platform/orch-ci/.github/workflows/post-merge.yml@5f1e996beaca1f6101937aa5d7b5b8ed01c91f8f  # yamllint disable-line rule:line-length
     with:
       run_version_check: true
       run_dep_version_check: false
