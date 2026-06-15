@@ -25,7 +25,7 @@ export default function SpokeVersionDropdown({
   position = 'right',
   label,
   className,
-}: Props): JSX.Element | null {
+}: Props): React.JSX.Element | null {
   const {pathname} = useLocation();
   const versions = useVersions(docsPluginId);
   const activeVersion = useActiveVersion(docsPluginId);

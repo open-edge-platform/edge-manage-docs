@@ -96,10 +96,18 @@ for (const s of spokes) {
 }
 
 // In SPOKE mode the entire bundle is rooted at /<rbp>/[<v>/], so the spoke's
-// docs sit at routeBasePath '/'. In BUILD_ALL_SPOKES mode each spoke mounts
-// at its own <rbp> within a single hub bundle.
+// landing sits at routeBasePath '/'. In BUILD_ALL_SPOKES mode each spoke's
+// landing mounts at its own <rbp> within a single hub bundle.
 const effectiveRouteBasePath = (spoke: SpokeConfig): string =>
   SPOKE_MODE ? "/" : spoke.routeBasePath;
+
+// Docs are served one segment below the spoke's landing, under `<rbp>/docs`
+// (or `/docs` in SPOKE mode). Keeping docs on a dedicated `/docs/` segment lets
+// the navbar tell a product landing (e.g. /genai/) apart from its docs
+// (/genai/docs/...) with pure prefix matching, and removes the /<rbp>/
+// landing-vs-docs route collision (e.g. PhysicalAI's docs index.md).
+const docsRouteBasePath = (spoke: SpokeConfig): string =>
+  SPOKE_MODE ? "docs" : `${spoke.routeBasePath}/docs`;
 
 function spokeCheckoutDir(spoke: SpokeConfig): string {
   // Matches clone-spokes.sh: basename(repo) under spokes/.
@@ -126,7 +134,7 @@ function docsPluginOptions(spoke: SpokeConfig) {
   const spokeDir = spokeCheckoutDir(spoke);
   return {
     path: path.join(spokeDir, "docs"),
-    routeBasePath: effectiveRouteBasePath(spoke),
+    routeBasePath: docsRouteBasePath(spoke),
     sidebarPath: require.resolve("./sidebars/auto.ts"),
     editUrl: ({ docPath }: { docPath: string }) =>
       `https://github.com/${spoke.repo}/edit/${spoke.ref}/docs/${docPath}`,
@@ -182,11 +190,12 @@ function samplesPlugin(spoke: SpokeConfig): PluginConfig | null {
   // Only wire the samples plugin for the GenAI spoke (it is GenAI-specific).
   if (spoke.id !== "genai") return null;
   const spokeDir = spokeCheckoutDir(spoke);
-  // In SPOKE mode the spoke owns '/' (the bundle is rooted at /<rbp>/[<v>/]),
-  // so samples live at '/samples'. In BUILD_ALL_SPOKES they live at '/<rbp>/samples'.
+  // Samples are generated into `docs/samples`, so they ride along with the
+  // docs plugin's routeBasePath. In SPOKE mode the spoke owns '/', so samples
+  // live at '/docs/samples'; in BUILD_ALL_SPOKES at '/<rbp>/docs/samples'.
   const docsRouteBase = SPOKE_MODE
-    ? "/samples"
-    : `/${spoke.routeBasePath}/samples`;
+    ? "/docs/samples"
+    : `/${spoke.routeBasePath}/docs/samples`;
   return [
     require.resolve("./src/plugins/genai-samples-docs-plugin"),
     {
@@ -215,6 +224,38 @@ const spokePlugins: PluginConfig[] = [
     ),
   ),
 ];
+
+// OpenVINO is the only spoke without a landing page of its own: its product
+// landing IS the hub root ("/"). Now that its docs live on the shared
+// `<rbp>/docs/` segment like every other spoke, the bare `/openvino/` path
+// has nothing mounted on it and would 404, so redirect it to the docs root.
+// `from`/`to` are baseUrl-relative — the plugin writes the redirect file under
+// outDir/<from> and prepends baseUrl to <to> — so the same pair works in every
+// mode (SPOKE=openvino roots the bundle at /openvino/, hence from "/"). Only
+// emitted when the OpenVINO spoke is in this build; the plugin runs on
+// `build`, not on `docusaurus start`.
+//
+// Expected side effect: in SPOKE=openvino mode the build reports broken-link
+// warnings for `/openvino/`. That path is now redirect-only, but Docusaurus'
+// link checker runs before this plugin's postBuild and doesn't know about the
+// redirect, so anything pointing at baseUrl (the navbar brand/logo, the
+// OpenVINO product card) is flagged. The links resolve correctly at runtime
+// via the redirect, and `onBrokenLinks: "warn"` lets the build pass — these
+// specific warnings are benign.
+const openvinoSpoke = spokes.find((s) => s.id === "openvino");
+if (openvinoSpoke) {
+  spokePlugins.push([
+    "@docusaurus/plugin-client-redirects",
+    {
+      redirects: [
+        {
+          from: SPOKE_MODE ? "/" : `/${openvinoSpoke.routeBasePath}/`,
+          to: SPOKE_MODE ? "/docs/" : `/${openvinoSpoke.routeBasePath}/docs/`,
+        },
+      ],
+    },
+  ]);
+}
 
 const config: Config = {
   title: "OpenVINO Documentation",
@@ -291,7 +332,7 @@ const config: Config = {
               hashed: true,
               highlightSearchTermsOnTargetPage: true,
               searchBarShortcutHint: false,
-              docsRouteBasePath: spokes.map((s) => effectiveRouteBasePath(s)),
+              docsRouteBasePath: spokes.map((s) => docsRouteBasePath(s)),
               docsDir: spokes.map((s) =>
                 path.join(spokeCheckoutDir(s), "docs"),
               ),

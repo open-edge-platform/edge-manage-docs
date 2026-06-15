@@ -26,8 +26,13 @@
   position: absolute;
 }
 
-.navbar__link--active:not(:has(~ .navbar__link--active)) {
+.navbar__link {
+  transition: color 0.15s;
+}
+
+.navbar__link--active {
   --ifm-navbar-link-hover-color: var(--genai-color-blue-energy);
+  color: var(--genai-color-blue-energy);
 }
 
 .navbar__search-input {

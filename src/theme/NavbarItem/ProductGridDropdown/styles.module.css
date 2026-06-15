@@ -14,14 +14,6 @@
   list-style: none;
 }
 
-.header {
-  font-size: 14px;
-  font-weight: 600;
-  opacity: 0.85;
-  margin-bottom: 16px;
-  padding: 0 8px;
-}
-
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

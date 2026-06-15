@@ -1,6 +1,7 @@
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { useCurrentSpoke } from "@site/src/hooks/use-current-spoke";
+import { useNavState } from "@site/src/hooks/use-nav-state";
 import { useSpokeHref } from "@site/src/hooks/use-spoke-href";
-import { SpokeSummary } from "@site/src/hooks/use-spokes";
 import { PRODUCT_CARDS } from "@site/src/hub-catalog";
 import clsx from "clsx";
 import React, { useEffect, useRef, useState } from "react";
@@ -27,6 +28,7 @@ export default function ProductGridDropdownNavbarItem(
 // 552-wide gradient panel containing a 2x2 product card grid.
 function Desktop({ position, className }: Props) {
   const spoke = useCurrentSpoke();
+  const { productActive } = useNavState();
   const ref = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
 
@@ -63,7 +65,9 @@ function Desktop({ position, className }: Props) {
         role="button"
         aria-haspopup="true"
         aria-expanded={open}
-        className={clsx("navbar__link", className)}
+        className={clsx("navbar__link", className, {
+          "navbar__link--active": productActive,
+        })}
         onClick={(e) => e.preventDefault()}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
@@ -75,7 +79,6 @@ function Desktop({ position, className }: Props) {
         {label}
       </a>
       <div className={clsx("dropdown__menu", styles.panel)}>
-        <div className={styles.header}>{label}</div>
         <div className={styles.grid}>
           {PRODUCT_CARDS.map((card) => (
             <DesktopCard key={card.title} card={card} />
@@ -87,7 +90,10 @@ function Desktop({ position, className }: Props) {
 }
 
 function DesktopCard({ card }: { card: (typeof PRODUCT_CARDS)[number] }) {
-  const href = useSpokeHref(card.spokeId);
+  const { siteConfig } = useDocusaurusContext();
+  const spokeHref = useSpokeHref(card.spokeId);
+  const href = card.spokeId === "openvino" ? siteConfig.baseUrl : spokeHref;
+
   if (href) {
     return (
       <a className={styles.card} href={href} target="_self">
@@ -122,7 +128,10 @@ function Mobile({ label, className }: Props) {
 }
 
 function MobileCard({ card }: { card: (typeof PRODUCT_CARDS)[number] }) {
-  const href = useSpokeHref(card.spokeId);
+  const { siteConfig } = useDocusaurusContext();
+  const spokeHref = useSpokeHref(card.spokeId);
+  const href = card.spokeId === "openvino" ? siteConfig.baseUrl : spokeHref;
+
   if (href) {
     return (
       <li className={styles.mobileItem}>
