@@ -3,8 +3,6 @@ Firewall Configuration
 
 The following table lists the network endpoints for Edge Orchestrator and edge nodes. You can use this to configure Edge Orchestrator firewall ingress rules appropriate for your network environment.
 
-* ArgoCD Admin UI at ``argo.{domain}``. Intel recommends that you restrict the
-  incoming traffic to a subset of known source IPs because this is an administrator interface.
 * BIOS Onboarding accesses ``tinkerbell-haproxy.{domain}``.
 * You can access all other services from edge nodes agents, UI, and APIs
   of Edge Orchestrator.
@@ -29,18 +27,6 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
      -  TCP:443
      -  Tenancy API
    * -  Edge Orchestrator UI and API
-     -  app-service-proxy.{domain}
-     -  TCP:443
-     -  Application orchestration
-   * -  Edge Orchestrator UI and API
-     -  gitea.{domain}
-     -  TCP:443
-     -  Application orchestration
-   * -  Edge Orchestrator UI and API
-     -  vnc.{domain}
-     -  TCP:443
-     -  Application orchestration
-   * -  Edge Orchestrator UI and API
      -  keycloak.{domain}
      -  TCP:443
      -  Identity and Access Management
@@ -60,10 +46,6 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
      -  vault.{domain}
      -  TCP:443
      -  Vault\* UI
-   * -  Edge node
-     -  cluster-orch-node.{domain}
-     -  TCP:443
-     -  Cluster orchestration
    * -  Edge node
      -  infra-node.{domain}
      -  TCP:443
@@ -105,21 +87,9 @@ The following table lists the network endpoints for Edge Orchestrator and edge n
      -  TCP:443
      -  Edge Infrastructure Manager
    * -  Edge node
-     -  connect-gateway.{domain}
-     -  TCP:443
-     -  Cluster orchestration
-   * -  Edge node
-     -  fleet.{domain}
-     -  TCP:443
-     -  Cluster orchestration
-   * -  Edge node
      -  tinkerbell-haproxy.{domain}
      -  TCP:443
      -  BIOS onboarding
-   * -  Edge Orchestrator admin
-     -  argo.{domain}
-     -  TCP:443
-     -  ArgoCD UI
 
 To install Edge Orchestrator and Edge Node, the following Egress rules are required:
 

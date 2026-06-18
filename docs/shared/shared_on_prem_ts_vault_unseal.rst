@@ -100,6 +100,6 @@ Run the following command to delete the old keys and ``secrets-config`` job.
    kubectl -n orch-platform delete secret vault-keys
    kubectl -n orch-platform delete job secrets-config
 
-When the old keys and ``secrets-config`` job are removed, ArgoCD executes
-``secrets-config`` which reinitializes the Vault server and stores the new
-unseal keys and root token in a Kubernetes secret named ``vault-keys``.
+When the old keys and ``secrets-config`` job are removed, Kubernetes recreates
+the ``secrets-config`` Job which reinitializes the Vault server and stores the
+new unseal keys and root token in a Kubernetes secret named ``vault-keys``.

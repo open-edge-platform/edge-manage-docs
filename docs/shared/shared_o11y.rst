@@ -1,95 +1,103 @@
+:orphan:
+
 Observability Composability
-=====================================
+===========================
 
 This document provides end-to-end guidance on:
 
-1. Deploying orchestration with the **Observability (O11Y)** profile,
-   including how to enable or disable it using composability flags.
+1. Deploying Edge Out-of-Band Manageability with **Observability (O11Y)**
+   enabled or disabled, using the ``EOM_ENABLE_O11Y`` flag in ``post-orch.env``.
 2. Onboarding edge nodes in **NIO mode** using ``orch-cli``.
 
 ----------------------------------------------------
 1. Observability Composability Overview
 ----------------------------------------------------
 
-During orchestration deployment, the **Observability (O11Y)** profile, which
-integrates telemetry, metrics and monitoring, is **disabled by default**.
+Edge Out-of-Band Manageability supports optional **Observability (O11Y)** — integrating
+telemetry, metrics, and monitoring for both the orchestrator and edge nodes.
 
-Composability provides **flexibility and control**, allowing you to include or exclude specific services as needed.
-The profile is controlled through an **environment flag** which must be set before starting the deployment.
+By default, Observability is **disabled**. It can be enabled before deployment by setting
+``EOM_ENABLE_O11Y=true`` in ``post-orch/post-orch.env``.
+
+When enabled, the following Helm releases are deployed:
+
+- ``orchestrator-observability`` — orchestrator-side metrics and log aggregation
+- ``edgenode-observability`` — edge-node metrics and log collection
+- ``orchestrator-prometheus-agent`` — Prometheus scraping agent
+- ``observability-tenant-controller`` — per-tenant observability configuration
+- ``observability-crds`` — Custom Resource Definitions for observability stack
 
 .. important::
 
-   The flag must be defined **before** orchestration deployment begins.
-   For upgrades, ensure the same flag is used to maintain consistent orchestration state
-   and avoid unexpected composability changes.
+   Set ``EOM_ENABLE_O11Y`` **before** running ``post-orch-deploy.sh install``.
+   For upgrades, keep the same value to maintain a consistent deployment state.
 
 ----------------------------------------------------
-2. Configuration Flag
+2. Configuration
 ----------------------------------------------------
 
-By default, the profile is disabled by default.
+Observability is controlled by a single variable in ``post-orch/post-orch.env``:
 
-To enable the profile to deploy the services, the following environment variables
-must be enabled in the post-orch.env file **before starting orchestration deployment
-or upgrade**:
+.. list-table::
+   :widths: 30 50 20
+   :header-rows: 1
+
+   * - Variable
+     - Description
+     - Default
+   * - ``EOM_ENABLE_O11Y``
+     - Enable edge-node and orchestrator observability (metrics, logs, dashboards)
+     - ``false``
+
+**To enable Observability**, set the flag in ``post-orch/post-orch.env`` before running the deployment:
 
 .. code-block:: bash
 
+   # In post-orch/post-orch.env
    EOM_ENABLE_O11Y=true
+
+**To disable Observability** (default):
+
+.. code-block:: bash
+
+   # In post-orch/post-orch.env
+   EOM_ENABLE_O11Y=false
 
 .. note::
 
-   This flag must be configured in the post-orch.env file **prior to both deployment and upgrade**
-   to ensure consistent composability across lifecycle operations.
-
-The environment flag will enable deployment of the edgenode observability services as
-well as the Promethheus CRDs to enable service monitors. To enable the orchestrator
-observability services, the following flags must also be enabled, either by being
-added to the ``post-orch.env`` file or by enabling them in the
-``environments/defauls-disabled.yaml.gotmpl`` file.
-
-.. code-block:: yaml
-
-   orchestrator-observability:
-     enabled: true
-   orchestrator-dashboards:
-     enabled: true
-   orchestrator-prometheus-agent:
-     enabled: true
+   This variable must be set **before** running ``post-orch-deploy.sh install`` or
+   ``post-orch-deploy.sh upgrade`` to ensure a consistent deployment state.
 
 ----------------------------------------------------
 3. Verification After Deployment or Upgrade
 ----------------------------------------------------
 
-After orchestration deployment or upgrade, you can verify that the observability services are
-enabled or disabled using the following command:
+After deployment, verify whether Observability is enabled by checking the Helm release
+status:
 
 .. code-block:: bash
 
-   kubectl get pods -n orch-infra | grep edgenode-observability
+   helm list -A | grep -E "orchestrator-observability|edgenode-observability"
 
-**Example Output:**
+**Example output when O11Y is enabled:**
 
 .. code-block:: text
 
-   edgenode-observability-grafana-644fbcc577-wr2k2                   4/4     Running     0               5m36s
-   edgenode-observability-loki-chunks-cache-0                        3/3     Running     0               5m36s
-   edgenode-observability-loki-gateway-59f4f949b8-lwbls              2/2     Running     0               5m36s
-   edgenode-observability-loki-results-cache-0                       3/3     Running     0               5m36s
-   edgenode-observability-mimir-compactor-0                          2/2     Running     0               5m36s
-   edgenode-observability-mimir-distributor-65cc4bf9cf-cg9kr         2/2     Running     0               5m36s
-   edgenode-observability-mimir-gateway-6b6845b5bb-2ppjm             2/2     Running     0               5m36s
-   edgenode-observability-mimir-ingester-0                           2/2     Running     0               5m36s
-   edgenode-observability-mimir-ingester-1                           2/2     Running     0               5m36s
-   edgenode-observability-mimir-make-minio-buckets-5.4.0-dpd2d       0/1     Completed   0               5m36s
-   edgenode-observability-mimir-querier-78669bdd7f-djqm8             2/2     Running     0               5m36s
-   edgenode-observability-mimir-query-frontend-5c676c7964-zg8bt      2/2     Running     0               5m36s
-   edgenode-observability-mimir-query-scheduler-97c7fbb55-4bmnl      2/2     Running     0               5m36s
-   edgenode-observability-mimir-query-scheduler-97c7fbb55-8wsv8      2/2     Running     0               5m36s
-   edgenode-observability-mimir-ruler-d55cc759b-9bvkc                2/2     Running     0               5m36s
-   edgenode-observability-mimir-store-gateway-0                      2/2     Running     0               5m36s
-   edgenode-observability-minio-748dc47495-8hzr9                     2/2     Running     0               5m36s
-   edgenode-observability-opentelemetry-collector-696c4475d7-mcchc   2/2     Running     0               5m36s
+   orchestrator-observability    orch-o11y    1    deployed    ...
+   edgenode-observability        orch-o11y    1    deployed    ...
+
+**Example output when O11Y is disabled** (no output or releases show ``uninstalled``):
+
+.. code-block:: text
+
+   (no output)
+
+Alternatively, list all enabled releases for the active profile:
+
+.. code-block:: bash
+
+   cd post-orch
+   ./post-orch-deploy.sh list
 
 ----------------------------------------------------
 4. Edge Node Onboarding in NIO Mode
@@ -241,3 +249,5 @@ After logging in to the edge node, you can collect logs from various edge servic
 .. code-block:: bash
 
    sudo journalctl -u <service-name> -f
+
+

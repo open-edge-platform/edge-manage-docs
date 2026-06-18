@@ -1,0 +1,42 @@
+.. SPDX-FileCopyrightText: (C) 2026 Intel Corporation
+.. SPDX-License-Identifier: Apache-2.0
+
+.. _kpi_2026.1:
+
+Version 2026.1 Key Performance Indicators (KPIs)
+=======================================================
+
+For 2026.1 release the following KPI goals were met that assured the quality
+and proficiency of |software_prod_name|.
+
+Key Performance Indicators for On-premises Edge Orchestrator
+---------------------------------------------------------------
+
+.. list-table:: On-Premises Orchestrator KPIs
+   :widths: 25 25 50
+   :header-rows: 1
+
+   * - Indicator
+     - Target
+     - Measurement
+   * - Edge Orchestrator Installation
+     - 90 minutes
+     - ~<TBD> minutes
+   * - Edge Node Onboarding and Provisioning (Ubuntu)
+     - 15 minutes
+     - ~<TBD> minutes (Intel® Core™ processor)
+   * - Edge Node Onboarding and Provisioning (Edge Microvisor Toolkit)
+     - 10 minutes
+     - ~<TBD> minutes (Intel® Core™ processor)
+   * - Edge Cluster Creation
+     - 2 minutes
+     - ~<TBD> minutes
+   * - Edge Cluster Deletion
+     - 5 minutes
+     - ~<TBD> seconds
+   * - Creating a Deployment Package
+     - 5 minutes
+     - ~<TBD> seconds
+   * - Deploying Application to Edge Node
+     - 15 minutes
+     - ~<TBD> minutes
