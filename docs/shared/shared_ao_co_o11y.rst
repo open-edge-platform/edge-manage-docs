@@ -1,79 +1,103 @@
 :orphan:
 
-AO / CO / Observability Composability
-=====================================
+Observability Composability
+===========================
 
 This document provides end-to-end guidance on:
 
-1. Deploying orchestration with **Application Orchestrator (AO)**,
-   **Cluster Orchestrator (CO)**, and **Observability (O11Y)** profiles,
-   including how to enable or disable them using composability flags.
+1. Deploying Edge Out-of-Band Manageability with **Observability (O11Y)**
+   enabled or disabled, using the ``EOM_ENABLE_O11Y`` flag in ``post-orch.env``.
 2. Onboarding edge nodes in **NIO mode** using ``orch-cli``.
 
 ----------------------------------------------------
-1. AO / CO / Observability Composability Overview
+1. Observability Composability Overview
 ----------------------------------------------------
 
-During orchestration deployment, the following profiles are **enabled by default**:
+Edge Out-of-Band Manageability supports optional **Observability (O11Y)** — integrating
+telemetry, metrics, and monitoring for both the orchestrator and edge nodes.
 
-- **Application Orchestrator (AO)** — handles application orchestration at the edge.
-- **Cluster Orchestrator (CO)** — manages cluster-level orchestration, scaling, and coordination.
-- **Observability (O11Y)** — integrates telemetry, metrics, and monitoring.
+By default, Observability is **disabled**. It can be enabled before deployment by setting
+``EOM_ENABLE_O11Y=true`` in ``post-orch/post-orch.env``.
 
-Composability provides **flexibility and control**, allowing you to include or exclude specific profiles as needed.
-These profiles are controlled through **environment flags** set before starting the orchestration deployment.
+When enabled, the following Helm releases are deployed:
+
+- ``orchestrator-observability`` — orchestrator-side metrics and log aggregation
+- ``edgenode-observability`` — edge-node metrics and log collection
+- ``orchestrator-prometheus-agent`` — Prometheus scraping agent
+- ``observability-tenant-controller`` — per-tenant observability configuration
+- ``observability-crds`` — Custom Resource Definitions for observability stack
 
 .. important::
 
-   The flags must be defined **before** orchestration deployment begins.
-   For upgrades, ensure the same flags are used to maintain consistent orchestration state
-   and avoid unexpected composability changes.
+   Set ``EOM_ENABLE_O11Y`` **before** running ``post-orch-deploy.sh install``.
+   For upgrades, keep the same value to maintain a consistent deployment state.
 
 ----------------------------------------------------
-2. Configuration Flags
+2. Configuration
 ----------------------------------------------------
 
-By default, all profiles are enabled (flags unset or set to ``false``).
+Observability is controlled by a single variable in ``post-orch/post-orch.env``:
 
-To modify which components are deployed, export the following environment variables
-**before starting orchestration deployment or upgrade**:
+.. list-table::
+   :widths: 30 50 20
+   :header-rows: 1
+
+   * - Variable
+     - Description
+     - Default
+   * - ``EOM_ENABLE_O11Y``
+     - Enable edge-node and orchestrator observability (metrics, logs, dashboards)
+     - ``false``
+
+**To enable Observability**, set the flag in ``post-orch/post-orch.env`` before running the deployment:
 
 .. code-block:: bash
 
-   export DISABLE_AO_PROFILE=true      # Disable Application Orchestrator
-   export DISABLE_CO_PROFILE=true      # Disable Cluster Orchestrator
-   export DISABLE_O11Y_PROFILE=true    # Disable Observability
+   # In post-orch/post-orch.env
+   EOM_ENABLE_O11Y=true
+
+**To disable Observability** (default):
+
+.. code-block:: bash
+
+   # In post-orch/post-orch.env
+   EOM_ENABLE_O11Y=false
 
 .. note::
 
-   These flags must be exported to your environment **prior to both deployment and upgrade**
-   to ensure consistent composability across lifecycle operations.
+   This variable must be set **before** running ``post-orch-deploy.sh install`` or
+   ``post-orch-deploy.sh upgrade`` to ensure a consistent deployment state.
 
 ----------------------------------------------------
 3. Verification After Deployment or Upgrade
 ----------------------------------------------------
 
-After orchestration deployment or upgrade, you can verify which profiles are enabled or disabled
-using the following one-liner command:
+After deployment, verify whether Observability is enabled by checking the Helm release
+status:
 
 .. code-block:: bash
 
-   root_app_ns=$(kubectl get application -A | grep root-app | awk '{print $1}')
-   VALUE_FILES=$(kubectl get application root-app -n $root_app_ns -o yaml)
-   echo "$VALUE_FILES" | grep -q "enable-cluster-orch.yaml" && echo "✅ CO enabled" || echo "⛔ CO disabled"
-   echo "$VALUE_FILES" | grep -q "enable-app-orch.yaml" && echo "✅ AO enabled" || echo "⛔ AO disabled"
-   echo "$VALUE_FILES" | grep -qE "(enable-o11y)" && echo "✅ O11Y enabled" || echo "⛔ O11Y disabled"
+   helm list -A | grep -E "orchestrator-observability|edgenode-observability"
 
-**Example Output:**
+**Example output when O11Y is enabled:**
 
 .. code-block:: text
 
-   ⛔ CO disabled     --> if CO disabled
-   ⛔ AO disabled     --> if AO disabled
-   ✅ O11Y enabled    --> if observability enabled
+   orchestrator-observability    orch-o11y    1    deployed    ...
+   edgenode-observability        orch-o11y    1    deployed    ...
 
-You can also confirm the same from the ArgoCD ``root-app`` application view.
-For pre-deployment verification (before cluster creation), review the **orchestration clustername.yaml** file.
+**Example output when O11Y is disabled** (no output or releases show ``uninstalled``):
+
+.. code-block:: text
+
+   (no output)
+
+Alternatively, list all enabled releases for the active profile:
+
+.. code-block:: bash
+
+   cd post-orch
+   ./post-orch-deploy.sh list
 
 ----------------------------------------------------
 4. Edge Node Onboarding in NIO Mode
@@ -220,26 +244,10 @@ After logging in to the edge node, you can collect logs from various edge servic
    sudo journalctl -u node-agent -f
    sudo systemctl status node-agent
 
-**Check Cluster Agent Logs (if CO is enabled):**
-
-.. code-block:: bash
-
-  sudo journalctl -u cluster-agent -f
-  sudo systemctl status cluster-agent
-
 **Check Other Service Logs:**
 
 .. code-block:: bash
 
    sudo journalctl -u <service-name> -f
 
-----------------------------------------------------
-4.7 Create a Cluster (if CO is enabled)
-----------------------------------------------------
 
-If the **Cluster Orchestrator** is enabled, create and verify the cluster using the commands below:
-
-.. code-block:: bash
-
-   orch-cli create cluster cli-cluster --nodes <EDGENODE-UUID>:all
-   orch-cli list cluster

@@ -19,44 +19,50 @@ This profile is controlled through **environment flag** set before starting the 
    and avoid unexpected composability changes.
 
 ----------------------------------------------------
-2. Configuration Flags
+2. Configuration
 ----------------------------------------------------
 
-By default, the profile are enabled (flag unset or set to ``false``).
+Single Tenancy is controlled by a variable in ``post-orch/post-orch.env``.
+By default it is disabled (``false``).
 
-To enable Single Tenancy, export the below environment variable
-**before starting orchestration deployment or upgrade**:
+To enable Single Tenancy, set the following in ``post-orch/post-orch.env``
+before running the deployment:
 
 .. code-block:: bash
 
-   export SINGLE_TENANCY=true      # Enable Single Tenancy
+   # In post-orch/post-orch.env
+   EOM_DEFAULT_TENANCY=true
 
 .. note::
 
-   This flag must be exported to your environment **prior to both deployment and upgrade**.
+   This variable must be set **before** running ``post-orch-deploy.sh install`` or
+   ``post-orch-deploy.sh upgrade`` to maintain a consistent deployment state.
 
 ----------------------------------------------------
 3. Verification After Deployment or Upgrade
 ----------------------------------------------------
 
-After orchestration deployment or upgrade, you can verify which profiles are enabled or disabled
-using the following one-liner command:
+After deployment, verify whether Single Tenancy bootstrap is enabled by checking
+the tenancy-manager Helm release values:
 
 .. code-block:: bash
 
-   root_app_ns=$(kubectl get application -A | grep root-app | awk '{print $1}')
-   VALUE_FILES=$(kubectl get application root-app -n $root_app_ns -o yaml)
-   echo "$VALUE_FILES" | grep -q "enable-singleTenancy.yaml" && echo "✅ Single Tenancy enabled" || echo "⛔ Single Tenancy disabled"
+   helm get values tenancy-manager -n orch-platform | grep -A3 bootstrap
 
-**Example Output:**
+**Example output when Single Tenancy is enabled:**
 
 .. code-block:: text
 
-   ⛔ Single Tenancy disabled     --> if Single Tenancy disabled
-   ✅ Single Tenancy enabled    --> if Single Tenancy enabled
+   bootstrap:
+     enabled: true
+     orgName: default
+     projectName: default
 
-You can also confirm the same from the ArgoCD ``root-app`` application view.
-For pre-deployment verification (before cluster creation), review the **orchestration clustername.yaml** file.
+Alternatively, confirm the default organization was created:
+
+.. code-block:: bash
+
+   orch-cli list org
 
 ----------------------------------------------------
 4. Tenant Admin Password Management

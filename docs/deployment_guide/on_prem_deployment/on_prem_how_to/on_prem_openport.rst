@@ -148,9 +148,9 @@ Ports for application services exposed via an ingress controller.
      - **Network**
      - **Security Consideration**
    * - **443**
-     - HTTPS ingress for application services (Traefik, ArgoCD, Nginx)
+     - HTTPS ingress for application services (Traefik, Nginx)
      - Virtual IP
-     - TLS encryption enabled by EMF deployment. Traefik and ArgoCD use JWT authentication.
+     - TLS encryption enabled by EOM deployment. Traefik uses JWT authentication.
        Nginx is setup primarily as a CDN for Edge Node provisioning without authentication.
    * - **80**
      - HTTP ingress (redirects to HTTPS)
