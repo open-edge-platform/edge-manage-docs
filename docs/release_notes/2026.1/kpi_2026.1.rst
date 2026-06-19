@@ -7,7 +7,7 @@ Version 2026.1 Key Performance Indicators (KPIs)
 =======================================================
 
 For 2026.1 release the following KPI goals were met that assured the quality
-and proficiency of |software_prod_name|.
+and proficiency of Intel Edge Out-of-Band Manageability.
 
 Key Performance Indicators for On-premises Edge Orchestrator
 ---------------------------------------------------------------
