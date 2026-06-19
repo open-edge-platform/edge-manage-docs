@@ -7,7 +7,7 @@ Version 2026.1 Key Performance Indicators (KPIs)
 =======================================================
 
 For 2026.1 release the following KPI goals were met that assured the quality
-and proficiency of |software_prod_name|.
+and proficiency of Intel Edge Out-of-Band Manageability.
 
 Key Performance Indicators for On-premises Edge Orchestrator
 ---------------------------------------------------------------
@@ -19,24 +19,62 @@ Key Performance Indicators for On-premises Edge Orchestrator
    * - Indicator
      - Target
      - Measurement
-   * - Edge Orchestrator Installation
-     - 90 minutes
-     - ~<TBD> minutes
-   * - Edge Node Onboarding and Provisioning (Ubuntu)
-     - 15 minutes
-     - ~<TBD> minutes (Intel® Core™ processor)
-   * - Edge Node Onboarding and Provisioning (Edge Microvisor Toolkit)
-     - 10 minutes
-     - ~<TBD> minutes (Intel® Core™ processor)
-   * - Edge Cluster Creation
-     - 2 minutes
-     - ~<TBD> minutes
-   * - Edge Cluster Deletion
-     - 5 minutes
-     - ~<TBD> seconds
-   * - Creating a Deployment Package
-     - 5 minutes
-     - ~<TBD> seconds
-   * - Deploying Application to Edge Node
-     - 15 minutes
-     - ~<TBD> minutes
+   * - On-Prem Orchestrator Installation via Helmfile (Silicon HW Metrics Disabled)
+     - < 20 minutes
+     - ~8 minutes 1 second
+   * - On-Prem Orchestrator Installation via Helmfile (Silicon HW Metrics Enabled)
+     - < 20 minutes
+     - ~12 minutes 13 seconds
+   * - EN Agents Provisioning/Installation Time (Silicon HW Metrics Disabled)
+     - < 10 minutes
+     - ~4 minutes 45 seconds
+   * - EN Agents Provisioning/Installation Time (Silicon HW Metrics Enabled)
+     - < 10 minutes
+     - ~5 minutes 2 seconds
+
+Key Performance Indicators for vPRO Workflows
+---------------------------------------------------------------
+
+.. list-table:: vPRO Workflow Stability
+   :widths: 35 30 35
+   :header-rows: 1
+
+   * - Indicator
+     - Target
+     - Measurement
+   * - Provisioning Workflow - CCM Activation
+     - >= 98%
+     - 100%
+   * - Provisioning Workflow - ACM Activation
+     - >= 98%
+     - 100%
+   * - De-Provisioning Workflow - CCM Deactivation
+     - 100% (Nil Regression)
+     - 100%
+   * - De-Provisioning Workflow - ACM Deactivation
+     - 100% (Nil Regression)
+     - 100%
+   * - Remote Power Control - Power Off
+     - 100% (Nil Regression)
+     - 100%
+   * - Remote Power Control - Power On
+     - 100% (Nil Regression)
+     - 100%
+   * - Remote Power Control - Power Reset
+     - 100% (Nil Regression)
+     - 100%
+   * - KVM - KVM Session Launch
+     - >= 99%
+     - 100%
+   * - KVM - Pre-OS KVM (BIOS Screen)
+     - >= 99% (BIOS Display Rendering)
+     - 100%
+   * - KVM - OS KVM
+     - >= 99% (Desktop Control Accessible)
+     - 100%
+   * - SOL - SOL Session Establishment
+     - >= 99% (SOL Connect Time < 5s)
+     - 100%
+   * - SOL - SOL Session Stability (45min)
+     - >= 95%
+     - 100%
