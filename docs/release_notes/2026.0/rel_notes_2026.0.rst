@@ -141,6 +141,13 @@ Device Provisioning
   window. In this case, upgrade to the premium account or wait to
   provision more edge nodes.
 
+Day-2 Operations
+^^^^^^^^^^^^^^^^
+
+* Ubuntu OS update with apt repository configuration in os-update-policy
+  is failing. The workaround is to update the apt repository configuration
+  directly on the edge node and then perform the OS update.
+
 Out-of-band device management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 * For Intel® AMT or Intel® Standard Manageability issues see
