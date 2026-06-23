@@ -3,6 +3,13 @@
 |software_prod_name| Documentation
 ==================================
 
+.. warning::
+   The Edge Manageability Framework has been deprecated and will no longer receive
+   updates or active maintenance, including security fixes. Feature requests, bug
+   reports, and pull requests will not be reviewed or responded to. Existing
+   releases and documentation will remain available for reference only. 
+
+
 Explore documentation to set up and use Edge Orchestrator.
 
 Deploy Edge Orchestrator
