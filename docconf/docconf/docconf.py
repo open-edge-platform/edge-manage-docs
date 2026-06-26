@@ -114,6 +114,7 @@ html_theme_options = {
     "navbar_center": ["navbar-nav"],  # Main navigation in the center
     # "navbar_end": ["search-field"],  # Search + Theme Switcher on the right
     "header_links_before_dropdown": 6,
+    "announcement": "The Edge Manageability Framework has been deprecated and will no longer receive updates or active maintenance, including security fixes. Feature requests, bug reports, and pull requests will not be reviewed or responded to. Existing releases and documentation will remain available for reference only.",
     "logo": {
         "text": "Edge Orchestrator",
         # "image_dark": "_static/logo-dark.svg",
